@@ -1,0 +1,48 @@
+% The goal of this class is to automatically construct a multiplier for the
+% supplied Delta block
+
+classdef multiplier
+    properties
+        V11
+        V12
+        V21
+        V22
+    end
+    
+    methods
+        function obj = multiplier(varargin)
+            % 0 Args: Default constructor
+            if nargin == 0
+                return;
+                
+            % 1 Arg: Construct from Delta object
+            elseif nargin == 1
+                Delta = varargin{1};
+                if ~isa(Delta, 'Delta')
+                    error('Input must be a valid Delta object.');
+                end
+                
+                % TODO: Examine types of uncertainty and determine the
+                % corresponding multiplier structure
+                % obj.V11 = ...
+                
+            % 4 Args: Construct from specific variables
+            elseif nargin == 4
+                % Helper to check if input is either opvar OR dopvar
+                isValidType = @(x) isa(x, 'opvar') || isa(x, 'dopvar');
+                
+                if ~all(cellfun(isValidType, varargin))
+                     error('All 4 arguments (V11...V22) must be of class ''opvar'' or ''dopvar''.');
+                end
+                
+                obj.V11 = varargin{1};
+                obj.V12 = varargin{2};
+                obj.V21 = varargin{3};
+                obj.V22 = varargin{4};
+                
+            else
+                error('Constructor requires either 1 argument (Delta) or 4 arguments (opvar/dopvar)');
+            end
+        end
+    end
+end

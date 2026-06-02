@@ -1,0 +1,58 @@
+% l - signal length
+% P - # of periods
+% dt - sampling time
+% fc -
+function r = getMultiSine(l, P, dt, fc, A)
+l = 1000*200; % signal length
+P = 5; % number of periods
+N = l/P; % signal length per period
+fs = 1000; % sampling frequency of 1Hz
+Ts = 1/fs; % sampling time
+f0 = fs/N; % fundamental frequency of 1 period
+fN = fs/2; % nyquist frequency
+fc = 1000;
+f_fft = (0:N-1)*(fs/N); % frequency spectrum for fft
+Mmax = 10;
+if mod(N,2) == 0 % identify the frequency spectrum until the nyquist frequency
+    nf_pos = N/2+1; % Even N: Include Nyquist frequency
+else
+    nf_pos = (N+1)/2; % Odd N: Exclude Nyquist frequency
+end
+
+freqs = f0:f0:fN;
+freqs = freqs(1:end-1); % exclude nyquist frequency from spectrum
+
+if freqs(100) >= fc
+    warning('Insufficient frequencies within the passband of Butterworth filter')
+end
+
+% phase = 2*pi*rand(1,length(freqs));
+phase = -pi * (1:length(freqs)) .* ((1:length(freqs)) - 1) / length(freqs);
+
+A = ones(1,length(freqs));
+t = (0:N-1)/fs;
+
+r = A*sin(2*pi*freqs'*t+phase');
+r = (r / max(abs(r))) * Mmax; % Normalize the signal to ensure no saturation occurs
+r = repmat(r',[P,1]);
+
+figure; plot(r);
+
+r = r-mean(r);
+rp = reshape(r,[N,P]);
+
+
+Rp = fft(rp,[],1);
+Rp_pos = Rp(1:nf_pos,:);
+
+f_fft_pos = f_fft(1:nf_pos);
+
+mean_R = mean(rp,2);
+
+varR = var(Rp_pos,[],2);
+
+figure;
+plot(f_fft_pos,db(Rp_pos)); hold on; plot(f_fft_pos,db(varR,'power'),'*');
+grid on;
+title('Magnitude and Variance of $Rp$','Interpreter','latex')
+xlabel('frequency [Hz]','Interpreter','latex'); ylabel('Magnitude [dB]','Interpreter','latex');

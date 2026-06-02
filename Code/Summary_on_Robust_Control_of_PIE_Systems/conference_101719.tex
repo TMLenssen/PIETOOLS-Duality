@@ -1,0 +1,94 @@
+\documentclass[journal,10pt,twoside,a4paper]{IEEEtran}
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{xparse}
+\usepackage{subfiles}
+\usepackage{arydshln}
+\usepackage{algorithm}
+\usepackage{algpseudocode} 
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\input{shortcuts}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{corollary}{Corollary}
+\newtheorem{assumption}{Assumption}
+\newtheorem{sublemma}{Sublemma}
+\newtheorem{remark}{Remark}
+
+\begin{document}
+\onecolumn
+
+\title{Robust Controller Synthesis}
+
+% \author{\IEEEauthorblockN{1\textsuperscript{st} Thijs Lenssen}
+% \IEEEauthorblockA{\textit{Control Systems Group} \\
+% \textit{University of Technology Eindhoven}\\
+% Eindhoven, The Netherlands \\
+% t.m.lenssen@student.tue.nl}
+% \and
+% \IEEEauthorblockN{2\textsuperscript{nd} Aleksandr Talitckii}
+% \IEEEauthorblockA{\textit{School for the Engineering of Matter, Transport and Energy} \\
+% \textit{Arizona State University}\\
+% Tempe, AZ, 85298, USA \\
+% atalitck@asu.edu}
+% \and
+% \IEEEauthorblockN{3\textsuperscript{rd} Matthew Peet}
+% \IEEEauthorblockA{\textit{School for the Engineering of Matter, Transport and Energy} \\
+% \textit{Arizona State University}\\
+% Tempe, AZ, 85298, USA \\
+% mpeet@asu.edu}
+% \and
+% \IEEEauthorblockN{4\textsuperscript{th} Amritam Das}
+% \IEEEauthorblockA{\textit{Control Systems Group} \\
+% \textit{University of Technology Eindhoven}\\
+% Eindhoven, The Netherlands \\
+% am.das@student.tue.nl}}
+% \author{Thijs Lenssen
+% \thanks{T. Lenssen is with the Control Systems Group, Eindhoven University of Technology, The Netherlands. Email addresses: \small{\tt\small{t.m.lenssen@student.tue.nl}}}
+
+% \thanks{Corresponding author: t.m.lenssen@student.tue.nl}}%
+\author{Thijs Lenssen and Amritam Das% <-this % stops a space
+% \thanks{This research was supported by the European Space Agency (grant number: 4000145530), The MathWorks Inc, and in part by the National Science Foundation (Grant NSF CCF-2323532). Opinions, findings, conclusions or recommendations expressed in this paper are those of the authors and do not necessarily reflect the views of The MathWorks Inc., the European Space Agency, or the National Science Foundation.}% <-this % stops a space
+\thanks{T. Lenssen and A. Das are with the Control Systems Group, Eindhoven University of Technology, The Netherlands. Email addresses: \small{\tt\small{t.m.lenssen@student.tue.nl,am.das@tue.nl}}}
+
+\thanks{Corresponding author: am.das@tue.nl}}%
+
+\maketitle
+
+
+\section{ODE IQC Duality}
+\subfile{Sections/ODE IQC Duality}
+\section{PIE IQC Duality}
+\subfile{Sections/PIE IQC Duality}
+\section{LPI Derivation}
+\subfile{Sections/LPI Derivation}
+\subfile{Sections/Proof.tex}
+
+
+
+% \section*{Acknowledgment}
+
+% The preferred spelling of the word ``acknowledgment'' in America is without 
+% an ``e'' after the ``g''. Avoid the stilted expression ``one of us (R. B. 
+% G.) thanks $\ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put sponsor 
+% acknowledgments in the unnumbered footnote on the first page.
+
+\bibliographystyle{plain}        % Include this if you use bibtex 
+\bibliography{references}  
+\vspace{12pt}
+
+\end{document}

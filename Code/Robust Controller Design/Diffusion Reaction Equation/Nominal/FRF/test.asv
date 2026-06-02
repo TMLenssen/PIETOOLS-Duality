@@ -1,0 +1,125 @@
+clearvars; clc; clear stateNameGenerator;
+echo off
+
+%% Paths
+path_to_PIE = 'C:\Program Files\MATLAB\PIETOOLS\PIETOOLS';
+addpath(genpath(path_to_PIE))
+addpath(genpath("C:\Program Files\Mosek\11.0\toolbox\r2019b"))
+addpath(genpath("C:\Program Files\MATLAB\R2023a\toolbox\symbolic"))
+
+%% Weights
+Wu = makeweight(1, [4*2*pi, db2mag(20)+db2mag(3)], db2mag(60));
+
+dcgain = 1;
+Wd = makeweight(dcgain, [2*pi, db2mag(mag2db(dcgain)-3)], ...
+                db2mag(mag2db(dcgain)-60));
+
+%% Declare PDE / PIE
+pvar t s
+
+x1 = pde_var('state',1,s,[0,1]);
+x2 = pde_var('state');
+x3 = pde_var('state');
+x4 = pde_var('state');
+
+z  = pde_var('output',1);
+w  = pde_var('input',1);
+u  = pde_var('control',1);
+
+y1 = pde_var('sense');
+y2 = pde_var('sense');
+y3 = pde_var('sense');
+y4 = pde_var('sense');
+
+lam = 5;
+
+PDE = [diff(x1,t) == diff(x1,s,2) + lam*x1 + Wd.C*x4 + Wd.D*w;
+       diff(x2,t) == u;
+       diff(x3,t) == Wu.A*x3 + Wu.B*x2;
+       diff(x4,t) == Wd.A*x4 + Wd.B*w;
+       z  == Wu.C*x3 + Wu.D*x2;
+       subs(x1,s,0) == 0;
+       subs(diff(x1,s),s,1) == x2];
+
+display_PDE(PDE);
+
+PIE = convert(PDE);
+
+%% Build block operator Mop = [-A  -wT;  wT  -A]
+nx = PIE.A.dim(:,1);
+stateDimC = ioDimensions(["xr","xc"], [nx,nx]');
+
+M = gridBuilder(stateDimC, stateDimC, PIE.vars, PIE.dom);
+
+wfreq = 1000;
+
+M(1,1) = -PIE.A;
+M(1,2) = -wfreq*PIE.T;
+M(2,1) =  wfreq*PIE.T;
+M(2,2) = -PIE.A;
+
+Mop = M();
+
+%% Settings
+settings = lpisettings("light");
+settings.ddZ = 4;
+settings.sosineq_on = 0;
+settings.sos_opts.psatz = 0;
+%% Fit approximate inverse: choose best of left/right
+[Pfit, gam_sol, Efit, prob, side, results] = fit_inverse_lpi(Mop, settings, 'best');
+% [Pfit, gam_sol, mu_sol, ELfit, ERfit, prob] = fit_inverse_lpi_improved(Mop, settings);
+
+%% Report result
+fprintf('\nApproximate inverse fit complete.\n');
+% fprintf('Chosen side: %s\n', side);
+fprintf('Best gamma: %.6e\n', gam_sol);
+
+% if isfield(results,'left')
+%     fprintf('Left gamma:  %.6e\n', results.left.gam_sol);
+% end
+% if isfield(results,'right')
+%     fprintf('Right gamma: %.6e\n', results.right.gam_sol);
+% end
+
+%% Clean fitted inverse and products
+Pfit = clean_opvar(Pfit);
+% Efit = clean_opvar(Efit);
+
+PM_clean = clean_opvar(Pfit*Mop);
+MP_clean = clean_opvar(Mop*Pfit);
+
+
+
+%% Example: substitute a value for s into polynomial parts of the PI operator
+% This is useful to inspect the multiplier blocks at a point.
+s0 = 0.4;
+
+fprintf('\nEvaluating polynomial parts of Pfit*Mop at s = %.3f\n', s0);
+
+
+    fprintf('\nPM_clean.P:\n');
+    disp(double(PM_clean.P))
+
+    fprintf('\nPM_clean.Q1(s0):\n');
+    double(subs(PM_clean.Q1, s, s0))
+
+    fprintf('\nPM_clean.Q2(s0):\n');
+    double(subs(PM_clean.Q2, s, s0))
+
+    fprintf('\nPM_clean.R.R0(s0):\n');
+    double(subs(PM_clean.R.R0, s, s0))
+
+
+% Example kernel evaluations:
+% R1(s,theta) at (s0,th0), R2(s,theta) at (s0,th0)
+th0 = 0.1;
+
+    fprintf('\nPM_clean.R.R1(s0,th0):\n');
+    double(subs(subs(PM_clean.R.R1, PM_clean.var1, s0), PM_clean.var2, th0))
+
+    fprintf('\nPM_clean.R.R2(s0,th0):\n');
+    double(subs(subs(PM_clean.R.R2, PM_clean.var1, s0), PM_clean.var2, th0))
+
+
+disp('Done.')
+

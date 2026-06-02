@@ -1,0 +1,90 @@
+\documentclass[journal,10pt,doublecolumn,twoside, a4paper]{IEEEtran}
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{xparse}
+\usepackage{subfiles}
+\usepackage{arydshln}
+\usepackage{algorithm}
+\usepackage{algpseudocode} 
+\usepackage{tikz}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\input{shortcuts}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{corollary}{Corollary}
+\newtheorem{assumption}{Assumption}
+\newtheorem{sublemma}{Sublemma}
+\newtheorem{remark}{Remark}
+
+\begin{document}
+
+\title{Robust Controller Synthesis}
+
+% \thanks{Corresponding author: t.m.lenssen@student.tue.nl}}%
+\author{Thijs Lenssen and Amritam Das% <-this % stops a space
+	% \thanks{This research was supported by the European Space Agency (grant number: 4000145530), The MathWorks Inc, and in part by the National Science Foundation (Grant NSF CCF-2323532). Opinions, findings, conclusions or recommendations expressed in this paper are those of the authors and do not necessarily reflect the views of The MathWorks Inc., the European Space Agency, or the National Science Foundation.}% <-this % stops a space
+	\thanks{T. Lenssen and A. Das are with the Control Systems Group, Eindhoven University of Technology, The Netherlands. Email addresses: \small{\tt\small{t.m.lenssen@student.tue.nl,am.das@tue.nl}}}
+
+	\thanks{Corresponding author: am.das@tue.nl}}%
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+	PDEs, Robust Control, LMIs;
+\end{IEEEkeywords}
+
+\section{Introduction}
+\subfile{Sections/1.Introduction}
+\section{Preliminaries}
+\subfile{Sections/2.Preliminaries}
+
+\section{IQC-Based framework for robust stability and performance analysis}
+\subfile{Sections/3.Quadratic_Contraints_for_stability_and_performance_analysis}
+
+\section{Generalized Duality}\label{sec:genduality}
+\subfile{Sections/3. Generalized Duality}
+\section{Dual IQCs}
+\subfile{Sections/4. Dual IQC}
+\section{Application of Dual IQC}
+\subfile{Sections/5. Application of Dual IQC}
+
+\section{Numerical Examples}
+\subfile{Sections/6. Numerical Examples}
+\section{Conclusion}\label{sec:conc}
+\subfile{Sections/7. Conclusion}
+
+\appendices
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\section{Mathematical Proofs}
+\subfile{Sections/I. Proofs by Section}
+
+% \section*{Acknowledgment}
+
+% The preferred spelling of the word ``acknowledgment'' in America is without 
+% an ``e'' after the ``g''. Avoid the stilted expression ``one of us (R. B. 
+% G.) thanks $\ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put sponsor 
+% acknowledgments in the unnumbered footnote on the first page.
+
+\bibliographystyle{plain}        % Include this if you use bibtex 
+\bibliography{references}
+\vspace{12pt}
+
+\end{document}

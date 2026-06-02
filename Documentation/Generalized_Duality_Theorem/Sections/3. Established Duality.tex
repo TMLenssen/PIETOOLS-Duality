@@ -1,0 +1,133 @@
+\begin{theorem}[Dual Stability]\label{thm:dual stability}
+    Suppose $\mcl{T}$, $\mcl{A} \in \mcl{L}(\RL^{\mbf{n}_x})$ are PI operators. The following statements are equivalent.
+    \begin{enumerate}[label= \alph*)]
+        \item $\lim_{t\to\infty} \mcl{T}\mbf{x}(t) \rightharpoonup 0$ for any $\mbf{x}$ that satisfies $\partial_t(\mcl{T}\mbf{x}(t)) = \mcl{A}\mbf{x}(t)$ with initial condition $\mbf{x}(0)\in \RL^{\mbf{n}_x}$.
+        \item $\lim_{t\to\infty} \mcl{T}^*\underline{\mbf{x}}(t) \rightharpoonup 0$ for any $\underline{\mbf{x}}$ that satisfies $\mcl{T}^*\dot{\underline{\mbf{x}}}(t) = \mcl{A}^*\underline{\mbf{x}}(t)$ with initial condition $\underline{\mbf{x}}(0)\in \RL^{\mbf{n}_x}$.
+    \end{enumerate}
+    Note that "$\rightharpoonup 0$" denotes weak convergence in the Hilbert space $\RL$.
+\end{theorem}
+\begin{proof}
+    To show sufficiency, suppose $\mbf{x}$ satisfies $\partial_t(\mcl{T}\mbf{x}(t)) = \mcl{A}\mbf{x}(t)$ with initial condition $\mbf{x}(0)\in \RL^{\mbf{n}_x}$ and $\lim_{t\to\infty} \mcl{T}\mbf{x}(t) \rightharpoonup 0$. Let $\underline{\mbf{x}}$ satisfy $\mcl{T}^*\dot{\underline{\mbf{x}}}(t) = \mcl{A}^*\underline{\mbf{x}}(t)$ with initial condition $\underline{\mbf{x}}(0)\in \RL^{\mbf{n}_x}$. Then for any finite $t>0$, using integration-by-parts, we get
+    \begin{equation}\label{eqn:IBP}
+        \begin{aligned}
+            &\int_0^t \ip{\underline{x}(t-s)}{\partial_s(\mcl{T}\mbf{x}(s))}_{\RL} ds\\
+            &= \ip{\underline{\mbf{x}}(0)}{\mcl{T}\mbf{x}(t)} - \ip{\underline{\mbf{x}}(t)}{\mcl{T}\mbf{x}(0)}\\
+            &-\int_0^t\ip{\partial_s\underline{\mbf{x}}(t-s)}{\mcl{T}\mbf{x}(s)}ds.
+        \end{aligned}
+    \end{equation}
+    Then, we use a change of variable ($\theta = t-s$) on the last term in Eq.~\eqref{eqn:IBP} to show
+    \begin{equation*}
+        \begin{aligned}
+        \int_0^t\ip{\partial_s\underline{\mbf{x}}(t-s)}{\mcl{T}\mbf{x}(s)}ds &= \int_0^t \ip{\dot{\underline{\mbf{x}}}(\theta)}{\mcl{T}\mbf{x}(t-\theta)}d\theta\\
+        &=\int_0^t\ip{\mcl{T}^*\dot{\underline{\mbf{x}}}(\theta)}{\mbf{x}(t-\theta)}d\theta
+        \end{aligned}
+    \end{equation*}
+    Furthermore, using the same variable change on the left-hand side of Eq.~\eqref{eqn:IBP}, we get
+    \begin{equation*}
+        \begin{aligned}
+             &\int_0^t\ip{\underline{\mbf{x}}(t-s)}{\partial_s(\mcl{T}\mbf{x}(s))}_{\RL} ds\\ 
+             &= \int_0^t \ip{\underline{\mbf{x}}(t-s)}{\mcl{A}\mbf{x}(s)}ds         =\int_0^t\ip{\mcl{A}^*\underline{\mbf{x}}(\theta)}{\mbf{x}(t-\theta)}d\theta
+        \end{aligned}
+    \end{equation*}
+    Substituting these two expressions into Eq.~\eqref{eqn:IBP}, we have
+    \begin{equation*}
+        \begin{aligned}
+            &\int_0^t\ip{\mcl{A}^*\underline{\mbf{x}}(\theta)}{\mbf{x}(t-\theta)}d\theta \\
+            &=\ip{\underline{\mbf{x}}(0)}{\mcl{T}\mbf{x}(t)} - \ip{\underline{\mbf{x}}(t)}{\mcl{T}\mbf{x}(0)}
+            \\
+            &+\int_0^t\ip{\mcl{T}^*\dot{\underline{\mbf{x}}}(\theta)}{\mbf{x}(t-\theta)}d\theta
+        \end{aligned}
+    \end{equation*}
+    However, $\mcl{A}^*\underline{\mbf{x}}(\theta)=\mcl{T}^*\dot{\underline{\mbf{x}}}(\theta)$ for all $\theta\in[0,t]$, and hence
+    \begin{equation}\label{eqn:ipeq}
+        \ip{\underline{\mbf{x}}(0)}{\mcl{T}{\mbf{x}}(t)} = \ip{\mcl{T}^*\underline{\mbf{x}}(t)}{{\mbf{x}}(0)}\text{,    for all }t>0. 
+    \end{equation}
+    Since $\lim_{t\to\infty} \mcl{T}\mbf{x}(t) = 0$, we have
+    \begin{equation*}
+        \lim_{t\to\infty}\ip{\mcl{T}^*\underline{\mbf{x}}(t)}{\mbf{x}(0)} = \lim_{t\to\infty}\ip{\underline{\mbf{x}}(0)}{\mcl{T}\mbf{x}(t)} = 0.
+    \end{equation*}
+    Since $\mbf{x}(0)\in\RL$ may be chosen arbitrarily and $\RL$ is Hilbert, this implies $\lim_{t\to\infty} \mcl{T}^*\underline{\mbf{x}}(t) \rightharpoonup 0$. Thus we have sufficiency. Since $\mcl{T}^{**} = \mcl{T}$ and existence of $\mcl{T}^*\dot{\underline{\mbf{x}}}(t)$ guarantees existence of $\partial_t(\mcl{T}^*\underline{\mbf{x}}(t)$, sufficiency implies necessity.
+\end{proof}
+\begin{theorem}[Dual $L_2$-gain]\label{thm:ogduality}
+    Suppose $\mcl{T}, \mcl{A}\in\mcl{L}(\RL^{\mbf{n}_x})$, $\mcl{B}\in\mcl{L}(\RL^{\mbf{n}_w},\RL^{\mbf{n}_x})$, $\mcl{C}\in\mcl{L}(\RL^{\mbf{n}_x}, \RL^{\mbf{n}_z})$, and $\mcl{D}\in\mcl{L}(\RL^{\mbf{n}_w},\RL^{\mbf{n}_z})$  are PI operators. The following statements are equivalent.
+    \begin{enumerate}[label=\alph*)]
+        \item For any $w(t)\in \RL^{\mbf{n}_w}$, $x(t)\in \RL^{\mbf{n}_x}$, and $z(t)\in \RL^{\mbf{n}_z}$ that satisfy $\mbf{x}(0) = 0$ and,
+        \begin{equation}\label{eqn:primal system}
+            \bmat{\partial_t(\mcl{T}\mbf{x})(t)\\z(t)}=\bmat{\mcl{A} & \mcl{B} \\ \mcl{C} & \mcl{D}}\bmat{\mbf{x}(t)\\ w(t)}
+        \end{equation}
+        we have that $\|z\|_{\RL} \leq \gamma\|w\|_{\RL}$.
+        \item For any $\underline{w}(t)\in \RL^{\mbf{n}_z}$, $\underline{\mbf{x}}(t)\in \RL^{\mbf{n}_x}$, and $\underline{z}(t)\in \RL^{\mbf{n}_w}$ that satisfy $\underline{\mbf{x}}(0) = 0$ and,
+        \begin{equation}\label{eqn:dual system}
+            \bmat{\mcl{T}^*\dot{\underline{\mbf{x}}}(t)\\\underline{z}(t)}=\bmat{\mcl{A}^* & \mcl{C}^* \\ \mcl{B}^* & \mcl{D}^*}\bmat{\underline{\mbf{x}}(t)\\ \underline{w}(t)}
+        \end{equation}
+        we have that $\|\underline{z}\|_{\RL} \leq \gamma\|\underline{w}\|_{\RL}$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    To show sufficiency, let $\mbf{x}(t)\in\RL^{\mbf{n}_x}$ and $z(t)\in \RL^{\mbf{n}_z}$ satisfy Eq.~\ref{eqn:primal system} for $\mbf{x}(0)=0$ and some $w(t)\in \RL^{\mbf{n}_w}$. Then $\|z(t)\|_{\RL} \leq \gamma \|w(t)\|_{\RL}$. Let $\underline{\mbf{x}}(t)\in \RL^{\mbf{n}_x}$ and $\underline{w}(t)\in \RL^{\mbf{n}_z}$ satisfy Eq.~\eqref{eqn:dual system} for $\underline{\mbf{x}}(0) = 0$ and some $\underline{w}(t)\in \RL^{\mbf{n}_z}$. Then, as in Eq.~\ref{eqn:IBP} in the proof of Theorem~\ref{thm:dual stability} and substituting initial conditions, we find
+    \begin{equation}\label{eqn:star}
+        \int_0^t\ip{\underline{\mbf{x}}(t-s)}{\partial_s(\mcl{T}\mbf{x}(s))}ds=\int_0^t\ip{\mcl{T}^*\dot{\underline{\mbf{x}}}(\theta)}{\mbf{x}(t-\theta)}d\theta
+    \end{equation}
+    Furthermore, by using the variable change $\theta = t - s$ on the left-hand side of the above equation,
+    \begin{equation}\label{eqn:hashtag}
+        \begin{aligned}
+            &\int_0^t\ip{\underline{\mbf{x}}(t-s)}{\partial_s(\mcl{T}\mbf{x}(s))}ds\\
+            &= \int_0^t\ip{\underline{\mbf{x}}(t-s)}{\mcl{A}\mbf{x}(s)}ds + \int_0^t\ip{\underline{\mbf{x}}(t-s)}{\mcl{B}w(s)}ds\\
+            &=\int_0^t\ip{\mcl{A}^*\underline{\mbf{x}}(\theta)}{\mbf{x}(t-\theta)}d\theta + \int_0^t\ip{\mcl{B}^*\underline{\mbf{x}}(\theta)}{w(t-\theta)}d\theta
+        \end{aligned}
+    \end{equation}
+    Combining Eq.~\eqref{eqn:star} and ~\eqref{eqn:hashtag}, we obtain
+    \begin{equation*}
+        \begin{aligned}
+            &\int_0^t\ip{\mcl{T}^*\dot{\underline{\mbf{x}}}(\theta)}{\mbf{x}(t-\theta)}d\theta\\
+            &=\int_0^t\ip{\mcl{A}^*\underline{\mbf{x}}(\theta)}{\mbf{x}(t-\theta)}d\theta + \int_0^t \ip{\mcl{B}^*\underline{\mbf{x}}(\theta)}{w(t-\theta)}d\theta
+        \end{aligned}
+    \end{equation*}
+    However, $\mcl{T}^*\dot{\underline{\mbf{x}}}(t) - \mcl{A}^*\underline{\mbf{x}}(t) = \mcl{C}^*\underline{w}(t)$, so
+    \begin{equation*}
+        \begin{aligned}
+            &\int_0^t\ip{\mcl{C}^*\underline{w}(\theta)}{\mbf{x}(t-\theta)}d\theta\\
+            &=\int_0^t\ip{\mcl{T}^*\dot{\underline{\mbf{x}}}(\theta)-\mcl{A}^*\underline{\mbf{x}}(\theta)}{\mbf{x}(t-\theta)}d\theta\\
+            &=\int_0^t\ip{\mcl{B}^*\underline{\mbf{x}}(\theta)}{w(t-\theta)}d\theta.
+        \end{aligned}
+    \end{equation*}
+    Since $z(t) = \mcl{C}\mbf{x}(t) + \mcl{D}w(t)$, we obtain
+    \begin{equation*}
+        \begin{aligned}
+            &\int_0^t\ip{\underline{w}(\theta)}{z(t-\theta)}d\theta - \int_0^t\ip{\underline{w}(\theta)}{\mcl{D}w(t-\theta)}d\theta\\
+            &=\int_0^t\ip{\underline{w}(\theta)}{\mcl{C}\mbf{x}(t-\theta)}d\theta = \int_0^t\ip{\mcl{C}^*\underline{w}(\theta)}{\mbf{x}(t-\theta)}d\theta\\
+            &=\int_0^t\ip{\mcl{B}^*\underline{\mbf{x}}(\theta)}{w(t-\theta)}d\theta.
+        \end{aligned}
+    \end{equation*}
+    Likewise, we know $\underline{z}(t) = \mcl{B}^*\underline{\mbf{x}}(t) +\mcl{D}^*\underline{w}(t)$. Hence
+    \begin{equation*}
+        \begin{aligned}
+            &\int_0^t\ip{\underline{z}(\theta)}{w(t-\theta)}d\theta - \int_0^t\ip{\mcl{D}^*\underline{w}(\theta)}{w(t-\theta)}d\theta\\
+            &= \int_0^t\ip{\mcl{B}^*\underline{\mbf{x}}(\theta)}{w(t-\theta)}d\theta\\
+            &= \int_0^t\ip{\underline{w}(\theta)}{z(t-\theta)}d\theta - \int_0^t\ip{\underline{w}(\theta)}{\mcl{D}w(t-\theta)}d\theta
+        \end{aligned}
+    \end{equation*}
+    We conclude that for any $t>0$, if $z(t)$ and $w(t)$ satisfy the primal PIE and $\underline{z}(t)$ and $\underline{w}(t)$ satisfy the dual PIE, then
+    \begin{equation}\label{eqn:equivalence}
+        \int_0^t\ip{\underline{z}(\theta)}{w(t-\theta)}d\theta = \int_0^t\ip{\underline{w}(\theta)}{z(t-\theta)}d\theta.
+    \end{equation}
+    Now, for any $\underline{w}(t)\in\RL$, let $\underline{z}(t)$ solve the dual PIE for some $\underline{\mbf{x}}(t)$. For any fixed $\tau>0$, define $w(t) = \underline{z}(\tau-t)$ for $t\leq \tau$ and $w(t) = 0$ for $t>\tau$. Then $w(t) \in \RL$ and for this input, let $z(t)$ solve the primal PIE for some $\underline{x}(t)$. Then, if we define the truncation operator $P_\tau$, we have
+    \begin{equation*}
+        \begin{aligned}
+            \|P_\tau \underline{z}(t)\|_{\RL}^2 &= \int_0^\tau\ip{\underline{z}(s)}{\underline{z}(s)}ds = \int_0^\tau \ip{\underline{z}(s)}{w(\tau - s)}ds\\
+            &= \int_0^\tau\ip{\underline{w}(s)}{z(\tau - s)}ds \\
+            &\leq \|P_\tau \underline{w}(t)\|_{\RL}\|P_\tau z(t)\|_{\RL}\\
+            &\leq \| P_\tau \underline{w}(t)\|_{\RL}\|z(t)\|_{\RL} \\
+            &\leq \gamma \|P_\tau\underline{w}(t)\|_{\RL}\|w(t)\|_{\RL}\\
+            &=\gamma\|P_\tau \underline{w}(t)\|_{\RL}\|P_\tau w(t)\|_{\RL}\\
+            &= \gamma\|P_\tau \underline{w}(t)\|_{\RL}\|P_\tau \underline{z}(t)\|_{\RL}.
+        \end{aligned}
+    \end{equation*}
+    Therefore, we have that $\|P_\tau\underline{z}(t)\|_{\RL} \leq \gamma\|P_\tau\underline{w}(t)\|_{\RL}$ for all $\tau\geq0$. We conclude that $\|\underline{z}(t)\|_{\RL} \leq \gamma \|\underline{w}(t)\|_{\RL}$. Since $\mcl{T}^{**} = \mcl{T}$ and
+    \begin{equation*}
+        \bmat{(\mcl{A}^*)^* & (\mcl{B}^*)^*\\(\mcl{C}^*)^*&(\mcl{D}^*)^*}=
+        \bmat{\mcl{A}^* & \mcl{C}^*\\\mcl{B}^*&\mcl{D}^*}^*= 
+        \bmat{\mcl{A} & \mcl{B}\\\mcl{C}&\mcl{D}}^{**}=\bmat{\mcl{A} & \mcl{B}\\\mcl{C}&\mcl{D}}
+    \end{equation*}
+    we have that sufficiency implies necessity.
+\end{proof}

@@ -1,0 +1,811 @@
+Start with the squared-up dynamic multiplier
+$\bmat{v_1(t) \\ v_2(t)}=\Psi\bmat{z_\Delta(t) \\ w_\Delta(t)}$,
+\begin{equation}\label{eqn:multiplier_untransformed}
+    \bmat{\mcl{T}_\Psi\dot{\mbf{x}}_\Psi(t)\\v_1(t)\\v_2(t)}
+    =
+    \bmat{
+        \mcl{A}_\Psi & \mcl{B}_\Psi^z & \mcl{B}_\Psi^w\\
+        \mcl{C}_\Psi^z & \mcl{D}_\Psi^{z} & \mcl{D}_\Psi^{zw} \\
+        \mcl{C}_\Psi^w & \mcl{D}_\Psi^{wz} & \mcl{D}_\Psi^w
+    }
+    \bmat{\mbf{x}_\Psi(t) \\ z_\Delta(t) \\ w_\Delta(t)}.
+\end{equation}
+To square up the interconnection, introduce a full-row-rank map $\mcl{N}$ from
+the squared coordinates to the original coordinates, and choose any right
+inverse $\mcl{E}$ satisfying
+\begin{equation}\label{eqn:squareup_maps}
+    \mcl{N}\mcl{E}=I.
+\end{equation}
+The choice $\mcl{E}=\mcl{N}^*$ is the usual zero-padding choice when $\mcl{N}$
+is an orthogonal selector, but nothing below requires this. The original plant
+sees the projected input $\mcl{N}w_\Delta$, while its original uncertainty
+output is embedded into the squared coordinates by $\mcl{E}$. The signal route is
+\begin{equation}\label{eqn:squareup_signal_route}
+    w_{\Delta,\square}
+    \xrightarrow{\mcl{N}}
+    w_{\Delta,\mathrm{o}}
+    \xrightarrow{G}
+    z_{\Delta,\mathrm{o}}
+    \xrightarrow{\mcl{E}}
+    z_{\Delta,\square}
+    \xrightarrow{\Psi^\dagger_\square}
+    w_{\Delta,\square} .
+\end{equation}
+The maps $\mcl{N}$ and $\mcl{E}$ appear in the plant blocks. If these maps are
+dynamic, their states are appended to the augmented realization; the algebraic
+loop below is then obtained from their direct feedthrough operators. Thus the
+squared-up generalized plant is
+\begin{equation}\label{eqn:squaredup_gp}
+    \bmat{\mcl{T}\dot{\mbf{x}}\\z_{\Delta,\square}\\z}
+    =
+    \bmat{
+        \mcl{A} & \mcl{B}_\Delta\mcl{N} & \mcl{B}_w\\
+        \mcl{E}\mcl{C}_\Delta
+        & \mcl{E}\mcl{D}_{\Delta}\mcl{N}
+        & \mcl{E}\mcl{D}_{\Delta w}\\
+        \mcl{C}_z & \mcl{D}_{z\Delta}\mcl{N} & \mcl{D}_{zw}
+    }
+    \bmat{\mbf{x}\\w_{\Delta,\square}\\w}.
+\end{equation}
+
+Use the abbreviations
+\begin{equation}
+    \begin{gathered}
+    \mcl{C}_\Delta^\square:=\mcl{E}\mcl{C}_\Delta,\qquad
+    \mcl{D}_\Delta^\square:=\mcl{E}\mcl{D}_{\Delta}\mcl{N},\qquad
+    \mcl{D}_{\Delta w}^\square:=\mcl{E}\mcl{D}_{\Delta w},\\
+    \mcl{B}_\Delta^\square:=\mcl{B}_\Delta\mcl{N},\qquad
+    \mcl{D}_{z\Delta}^\square:=\mcl{D}_{z\Delta}\mcl{N},\qquad
+    \mbf{x}^a:=\bmat{\mbf{x}\\\mbf{x}_\Psi},\qquad
+    \mcl{T}^a:=\bmat{\mcl{T}&0\\0&\mcl{T}_\Psi}.
+    \end{gathered}
+\end{equation}
+Substituting the squared-up plant signals into the multiplier realization and
+stacking the plant and multiplier states gives the open augmented realization
+with state $\mbf{x}^a=\bmat{\mbf{x}\\\mbf{x}_\Psi}$. Before closing the
+algebraic loop, this gives
+\begin{equation}\label{eqn:aug_untransformed}
+    \bmat{
+        \mcl{T}^a\dot{\mbf{x}}^a(t)\\
+        v_1(t)\\
+        v_2(t)\\
+        z(t)
+    }
+    =
+    \bmat{
+        \mcl{A}^a & \mcl{B}^a_{\Delta} & \mcl{B}^a_{w}\\
+        \mcl{C}^a_1 & \mcl{D}_{11}^a & \mcl{D}_{12}^a\\
+        \mcl{C}^a_2 & \mcl{D}_{21}^a & \mcl{D}_{22}^a\\
+        \mcl{C}_z^a & \mcl{D}_{z\Delta}^\square & \mcl{D}_{zw}
+    }
+    \bmat{\mbf{x}^a(t)\\w_{\Delta,\square}(t)\\w(t)},
+\end{equation}
+where
+\begin{align}
+    \mcl{A}^a
+    &:=
+    \bmat{
+        \mcl{A} & 0\\
+        \mcl{B}_\Psi^z\mcl{C}_\Delta^\square & \mcl{A}_\Psi
+    },
+    &
+    \mcl{B}^a_{\Delta}
+    &:=
+    \bmat{
+        \mcl{B}_\Delta^\square\\
+        \mcl{B}_\Psi^z\mcl{D}_\Delta^\square+\mcl{B}_\Psi^w
+    },
+    &
+    \mcl{B}^a_{w}
+    &:=
+    \bmat{
+        \mcl{B}_w\\
+        \mcl{B}_\Psi^z\mcl{D}_{\Delta w}^\square
+    },
+    \nonumber\\
+    \mcl{C}^a_1
+    &:=
+    \bmat{\mcl{D}_\Psi^z\mcl{C}_\Delta^\square & \mcl{C}_\Psi^z},
+    &
+    \mcl{D}^a_{11}
+    &:=
+    \mcl{D}_\Psi^z\mcl{D}_\Delta^\square+\mcl{D}_\Psi^{zw},
+    &
+    \mcl{D}_{12}^a
+    &:=
+    \mcl{D}_\Psi^z\mcl{D}_{\Delta w}^\square,
+    \nonumber\\
+    \mcl{C}^a_2
+    &:=
+    \bmat{\mcl{D}_\Psi^{wz}\mcl{C}_\Delta^\square & \mcl{C}_\Psi^w},
+    &
+    \mcl{D}_{21}^a
+    &:=
+    \mcl{D}_\Psi^{wz}\mcl{D}_\Delta^\square+\mcl{D}_\Psi^w,
+    &
+    \mcl{D}_{22}^a
+    &:=
+    \mcl{D}_\Psi^{wz}\mcl{D}_{\Delta w}^\square,
+    \nonumber\\
+        \mcl{C}_z^a
+    &:= 
+    \bmat{\mcl{C}_z & 0}.
+\end{align}
+The algebraic loop is entirely contained in the $v_2$-row:
+\begin{equation}\label{eqn:v2_loop_row}
+    v_2
+    =
+    \mcl{C}^a_2\mbf{x}^a
+    +\mcl{D}^a_{21}w_{\Delta,\square}
+    +\mcl{D}_{22}^a w.
+\end{equation}
+
+Assume that $\mcl{D}_{21}^a$ is invertible. Then
+\begin{equation}\label{eqn:wdelta_from_v2}
+    w_{\Delta,\square}
+    =
+    -(\mcl{D}_{21}^a)^{-1}\mcl{C}^a_2\mbf{x}^a
+    +(\mcl{D}_{21}^a)^{-1}v_2
+    -(\mcl{D}_{21}^a)^{-1}\mcl{D}_{22}^a w.
+\end{equation}
+Hence the change of variables
+\begin{equation}\label{eqn:loop_congruence}
+    \bmat{\mbf{x}^a\\w_{\Delta,\square}\\w}
+    =
+    \underbrace{
+    \bmat{
+        I & 0 & 0\\
+        -(\mcl{D}_{21}^a)^{-1}\mcl{C}^a_2
+        & (\mcl{D}_{21}^a)^{-1}
+        & -(\mcl{D}_{21}^a)^{-1}\mcl{D}_{22}^a\\
+        0 & 0 & I
+    }}_{\mcl{X}_\Delta}
+    \bmat{\mbf{x}^a\\v_2\\w}
+\end{equation}
+closes the loop. This is the congruence transformation: any quadratic form
+$L$ in the variables $\bmat{\mbf{x}^a\\w_{\Delta,\square}\\w}$ becomes
+\begin{equation}\label{eqn:lmi_congruence}
+    L
+    \quad\longmapsto\quad
+    \mcl{X}_\Delta^*L\mcl{X}_\Delta
+\end{equation}
+in the variables $\bmat{\mbf{x}^a\\v_2\\w}$.
+The inverse change of variables is just the original loop row
+\eqref{eqn:v2_loop_row}:
+\begin{equation}\label{eqn:loop_congruence_inverse}
+    \bmat{\mbf{x}^a\\v_2\\w}
+    =
+    \underbrace{
+    \bmat{
+        I & 0 & 0\\
+        \mcl{C}^a_2 & \mcl{D}_{21}^a & \mcl{D}_{22}^a\\
+        0 & 0 & I
+    }}_{\mcl{X}_\Delta^{-1}}
+    \bmat{\mbf{x}^a\\w_{\Delta,\square}\\w}.
+\end{equation}
+% We now relate this squared-up condition to the original, non-squared-up
+% interconnection.
+% The order of $\mcl{N}$ and $\mcl{F}$ is determined by the signal space in
+% which the loop is written. Let $\mcl{W}_{\Delta,\mathrm{o}}$ denote the
+% original uncertainty-input space and let
+% $\mcl{W}_{\Delta,\square}$ denote the squared-up uncertainty-input space. The
+% operator $\mcl{N}:\mcl{W}_{\Delta,\square}\to
+% \mcl{W}_{\Delta,\mathrm{o}}$ projects squared-up inputs back to the original
+% plant input. The operator
+% \begin{equation}
+%     \mcl{F}
+%     =
+%     (\mcl{D}_\Psi^w)^{-1}
+%     \mcl{D}_\Psi^{wz}
+%     \mcl{E}\mcl{D}_\Delta
+% \end{equation}
+% goes in the opposite direction:
+% \begin{equation}
+%     \mcl{F}:\mcl{W}_{\Delta,\mathrm{o}}
+%     \longrightarrow
+%     \mcl{W}_{\Delta,\square}.
+% \end{equation}
+% Indeed, starting from an original uncertainty input
+% $w_{\Delta,\mathrm{o}}$, the direct feedthrough route is
+% \begin{equation}
+%     w_{\Delta,\mathrm{o}}
+%     \xrightarrow{\mcl{D}_\Delta}
+%     z_{\Delta,\mathrm{o}}
+%     \xrightarrow{\mcl{E}}
+%     z_{\Delta,\square}
+%     \xrightarrow{\mcl{D}_\Psi^{wz}}
+%     v_2
+%     \xrightarrow{(\mcl{D}_\Psi^w)^{-1}}
+%     w_{\Delta,\square}.
+% \end{equation}
+% Thus, when the loop is written in the original coordinate
+% $w_{\Delta,\mathrm{o}}$, one loop pass is
+% $w_{\Delta,\mathrm{o}}\mapsto\mcl{N}\mcl{F}w_{\Delta,\mathrm{o}}$, giving
+% $I+\mcl{N}\mcl{F}$. When the loop is written in the squared coordinate
+% $w_{\Delta,\square}$, the plant first sees
+% $\mcl{N}w_{\Delta,\square}$, and one loop pass is
+% $w_{\Delta,\square}\mapsto\mcl{F}\mcl{N}w_{\Delta,\square}$, giving
+% $I+\mcl{F}\mcl{N}$.
+
+% \begin{theorem}[Well-posedness under square-up]\label{thm:squareup_wellposed}
+% Assume $\mcl{D}_\Psi^w$ is invertible. If the original non-squared-up loop
+% operator
+% \begin{equation}\label{eqn:nonpadded_loop_untransformed}
+%     \mcl{L}_{\mathrm{ns}}
+%     :=
+%     I+\mcl{N}\mcl{F}
+%     =
+%     I
+%     +
+%     \mcl{N}
+%     (\mcl{D}_\Psi^w)^{-1}
+%     \mcl{D}_\Psi^{wz}
+%     \mcl{E}
+%     \mcl{D}_\Delta
+% \end{equation}
+% is invertible, then the squared-up loop operator $I+\mcl{F}\mcl{N}$ is
+% invertible. Consequently the squared-up algebraic loop is well posed, since
+% \begin{equation}\label{eqn:squared_wellposed_factor}
+%     \mcl{D}_{21}^a
+%     =
+%     \mcl{D}_\Psi^w
+%     \left(I+\mcl{F}\mcl{N}\right).
+% \end{equation}
+% \end{theorem}
+
+% \begin{proof}
+% Using $\mcl{D}_\Delta^\square=\mcl{E}\mcl{D}_\Delta\mcl{N}$ from
+% \eqref{eqn:squareup_maps}, the loop feedthrough in the augmented squared-up
+% system factors as
+% \[
+%     \mcl{D}_{21}^a
+%     =
+%     \mcl{D}_\Psi^{wz}\mcl{D}_\Delta^\square+\mcl{D}_\Psi^w
+%     =
+%     \mcl{D}_\Psi^w
+%     \left(I+\mcl{F}\mcl{N}\right).
+% \]
+% If $\mcl{L}_{\mathrm{ns}}=I+\mcl{N}\mcl{F}$ is invertible, then
+% \begin{equation}\label{eqn:squared_inverse_from_original}
+%     \left(I+\mcl{F}\mcl{N}\right)^{-1}
+%     =
+%     I-\mcl{F}
+%     \left(I+\mcl{N}\mcl{F}\right)^{-1}
+%     \mcl{N}.
+% \end{equation}
+% Thus $I+\mcl{F}\mcl{N}$ is invertible, and so is $\mcl{D}_{21}^a$ by
+% \eqref{eqn:squared_wellposed_factor}. Equivalently, if
+% $w_\square\in\ker(I+\mcl{F}\mcl{N})$, then applying $\mcl{N}$ gives
+% $\mcl{L}_{\mathrm{ns}}\mcl{N}w_\square=0$, so $\mcl{N}w_\square=0$; the
+% original equation then gives $w_\square=0$. Thus the added completion
+% directions do not introduce new algebraic-loop singularities.
+% \end{proof}
+
+\begin{example}[Zero-padding completion]
+For the trivial zero-padding completion the well-posedness implication is visible block by
+block. Let
+\begin{equation}
+    \mcl{N}=\bmat{I&0},
+    \qquad
+    \mcl{E}=\mcl{N}^*=\bmat{I\\0},
+    \qquad
+    w_{\Delta,\square}=\bmat{w_{\Delta,\mathrm{o}}\\w_{\Delta,\mathrm{p}}},
+\end{equation}
+so that $\mcl{N}w_{\Delta,\square}=w_{\Delta,\mathrm{o}}$, returns the original uncertainty input. Suppose $(I +\mcl{L})$ denotes the 
+well-posedness condition. $\mcl{L}$ can be separated in a part $\mcl{F}$ and $\mcl{N}$.
+Since $\mcl{F}$ can be separated in parts acting on the original coordinates
+and the padded coordinates, write
+\begin{equation}
+    \mcl{F}=\bmat{\mcl{F}_{\mathrm{o}}\\\mcl{F}_{\mathrm{p}}}.
+\end{equation}
+Then the squared-up, and non-squared-up algebraic loop operators are
+\begin{equation}
+    I+\mcl{F}\mcl{N}
+    =
+    \bmat{
+        I+\mcl{F}_{\mathrm{o}} & 0\\
+        \mcl{F}_{\mathrm{p}} & I
+    },
+    \qquad
+    I+\mcl{N}\mcl{F}
+    =
+    I+\mcl{F}_{\mathrm{o}},
+\end{equation}
+respectively.
+Thus the squared-up loop is block lower triangular: the padded directions add
+only an identity block, and the only possible singularity is the original
+non-squared-up loop $I+\mcl{F}_{\mathrm{o}}$.
+\end{example}
+
+
+
+% The dual-side construction should be read in the same way as
+% Theorem~\ref{thm:dualscaledIO}: we do not first postulate a separate dual
+% multiplier. Instead, take the adjoint of the open augmentation
+% \eqref{eqn:aug_untransformed} and then apply the corresponding dual
+% congruence.
+
+% The adjoint of the squared-up generalized plant \eqref{eqn:squaredup_gp} is
+% \begin{equation}\label{eqn:dual_squaredup_gp}
+%     \bmat{
+%         \mcl{T}^*\dot{\underline{\mbf{x}}}(t)\\
+%         \underline{w}_{\Delta,\square}^{G}(t)\\
+%         \underline{w}
+%     }
+%     =
+%     \bmat{
+%         \mcl{A}^*
+%         & (\mcl{C}_\Delta^\square)^*
+%         & \mcl{C}_z^*\\
+%         (\mcl{B}_\Delta^\square)^*
+%         & (\mcl{D}_\Delta^\square)^*
+%         & (\mcl{D}_{z\Delta}^\square)^*\\
+%         \mcl{B}_w^*
+%         & (\mcl{D}_{\Delta w}^\square)^*
+%         & \mcl{D}_{zw}^*
+%     }
+%     \bmat{
+%         \underline{\mbf{x}}(t)\\
+%         \underline{z}_{\Delta,\square}(t)\\
+%         \underline{z}(t)
+%     }.
+% \end{equation}
+
+% The dual dynamic multiplier is the adjoint of
+% \eqref{eqn:multiplier_untransformed}:
+% \begin{equation}\label{eqn:dual_dynamic_multiplier}
+%     \bmat{
+%         \mcl{T}_\Psi^*\dot{\underline{\mbf{x}}}_\Psi(t)\\
+%         \underline{z}_{\Delta,\square}(t)\\
+%         \underline{w}_{\Delta,\square}^{\Psi}(t)
+%     }
+%     =
+%     \bmat{
+%         \mcl{A}_\Psi^*
+%         & (\mcl{C}_\Psi^z)^*
+%         & (\mcl{C}_\Psi^w)^*\\
+%         (\mcl{B}_\Psi^z)^*
+%         & (\mcl{D}_\Psi^z)^*
+%         & (\mcl{D}_\Psi^{wz})^*\\
+%         (\mcl{B}_\Psi^w)^*
+%         & (\mcl{D}_\Psi^{zw})^*
+%         & (\mcl{D}_\Psi^w)^*
+%     }
+%     \bmat{
+%         \underline{\mbf{x}}_\Psi(t)\\
+%         \underline{v}_1(t)\\
+%         \underline{v}_2(t)
+%     }.
+% \end{equation}
+
+% The two dual systems are augmented by feeding the multiplier output
+% $\underline{z}_{\Delta,\square}$ into the adjoint generalized plant. From
+% \eqref{eqn:dual_dynamic_multiplier},
+% \begin{equation}
+%     \underline{z}_{\Delta,\square}
+%     =
+%     (\mcl{B}_\Psi^z)^*\underline{\mbf{x}}_\Psi
+%     +(\mcl{D}_\Psi^z)^*\underline{v}_1
+%     +(\mcl{D}_\Psi^{wz})^*\underline{v}_2 .
+% \end{equation}
+% Substituting this into the state equation of
+% \eqref{eqn:dual_squaredup_gp} and keeping the multiplier state equation gives
+% \begin{equation}
+%     \begin{aligned}
+%     \bmat{
+%         \mcl{T}^*\dot{\underline{\mbf{x}}}\\
+%         \mcl{T}_\Psi^*\dot{\underline{\mbf{x}}}_\Psi
+%     }
+%     &=
+%     \bmat{
+%         \mcl{A}^*
+%         & (\mcl{C}_\Delta^\square)^*(\mcl{B}_\Psi^z)^*\\
+%         0
+%         & \mcl{A}_\Psi^*
+%     }
+%     \bmat{\underline{\mbf{x}}\\\underline{\mbf{x}}_\Psi}
+%     +
+%     \bmat{
+%         (\mcl{C}_\Delta^\square)^*(\mcl{D}_\Psi^z)^*\\
+%         (\mcl{C}_\Psi^z)^*
+%     }\underline{v}_1\\
+%     &\quad+
+%     \bmat{
+%         (\mcl{C}_\Delta^\square)^*(\mcl{D}_\Psi^{wz})^*\\
+%         (\mcl{C}_\Psi^w)^*
+%     }\underline{v}_2
+%     +
+%     \bmat{\mcl{C}_z^*\\0}\underline{z}.
+%     \end{aligned}
+% \end{equation}
+% The dual uncertainty input is the sum of the plant and multiplier
+% contributions:
+% \begin{equation}
+%     \begin{aligned}
+%     \underline{w}_{\Delta,\square}
+%     &:=
+%     \underline{w}_{\Delta,\square}^{G}
+%     +
+%     \underline{w}_{\Delta,\square}^{\Psi}\\
+%     &=
+%     \left(
+%     (\mcl{B}_\Delta^\square)^*
+%     \quad
+%     (\mcl{D}_\Delta^\square)^*(\mcl{B}_\Psi^z)^*
+%     +(\mcl{B}_\Psi^w)^*
+%     \right)
+%     \bmat{\underline{\mbf{x}}\\\underline{\mbf{x}}_\Psi}\\
+%     &\quad+
+%     \left((\mcl{D}_\Delta^\square)^*(\mcl{D}_\Psi^z)^*
+%     +(\mcl{D}_\Psi^{zw})^*\right)\underline{v}_1
+%     +
+%     \left((\mcl{D}_\Delta^\square)^*(\mcl{D}_\Psi^{wz})^*
+%     +(\mcl{D}_\Psi^w)^*\right)\underline{v}_2
+%     +(\mcl{D}_{z\Delta}^\square)^*\underline{z}.
+%     \end{aligned}
+% \end{equation}
+% Likewise, after the same substitution, the adjoint external channel is
+% \begin{equation}
+%     \begin{aligned}
+%     \underline{w}
+%     &=
+%     \left(
+%     \mcl{B}_w^*
+%     \quad
+%     (\mcl{D}_{\Delta w}^\square)^*(\mcl{B}_\Psi^z)^*
+%     \right)
+%     \bmat{\underline{\mbf{x}}\\\underline{\mbf{x}}_\Psi}\\
+%     &\quad+
+%     (\mcl{D}_{\Delta w}^\square)^*(\mcl{D}_\Psi^z)^*\underline{v}_1
+%     +(\mcl{D}_{\Delta w}^\square)^*(\mcl{D}_\Psi^{wz})^*\underline{v}_2
+%     +\mcl{D}_{zw}^*\underline{z}.
+%     \end{aligned}
+% \end{equation}
+% With the augmented dual state
+% $\underline{\mbf{x}}^a:=\bmat{\underline{\mbf{x}}\\
+% \underline{\mbf{x}}_\Psi}$, the resulting realization is
+% \begin{equation}\label{eqn:dual_augmented_unclosed}
+%     \bmat{
+%         (\mcl{T}^a)^*\dot{\underline{\mbf{x}}}^a(t)\\
+%         \underline{w}_{\Delta,\square}(t)\\
+%         \underline{w}(t)
+%     }
+%     =
+%     \bmat{
+%         (\mcl{A}^a)^*
+%         & (\mcl{C}_1^a)^*
+%         & (\mcl{C}_2^a)^*
+%         & (\mcl{C}_z^a)^*\\
+%         (\mcl{B}_\Delta^a)^*
+%         & (\mcl{D}_{11}^a)^*
+%         & (\mcl{D}_{21}^a)^*
+%         & (\mcl{D}_{z\Delta}^\square)^*\\
+%         (\mcl{B}_w^a)^*
+%         & (\mcl{D}_{12}^a)^*
+%         & (\mcl{D}_{22}^a)^*
+%         & \mcl{D}_{zw}^*
+%     }
+%     \bmat{
+%         \underline{\mbf{x}}^a(t)\\
+%         \underline{v}_1(t)\\
+%         \underline{v}_2(t)\\
+%         \underline{z}(t)
+%     }.
+% \end{equation}
+% Thus \eqref{eqn:dual_augmented_unclosed} is exactly the adjoint of the open
+% primal augmentation \eqref{eqn:aug_untransformed}; the later dual congruence
+% closes the $\underline{v}_2$ loop.
+
+\begin{definition}
+    Let $\mcl{V}=\mcl{V}^*\in\Pi_4$ be partitioned as
+    \begin{equation*}
+        \mcl{V}
+        =
+        \bmat{\mcl{Q} & \mcl{S}\\\mcl{S}^* & \mcl{R}}.
+    \end{equation*}
+    Then $\mcl{V}$ is called a strict PN-PI operator if there exists
+    $\epsilon>0$ such that
+    \begin{equation*}
+        \mcl{Q}\succeq\epsilon I,
+        \qquad
+        \mcl{R}\preceq-\epsilon I.
+    \end{equation*}
+\end{definition}
+
+\begin{lemma}\label{lem:primdualPNPI}
+    Let $\mcl{V}=\mcl{V}^*\in\Pi_4$ and
+    $\bar{\mcl{V}}=\bar{\mcl{V}}^*\in\Pi_4$ denote the static primal and dual
+    IQC multipliers. Then $\mcl{V}$ is a strict PN-PI operator if and only if
+    $\bar{\mcl{V}}$ is a strict PN-PI operator.
+\end{lemma}
+\begin{proof}
+    See Appendix~\ref{proof:primdualPNPI}.
+\end{proof}
+
+\begin{example}[Dual multiplier for the zero-padded LTI-parametric IQC]
+    In this example we assume that the scaled duality theorem holds for
+    dynamic scalings with invertible feedthrough, and we use the square-up
+    construction to apply it to the non-invertible factor.  
+    Consider the case of LTI parametric uncertainty. The primal IQC multiplier
+    is given by
+    \begin{equation}
+        \int_0^T
+        \ip{\bmat{z_\Delta(t) \\ w_\Delta(t)}}
+        {
+        \bmat{\Psi_v^* & 0 \\ 0 &\Psi_v^*}
+        \bmat{\mcl{Q} & \mcl{S} \\ \mcl{S}^* & \mcl{R}}
+        \bmat{\Psi_v & 0 \\ 0 &\Psi_v}
+        \bmat{z_\Delta(t) \\ w_\Delta(t)}
+        }dt
+        \geq 0,
+    \end{equation}
+    where $\Psi_v$ is stable, $\mcl{Q}\succ0$, $\mcl{R}\prec0$, and
+    $\mcl{S}=-\mcl{S}^*$. Usually $\Psi_v$ is tall, with
+    $\Psi_v=\bmat{I\\\Psi_N}$, where $N$ denotes the spectral order of the
+    dynamic multiplier. Complete this factor by
+    \begin{equation}
+        \Psi_{v,\square}
+        =
+        \bmat{I & -\Psi_N^*\\ \Psi_N & I},
+        \qquad
+        \Psi_\square
+        =
+        \bmat{\Psi_{v,\square} & 0 \\ 0 & \Psi_{v,\square}}.
+    \end{equation}
+    The squared up primal IQC then becomes
+    \begin{equation}
+        \int_0^T
+        \ip{\bmat{z_{\Delta,\square}(t) \\ w_{\Delta,\square}(t)}}
+        {
+        \bmat{\Psi_{v,\square}^* & 0 \\ 0 &\Psi_{v,\square}^*}
+        \bmat{\mcl{Q} & \mcl{S} \\ \mcl{S}^* & \mcl{R}}
+        \bmat{\Psi_{v,\square} & 0 \\ 0 &\Psi_{v,\square}}
+        \bmat{z_{\Delta,\square}(t) \\ w_{\Delta,\square}(t)}
+        }dt
+        \geq 0,
+    \end{equation}
+    with $z_{\Delta,\square} = \bmat{z_\Delta^\top & 0^\top}^\top$ and $w_{\Delta,\square} = \bmat{w_\Delta^\top & 0^\top}^\top$ denoting the zero-padded signals. The multiplication operator $\mcl{M}$ admits a $J$-factorization
+    \begin{equation}
+        \mcl{M}
+        =
+        \bmat{\mcl{Q} & \mcl{S} \\ \mcl{S}^* & \mcl{R}} 
+        =
+        \mcl{V}^*J\mcl{V},
+        \qquad
+        \mcl{V}
+        :=
+        \bmat{\mcl{V}_{11} & \mcl{V}_{12}\\0 & \mcl{V}_{22}}, \qquad
+        J:=
+        \bmat{I & 0\\0 & -I},
+    \end{equation}
+    where $\mcl{S}_{11}$ and $\mcl{S}_{22}$ are invertible. Hence the squared
+    IQC multiplier is
+    \begin{equation}
+        \Pi_\square
+        =
+        \Psi_\square^*\mcl{M}\Psi_\square
+        =
+        \left(\mcl{V}\Psi_\square\right)^*
+        J
+        \left(\mcl{V}\Psi_\square\right).
+    \end{equation}
+    The corresponding square primal scaling is the $J$-factor applied after
+    the square dynamic filter:
+    \begin{equation}
+        \mcl{L}
+        :=
+        \mcl{V}\Psi_\square
+        =
+        \bmat{
+            \mcl{S}_{11}\Psi_{v,\square}
+            &
+            \mcl{S}_{12}\Psi_{v,\square}\\
+            0
+            &
+            \mcl{S}_{22}\Psi_{v,\square}
+        }.
+    \end{equation}
+    Theorem~\ref{thm:dualscaledIO} uses the inverse signal route. Thus define
+    \begin{equation}
+        \bmat{z_\Delta\\w_\Delta}
+        =
+        \mcl{L}^{-1}
+        \bmat{\tilde z_\Delta\\\tilde w_\Delta}.
+    \end{equation}
+    If
+    \begin{equation}
+        \mcl{A}_L:=\mcl{S}_{11}\Psi_{v,\square},\qquad
+        \mcl{B}_L:=\mcl{S}_{12}\Psi_{v,\square},\qquad
+        \mcl{D}_L:=\mcl{S}_{22}\Psi_{v,\square},
+    \end{equation}
+    then
+    \begin{equation}
+        \mcl{L}^{-1}
+        =
+        \bmat{
+            \mcl{A}_L^{-1}
+            &
+            -\mcl{A}_L^{-1}\mcl{B}_L\mcl{D}_L^{-1}\\
+            0
+            &
+            \mcl{D}_L^{-1}
+        }.
+    \end{equation}
+    Applying \eqref{eqn:dualscaling} gives the dual I/O scaling
+    \begin{equation}
+        \underline{\mcl{L}}^{-1}
+        =
+        \bmat{
+            \mcl{D}_L^{-*}
+            &
+            \mcl{D}_L^{-*}\mcl{B}_L^*\mcl{A}_L^{-*}\\
+            0
+            &
+            \mcl{A}_L^{-*}
+        }^{-1}.
+    \end{equation}
+    Therefore
+    \begin{equation}
+        \underline{\mcl{L}}
+        =
+        \underbrace{\bmat{
+            \mcl{S}_{22}^{-*}
+            &
+            \mcl{S}_{22}^{-*}\mcl{S}_{12}^*\mcl{S}_{11}^{-*}\\
+            0
+            &
+            \mcl{S}_{11}^{-*}
+        }}_{\underline{\mcl{V}}}
+        \underbrace{\bmat{
+            \Psi_{v,\square}^{-*} & 0\\
+            0 & \Psi_{v,\square}^{-*}
+        }}_{\underline{\Psi}_\square}.
+    \end{equation}
+    The corresponding square dual multiplier is
+    \begin{equation}
+        \underline{\Pi}_\square
+        =
+        \underline{\mcl{L}}^*J\underline{\mcl{L}}
+        =
+        \underline{\Psi}_\square^*
+        \underbrace{\underline{\mcl{V}}^*J\underline{\mcl{V}}}
+        _{\underline{\mcl{M}}}
+        \underline{\Psi}_\square .
+    \end{equation}
+    Equivalently, use the same static dual construction as in
+    Lemma~\ref{lem:primdualPNPI}. If
+    \begin{equation}
+        \mcl{M}
+        =
+        \bmat{
+            \mcl{Q} & \mcl{S}\\
+            \mcl{S}^* & \mcl{R}
+        },
+        \qquad
+        \mcl{K}
+        :=
+        \bmat{
+            -\mcl{R} & \mcl{S}^*\\
+            \mcl{S} & -\mcl{Q}
+        },
+    \end{equation}
+    then the square static dual multiplier is
+    \begin{equation}
+        \underline{\mcl{M}}
+        :=
+        \mcl{K}^{-1}
+        =
+        \bmat{
+            \underline{\mcl{Q}}
+            &
+            \underline{\mcl{S}}\\
+            \underline{\mcl{S}}^*
+            &
+            \underline{\mcl{R}}
+        }.
+    \end{equation}
+    Applying the block inverse formula with the Schur complement
+    \begin{equation}
+        \Theta
+        :=
+        \mcl{S}^*\mcl{Q}^{-1}\mcl{S}
+        -\mcl{R}
+    \end{equation}
+    gives
+    \begin{equation}
+        \underline{\mcl{Q}}=\Theta^{-1} \succ 0 ,
+        \qquad
+        \underline{\mcl{S}}
+        =
+        \Theta^{-1}\mcl{S}^*
+        \mcl{Q}^{-1},
+    \end{equation}
+    \begin{equation}
+        \underline{\mcl{R}}
+        =
+        -\left(
+            \mcl{Q}
+            +
+            \mcl{S}(-\mcl{R})^{-1}
+            \mcl{S}^*
+        \right)^{-1}\prec 0.
+    \end{equation}
+    Thus the square dual IQC condition is
+    \begin{equation}
+        \int_0^T
+        \ip{\bmat{\underline{z}_\Delta(t) \\ \underline{w}_\Delta(t)}}
+        {
+        \underline{\Pi}_\square
+        \bmat{\underline{z}_\Delta(t) \\ \underline{w}_\Delta(t)}
+        }dt
+        \leq 0.
+    \end{equation}
+    To unsquare this condition, let
+    \begin{equation}
+        \mcl{N}=\bmat{I&0},
+        \qquad
+        \mcl{N}^*=\bmat{I\\0}.
+    \end{equation}
+    The adjoint square-up embeds the non-squared dual uncertainty signals as
+    \begin{equation}
+        \bmat{\underline{z}_{\Delta,\square}\\\underline{w}_{\Delta,\square}}
+        =
+        \underbrace{\bmat{\mcl{N}^*&0\\0&\mcl{N}^*}}
+        _{\underline{\mcl{E}}}
+        \bmat{\underline{z}_{\Delta,\mathrm{o}}\\\underline{w}_{\Delta,\mathrm{o}}}.
+    \end{equation}
+    Hence the non-squared dual multiplier is
+    \begin{equation}
+        \underline{\Pi}_{\mathrm{o}}
+        =
+        \underline{\mcl{E}}^*
+        \underline{\Pi}_\square
+        \underline{\mcl{E}}
+        =
+        \left(\underline{\mcl{L}}\underline{\mcl{E}}\right)^*
+        J
+        \left(\underline{\mcl{L}}\underline{\mcl{E}}\right).
+    \end{equation}
+    For the zero-padding completion used here,
+    \begin{equation}
+        \underline{\Psi}_v=\Psi_{v,\square}^{-*}\mcl{N}^*
+        =
+        \bmat{(I +\Psi_N^*\Psi_N)^{-1} & -(I +\Psi_N^*\Psi_N)^{-1}\Psi_N^{*} \\
+         \Psi_N(I+\Psi_N^*\Psi_N)^{-1} & I - \Psi_N(I+\Psi_N^*\Psi_N)^{-1}\Psi_N^*}\bmat{I\\0}
+        =
+        (I+\Psi_N^*\Psi_N)^{-1}\Psi_v.
+    \end{equation}
+    
+    The unsquared dual IQC is then
+    \begin{equation}
+        \int_0^T
+        \ip{\bmat{\underline{z}_{\Delta}(t) \\
+        \underline{w}_{\Delta}(t)}}
+        {
+        \bmat{\underline{\Psi}_v^* & 0 \\ 0 &\underline{\Psi}_v^*}\bmat{
+            \underline{\mcl{Q}}
+            &
+            \underline{\mcl{S}}\\
+            \underline{\mcl{S}}^*
+            &
+            \underline{\mcl{R}}
+        }\bmat{\underline{\Psi}_v & 0 \\ 0 & \underline{\Psi}_v}
+        \bmat{\underline{z}_{\Delta}(t) \\
+        \underline{w}_{\Delta}(t)}
+        }dt
+        \leq 0.
+    \end{equation}
+    which is also in the class of LTI parametric IQCs. Since all operations are invertible, we can start with
+    the dual system and end up with a multiplier that satisfies the primal IQC. A convenient
+    choice of the dynamic multiplier is all--pass basis function (12B) in \cite{veenman2016robust}
+    \begin{equation}
+    \Psi_v
+    =
+    \bmat{I & \frac{s + \rho}{s-\rho} & \frac{(s + \rho)^2}{(s-\rho)^2} & \cdots & \frac{(s + \rho)^v}{(s-\rho)^v}}^\top,
+    \qquad
+    \end{equation}
+    with $\rho < 0$. This choice is convenient as $\Psi_N^*\Psi_N$ is a scalar. Indeed,
+    \begin{equation}
+        \Psi_N^*\Psi_N = \sum_{i=1}^v \left(\frac{s-\rho}{s+\rho}\right)^{i}\left(\frac{s+\rho}{s-\rho}\right)^i = v
+    \end{equation}
+\end{example}

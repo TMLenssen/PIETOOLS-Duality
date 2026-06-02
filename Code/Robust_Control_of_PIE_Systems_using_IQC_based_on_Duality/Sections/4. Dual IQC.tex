@@ -1,0 +1,44 @@
+We also define the combined uncertainty and performance multiplier by
+\begin{equation*}
+	(\mcl M_{\mcl V}\mbf u)(t):=\underbrace{\bmat{\mcl Q_\Delta & 0 & \mcl S_\Delta & 0 \\ 0 & \mcl Q_p & 0 & \mcl S_p \\ \mcl S_\Delta^* & 0 & \mcl R_\Delta & 0 \\ 0 & \mcl S_p^* & 0 & \mcl R_p}}_{\mcl V}\mbf u(t).
+\end{equation*}
+We restrict attention to multiplier operators that are compatible with the duality framework, and in particular to $J$-spectral operators for the static parts of the uncertainty and performance multipliers. Although $J$-spectral operators are usually introduced in frequency-domain settings, here they are used in the time domain to convert the IQC into a \textbf{Primal I/O Scaling} and a \textbf{Dual I/O Scaling}. This yields the relationship between the \textbf{Scaled Primal System} and \textbf{Scaled Dual System} described in Section~\ref{sec:genduality}. The defining factorization is
+\begin{equation*}
+	\mcl V=\mcl V^*=\mcl S^{-*}\mcl J\mcl S^{-1}=\bmat{\mcl Q & \mcl S \\ \mcl S^* & \mcl R}, \qquad \mcl J=\bmat{I & 0 \\ 0 & -I},
+\end{equation*}
+where $\mcl S$ is the \textbf{Primal I/O Scaling}. This factorization may be interpreted as an input--output scaling of the primal and dual systems, 
+converting the quadratic constraint into an equivalent open-loop representation. The associated dual $J$-spectral operator is
+\begin{equation*}
+	\bar{\mcl V}:=\bar{\mcl S}^{-*}\mcl J\bar{\mcl S}^{-1}=\bmat{-\mcl R^* & \mcl S^* \\ \mcl S & -\mcl Q^*}^{-1}=\bmat{\bar{\mcl Q} & \bar{\mcl S} \\ \bar{\mcl S}^* & \bar{\mcl R}},
+\end{equation*}
+where $\bar{\mcl S}$ is the \textbf{Dual I/O Scaling}. Many performance multipliers, as well as the static parts of stability multipliers, admit a $J$-spectral factorization. An important example is the class of strict PN-PI operators, adapted from \cite{hu}.
+
+\begin{definition}
+	Let $\mcl V=\mcl V^*\in\Pi_4$ be partitioned as
+	\begin{equation*}
+		\mcl V=\bmat{\mcl Q & \mcl S \\ \mcl S^* & \mcl R},
+	\end{equation*}
+	Then $\mcl V$ is called a strict PN-PI operator if there exists $\epsilon>0$ such that
+	\begin{equation*}
+		\mcl Q \succeq \epsilon I, \qquad \mcl R \preceq -\epsilon I.
+	\end{equation*}
+	If $\epsilon=0$, then $\mcl V$ is called a PN-PI operator.
+\end{definition}
+
+\begin{lemma}\label{lem:PNPIfact}
+	Let $\mcl V=\mcl V^*\in\Pi_4$ be a strict PN-PI operator. Then $\mcl V$ admits the factorization
+	\begin{gather*}
+		\mcl V=\bmat{\mcl S_{11} & \mcl S_{12} \\ 0 & \mcl S_{22}}^{-*}\bmat{I & 0 \\ 0 & -I}\bmat{\mcl S_{11} & \mcl S_{12} \\ 0 & \mcl S_{22}}^{-1}=\\\bmat{\mcl S_{11}^*\mcl S_{11} & \mcl S_{11}^*\mcl S_{12} \\ \mcl S_{12}^*\mcl S_{11} & \mcl S_{12}^*\mcl S_{12}-\mcl S_{22}^*\mcl S_{22}}=\bmat{\mcl Q & \mcl S \\ \mcl S^* & \mcl R},
+	\end{gather*}
+	with $\mcl S_{11}\succ0$ and $\mcl S_{22}\succ0$.
+\end{lemma}
+\begin{proof}
+	See Appendix \ref{proof:PNPIfact}.
+\end{proof}
+
+\begin{lemma}\label{lem:primdualPNPI}
+	Let $\mcl V=\mcl V^*\in\Pi_4$ and $\bar{\mcl V}=\bar{\mcl V}^*\in\Pi_4$ denote the static primal and dual IQC multipliers. Then $\mcl V$ is a strict PN-PI operator if and only if $\bar{\mcl V}$ is a strict PN-PI operator.
+\end{lemma}
+\begin{proof}
+	See Appendix \ref{proof:primdualPNPI}
+\end{proof}

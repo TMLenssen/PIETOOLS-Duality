@@ -1,0 +1,119 @@
+classdef LPIBuilder < handle
+    properties (Access = private)
+        settings
+    end
+
+    properties (GetAccess = public, SetAccess = private)                    
+        prog
+    end
+
+    methods
+        function obj = LPIBuilder(prog, settings)
+            obj.prog     = prog;
+            obj.settings = settings;
+        end
+
+        function obj = setDop(obj, Dop)
+            disp('- Enforcing the Negativity Constraint...');
+            if obj.settings.sosineq_on
+                disp('  - Using lpi_ineq...');
+                obj.prog = lpi_ineq(obj.prog, -Dop, obj.settings.sos_opts);
+                return;
+            end
+
+            disp('  - Using an Equality constraint...');
+            [obj.prog, De1op] = poslpivar(obj.prog, Dop.dim, obj.settings.dd2, obj.settings.options2);
+
+            if obj.getSettingDefault('override2', 0) ~= 1
+                [obj.prog, De2op] = poslpivar(obj.prog, Dop.dim, obj.settings.dd3, obj.settings.options3);
+                Deop = De1op + De2op;
+            else
+                Deop = De1op;
+            end
+
+            % Dop = -Deop enforced via equality
+            obj.prog = lpi_eq(obj.prog, Deop + Dop, 'symmetric');
+        end
+
+        function [lyapOp, R] = constructLyapOp(obj, mappingOp, coercive)
+            disp('- Declaring Positive Lyapunov Operator variables...');
+
+            [obj.prog, Rop] = poslpivar(obj.prog, mappingOp.dim, obj.settings.dd1, obj.settings.options1);
+
+            if obj.getSettingDefault('override1', 0) ~= 1
+                [obj.prog, P2] = poslpivar(obj.prog, mappingOp.dim, obj.settings.dd12, obj.settings.options12);
+                R = Rop + P2;
+            else
+                R = Rop;
+            end
+            
+            if coercive
+                % Strict positivity
+                Imat   = obj.settings.eppos2 * eyePI(obj.PIE, mappingOp.dim(:,1));
+                lyapOp = R + Imat;
+            else
+                % Also declare an indefinite operator Qop=Pop*Top so that Rop = Top'*Qop.   % DJ, 01/06/2025
+                Qdeg = get_lpivar_degs(R, mappingOp);
+                [obj.prog, lyapOp] = lpivar(obj.prog,mappingOp.dim,Qdeg);
+                obj.prog = lpi_eq(obj.prog, mappingOp'*lyapOp-R);
+            end
+        end
+
+        function decvar = constructLPIVar(obj, outputDim, inputDim, deg)
+            if nargin < 4 || isempty(deg)
+                deg = obj.settings.ddZ;
+            end
+            [obj.prog, decvar] = lpivar(obj.prog, [outputDim, inputDim], deg);
+        end
+        function prog = setInequality(obj, Dop, opts)
+            disp('  - Using lpi_ineq...');
+            obj.prog = lpi_ineq(obj.prog, Dop, opts);
+            prog = obj.prog;
+        end
+    end
+
+
+
+    methods (Access = private)
+        function validateCtorInputs(~, dimension)
+            if ~isa(dimension, 'ioDimensions')
+                error('LPIBuilder:InvalidDim', 'dimension must be of type ioDimensions.');
+            end
+        end
+
+        % function mustBeGridBuilder(~, x, name)
+        %     if ~isa(x, 'gridBuilder')
+        %         error('LPIBuilder:InvalidType', '%s must be a gridBuilder object.', name);
+        %     end
+        % end
+        % 
+        % function mustMatchSquareDim(~, term, dim, name)
+        %     if ~((term.inputDim == dim) && (term.outputDim == dim))
+        %         error('LPIBuilder:DimMismatch', ...
+        %             ['%s must have inputDim == dim and outputDim == dim ', ...
+        %             '(same dimensions as defined LPI grid).'], name);
+        %     end
+        % end
+
+        function val = getSettingDefault(obj, field, default)
+            if isfield(obj.settings, field)
+                val = obj.settings.(field);
+            else
+                val = default;
+            end
+        end
+
+        % function val = getSettingWithFallback(obj, primaryField, fallbackField)
+        %     if isfield(obj.settings, primaryField)
+        %         val = obj.settings.(primaryField);
+        %         return;
+        %     end
+        %     if isfield(obj.settings, fallbackField)
+        %         val = obj.settings.(fallbackField);
+        %         return;
+        %     end
+        %     error('LPIBuilder:MissingSetting', ...
+        %         'Missing settings field "%s" (and fallback "%s").', primaryField, fallbackField);
+        % end
+    end
+end

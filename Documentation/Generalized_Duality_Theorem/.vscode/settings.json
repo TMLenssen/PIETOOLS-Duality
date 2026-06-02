@@ -1,0 +1,42 @@
+{
+  "latex-workshop.latex.outDir": "%DIR%/build",
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.recipe.default": "first",
+  "latex-workshop.view.pdf.viewer": "tab",
+  "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click",
+  "latex-workshop.latex.tools": [
+    {
+      "name": "latexmk-build",
+      "command": "latexmk",
+      "args": [
+        "-pdf",
+        "-synctex=1",
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "-outdir=%OUTDIR%",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "clean-build-dir",
+      "command": "powershell.exe",
+      "args": [
+        "-NoProfile",
+        "-NonInteractive",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-Command",
+        "if (Test-Path '%OUTDIR%') { Get-ChildItem -LiteralPath '%OUTDIR%' -Force | Where-Object { $_.Name -notin @('%DOCFILE%.pdf', '%DOCFILE%.synctex.gz') } | Remove-Item -Recurse -Force }"
+      ]
+    }
+  ],
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "latexmk -> clean build",
+      "tools": [
+        "latexmk-build",
+        "clean-build-dir"
+      ]
+    }
+  ]
+}

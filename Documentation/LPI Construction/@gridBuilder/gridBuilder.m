@@ -1,0 +1,517 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% gridBuilder
+% Helper to assemble block-operator "grids" (opvar / dopvar) with automatic
+% zero-fill for missing blocks.
+%
+% Indexing features:
+%   D(r,c) = opv             % assignment with checks (default overwrite=true)
+%   opv = D(r,c)             % read stored block
+%   G   = D()                % assembled full grid (same as getGrid())
+%   G   = D(ridx,cidx)       % assembled sub-grid for ranges (:, vectors, logical)
+%   D(ridx,cidx) = []        % clear blocks in a range
+%   D(ridx,cidx) = cell(...) % assign blocks over a range (size must match)
+%
+% Constructor overload:
+%   gridBuilder(outDims, inDims, vars, dom)
+%   gridBuilder(G, outDims, inDims, overwrite=true)   % decompose opvar/dopvar
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+classdef gridBuilder < handle
+    properties (Access = private)
+        Zero                % @(r,c) zerosPI(outDim2x1, inDim2x1, vars, dom)
+        blocks              % cell(m,n) of opvar/dopvar, empty if unset
+        m                   % number of output blocks
+        n                   % number of input blocks
+        vars                % polynomial variables (stored for getGrid)
+        dom                 % domain (stored for getGrid)
+    end
+
+    properties (GetAccess = public, SetAccess = private)
+        inputDim            % ioDimensions
+        outputDim           % ioDimensions
+    end
+
+    methods
+        function obj = gridBuilder(varargin)
+            % gridBuilder(outDims, inDims, vars, dom)
+            % gridBuilder(G, outDims, inDims, overwrite=true)
+
+            if nargin == 0
+                return; % allow preallocation
+            end
+
+            arg1 = varargin{1};
+
+            if isa(arg1,'opvar') || isa(arg1,'dopvar')
+                % ---- Construct from (do)pvar ----
+                if nargin < 3
+                    error('gridBuilder:Constructor:Args', ...
+                        'Usage: gridBuilder(G, outDims, inDims, [overwrite]).');
+                end
+
+                G       = varargin{1};
+                outDims = varargin{2};
+                inDims  = varargin{3};
+
+                if nargin >= 4 && ~isempty(varargin{4})
+                    overwrite = varargin{4};
+                else
+                    overwrite = true;
+                end
+
+                if ~isa(inDims,'ioDimensions') || ~isa(outDims,'ioDimensions')
+                    error('gridBuilder:Constructor:InvalidDims', ...
+                        'outDims and inDims must be ioDimensions.');
+                end
+
+                % vars/dom come from the opvar
+                vars = [G.var1, G.var2];
+                dom  = G.I;
+
+                % initialize
+                obj.inputDim  = inDims;
+                obj.outputDim = outDims;
+                obj.m = obj.outputDim.count();
+                obj.n = obj.inputDim.count();
+                obj.vars = vars;
+                obj.dom  = dom;
+                obj.Zero   = @(r,c) zerosPI(r, c, vars, dom);
+                obj.blocks = cell(obj.m, obj.n);
+
+                % fill blocks from G
+                obj.loadFromOpvar(G, overwrite);
+
+            else
+                % ---- Standard construct-from-dims ----
+                if nargin < 4
+                    error('gridBuilder:Constructor:Args', ...
+                        'Usage: gridBuilder(outDims, inDims, vars, dom).');
+                end
+
+                outDims = varargin{1};
+                inDims  = varargin{2};
+                vars    = varargin{3};
+                dom     = varargin{4};
+
+                obj.validateCtorInputs(outDims, inDims, vars);
+
+                obj.inputDim  = inDims;
+                obj.outputDim = outDims;
+
+                obj.m = obj.outputDim.count();
+                obj.n = obj.inputDim.count();
+
+                obj.vars = vars;
+                obj.dom  = dom;
+
+                obj.Zero   = @(r,c) zerosPI(r, c, vars, dom);
+                obj.blocks = cell(obj.m, obj.n);
+            end
+        end
+
+        function add(obj, opv, r, c, overwrite)
+            % add(opv, r, c, overwrite=false)
+            if nargin < 5 || isempty(overwrite)
+                overwrite = false;
+            end
+
+            obj.validateOpvarType(opv);
+            obj.validateIndices(r, c);
+
+            if ~overwrite && ~isempty(obj.blocks{r,c})
+                error('gridBuilder:Add:Occupied', ...
+                    'Position (r=%d, c=%d) is already populated. Set overwrite=true to replace.', r, c);
+            end
+
+            % Dimension checks (ioDimensions.dimension returns 2x1)
+            expIn  = obj.inputDim.dimension(c);
+            expOut = obj.outputDim.dimension(r);
+
+            if ~isequal(opv.dim(:,2), expIn)
+                error('gridBuilder:Add:InputDimMismatch', ...
+                    'Input dim mismatch at col %d: got [%s], expected [%s].', ...
+                    c, num2str(opv.dim(:,2)'), num2str(expIn'));
+            end
+            if ~isequal(opv.dim(:,1), expOut)
+                error('gridBuilder:Add:OutputDimMismatch', ...
+                    'Output dim mismatch at row %d: got [%s], expected [%s].', ...
+                    r, num2str(opv.dim(:,1)'), num2str(expOut'));
+            end
+
+            obj.blocks{r,c} = opv;
+        end
+
+        function addByName(obj, opv, rowName, colName, overwrite)
+            % addByName(opv, rowName, colName, overwrite=false)
+            if nargin < 5 || isempty(overwrite)
+                overwrite = false;
+            end
+
+            r = obj.outputDim.indexOf(rowName);
+            c = obj.inputDim.indexOf(colName);
+            obj.add(opv, r, c, overwrite);
+        end
+
+        function loadFromOpvar(obj, G, overwrite)
+            % loadFromOpvar(obj, G, overwrite=true)
+            % Decompose a (do)pvar G into blocks according to obj.outputDim/obj.inputDim.
+
+            if nargin < 3 || isempty(overwrite)
+                overwrite = true;
+            end
+            if ~(isa(G,'opvar') || isa(G,'dopvar'))
+                error('gridBuilder:loadFromOpvar:Type', 'G must be opvar or dopvar.');
+            end
+
+            % Total dimensions must match builder totals
+            expOut = obj.outputDim.getDimensions()';  % 2x1
+            expIn  = obj.inputDim.getDimensions()';   % 2x1
+
+            if ~isequal(G.dim(:,1), expOut)
+                error('gridBuilder:loadFromOpvar:OutputDimMismatch', ...
+                    'G output dims [%s] do not match builder output dims [%s].', ...
+                    num2str(G.dim(:,1)'), num2str(expOut'));
+            end
+            if ~isequal(G.dim(:,2), expIn)
+                error('gridBuilder:loadFromOpvar:InputDimMismatch', ...
+                    'G input dims [%s] do not match builder input dims [%s].', ...
+                    num2str(G.dim(:,2)'), num2str(expIn'));
+            end
+
+            outRanges = obj.buildBlockRanges(obj.outputDim);
+            inRanges  = obj.buildBlockRanges(obj.inputDim);
+
+            for i = 1:obj.m
+                for j = 1:obj.n
+                    gij = obj.indexOpvar_(G, outRanges{i}, inRanges{j});
+                    obj.add(gij, i, j, overwrite);
+                end
+            end
+        end
+
+        function grid = getGrid(obj, ridx, cidx)
+            % getGrid(obj) or getGrid(obj, ridx, cidx)
+            % Fill missing blocks with compatible zeros, then assemble into
+            % a single opvar grid (with P, Q1, Q2, R blocks).
+
+            if nargin < 2 || isempty(ridx), ridx = 1:obj.m; end
+            if nargin < 3 || isempty(cidx), cidx = 1:obj.n; end
+
+            ridx = obj.resolveIndex(ridx, obj.m, 'row');
+            cidx = obj.resolveIndex(cidx, obj.n, 'col');
+
+            opvars = obj.blocks(ridx, cidx);
+
+            for ii = 1:numel(ridx)
+                outi = obj.outputDim.dimension(ridx(ii));
+                for jj = 1:numel(cidx)
+                    if isempty(opvars{ii,jj})
+                        inj = obj.inputDim.dimension(cidx(jj));
+                        opvars{ii,jj} = obj.Zero(outi, inj);
+                    end
+                end
+            end
+
+            P  = obj.blockConcatField(opvars, 'P');
+            Q1 = obj.blockConcatField(opvars, 'Q1');
+            Q2 = obj.blockConcatField(opvars, 'Q2');
+
+            % Concatenate all available R fields from the first block
+            R = struct();
+            rFields = fieldnames(opvars{1,1}.R);
+            for k = 1:numel(rFields)
+                f = rFields{k};
+                R.(f) = obj.blockConcatField(opvars, ['R.' f]);
+            end
+
+            % total dims for selected rows/cols (2x1 each)
+            totOut = zeros(2,1);
+            for ii = 1:numel(ridx)
+                totOut = totOut + obj.outputDim.dimension(ridx(ii));
+            end
+            totIn = zeros(2,1);
+            for jj = 1:numel(cidx)
+                totIn = totIn + obj.inputDim.dimension(cidx(jj));
+            end
+
+            grid = opvar();
+            grid.dim  = [totOut, totIn];
+            grid.I    = obj.dom;
+            grid.var1 = obj.vars(1);
+            grid.var2 = obj.vars(2);
+            grid.P    = P;
+            grid.Q1   = Q1;
+            grid.Q2   = Q2;
+            grid.R    = R;
+        end
+
+        %-------------------------
+        % Indexing overloads
+        %-------------------------
+        function out = subsref(obj, S)
+            switch S(1).type
+                case '()'
+                    if isempty(S(1).subs)
+                        % D() -> assembled full grid
+                        out = obj.getGrid();
+                    else
+                        if numel(S(1).subs) ~= 2
+                            error('gridBuilder:Indexing', 'Use D(), or D(r,c).');
+                        end
+
+                        ridx = obj.resolveIndex(S(1).subs{1}, obj.m, 'row');
+                        cidx = obj.resolveIndex(S(1).subs{2}, obj.n, 'col');
+
+                        % D(ridx,cidx) -> assembled sub-grid
+                        out = obj.getGrid(ridx, cidx);
+                    end
+
+                    if numel(S) > 1
+                        out = subsref(out, S(2:end));
+                    end
+
+                case '.'
+                    out = builtin('subsref', obj, S);
+
+                otherwise
+                    error('gridBuilder:Indexing', 'Unsupported reference type: %s', S(1).type);
+            end
+        end
+
+        function obj = subsasgn(obj, S, val)
+            switch S(1).type
+                case '()'
+                    if numel(S(1).subs) ~= 2
+                        error('gridBuilder:Indexing', 'Use D(r,c)=..., or D(ridx,cidx)=... .');
+                    end
+
+                    ridx = obj.resolveIndex(S(1).subs{1}, obj.m, 'row');
+                    cidx = obj.resolveIndex(S(1).subs{2}, obj.n, 'col');
+
+                    % Clearing: D(ridx,cidx) = []
+                    if isempty(val) && isscalar(S)
+                        for ii = 1:numel(ridx)
+                            for jj = 1:numel(cidx)
+                                obj.blocks{ridx(ii), cidx(jj)} = [];
+                            end
+                        end
+                        return
+                    end
+
+                    % Direct assignment into blocks
+                    if isscalar(S)
+                        % By default, assignment overwrites (MATLAB-like behavior).
+                        overwrite = true;
+
+                        if iscell(val)
+                            if ~isequal(size(val), [numel(ridx), numel(cidx)])
+                                error('gridBuilder:AssignSizeMismatch', ...
+                                    'Cell RHS must match size [%d %d].', numel(ridx), numel(cidx));
+                            end
+                            for ii = 1:numel(ridx)
+                                for jj = 1:numel(cidx)
+                                    obj.add(val{ii,jj}, ridx(ii), cidx(jj), overwrite);
+                                end
+                            end
+                        else
+                            % scalar RHS broadcast to all selected indices
+                            for ii = 1:numel(ridx)
+                                for jj = 1:numel(cidx)
+                                    obj.add(val, ridx(ii), cidx(jj), overwrite);
+                                end
+                            end
+                        end
+                        return
+                    end
+
+                    % Nested assignment like D(r,c).field = ...
+                    if ~(isscalar(ridx) && isscalar(cidx))
+                        error('gridBuilder:NestedAssignRange', ...
+                            'Nested assignment requires scalar indices: use D(r,c).field = ...');
+                    end
+
+                    blk = obj.blocks{ridx, cidx};
+                    blk = subsasgn(blk, S(2:end), val);
+
+                    overwrite = true;
+                    obj.add(blk, ridx, cidx, overwrite);
+
+                case '.'
+                    obj = builtin('subsasgn', obj, S, val);
+
+                otherwise
+                    error('gridBuilder:Indexing', 'Unsupported assignment type: %s', S(1).type);
+            end
+        end
+
+        function e = end(obj, k, n)
+            % Supports D(end,...) and D(...,end)
+            if n ~= 2
+                error('gridBuilder:Indexing', 'Use 2-D indexing.');
+            end
+            if k == 1
+                e = obj.m;
+            else
+                e = obj.n;
+            end
+        end
+
+        % Optional: display assembled grid when typing D in the console.
+        % Uncomment if desired.
+        %
+        % function disp(obj)
+        %     try
+        %         disp(obj.getGrid());
+        %     catch ME
+        %         fprintf('gridBuilder %dx%d (assembly failed: %s)\n', obj.m, obj.n, ME.message);
+        %     end
+        % end
+    end
+
+    methods (Access = private)
+        function validateCtorInputs(~, outDims, inDims, vars)
+            if ~(isa(vars, 'polynomial'))
+                error('gridBuilder:Constructor:InvalidVars', ...
+                    'Vars must be of type polynomial.');
+            end
+            if ~isa(inDims, 'ioDimensions')
+                error('gridBuilder:Constructor:InvalidInputDims', ...
+                    'inputDimensions must be of type ioDimensions.');
+            end
+            if ~isa(outDims, 'ioDimensions')
+                error('gridBuilder:Constructor:InvalidOutputDims', ...
+                    'outputDimensions must be of type ioDimensions.');
+            end
+        end
+
+        function validateOpvarType(~, opv)
+            if ~(isa(opv, 'opvar') || isa(opv, 'dopvar'))
+                error('gridBuilder:Add:InvalidOpvar', ...
+                    'First input must be an opvar or dopvar.');
+            end
+        end
+
+        function validateIndices(obj, r, c)
+            if ~(isscalar(r) && isnumeric(r) && isfinite(r) && r == floor(r))
+                error('gridBuilder:Add:BadRowIndex', 'Row index r must be a finite integer scalar.');
+            end
+            if ~(isscalar(c) && isnumeric(c) && isfinite(c) && c == floor(c))
+                error('gridBuilder:Add:BadColIndex', 'Column index c must be a finite integer scalar.');
+            end
+            if r < 1 || r > obj.m
+                error('gridBuilder:Add:BadRowIndex', ...
+                    'Row index r must be in [1,%d]. Got %d.', obj.m, r);
+            end
+            if c < 1 || c > obj.n
+                error('gridBuilder:Add:BadColIndex', ...
+                    'Column index c must be in [1,%d]. Got %d.', obj.n, c);
+            end
+        end
+
+        function idx = resolveIndex(~, sub, maxN, name)
+            % Supports ':', numeric vectors, and logical vectors.
+            if (ischar(sub) && strcmp(sub, ':')) || (isstring(sub) && sub == ":")
+                idx = 1:maxN;
+            elseif islogical(sub)
+                idx = find(sub);
+            else
+                idx = sub;
+            end
+
+            validateattributes(idx, {'numeric'}, ...
+                {'integer','positive','<=',maxN}, mfilename, name);
+        end
+
+        function M = blockConcatField(obj, opvars, fieldPath)
+            % Assemble a block matrix of opvars{ij}.(fieldPath)
+            % Supports nested paths like 'R.R2'.
+
+            row = obj.getFieldPath(opvars{1,1}, fieldPath);
+            for j = 2:size(opvars,2)
+                row = [row, obj.getFieldPath(opvars{1,j}, fieldPath)];
+            end
+            M = row;
+
+            for i = 2:size(opvars,1)
+                row = obj.getFieldPath(opvars{i,1}, fieldPath);
+                for j = 2:size(opvars,2)
+                    row = [row, obj.getFieldPath(opvars{i,j}, fieldPath)];
+                end
+                M = [M; row];
+            end
+        end
+
+        function v = getFieldPath(~, opv, fieldPath)
+            parts = strsplit(fieldPath, '.');
+            v = opv;
+            for k = 1:numel(parts)
+                v = v.(parts{k});
+            end
+        end
+
+        % -------------------------
+        % opvar -> blocks helpers
+        % -------------------------
+        function ranges = buildBlockRanges(obj, ioDim)
+            % Returns cell array {k} with fields .R and .L2 (1-based indices)
+            cnt = ioDim.count();
+            ranges = cell(cnt,1);
+
+            rPos  = 1;
+            l2Pos = 1;
+
+            for k = 1:cnt
+                d = ioDim.dimension(k);   % 2x1: [R; L2]
+                rN  = d(1);
+                l2N = d(2);
+
+                if rN > 0,  rIdx  = rPos:(rPos + rN - 1);  else, rIdx  = []; end
+                if l2N > 0, l2Idx = l2Pos:(l2Pos + l2N - 1); else, l2Idx = []; end
+
+                ranges{k} = struct('R', rIdx, 'L2', l2Idx);
+
+                rPos  = rPos  + rN;
+                l2Pos = l2Pos + l2N;
+            end
+        end
+
+        function sub = indexOpvar_(obj, G, outRange, inRange)
+            % Extract sub-operator corresponding to (outRange, inRange)
+            % IMPORTANT: R.* is L2(out) x L2(in) and must use (outL, inL).
+
+            outR = outRange.R;  outL = outRange.L2;
+            inR  = inRange.R;   inL  = inRange.L2;
+
+            newP  = obj.safe2D_(G.P,  outR, inR);
+            newQ1 = obj.safe2D_(G.Q1, outR, inL);
+            newQ2 = obj.safe2D_(G.Q2, outL, inR);
+
+            fn = fieldnames(G.R);
+            newR = struct();
+            for k = 1:numel(fn)
+                newR.(fn{k}) = obj.safe2D_(G.R.(fn{k}), outL, inL);
+            end
+
+            sub = feval(class(G)); % preserves opvar vs dopvar
+            sub.dim  = [ [numel(outR); numel(outL)], [numel(inR); numel(inL)] ];
+            sub.I    = G.I;
+            sub.var1 = G.var1;
+            sub.var2 = G.var2;
+            sub.P    = newP;
+            sub.Q1   = newQ1;
+            sub.Q2   = newQ2;
+            sub.R    = newR;
+        end
+
+        function S = safe2D_(~, A, rr, cc)
+            if isempty(rr) && isempty(cc)
+                S = A([], []);
+            elseif isempty(rr)
+                S = A([], cc);
+            elseif isempty(cc)
+                S = A(rr, []);
+            else
+                S = A(rr, cc);
+            end
+        end
+    end
+end

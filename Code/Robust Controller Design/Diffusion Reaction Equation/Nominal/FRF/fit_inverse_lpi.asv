@@ -1,0 +1,184 @@
+% function [Pfit, gam_sol, Efit, prob, side, results] = fit_inverse_lpi(Mop, settings, mode)
+% % Approximate inverse of Mop by solving either
+% %
+% %   LEFT:   minimize gamma
+% %           subject to [ gamma*I   E
+% %                        E'        I ] >= 0
+% %           where E = P*M - I
+% %
+% %   RIGHT:  minimize gamma
+% %           subject to [ gamma*I   E
+% %                        E'        I ] >= 0
+% %           where E = M*P - I
+% %
+% %   BEST:   solve both problems and return the one with the lower gamma.
+% %
+% % INPUT
+% %   Mop      : square opvar to approximately invert
+% %   settings : structure with at least
+% %                settings.ddZ
+% %                settings.sosineq_on
+% %                settings.sos_opts
+% %   mode     : 'left', 'right', or 'best'  (default: 'best')
+% %
+% % OUTPUT
+% %   Pfit     : fitted approximate inverse
+% %   gam_sol  : optimal gamma for chosen side
+% %   Efit     : fitted residual operator
+% %   prob     : solved LPI program for chosen side
+% %   side     : which side was chosen ('left' or 'right')
+% %   results  : struct with both left/right results
+% 
+%     %% 1. Input Validation
+%     if ~isa(Mop,'opvar')
+%         error('Mop must be of type ''opvar''.');
+%     end
+%     if any(Mop.dim(:,1) ~= Mop.dim(:,2))
+%         error('Mop must be square.');
+%     end
+%     if nargin < 2 || isempty(settings)
+%         settings = struct();
+%     end
+%     if nargin < 3 || isempty(mode)
+%         mode = 'best';
+%     end
+%     mode = lower(mode);
+% 
+%     if ~ismember(mode, {'left','right','best'})
+%         error('mode must be ''left'', ''right'', or ''best''.');
+%     end
+% 
+%     if ~isfield(settings,'sosineq_on')
+%         settings.sosineq_on = true;
+%     end
+%     if ~isfield(settings,'sos_opts') || isempty(settings.sos_opts)
+%         settings.sos_opts = struct();
+%         settings.sos_opts.psatz = 1;
+%     end
+%     if ~isfield(settings,'ddZ')
+%         error('settings.ddZ must be provided for lpivar.');
+%     end
+% 
+%     %% 2. Solve requested side(s)
+%     results = struct();
+% 
+%     if strcmp(mode,'left') || strcmp(mode,'best')
+%         [results.left.Pfit, results.left.gam_sol, results.left.Efit, results.left.prob] = ...
+%             solve_one_side(Mop, settings, 'left');
+%     end
+% 
+%     if strcmp(mode,'right') || strcmp(mode,'best')
+%         [results.right.Pfit, results.right.gam_sol, results.right.Efit, results.right.prob] = ...
+%             solve_one_side(Mop, settings, 'right');
+%     end
+% 
+%     %% 3. Select output
+%     switch mode
+%         case 'left'
+%             Pfit    = results.left.Pfit;
+%             gam_sol = results.left.gam_sol;
+%             Efit    = results.left.Efit;
+%             prob    = results.left.prob;
+%             side    = 'left';
+% 
+%         case 'right'
+%             Pfit    = results.right.Pfit;
+%             gam_sol = results.right.gam_sol;
+%             Efit    = results.right.Efit;
+%             prob    = results.right.prob;
+%             side    = 'right';
+% 
+%         case 'best'
+%             if results.left.gam_sol <= results.right.gam_sol
+%                 Pfit    = results.left.Pfit;
+%                 gam_sol = results.left.gam_sol;
+%                 Efit    = results.left.Efit;
+%                 prob    = results.left.prob;
+%                 side    = 'left';
+%             else
+%                 Pfit    = results.right.Pfit;
+%                 gam_sol = results.right.gam_sol;
+%                 Efit    = results.right.Efit;
+%                 prob    = results.right.prob;
+%                 side    = 'right';
+%             end
+%     end
+% end
+
+
+function [Pfit, gam_sol, Efit, prob] = solve_one_side(Mop, settings, side)
+    %% 1. Input Validation
+    if ~isa(Mop,'opvar')
+        error('Mop must be of type ''opvar''.');
+    end
+    if any(Mop.dim(:,1) ~= Mop.dim(:,2))
+        error('Mop must be square.');
+    end
+    if nargin < 2 || isempty(settings)
+        settings = struct();
+    end
+    if ~isfield(settings,'sosineq_on')
+        settings.sosineq_on = true;
+    end
+    if ~isfield(settings,'sos_opts') || isempty(settings.sos_opts)
+        settings.sos_opts = struct();
+        settings.sos_opts.psatz = 1;
+    end
+    if ~isfield(settings,'ddZ')
+        error('settings.ddZ must be provided for lpivar.');
+    end
+
+    %% 2. Identity operator on same space
+    Iop = eyePI(Mop.dim(:,1), Mop.vars, Mop.I);
+
+    %% 3. Initialize program
+    prob = lpiprogram(Mop.var1, Mop.var2, Mop.I);
+
+    %% 4. Scalar decision variable
+    [prob, gam] = lpidecvar(prob, 'gam');
+
+    %% 5. Builder
+    LPI = LPIBuilder(prob, settings);
+
+    %% 6. Decision variable for approximate inverse
+    % Mop.dim(:,1) and Mop.dim(:,2) are the output/input io-dim vectors
+    Pdec = LPI.constructLPIVar(Mop.dim(:,1), Mop.dim(:,2), settings.ddZ);
+
+    %% Residual operator
+    switch lower(side)
+        case 'left'
+            Eop = Pdec*Mop - Iop;
+        case 'right'
+            Eop = Mop*Pdec - Iop;
+        otherwise
+            error('side must be ''left'' or ''right''.');
+    end
+
+
+    %% 8. Schur-complement constraint:
+    % [ gam*I   E
+    %   E'      I ] >= 0
+    %
+    % LPIBuilder.setDop(D) enforces D <= 0, so pass -Big to impose Big >= 0.
+    Big = [gam*Iop, Eop;
+           Eop',    Iop];
+
+    LPI.setDop(-Big);
+
+    %% 9. Objective
+    prob = lpisetobj(LPI.prog, gam);
+
+    %% 10. Solve
+    prob = lpisolve(prob);
+
+    %% 11. Recover solution
+    Pfit    = lpigetsol(prob, Pdec);
+    Efit    = Pfit*Mop - Iop;
+    switch lower(side)
+        case 'left'
+            Efit = Pfit*Mop - Iop;
+        case 'right'
+            Efit = Mop*Pfit - Iop;
+    end
+    gam_sol = double(lpigetsol(prob, gam));
+end

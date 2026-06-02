@@ -1,0 +1,71 @@
+function []
+
+u = u(N+1:end); u = u-mean(u);
+y = y(N+1:end); y = y-mean(y);
+up = reshape(u,[N,P-1]);
+yp = reshape(y,[N,P-1]);
+
+Up = fft(up,[],1);
+Up_pos = Up(1:nf_pos,:);
+Yp = fft(yp,[],1);
+Yp_pos = Yp(1:nf_pos,:);
+
+f_fft_pos = f_fft(1:nf_pos);
+
+mean_U = mean(up,2);
+mean_Y = mean(yp,2);
+
+varU = var(Up_pos,[],2);
+varY = var(Yp_pos,[],2);
+
+figure;
+bx(1) = subplot(2,1,1);
+plot(f_fft_pos,db(Up_pos)); hold on; plot(f_fft_pos,db(varU,'power'),'*');
+grid on;
+title('Magnitude and Variance of $Up$','Interpreter','latex')
+xlabel('frequency [Hz]','Interpreter','latex'); ylabel('Magnitude [dB]','Interpreter','latex');
+ylim([-50 40])
+bx(2) = subplot(2,1,2);
+plot(f_fft_pos,db(Yp_pos)); hold on; plot(f_fft_pos,db(varY,'power'),'*');
+grid on;
+title('Magnitude and Variance of $Yp$','Interpreter','latex')
+xlabel('frequency [Hz]','Interpreter','latex'); ylabel('Magnitude [dB]','Interpreter','latex');
+linkaxes(bx,'x')
+
+Up_pos_mean = mean(Up_pos,2); % average to get a better estimate of G0
+Yp_pos_mean = mean(Yp_pos,2); % average to get a better estimate of G0
+
+G_est = Yp_pos_mean ./ Up_pos_mean;
+
+figure;
+sgtitle('Bode plot of $G_0(q)$ estimate','Interpreter','latex')
+cx(1) = subplot(2,1,1);
+plot(f_fft_pos*2*pi,20*log10(abs(G_est)));
+ylabel('Magnitude [dB]','Interpreter','latex')
+ylim([-10 30])
+grid on;
+cx(2) = subplot(2,1,2);
+plot(f_fft_pos*2*pi,rad2deg(angle(G_est)));
+grid on;
+ylabel('Phase [$^\circ$]','Interpreter','latex')
+xlabel('frequency [rad/s]','Interpreter','latex')
+linkaxes(cx,'x')
+
+% 2.3
+
+L = length(u);
+
+[Phi_uu, f] = pwelch(u, hamming(L/2), L/4, L, fs);  % PSD of input
+[Phi_yy, ~] = pwelch(y, hamming(L/2), L/4, L, fs);  % PSD of output
+[Phi_yu, ~] = cpsd(u,y,hamming(L/2),L/4,L,fs); % cross-PSD of y and u
+
+% Estimate the system transfer function H(f)
+G0_est = Phi_yu ./ Phi_uu;
+Phi_vv = Phi_yy - abs(G0_est).^2 .* Phi_uu;
+
+% Plot estimated noise spectrum Phi_vv(ω)
+figure
+plot(f*2*pi, 10*log10(Phi_vv)); grid on;
+title('Power Spectral Density $\Phi(e^{j\omega})$', 'Interpreter', 'latex')
+xlabel('Frequency [rad/s]','Interpreter','latex');
+ylabel('$\Phi(e^{j\omega})$ [dB]','Interpreter','latex');

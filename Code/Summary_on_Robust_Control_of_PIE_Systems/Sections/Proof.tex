@@ -1,0 +1,116 @@
+\subsection{Proof of Theorem \ref{thm:dualscaledIO}}\label{proof:theorem2}
+    
+
+\begin{sublemma}\label{lem:scalingisPI}
+    The \textbf{Primal I/O Scaling} is a PI operator and invertible if and only if the \textbf{Dual I/O Scaling} is a PI operator and invertible
+\end{sublemma}
+\begin{proof}
+    To show sufficiency, let $\bar{\mcl{S}} = (\hat{\mcl{J}}^*\mcl{S}\hat{\mcl{J}})^{-*} = \hat{\mcl{J}}^*\mcl{S}^{-*}\hat{\mcl{J}} = \hat{\mcl{J}}^*(\mcl{S}^{-1})^{*}\hat{\mcl{J}}$, where $\hat{\mcl{J}} = \bmat{0 & -I \\ I & 0} \in \Pi_4$. Then if $\mcl{S}$ is invertible then $\mcl{S}^{-1} \in \Pi_4$ and by using that $\Pi_4$ forms a composition algebra we find that the \textbf{Dual I/O Scaling} is PI and invertible. For the necessary case, notice $\mcl{S} = (\hat{\mcl{J}}^*\bar{\mcl{S}}\hat{\mcl{J}})^{-*}$. 
+\end{proof}
+\begin{sublemma}
+    If $\mcl{S}_{11} - \mcl{D}\mcl{S}_{21}$ and $\bar{\mcl{S}}_{11} - \mcl{D}^*\bar{\mcl{S}}_{21}$ are invertible, then the \textbf{Primal Scaled System} and \textbf{Dual Scaled System} are well-posed, respectively.
+\end{sublemma}
+\begin{proof}
+    Applying the \textbf{Primal I/O Scaling} on the \textbf{Primal System} yields,
+\[
+\begin{aligned}
+\partial_t(\mcl{T}\mbf{x})(t) &= \mcl{A}\mbf{x}(t) + \mcl{B}({\mcl{S}}_{21}\tilde{z}(t) + {\mcl{S}}_{22}\tilde{w}(t)), \\
+({\mcl{S}}_{11} - \mcl{D}{\mcl{S}}_{21}) \tilde{z}(t) &= \mcl{C} \mbf{x}(t) + (\mcl{D}{\mcl{S}}_{22} - {\mcl{S}}_{12}) \tilde{w}(t).
+\end{aligned}
+\]
+Then \textbf{Primal Scaled System} well-posed if and only if \( \mcl{S}_{11} - \mcl{D}\mcl{S}_{21} \) is invertible, ensuring a unique solution for \( \tilde{z}(t) \) in terms of \( \mbf{x}(t) \) and \( \tilde{w}(t) \). A similar proof show that \textbf{Dual Scaled System} is well-posed if $\bar{\mcl{S}}_{11} - \mcl{D}^*\bar{\mcl{S}}_{21}$ is invertible.
+\end{proof}
+    To show sufficiency, let $\mbf{x}(t)$, $w(t)$, and $z(t)$ satisfy the primal system dynamics with $\mbf{x}(0)=0$, and let $\tilde{z}, \tilde{w}$ be defined by the primal scaling in 1):
+    \begin{equation}\label{eqn:dual_scaling_explicit}
+        {z} = \mcl{S}_{11}\tilde{z} + \mcl{S}_{12}\tilde{w},\quad w = \mcl{S}_{21}\tilde{z} + \mcl{S}_{22}\tilde{w}.     
+    \end{equation}
+    From the proof of Theorem 9 in \cite{shivaknew}, specifically (12), we established that the unscaled signals, $z(t)$, $w(t)$, $\bar{z}(t)$ and $\bar{w}(t)$, satisfy the identity:
+    \begin{equation}\label{eq:identity}
+        \int_0^t\ip{\bar{z}(\theta)}{w(t-\theta)}d\theta = \int_0^t\ip{\bar{w}(\theta)}{z(t-\theta)}d\theta.
+    \end{equation}
+    Substituting the dual scaling expressions from Eq.~\eqref{eqn:dual_scaling_explicit} into the left and right sides respectively, we obtain
+    \begin{equation*}
+        \begin{aligned}
+            &\int_0^t\ip{\bar{z}(\theta)}{\mcl{S}_{21}\tilde{z}(t-\theta) + \mcl{S}_{22}\tilde{w}(t-\theta)}d\theta \\
+            &= \int_0^t\ip{\bar{w}(\theta)}{\mcl{S}_{11}\tilde{z}(t-\theta) + \mcl{S}_{12}\tilde{w}(t-\theta)}d\theta.
+        \end{aligned}
+    \end{equation*}
+    Rearranging the terms to group by $\tilde{\bar{z}}$ and $\tilde{\bar{w}}$ yields
+    \begin{equation*}
+        \begin{aligned}
+            &\int_0^t \ip{\mcl{S}^*_{22}\bar{z}(\theta) - \mcl{S}^*_{12}\bar{w}(\theta)}{\tilde{w}(t-\theta)} d\theta \\
+            &= \int_0^t \ip{-\mcl{S}^*_{21}\bar{z}(\theta) + \mcl{S}^*_{11}\bar{w}(\theta)}{\tilde{z}(t-\theta)} d\theta.
+        \end{aligned}
+    \end{equation*}
+    We observe that the terms inside the inner product match the definition of the dual scaled variables:
+    \begin{equation*}
+        \tilde{\bar{w}} = -\mcl{S}_{21}^*\bar{z} + \mcl{S}_{11}^*\bar{w}, \quad \tilde{\bar{z}} = \mcl{S}_{22}^*\bar{z} - \mcl{S}^*_{12}\bar{w}.
+    \end{equation*}
+    Substituting these identities, we arrive at the scaled identity:
+    \begin{equation}\label{eqn:scaled_equivalence}
+        \int_0^t\ip{\tilde{\bar{z}}(\theta)}{\tilde{w}(t-\theta)} d\theta = \int_0^t\ip{\tilde{\bar{w}}(\theta)}{\tilde{z}(t-\theta)} d\theta.
+    \end{equation}
+    This equation is structurally identical to \eqref{eq:identity}, but relates the scaled primal and dual variables. Now, we proceed with the truncation argument. For any fixed $\tau > 0$, let $\tilde{\bar{w}}(t)\in\RL$ be arbitrary. Under the assumption that the primal and dual scaled system are well-posed, i.e. $\bar{\mcl{S}}_{11} - \mcl{D}\bar{\mcl{S}}_{21}$ and $\mcl{S}^*_{22} + \mcl{D}^*\mcl{S}^*_{21}$ are invertible, the scaled primal input can be defined as $\tilde{w}(t) = \tilde{\bar{z}}(\tau - t)$ for $t \leq \tau$ and $\tilde{w}(t) = 0$ for $t > \tau$. Then
+    \begin{equation*}
+        \begin{aligned}
+            \| P_{\tau}\tilde{\bar{z}}(t) \|_{\RL}^2 &= \int_{0}^{\tau} \ip{\tilde{\bar{z}}(s)}{\tilde{w}(\tau-s)} ds \\&= \int_{0}^{\tau} \ip{\tilde{\bar{w}}(s)}{\tilde{z}(\tau-s)} ds \\
+            &\leq \| P_{\tau}\tilde{\bar{w}}(t) \|_{\RL} \| P_{\tau}\tilde{z}(t) \|_{\RL} \\&\leq \| P_{\tau}\tilde{\bar{w}}(t) \|_{\RL} \| P_{\tau}\tilde{w}(t) \|_{\RL}.
+        \end{aligned}
+    \end{equation*}
+    Since by construction $\| P_{\tau}\tilde{w}(t) \|_{\RL} = \| P_{\tau}\tilde{\bar{z}}(t) \|_{\RL}$, thus we conclude
+    \begin{equation*}
+        \| P_{\tau}\tilde{\bar{z}}(t) \|_{\RL} \leq  \| P_{\tau}\tilde{\bar{w}}(t) \|_{\RL} 
+    \end{equation*}
+    Since $\mcl{T}^{**} = \mcl{T}$, Sublemma \ref{lem:scalingisPI}, and
+    \begin{equation*}
+        \bmat{(\mcl{A}^*)^* & (\mcl{B}^*)^*\\(\mcl{C}^*)^*&(\mcl{D}^*)^*}=
+        \bmat{\mcl{A}^* & \mcl{C}^*\\\mcl{B}^*&\mcl{D}^*}^*= 
+        \bmat{\mcl{A} & \mcl{B}\\\mcl{C}&\mcl{D}}^{**}=\bmat{\mcl{A} & \mcl{B}\\\mcl{C}&\mcl{D}}
+    \end{equation*}we have that sufficiency implies necessity.
+
+\subsection{Proof of Lemma \ref{lem:primdualPNPI}}\label{proof:primdualPNPI}
+Given the operators $\mcl Q, \mcl{S}, \mcl{R} \in \Pi_4$, write
+\begin{equation*}
+    \mcl V
+    :=
+    \bmat{\mcl Q & \mcl S\\\mcl S^* & \mcl R},
+    \qquad
+    \mcl K:=\bmat{-\mcl R & \mcl S^* \\ \mcl S & -\mcl{Q}},
+    \qquad
+    \bar{\mcl V}=\mcl K^{-1}.
+\end{equation*}
+Since \(\mcl V\) is a strict PN-PI operator, there exists \(\epsilon>0\) such that
+\begin{equation*}
+    \mcl Q\succeq \epsilon I,
+    \qquad
+    \mcl R\preceq -\epsilon I.
+\end{equation*}
+so both \(-\mcl R\) and \(\mcl Q\) are self-adjoint, coercive, and invertible.
+Applying the block inverse formula to \(\mcl K\), generalized to the PI-operator
+setting from \cite{lu2002inverses}, gives the following expressions. In addition,
+\cite[Theorem 2]{peet2018convexsolutionhinftyoptimalcontroller} shows that the
+inverse of a coercive, self-adjoint PI operator is again a coercive,
+self-adjoint PI operator.
+\begin{equation*}
+    \bar{\mcl Q}
+    =
+    \left(\mcl S^*\mcl Q^{-1}\mcl S -\mcl R\right)^{-1} \succeq \epsilon I,
+\end{equation*}
+and
+\begin{equation*}
+    \bar{\mcl R}
+    =
+    -\left(\mcl Q+\mcl S(-\mcl R)^{-1}\mcl S^*\right)^{-1}
+    \preceq -\epsilon I.
+\end{equation*}
+Moreover, by composition algebra $\bar{\mcl S}$ is also a PI operator,
+\begin{equation*}
+    \bar{\mcl S} = {\mcl Q}^{-1} \mcl{S}\bar{\mcl{Q}}.
+\end{equation*}
+Hence \(\bar{\mcl V}\) is a strict PN-PI operator. The converse follows by the
+same argument with \(\mcl V\) and \(\bar{\mcl V}\) interchanged, since
+\begin{equation*}
+    \mcl V=\bmat{-\bar{\mcl R} & \bar{\mcl S}^* \\ \bar{\mcl S} & -\bar{\mcl Q}}^{-1}.
+\end{equation*}
+Thus \(\mcl V\) is a strict PN-PI operator if and only if \(\bar{\mcl V}\) is a
+strict PN-PI operator.
