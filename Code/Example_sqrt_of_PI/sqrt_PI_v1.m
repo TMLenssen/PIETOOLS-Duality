@@ -22,9 +22,9 @@
 clc;clear;
 rng(1); 
 % load PIETOOLS2024
-% path_to_PIE = 'C:\Users\cscl\Desktop\Talitckii\matlab\libs\PIETOOLS_2024\PIETOOLS';
-% addpath(genpath(path_to_PIE))
-% addpath(genpath("C:\Program Files\Mosek\11.0\toolbox\r2019b"))
+path_to_PIE = 'C:\Program Files\MATLAB\PIETOOLS\PIETOOLS';
+addpath(genpath(path_to_PIE))
+addpath(genpath("C:\Program Files\Mosek\11.0\toolbox\r2019b"))
 
  
 I = [0 1];

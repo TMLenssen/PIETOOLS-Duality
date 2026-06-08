@@ -21,10 +21,10 @@ solverName = 'mosek';        % examples: 'mosek', 'sedumi', 'sdpt3'
 lmiTol = 0;
 
 % Main Fig. 6 sweep.
-nuList    = 0:3;
+nuList    = 2;
 rho       = -1;
 basisType = '12a';
-alphaGrid = linspace(0,1,51);
+alphaGrid = 0.5;%linspace(0,1,51);
 
 gammaBound = nan(numel(alphaGrid),numel(nuList));
 statusText = strings(numel(alphaGrid),numel(nuList));
@@ -127,7 +127,8 @@ nz  = size(Dzw,1);
 
 % Realization of kron(psi,I_2).
 [Apsi2,Bpsi2,Cpsi2,Dpsi2] = kron_i_realization(Apsi,Bpsi,Cpsi,Dpsi,nDelta);
-
+sys = ss(Apsi2, Bpsi2, Cpsi2, Dpsi2);
+ss2tf(sys)
 nPsiState = size(Apsi2,1);
 m         = size(Dpsi2,1);
 

@@ -1,0 +1,254 @@
+%% Reproduce the J-spectral factorization example in Carrasco & Seiler
+% Section 5, Eqs. (22)-(24): J-spectral factorization only.
+% Requires: Control System Toolbox.
+
+clear; clc; close all;
+s = tf('s');
+
+%% Multiplier Pi(s), Eq. (22)
+Pi = [ 3,                 (-s + 2)/(s + 1); 
+      (-s - 2)/(s - 1),   (-s^2 + 4)/(s^2 - 1) ];
+
+Pi_ss = minreal(ss(Pi));
+
+%% Stable/anti-stable separation
+[Pi_stab, Pi_anti] = stabsep(Pi_ss);
+Pi_stab = minreal(Pi_stab);
+
+A = Pi_stab.A;
+B = Pi_stab.B;
+C = Pi_stab.C;
+D = Pi_stab.D;
+
+%% D = W.'*J*W
+[W,J,lam] = congruence_factor_D(D);
+
+%% Solve ARE:
+% A.'X + X*A - (X*B + C.')*D^(-1)*(B.'*X + C) = 0
+Q = zeros(size(A,1));
+[X,K,L,info] = icare(A,B,Q,D,C.', 'anti');
+
+%% J-spectral factor
+Cpsi = J*(W'\(B.'*X + C));
+Psi_J = minreal(ss(A,B,Cpsi,W));
+
+%% Verify transfer-matrix identity: Pi = Psi_J^* J Psi_J
+Pi_hat = minreal(Psi_J' * J * Psi_J);
+Err_tf = minreal(Pi_hat - Pi);
+
+w = logspace(-4,4,5000);
+err_J = zeros(size(w));
+
+for k = 1:numel(w)
+    Piw = evalfr(Pi,    1i*w(k));
+    PJ  = evalfr(Psi_J, 1i*w(k));
+    err_J(k) = norm(Piw - PJ'*J*PJ, 'fro');
+end
+
+fprintf('max_w ||Pi(jw) - Psi_J(jw)^* J Psi_J(jw)||_F = %.3e\n', max(err_J));
+fprintf('ARE residual = %.3e\n', ...
+    norm(A.'*X + X*A - (X*B + C.')*(D\(B.'*X + C)), 'fro'));
+fprintf('max real eig(A-BK) = %.3e\n', max(real(eig(A-B*K))));
+
+%% Stability / stable-inverse checks
+det_J = minreal(Psi_J(1,1)*Psi_J(2,2) - Psi_J(1,2)*Psi_J(2,1));
+
+fprintf('\npoles(Psi_J):\n'); 
+disp(pole(Psi_J).');
+
+fprintf('zeros(det(Psi_J)) -- LHP zeros mean inverse is stable:\n'); 
+disp(zero(det_J).');
+
+%% Dual multiplier calculation
+% Definition:
+%   D(Psi) = (Jhat.' * Psi_sharp * Jhat)^(-1)
+%
+% Finite-dimensional case:
+%   sharp = transpose, i.e. Psi_sharp = Psi.'
+%
+% IQC adjoint/star in frequency domain is MATLAB ctranspose: Psi'
+
+Jhat = [0 1; -1 0];
+
+% Sharp operation: finite-dimensional dual realization = transpose
+Psi_sharp = Psi_J.';     % sharp, NOT para-Hermitian adjoint
+Pi_sharp  = Pi.';        % sharp at multiplier level
+
+% Dual scaling
+D_Psi = minreal(inv(Jhat.' * Psi_sharp * Jhat));
+
+% Dual multiplier from the dual scaling
+Pi_d_from_scaling = minreal(D_Psi' * J * D_Psi);
+
+% Equivalent closed-form dual multiplier:
+%   Pi_d = (-Jhat.' * Pi_sharp * Jhat)^(-1)
+Pi_d_from_Pi = minreal(inv(-Jhat.' * Pi_sharp * Jhat));
+
+% Verify both constructions agree
+err_dual = zeros(size(w));
+
+for k = 1:numel(w)
+    Pd1 = evalfr(Pi_d_from_scaling, 1i*w(k));
+    Pd2 = evalfr(Pi_d_from_Pi,      1i*w(k));
+    err_dual(k) = norm(Pd1 - Pd2, 'fro');
+end
+
+fprintf('\nDual multiplier verification:\n');
+fprintf('max_w ||Pi_d_from_scaling - Pi_d_from_Pi||_F = %.3e\n', max(err_dual));
+
+fprintf('\nPi_d from scaling:\n');
+Pi_d_from_scaling
+
+fprintf('\nPi_d from closed-form formula:\n');
+Pi_d_from_Pi
+
+%% Verify involution D(D(Psi)) = Psi
+D_Psi_sharp = D_Psi.';   % sharp = transpose
+DD_Psi = minreal(inv(Jhat.' * D_Psi_sharp * Jhat));
+
+err_DD = zeros(size(w));
+
+for k = 1:numel(w)
+    DDw = evalfr(DD_Psi, 1i*w(k));
+    PsW = evalfr(Psi_J,  1i*w(k));
+    err_DD(k) = norm(DDw - PsW, 'fro');
+end
+
+fprintf('\nDual scaling involution check:\n');
+fprintf('max_w ||D(D(Psi)) - Psi||_F = %.3e\n', max(err_DD));
+
+%% Verify multiplier involution Pi_dd = Pi
+Pi_d_sharp = Pi_d_from_scaling.';  % sharp = transpose
+Pi_dd = minreal(inv(-Jhat.' * Pi_d_sharp * Jhat));
+
+err_Pidd = zeros(size(w));
+
+for k = 1:numel(w)
+    Piddw = evalfr(Pi_dd, 1i*w(k));
+    Piw   = evalfr(Pi,    1i*w(k));
+    err_Pidd(k) = norm(Piddw - Piw, 'fro');
+end
+
+fprintf('\nDual multiplier involution check:\n');
+fprintf('max_w ||Pi_dd - Pi||_F = %.3e\n', max(err_Pidd));
+
+%% Compare Pi_d from scaling against Pi_d from Pi
+
+Pi_d_scale = minreal(Pi_d_from_scaling);
+Pi_d_pi    = minreal(Pi_d_from_Pi);
+
+wcmp = logspace(-4, 4, 5000);
+
+resp_scale = zeros(2,2,numel(wcmp));
+resp_pi    = zeros(2,2,numel(wcmp));
+resp_err   = zeros(2,2,numel(wcmp));
+
+for k = 1:numel(wcmp)
+    resp_scale(:,:,k) = evalfr(Pi_d_scale, 1i*wcmp(k));
+    resp_pi(:,:,k)    = evalfr(Pi_d_pi,    1i*wcmp(k));
+    resp_err(:,:,k)   = resp_scale(:,:,k) - resp_pi(:,:,k);
+end
+
+%% Frobenius norm error over frequency
+err_fro = squeeze(vecnorm(reshape(resp_err,4,[]),2,1));
+
+figure;
+loglog(wcmp, err_fro, 'LineWidth', 1.2);
+grid on;
+xlabel('\omega [rad/s]');
+ylabel('||\Pi_{d,scale}(j\omega)-\Pi_{d,\Pi}(j\omega)||_F');
+title('Dual multiplier comparison error');
+
+fprintf('\nDual multiplier comparison:\n');
+fprintf('max Frobenius error = %.3e\n', max(err_fro));
+fprintf('mean Frobenius error = %.3e\n', mean(err_fro));
+
+%% Entrywise magnitude comparison
+figure;
+tiledlayout(2,2);
+
+for i = 1:2
+    for j = 1:2
+        nexttile;
+
+        mag_scale = 20*log10(abs(squeeze(resp_scale(i,j,:))));
+        mag_pi    = 20*log10(abs(squeeze(resp_pi(i,j,:))));
+        mag_err   = abs(squeeze(resp_err(i,j,:)));
+
+        semilogx(wcmp, mag_scale, 'LineWidth', 1.2); hold on;
+        semilogx(wcmp, mag_pi, '--', 'LineWidth', 1.2);
+        grid on;
+
+        xlabel('\omega [rad/s]');
+        ylabel('Magnitude [dB]');
+        title(sprintf('\\Pi_{d,%d%d}: magnitude', i, j));
+        legend('from scaling', 'from \Pi', 'Location', 'best');
+    end
+end
+
+%% Entrywise phase comparison
+figure;
+tiledlayout(2,2);
+
+for i = 1:2
+    for j = 1:2
+        nexttile;
+
+        phase_scale = unwrap(angle(squeeze(resp_scale(i,j,:))))*180/pi;
+        phase_pi    = unwrap(angle(squeeze(resp_pi(i,j,:))))*180/pi;
+
+        semilogx(wcmp, phase_scale, 'LineWidth', 1.2); hold on;
+        semilogx(wcmp, phase_pi, '--', 'LineWidth', 1.2);
+        grid on;
+
+        xlabel('\omega [rad/s]');
+        ylabel('Phase [deg]');
+        title(sprintf('\\Pi_{d,%d%d}: phase', i, j));
+        legend('from scaling', 'from \Pi', 'Location', 'best');
+    end
+end
+
+%% Entrywise absolute errors
+figure;
+tiledlayout(2,2);
+
+for i = 1:2
+    for j = 1:2
+        nexttile;
+
+        eij = abs(squeeze(resp_err(i,j,:)));
+
+        loglog(wcmp, eij, 'LineWidth', 1.2);
+        grid on;
+
+        xlabel('\omega [rad/s]');
+        ylabel('absolute error');
+        title(sprintf('|error_{%d%d}(j\\omega)|', i, j));
+    end
+end
+
+%% Real/imag overlay, useful for Hermitian multipliers
+figure;
+tiledlayout(2,2);
+
+for i = 1:2
+    for j = 1:2
+        nexttile;
+
+        scale_ij = squeeze(resp_scale(i,j,:));
+        pi_ij    = squeeze(resp_pi(i,j,:));
+
+        semilogx(wcmp, real(scale_ij), 'LineWidth', 1.2); hold on;
+        semilogx(wcmp, real(pi_ij), '--', 'LineWidth', 1.2);
+        semilogx(wcmp, imag(scale_ij), 'LineWidth', 1.2);
+        semilogx(wcmp, imag(pi_ij), '--', 'LineWidth', 1.2);
+
+        grid on;
+        xlabel('\omega [rad/s]');
+        ylabel('value');
+        title(sprintf('\\Pi_{d,%d%d}: real/imag', i, j));
+        legend('Re from scaling', 'Re from \Pi', ...
+               'Im from scaling', 'Im from \Pi', ...
+               'Location', 'best');
+    end
+end

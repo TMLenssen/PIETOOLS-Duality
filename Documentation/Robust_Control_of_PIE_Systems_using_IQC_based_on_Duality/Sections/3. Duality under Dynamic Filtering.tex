@@ -1,0 +1,343 @@
+
+
+\begin{theorem}[Dual $L_2$-gain {\cite[Thm.~9]{shivaknew}}]\label{thm:duall2gain}
+	For a PIE system with corresponding PI operators $G\{\mcl{T}, \mcl{A}, \mcl{B}, \mcl{C}, \mcl{D}\}$, the following statements are equivalent.
+	\begin{enumerate}
+		\item For any $w\in\mbf{L}_{e,[a,b]}^{\mbf{n}_w}$, and $\mbf{x}(0)=0$, $G$  satisfies $\|P_\tau {z}\| \leq \|P_\tau {w}\|$.
+		\item For any $\underline{w}\in\mbf{L}_{e,[a,b]}^{\mbf{n}_z}$, and $\underline{\mbf{x}}(0)=0$, $G^\top$ satisfies $\|P_\tau \underline{z}\| \leq \|P_\tau \underline{w}\|$.
+	\end{enumerate}
+\end{theorem}
+
+\begin{definition}[Primal and Dual Dynamic Scalings]
+	Let	$\Psi=\bmat{\Psi_z & \Psi_{zw}\\ \Psi_{wz} & \Psi_w}$ satisfy
+	$\Psi,\Psi^{-1}\in\RH$. Let $\hat{\mcl{J}}:=\bmat{0&I\\ -I&0}$.
+	The dual filter associated with $\Psi$ is defined by the
+	dual operation
+	\begin{equation}\label{eqn:dualoperation}
+		\mbf{D}(\Psi)
+		:=
+		\left(\hat{\mcl{J}}^*\Psi^\top\hat{\mcl{J}}\right)^{-1}
+		=
+		\bmat{\Psi_w^\top & -\Psi_{zw}^\top\\
+		      -\Psi_{wz}^\top & \Psi_z^\top}^{-1}.
+	\end{equation}
+	Note $\mbf{D}(\Psi)\in\RH$. Since $\hat{\mcl{J}}^*=\hat{\mcl{J}}^{-1}$,
+	$\hat{\mcl{J}}^*=-\hat{\mcl{J}}$, $(\Psi^\top)^\top=\Psi$, and
+	$(\Psi^{-1})^{-1}=\Psi$, this operation is an involution:
+	\begin{equation}\label{eqn:dualoperationinvolution}
+		\mbf{D}(\mbf{D}(\Psi))=\Psi.
+	\end{equation}
+
+	The filter $\Psi$ admits the state-space
+	realization
+	\begin{equation}\label{eqn:ssprimalscaling:iqc}
+		\bmat{\mcl{T}_\Psi \dot{\mbf{x}}_\Psi(t)\\ \tilde{z}(t) \\ \tilde{w}(t)}
+		=
+		\bmat{\mcl{A}_\Psi & \mcl{B}_\Psi^z & \mcl{B}_\Psi^w \\
+			\mcl{C}_\Psi^z & \mcl{D}_\Psi^z & \mcl{D}_\Psi^{zw}\\
+			\mcl{C}_\Psi^w & \mcl{D}_\Psi^{wz} & \mcl{D}_\Psi^w}
+		\bmat{\mbf{x}_\Psi(t) \\ z(t) \\ w(t)},
+	\end{equation}
+	where the entries are PI operators of appropriate dimension.
+	The dual filter $\mbf{D}(\Psi)$ is equivalently represented
+	through the inverse relation $\mbf{D}(\Psi)^{-1}=\hat{\mcl{J}}^*\Psi^\top\hat{\mcl{J}}$, which has
+	the state-space realization
+	\begin{equation}\label{eqn:ssdualscaling:iqc}
+		\bmat{\mcl{T}_{\Psi}^*\dot{\underline{\mbf{x}}}_{\Psi}(t)\\
+		\underline{z}(t) \\ \underline{w}(t)}
+		=
+		\bmat{\mcl{A}_\Psi^* & -\mcl{C}_\Psi^{w*} & \mcl{C}_\Psi^{z*} \\
+			-\mcl{B}_\Psi^{w*} & \mcl{D}_\Psi^{w*} & -\mcl{D}_\Psi^{zw*} \\
+			\mcl{B}_\Psi^{z*} & -\mcl{D}_\Psi^{wz*} & \mcl{D}_\Psi^{z*}}
+		\bmat{\underline{\mbf{x}}_\Psi(t) \\
+		\tilde{\underline{z}}(t) \\ \tilde{\underline{w}}(t)}.
+	\end{equation}
+	The filtered primal system is obtained
+	from
+	\begin{equation}\label{eqn:primalscaling:iqc}
+		\Psi \bmat{z(t) \\ w(t)}
+		=
+		\bmat{\tilde{z}(t) \\ \tilde{w}(t)}.
+	\end{equation}
+	The filtered dual system is obtained from
+	\begin{equation}\label{eqn:dualscaling:iqc}
+		\mbf{D}(\Psi)
+		\bmat{\underline{z}(t) \\ \underline{w}(t)}
+		=
+		\bmat{\tilde{\underline{z}}(t) \\ \tilde{\underline{w}}(t)}.
+	\end{equation}
+\end{definition}
+
+Adopted from \cite{venkataraman}
+\begin{definition}(Potapov--Ginzburg Transform)\label{def:pg}
+    Let ${\Psi} : \bmat{z \\ w} \to \bmat{\tilde{z} \\ \tilde{w}}$, where $\Psi = \bmat{\Psi_{z} & \Psi_{zw} \\ \Psi_{wz} & \Psi_{w}}$. 
+	Then the Potapov-Ginzburg transform of $\Psi$ is defined as
+    \begin{equation}\label{eqn:pgtransform}
+        \bmat{\tilde{z} \\ w}= \Psi^\dagger \bmat{\tilde{w} \\ z} \text{, where }\Psi^\dagger = \bmat{\Psi_{zw}\Psi_{w}^{-1} & \Psi_{z} - \Psi_{zw}\Psi_{w}^{-1}\Psi_{wz}\\
+                            \Psi_{w}^{-1} & -\Psi_{w}^{-1}\Psi_{wz}}.
+    \end{equation}
+    Assumed to admit the state-space representation
+    \begin{equation}\label{eqn:sspgtransform}
+        \bmat{\mcl{T}_\Psi\dot{\mbf{x}}_\Psi(t)\\ \tilde{z}(t) \\ w(t)} = 
+        \bmat{\hat{\mcl{A}}_\Psi & \hat{\mcl{B}}_\Psi^{\tilde{w}} & \hat{\mcl{B}}_\Psi^z\\
+        \hat{\mcl{C}}_\Psi^z & \hat{\mcl{D}}_\Psi^{z\tilde{w}} & \hat{\mcl{D}}_\Psi^z \\
+        \hat{\mcl{C}}_\Psi^w & \hat{\mcl{D}}_\Psi^{w\tilde{w}} & \hat{\mcl{D}}_\Psi^{wz}}\bmat{\mbf{x}_\Psi(t) \\ \tilde{w}(t) \\ z(t)},
+    \end{equation}
+    where
+    \begin{align*}
+        \hat{\mcl{A}}_\Psi &:= \mcl{A}_\Psi - \mcl{B}_\Psi^w(\mcl{D}_\Psi^w)^{-1}\mcl{C}_\Psi^w, &
+        \hat{\mcl{B}}_\Psi^{\tilde{w}} &:= \mcl{B}_\Psi^w(\mcl{D}_\Psi^w)^{-1}, \\
+        \hat{\mcl{B}}_\Psi^{z} &:= \mcl{B}_\Psi^z - \mcl{B}_\Psi^w(\mcl{D}_\Psi^w)^{-1}\mcl{D}_\Psi^{wz}, &
+        \hat{\mcl{C}}_\Psi^z &:= \mcl{C}_\Psi^z - \mcl{D}_\Psi^{zw}(\mcl{D}_\Psi^w)^{-1}\mcl{C}_\Psi^w,\\
+        \hat{\mcl{D}}_\Psi^z &:= \mcl{D}_\Psi^z - \mcl{D}_\Psi^{zw}(\mcl{D}_\Psi^w)^{-1}\mcl{D}_\Psi^{wz}, &
+        \hat{\mcl{D}}_\Psi^{z\tilde{w}} &:= \mcl{D}_\Psi^{zw}(\mcl{D}_\Psi^w)^{-1}, \\
+        \hat{\mcl{C}}_\Psi^w &:= -(\mcl{D}_\Psi^w)^{-1}\mcl{C}_\Psi^w, &
+        \hat{\mcl{D}}_\Psi^{w\tilde{w}} &:= (\mcl{D}_\Psi^w)^{-1}, \\
+        \hat{\mcl{D}}_\Psi^{wz} &:= -(\mcl{D}_\Psi^w)^{-1}\mcl{D}_\Psi^{wz}.
+    \end{align*}
+\end{definition}
+
+
+\begin{lemma} (Potapov--Ginzburg Transform Equivalence)\label{lem:pgequivalence}
+The \textbf{Scaled Primal System} (respectively, \textbf{Scaled Dual
+System}) is equivalent, under an invertible congruence transformation,
+to the \textbf{Primal System} (respectively, \textbf{Dual System})
+augmented with the Potapov--Ginzburg transform of the \textbf{Primal
+Scaling} (respectively, \textbf{Dual Scaling}).
+\end{lemma}
+\begin{proof}
+    We first show the primal derivation explicitly. To show
+    sufficiency, first augment the \textbf{Primal System} with the
+    Potapov--Ginzburg transform of the \textbf{Primal Scaling}.
+    Substitution of $z=\mcl{C}\mbf{x}+\mcl{D}w$ into
+    \eqref{eqn:sspgtransform} gives the algebraic loop
+    \begin{align*}
+        w
+            &=
+            \Lambda_p\hat{\mcl{D}}_\Psi^{wz}\mcl{C}\mbf{x}
+            +\Lambda_p\hat{\mcl{C}}_\Psi^w\mbf{x}_\Psi
+            +\Lambda_p\hat{\mcl{D}}_\Psi^{w\tilde{w}}\tilde{w}.
+    \end{align*}
+    Assume that this loop is well-posed, and define
+    \begin{equation*}
+        \Lambda_p := (I-\hat{\mcl{D}}_\Psi^{wz}\mcl{D})^{-1},
+        \qquad
+        \Lambda_z := (I-\mcl{D}\hat{\mcl{D}}_\Psi^{wz})^{-1}.
+    \end{equation*}
+    Solving for $w$ and substituting into the plant state equation gives
+    \begin{align*}
+        \mcl{T}\dot{\mbf{x}}
+            &= \left(\mcl{A}
+                +\mcl{B}\Lambda_p\hat{\mcl{D}}_\Psi^{wz}\mcl{C}\right)\mbf{x}
+               +\mcl{B}\Lambda_p\hat{\mcl{C}}_\Psi^w\mbf{x}_\Psi
+               +\mcl{B}\Lambda_p\hat{\mcl{D}}_\Psi^{w\tilde{w}}\tilde{w}.
+    \end{align*}
+    Using $\mcl{D}\Lambda_p=\Lambda_z\mcl{D}$ and
+    $I+\mcl{D}\Lambda_p\hat{\mcl{D}}_\Psi^{wz}=\Lambda_z$, as verified
+    below in the push-through identities, \eqref{eqn:id1} and \eqref{eqn:id4}, we obtain
+    \begin{equation*}
+        z
+        =
+        \Lambda_z\mcl{C}\mbf{x}
+        +\Lambda_z\mcl{D}\hat{\mcl{C}}_\Psi^w\mbf{x}_\Psi
+        +\Lambda_z\mcl{D}\hat{\mcl{D}}_\Psi^{w\tilde{w}}\tilde{w}.
+    \end{equation*}
+    Substitution into the equations for $\dot{\mbf{x}}_\Psi$ and
+    $\tilde{z}$ yields the augmented realization
+    \begin{equation}\label{eqn:potapov}
+    \bmat{\mcl{T}\dot{\mbf{x}}(t) \\ \mcl{T}_\Psi\dot{\mbf{x}}_\Psi(t)\\ \tilde{z}(t)} = 
+    \bmat{\mcl{A} + \mcl{B}\Lambda_p\hat{\mcl{D}}_\Psi^{wz}\mcl{C} & \mcl{B}\Lambda_p\hat{\mcl{C}}_\Psi^w & \mcl{B}\Lambda_p\hat{\mcl{D}}_\Psi^{w\tilde{w}} \\
+    \hat{\mcl{B}}_\Psi^z\Lambda_z\mcl{C} & \hat{\mcl{A}}_\Psi + \hat{\mcl{B}}_\Psi^z\Lambda_z\mcl{D}\hat{\mcl{C}}_\Psi^w & \hat{\mcl{B}}_\Psi^{\tilde{w}} + \hat{\mcl{B}}_\Psi^z\Lambda_z\mcl{D}\hat{\mcl{D}}_\Psi^{w\tilde{w}} \\
+    \hat{\mcl{D}}_\Psi^z\Lambda_z\mcl{C} & \hat{\mcl{C}}_\Psi^z + \hat{\mcl{D}}_\Psi^z\Lambda_z\mcl{D}\hat{\mcl{C}}_\Psi^w & \hat{\mcl{D}}_\Psi^{z\tilde{w}} + \hat{\mcl{D}}_\Psi^z\Lambda_z\mcl{D}\hat{\mcl{D}}_\Psi^{w\tilde{w}}}\bmat{\mbf{x}(t) \\ \mbf{x}_\Psi(t) \\ \tilde{w}(t)}
+    \end{equation}
+Define also
+\begin{equation*}
+    \Lambda_c := (\mcl{D}_\Psi^{wz} \mcl{D} + \mcl{D}_\Psi^w)^{-1} = 
+    (I+(\mcl{D}_\Psi^w)^{-1}\mcl{D}_\Psi^{wz} \mcl{D})^{-1}(\mcl{D}_\Psi^w)^{-1} = 
+    (\mcl{D}_\Psi^w)^{-1} (I+\mcl{D}_\Psi^{wz}\mcl{D}(\mcl{D}_\Psi^w)^{-1})^{-1}.
+\end{equation*}
+The push-through identities
+\begin{equation*}
+    (I+\mcl{U}\mcl{V})^{-1}\mcl{U}
+        = \mcl{U}(I+\mcl{V}\mcl{U})^{-1}, \qquad
+    (I+\mcl{U}\mcl{V})^{-1}
+        = I-\mcl{U}(I+\mcl{V}\mcl{U})^{-1}\mcl{V},
+\end{equation*}
+give the following relations
+\begin{align}
+    \Lambda_p(\mcl{D}_\Psi^w)^{-1}
+        &= \left(I+(\mcl{D}_\Psi^w)^{-1}\mcl{D}_\Psi^{wz}\mcl{D}\right)^{-1}
+           (\mcl{D}_\Psi^w)^{-1} = \Lambda_c
+           \label{eqn:id1}\\[4pt]
+    (\mcl{D}_\Psi^w)^{-1}\mcl{D}_\Psi^{wz}\Lambda_z
+        &= (\mcl{D}_\Psi^w)^{-1}\mcl{D}_\Psi^{wz}
+           \left(I+\mcl{D}(\mcl{D}_\Psi^w)^{-1}\mcl{D}_\Psi^{wz}\right)^{-1}
+           \notag\\
+        &= (\mcl{D}_\Psi^w)^{-1}
+           \left(I+\mcl{D}_\Psi^{wz}\mcl{D}(\mcl{D}_\Psi^w)^{-1}\right)^{-1}
+           \mcl{D}_\Psi^{wz}
+         = \Lambda_c\mcl{D}_\Psi^{wz}
+           \label{eqn:id2}\\[4pt]
+    \Lambda_z\mcl{D}(\mcl{D}_\Psi^w)^{-1}
+        &= \left(I+\mcl{D}(\mcl{D}_\Psi^w)^{-1}\mcl{D}_\Psi^{wz}\right)^{-1}
+           \mcl{D}(\mcl{D}_\Psi^w)^{-1}
+           \notag\\
+        &= \mcl{D}(\mcl{D}_\Psi^w)^{-1}
+           \left(I+\mcl{D}_\Psi^{wz}\mcl{D}(\mcl{D}_\Psi^w)^{-1}\right)^{-1}
+         = \mcl{D}\Lambda_c
+           \label{eqn:id3}\\[4pt]
+    \Lambda_z
+        &= \left(I+\mcl{D}(\mcl{D}_\Psi^w)^{-1}\mcl{D}_\Psi^{wz}\right)^{-1}
+           \notag\\
+        &= I-\mcl{D}(\mcl{D}_\Psi^w)^{-1}
+           \left(I+\mcl{D}_\Psi^{wz}\mcl{D}(\mcl{D}_\Psi^w)^{-1}\right)^{-1}
+           \mcl{D}_\Psi^{wz}
+           \notag\\
+        &= I-\mcl{D}\Lambda_c\mcl{D}_\Psi^{wz}
+           \label{eqn:id4}\\[4pt]
+    (\mcl{D}_\Psi^w)^{-1}
+        -\Lambda_c\mcl{D}_\Psi^{wz}\mcl{D}(\mcl{D}_\Psi^w)^{-1}
+        &= \left(I-\Lambda_c\mcl{D}_\Psi^{wz}\mcl{D}\right)
+           (\mcl{D}_\Psi^w)^{-1}
+           \notag\\
+        &= \Lambda_c\left(\mcl{D}_\Psi^w
+           +\mcl{D}_\Psi^{wz}\mcl{D}
+           -\mcl{D}_\Psi^{wz}\mcl{D}\right)(\mcl{D}_\Psi^w)^{-1}
+           \notag\\
+        &= \Lambda_c.
+           \label{eqn:id5}
+\end{align}
+We now express the blocks of \eqref{eqn:potapov} in terms of
+$\Lambda_c$.  For the first row, direct substitution and
+\eqref{eqn:id1} give
+\begin{align*}
+&\bmat{
+    \mcl{A}+\mcl{B}\Lambda_p\hat{\mcl{D}}_\Psi^{wz}\mcl{C} &
+    \mcl{B}\Lambda_p\hat{\mcl{C}}_\Psi^w &
+    \mcl{B}\Lambda_p\hat{\mcl{D}}_\Psi^{w\tilde{w}}} =
+\bmat{
+    \mcl{A}-\mcl{B}\Lambda_c\mcl{D}_\Psi^{wz}\mcl{C} &
+    -\mcl{B}\Lambda_c\mcl{C}_\Psi^w &
+    \mcl{B}\Lambda_c}.
+\end{align*}
+For the second row,
+\eqref{eqn:id2} and \eqref{eqn:id4} give
+\begin{align*}
+    \hat{\mcl{B}}_\Psi^z\Lambda_z
+        &= \left(\mcl{B}_\Psi^z
+            -\mcl{B}_\Psi^w(\mcl{D}_\Psi^w)^{-1}
+             \mcl{D}_\Psi^{wz}\right)
+            \Lambda_z\\
+        &= \mcl{B}_\Psi^z\Lambda_z
+            -\mcl{B}_\Psi^w(\mcl{D}_\Psi^w)^{-1}
+             \mcl{D}_\Psi^{wz}\Lambda_z\\
+        &= \mcl{B}_\Psi^z
+            \left(I-\mcl{D}\Lambda_c\mcl{D}_\Psi^{wz}\right)
+            -\mcl{B}_\Psi^w\Lambda_c\mcl{D}_\Psi^{wz}\\
+        &= \mcl{B}_\Psi^z
+            -\left(\mcl{B}_\Psi^z\mcl{D}+\mcl{B}_\Psi^w\right)
+             \Lambda_c\mcl{D}_\Psi^{wz}.
+\end{align*}
+Its third entry follows from \eqref{eqn:id5}:
+\begin{align*}
+    &\hat{\mcl{B}}_\Psi^{\tilde{w}}
+        +\hat{\mcl{B}}_\Psi^z\Lambda_z\mcl{D}
+         \hat{\mcl{D}}_\Psi^{w\tilde{w}}\\
+    &\quad =
+        \mcl{B}_\Psi^w(\mcl{D}_\Psi^w)^{-1}
+        +\left[
+            \mcl{B}_\Psi^z
+            -\left(\mcl{B}_\Psi^z\mcl{D}+\mcl{B}_\Psi^w\right)
+             \Lambda_c\mcl{D}_\Psi^{wz}
+         \right]\mcl{D}(\mcl{D}_\Psi^w)^{-1}\\
+    &\quad =
+        \left(\mcl{B}_\Psi^z\mcl{D}+\mcl{B}_\Psi^w\right)
+        \left[
+            (\mcl{D}_\Psi^w)^{-1}
+            -\Lambda_c\mcl{D}_\Psi^{wz}\mcl{D}
+             (\mcl{D}_\Psi^w)^{-1}
+        \right]\\
+    &\quad =
+        \left(\mcl{B}_\Psi^z\mcl{D}+\mcl{B}_\Psi^w\right)\Lambda_c.
+\end{align*}
+The third row is obtained analogously:
+\begin{equation*}
+    \hat{\mcl{D}}_\Psi^z\Lambda_z
+        = \mcl{D}_\Psi^z
+           -\left(\mcl{D}_\Psi^z\mcl{D}+\mcl{D}_\Psi^{zw}\right)
+            \Lambda_c\mcl{D}_\Psi^{wz} \qquad
+    \hat{\mcl{D}}_\Psi^{z\tilde{w}}
+        +\hat{\mcl{D}}_\Psi^z\Lambda_z\mcl{D}
+         \hat{\mcl{D}}_\Psi^{w\tilde{w}}\\
+    =
+        \left(\mcl{D}_\Psi^z\mcl{D}+\mcl{D}_\Psi^{zw}\right)\Lambda_c.
+\end{equation*}
+Collecting these blocks and retaining $\tilde{w}$ as an output yields
+\begin{equation}\label{eqn:congruence}
+    \bmat{\mcl{T} \dot{\mbf{x}}(t) \\ \mcl{T}_\Psi\dot{\mbf{x}}_\Psi(t)\\ \tilde{z}(t) \\ \tilde{w}(t)} = 
+    \bmat{\mcl{A} - \mcl{B}\Lambda_c\mcl{D}_\Psi^{wz}\mcl{C} & -\mcl{B}\Lambda_c\mcl{C}_\Psi^w & \mcl{B}\Lambda_c \\[4pt]
+    \mcl{B}_\Psi^z \mcl{C} - (\mcl{B}_\Psi^z \mcl{D} + \mcl{B}_\Psi^w)\Lambda_c\mcl{D}_\Psi^{wz}\mcl{C} 
+    & \mcl{A}_\Psi - (\mcl{B}_\Psi^z \mcl{D} + \mcl{B}_\Psi^w)\Lambda_c\mcl{C}_\Psi^w 
+    & (\mcl{B}_\Psi^z \mcl{D} + \mcl{B}_\Psi^w)\Lambda_c \\[4pt]
+    \mcl{D}_\Psi^z \mcl{C} - (\mcl{D}_\Psi^z \mcl{D} + \mcl{D}_\Psi^{zw})\Lambda_c\mcl{D}_\Psi^{wz}\mcl{C} 
+    & \mcl{C}_\Psi^z - (\mcl{D}_\Psi^z \mcl{D} + \mcl{D}_\Psi^{zw})\Lambda_c\mcl{C}_\Psi^w 
+    & (\mcl{D}_\Psi^z \mcl{D} + \mcl{D}_\Psi^{zw})\Lambda_c\\
+    0&0&I}
+    \bmat{\mbf{x}(t) \\ \mbf{x}_\Psi(t) \\ \tilde{w}(t)}
+\end{equation}
+The corresponding invertible congruence transformation is
+\begin{equation}\label{eqn:congruencetf}
+    \bmat{\mbf{x}(t) \\ \mbf{x}_\Psi(t) \\ \tilde{w}(t)} = 
+    \bmat{I & 0 & 0\\ 
+    0 & I & 0\\
+    \mcl{D}_\Psi^{wz}\mcl{C} & \mcl{C}_\Psi^w & \Lambda_c^{-1}
+    }\bmat{\mbf{x}(t) \\ \mbf{x}_\Psi(t) \\ {w}(t)}
+    \qquad
+    \bmat{\mbf{x}(t) \\ \mbf{x}_\Psi(t) \\ w(t)} = 
+    \bmat{I & 0 & 0\\ 
+    0 & I & 0\\
+    -\Lambda_c\mcl{D}_\Psi^{wz} \mcl{C} & -\Lambda_c\mcl{C}_\Psi^w & \Lambda_c
+    }\bmat{\mbf{x}(t) \\ \mbf{x}_\Psi(t) \\ \tilde{w}(t)}
+\end{equation}
+Applying \eqref{eqn:congruencetf} to \eqref{eqn:congruence} gives
+\begin{equation}\label{eqn:congruence:transformed}
+    \bmat{\mcl{T}\dot{\mbf{x}}(t)\\
+          \mcl{T}_\Psi\dot{\mbf{x}}_\Psi(t)\\
+          \tilde{z}(t)\\
+          \tilde{w}(t)}
+    =
+    \bmat{
+        \mcl{A} & 0 & \mcl{B}\\
+        \mcl{B}_\Psi^z\mcl{C} & \mcl{A}_\Psi &
+            \mcl{B}_\Psi^z\mcl{D}+\mcl{B}_\Psi^w\\
+        \mcl{D}_\Psi^z\mcl{C} & \mcl{C}_\Psi^z &
+            \mcl{D}_\Psi^z\mcl{D}+\mcl{D}_\Psi^{zw}\\
+        \mcl{D}_\Psi^{wz}\mcl{C} & \mcl{C}_\Psi^w &
+            \mcl{D}_\Psi^{wz}\mcl{D}+\mcl{D}_\Psi^w}
+    \bmat{\mbf{x}(t)\\ \mbf{x}_\Psi(t)\\ w(t)}.
+\end{equation}
+The realization in \eqref{eqn:congruence:transformed} is the
+direct augmentation of the \textbf{Primal System} with the \textbf{Primal Scaling}, and
+hence is the \textbf{Scaled Primal System}. For necessity, applying \eqref{eqn:congruencetf} to
+\eqref{eqn:congruence:transformed} recovers \eqref{eqn:congruence},
+and reversing \eqref{eqn:id1}--\eqref{eqn:id5} recovers
+\eqref{eqn:potapov}. The dual case follows by applying the same
+argument to the \textbf{Dual System} and the \textbf{Dual Scaling}.
+\end{proof}
+\begin{theorem}[Scaled IO duality]\label{thm:dualscaledIO}
+	Assume the following conditions hold
+	\begin{itemize}
+		\item The \textbf{Primal I/O Scaling} is a PI operator and invertible.
+		\item $\mcl{S}_{11} - \mcl{D}\mcl{S}_{21}$ and $\bar{\mcl{S}}_{11} - \mcl{D}^*\bar{\mcl{S}}_{21}$ are invertible.
+	\end{itemize}
+	The following statements are equivalent.
+	\begin{enumerate}
+		\item For all $\tilde{w}\in\RL^{\mbf{n}_w}$, the \textbf{Scaled Primal System}
+		      satisfies $\|P_\tau\tilde{z}\| \leq \|P_\tau\tilde{w}\|$.
+		\item For all $\tilde{\bar{w}}\in\RL^{\mbf{n}_z}$, the \textbf{Scaled Dual System}
+		      satisfies $\|P_\tau\tilde{\bar{z}}\| \leq \|P_\tau\tilde{\bar{w}}\|$.
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	See Appendix \ref{proof:theorem2}.
+\end{proof}

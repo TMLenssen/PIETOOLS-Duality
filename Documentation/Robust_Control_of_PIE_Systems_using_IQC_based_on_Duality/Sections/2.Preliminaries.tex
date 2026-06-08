@@ -27,6 +27,7 @@ For a Hilbert space $X$ and operator $\mcl A \in \mcl L(X)$, the adjoint $\mcl A
 		0,             & \text{otherwise}.
 	\end{cases}
 \end{equation*}
+such that $(p_\tau \mbf{y})(t) \in \mbf{L}_\mathbf{H}$ for all $\tau \ge 0$.
 \begin{definition}
 	Let $\mathbf{H}$ and $\mathbf{G}$ be Hilbert spaces. For all $\tau\geq0$, an operator $G : \mathbf{L}_{\mathbf{H}} \to \mathbf{L}_{\mathbf{G}}$ is:
 	\begin{itemize}
@@ -53,7 +54,7 @@ Finally, for a given $\mcl K \in \mcl L(\RL^\mbf{n}, \RL^\mbf{m})$, we define th
 	\bmat{\mbf{u}_1 \\ \vdots \\ \mbf{u}_n}(t).
 \end{equation}
 
-\subsection{PI operators}
+\subsection{Partial Integral Equations (PIEs)}
 Partial Integral operators, also known as PI operators, are a class of bounded linear integral operators that are defined jointly on a vector space and Hilbert space.
 \begin{definition}
 	We say $\mcl P \in {\Pi}_4^{\mbf{m}\times\mbf{n}} \subset \mcl L(\RL^\mbf{n}, \RL^\mbf{m})$, denoted by $\prod \begin{bmatrix}
@@ -71,7 +72,6 @@ Partial Integral operators, also known as PI operators, are a class of bounded l
 \end{definition}
 The vector space of PI operators, given compatible dimensions, are closed under composition, addition, adjoint and concatenation -- implying that ${\Pi}_4$ is a composition algebra \cite{shivakumar2024GDPE}.
 
-\subsection{Linear PI Inequalities (LPIs)}
 \begin{definition}(LPIs)
 	\label{def_LPI}
 	For given PI operators $\{\mcl E_{i,j}, \mcl{F}_{i,j}, \mcl{G}_i\}$ and a convex linear functional $\mcl L(\cdot)$, a linear PI inequality is a convex optimization of the following form
@@ -84,6 +84,57 @@ The vector space of PI operators, given compatible dimensions, are closed under 
 	\end{align}
 \end{definition}
 Only LMIs are required to solve an optimization problem involving LPIs.
+These definitions are based on \cite{shivaknew}
+\begin{definition}[PIE System]\label{def:PIE}
+	Given the PIE system $G\{\mcl{T}, \mcl{A}, \mcl{B}, \mcl{C}, \mcl{D}\}$
+	with PI operators $\mcl{T}, \mcl{A}, \mcl{B}, \mcl{C},$ and $\mcl{D}$ of compatible dimensions,
+	and signals $w(t)\in \RL^{\mbf{n}_w}[a,b]$, we say $\mbf{x}(t)\in\RL[a,b]^{\mbf{n}_x}$ and $z(t)\in \RL^{\mbf{n}_z}[a,b]$ 
+	satisfy the PIE with initial condition $\mbf{x}_0$ if
+	\begin{equation}
+		\bmat{\partial_t(\mcl{T}\mbf{x})(t)\\ z(t)} = \bmat{\mcl{A} & \mcl{B} \\
+			\mcl{C} & \mcl{D}}\bmat{\mbf{x}(t) \\ w(t)}
+	\end{equation}
+	for all $t\geq0$ and $\mcl{T}\mbf{x}(0) = \mcl{T}\mbf{x}_0$. Additionally, for signals $\underline{w}(t)\in\RL[a,b]^{\mbf{n}_z}$
+	of compatible dimensions, we say $\underline{\mbf{x}}(t)\in\RL[a,b]^{\mbf{n}_x}$ and $\underline{z}(t)\in L_2[a,b]^{\mbf{n}_w}$
+	satisfy the dual PIE, $G^\top$ with initial condition $\underline{\mbf{x}}_0$ if
+    \begin{equation}
+        \bmat{\mcl{T}^*\underline{\dot{\mbf{x}}}(t)\\ \underline{z}(t)}
+        =
+        \bmat{\mcl{A}^* & \mcl{C}^*\\
+              \mcl{B}^* & \mcl{D}^*}
+        \bmat{\underline{\mbf{x}}(t)\\ \underline{w}(t)},
+    \end{equation}
+	for all $t\geq0$ and $\mcl{T}^*\underline{\mbf{x}}(0) = \mcl{T}^*\underline{\mbf{x}}_0$.
+\end{definition}
+
+\begin{definition}[Generalization of $\R\mathbb{H}_\infty$]\label{def:RHinf}
+	Let $G$ be a PIE system as in Definition~\ref{def:PIE}. We say $G$ is internally stable and bounded with decay rate
+	$\alpha>0$, $M>0$, and $L_2$-gain $\gamma>0$ if
+	\begin{itemize}
+		\item The homogeneous part \(\partial_t(\mcl{T}\mbf{x})(t)=\mcl{A}\mbf{x}(t)\), with \(\mcl{T}\mbf{x}(0)=\mcl{T}\mbf{x}_0\)
+		      is exponentially stable such that, for every admissible initial condition
+		      $\mbf{x}_0 \in \RL$
+		      \[
+			      \|\mcl{T}\mbf{x}(t)\|_{\mbf{L}_{[a,b]}}
+			      \leq
+			      M\|\mcl{T}\mbf{x}_0\|_{\mbf{L}_{[a,b]}}e^{-\alpha t},
+			      \qquad \forall\,t\geq0.
+		      \]
+		\item With zero initial condition $\mbf{x}(0)=0$, then for
+		      any input $w$ and output $z$,
+		      \[
+			      \|p_\tau z\|_{\mbf{L}_{[a,b]}}
+			      \leq
+			      \gamma\|p_\tau w\|_{\mbf{L}_{[a,b]}},
+			      \qquad
+			      \forall\,\tau\geq0,\quad
+			      \forall.
+		      \]
+	\end{itemize}
+	Clearly, $\R\mathbb{H}_\infty\subset\R\mathbb{H}_\infty^{\mathrm{PIE}}$ \cite{TsaiGu2014RobustOptimalControl}. 
+	Also $G^\top$ is in $\R\mathbb{H}_\infty^{\mathrm{PIE}}$ with the same decay rate, $L_2$-gain, and $M$ \cite{shivaknew}.
+\end{definition}
+
 \subsection{PIETOOLS}
 PIETOOLS is a MATLAB toolbox used for declaration, manipulation and solving LPIs \cite{9147712}. For learning how to use PIETOOLS and its functionalities visit \href{https://control.asu.edu/pietools/pietools}{PIETOOLS homepage}.
 

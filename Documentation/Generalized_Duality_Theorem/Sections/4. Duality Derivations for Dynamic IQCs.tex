@@ -81,18 +81,12 @@
 \end{definition}
 
 \begin{definition}\label{def:dualscaledsys:iqc}
-    For $\underline{w}(t)\in\RL^{\mbf{n}_z}$, $\underline{\mbf{x}}(t)\in\RL^{\mbf{n}_\mbf{x}}$, and 
-    $\underline{z}(t)\in\RL^{\mbf{n}_w}$ that satisfy $\underline{\mbf{x}}(0) = 0$, the \textbf{Dual 
-    System} $G^\dual$ is defined by applying the dual realization to the \textbf{Primal System}:
-    \begin{equation}\label{eqn:dualsys:iqc}
-        \bmat{\mcl{T}^*\dot{\underline{\mbf{x}}}(t)\\ \underline{z}(t)}
-        =
-        \bmat{\mcl{A}^* & \mcl{C}^*\\
-              \mcl{B}^* & \mcl{D}^*}
-        \bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}.
-    \end{equation}
-    The \textbf{Scaled Dual System} is expressed in terms of $\tilde{\underline{w}}(t)\in
-    \RL^{\mbf{n}_z}$ and $\tilde{\underline{z}}(t)\in\RL^{\mbf{n}_w}$, which satisfy,
+    For the dual realization $G^\dual$ as in Definition~\ref{def:dualrealization}, and the dual
+    filter $\mbf{D}(\Psi)\in\mcl{L}(\RL)$, the dynamically filtered dual system is expressed
+    in terms of $\tilde{\underline{w}}(t)\in\RL^{\mbf{n}_z}$ and
+    $\tilde{\underline{z}}(t)\in\RL^{\mbf{n}_w}$, where the unfiltered dual variables satisfy
+    $\underline{\mbf{x}}(0)=0$ and $\underline{z}=G^\dual\underline{w}$.
+    The dual scaled variables are defined, analogously to the primal scaled variables, by
     \begin{equation}\label{eqn:dualscaling:iqc}
         \mbf{D}(\Psi)
         \bmat{\underline{z}(t) \\ \underline{w}(t)} = 
@@ -100,14 +94,15 @@
     \end{equation}
     The operator $\mbf{D}(\Psi)\in\mcl{L}(\RL)$ is called the \textbf{Dual Scaling} of the system 
     and is the dual of the \textbf{Primal Scaling}.
-    Thus the state space representation of \eqref{eqn:dualscaling:iqc} is given by
+    Equivalently, since $\mbf{D}(\Psi)^{-1}=\hat{\mcl{J}}^*\Psi^\dual\hat{\mcl{J}}$, the inverse
+    filter relation has the state-space representation
     \begin{equation}\label{eqn:ssdualscaling:iqc}
         \bmat{\mcl{T}_{\Psi}^*\dot{\underline{\mbf{x}}}_{\Psi}(t)\\ \underline{z}(t) \\ \underline{w}(t)}
         =
         \bmat{\mcl{A}_\Psi^* & -\mcl{C}_\Psi^{w*} & \mcl{C}_\Psi^{z*} \\
             -\mcl{B}_\Psi^{w*} & \mcl{D}_\Psi^{w*} & -\mcl{D}_\Psi^{zw*} \\
-            \mcl{B}_\Psi^{z*} & -\mcl{D}_\Psi^{wz^*} & \mcl{D}_\Psi^{z*}}
-            \bmat{\underline{\mbf{x}}_\Psi(t) \\ \underline{\tilde{z}}(t) \\ \underline{\tilde{w}}(t)}
+            \mcl{B}_\Psi^{z*} & -\mcl{D}_\Psi^{wz*} & \mcl{D}_\Psi^{z*}}
+            \bmat{\underline{\mbf{x}}_\Psi(t) \\ \tilde{\underline{z}}(t) \\ \tilde{\underline{w}}(t)}
     \end{equation}
 \end{definition}
 
@@ -589,7 +584,7 @@ argument to the \textbf{Dual System} and the \textbf{Dual Scaling}.
 \end{proof}
 
 
-\begin{example}[Dual multiplier for the zero-padded LTI-parametric IQC]
+\begin{example}[Dual multiplier for a zero-padded extension of the LTI-parametric IQC]
     Consider an LTI-parametric IQC with causal bounded linear tall factor
     $\psi=\bmat{I\\\psi_t}$ and pointwise multiplier with $\mcl{R}=-\mcl{Q}$,
     \begin{equation}
@@ -681,29 +676,59 @@ argument to the \textbf{Dual System} and the \textbf{Dual Scaling}.
         }_{\mbf L_{[a,b]}}
         \leq0.
     \end{equation}
-    Factor the pointwise multiplier as $\mcl{P}=\mcl{V}^*J\mcl{V}$ with
+    Define
+    \begin{equation}
+        \Theta
+        :=
+        \mcl{Q}+\mcl{S}^*\mcl{Q}^{-1}\mcl{S}
+        =
+        \mcl{Q}-\mcl{S}\mcl{Q}^{-1}\mcl{S}.
+    \end{equation}
+    Then $\Theta\succ0$, and the multiplication operator $\mcl{M}$ has
+    the lower triangular $J$-factorization induced by
+    $\mcl{P}=\mcl{V}^*J\mcl{V}$, where
     \begin{equation}
         \mcl{V}
         :=
-        \bmat{\mcl{V}_{11} & \mcl{V}_{12}\\0 & \mcl{V}_{22}},
+        \bmat{
+            \Theta^{1/2} & 0\\
+            \mcl{Q}^{-1/2}\mcl{S} & \mcl{Q}^{1/2}
+        },
         \qquad
         J:=
         \bmat{I & 0\\0 & -I},
     \end{equation}
-    where $\mcl{V}_{11}$ and $\mcl{V}_{22}$ are invertible. Define the
-    $J$-factorization
+    since
+    \begin{equation}
+        \mcl{V}^*J\mcl{V}
+        =
+        \bmat{
+            \Theta-\mcl{S}^*\mcl{Q}^{-1}\mcl{S}
+            &
+            -\mcl{S}^*\\
+            -\mcl{S}
+            &
+            -\mcl{Q}
+        }
+        =
+        \bmat{
+            \mcl{Q} & \mcl{S}\\
+            \mcl{S}^* & -\mcl{Q}
+        }.
+    \end{equation}
+    Define the $J$-factorization
     \begin{equation}
         \Phi
         :=
         \mcl{V}\Psi_\square
         =
         \bmat{
-            \mcl{V}_{11}\psi_\square
+            \Theta^{1/2}\psi_\square
             &
-            \mcl{V}_{12}\psi_\square\\
-            0
+            0\\
+            \mcl{Q}^{-1/2}\mcl{S}\psi_\square
             &
-            \mcl{V}_{22}\psi_\square
+            \mcl{Q}^{1/2}\psi_\square
         }.
     \end{equation}
     Using Definition~\ref{def:dualscalingoperation}
@@ -717,26 +742,26 @@ argument to the \textbf{Dual System} and the \textbf{Dual Scaling}.
         =
         \underbrace{
         \bmat{
-            \mcl{V}_{22}^{-*}
+            \mcl{Q}^{-1/2}
             &
-            \mcl{V}_{22}^{-*}\mcl{V}_{12}^*\mcl{V}_{11}^{-*}\\
-            0
+            0\\
+            \Theta^{-1/2}\mcl{S}^*\mcl{Q}^{-1}
             &
-            \mcl{V}_{11}^{-*}
+            \Theta^{-1/2}
         }}_{\mcl{V}_d}
         \underbrace{\bmat{
             \psi_\square^{-\dual} & 0\\
             0 & \psi_\square^{-\dual}
         }}_{\Psi_{d,\square}} .
     \end{equation}
-    Hence the pointwise multiplication operator $\mcl{M}_d\in\mcl{L}(\mbf L_{[a,b]})$
-    by
+    Hence the pointwise multiplication operator
+    $\mcl{M}_d\in\mcl{L}(\mbf L_{[a,b]})$ is induced by
     \begin{equation}
         \mcl{P}_d:=\mcl{V}_d^*J\mcl{V}_d,
         \qquad
         (\mcl{M}_d v)(t):=\mcl{P}_d v(t).
     \end{equation}
-    Thus the squared-up dual contraction inequality is
+    Thus the squared-up dual inequality is
     \begin{equation}
         \ip{
             p_T\Psi_{d,\square}
@@ -761,15 +786,7 @@ argument to the \textbf{Dual System} and the \textbf{Dual Scaling}.
         \bmat{\mcl{Q} & \mcl{S}^*\\
               \mcl{S} & -\mcl{Q}} .
     \end{equation}
-    With
-    \begin{equation}
-        \Theta
-        :=
-        \mcl{Q}+\mcl{S}^*\mcl{Q}^{-1}\mcl{S}
-        =
-        \mcl{Q}-\mcl{S}\mcl{Q}^{-1}\mcl{S},
-    \end{equation}
-    the block inverse is
+    With the same $\Theta$, the block inverse is
     \begin{equation}
         \mcl{P}_d
         =
@@ -835,8 +852,9 @@ argument to the \textbf{Dual System} and the \textbf{Dual Scaling}.
         \Psi_d = \bmat{\psi_d & 0\\0 & \psi_d}
         .
     \end{equation}
-    The induced dual contraction inequality is therefore, for all
-    $T\geq0$ and all $\underline{z}(t),\underline{w}(t)\in\RL$, where $\underline{z}(t)$ satisfies Definition~\ref{eqn:dualsys:iqc},
+    The induced dual inequality for this zero-padded extension is
+    therefore, for all $T\geq0$ and all $\underline{z}(t),\underline{w}(t)\in\RL$
+    satisfying $\underline{z}=G^\dual\underline{w}$,
     \begin{equation}
         \ip{
             p_T
