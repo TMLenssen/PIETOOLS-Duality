@@ -1,34 +1,5 @@
-% \begin{theorem}
-% Suppose that \textbf{either} of the two statements hold for some $\mcl{V}$ or
-% corresponding dual $\mcl{V}'$ and $\mcl{P}\in\Pi_4$ such that
-% $\mcl{P}=\mcl{P}^*\succeq 0$
-%     \begin{enumerate}
-%         \item \begin{equation*}
-% \bmat{\mcl{A}^*\mcl{P}\mcl{T} + \mcl{T}^*\mcl{P}\mcl{A} &
-% \mcl{T}^*\mcl{P}\mcl{B} +\mcl{C}^*\mcl{V}_{12} &
-% \mcl{C}^*\mcl{V}^*_{11}\\\mcl{B}^*\mcl{P}\mcl{T}+\mcl{V}_{21}\mcl{C} &
-% \mcl{V}_{21}\mcl{D}+\mcl{D}^*\mcl{V}_{12} + \mcl{V}_{22} &
-% \mcl{D}^*\mcl{V}^*_{11} \\ \mcl{V}_{11}\mcl{C} & \mcl{V}_{11}\mcl{D} &
-% -\mcl{V}_{11}} \preceq 0
-%         \end{equation*}
-%         \item \begin{equation*}
-% \bmat{\mcl{A}\mcl{P}\mcl{T}^* + \mcl{T}\mcl{P}\mcl{A}^* &
-% \mcl{T}\mcl{P}\mcl{C}^* +\mcl{B}\mcl{V}'_{12} &
-% \mcl{B}{\mcl{V}'}^{*}_{11}\\\mcl{C}\mcl{P}\mcl{T}^*+\mcl{V}'_{21}\mcl{B}^* &
-% \mcl{V}'_{21}\mcl{D}^*+\mcl{D}\mcl{V}'_{12} + \mcl{V}'_{22} &
-% \mcl{D}{\mcl{V}'}^*_{11} \\ \mcl{V}'_{11}\mcl{B}^* & \mcl{V}'_{11}\mcl{D}^* &
-% -\mcl{V}'_{11}} \preceq 0
-%         \end{equation*}
-%     \end{enumerate}
-%     Then, for any $w(t)\in\RL^{\mbf{n}_w}$ and $z(t)$ that satisfies
-%     \begin{equation*} 
-% \bmat{\partial_t(\mcl{T}\mbf{x}_f(t)) \\ z(t)} = \bmat{\mcl{A} & \mcl{B} \\
-% \mcl{C} & \mcl{D}}\bmat{\mbf{x}_f(t) \\ w(t)}
-%     \end{equation*}
-% \end{theorem}
-
-
-As a practical first
+In this section, we use PIETOOLS \cite{9147712} to construct the PIE
+representation and solve the associated LPIs for analysis. As a practical first
 step, it is generally advisable to synthesize a controller for the nominal
 system before accounting for uncertainties. In addition, we incorporate
 performance specifications through weighting filters. This is a standard

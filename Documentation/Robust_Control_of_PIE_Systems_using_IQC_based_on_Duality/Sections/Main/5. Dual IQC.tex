@@ -1,0 +1,289 @@
+% \begin{assumption}
+%     The laplace transform of PIE system $G\in\Hinf$ is $G(s) = \mcl{C}(s\mcl{T} - \mcl{A})^{-1}\mcl{B} + \mcl{D}$.
+% \end{assumption}
+For brevity we will refer to \eqref{eq:robust-stability-performance-condition} as the hard IQC
+\begin{equation}
+    \ip{p_T \Psi\bmat{z \\ w}}{p_T \mcl{M}_\mcl{V}\Psi\bmat{z \\ w}}_{\mbf L_{[a, b]}} \leq -\epsilon \|p_T w\|^2_{\mbf L_{[a, b]}}
+\end{equation}
+with $\Psi = \bmat{\Psi & 0 \\ 0 & I}$, $w =\bmat{w_\Delta \\ w_p}$, and $z = \bmat{z_\Delta \\ z_p}$. The multiplier operator is given by
+\begin{equation*}
+(\mcl M_{\mcl V}\mbf u)(t):=\underbrace{\bmat{\mcl Q_\Delta & 0 & \mcl S_\Delta
+& 0 \\ 0 & \mcl Q_p & 0 & \mcl S_p \\ \mcl S_\Delta^* & 0 & \mcl R_\Delta & 0 \\
+0 & \mcl S_p^* & 0 & \mcl R_p}}_{\mcl V}\mbf u(t).
+\end{equation*}
+
+
+\begin{definition}(J-spectral factorization, Venkataraman et al. \cite{venkataraman})\label{def:factorization}
+    ($\hat{\Psi}, J_{\mbf{n}_z, \mbf{n}_w}$) is called a $J$-spectral factorization if 
+    \begin{equation}
+        \begin{aligned}
+        &\ip{p_T \Psi\bmat{z \\ w}}{p_T \mcl{M}_\mcl{V}\Psi\bmat{z \\ w}}_{\mbf L_{[a, b]}} \\&=
+        \ip{p_T \hat{\Psi}\bmat{z\\w}}{p_T J_{\mbf{n}_z, \mbf{n}_w}\hat{\Psi}\bmat{z\\w}}_{\mbf L_{[a, b]}}
+        \end{aligned}
+    \end{equation}
+    with $J_{\mbf{n}_z, \mbf{n}_w} = \bmat{I_{\mbf{n}_z} & 0 \\ 0 & -I_{\mbf{n}_w}}$, and $\hat{\Psi}, \mbf{D}(\hat{\Psi})\in\Hinf$.
+\end{definition}
+
+\begin{theorem}[Primal--Dual IQC Feasibility]\label{thm:primal-dual-iqc-feasibility}
+Let $P$ be the input-output map of a well-posed interconnection as in
+Definition~\ref{def:uncertain-interconnection}, and let
+$(\hat{\Psi},J_{\mbf{n}_z,\mbf{n}_w})$ be a $J$-spectral factorization of the
+primal hard IQC. Let $\epsilon_p>0$ and $\epsilon_d>0$ denote the primal and
+dual feasibility margins, and set
+\begin{equation*}
+\epsilon=\min\{\epsilon_p,\epsilon_d\}.
+\end{equation*}
+Then the primal feasibility condition
+\begin{equation}\label{eq:primal-iqc-feasibility}
+\begin{gathered}
+\begin{aligned}
+\ip{p_T\hat{\Psi}\bmat{z \\ w}}
+{p_TJ_{\mbf{n}_z,\mbf{n}_w}\hat{\Psi}\bmat{z \\ w}}_{\mbf L_{[a,b]}}
+&\leq -\epsilon\|p_Tw\|^2_{\mbf L_{[a,b]}},
+\end{aligned}\\
+z=Pw,\qquad w\in\mbf L_{e,[a,b]}^{\mbf{n}_w},\qquad T\geq0,
+\end{gathered}
+\end{equation}
+holds if and only if the dual feasibility condition
+\begin{equation}\label{eq:dual-iqc-feasibility}
+\begin{gathered}
+\begin{aligned}
+\ip{p_T\mbf{D}(\hat{\Psi})\bmat{\underline{z} \\ \underline{w}}}
+{p_TJ_{\mbf{n}_w,\mbf{n}_z}\mbf{D}(\hat{\Psi})\bmat{\underline{z} \\ \underline{w}}}_{\mbf L_{[a,b]}}
+&\leq -\epsilon\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}},
+\end{aligned}\\
+\underline{z}=P^\top\underline{w},\qquad
+\underline{w}\in\mbf L_{e,[a,b]}^{\mbf{n}_z},\qquad T\geq0,
+\end{gathered}
+\end{equation}
+holds for the same $\epsilon>0$.
+\end{theorem}
+\begin{proof}
+See Appendix~\ref{proof:primal-dual-iqc-feasibility}.
+\end{proof}
+
+J-spectral factorizations exist for many performance and uncertainty
+multipliers.  Following \cite{veenman2016robust}, we collect the relevant
+multiplier families as classes.
+
+\subsection{Classes of J-Spectral Factorizations for Performance Multipliers}
+
+\begin{class}[Induced $L_2$-gain]
+The induced $L_2$-gain multiplier class is given by
+\begin{equation}
+\mcl{V}_p
+=
+\bmat{
+\gamma^{-1}I_{\mbf{n}_{z_p}} & 0 \\
+0 & -\gamma I_{\mbf{n}_{w_p}}
+},
+\qquad \gamma>0 .
+\end{equation}
+Robust performance then guarantees
+$\sup_{\Delta\in\mbf{\Delta}}\|G\star\Delta\|_{\mbf L_{[a,b]}}\leq\gamma$.
+A $J$-spectral factorization is
+\begin{equation}
+\mcl{V}_p
+=
+\hat{\Psi}_\gamma^*
+J_{\mbf{n}_{z_p},\mbf{n}_{w_p}}
+\hat{\Psi}_\gamma,
+\qquad
+\hat{\Psi}_\gamma
+=
+\bmat{
+\gamma^{-\frac{1}{2}}I_{\mbf{n}_{z_p}} & 0 \\
+0 & \gamma^{\frac{1}{2}} I_{\mbf{n}_{w_p}}
+}.
+\end{equation}
+The associated dual factor is
+\begin{equation}
+\mbf{D}(\hat{\Psi}_\gamma)
+=
+\bmat{
+\gamma^{-\frac{1}{2}}I_{\mbf{n}_{w_p}} & 0 \\
+0 & \gamma^{\frac{1}{2}} I_{\mbf{n}_{z_p}}
+},
+\qquad
+J_{\mbf{n}_{w_p},\mbf{n}_{z_p}} .
+\end{equation}
+\end{class}
+
+\begin{class}[Passivity]
+The passivity multiplier class is
+\begin{equation}
+\mcl{V}_p
+=
+\bmat{
+0 & I_{\mbf{n}} \\
+I_{\mbf{n}} & 0
+}.
+\end{equation}
+Robust performance means that $G\star\Delta$ is strictly input passive for all
+$\Delta\in\mbf{\Delta}$. A $J$-spectral factorization is
+\begin{equation}
+\mcl{V}_p
+=
+\hat{\Psi}_{\rm pas}^*
+J_{\mbf{n},\mbf{n}}
+\hat{\Psi}_{\rm pas},
+\qquad
+\hat{\Psi}_{\rm pas}
+=
+\frac{1}{\sqrt{2}}
+\bmat{
+I_{\mbf{n}} & I_{\mbf{n}} \\
+I_{\mbf{n}} & -I_{\mbf{n}}
+}.
+\end{equation}
+The associated dual factor is
+\begin{equation}
+\mbf{D}(\hat{\Psi}_{\rm pas})
+=
+\frac{1}{\sqrt{2}}
+\bmat{
+-I_{\mbf{n}} & -I_{\mbf{n}} \\
+-I_{\mbf{n}} & I_{\mbf{n}}
+},
+\qquad
+J_{\mbf{n},\mbf{n}} .
+\end{equation}
+\end{class}
+
+\subsection{Classes of J-Spectral Factorizations for Uncertainty Multipliers}
+
+Many finite-dimensional uncertainty IQCs have a strict positive-negative (PN)
+multiplier structure.
+\begin{definition}[Strict PN multiplier {\cite{6915700}}]
+Let $\Pi=\Pi^\sim\in\mathbb{RL}_\infty^{(n_z+n_w)\times(n_z+n_w)}$, with
+$\Pi_{11}\in\mathbb{RL}_\infty^{n_z\times n_z}$ and
+$\Pi_{22}\in\mathbb{RL}_\infty^{n_w\times n_w}$. The multiplier $\Pi$ is
+strict positive-negative if there exists $\epsilon>0$ such that
+\begin{equation*}
+\Pi_{11}(j\omega)\succeq\epsilon I,
+\qquad
+\Pi_{22}(j\omega)\preceq-\epsilon I,
+\qquad
+\forall\omega\in\R\cup\{\infty\}.
+\end{equation*}
+\end{definition}
+Moreover, in this finite-dimensional setting, \cite{6915700} shows that if the
+primal IQC is a strict PN multiplier, then a $J$-spectral factorization exists
+according to Definition~\ref{def:factorization}. This factorization is hard,
+and all solutions $P=P^\top$ to the associated KYP lemma satisfy $P\geq0$.
+Also, \cite{venkataraman} shows that the primal IQC is a strict PN multiplier
+if and only if the corresponding dual multiplier is a strict PN multiplier.
+Classes 1, 2, 3, 5, 8, and 11 in \cite{veenman2016robust} are strict PN
+multipliers. Classes 4, 6, 7, 12, 13, 14, and 15 are strict PN after imposing
+the additional constraints stated in \cite{veenman2016robust}.
+
+\begin{class}[Real repeated scalar parameters]
+Consider the finite-dimensional uncertainty class
+$\mbf{\Delta}_{\rm rr}:=\{\delta I_{n_q}:\delta\in\R,\ |\delta|\leq\alpha\}$.
+Define the static matrix scaling
+\begin{equation}
+\begin{gathered}
+\Sigma_\alpha
+:=
+\bmat{
+\alpha^{-\frac{1}{2}}I_{n_q} & 0 \\
+0 & \alpha^{\frac{1}{2}}I_{n_q}
+}
+\in\R^{2n_q\times 2n_q},\\
+\Psi_{\rm rr}:=
+\bmat{\psi & 0 \\ 0 & \psi}.
+\end{gathered}
+\end{equation}
+With the convention $w_\Delta=\Delta z_\Delta$, the IQC holds with
+\begin{equation}
+\Pi_{\rm rr}
+=
+\Sigma_\alpha^*
+\Psi_{\rm rr}^*
+\bmat{\mcl{Q} & \mcl{S} \\ \mcl{S}^* & \mcl{R}}
+\Psi_{\rm rr}
+\Sigma_\alpha,
+\end{equation}
+for all $\Delta\in\mbf{\Delta}_{\rm rr}$ if
+$\mcl{Q}=\mcl{Q}^*=-\mcl{R}\in\R^{n_q\times n_q}$,
+$\mcl{S}\in\R^{n_q\times n_q}$, and
+\begin{equation}
+\psi^*\mcl{Q}\psi\prec0,
+\qquad
+\psi^*(\mcl{S}+\mcl{S}^*)\psi=0 .
+\end{equation}
+Here $\alpha$ is the radius of the real repeated uncertainty block and appears
+only through the finite-dimensional matrix $\Sigma_\alpha$. Since the unscaled
+dynamic multiplier is strict PN, there exists a hard $J$-spectral factorization
+\begin{equation}
+\Psi_{\rm rr}^*
+\bmat{\mcl{Q} & \mcl{S} \\ \mcl{S}^* & \mcl{R}}
+\Psi_{\rm rr}
+=
+\hat{\Psi}_{\rm rr}^*
+J_{n_q,n_q}
+\hat{\Psi}_{\rm rr},
+\qquad
+\hat{\Psi}_{\rm rr},\mbf{D}(\hat{\Psi}_{\rm rr})\in\Hinf .
+\end{equation}
+Thus $\alpha$ remains outside the $J$-spectral factorization:
+\begin{equation}
+\Pi_{\rm rr}
+=
+\Sigma_\alpha^*
+\hat{\Psi}_{\rm rr}^*
+J_{n_q,n_q}
+\hat{\Psi}_{\rm rr}
+\Sigma_\alpha.
+\end{equation}
+The corresponding unscaled dual multiplier is also strict PN. Hence there
+exist dual-side parameters $\psi_d,\mcl{Q}_d,\mcl{S}_d,\mcl{R}_d$ such that
+\begin{equation}
+\begin{aligned}
+\mbf{D}(\hat{\Psi}_{\rm rr})^*
+J_{n_q,n_q}
+\mbf{D}(\hat{\Psi}_{\rm rr})
+&=
+\bmat{\psi_d & 0 \\ 0 & \psi_d}^*
+\bmat{\mcl{Q}_d & \mcl{S}_d \\ \mcl{S}_d^* & \mcl{R}_d} \\
+&\qquad
+\bmat{\psi_d & 0 \\ 0 & \psi_d},
+\end{aligned}
+\end{equation}
+where $\mcl{Q}_d=\mcl{Q}_d^*=-\mcl{R}_d\in\R^{n_q\times n_q}$,
+$\mcl{S}_d\in\R^{n_q\times n_q}$, and
+\begin{equation}
+\psi_d^*\mcl{Q}_d\psi_d\prec0,
+\qquad
+\psi_d^*(\mcl{S}_d+\mcl{S}_d^*)\psi_d=0 .
+\end{equation}
+The dual operation is multiplicative for compatible invertible factors:
+\begin{equation}
+\mbf{D}(\Psi_1\Psi_2)=\mbf{D}(\Psi_1)\mbf{D}(\Psi_2).
+\end{equation}
+Moreover, the static scaling is self-dual,
+\begin{equation}
+\mbf{D}(\Sigma_\alpha)
+=
+(\hat{\mcl{J}}^*\Sigma_\alpha^\top\hat{\mcl{J}})^{-1}
+=
+\Sigma_\alpha .
+\end{equation}
+Therefore the scaled dual factor is
+\begin{equation}
+\mbf{D}(\hat{\Psi}_{\rm rr}\Sigma_\alpha)
+=
+\mbf{D}(\hat{\Psi}_{\rm rr})\Sigma_\alpha,
+\end{equation}
+and the scaled dual-side multiplier is obtained by applying the same static
+matrix scaling outside the dual $J$-spectral factorization:
+\begin{equation}
+\Pi_{{\rm rr},d}
+=
+\Sigma_\alpha^*
+\mbf{D}(\hat{\Psi}_{\rm rr})^*
+J_{n_q,n_q}
+\mbf{D}(\hat{\Psi}_{\rm rr})
+\Sigma_\alpha .
+\end{equation}
+\end{class}

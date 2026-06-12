@@ -1,0 +1,27 @@
+\subsection{Proof of Theorem~\ref{thm:robust-stability-performance}}\label{proof:robust-stability-performance}
+Suppose that \eqref{eq:robust-stability-performance-condition} holds. This implies,
+\begin{equation*}
+\ip{p_T \Psi_\Delta\bmat{P_\Delta \\ I}w_\Delta}{p_T\mcl{M}_{\mcl{V}_\Delta}\Psi_\Delta\bmat{P_\Delta \\ I}w_\Delta}_{\mbf L_{[a, b]}}
++ \ip{p_T \bmat{P_{p\Delta} \\ 0}w_\Delta}{p_T\mcl{M}_{\mcl{{V}}_p}\bmat{P_{p\Delta} \\ 0}w_\Delta}_{\mbf L_{[a, b]}}
+\leq -\epsilon \|p_Tw_\Delta\|^2_{\mbf L_{[a, b]}}.
+\end{equation*}
+Since $\mcl{\hat{V}}_{11}\succeq0$, we can then infer,
+\begin{equation*}
+\ip{p_T \Psi_\Delta\bmat{P_\Delta w_\Delta \\ w_\Delta}}{p_T\mcl{M}_{\mcl{V}_\Delta}\Psi_\Delta\bmat{P_\Delta w_\Delta \\ w_\Delta}}_{\mbf L_{[a, b]}}
+\leq -\epsilon \|p_Tw_\Delta\|^2_{\mbf L_{[a, b]}}.
+\end{equation*}
+Then, using Theorem 6 in \cite{10156335}, we find that \textbf{robust stability}
+is guaranteed with respect to performance multiplier $\mcl{M}_{\hat{V}}$.
+Moreover, rewriting \eqref{eq:robust-stability-performance-condition} as,
+\begin{equation*}
+\ip{p_T\Psi_\Delta\bmat{z_\Delta \\ w_\Delta}}{p_T\mcl{M}_{\mcl{V}_\Delta}\Psi_\Delta\bmat{z_\Delta \\ w_\Delta}}_{\mbf L_{[a, b]}}
++ \ip{p_T\bmat{z_p \\ w_p}}{p_T\mcl{M}_{\mcl{{V}}_p}\bmat{z_p \\ w_p}}_{\mbf L_{[a, b]}}
+\leq -\epsilon(\|p_T{w_\Delta}\|^2_{\mbf L_{[a, b]}}+\|p_T w_p\|^2_{\mbf L_{[a, b]}}),
+\end{equation*}
+and given that $\Psi_\Delta$ and $\mcl{M}_{\mcl{V}_\Delta}$ satisfy the IQC in
+Definition~\ref{def:uncertainty-iqc} leads to,
+\begin{equation*}
+\ip{p_T\bmat{z_p \\ w_p}}{p_T\mcl{M}_{\mcl{{V}}_p}\bmat{z_p \\ w_p}}_{\mbf L_{[a, b]}}
+\leq -\epsilon \|p_T w_p\|^2_{L_2}.
+\end{equation*}
+Thus by Definition~\ref{def:robust-performance} \textbf{robust performance} is achieved.

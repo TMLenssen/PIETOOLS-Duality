@@ -1,0 +1,138 @@
+\begin{figure*}[t]
+\centering
+\newcommand{\PrimalFilteredSymbols}{%
+    \def\fdDelta{\Delta}%
+    \def\fdPlant{G}%
+    \def\fdFilter{\hat{\Psi}}%
+    \def\fdZ{z}%
+    \def\fdTZ{\tilde{z}}%
+    \def\fdTW{\tilde{w}}%
+    \def\fdW{w}%
+}
+\newcommand{\DualFilteredSymbols}{%
+    \def\fdDelta{\Delta_d}%
+    \def\fdPlant{G^\top}%
+    \def\fdFilter{\mbf{D}(\hat{\Psi})}%
+    \def\fdZ{\underline{z}}%
+    \def\fdTZ{\tilde{\underline{z}}}%
+    \def\fdTW{\tilde{\underline{w}}}%
+    \def\fdW{\underline{w}}%
+}
+\newcommand{\PrimalPotapovSymbols}{%
+    \def\pgFilter{\hat{\Psi}^{\dagger}}%
+    \def\pgPlant{G}%
+    \def\pgTW{\tilde{w}}%
+    \def\pgTZ{\tilde{z}}%
+    \def\pgZ{z}%
+    \def\pgW{w}%
+}
+\newcommand{\DualPotapovSymbols}{%
+    \def\pgFilter{(\hat{\Psi}^{\dagger})^\top}%
+    \def\pgPlant{G^\top}%
+    \def\pgTW{\tilde{\underline{w}}}%
+    \def\pgTZ{\tilde{\underline{z}}}%
+    \def\pgZ{\underline{z}}%
+    \def\pgW{\underline{w}}%
+}
+\newcommand{\DrawFilteredPanel}[3]{%
+\begin{scope}[shift={(#1,#2)}]
+    \begin{scope}[shift={(3.05,1.52)}, scale=1.2, transform shape,
+        shift={(-3.05,-1.52)}]
+    \node[delta, dashed] (D) at (2.10,1.8) {$\fdDelta$};
+    \node[block] (G) at (2.10,0.86) {$\fdPlant$};
+    \node[block] (Psi) at (4,2.18) {$\fdFilter$};
+    \coordinate (PsiInTop) at ([yshift=0.2cm]Psi.west);
+    \coordinate (PsiInBot) at ([yshift=-0.2cm]Psi.west);
+    \coordinate (PsiOutTop) at ([yshift=0.2cm]Psi.east);
+    \coordinate (PsiOutBot) at ([yshift=-0.2cm]Psi.east);
+    \coordinate (FdZLegBot) at ([xshift=-0.62cm]G.west);
+    \coordinate (FdZLegTop) at (FdZLegBot |- D.west);
+    \coordinate (FdWLegBot) at ([xshift=0.62cm]G.east);
+    \coordinate (FdWLegTop) at (FdWLegBot |- D.east);
+    \coordinate (FdZFilterTap) at ([xshift=0.3cm]FdZLegTop |- PsiInTop);
+    \coordinate (FdWFilterTap) at ([xshift=-0.3cm]FdWLegTop |- PsiInBot);
+    \draw[signal] (G.west) -- (FdZLegBot)
+        -- node[siglabel, left] {$\fdZ$} (FdZLegTop) -- (D.west);
+    \draw[signal] (D.east) -- (FdWLegTop)
+        -- node[siglabel, right] {$\fdW$} (FdWLegBot) -- (G.east);
+    \draw[signal] ([xshift=0.3cm]FdZLegTop) -- (FdZFilterTap)
+        --  (PsiInTop);
+    \draw[signal] ([xshift=-0.3cm]FdWLegTop) -- (FdWFilterTap)
+        -- (PsiInBot);
+    \draw[signal] (PsiOutTop) -- ([xshift=0.62cm]PsiOutTop)
+        node[siglabel, right] {$\fdTZ$};
+    \draw[signal] (PsiOutBot) -- ([xshift=0.62cm]PsiOutBot)
+        node[siglabel, right] {$\fdTW$};
+    \end{scope}
+    \node[panelbox, minimum width=6.05cm, minimum height=3.08cm]
+        (#3) at (3.05,1.52) {};
+\end{scope}%
+}
+\newcommand{\DrawPotapovPanel}[3]{%
+\begin{scope}[shift={(#1,#2)}]
+    \begin{scope}[shift={(2.10,1.52)}, scale=1.2, transform shape,
+        shift={(-2.10,-1.52)}]
+    \node[block] (PsiPG) at (2.10,2.18) {$\pgFilter$};
+    \node[block] (GPG) at (2.10,0.86) {$\pgPlant$};
+    \coordinate (PsiPGInTop) at ([yshift=0.2cm]PsiPG.west);
+    \coordinate (PsiPGInBot) at ([yshift=-0.2cm]PsiPG.west);
+    \coordinate (PsiPGOutTop) at ([yshift=0.2cm]PsiPG.east);
+    \coordinate (PsiPGOutBot) at ([yshift=-0.2cm]PsiPG.east);
+    \coordinate (PgZLegBot) at ([xshift=-0.62cm]GPG.west);
+    \coordinate (PgZLegTop) at (PgZLegBot |- PsiPGInBot);
+    \coordinate (PgWLegBot) at ([xshift=0.62cm]GPG.east);
+    \coordinate (PgWLegTop) at (PgWLegBot |- PsiPGOutBot);
+    \draw[signal] ([xshift=-0.8cm]PsiPGInTop) node[siglabel, left] {$\pgTW$}
+        -- (PsiPGInTop);
+    \draw[signal] (GPG.west) -- (PgZLegBot)
+        -- node[siglabel, left] {$\pgZ$} (PgZLegTop) -- (PsiPGInBot);
+    \draw[signal] (PsiPGOutTop) -- ([xshift=0.8cm]PsiPGOutTop)
+        node[siglabel, right] {$\pgTZ$};
+    \draw[signal] (PsiPGOutBot) -- (PgWLegTop)
+        -- node[siglabel, right] {$\pgW$} (PgWLegBot) -- (GPG.east);
+    \end{scope}
+    \node[panelbox, minimum width=4.48cm, minimum height=3.08cm]
+        (#3) at (2.10,1.52) {};
+\end{scope}%
+}
+\begin{tikzpicture}[
+    >=Latex,
+    block/.style={draw, minimum width=1cm, minimum height=1cm,
+        align=center, inner sep=1pt, line width=0.5pt},
+    delta/.style={draw, minimum width=0.6cm, minimum height=0.6cm,
+        align=center, inner sep=1pt, line width=0.5pt},
+    panelbox/.style={draw=none, fill=none, inner sep=0pt, outer sep=0pt},
+    siglabel/.style={fill=white, inner sep=0.7pt, outer sep=1pt},
+    signal/.style={->, line width=0.5pt},
+    equiv/.style={
+        {Implies[length=2.4mm]}-{Implies[length=2.4mm]},
+        double,
+        double distance=2pt,
+        line width=0.5pt,
+        shorten <=0.1cm,
+        shorten >=0.1cm
+    },
+    every node/.style={font=\normalsize}
+]
+\PrimalFilteredSymbols
+\DrawFilteredPanel{0.00}{4.15}{PrimalFilteredBox}
+\PrimalPotapovSymbols
+\DrawPotapovPanel{7.55}{4.15}{PrimalPotapovBox}
+\DualFilteredSymbols
+\DrawFilteredPanel{0.00}{0.00}{DualFilteredBox}
+\DualPotapovSymbols
+\DrawPotapovPanel{7.55}{0.00}{DualPotapovBox}
+
+\draw[equiv] (PrimalFilteredBox.east) -- node[midway, below, yshift=-0.16cm]
+    {(Lemma~\ref{lem:potapov-ginzburg-equivalence})} (PrimalPotapovBox.west);
+\draw[equiv] (DualFilteredBox.east) -- node[midway, below, yshift=-0.16cm]
+    {(Lemma~\ref{lem:potapov-ginzburg-equivalence})} (DualPotapovBox.west);
+\draw[equiv] (PrimalFilteredBox.south) -- node[midway, right, xshift=0.16cm]
+    {(Theorem~\ref{thm:filtered-dual-l2-gain})} (DualFilteredBox.north);
+\draw[equiv] (PrimalPotapovBox.south) -- node[midway, right, xshift=0.16cm]
+    {(Theorem~\ref{thm:dual-l2-gain})} (DualPotapovBox.north);
+\end{tikzpicture}
+\caption{Commutative diagram for primal and dual dynamic filtering under the
+Potapov--Ginzburg transform.}
+\label{fig:potapov-ginzburg-commutative-diagram}
+\end{figure*}

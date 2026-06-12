@@ -1,0 +1,65 @@
+
+This paper uses PN PI operators inspired by the works \cite{venkataraman, hu,
+magicalhiddenenergy}. Then it IQC extends the results from \cite{10156335,
+9303892, lenssen2025muanalysissynthesisframeworkpartial}. \cite{kose2009robust}
+also covers robust control using dual iqc
+
+\section*{Structure of the Paper}
+The structure of the paper will be organized as follows:
+
+\begin{itemize}
+\item \textbf{Preliminaries:} This section introduces the necessary notation,
+concepts related to PI and PIETOOLS, and the IQC result that will be central to
+the subsequent developments in the paper.
+
+\item \textbf{Scaled IO Result:} In this section, we define the scalings
+associated with both the primal and dual systems. These scalings play a critical
+role in the connection between the primal and dual formulations. Then we will
+use these scalings in a scaled IO duality result.
+
+\item \textbf{Connection to IQC:} We then connect the scaled duality result to
+IQC. Consider the following hard IQC condition:
+\[
+\int_0^T \left\langle \begin{bmatrix} z_\Delta(t) \\ w_\Delta(t) \end{bmatrix},
+\Pi \begin{bmatrix} z_\Delta(t) \\ w_\Delta(t) \end{bmatrix} \right\rangle \, dt
+\geq 0
+\]
+where the dynamic multiplier \( \Pi(j\omega) \) can be decomposed into a dynamic
+part \( \Psi(j\omega) \) and a static part \( \mathcal{V} \). The IQC condition
+then becomes:
+\[
+\int_0^T \left\langle \Psi \begin{bmatrix} z_\Delta(t) \\ w_\Delta(t)
+\end{bmatrix}, \mathcal{V} \Psi \begin{bmatrix} z_\Delta(t) \\ w_\Delta(t)
+\end{bmatrix} \right\rangle \, dt \geq 0
+\]
+We propose a further decomposition of \( \mathcal{V} \) as:
+\[
+\mathcal{V} = \mathcal{S}^* \begin{bmatrix} I & 0 \\ 0 & -I \end{bmatrix}
+\mathcal{S}
+\]
+where \( \mathcal{S} \) represents the scaling operations applied to the output
+of \( \Psi \begin{bmatrix} z_\Delta(t) \\ w_\Delta(t) \end{bmatrix} \). Assuming
+\( \Psi \) admits a PIE system, we augment the nominal system as \( z_\Delta = G
+w_\Delta \). Rewriting the IQC condition with this decomposition gives:
+\[
+\int_0^T \left\langle \mathcal{S} \Psi \begin{bmatrix} z_\Delta(t) \\
+w_\Delta(t) \end{bmatrix}, \begin{bmatrix} I & 0 \\ 0 & -I \end{bmatrix}
+\mathcal{S} \Psi \begin{bmatrix} z_\Delta(t) \\ w_\Delta(t) \end{bmatrix}
+\right\rangle \, dt
+\]
+This formulation reduces to analyzing the open-loop system \( \mathcal{S} \Psi
+\begin{bmatrix} z_\Delta(t) \\ w_\Delta(t) \end{bmatrix} \). After establishing
+the necessary assumptions and conditions, we apply the scaled duality result to
+the augmented system with corresponding scalings.
+
+\item \textbf{Controller Synthesis:} In this section, we propose Linear PI
+Inequalities (LPIs) for robustly synthesizing controller gains. If time allows,
+we will extend this to include output feedback. Additionally, we may explore
+using the DK iteration method to solve for suboptimal solutions when combining
+dynamic multipliers with output feedback.
+
+\item \textbf{Examples and Validation:} Finally, we explore practical
+applications, focusing on performance shaping using weighting filters. The
+results will be validated through Frequency Response Function (FRF)
+measurements.
+\end{itemize}

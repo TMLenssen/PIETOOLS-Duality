@@ -1,5 +1,6 @@
 \documentclass[journal,10pt,doublecolumn,twoside, a4paper]{IEEEtran}
-% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+% The preceding line is only needed to identify funding in the first footnote.
+% If that is unneeded, please comment it out.
 \usepackage{cite}
 \usepackage{amsmath,amssymb,amsfonts,amsthm}
 \usepackage{mathrsfs}
@@ -15,11 +16,20 @@
 \usepackage{algpseudocode} 
 \usepackage{tikz}
 
+\usetikzlibrary{arrows.meta}
+
 \renewcommand{\qedsymbol}{$\blacksquare$}
 
 \input{shortcuts}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
-    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+
+
+% Prevent indentation immediately after theorem-like environments
+\makeatletter
+\patchcmd{\@endtheorem}{\@endpefalse}{\@endpetrue}{}{}
+\makeatother
 
 \newtheorem{definition}{Definition}
 \newtheorem{lemma}{Lemma}
@@ -29,53 +39,51 @@
 \newtheorem{assumption}{Assumption}
 \newtheorem{sublemma}{Sublemma}
 \newtheorem{remark}{Remark}
+\newtheorem{class}{Class}
 
 \begin{document}
-
 \title{Robust Controller Synthesis}
 
 % \thanks{Corresponding author: t.m.lenssen@student.tue.nl}}%
 \author{Thijs Lenssen and Amritam Das% <-this % stops a space
-	% \thanks{This research was supported by the European Space Agency (grant number: 4000145530), The MathWorks Inc, and in part by the National Science Foundation (Grant NSF CCF-2323532). Opinions, findings, conclusions or recommendations expressed in this paper are those of the authors and do not necessarily reflect the views of The MathWorks Inc., the European Space Agency, or the National Science Foundation.}% <-this % stops a space
-	\thanks{T. Lenssen and A. Das are with the Control Systems Group, Eindhoven University of Technology, The Netherlands. Email addresses: \small{\tt\small{t.m.lenssen@student.tue.nl,am.das@tue.nl}}}
+% \thanks{This research was supported by the European Space Agency (grant
+% number: 4000145530), The MathWorks Inc, and in part by the National Science
+% Foundation (Grant NSF CCF-2323532). Opinions, findings, conclusions or
+% recommendations expressed in this paper are those of the authors and do not
+% necessarily reflect the views of The MathWorks Inc., the European Space
+% Agency, or the National Science Foundation.}% <-this % stops a space
+\thanks{T. Lenssen and A. Das are with the Control Systems Group, Eindhoven
+University of Technology, The Netherlands. Email addresses:
+\small{\tt\small{t.m.lenssen@student.tue.nl,am.das@tue.nl}}}
 
-	\thanks{Corresponding author: am.das@tue.nl}}%
+\thanks{Corresponding author: am.das@tue.nl}}%
 
 \maketitle
 
 \begin{abstract}
-
 \end{abstract}
-
 \begin{IEEEkeywords}
-	PDEs, Robust Control, LMIs;
+PDEs, Robust Control, LMIs;
 \end{IEEEkeywords}
-
 \section{Introduction}
-\subfile{Sections/1.Introduction}
+\subfile{Sections/Main/1.Introduction}
 \section{Preliminaries}
-\subfile{Sections/2.Preliminaries}
+\subfile{Sections/Main/2.Preliminaries}
 
 \section{IQC-Based framework for robust stability and performance analysis}
-\subfile{Sections/3.Quadratic_Contraints_for_stability_and_performance_analysis}
+\subfile{Sections/Main/3.Quadratic_Contraints_for_stability_and_performance_analysis}
 
-\section{Duality under Dynamical Filtering}\label{sec:genduality}
-\subfile{Sections/3. Duality under Dynamic Filtering.tex}
+\section{Duality under Dynamical Filtering}\label{sec:dynamic-filtering-duality}
+\subfile{Sections/Main/4. Duality under Dynamic Filtering}
 \section{Dual IQCs}
-\subfile{Sections/4. Dual IQC}
+\subfile{Sections/Main/5. Dual IQC}
 \section{Application of Dual IQC}
-\subfile{Sections/5. Application of Dual IQC}
+\subfile{Sections/Main/6. Application of Dual IQC}
 
 \section{Numerical Examples}
-\subfile{Sections/6. Numerical Examples}
-\section{Conclusion}\label{sec:conc}
-\subfile{Sections/7. Conclusion}
-
-\appendices
-\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
-\section{Mathematical Proofs}
-\subfile{Sections/I. Proofs by Section}
-
+\subfile{Sections/Main/7. Numerical Examples}
+\section{Conclusion}\label{sec:conclusion}
+\subfile{Sections/Main/8. Conclusion}
 % \section*{Acknowledgment}
 
 % The preferred spelling of the word ``acknowledgment'' in America is without 
@@ -85,6 +93,15 @@
 
 \bibliographystyle{plain}        % Include this if you use bibtex 
 \bibliography{references}
+\onecolumn
+\appendices
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\section{Mathematical Proofs}
+\subfile{Sections/Proofs/I. IQC.tex}
+% \subfile{Sections/I. Proofs by Section.tex}
+\subfile{Sections/Proofs/II. Duality.tex}
+
+
 \vspace{12pt}
 
 \end{document}

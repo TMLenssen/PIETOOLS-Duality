@@ -1,0 +1,148 @@
+\input{Figures/potapov_ginzburg_commutative_diagram}
+
+\begin{theorem}[Dual $L_2$-gain
+{\cite[Thm.~9]{shivaknew}}]\label{thm:dual-l2-gain}
+For a PIE system with corresponding PI operators $G\{\mcl{T}, \mcl{A}, \mcl{B},
+\mcl{C}, \mcl{D}\}\in\Hinf$, the following statements are equivalent.
+\begin{enumerate}
+\item For any $w\in\mbf{L}_{e,[a,b]}^{\mbf{n}_w}$, and $\mbf{x}(0)=0$, $G$
+satisfies $\|P_\tau {z}\| \leq \|P_\tau {w}\|$.
+\item For any $\underline{w}\in\mbf{L}_{e,[a,b]}^{\mbf{n}_z}$, and
+$\underline{\mbf{x}}(0)=0$, $G^\top$ satisfies $\|P_\tau \underline{z}\| \leq
+\|P_\tau \underline{w}\|$.
+\end{enumerate}
+\end{theorem}
+
+
+\begin{definition}[Primal and Dual Dynamic Filters]\label{def:dynamic-filters}
+Let	$\Psi=\bmat{\Psi_z & \Psi_{zw}\\ \Psi_{wz} & \Psi_w}$ satisfy
+$\Psi,\Psi^{-1}\in\Hinf$. Let $\hat{\mcl{J}}:=\bmat{0&I\\ -I&0}$.
+The dual filter associated with $\Psi$ is defined by the
+dual operation
+\begin{equation}\label{eq:dual-filter-operation}
+\mbf{D}(\Psi)
+:=
+\left(\hat{\mcl{J}}^*\Psi^\top\hat{\mcl{J}}\right)^{-1}
+=
+\bmat{\Psi_w^\top & -\Psi_{zw}^\top\\
+-\Psi_{wz}^\top & \Psi_z^\top}^{-1}.
+\end{equation}
+Note $\mbf{D}(\Psi)\in\Hinf$. Since $\hat{\mcl{J}}^*=\hat{\mcl{J}}^{-1}$,
+$\hat{\mcl{J}}^*=-\hat{\mcl{J}}$, $(\Psi^\top)^\top=\Psi$, and
+$(\Psi^{-1})^{-1}=\Psi$, this operation is an involution:
+\begin{equation}\label{eq:dual-filter-involution}
+\mbf{D}(\mbf{D}(\Psi))=\Psi.
+\end{equation}
+The filter $\Psi$ admits the state-space
+realization
+\begin{equation}\label{eq:primal-filter-realization}
+\bmat{\mcl{T}_\Psi \dot{\mbf{x}}_\Psi(t)\\ \tilde{z}(t) \\ \tilde{w}(t)}
+=
+\bmat{\mcl{A}_\Psi & \mcl{B}_\Psi^z & \mcl{B}_\Psi^w \\
+\mcl{C}_\Psi^z & \mcl{D}_\Psi^z & \mcl{D}_\Psi^{zw}\\
+\mcl{C}_\Psi^w & \mcl{D}_\Psi^{wz} & \mcl{D}_\Psi^w}
+\bmat{\mbf{x}_\Psi(t) \\ z(t) \\ w(t)},
+\end{equation}
+where the entries are PI operators of appropriate dimension.
+The dual filter $\mbf{D}(\Psi)$ is equivalently represented
+through the inverse relation
+$\mbf{D}(\Psi)^{-1}=\hat{\mcl{J}}^*\Psi^\top\hat{\mcl{J}}$, which has
+the state-space realization
+\begin{equation}\label{eq:dual-filter-realization}
+\!\bmat{\mcl{T}_{\Psi}^*\dot{\underline{\mbf{x}}}_{\Psi}(t)\\
+\underline{z}(t) \\ \underline{w}(t)}
+\!=
+\!\bmat{\mcl{A}_\Psi^* & -\mcl{C}_\Psi^{w*} & \mcl{C}_\Psi^{z*} \\
+-\mcl{B}_\Psi^{w*} & \mcl{D}_\Psi^{w*} & -\mcl{D}_\Psi^{zw*} \\
+\mcl{B}_\Psi^{z*} & -\mcl{D}_\Psi^{wz*} & \mcl{D}_\Psi^{z*}}
+\!\bmat{\underline{\mbf{x}}_\Psi(t) \\
+\tilde{\underline{z}}(t) \\ \tilde{\underline{w}}(t)}.
+\end{equation}
+The filtered primal and dual systems are obtained
+from
+\begin{equation}\label{eq:filtered-primal-signals}
+\Psi \bmat{z(t) \\ w(t)}
+=
+\bmat{\tilde{z}(t) \\ \tilde{w}(t)}, \qquad \mbf{D}(\Psi)
+\bmat{\underline{z}(t) \\ \underline{w}(t)}
+=
+\bmat{\tilde{\underline{z}}(t) \\ \tilde{\underline{w}}(t)}.
+\end{equation}
+\end{definition}
+Adopted from \cite{venkataraman}
+\begin{definition}(Potapov--Ginzburg Transform)\label{def:potapov-ginzburg-transform}
+Given ${\Psi}$ as in Definition~\ref{def:dynamic-filters}, the Potapov--Ginzburg transform denoted by $\Psi^\dagger$ is defined by
+\begin{equation}\label{eq:potapov-ginzburg-transform}
+\bmat{\tilde{z}\\ w}
+=
+\bmat{\Phi_{11} & \Phi_{12}\\ \Phi_{21} & \Phi_{22}}
+\bmat{\tilde{w}\\ z}
+=
+\Psi^\dagger
+\bmat{\tilde{w}\\ z},
+\end{equation}
+where
+\begin{align*}
+\Phi_{11} &:= \Psi_{zw}\Psi_w^{-1},&
+\Phi_{12} &:= \Psi_z-\Psi_{zw}\Psi_w^{-1}\Psi_{wz},\\
+\Phi_{21} &:= \Psi_w^{-1},&
+\Phi_{22} &:= -\Psi_w^{-1}\Psi_{wz}.
+\end{align*}
+Assume that $\Psi^\dagger$ admits the state-space representation
+\begin{equation}\label{eq:potapov-ginzburg-realization}
+\bmat{
+\mcl{T}_\Psi\dot{\mbf{x}}_\Psi(t)\\
+\tilde{z}(t)\\
+w(t)}
+=
+\bmat{
+\hat{\mcl{A}}_\Psi
+    & \hat{\mcl{B}}_\Psi^{\tilde{w}}
+    & \hat{\mcl{B}}_\Psi^z\\
+\hat{\mcl{C}}_\Psi^z
+    & \hat{\mcl{D}}_\Psi^{z\tilde{w}}
+    & \hat{\mcl{D}}_\Psi^z\\
+\hat{\mcl{C}}_\Psi^w
+    & \hat{\mcl{D}}_\Psi^{w\tilde{w}}
+    & \hat{\mcl{D}}_\Psi^{wz}}
+\bmat{\mbf{x}_\Psi(t)\\ \tilde{w}(t)\\ z(t)}.
+\end{equation}
+With $W_\Psi:=(\mcl{D}_\Psi^w)^{-1}$, the transformed blocks are
+\begin{align*}
+\hat{\mcl{A}}_\Psi
+&:= \mcl{A}_\Psi-\mcl{B}_\Psi^w W_\Psi\mcl{C}_\Psi^w,&
+\hat{\mcl{B}}_\Psi^{\tilde{w}}
+&:= \mcl{B}_\Psi^w W_\Psi,\\
+\hat{\mcl{B}}_\Psi^z
+&:= \mcl{B}_\Psi^z-\mcl{B}_\Psi^w W_\Psi\mcl{D}_\Psi^{wz},&
+\hat{\mcl{C}}_\Psi^z
+&:= \mcl{C}_\Psi^z-\mcl{D}_\Psi^{zw}W_\Psi\mcl{C}_\Psi^w,\\
+\hat{\mcl{D}}_\Psi^z
+&:= \mcl{D}_\Psi^z-\mcl{D}_\Psi^{zw}W_\Psi\mcl{D}_\Psi^{wz},&
+\hat{\mcl{D}}_\Psi^{z\tilde{w}}
+&:= \mcl{D}_\Psi^{zw}W_\Psi,\\
+\hat{\mcl{C}}_\Psi^w
+&:= -W_\Psi\mcl{C}_\Psi^w,&
+\hat{\mcl{D}}_\Psi^{w\tilde{w}}
+&:= W_\Psi,\\
+\hat{\mcl{D}}_\Psi^{wz}
+&:= -W_\Psi\mcl{D}_\Psi^{wz}.
+\end{align*}
+\end{definition}
+
+\begin{lemma} (Potapov--Ginzburg Transform Equivalence)\label{lem:potapov-ginzburg-equivalence}
+Let $\Psi, \mbf{D}(\Psi)\in \Hinf$ as in Definition~\ref{def:dynamic-filters}. Moreover, let $G$ and $G^\top$ be well-posed PIE systems such that
+\begin{equation*}
+\bmat{G\star\Psi^\dagger \\ I}\in\Hinf,
+\qquad
+\bmat{G^\top\star\mbf{D}(\Psi)^\dagger \\ I}\in\Hinf.
+\end{equation*}
+Then, there exist invertible bounded causal transformations $\Gamma$ on the primal side and $\Gamma_d$ on the dual side such that
+\begin{itemize}
+    \item $\Psi\bmat{G\\I} w = \bmat{G\star \Psi^\dagger \\ I}\Gamma w$ for all $w\in\mbf{L}_{e,[a,b]}^{\mbf{n}_w}$.
+    \item $\mbf{D}(\Psi)\bmat{G^\top\\I} \underline{w} = \bmat{G^\top\star \mbf{D}(\Psi)^\dagger \\ I}\Gamma_d\underline{w}$ for all $\underline{w}\in\mbf{L}_{e,[a,b]}^{\mbf{n}_z}$.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+See Appendix~\ref{proof:potapov-ginzburg-equivalence}.
+\end{proof}
