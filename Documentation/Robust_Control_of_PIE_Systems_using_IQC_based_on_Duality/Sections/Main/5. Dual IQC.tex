@@ -1,66 +1,95 @@
-% \begin{assumption}
-%     The laplace transform of PIE system $G\in\Hinf$ is $G(s) = \mcl{C}(s\mcl{T} - \mcl{A})^{-1}\mcl{B} + \mcl{D}$.
-% \end{assumption}
-For brevity we will refer to \eqref{eq:robust-stability-performance-condition} as the hard IQC
-\begin{equation}
-    \ip{p_T \Psi\bmat{z \\ w}}{p_T \mcl{M}_\mcl{V}\Psi\bmat{z \\ w}}_{\mbf L_{[a, b]}} \leq -\epsilon \|p_T w\|^2_{\mbf L_{[a, b]}}
-\end{equation}
-with $\Psi = \bmat{\Psi & 0 \\ 0 & I}$, $w =\bmat{w_\Delta \\ w_p}$, and $z = \bmat{z_\Delta \\ z_p}$. The multiplier operator is given by
-\begin{equation*}
-(\mcl M_{\mcl V}\mbf u)(t):=\underbrace{\bmat{\mcl Q_\Delta & 0 & \mcl S_\Delta
-& 0 \\ 0 & \mcl Q_p & 0 & \mcl S_p \\ \mcl S_\Delta^* & 0 & \mcl R_\Delta & 0 \\
-0 & \mcl S_p^* & 0 & \mcl R_p}}_{\mcl V}\mbf u(t).
-\end{equation*}
+
 
 
 \begin{definition}(J-spectral factorization, Venkataraman et al. \cite{venkataraman})\label{def:factorization}
-    ($\hat{\Psi}, J_{\mbf{n}_z, \mbf{n}_w}$) is called a $J$-spectral factorization if 
+    ($\Theta, J_{\mbf{n}_z, \mbf{n}_w}$) is called a $J$-spectral factorization of the hard IQC ($\Psi, \mcl{M}_{\mcl{V}}$) if 
     \begin{equation}
         \begin{aligned}
         &\ip{p_T \Psi\bmat{z \\ w}}{p_T \mcl{M}_\mcl{V}\Psi\bmat{z \\ w}}_{\mbf L_{[a, b]}} \\&=
-        \ip{p_T \hat{\Psi}\bmat{z\\w}}{p_T J_{\mbf{n}_z, \mbf{n}_w}\hat{\Psi}\bmat{z\\w}}_{\mbf L_{[a, b]}}
+        \ip{p_T \Theta\bmat{z\\w}}{p_T J_{\mbf{n}_z, \mbf{n}_w}\Theta\bmat{z\\w}}_{\mbf L_{[a, b]}}
         \end{aligned}
     \end{equation}
-    with $J_{\mbf{n}_z, \mbf{n}_w} = \bmat{I_{\mbf{n}_z} & 0 \\ 0 & -I_{\mbf{n}_w}}$, and $\hat{\Psi}, \mbf{D}(\hat{\Psi})\in\Hinf$.
+    with $J_{\mbf{n}_z, \mbf{n}_w} = \bmat{I_{\mbf{n}_z} & 0 \\ 0 & -I_{\mbf{n}_w}}$, and $\Theta, \mbf{D}(\Theta)\in\Hinf$.
 \end{definition}
 
 \begin{theorem}[Primal--Dual IQC Feasibility]\label{thm:primal-dual-iqc-feasibility}
-Let $P$ be the input-output map of a well-posed interconnection as in
+Let $P$ be a PIE realization of
 Definition~\ref{def:uncertain-interconnection}, and let
-$(\hat{\Psi},J_{\mbf{n}_z,\mbf{n}_w})$ be a $J$-spectral factorization of the
-primal hard IQC. Let $\epsilon_p>0$ and $\epsilon_d>0$ denote the primal and
-dual feasibility margins, and set
-\begin{equation*}
-\epsilon=\min\{\epsilon_p,\epsilon_d\}.
-\end{equation*}
-Then the primal feasibility condition
+$(\Theta,J_{\mbf{n}_z,\mbf{n}_w})$ be a $J$-spectral factorization of the
+primal hard IQC. Let sufficiently small $\epsilon_p>0$ and $\epsilon_d>0$ denote the primal and
+dual feasibility margins. Then the primal feasibility condition
 \begin{equation}\label{eq:primal-iqc-feasibility}
 \begin{gathered}
 \begin{aligned}
-\ip{p_T\hat{\Psi}\bmat{z \\ w}}
-{p_TJ_{\mbf{n}_z,\mbf{n}_w}\hat{\Psi}\bmat{z \\ w}}_{\mbf L_{[a,b]}}
-&\leq -\epsilon\|p_Tw\|^2_{\mbf L_{[a,b]}},
+\ip{p_T\Theta\bmat{z \\ w}}
+{p_TJ_{\mbf{n}_z,\mbf{n}_w}\Theta\bmat{z \\ w}}_{\mbf L_{[a,b]}}
+&\!\!\!\!\!\!\!\!\leq -\epsilon_p\|p_Tw\|^2_{\mbf L_{[a,b]}},
 \end{aligned}\\
-z=Pw,\qquad w\in\mbf L_{e,[a,b]}^{\mbf{n}_w},\qquad T\geq0,
+z=Pw,\qquad \forall w\in\mbf L_{e,[a,b]}^{\mbf{n}_w},\qquad T\geq0,
 \end{gathered}
 \end{equation}
 holds if and only if the dual feasibility condition
 \begin{equation}\label{eq:dual-iqc-feasibility}
 \begin{gathered}
 \begin{aligned}
-\ip{p_T\mbf{D}(\hat{\Psi})\bmat{\underline{z} \\ \underline{w}}}
-{p_TJ_{\mbf{n}_w,\mbf{n}_z}\mbf{D}(\hat{\Psi})\bmat{\underline{z} \\ \underline{w}}}_{\mbf L_{[a,b]}}
-&\leq -\epsilon\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}},
+\ip{p_T\mbf{D}(\Theta)\bmat{\underline{z} \\ \underline{w}}}
+{p_TJ_{\mbf{n}_w,\mbf{n}_z}\mbf{D}(\Theta)\bmat{\underline{z} \\ \underline{w}}}_{\mbf L_{[a,b]}}
+&\!\!\!\!\!\!\!\!\leq -\epsilon_d\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}},
 \end{aligned}\\
 \underline{z}=P^\top\underline{w},\qquad
-\underline{w}\in\mbf L_{e,[a,b]}^{\mbf{n}_z},\qquad T\geq0,
+\forall \underline{w}\in\mbf L_{e,[a,b]}^{\mbf{n}_z},\qquad T\geq0,
 \end{gathered}
 \end{equation}
-holds for the same $\epsilon>0$.
+holds for $\epsilon_d > 0$.
 \end{theorem}
 \begin{proof}
 See Appendix~\ref{proof:primal-dual-iqc-feasibility}.
 \end{proof}
+
+\begin{theorem}\label{thm:dual-KYP}
+    Let the realization of $P$ satisfy the statement of Theorem~\ref{thm:robust-stability-performance}. 
+    Let $\Delta \in \mbf{\Delta}$ and there exist \textbf{either}, a primal hard IQC factorization $\Psi_p$, and $\mcl{M}_{\mcl{V}_p}$, 
+    with $\mcl{V}_p\in\Pi_4$, or a dual hard IQC factorization $\Psi_d$, and $\mcl{M}_{\mcl{V}_d}$, 
+    with $\mcl{V}_d\in\Pi_4$, such that,
+    \begin{itemize}
+        \item The interconnection $P\star\Delta$ is well-posed for all $\Delta\in\mbf{\Delta}$.
+        \item The IQC in Definition~\ref{def:uncertainty-iqc} is satisfied for all $\Delta\in\mbf{\Delta}$.
+        \item The primal hard IQC $(\Psi_p,\mcl{M}_{\mcl{V}_p})$ has a $(\Theta,J_{\mbf{n}_z,\mbf{n}_w})$ factorization.
+        \item The dual hard IQC $(\Psi_d,\mcl{M}_{\mcl{V}_d})$ has a $(\mbf{D}(\Theta),J_{\mbf{n}_w,\mbf{n}_z})$ factorization.
+    \end{itemize}
+    Suppose that \textbf{either} of the two statements hold for some $\mcl{Q}_p\succeq 0$ and $\mcl{P} = \mcl{P}^* \succeq 0 \in \Pi_4$. 
+    \begin{itemize}
+        \item \begin{minipage}[c]{\linewidth}
+        \begin{equation}\label{eqn:primal-kyp-ineq}
+            \bmat{\mcl{T}_p^*\mcl{P}\mcl{A}_p + (*) & \mcl{T}_p^*\mcl{P}\mcl{B}_p\\
+            \mcl{B}_p^*\mcl{P}\mcl{T}_p & \epsilon_p I} + \bmat{\mcl{C}^*_p \\ \mcl{D}^*_p}\mcl{V}_p\bmat{\mcl{C}_p & \mcl{D}_p} \preceq 0
+        \end{equation}
+        \end{minipage}
+        \item \begin{minipage}[c]{\linewidth}
+        \begin{equation}\label{eqn:dual-kyp-ineq}
+            \bmat{\mcl{T}_d^*\mcl{P}\mcl{A}_d + (*)& \mcl{T}_d^*\mcl{P}\mcl{B}_d\\
+            \mcl{B}_d^*\mcl{P}\mcl{T}_d & \epsilon_d I} + \bmat{\mcl{C}^*_d \\ \mcl{D}^*_d}\mcl{V}_d\bmat{\mcl{C}_d & \mcl{D}_d} \preceq 0
+        \end{equation}
+        \end{minipage}
+    \end{itemize}
+    Then for any $w,\underline{w}\in\mbf{L}_{[a,b]}$, if $\tilde{z}$ or $\tilde{\underline{z}}$ satisfies either
+    \begin{equation}\label{eqn:primal-kyp-sys}
+        \Psi_p\bmat{z\\w} := \left\{ \bmat{\mcl{T}_p \dot{\mbf{x}}(t) \\ \tilde{z}(t)} = \bmat{\mcl{A}_p & \mcl{B}_p\\
+        \mcl{C}_p & \mcl{D}_p}\bmat{\mbf{x} \\ w(t)}\right.
+    \end{equation}
+    or
+    \begin{equation}\label{eqn:dual-kyp-sys}
+        \Psi_d\bmat{\underline{z}\\\underline{w}} := \left\{ \bmat{\mcl{T}_d \dot{\underline{\mbf{x}}}(t) \\ \tilde{\underline{z}}(t)} = \bmat{\mcl{A}_d & \mcl{B}_d\\
+        \mcl{C}_d & \mcl{D}_d}\bmat{\underline{\mbf{x}} \\ \underline{w}(t)}\right.
+    \end{equation}
+    Then the interconnection $P\star\Delta$ with $\mbf{x}(0) = 0$ is robustly stable and robust performance is achieved.
+\end{theorem}
+\begin{proof}
+    See Appendix~\ref{proof:dual-KYP}
+\end{proof}
+
+
+
 
 J-spectral factorizations exist for many performance and uncertainty
 multipliers.  Following \cite{veenman2016robust}, we collect the relevant
@@ -85,11 +114,11 @@ A $J$-spectral factorization is
 \begin{equation}
 \mcl{V}_p
 =
-\hat{\Psi}_\gamma^*
+\Theta_\gamma^*
 J_{\mbf{n}_{z_p},\mbf{n}_{w_p}}
-\hat{\Psi}_\gamma,
+\Theta_\gamma,
 \qquad
-\hat{\Psi}_\gamma
+\Theta_\gamma
 =
 \bmat{
 \gamma^{-\frac{1}{2}}I_{\mbf{n}_{z_p}} & 0 \\
@@ -98,7 +127,7 @@ J_{\mbf{n}_{z_p},\mbf{n}_{w_p}}
 \end{equation}
 The associated dual factor is
 \begin{equation}
-\mbf{D}(\hat{\Psi}_\gamma)
+\mbf{D}(\Theta_\gamma)
 =
 \bmat{
 \gamma^{-\frac{1}{2}}I_{\mbf{n}_{w_p}} & 0 \\
@@ -124,11 +153,11 @@ $\Delta\in\mbf{\Delta}$. A $J$-spectral factorization is
 \begin{equation}
 \mcl{V}_p
 =
-\hat{\Psi}_{\rm pas}^*
+\Theta_{\rm pas}^*
 J_{\mbf{n},\mbf{n}}
-\hat{\Psi}_{\rm pas},
+\Theta_{\rm pas},
 \qquad
-\hat{\Psi}_{\rm pas}
+\Theta_{\rm pas}
 =
 \frac{1}{\sqrt{2}}
 \bmat{
@@ -138,7 +167,7 @@ I_{\mbf{n}} & -I_{\mbf{n}}
 \end{equation}
 The associated dual factor is
 \begin{equation}
-\mbf{D}(\hat{\Psi}_{\rm pas})
+\mbf{D}(\Theta_{\rm pas})
 =
 \frac{1}{\sqrt{2}}
 \bmat{
@@ -220,29 +249,29 @@ dynamic multiplier is strict PN, there exists a hard $J$-spectral factorization
 \bmat{\mcl{Q} & \mcl{S} \\ \mcl{S}^* & \mcl{R}}
 \Psi_{\rm rr}
 =
-\hat{\Psi}_{\rm rr}^*
+\Theta_{\rm rr}^*
 J_{n_q,n_q}
-\hat{\Psi}_{\rm rr},
+\Theta_{\rm rr},
 \qquad
-\hat{\Psi}_{\rm rr},\mbf{D}(\hat{\Psi}_{\rm rr})\in\Hinf .
+\Theta_{\rm rr},\mbf{D}(\Theta_{\rm rr})\in\Hinf .
 \end{equation}
 Thus $\alpha$ remains outside the $J$-spectral factorization:
 \begin{equation}
 \Pi_{\rm rr}
 =
 \Sigma_\alpha^*
-\hat{\Psi}_{\rm rr}^*
+\Theta_{\rm rr}^*
 J_{n_q,n_q}
-\hat{\Psi}_{\rm rr}
+\Theta_{\rm rr}
 \Sigma_\alpha.
 \end{equation}
 The corresponding unscaled dual multiplier is also strict PN. Hence there
 exist dual-side parameters $\psi_d,\mcl{Q}_d,\mcl{S}_d,\mcl{R}_d$ such that
 \begin{equation}
 \begin{aligned}
-\mbf{D}(\hat{\Psi}_{\rm rr})^*
+\mbf{D}(\Theta_{\rm rr})^*
 J_{n_q,n_q}
-\mbf{D}(\hat{\Psi}_{\rm rr})
+\mbf{D}(\Theta_{\rm rr})
 &=
 \bmat{\psi_d & 0 \\ 0 & \psi_d}^*
 \bmat{\mcl{Q}_d & \mcl{S}_d \\ \mcl{S}_d^* & \mcl{R}_d} \\
@@ -271,9 +300,9 @@ Moreover, the static scaling is self-dual,
 \end{equation}
 Therefore the scaled dual factor is
 \begin{equation}
-\mbf{D}(\hat{\Psi}_{\rm rr}\Sigma_\alpha)
+\mbf{D}(\Theta_{\rm rr}\Sigma_\alpha)
 =
-\mbf{D}(\hat{\Psi}_{\rm rr})\Sigma_\alpha,
+\mbf{D}(\Theta_{\rm rr})\Sigma_\alpha,
 \end{equation}
 and the scaled dual-side multiplier is obtained by applying the same static
 matrix scaling outside the dual $J$-spectral factorization:
@@ -281,9 +310,9 @@ matrix scaling outside the dual $J$-spectral factorization:
 \Pi_{{\rm rr},d}
 =
 \Sigma_\alpha^*
-\mbf{D}(\hat{\Psi}_{\rm rr})^*
+\mbf{D}(\Theta_{\rm rr})^*
 J_{n_q,n_q}
-\mbf{D}(\hat{\Psi}_{\rm rr})
+\mbf{D}(\Theta_{\rm rr})
 \Sigma_\alpha .
 \end{equation}
 \end{class}

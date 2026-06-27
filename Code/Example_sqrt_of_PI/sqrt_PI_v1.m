@@ -28,18 +28,19 @@ addpath(genpath("C:\Program Files\Mosek\11.0\toolbox\r2019b"))
 
  
 I = [0 1];
-n1 = 2; n2 = 2;
+n1 = 1; n2 = 1;
 deg=1;
 pvar s1 s1_dum
 
 eps_var = 1.e-1;
 eps_X = 1.e-8;
 
-
-L = rand_opvar([n1 n1;n2 n2], deg, s1, s1_dum, I);
-P = L*L';
-P.R.R0 = P.R.R0 + eps_var*eye(n2);
-P.P = P.P + eps_var*eye(n1);
+vars = [s1,s1_dum];
+% L = rand_opvar([n1 n1;n2 n2], deg, s1, s1_dum, I);
+L_I = eyePI([n1;n2], vars, I);
+P = L_I*L_I';
+% P.R.R0 = P.R.R0 + eps_var*eye(n2);
+% P.P = P.P + eps_var*eye(n1);
 
 
 
@@ -60,6 +61,7 @@ prog = lpisolve(prog,settings.sos_opts);
 
 % Get solution for Qmat1
 X = lpigetsol(prog,Xop1);
+% Zop1 = lpigetsol(prog,Zop1);
 Q1 = double(sosgetsol(prog, Qmat1));
 
 % compute the sqrt of Q matix
@@ -71,7 +73,7 @@ sqrt_P = L*Zop1;
 % the size of Zop can be huge. 
 % verify that the sqrt is close
 tol = 1.e-6; 
-if eq(sqrt_P'*sqrt_P, P, 1.e-6) 
+if eq(sqrt_P'*sqrt_P, P, 1.e-20) 
     fprintf('||X* X - P|| < %.e\n', tol)
 end
 

@@ -83,9 +83,9 @@ $w_\Delta \in  \mbf L_{e, [a, b]}$ such that, $z$, $w$,
 $z_\Delta, w_\Delta$ satisfy the interconnection.
 \item \textbf{Causality}: If $z_\Delta, w_\Delta$ and
 $\hat{z}_\Delta, \hat{w}_\Delta$ satisfy the interconnection,
-then $p_\tau(z_\Delta - \hat{z}_\Delta) = 0$ and
-$p_\tau(w_\Delta - \hat{w}_\Delta) = 0$, for all
-$\tau \geq 0$.
+then $p_T(z_\Delta - \hat{z}_\Delta) = 0$ and
+$p_T(w_\Delta - \hat{w}_\Delta) = 0$, for all
+$T \geq 0$.
 \end{itemize}
 \end{definition}
 Having established the class of uncertain systems and their well-posedness, we
@@ -130,18 +130,18 @@ $\Delta:
 \to
 \mbf L_{e,[a,b]}^{\mbf{n}_{w_\Delta}}$
 is said to satisfy the IQC defined by the operator
-$\Psi \in
-\mbf L^{\mbf{n}_{w_\Delta} + \mbf{n}_{z_\Delta}}_{e, [a, b]}
+$\Psi_\Delta\in
+\mbf L^{\mbf{n}_{z_\Delta} + \mbf{n}_{w_\Delta}}_{e, [a, b]}
 \to
-L^{\mbf{n}_{w_\Delta} + \mbf{n}_{z_\Delta}}_{e, [a, b]}$
-multiplier $\mcl M_{\mcl V}\in \mcl L(\mbf L_{[a, b]})$,
+\mbf L^{\mbf{n}_{z_\Delta} + \mbf{n}_{w_\Delta}}_{e, [a, b]}$
+multiplier $\mcl M_{\mcl V_\Delta}\in \mcl L(\mbf L_{[a, b]})$,
 parameterized by
 $\mcl{V}_\Delta = \mcl{V}_\Delta^* \in \mcl L(\RL, \RL)$
 if the inequality holds for all
 $z_\Delta \in \mbf L_{e, [a, b]}$ and all $T \geq 0$,
 \begin{equation}\label{eq:uncertainty-iqc}
-\ip{p_T \Psi \bmat{z_\Delta \\ w_\Delta}}
-{p_T \mcl{M}_{\mcl{V}_\Delta}\Psi\bmat{z_\Delta \\ w_\Delta}}
+\ip{p_T \Psi_\Delta \bmat{z_\Delta \\ w_\Delta}}
+{p_T \mcl{M}_{\mcl{V}_\Delta}\Psi_\Delta\bmat{z_\Delta \\ w_\Delta}}
 _{\mbf L_{[a, b]}}
 \geq 0.
 \end{equation}
@@ -201,10 +201,20 @@ against perturbations and achievement of specified performance objectives.
 
 \subsection{Theorem for joint robust stability and performance}
 We now present the main theoretical result that provides conditions for
-simultaneous robust stability and performance verification.
+simultaneous robust stability and performance verification. For brevity we will refer to the hard IQC as,
+\begin{equation}
+    \ip{p_T \Psi\bmat{z \\ w}}{p_T \mcl{M}_\mcl{V}\Psi\bmat{z \\ w}}_{\mbf L_{[a, b]}} \leq -\epsilon \|p_T w\|^2_{\mbf L_{[a, b]}}
+\end{equation}
+Let $\Psi_\Delta = \bmat{\Psi_{\Delta,11} & \Psi_{\Delta,12} \\ \Psi_{\Delta,21} & \Psi_{\Delta,22}}$ and define $\Psi_{ij} =
+ \Psi_{\Delta,ij}\oplus \delta_{ij}I,\quad i,j\in\{1,2\}$, then $\Psi = \bmat{\Psi_{11} & \Psi_{12} \\ \Psi_{21} & \Psi_{22}}$.
+Let $w=\bmat{w_\Delta \\ w_p}$ and $z=\bmat{z_\Delta \\ z_p} = Pw$.
+Moreover, define $\mcl{Q} = \mcl{Q}_\Delta \oplus \mcl{Q}_p$,
+$\mcl{S} = \mcl{S}_\Delta \oplus \mcl{S}_p$, and
+$\mcl{R} = \mcl{R}_\Delta\oplus\mcl{R}_p$, then
+$\mcl{V}\{\mcl{Q}, \mcl{S}, \mcl{R}\}$.
 
 \begin{theorem}[Robust Stability and Performance]\label{thm:robust-stability-performance}
-Let $P$, $\Delta\in\mbf{\Delta}$ be given, and there exists $\Psi$,
+Let $P$, $\Delta\in\mbf{\Delta}$ be given, and there exists $\Psi_\Delta$,
 $\mcl{M}_{\mcl{V}_\Delta}$, such that,
 \begin{itemize}
 \item The interconnection $P\star\Delta$ is well--posed for all
@@ -218,29 +228,15 @@ $\mcl{M}_{{\mcl{V}}_p}$, in Definition~\ref{def:robust-performance}, with
 $\mcl{Q}_p \succeq 0$, if,
 \begin{equation}\label{eq:robust-stability-performance-condition}
 \begin{gathered}
-\ip{p_T\hat{P}\bmat{w_\Delta\\w_p}}
-{p_T\bmat{
-\mcl{M}_{\mcl{V}_\Delta} & 0 \\
-0 & \mcl{M}_{{\mcl V}_p}
-}\hat{P}\bmat{w_\Delta\\w_p}}_{\mbf L_{[a, b]}} \\
+\ip{p_T\Psi\bmat{z\\w}}
+{p_T\mcl{M}_{\mcl V}\Psi\bmat{z\\w}}_{\mbf L_{[a, b]}} \\
 \leq
 -\epsilon
-(\|p_T{w_\Delta}\|^2_{\mbf L_{[a, b]}}+\|p_T w_p\|^2_{\mbf{L}_{[a,b]}})
+\|p_Tw\|^2_{\mbf L_{[a, b]}}
 \end{gathered}
 \end{equation}
 for all $w_\Delta \in \mbf L_{e,[a,b]}^{\mbf{n}_{w_\Delta}}$,
-$w_p\in \mbf L_{e,[a,b]}^{\mbf{n}_{w}}$ and $T \geq 0$, where
-$\hat{P} :=
-\bmat{\Psi_\Delta & 0 \\ 0&  I}
-\left[
-\begin{array}{cc}
-P_\Delta & P_{\Delta p} \\
-I & 0 \\ \hdashline
-P_{p\Delta} & P_{p} \\
-0 & I
-\end{array}
-\right]$
-according to \eqref{eq:uncertain-interconnection-map}.
+$w_p\in \mbf L_{e,[a,b]}^{\mbf{n}_{w}}$ and $T \geq 0$.
 \end{theorem}
 \begin{proof}
 See Appendix~\ref{proof:robust-stability-performance}

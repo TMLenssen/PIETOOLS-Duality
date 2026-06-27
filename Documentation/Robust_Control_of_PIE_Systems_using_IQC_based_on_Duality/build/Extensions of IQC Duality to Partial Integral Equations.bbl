@@ -1,0 +1,90 @@
+\begin{thebibliography}{10}
+
+\bibitem{9303892}
+A.~Das, S.~Shivakumar, M.~Peet, and S.~Weiland.
+\newblock {Robust Analysis of Uncertain ODE-PDE Systems Using PI Multipliers,
+  PIEs and LPIs}.
+\newblock In {\em 2020 59th IEEE Conference on Decision and Control (CDC)},
+  pages 634--639, 2020.
+
+\bibitem{hu}
+Bin Hu, Márcio~J. Lacerda, and Peter Seiler.
+\newblock Robustness analysis of uncertain discrete-time systems with
+  dissipation inequalities and integral quadratic constraints.
+\newblock {\em International Journal of Robust and Nonlinear Control},
+  27(11):1940--1962, 2017.
+
+\bibitem{kose2009robust}
+I.~K{\"o}se and C.~Scherer.
+\newblock {Robust $L_2$-gain feedforward control of uncertain systems using
+  dynamic {IQC}s}.
+\newblock {\em International Journal of Robust and Nonlinear Control},
+  19(11):1224--1247, 2009.
+
+\bibitem{lenssen2025muanalysissynthesisframeworkpartial}
+Thijs Lenssen, Aleksandr Talitckii, Matthew Peet, and Amritam Das.
+\newblock {A $\mu$-Analysis and Synthesis Framework for Partial Integral
+  Equations using IQCs}, 2025.
+
+\bibitem{magicalhiddenenergy}
+Harald Pfifer and Peter Seiler.
+\newblock {Less conservative robustness analysis of linear parameter varying
+  systems using integral quadratic constraints}.
+\newblock {\em International Journal of Robust and Nonlinear Control},
+  26(16):3580--3594, 2016.
+
+\bibitem{https://doi.org/10.1002/sapm1960391269}
+R.~M. Redheffer.
+\newblock On a certain linear fractional transformation.
+\newblock {\em Journal of Mathematics and Physics}, 39(1-4):269--286, 1960.
+
+\bibitem{shivaknew}
+M.~Peet S.~Shivakumar, A.~Das.
+\newblock {Dual Representations and $H_\infty$-Optimal Control of Partial
+  Differential Equations}.
+\newblock {\em IEEE}, Volume(Issue):Start--End, 2026.
+
+\bibitem{6915700}
+Peter Seiler.
+\newblock Stability analysis with dissipation inequalities and integral
+  quadratic constraints.
+\newblock {\em IEEE Transactions on Automatic Control}, 60(6):1704--1709, 2015.
+
+\bibitem{9147712}
+S.~Shivakumar, A.~Das, and M.~Peet.
+\newblock {PIETOOLS: A Matlab Toolbox for Manipulation and Optimization of
+  Partial Integral Operators}.
+\newblock In {\em 2020 American Control Conference (ACC)}, pages 2667--2672,
+  2020.
+
+\bibitem{shivakumar2024GDPE}
+S.~Shivakumar, A.~Das, S.~Weiland, and M.~Peet.
+\newblock {Extension of the Partial Integral Equation Representation to GPDE
+  Input–Output Systems}.
+\newblock {\em IEEE Transactions on Automatic Control}, 70(5):3240--3255, 2025.
+
+\bibitem{10156335}
+A.~Talitckii, M.~Peet, and P.~Seiler.
+\newblock {Integral Quadratic Constraints with Infinite-Dimensional Channels}.
+\newblock In {\em 2023 American Control Conference (ACC)}, pages 1576--1583,
+  2023.
+
+\bibitem{veenman2016robust}
+J.~Veenman, C.~Scherer, and H.~K{\"o}ro{\u{g}}lu.
+\newblock {Robust stability and performance analysis based on integral
+  quadratic constraints}.
+\newblock {\em European Journal of Control}, 31:1--32, 2016.
+
+\bibitem{venkataraman}
+Raghu Venkataraman and Peter Seiler.
+\newblock {Convex LPV synthesis of estimators and feedforwards using duality
+  and integral quadratic constraints}.
+\newblock {\em International Journal of Robust and Nonlinear Control},
+  28(3):953--975, 2018.
+
+\bibitem{zhou1996robust}
+Kemin Zhou, John~Comstock Doyle, Keith Glover, et~al.
+\newblock {\em Robust and optimal control}, volume~40.
+\newblock Prentice hall New Jersey, 1996.
+
+\end{thebibliography}

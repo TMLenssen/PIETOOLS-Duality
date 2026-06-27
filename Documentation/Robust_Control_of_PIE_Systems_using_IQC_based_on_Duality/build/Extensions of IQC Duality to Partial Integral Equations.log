@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.10)  11 JUN 2026 11:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.10)  26 JUN 2026 16:05
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -794,51 +794,63 @@ File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \c@assumption=\count360
 \c@sublemma=\count361
 \c@remark=\count362
+\c@class=\count363
 
 
 LaTeX Warning: Unused global option(s):
     [doublecolumn].
 
-No file check.aux.
-\openout1 = `check.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 43.
-LaTeX Font Info:    ... okay on input line 43.
+(C:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Sy
+stems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Int
+egral Equations.aux)
+\openout1 = `"Extensions of IQC Duality to Partial Integral Equations.aux"'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 44.
+LaTeX Font Info:    ... okay on input line 44.
+
 -- Lines per column: 58 (exact).
-Package hyperref Info: Link coloring OFF on input line 43.
+Package hyperref Info: Link coloring OFF on input line 44.
+
+(C:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Sy
+stems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Int
+egral Equations.out)
+(C:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Sy
+stems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Int
+egral Equations.out)
 \@outlinefile=\write4
-\openout4 = `check.out'.
+\openout4 = `"Extensions of IQC Duality to Partial Integral Equations.out"'.
 
 
 (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mk
 ii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count363
+\scratchcounter=\count364
 \scratchdimen=\dimen305
 \scratchbox=\box71
-\nofMPsegments=\count364
-\nofMParguments=\count365
+\nofMPsegments=\count365
+\nofMParguments=\count366
 \everyMPshowfont=\toks46
-\MPscratchCnt=\count366
+\MPscratchCnt=\count367
 \MPscratchDim=\dimen306
-\MPnumerator=\count367
-\makeMPintoPDFobject=\count368
+\MPnumerator=\count368
+\makeMPintoPDFobject=\count369
 \everyMPtoPDFconversion=\toks47
 )
 (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-b
@@ -852,40 +864,18 @@ fg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
 LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 6
-1.
+2.
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 4001) in paragraph at lines 61--61
+Underfull \hbox (badness 4001) in paragraph at lines 62--62
 \OT1/ptm/m/n/8 hoven Uni-ver-sity of Tech-nol-ogy, The Nether-lands. Email ad-d
 resses:
  []
 
 (Sections/Main/1.Introduction.tex
-
-LaTeX Warning: Citation `venkataraman' on page 1 undefined on input line 3.
-
-
-LaTeX Warning: Citation `hu' on page 1 undefined on input line 3.
-
-
-LaTeX Warning: Citation `magicalhiddenenergy' on page 1 undefined on input line
- 3.
-
-
-LaTeX Warning: Citation `10156335' on page 1 undefined on input line 4.
-
-
-LaTeX Warning: Citation `9303892' on page 1 undefined on input line 4.
-
-
-LaTeX Warning: Citation `lenssen2025muanalysissynthesisframeworkpartial' on pag
-e 1 undefined on input line 4.
-
-
-LaTeX Warning: Citation `kose2009robust' on page 1 undefined on input line 4.
-
 LaTeX Font Info:    Trying to load font information for U+msa on input line 11.
+
 
 (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -908,21 +898,13 @@ dvips/base/8r.enc}
 
 
 ]
-
-LaTeX Warning: Citation `shivakumar2024GDPE' on page 2 undefined on input line 
-114.
-
-
-LaTeX Warning: Citation `shivaknew' on page 2 undefined on input line 131.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 133--139
+Underfull \hbox (badness 10000) in paragraph at lines 138--144
 [][]\OT1/ptm/b/n/10 Definition 4 \OT1/ptm/m/n/10 (PIE Sys-tem)\OT1/ptm/b/n/10 .
  []\OT1/ptm/m/it/10 Given the PIE sys-tem
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 133--139
+Underfull \hbox (badness 2285) in paragraph at lines 138--144
 \OML/cmm/m/it/10 G\OMS/cmsy/m/n/10 fT\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 A\OML/
 cmm/m/it/10 ; \OMS/cmsy/m/n/10 B\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 C\OML/cmm/m
 /it/10 ; \OMS/cmsy/m/n/10 Dg$ \OT1/ptm/m/it/10 with PI op-er-a-tors $\OMS/cmsy/
@@ -932,11 +914,7 @@ d $\OMS/cmsy/m/n/10 D$
  []
 
 
-LaTeX Warning: Reference `def:pie-system' on page 2 undefined on input line 159
-.
-
-
-Underfull \hbox (badness 1902) in paragraph at lines 163--167
+Underfull \hbox (badness 1902) in paragraph at lines 169--173
 []\OT1/ptm/m/it/10 The ho-mo-ge-neous part $\OML/cmm/m/it/10 @[]\OT1/cmr/m/n/10
  (\OMS/cmsy/m/n/10 T\OT1/cmr/bx/n/10 x\OT1/cmr/m/n/10 )(\OML/cmm/m/it/10 t\OT1/
 cmr/m/n/10 ) = \OMS/cmsy/m/n/10 A\OT1/cmr/bx/n/10 x\OT1/cmr/m/n/10 (\OML/cmm/m/
@@ -944,131 +922,32 @@ it/10 t\OT1/cmr/m/n/10 )$\OT1/ptm/m/it/10 , with
  []
 
 
-LaTeX Warning: Citation `TsaiGu2014RobustOptimalControl' on page 2 undefined on
- input line 185.
+Overfull \hbox (1.55832pt too wide) detected at line 188
+\OMS/cmsy/m/n/10 k\OML/cmm/m/it/10 p[]z\OMS/cmsy/m/n/10 k[] ^^T \OML/cmm/m/it/1
+0 ^^M\OMS/cmsy/m/n/10 k\OML/cmm/m/it/10 p[]w\OMS/cmsy/m/n/10 k[]\OML/cmm/m/it/1
+0 ;  \OMS/cmsy/m/n/10 8 \OML/cmm/m/it/10 T \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10
+ 0\OML/cmm/m/it/10 ;  \OMS/cmsy/m/n/10 8 \OML/cmm/m/it/10 w \OMS/cmsy/m/n/10 2 
+\OT1/cmr/bx/n/10 L[]\OML/cmm/m/it/10 :
+ []
 
-
-LaTeX Warning: Citation `shivaknew' on page 2 undefined on input line 187.
-
-
-LaTeX Warning: Citation `https://doi.org/10.1002/sapm1960391269' on page 2 unde
-fined on input line 200.
-
-[2]
-
-LaTeX Warning: Citation `9147712' on page 3 undefined on input line 232.
-
-)
+[2])
 (Sections/Main/3.Quadratic_Contraints_for_stability_and_performance_analysis.te
-x
-
-LaTeX Warning: Reference `def:uncertain-interconnection' on page 3 undefined on
- input line 93.
-
-
-LaTeX Warning: Citation `10156335' on page 3 undefined on input line 99.
-
-
-LaTeX Warning: Reference `eq:uncertain-interconnection-map' on page 3 undefined
- on input line 105.
-
-[3]
-
-LaTeX Warning: Reference `def:uncertainty-iqc' on page 4 undefined on input lin
-e 212.
-
-
-LaTeX Warning: Reference `def:robust-performance' on page 4 undefined on input 
-line 217.
-
-
-LaTeX Warning: Reference `eq:uncertain-interconnection-map' on page 4 undefined
- on input line 243.
-
-
-LaTeX Warning: Reference `proof:robust-stability-performance' on page 4 undefin
-ed on input line 246.
-
-
-LaTeX Warning: Reference `thm:robust-stability-performance' on page 4 undefined
- on input line 248.
-
-) (Sections/Main/4. Duality under Dynamic Filtering.tex
-(Figures/potapov_ginzburg_commutative_diagram.tex
-
-LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 4 undefined
- on input line 127.
-
-
-LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 4 undefined
- on input line 129.
-
-
-LaTeX Warning: Reference `thm:filtered-dual-l2-gain' on page 4 undefined on inp
-ut line 131.
-
-
-LaTeX Warning: Reference `thm:dual-l2-gain' on page 4 undefined on input line 1
-33.
-
-)
-
-LaTeX Warning: Citation `shivaknew' on page 4 undefined on input line 4.
-
-
-LaTeX Warning: Citation `venkataraman' on page 4 undefined on input line 72.
-
-
-LaTeX Warning: Reference `def:dynamic-filters' on page 4 undefined on input lin
-e 74.
-
-
-LaTeX Warning: Reference `def:dynamic-filters' on page 4 undefined on input lin
-e 134.
-
-[4]
-
-LaTeX Warning: Reference `proof:potapov-ginzburg-equivalence' on page 5 undefin
-ed on input line 142.
-
-
-LaTeX Warning: Reference `proof:filtered-dual-l2-gain' on page 5 undefined on i
-nput line 157.
-
-) (Sections/Main/5. Dual IQC.tex
-
-LaTeX Warning: Reference `eq:robust-stability-performance-condition' on page 5 
-undefined on input line 4.
-
-
-LaTeX Warning: Citation `venkataramanan' on page 5 undefined on input line 16.
-
-
-Overfull \hbox (44.5546pt too wide) detected at line 23
+x [3]) (Sections/Main/4. Duality under Dynamic Filtering.tex
+(Figures/potapov_ginzburg_commutative_diagram.tex))
+(Sections/Main/5. Dual IQC.tex [4]
+Overfull \hbox (5.6888pt too wide) detected at line 42
 [][][][][]
  []
 
-
-LaTeX Warning: Reference `sec:dynamic-filtering-duality' on page 5 undefined on
- input line 35.
-
-
-LaTeX Warning: Citation `hu' on page 5 undefined on input line 52.
-
 [5]
-
-LaTeX Warning: Reference `proof:pnpi-factorization' on page 6 undefined on inpu
-t line 79.
-
-
-LaTeX Warning: Reference `proof:primal-dual-pnpi' on page 6 undefined on input 
-line 87.
+Overfull \hbox (6.57439pt too wide) detected at line 257
+[][][]\OT1/cmr/m/n/10 	[] [] 	[] = ^^B[]\OML/cmm/m/it/10 J[]\OT1/cmr/m/n/10 ^^B
+[]\OML/cmm/m/it/10 ;  \OT1/cmr/m/n/10 ^^B[]\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 
+D\OT1/cmr/m/n/10 (^^B[]) \OMS/cmsy/m/n/10 2 G[]\OML/cmm/m/it/10 :
+ []
 
 ) (Sections/Main/6. Application of Dual IQC.tex)
 (Sections/Main/7. Numerical Examples.tex
-
-LaTeX Warning: Citation `9147712' on page 6 undefined on input line 1.
-
 Package epstopdf Info: Source file: <Figures/Filtered_Optimal_Control.eps>
 (epstopdf)                    date: 2026-06-02 15:58:48
 (epstopdf)                    size: 49806 bytes
@@ -1080,7 +959,7 @@ rted-to.pdf>
 imal_Control-eps-converted-to.pdf Figures/Filtered_Optimal_Control.eps>
 (epstopdf)             \includegraphics on input line 12.
 Package epstopdf Info: Output file is already uptodate.
-<Figures/Filtered_Optimal_Control-eps-converted-to.pdf, id=103, 439.6425pt x 25
+<Figures/Filtered_Optimal_Control-eps-converted-to.pdf, id=241, 439.6425pt x 25
 9.97125pt>
 File: Figures/Filtered_Optimal_Control-eps-converted-to.pdf Graphic file (type 
 pdf)
@@ -1088,6 +967,10 @@ pdf)
 Package pdftex.def Info: Figures/Filtered_Optimal_Control-eps-converted-to.pdf 
  used on input line 12.
 (pdftex.def)             Requested size: 252.0pt x 149.01025pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 Package epstopdf Info: Source file: <Figures/weighting_filters.eps>
 (epstopdf)                    date: 2026-06-02 15:58:48
 (epstopdf)                    size: 227916 bytes
@@ -1099,7 +982,7 @@ Package epstopdf Info: Source file: <Figures/weighting_filters.eps>
 lters-eps-converted-to.pdf Figures/weighting_filters.eps>
 (epstopdf)             \includegraphics on input line 24.
 Package epstopdf Info: Output file is already uptodate.
-<Figures/weighting_filters-eps-converted-to.pdf, id=104, 1125.20375pt x 901.367
+<Figures/weighting_filters-eps-converted-to.pdf, id=242, 1125.20375pt x 901.367
 5pt>
 File: Figures/weighting_filters-eps-converted-to.pdf Graphic file (type pdf)
 <use Figures/weighting_filters-eps-converted-to.pdf>
@@ -1109,13 +992,7 @@ n input line 24.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: Citation `shivaknew' on page 6 undefined on input line 35.
-
-
-LaTeX Warning: Reference `fig:frequency-characterization' on page 6 undefined o
-n input line 58.
-
+[6]
 Package epstopdf Info: Source file: <Figures/emperical_estimate.eps>
 (epstopdf)                    date: 2026-06-02 15:58:48
 (epstopdf)                    size: 42935 bytes
@@ -1127,206 +1004,43 @@ o.pdf>
 timate-eps-converted-to.pdf Figures/emperical_estimate.eps>
 (epstopdf)             \includegraphics on input line 77.
 Package epstopdf Info: Output file is already uptodate.
-<Figures/emperical_estimate-eps-converted-to.pdf, id=105, 973.6375pt x 537.0062
+<Figures/emperical_estimate-eps-converted-to.pdf, id=269, 973.6375pt x 537.0062
 6pt>
 File: Figures/emperical_estimate-eps-converted-to.pdf Graphic file (type pdf)
 <use Figures/emperical_estimate-eps-converted-to.pdf>
 Package pdftex.def Info: Figures/emperical_estimate-eps-converted-to.pdf  used 
 on input line 77.
 (pdftex.def)             Requested size: 252.0pt x 138.98738pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 ) (Sections/Main/8. Conclusion.tex)
-No file check.bbl.
-[6 <./Figures/Filtered_Optimal_Control-eps-converted-to.pdf> <./Figures/weighti
-ng_filters-eps-converted-to.pdf>] [7
-
- <./Figures/emperical_estimate-eps-converted-to.pdf>] (Sections/Proofs/I. IQC.t
-ex
-
-LaTeX Warning: Reference `thm:robust-stability-performance' on page 8 undefined
- on input line 1.
-
-
-LaTeX Warning: Reference `eq:robust-stability-performance-condition' on page 8 
-undefined on input line 2.
-
-
-LaTeX Warning: Citation `10156335' on page 8 undefined on input line 13.
-
-
-LaTeX Warning: Reference `eq:robust-stability-performance-condition' on page 8 
-undefined on input line 15.
-
-
-LaTeX Warning: Reference `def:uncertainty-iqc' on page 8 undefined on input lin
-e 22.
-
-
-LaTeX Warning: Reference `def:robust-performance' on page 8 undefined on input 
-line 27.
-
-) (Sections/Proofs/II. Duality.tex
-
-LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 8 undefined
- on input line 4.
-
-
-LaTeX Warning: Reference `eq:potapov-ginzburg-realization' on page 8 undefined 
-on input line 9.
-
-
-LaTeX Warning: Reference `eq:push-through-lambda-p' on page 8 undefined on inpu
-t line 33.
-
-
-LaTeX Warning: Reference `eq:push-through-lambda-z' on page 8 undefined on inpu
-t line 34.
-
-[8
-
-]
-
-LaTeX Warning: Reference `eq:primal-potapov-augmentation' on page 9 undefined o
-n input line 119.
-
-
-LaTeX Warning: Reference `eq:push-through-lambda-p' on page 9 undefined on inpu
-t line 121.
-
-
-LaTeX Warning: Reference `eq:push-through-feedback-row' on page 9 undefined on 
-input line 133.
-
-
-LaTeX Warning: Reference `eq:push-through-lambda-z' on page 9 undefined on inpu
-t line 133.
-
-
-LaTeX Warning: Reference `eq:push-through-lambda-c' on page 9 undefined on inpu
-t line 150.
-
-
-LaTeX Warning: Reference `eq:pg-congruence-transform' on page 9 undefined on in
-put line 217.
-
-
-LaTeX Warning: Reference `eq:pg-augmented-primal-system' on page 9 undefined on
- input line 218.
-
-
-LaTeX Warning: Reference `eq:scaled-primal-system-realization' on page 9 undefi
-ned on input line 235.
-
-
-LaTeX Warning: Reference `eq:pg-congruence-transform' on page 9 undefined on in
-put line 239.
-
-
-LaTeX Warning: Reference `eq:scaled-primal-system-realization' on page 9 undefi
-ned on input line 240.
-
-
-LaTeX Warning: Reference `eq:pg-augmented-primal-system' on page 9 undefined on
- input line 241.
-
-
-LaTeX Warning: Reference `eq:push-through-lambda-p' on page 9 undefined on inpu
-t line 242.
-
-
-LaTeX Warning: Reference `eq:push-through-lambda-c' on page 9 undefined on inpu
-t line 242.
-
-
-LaTeX Warning: Reference `eq:primal-potapov-augmentation' on page 9 undefined o
-n input line 243.
-
-
-LaTeX Warning: Reference `thm:filtered-dual-l2-gain' on page 9 undefined on inp
-ut line 246.
-
-
-LaTeX Warning: Reference `eq:dual-filter-realization' on page 9 undefined on in
-put line 247.
-
-[9]
-
-LaTeX Warning: Reference `eq:dual-filter-realization' on page 10 undefined on i
-nput line 265.
-
-
-LaTeX Warning: Reference `eq:dual-potapov-ginzburg-realization' on page 10 unde
-fined on input line 353.
-
-
-LaTeX Warning: Reference `eq:dual-potapov-ginzburg-realization' on page 10 unde
-fined on input line 356.
-
-
-LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 10 undefine
-d on input line 401.
-
-
-LaTeX Warning: Reference `eq:primal-potapov-augmentation' on page 10 undefined 
-on input line 402.
-
-
-LaTeX Warning: Reference `thm:dual-l2-gain' on page 10 undefined on input line 
-404.
-
-
-LaTeX Warning: Reference `eq:primal-potapov-augmentation' on page 10 undefined 
-on input line 405.
-
-
-LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 10 undefine
-d on input line 455.
-
-
-LaTeX Warning: Reference `eq:dual-potapov-augmentation' on page 10 undefined on
- input line 456.
-
-
-LaTeX Warning: Reference `eq:dual-potapov-ginzburg-realization' on page 10 unde
-fined on input line 458.
-
-
-LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 10 undefine
-d on input line 459.
-
-) [10]
 (C:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Sy
-stems_using_IQC_based_on_Duality\build_check\check.aux)
+stems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Int
+egral Equations.bbl [7 <./Figures/Filtered_Optimal_Control-eps-converted-to.pdf
+> <./Figures/weighting_filters-eps-converted-to.pdf> <./Figures/emperical_estim
+ate-eps-converted-to.pdf>]) [8
+
+] (Sections/Proofs/I. IQC.tex)
+(Sections/Proofs/II. Duality.tex [9
+
+] [10] [11]) [12]
+(C:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Sy
+stems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Int
+egral Equations.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `check.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `check.out':
-(rerunfilecheck)             Before: <no file>
-(rerunfilecheck)             After:  E50AA1E9FD55BF2792955724E235A8A4;3336.
+Package rerunfilecheck Info: File `"Extensions of IQC Duality to Partial Integr
+al Equations".out' has not changed.
+(rerunfilecheck)             Checksum: 457D71E9CFC515D7D4E10D275206AE32;4375.
  ) 
 Here is how much of TeX's memory you used:
- 23234 strings out of 467871
- 440086 string characters out of 5418376
- 892747 words of memory out of 5000000
- 51570 multiletter control sequences out of 15000+600000
- 668055 words of font info for 123 fonts, out of 8000000 for 9000
+ 23343 strings out of 467871
+ 443797 string characters out of 5418376
+ 887717 words of memory out of 5000000
+ 51619 multiletter control sequences out of 15000+600000
+ 669191 words of font info for 124 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,17n,94p,596b,1025s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,20n,94p,596b,1025s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmbx10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
 fonts/cm/cmbx5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/pu
@@ -1356,11 +1070,11 @@ nts/type1/urw/times/utmb8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fo
 nts/type1/urw/times/utmbi8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/f
 onts/type1/urw/times/utmr8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/f
 onts/type1/urw/times/utmri8a.pfb>
-Output written on C:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_
-Control_of_PIE_Systems_using_IQC_based_on_Duality\build_check\check.pdf (10 pag
-es, 456429 bytes).
+Output written on "C:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust
+_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Dual
+ity to Partial Integral Equations.pdf" (12 pages, 502707 bytes).
 PDF statistics:
- 314 PDF objects out of 1000 (max. 8388607)
- 92 named destinations out of 1000 (max. 500000)
- 28 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 524 PDF objects out of 1000 (max. 8388607)
+ 142 named destinations out of 1000 (max. 500000)
+ 204 words of extra memory for PDF output out of 10000 (max. 10000000)
 

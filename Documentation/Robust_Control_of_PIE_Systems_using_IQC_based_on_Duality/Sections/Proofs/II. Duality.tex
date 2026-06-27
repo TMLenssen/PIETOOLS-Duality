@@ -2,583 +2,362 @@
 
 
 \subsection{Proof of Lemma~\ref{lem:potapov-ginzburg-equivalence}}\label{proof:potapov-ginzburg-equivalence}
-Showing this on operator level might also be nice.
 
-We now record the same equivalence in state-space form. We first show the
-primal derivation explicitly. To show
+We first show the primal derivation explicitly. To show
 sufficiency, first augment the primal system with the
-Potapov--Ginzburg transform of the primal filter, i.e. $G\star\Psi^\dagger$.
-Substitution of $z=\mcl{C}\mbf{x}+\mcl{D}w$ into
-\eqref{eq:potapov-ginzburg-realization} gives the algebraic loop
+Potapov--Ginzburg transform of the primal filter, i.e. $G\star\Theta^\dagger$.
+$\Theta^\dagger$ admits the state-space representation
+\begin{equation}\label{eq:potapov-ginzburg-realization}
+\bmat{
+\mcl{T}_{\Theta}\dot{\mbf{x}}_{\Theta}(t)\\
+\tilde{z}(t)\\
+w(t)}
+=
+\bmat{
+\mcl{A}_{\Theta}^\dagger
+    & \mcl{B}_{\Theta}^{\dagger,\tilde{w}}
+    & \mcl{B}_{\Theta}^{\dagger,z}\\
+\mcl{C}_{\Theta}^{\dagger,z}
+    & \mcl{D}_{\Theta}^{\dagger,z\tilde{w}}
+    & \mcl{D}_{\Theta}^{\dagger,z}\\
+\mcl{C}_{\Theta}^{\dagger,w}
+    & \mcl{D}_{\Theta}^{\dagger,w\tilde{w}}
+    & \mcl{D}_{\Theta}^{\dagger,\text{wz}}}
+\bmat{\mbf{x}_{\Theta}(t)\\ \tilde{w}(t)\\ z(t)}.
+\end{equation}
+With $W_{\Theta}:=(\mcl{D}_{\Theta}^w)^{-1}$, the transformed blocks are
 \begin{align*}
-w
-&=
-\Lambda_p\hat{\mcl{D}}_\Psi^{wz}\mcl{C}\mbf{x}
-+\Lambda_p\hat{\mcl{C}}_\Psi^w\mbf{x}_\Psi
-+\Lambda_p\hat{\mcl{D}}_\Psi^{w\tilde{w}}\tilde{w}.
+\mcl{A}_{\Theta}^\dagger
+&:= \mcl{A}_{\Theta}-\mcl{B}_{\Theta}^w W_{\Theta}\mcl{C}_{\Theta}^w,&
+\mcl{B}_{\Theta}^{\dagger,\tilde{w}}
+&:= \mcl{B}_{\Theta}^w W_{\Theta},\\
+\mcl{B}_{\Theta}^{\dagger,z}
+&:= \mcl{B}_{\Theta}^z-\mcl{B}_{\Theta}^w W_{\Theta}\mcl{D}_{\Theta}^{wz},&
+\mcl{C}_{\Theta}^{\dagger,z}
+&:= \mcl{C}_{\Theta}^z-\mcl{D}_{\Theta}^{zw}W_{\Theta}\mcl{C}_{\Theta}^w,\\
+\mcl{D}_{\Theta}^{\dagger,z}
+&:= \mcl{D}_{\Theta}^z-\mcl{D}_{\Theta}^{zw}W_{\Theta}\mcl{D}_{\Theta}^{wz},&
+\mcl{D}_{\Theta}^{\dagger,z\tilde{w}}
+&:= \mcl{D}_{\Theta}^{zw}W_{\Theta},\\
+\mcl{C}_{\Theta}^{\dagger,w}
+&:= -W_{\Theta}\mcl{C}_{\Theta}^w,&
+\mcl{D}_{\Theta}^{\dagger,w\tilde{w}}
+&:= W_{\Theta},\\
+\mcl{D}_{\Theta}^{\dagger,wz}
+&:= -W_{\Theta}\mcl{D}_{\Theta}^{wz}.
 \end{align*}
-Assume that this loop is well-posed, and define
+Substitution of $z=\mcl{C}\mbf{x}+\mcl{D}w$ into
+\eqref{eq:potapov-ginzburg-realization} and solving for $w$ gives the algebraic loop
+\begin{equation}\label{eqn:solve_w}
+w=
+\Lambda_p\mcl{D}_{\Theta}^{\dagger,wz}\mcl{C}\mbf{x}
++\Lambda_p\mcl{C}_{\Theta}^{\dagger,w}\mbf{x}_{\Theta}
++\Lambda_p\mcl{D}_{\Theta}^{\dagger,w\tilde{w}}\tilde{w}.
+\end{equation}
+Define the algebraic loops
 \begin{equation*}
-\Lambda_p := (I-\hat{\mcl{D}}_\Psi^{wz}\mcl{D})^{-1},
+\Lambda_p := (I-\mcl{D}_{\Theta}^{\dagger,wz}\mcl{D})^{-1},
 \qquad
-\Lambda_z := (I-\mcl{D}\hat{\mcl{D}}_\Psi^{wz})^{-1}.
+\Lambda_z := (I-\mcl{D}\mcl{D}_{\Theta}^{\dagger,wz})^{-1}.
 \end{equation*}
-Solving for $w$ and substituting into the plant state equation gives
+Since $(\mcl{D}_{\Theta}^{wz} \mcl{D} + \mcl{D}_{\Theta}^w)^{-1} = (\mcl{D}_{\Theta}^w)^{-1}(I+(\mcl{D}_{\Theta}^w)^{-1}\mcl{D}_{\Theta}^{wz}\mcl{D})^{-1}
+= (\mcl{D}_{\Theta}^w)^{-1}(I - \mcl{D}_{\Theta}^{\dagger,wz}\mcl{D})^{-1} $ invertible, $\Lambda_p, \Lambda_z$ invertible.
+Substituting \eqref{eqn:solve_w} into \eqref{eqn:ss_primal} gives
 \begin{align*}
 \mcl{T}\dot{\mbf{x}}
 &= \left(\mcl{A}
-+\mcl{B}\Lambda_p\hat{\mcl{D}}_\Psi^{wz}\mcl{C}\right)\mbf{x}
-+\mcl{B}\Lambda_p\hat{\mcl{C}}_\Psi^w\mbf{x}_\Psi
-+\mcl{B}\Lambda_p\hat{\mcl{D}}_\Psi^{w\tilde{w}}\tilde{w}.
++\mcl{B}\Lambda_p\mcl{D}_{\Theta}^{\dagger,wz}\mcl{C}\right)\mbf{x}
++\mcl{B}\Lambda_p\mcl{C}_{\Theta}^{\dagger,w}\mbf{x}_{\Theta}
++\mcl{B}\Lambda_p\mcl{D}_{\Theta}^{\dagger,w\tilde{w}}\tilde{w}.
 \end{align*}
 Using $\mcl{D}\Lambda_p=\Lambda_z\mcl{D}$ and
-$I+\mcl{D}\Lambda_p\hat{\mcl{D}}_\Psi^{wz}=\Lambda_z$, we obtain
-\begin{equation*}
+$I+\mcl{D}\Lambda_p\mcl{D}_{\Theta}^{\dagger,wz}=\Lambda_z$, we obtain
+\begin{equation}\label{eqn:solve_z}
 z
 =
 \Lambda_z\mcl{C}\mbf{x}
-+\Lambda_z\mcl{D}\hat{\mcl{C}}_\Psi^w\mbf{x}_\Psi
-+\Lambda_z\mcl{D}\hat{\mcl{D}}_\Psi^{w\tilde{w}}\tilde{w}.
-\end{equation*}
-Substitution into the equations for $\dot{\mbf{x}}_\Psi$ and
-$\tilde{z}$ yields the augmented realization
++\Lambda_z\mcl{D}\mcl{C}_{\Theta}^{\dagger,w}\mbf{x}_{\Theta}
++\Lambda_z\mcl{D}\mcl{D}_{\Theta}^{\dagger,w\tilde{w}}\tilde{w}.
+\end{equation}
+Substitution into the equations for $\dot{\mbf{x}}_{\Theta}$ and
+$\tilde{z}$ yields $G\star\Theta^\dagger$
 \begin{equation}\label{eq:primal-potapov-augmentation}
-\bmat{\mcl{T}\dot{\mbf{x}}(t) \\ \mcl{T}_\Psi\dot{\mbf{x}}_\Psi(t)\\
+\bmat{\mcl{T}\dot{\mbf{x}}(t) \\ \mcl{T}_{\Theta}\dot{\mbf{x}}_{\Theta}(t)\\
 \tilde{z}(t)} =
-\bmat{\mcl{A} + \mcl{B}\Lambda_p\hat{\mcl{D}}_\Psi^{wz}\mcl{C} &
-\mcl{B}\Lambda_p\hat{\mcl{C}}_\Psi^w &
-\mcl{B}\Lambda_p\hat{\mcl{D}}_\Psi^{w\tilde{w}} \\
-\hat{\mcl{B}}_\Psi^z\Lambda_z\mcl{C} & \hat{\mcl{A}}_\Psi +
-\hat{\mcl{B}}_\Psi^z\Lambda_z\mcl{D}\hat{\mcl{C}}_\Psi^w &
-\hat{\mcl{B}}_\Psi^{\tilde{w}} +
-\hat{\mcl{B}}_\Psi^z\Lambda_z\mcl{D}\hat{\mcl{D}}_\Psi^{w\tilde{w}} \\
-\hat{\mcl{D}}_\Psi^z\Lambda_z\mcl{C} & \hat{\mcl{C}}_\Psi^z +
-\hat{\mcl{D}}_\Psi^z\Lambda_z\mcl{D}\hat{\mcl{C}}_\Psi^w &
-\hat{\mcl{D}}_\Psi^{z\tilde{w}} +
-\hat{\mcl{D}}_\Psi^z\Lambda_z\mcl{D}
-\hat{\mcl{D}}_\Psi^{w\tilde{w}}}\bmat{\mbf{x}(t)
-\\ \mbf{x}_\Psi(t) \\ \tilde{w}(t)}
+\bmat{\mcl{A} + \mcl{B}\Lambda_p\mcl{D}_{\Theta}^{\dagger,wz}\mcl{C} &
+\mcl{B}\Lambda_p\mcl{C}_{\Theta}^{\dagger,w} &
+\mcl{B}\Lambda_p\mcl{D}_{\Theta}^{\dagger,w\tilde{w}} \\
+\mcl{B}_{\Theta}^{\dagger,z}\Lambda_z\mcl{C} & \mcl{A}_{\Theta}^\dagger +
+\mcl{B}_{\Theta}^{\dagger,z}\Lambda_z\mcl{D}\mcl{C}_{\Theta}^{\dagger,w} &
+\mcl{B}_{\Theta}^{\dagger,\tilde{w}} +
+\mcl{B}_{\Theta}^{\dagger,z}\Lambda_z\mcl{D}\mcl{D}_{\Theta}^{\dagger,w\tilde{w}} \\
+\mcl{D}_{\Theta}^{\dagger,z}\Lambda_z\mcl{C} & \mcl{C}_{\Theta}^{\dagger,z} +
+\mcl{D}_{\Theta}^{\dagger,z}\Lambda_z\mcl{D}\mcl{C}_{\Theta}^{\dagger,w} &
+\mcl{D}_{\Theta}^{\dagger,z\tilde{w}} +
+\mcl{D}_{\Theta}^{\dagger,z}\Lambda_z\mcl{D}
+\mcl{D}_{\Theta}^{\dagger,w\tilde{w}}}\bmat{\mbf{x}(t)
+\\ \mbf{x}_{\Theta}(t) \\ \tilde{w}(t)}
 \end{equation}
 Define also
 \begin{equation*}
-\Lambda_c := (\mcl{D}_\Psi^{wz} \mcl{D} + \mcl{D}_\Psi^w)^{-1}.
+\Lambda_c := (\mcl{D}_{\Theta}^{wz} \mcl{D} + \mcl{D}_{\Theta}^w)^{-1}.
 \end{equation*}
 The invertible congruence transformation used directly on
 \eqref{eq:primal-potapov-augmentation} is
 \begin{equation}\label{eq:pg-congruence-transform}
-\bmat{\mbf{x}(t) \\ \mbf{x}_\Psi(t) \\ \tilde{w}(t)} = 
+\bmat{\mbf{x}(t) \\ \mbf{x}_{\Theta}(t) \\ \tilde{w}(t)} = 
 \bmat{I & 0 & 0\\ 
 0 & I & 0\\
-\mcl{D}_\Psi^{wz}\mcl{C} & \mcl{C}_\Psi^w & \Lambda_c^{-1}
-}\bmat{\mbf{x}(t) \\ \mbf{x}_\Psi(t) \\ {w}(t)}
+\mcl{D}_{\Theta}^{wz}\mcl{C} & \mcl{C}_{\Theta}^w & \Lambda_c^{-1}
+}\bmat{\mbf{x}(t) \\ \mbf{x}_{\Theta}(t) \\ {w}(t)}
 \qquad
-\bmat{\mbf{x}(t) \\ \mbf{x}_\Psi(t) \\ w(t)} = 
+\bmat{\mbf{x}(t) \\ \mbf{x}_{\Theta}(t) \\ w(t)} = 
 \bmat{I & 0 & 0\\ 
 0 & I & 0\\
--\Lambda_c\mcl{D}_\Psi^{wz} \mcl{C} & -\Lambda_c\mcl{C}_\Psi^w & \Lambda_c
-}\bmat{\mbf{x}(t) \\ \mbf{x}_\Psi(t) \\ \tilde{w}(t)}
+-\Lambda_c\mcl{D}_{\Theta}^{wz} \mcl{C} & -\Lambda_c\mcl{C}_{\Theta}^w & \Lambda_c
+}\bmat{\mbf{x}(t) \\ \mbf{x}_{\Theta}(t) \\ \tilde{w}(t)}
 \end{equation}
 The third row of \eqref{eq:pg-congruence-transform} is
 \begin{equation}\label{eq:primal-pg-recovered-input-row}
 \tilde{w}
-=\mcl{D}_\Psi^{wz}\mcl{C}\mbf{x}
-+\mcl{C}_\Psi^w\mbf{x}_\Psi
-+(\mcl{D}_\Psi^{wz}\mcl{D}+\mcl{D}_\Psi^w)w.
+=\mcl{D}_{\Theta}^{wz}\mcl{C}\mbf{x}
++\mcl{C}_{\Theta}^w\mbf{x}_{\Theta}
++(\mcl{D}_{\Theta}^{wz}\mcl{D}+\mcl{D}_{\Theta}^w)w.
 \end{equation}
 Using $z=\mcl{C}\mbf{x}+\mcl{D}w$, this is equivalently
 \begin{equation*}
 \tilde{w}
-=\mcl{C}_\Psi^w\mbf{x}_\Psi
-+\mcl{D}_\Psi^{wz}z
-+\mcl{D}_\Psi^w w,
+=\mcl{C}_{\Theta}^w\mbf{x}_{\Theta}
++\mcl{D}_{\Theta}^{wz}z
++\mcl{D}_{\Theta}^w w,
 \end{equation*}
-which is the input row of the direct filter realization.
-
-We now apply \eqref{eq:pg-congruence-transform} directly to
+which is the scaled input row of $\Theta\bmat{G\\I}w$. We now apply \eqref{eq:pg-congruence-transform} directly to
 \eqref{eq:primal-potapov-augmentation}.  The plant row of
 \eqref{eq:primal-potapov-augmentation} gives
 \begin{align*}
 \mcl{T}\dot{\mbf{x}}
-&=(\mcl{A}+\mcl{B}\Lambda_p\hat{\mcl{D}}_\Psi^{wz}\mcl{C})\mbf{x}
-+\mcl{B}\Lambda_p\hat{\mcl{C}}_\Psi^w\mbf{x}_\Psi
-+\mcl{B}\Lambda_p\hat{\mcl{D}}_\Psi^{w\tilde{w}}\tilde{w}\\
+&=(\mcl{A}+\mcl{B}\Lambda_p\mcl{D}_{\Theta}^{\dagger,wz}\mcl{C})\mbf{x}
++\mcl{B}\Lambda_p\mcl{C}_{\Theta}^{\dagger,w}\mbf{x}_{\Theta}
++\mcl{B}\Lambda_p\mcl{D}_{\Theta}^{\dagger,w\tilde{w}}\tilde{w}\\
 &=\mcl{A}\mbf{x}
 +\mcl{B}\left(
-\Lambda_p\hat{\mcl{D}}_\Psi^{wz}\mcl{C}\mbf{x}
-+\Lambda_p\hat{\mcl{C}}_\Psi^w\mbf{x}_\Psi
-+\Lambda_p\hat{\mcl{D}}_\Psi^{w\tilde{w}}\tilde{w}\right)\\
+\Lambda_p\mcl{D}_{\Theta}^{\dagger,wz}\mcl{C}\mbf{x}
++\Lambda_p\mcl{C}_{\Theta}^{\dagger,w}\mbf{x}_{\Theta}
++\Lambda_p\mcl{D}_{\Theta}^{\dagger,w\tilde{w}}\tilde{w}\right)\\
 &=\mcl{A}\mbf{x}+\mcl{B}w,
 \end{align*}
-where the last equality uses the algebraic loop solution recovered from the
-inverse transformation in \eqref{eq:pg-congruence-transform}. The filter state
+where the last equality uses \eqref{eqn:solve_w}. The filter state
 row of \eqref{eq:primal-potapov-augmentation} gives
 \begin{align*}
-\mcl{T}_\Psi\dot{\mbf{x}}_\Psi
-&=\hat{\mcl{B}}_\Psi^z\Lambda_z\mcl{C}\mbf{x}
-+(\hat{\mcl{A}}_\Psi+\hat{\mcl{B}}_\Psi^z
-\Lambda_z\mcl{D}\hat{\mcl{C}}_\Psi^w)\mbf{x}_\Psi\\
+\mcl{T}_{\Theta}\dot{\mbf{x}}_{\Theta}
+&=\mcl{B}_{\Theta}^{\dagger,z}\Lambda_z\mcl{C}\mbf{x}
++(\mcl{A}_{\Theta}^\dagger+\mcl{B}_{\Theta}^{\dagger,z}
+\Lambda_z\mcl{D}\mcl{C}_{\Theta}^{\dagger,w})\mbf{x}_{\Theta}\\
 &\qquad
-+(\hat{\mcl{B}}_\Psi^{\tilde{w}}+\hat{\mcl{B}}_\Psi^z
-\Lambda_z\mcl{D}\hat{\mcl{D}}_\Psi^{w\tilde{w}})\tilde{w}\\
-&=\hat{\mcl{A}}_\Psi\mbf{x}_\Psi
-+\hat{\mcl{B}}_\Psi^{\tilde{w}}\tilde{w}
-+\hat{\mcl{B}}_\Psi^z
++(\mcl{B}_{\Theta}^{\dagger,\tilde{w}}+\mcl{B}_{\Theta}^{\dagger,z}
+\Lambda_z\mcl{D}\mcl{D}_{\Theta}^{\dagger,w\tilde{w}})\tilde{w}\\
+&=\mcl{A}_{\Theta}^\dagger\mbf{x}_{\Theta}
++\mcl{B}_{\Theta}^{\dagger,\tilde{w}}\tilde{w}
++\mcl{B}_{\Theta}^{\dagger,z}
 \left(\Lambda_z\mcl{C}\mbf{x}
-+\Lambda_z\mcl{D}\hat{\mcl{C}}_\Psi^w\mbf{x}_\Psi
-+\Lambda_z\mcl{D}\hat{\mcl{D}}_\Psi^{w\tilde{w}}\tilde{w}\right)\\
-&=\hat{\mcl{A}}_\Psi\mbf{x}_\Psi
-+\hat{\mcl{B}}_\Psi^{\tilde{w}}\tilde{w}
-+\hat{\mcl{B}}_\Psi^z z\\
-&=(\mcl{A}_\Psi-\mcl{B}_\Psi^wW_\Psi\mcl{C}_\Psi^w)\mbf{x}_\Psi
-+\mcl{B}_\Psi^wW_\Psi
-(\mcl{C}_\Psi^w\mbf{x}_\Psi+\mcl{D}_\Psi^{wz}z+\mcl{D}_\Psi^ww)\\
++\Lambda_z\mcl{D}\mcl{C}_{\Theta}^{\dagger,w}\mbf{x}_{\Theta}
++\Lambda_z\mcl{D}\mcl{D}_{\Theta}^{\dagger,w\tilde{w}}\tilde{w}\right)\\
+&=\mcl{A}_{\Theta}^\dagger\mbf{x}_{\Theta}
++\mcl{B}_{\Theta}^{\dagger,\tilde{w}}\tilde{w}
++\mcl{B}_{\Theta}^{\dagger,z} z\\
+&=(\mcl{A}_{\Theta}-\mcl{B}_{\Theta}^wW_{\Theta}\mcl{C}_{\Theta}^w)\mbf{x}_{\Theta}
++\mcl{B}_{\Theta}^wW_{\Theta}
+(\mcl{C}_{\Theta}^w\mbf{x}_{\Theta}+\mcl{D}_{\Theta}^{wz}z+\mcl{D}_{\Theta}^ww)\\
 &\qquad
-+(\mcl{B}_\Psi^z-\mcl{B}_\Psi^wW_\Psi\mcl{D}_\Psi^{wz})z\\
-&=\mcl{A}_\Psi\mbf{x}_\Psi+\mcl{B}_\Psi^z z+\mcl{B}_\Psi^w w.
++(\mcl{B}_{\Theta}^z-\mcl{B}_{\Theta}^wW_{\Theta}\mcl{D}_{\Theta}^{wz})z\\
+&=\mcl{A}_{\Theta}\mbf{x}_{\Theta}+\mcl{B}_{\Theta}^z z+\mcl{B}_{\Theta}^w w.
 \end{align*}
-The output row of \eqref{eq:primal-potapov-augmentation} gives
+The output row of \eqref{eq:primal-potapov-augmentation}, $W_{\Theta} = (\mcl{D}_{\Theta}^w)^{-1}$ and using \eqref{eqn:solve_z} gives
 \begin{align*}
 \tilde{z}
-&=\hat{\mcl{D}}_\Psi^z\Lambda_z\mcl{C}\mbf{x}
-+(\hat{\mcl{C}}_\Psi^z+\hat{\mcl{D}}_\Psi^z
-\Lambda_z\mcl{D}\hat{\mcl{C}}_\Psi^w)\mbf{x}_\Psi\\
+&=\mcl{D}_{\Theta}^{\dagger,z}\Lambda_z\mcl{C}\mbf{x}
++(\mcl{C}_{\Theta}^{\dagger,z}+\mcl{D}_{\Theta}^{\dagger,z}
+\Lambda_z\mcl{D}\mcl{C}_{\Theta}^{\dagger,w})\mbf{x}_{\Theta}\\
 &\qquad
-+(\hat{\mcl{D}}_\Psi^{z\tilde{w}}+\hat{\mcl{D}}_\Psi^z
-\Lambda_z\mcl{D}\hat{\mcl{D}}_\Psi^{w\tilde{w}})\tilde{w}\\
-&=\hat{\mcl{C}}_\Psi^z\mbf{x}_\Psi
-+\hat{\mcl{D}}_\Psi^{z\tilde{w}}\tilde{w}
-+\hat{\mcl{D}}_\Psi^z
++(\mcl{D}_{\Theta}^{\dagger,z\tilde{w}}+\mcl{D}_{\Theta}^{\dagger,z}
+\Lambda_z\mcl{D}\mcl{D}_{\Theta}^{\dagger,w\tilde{w}})\tilde{w}\\
+&=\mcl{C}_{\Theta}^{\dagger,z}\mbf{x}_{\Theta}
++\mcl{D}_{\Theta}^{\dagger,z\tilde{w}}\tilde{w}
++\mcl{D}_{\Theta}^{\dagger,z}
 \left(\Lambda_z\mcl{C}\mbf{x}
-+\Lambda_z\mcl{D}\hat{\mcl{C}}_\Psi^w\mbf{x}_\Psi
-+\Lambda_z\mcl{D}\hat{\mcl{D}}_\Psi^{w\tilde{w}}\tilde{w}\right)\\
-&=\hat{\mcl{C}}_\Psi^z\mbf{x}_\Psi
-+\hat{\mcl{D}}_\Psi^{z\tilde{w}}\tilde{w}
-+\hat{\mcl{D}}_\Psi^z z\\
-&=(\mcl{C}_\Psi^z-\mcl{D}_\Psi^{zw}W_\Psi\mcl{C}_\Psi^w)\mbf{x}_\Psi
-+\mcl{D}_\Psi^{zw}W_\Psi
-(\mcl{C}_\Psi^w\mbf{x}_\Psi+\mcl{D}_\Psi^{wz}z+\mcl{D}_\Psi^ww)\\
++\Lambda_z\mcl{D}\mcl{C}_{\Theta}^{\dagger,w}\mbf{x}_{\Theta}
++\Lambda_z\mcl{D}\mcl{D}_{\Theta}^{\dagger,w\tilde{w}}\tilde{w}\right)\\
+&=\mcl{C}_{\Theta}^{\dagger,z}\mbf{x}_{\Theta}
++\mcl{D}_{\Theta}^{\dagger,z\tilde{w}}\tilde{w}
++\mcl{D}_{\Theta}^{\dagger,z} z\\
+&=(\mcl{C}_{\Theta}^z-\mcl{D}_{\Theta}^{zw}W_{\Theta}\mcl{C}_{\Theta}^w)\mbf{x}_{\Theta}
++\mcl{D}_{\Theta}^{zw}W_{\Theta}
+(\mcl{C}_{\Theta}^w\mbf{x}_{\Theta}+\mcl{D}_{\Theta}^{wz}z+\mcl{D}_{\Theta}^ww)\\
 &\qquad
-+(\mcl{D}_\Psi^z-\mcl{D}_\Psi^{zw}W_\Psi\mcl{D}_\Psi^{wz})z\\
-&=\mcl{C}_\Psi^z\mbf{x}_\Psi+\mcl{D}_\Psi^z z+\mcl{D}_\Psi^{zw}w.
++(\mcl{D}_{\Theta}^z-\mcl{D}_{\Theta}^{zw}W_{\Theta}\mcl{D}_{\Theta}^{wz})z\\
+&=\mcl{C}_{\Theta}^z\mbf{x}_{\Theta}+\mcl{D}_{\Theta}^z z+\mcl{D}_{\Theta}^{zw}w.
 \end{align*}
 Substituting $z=\mcl{C}\mbf{x}+\mcl{D}w$ in these recovered rows gives
 \begin{equation}\label{eq:scaled-primal-system-realization}
 \bmat{\mcl{T}\dot{\mbf{x}}(t)\\
-\mcl{T}_\Psi\dot{\mbf{x}}_\Psi(t)\\
+\mcl{T}_{\Theta}\dot{\mbf{x}}_{\Theta}(t)\\
 \tilde{z}(t)\\
 \tilde{w}(t)}
 =
 \bmat{
 \mcl{A} & 0 & \mcl{B}\\
-\mcl{B}_\Psi^z\mcl{C} & \mcl{A}_\Psi &
-\mcl{B}_\Psi^z\mcl{D}+\mcl{B}_\Psi^w\\
-\mcl{D}_\Psi^z\mcl{C} & \mcl{C}_\Psi^z &
-\mcl{D}_\Psi^z\mcl{D}+\mcl{D}_\Psi^{zw}\\
-\mcl{D}_\Psi^{wz}\mcl{C} & \mcl{C}_\Psi^w &
-\mcl{D}_\Psi^{wz}\mcl{D}+\mcl{D}_\Psi^w}
-\bmat{\mbf{x}(t)\\ \mbf{x}_\Psi(t)\\ w(t)}.
+\mcl{B}_{\Theta}^z\mcl{C} & \mcl{A}_{\Theta} &
+\mcl{B}_{\Theta}^z\mcl{D}+\mcl{B}_{\Theta}^w\\
+\mcl{D}_{\Theta}^z\mcl{C} & \mcl{C}_{\Theta}^z &
+\mcl{D}_{\Theta}^z\mcl{D}+\mcl{D}_{\Theta}^{zw}\\
+\mcl{D}_{\Theta}^{wz}\mcl{C} & \mcl{C}_{\Theta}^w &
+\mcl{D}_{\Theta}^{wz}\mcl{D}+\mcl{D}_{\Theta}^w}
+\bmat{\mbf{x}(t)\\ \mbf{x}_{\Theta}(t)\\ w(t)}.
 \end{equation}
 The realization in \eqref{eq:scaled-primal-system-realization} is the
-direct augmentation $\Psi\bmat{G \\ I}w$. For necessity, applying the inverse
+direct augmentation $\Theta\bmat{G \\ I}w$. For necessity, applying the inverse
 of \eqref{eq:pg-congruence-transform} to
 \eqref{eq:scaled-primal-system-realization} recovers
-\eqref{eq:primal-potapov-augmentation}.
+\eqref{eq:primal-potapov-augmentation}. Thus we find $\Theta\bmat{G\\ I}{w} = \bmat{G \star \Theta^\dagger \\ I}\Gamma{w}$
+for all ${w}\in\mbf{L}_{e,[a,b]}^{\mbf{n}_w}$.
 
-\emph{Dual side.} The dual calculation has the same structure. The inverse
-relation
-$\mbf{D}(\Psi)^{-1}=\hat{\mcl{J}}^*\Psi^\top\hat{\mcl{J}}$ has realization
+\emph{Dual side.} The inverse relation
+$\mbf{D}(\Theta)^{-1}=\hat{\mcl{J}}^*\Theta^\top\hat{\mcl{J}}$ has realization
 \begin{equation}\label{eq:dual-filter-adjoint-proof}
-\bmat{\mcl{T}_{\Psi}^*\dot{\underline{\mbf{x}}}_{\Psi}(t)\\
+\bmat{\mcl{T}_{\Theta}^*\dot{\underline{\mbf{x}}}_{\Theta}(t)\\
 \underline{z}(t) \\ \underline{w}(t)}
 =
-\bmat{\mcl{A}_\Psi^* & -\mcl{C}_\Psi^{w*} & \mcl{C}_\Psi^{z*} \\
--\mcl{B}_\Psi^{w*} & \mcl{D}_\Psi^{w*} & -\mcl{D}_\Psi^{zw*} \\
-\mcl{B}_\Psi^{z*} & -\mcl{D}_\Psi^{wz*} & \mcl{D}_\Psi^{z*}}
-\bmat{\underline{\mbf{x}}_\Psi(t) \\
+\bmat{\mcl{A}_{\Theta}^* & -\mcl{C}_{\Theta}^{w*} & \mcl{C}_{\Theta}^{z*} \\
+-\mcl{B}_{\Theta}^{w*} & \mcl{D}_{\Theta}^{w*} & -\mcl{D}_{\Theta}^{zw*} \\
+\mcl{B}_{\Theta}^{z*} & -\mcl{D}_{\Theta}^{wz*} & \mcl{D}_{\Theta}^{z*}}
+\bmat{\underline{\mbf{x}}_{\Theta}(t) \\
 \tilde{\underline{z}}(t) \\ \tilde{\underline{w}}(t)}.
 \end{equation}
 Solving the second block row for $\tilde{\underline{z}}$ and substituting in
 the first and third block rows gives the Potapov--Ginzburg realization of the
-dual filter:
+dual filter
 \begin{equation}\label{eq:dual-potapov-ginzburg-realization}
-\bmat{\mcl{T}_\Psi^*\dot{\underline{\mbf{x}}}_\Psi(t)\\
+\bmat{\mcl{T}_{\Theta}^*\dot{\underline{\mbf{x}}}_{\Theta}(t)\\
 \tilde{\underline{z}}(t)\\
 \underline{w}(t)}
 =
 \bmat{
-\bigl(\hat{\mcl{A}}_\Psi\bigr)^*
+\bigl(\mcl{A}_{\Theta}^\dagger\bigr)^*
 &
-\bigl(\hat{\mcl{C}}_\Psi^{z}\bigr)^*
+\bigl(\mcl{C}_{\Theta}^{\dagger,z}\bigr)^*
 &
-\bigl(\hat{\mcl{C}}_\Psi^{w}\bigr)^*\\
-\bigl(\hat{\mcl{B}}_\Psi^{\tilde{w}}\bigr)^*
+\bigl(\mcl{C}_{\Theta}^{\dagger,w}\bigr)^*\\
+\bigl(\mcl{B}_{\Theta}^{\dagger,\tilde{w}}\bigr)^*
 &
-\bigl(\hat{\mcl{D}}_\Psi^{z\tilde{w}}\bigr)^*
+\bigl(\mcl{D}_{\Theta}^{\dagger,z\tilde{w}}\bigr)^*
 &
-\bigl(\hat{\mcl{D}}_\Psi^{w\tilde{w}}\bigr)^*\\
-\bigl(\hat{\mcl{B}}_\Psi^{z}\bigr)^*
+\bigl(\mcl{D}_{\Theta}^{\dagger,w\tilde{w}}\bigr)^*\\
+\bigl(\mcl{B}_{\Theta}^{\dagger,z}\bigr)^*
 &
-\bigl(\hat{\mcl{D}}_\Psi^{z}\bigr)^*
+\bigl(\mcl{D}_{\Theta}^{\dagger,z}\bigr)^*
 &
-\bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*}
-\bmat{\underline{\mbf{x}}_\Psi(t)\\
+\bigl(\mcl{D}_{\Theta}^{\dagger,wz}\bigr)^*}
+\bmat{\underline{\mbf{x}}_{\Theta}(t)\\
 \tilde{\underline{w}}(t)\\
 \underline{z}(t)}.
 \end{equation}
-Augmenting \eqref{eq:dual-potapov-ginzburg-realization} with $G^\top$ and
-using
-$\underline{z}=\mcl{B}^*\underline{\mbf{x}}+\mcl{D}^*\underline{w}$ gives the
-dual algebraic loop
-\begin{align*}
-\underline{w}
-&=
-\bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*
-    \mcl{B}^*\underline{\mbf{x}}
-+\bigl(\hat{\mcl{B}}_\Psi^{z}\bigr)^*
-    \underline{\mbf{x}}_\Psi
-+\bigl(\hat{\mcl{D}}_\Psi^{z}\bigr)^*
-    \tilde{\underline{w}}
-+\bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*
-    \mcl{D}^*\underline{w}.
-\end{align*}
-Define
-\begin{equation*}
-\Lambda_z^*:=(I-(\hat{\mcl{D}}_\Psi^{wz})^*\mcl{D}^*)^{-1},
-\qquad
-\Lambda_p^*:=(I-\mcl{D}^*(\hat{\mcl{D}}_\Psi^{wz})^*)^{-1}.
-\end{equation*}
-Then
-\begin{equation*}
-\underline{w}
-=
-\Lambda_z^*\bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*
-    \mcl{B}^*\underline{\mbf{x}}
-+\Lambda_z^*\bigl(\hat{\mcl{B}}_\Psi^{z}\bigr)^*
-    \underline{\mbf{x}}_\Psi
-+\Lambda_z^*\bigl(\hat{\mcl{D}}_\Psi^{z}\bigr)^*
-    \tilde{\underline{w}},
-\end{equation*}
-and, using
-$\mcl{D}^*\Lambda_z^*=\Lambda_p^*\mcl{D}^*$ and
-$I+\mcl{D}^*\Lambda_z^*(\hat{\mcl{D}}_\Psi^{wz})^*=\Lambda_p^*$,
-\begin{equation*}
-\underline{z}
-=
-\Lambda_p^*\mcl{B}^*\underline{\mbf{x}}
-+\Lambda_p^*\mcl{D}^*
-    \bigl(\hat{\mcl{B}}_\Psi^{z}\bigr)^*
-    \underline{\mbf{x}}_\Psi
-+\Lambda_p^*\mcl{D}^*
-    \bigl(\hat{\mcl{D}}_\Psi^{z}\bigr)^*
-    \tilde{\underline{w}}.
-\end{equation*}
-Substitution into the plant row and the first two rows of
-\eqref{eq:dual-potapov-ginzburg-realization} yields
-\begin{equation}\label{eq:dual-potapov-augmentation}
-\bmat{\mcl{T}^*\dot{\underline{\mbf{x}}}(t)\\
-\mcl{T}_\Psi^*\dot{\underline{\mbf{x}}}_\Psi(t)\\
-\tilde{\underline{z}}(t)}
-=
-\bmat{
-\mcl{A}^*
-    +\mcl{C}^*\Lambda_z^*
-     \bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*\mcl{B}^*
-&
-\mcl{C}^*\Lambda_z^*
-     \bigl(\hat{\mcl{B}}_\Psi^{z}\bigr)^*
-&
-\mcl{C}^*\Lambda_z^*
-     \bigl(\hat{\mcl{D}}_\Psi^{z}\bigr)^*\\
-\bigl(\hat{\mcl{C}}_\Psi^w\bigr)^*
-    \Lambda_p^*\mcl{B}^*
-&
-\bigl(\hat{\mcl{A}}_\Psi\bigr)^*
-    +\bigl(\hat{\mcl{C}}_\Psi^w\bigr)^*
-     \Lambda_p^*\mcl{D}^*
-     \bigl(\hat{\mcl{B}}_\Psi^{z}\bigr)^*
-&
-\bigl(\hat{\mcl{C}}_\Psi^z\bigr)^*
-    +\bigl(\hat{\mcl{C}}_\Psi^w\bigr)^*
-     \Lambda_p^*\mcl{D}^*
-     \bigl(\hat{\mcl{D}}_\Psi^{z}\bigr)^*\\
-\bigl(\hat{\mcl{D}}_\Psi^{w\tilde{w}}\bigr)^*
-    \Lambda_p^*\mcl{B}^*
-&
-\bigl(\hat{\mcl{B}}_\Psi^{\tilde{w}}\bigr)^*
-    +\bigl(\hat{\mcl{D}}_\Psi^{w\tilde{w}}\bigr)^*
-     \Lambda_p^*\mcl{D}^*
-     \bigl(\hat{\mcl{B}}_\Psi^{z}\bigr)^*
-&
-\bigl(\hat{\mcl{D}}_\Psi^{z\tilde{w}}\bigr)^*
-    +\bigl(\hat{\mcl{D}}_\Psi^{w\tilde{w}}\bigr)^*
-     \Lambda_p^*\mcl{D}^*
-     \bigl(\hat{\mcl{D}}_\Psi^{z}\bigr)^*}
-\bmat{\underline{\mbf{x}}(t)\\
-\underline{\mbf{x}}_\Psi(t)\\
-\tilde{\underline{w}}(t)}.
-\end{equation}
-
-
-
-The loop solution above gives the invertible input transformation
-\begin{equation}\label{eq:dual-pg-congruence-transform}
-\bmat{
-\underline{\mbf{x}}(t)\\
-\underline{\mbf{x}}_\Psi(t)\\
-\underline{w}(t)}
-=
-\bmat{
-I & 0 & 0\\
-0 & I & 0\\
-\Lambda_z^*\bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*\mcl{B}^*
-&
-\Lambda_z^*\bigl(\hat{\mcl{B}}_\Psi^{z}\bigr)^*
-&
-\Lambda_z^*\bigl(\hat{\mcl{D}}_\Psi^{z}\bigr)^*}
-\bmat{
-\underline{\mbf{x}}(t)\\
-\underline{\mbf{x}}_\Psi(t)\\
-\tilde{\underline{w}}(t)},
-\end{equation}
-with inverse
-\begin{equation}\label{eq:dual-pg-congruence-transform-inverse}
-\bmat{
-\underline{\mbf{x}}(t)\\
-\underline{\mbf{x}}_\Psi(t)\\
-\tilde{\underline{w}}(t)}
-=
-\bmat{
-I & 0 & 0\\
-0 & I & 0\\
--\left(\bigl(\hat{\mcl{D}}_\Psi^{z}\bigr)^*\right)^{-1}
-    \bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*\mcl{B}^*
-&
--\left(\bigl(\hat{\mcl{D}}_\Psi^{z}\bigr)^*\right)^{-1}
-    \bigl(\hat{\mcl{B}}_\Psi^{z}\bigr)^*
-&
-\left(\bigl(\hat{\mcl{D}}_\Psi^{z}\bigr)^*\right)^{-1}
-    \left(I-\bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*\mcl{D}^*\right)}
-\bmat{
-\underline{\mbf{x}}(t)\\
-\underline{\mbf{x}}_\Psi(t)\\
-\underline{w}(t)}.
-\end{equation}
-The third block row of \eqref{eq:dual-pg-congruence-transform-inverse} gives
-the PIE realization of the dual input transformation
-$\Gamma_d\underline{w}=\tilde{\underline{w}}$.
-We now show explicitly that applying
-\eqref{eq:dual-pg-congruence-transform-inverse} to
-\eqref{eq:dual-potapov-augmentation} gives the direct filtered augmentation.
-
-\emph{Input row.} The third row of
-\eqref{eq:dual-pg-congruence-transform-inverse} is
-\begin{equation*}
-\bigl(\hat{\mcl{D}}_\Psi^z\bigr)^*\tilde{\underline{w}}
-=
-\underline{w}
--\bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*
-    \mcl{B}^*\underline{\mbf{x}}
--\bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*
-    \mcl{D}^*\underline{w}
--\bigl(\hat{\mcl{B}}_\Psi^z\bigr)^*
-    \underline{\mbf{x}}_\Psi.
-\end{equation*}
-Using
-$\underline{z}=\mcl{B}^*\underline{\mbf{x}}+\mcl{D}^*\underline{w}$ and
-rearranging gives
-\begin{equation}\label{eq:dual-pg-recovered-loop-row}
-\underline{w}
-=
-\bigl(\hat{\mcl{B}}_\Psi^z\bigr)^*
-    \underline{\mbf{x}}_\Psi
-+\bigl(\hat{\mcl{D}}_\Psi^z\bigr)^*\tilde{\underline{w}}
-+\bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*\underline{z},
-\end{equation}
-which is the recovered algebraic row of
-\eqref{eq:dual-potapov-ginzburg-realization}.
-
-\emph{Plant row.} The first row of
-\eqref{eq:dual-potapov-augmentation} contains the loop-solved input. By
-\eqref{eq:dual-pg-recovered-loop-row}, this input reduces to
-\(\underline{w}\):
-\begin{align*}
-&\Lambda_z^*\bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*
-    \mcl{B}^*\underline{\mbf{x}}
-+\Lambda_z^*\bigl(\hat{\mcl{B}}_\Psi^z\bigr)^*
-    \underline{\mbf{x}}_\Psi
-+\Lambda_z^*\bigl(\hat{\mcl{D}}_\Psi^z\bigr)^*
-    \tilde{\underline{w}}\\
-&\quad =
-\Lambda_z^*
-\left(
-\underline{w}
--\bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*
-    \mcl{D}^*\underline{w}
-\right)
-=\underline{w}.
-\end{align*}
-The corresponding loop-solved plant output reduces to
-\(\underline{z}\):
-\begin{align*}
-&\Lambda_p^*\mcl{B}^*\underline{\mbf{x}}
-+\Lambda_p^*\mcl{D}^*
-    \bigl(\hat{\mcl{B}}_\Psi^z\bigr)^*
-    \underline{\mbf{x}}_\Psi
-+\Lambda_p^*\mcl{D}^*
-    \bigl(\hat{\mcl{D}}_\Psi^z\bigr)^*
-    \tilde{\underline{w}}\\
-&\quad =
-\Lambda_p^*
-\left(
-\mcl{B}^*\underline{\mbf{x}}
-+\mcl{D}^*\underline{w}
--\mcl{D}^*
-    \bigl(\hat{\mcl{D}}_\Psi^{wz}\bigr)^*
-    \underline{z}
-\right)
-=\underline{z}.
-\end{align*}
-Therefore the transformed plant row is
-\begin{equation*}
-\mcl{T}^*\dot{\underline{\mbf{x}}}
-=\mcl{A}^*\underline{\mbf{x}}+\mcl{C}^*\underline{w}.
-\end{equation*}
-
-\emph{Filter rows.} The remaining rows are obtained by solving the algebraic
-part of \eqref{eq:dual-filter-adjoint-proof}. Define
-\begin{equation*}
-\mcl D_\Psi
-:=
-\bmat{
-\mcl{D}_\Psi^{w*} & -\mcl{D}_\Psi^{zw*}\\
--\mcl{D}_\Psi^{wz*} & \mcl{D}_\Psi^{z*}}.
-\end{equation*}
-The two algebraic rows of \eqref{eq:dual-filter-adjoint-proof} are
-\begin{equation*}
-\mcl D_\Psi
-\bmat{\tilde{\underline{z}}\\ \tilde{\underline{w}}}
-=
-\bmat{\mcl{B}_\Psi^{w*}\\ -\mcl{B}_\Psi^{z*}}
-\underline{\mbf{x}}_\Psi
-+
-\bmat{\underline{z}\\ \underline{w}}.
-\end{equation*}
-Since $\mcl D_\Psi$ is invertible, solving these rows and substituting in the
-state row of \eqref{eq:dual-filter-adjoint-proof} gives
-\begin{equation}\label{eq:dual-filter-direct-proof}
-\bmat{\mcl{T}_{\Psi}^*\dot{\underline{\mbf{x}}}_{\Psi}(t)\\
-\tilde{\underline{z}}(t)\\
-\tilde{\underline{w}}(t)}
-=
-\bmat{
-\mcl{A}_\Psi^*
-+\bmat{-\mcl{C}_\Psi^{w*} & \mcl{C}_\Psi^{z*}}
-\mcl D_\Psi^{-1}
-\bmat{\mcl{B}_\Psi^{w*}\\ -\mcl{B}_\Psi^{z*}}
-&
-\bmat{-\mcl{C}_\Psi^{w*} & \mcl{C}_\Psi^{z*}}\mcl D_\Psi^{-1}\\
-\mcl D_\Psi^{-1}
-\bmat{\mcl{B}_\Psi^{w*}\\ -\mcl{B}_\Psi^{z*}}
-&
-\mcl D_\Psi^{-1}}
-\bmat{\underline{\mbf{x}}_\Psi(t)\\
-\underline{z}(t)\\
-\underline{w}(t)}.
-\end{equation}
-Finally substituting
-$\underline{z}=\mcl B^*\underline{\mbf{x}}+\mcl D^*\underline{w}$ into
-\eqref{eq:dual-filter-direct-proof}, and collecting it with
-$\mcl{T}^*\dot{\underline{\mbf{x}}}
-=\mcl{A}^*\underline{\mbf{x}}+\mcl{C}^*\underline{w}$, gives exactly
-\begin{equation}\label{eq:dual-filtered-gtop-augmentation-proof}
-\bmat{
-\mcl T^*\dot{\underline{\mbf{x}}}(t)\\
-\mcl{T}_\Psi^*\dot{\underline{\mbf{x}}}_\Psi(t)\\
-\bmat{\tilde{\underline{z}}(t)\\ \tilde{\underline{w}}(t)}}
-=
-\bmat{
-\mcl A^*
-& 0
-& \mcl C^*\\
-\bmat{-\mcl{C}_\Psi^{w*} & \mcl{C}_\Psi^{z*}}
-\mcl D_\Psi^{-1}
-\bmat{\mcl B^*\\ 0}
-&
-\mcl A_\Psi^*
-+\bmat{-\mcl{C}_\Psi^{w*} & \mcl{C}_\Psi^{z*}}
-\mcl D_\Psi^{-1}
-\bmat{\mcl{B}_\Psi^{w*}\\ -\mcl{B}_\Psi^{z*}}
-&
-\bmat{-\mcl{C}_\Psi^{w*} & \mcl{C}_\Psi^{z*}}
-\mcl D_\Psi^{-1}
-\bmat{\mcl D^*\\ I}\\
-\mcl D_\Psi^{-1}
-\bmat{\mcl B^*\\ 0}
-&
-\mcl D_\Psi^{-1}
-\bmat{\mcl{B}_\Psi^{w*}\\ -\mcl{B}_\Psi^{z*}}
-&
-\mcl D_\Psi^{-1}
-\bmat{\mcl D^*\\ I}}
-\bmat{
-\underline{\mbf{x}}(t)\\
-\underline{\mbf{x}}_\Psi(t)\\
-\underline{w}(t)}.
-\end{equation}
-This realization represents
-$\mbf{D}(\Psi)\bmat{G^\top\\ I}\underline{w}$.
-
-
+Moreover, the dual well-posedness condition, $(I-(\mcl{D}_\Theta^{\dagger, wz})\mcl{D})$ invertible, is also satisfied if the primal well-posedness condition is satisfied. Thus we find that $\mbf{D}(\Theta)^\dagger = (\Theta^\dagger)^\top$ and we can apply the primal argument to find 
+$\mbf{D}(\Theta)\bmat{G^\top\\ I}\underline{w} = \bmat{G^\top \star (\Theta^\dagger)^\top \\ I}\Gamma_d \underline{w}$
+for all $\underline{w}\in\mbf{L}_{e,[a,b]}^{\mbf{n}_z}$.
 
 \subsection{Proof of Theorem~\ref{thm:primal-dual-iqc-feasibility}}\label{proof:primal-dual-iqc-feasibility}
 Assume that the primal statement of the theorem holds. Then there exists a sufficiently small
 $\epsilon_p>0$ such that
 \begin{equation}\label{eq:primal-iqc-feasibility-proof}
-    \ip{p_T \hat{\Psi}\bmat{P \\ I}w}{p_T J_{\mbf{n}_z,\mbf{n}_w} \hat{\Psi}\bmat{P \\ I} w}_{\mbf L_{[a,b]}} \leq -\epsilon_p \|p_Tw\|_{\mbf L_{[a,b]}}^2
+    \ip{p_T \Theta\bmat{P \\ I}w}{p_T J_{\mbf{n}_z,\mbf{n}_w} \Theta\bmat{P \\ I} w}_{\mbf L_{[a,b]}} \leq -\epsilon_p \|p_Tw\|_{\mbf L_{[a,b]}}^2
 \end{equation}
-for all $w \in \mbf{L}_{e,[a,b]}^{\mbf{n}_w}$ and $T\geq 0$. By lemma~\ref{lem:potapov-ginzburg-equivalence}, the system $\hat{\Psi}\bmat{P \\ I}$ has a realization of the form
+for all $w \in \mbf{L}_{e,[a,b]}^{\mbf{n}_w}$ and $T\geq 0$. By lemma~\ref{lem:potapov-ginzburg-equivalence}, the system $\Theta\bmat{P \\ I}$ has a realization of the form
 \begin{equation}\label{eq:primal-iqc-potapov-proof}
-    \ip{p_T \bmat{P \star \hat{\Psi}^\dagger \\ I}\Gamma w}{p_T J_{\mbf{n}_z,\mbf{n}_w} \bmat{P \star \hat{\Psi}^\dagger \\ I} \Gamma w}_{\mbf L_{[a,b]}} \leq -\epsilon_p \|p_Tw\|_{\mbf L_{[a,b]}}^2
+    \ip{p_T \bmat{P \star \Theta^\dagger \\ I}\Gamma w}{p_T J_{\mbf{n}_z,\mbf{n}_w} \bmat{P \star \Theta^\dagger \\ I} \Gamma w}_{\mbf L_{[a,b]}} \leq -\epsilon_p \|p_Tw\|_{\mbf L_{[a,b]}}^2
 \end{equation}
 substituting $\tilde{w} = \Gamma w$, $\Gamma^{-1}\tilde{w} = w$, gives
 \begin{equation}\label{eq:primal-iqc-potapov-input-proof}
-    \ip{p_T \bmat{P \star \hat{\Psi}^\dagger \\ I}\tilde{w}}{p_T J_{\mbf{n}_z,\mbf{n}_w}\bmat{P \star \hat{\Psi}^\dagger \\ I} \tilde{w}}_{\mbf L_{[a,b]}} \leq -\epsilon_p \|p_T\Gamma^{-1}\tilde{w}\|_{\mbf L_{[a,b]}}^2
+    \ip{p_T \bmat{P \star \Theta^\dagger \\ I}\tilde{w}}{p_T J_{\mbf{n}_z,\mbf{n}_w}\bmat{P \star \Theta^\dagger \\ I} \tilde{w}}_{\mbf L_{[a,b]}} \leq -\epsilon_p \|p_T\Gamma^{-1}\tilde{w}\|_{\mbf L_{[a,b]}}^2
 \end{equation}
 Since $\Gamma$ is causal and bounded,
 $\|p_T\tilde{w}\|_{\mbf L_{[a,b]}}\leq
-\|\Gamma\|_{\mbf{L}_{[a,b]}}\|p_T\Gamma^{-1}\tilde{w}\|_{\mbf L_{[a,b]}}$, and therefore
+\|\Gamma\|_{\mcl{L}(\mbf{L}_{[a,b]})}\|p_T\Gamma^{-1}\tilde{w}\|_{\mbf L_{[a,b]}}$, and therefore
 \begin{equation}
-    \|p_T(P\star\hat{\Psi}^\dagger) \tilde{w}\|_{\mbf L_{[a,b]}}^2\leq \left(1 - \frac{\epsilon_p}{\|\Gamma\|_{\mbf{L}_{[a,b]}}^2}\right) \|p_T\tilde{w}\|_{\mbf L_{[a,b]}}^2.
+    \|p_T(P\star\Theta^\dagger) \tilde{w}\|_{\mbf L_{[a,b]}}^2\leq \left(1 - \frac{\epsilon_p}{\|\Gamma\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2}\right) \|p_T\tilde{w}\|_{\mbf L_{[a,b]}}^2.
 \end{equation}
-Then by Theorem~\ref{thm:dual-l2-gain}, and $(P\star\hat{\Psi}^\dagger)^\top = P^\top\star\mbf{D}(\hat{\Psi})^\dagger$, we find
+Then by Theorem~\ref{thm:dual-l2-gain}, and $(P\star\Theta^\dagger)^\top = P^\top\star(\Theta^\dagger)^\top$, we find
 \begin{equation}
-\|p_T(P^\top\star\mbf{D}(\hat{\Psi})^\dagger)\underline{\tilde{w}}\|_{\mbf L_{[a,b]}}^2 \leq \left(1-\frac{\epsilon_p}{\|\Gamma\|_{\mbf{L}_{[a,b]}}^2}\right)\|p_T\underline{\tilde{w}}\|_{\mbf L_{[a,b]}}^2
+\|p_T(P^\top\star(\Theta^\dagger)^\top)\underline{\tilde{w}}\|_{\mbf L_{[a,b]}}^2 \leq \left(1-\frac{\epsilon_p}{\|\Gamma\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2}\right)\|p_T\underline{\tilde{w}}\|_{\mbf L_{[a,b]}}^2
 \end{equation}
 recovering the dual statement of the theorem
 \begin{equation}
-    \ip{p_T\bmat{P^\top\star\mbf{D}(\hat{\Psi})^\dagger \\ I}\underline{\tilde{w}}}{p_T J_{\mbf{n}_w,\mbf{n}_z} \bmat{P^\top\star\mbf{D}(\hat{\Psi})^\dagger \\ I} \underline{\tilde{w}}}_{\mbf L_{[a,b]}} \leq -\frac{\epsilon_p}{\|\Gamma\|_{\mbf{L}_{[a,b]}}^2} \|p_T\underline{\tilde{w}}\|_{\mbf L_{[a,b]}}^2
+    \ip{p_T\bmat{P^\top\star(\Theta^\dagger)^\top\\ I}\underline{\tilde{w}}}{p_T J_{\mbf{n}_w,\mbf{n}_z} \bmat{P^\top\star(\Theta^\dagger)^\top \\ I} \underline{\tilde{w}}}_{\mbf L_{[a,b]}} \leq -\frac{\epsilon_p}{\|\Gamma\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2} \|p_T\underline{\tilde{w}}\|_{\mbf L_{[a,b]}}^2
 \end{equation}
 then $\underline{\tilde{w}} = \Gamma_d\underline{w}$, $\Gamma_d^{-1}\underline{\tilde{w}} = \underline{w}$ gives
 \begin{equation}
-    \ip{p_T\bmat{P^\top\star\mbf{D}(\hat{\Psi})^\dagger \\ I}\Gamma_d\underline{w}}{p_T J_{\mbf{n}_w,\mbf{n}_z} \bmat{P^\top\star\mbf{D}(\hat{\Psi})^\dagger \\ I} \Gamma_d\underline{w}}_{\mbf L_{[a,b]}} \leq -\frac{\epsilon_p}{\|\Gamma\|_{\mbf{L}_{[a,b]}}^2} \|p_T\Gamma_d\underline{w}\|_{\mbf L_{[a,b]}}^2
+    \ip{p_T\bmat{P^\top\star(\Theta^\dagger)^\top \\ I}\Gamma_d\underline{w}}{p_T J_{\mbf{n}_w,\mbf{n}_z} \bmat{P^\top\star(\Theta^\dagger)^\top \\ I} \Gamma_d\underline{w}}_{\mbf L_{[a,b]}} \leq -\frac{\epsilon_p}{\|\Gamma\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2} \|p_T\Gamma_d\underline{w}\|_{\mbf L_{[a,b]}}^2
 \end{equation}
 Since $\Gamma_d^{-1}$ is causal and bounded,
 $\|p_T\underline{w}\|_{\mbf L_{[a,b]}}\leq
 \|\Gamma_d^{-1}\|_{\mbf{L}_{[a,b]}}\|p_T\Gamma_d\underline{w}\|_{\mbf L_{[a,b]}}$, and this gives the dual statement
 \begin{equation}
-    \ip{p_T\mbf{D}(\hat{\Psi})\bmat{P^\top \\ I}\underline{w}}{p_T J_{\mbf{n}_w,\mbf{n}_z} \mbf{D}(\hat{\Psi})\bmat{P^\top \\ I} \underline{w}}_{\mbf L_{[a,b]}} \leq -\epsilon_d \|p_T\underline{w}\|_{\mbf L_{[a,b]}}^2
+    \ip{p_T\mbf{D}(\Theta)\bmat{P^\top \\ I}\underline{w}}{p_T J_{\mbf{n}_w,\mbf{n}_z} \mbf{D}(\Theta)\bmat{P^\top \\ I} \underline{w}}_{\mbf L_{[a,b]}} \leq -\epsilon_d \|p_T\underline{w}\|_{\mbf L_{[a,b]}}^2
 \end{equation}
 where
 \begin{equation}
-    \epsilon_d:=\frac{\epsilon_p}{\|\Gamma\|_{\mbf{L}_{[a,b]}}^2\|\Gamma_d^{-1}\|_{\mbf{L}_{[a,b]}}^2}.
+    \epsilon_d:=\frac{\epsilon_p}{\|\Gamma\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2\|\Gamma_d^{-1}\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2} > 0.
 \end{equation}
 Conversely, starting from the dual statement and reversing the same argument
 gives the corresponding primal margin
 \begin{equation}
-    \epsilon_p:=\frac{\epsilon_d}{\|\Gamma_d\|_{\mbf{L}_{[a,b]}}^2\|\Gamma^{-1}\|_{\mbf{L}_{[a,b]}}^2}.
+    \epsilon_p:=\frac{\epsilon_d}{\|\Gamma_d\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2\|\Gamma^{-1}\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2} > 0.
 \end{equation}
-Thus, in either direction, the common margin in the theorem is obtained by
-taking
-\begin{equation}
-    \epsilon=\min\{\epsilon_p,\epsilon_d\}.
+
+\subsection{Proof of Theorem~\ref{thm:dual-KYP}}\label{proof:dual-KYP}
+If the primal LPI holds, the standard KYP integration gives the hard IQC
+\begin{equation*}
+\ip{p_T\Psi_p\bmat{z\\w}}
+{p_T\mcl{M}_{\mcl{V}_p}\Psi_p\bmat{z\\w}}_{\mbf L_{[a,b]}}
+\leq -\epsilon_p\|p_Tw\|^2_{\mbf L_{[a,b]}}.
+\end{equation*}
+Theorem~\ref{thm:robust-stability-performance} then gives the result. It
+remains to consider the dual LPI. Define
+$V(\underline{\mbf{x}})=\langle\mcl{T}_d\underline{\mbf{x}},
+\mcl{P}\mcl{T}_d\underline{\mbf{x}}\rangle_{\mbf{L}_{[a,b]}}\geq0$.
+For any $\underline{w}\in\mbf{L}_{e,[a,b]}^{\mbf{n}_z}$, suppose
+$\tilde{\underline{z}}$ satisfies~\eqref{eqn:dual-kyp-sys} for some
+$\underline{\mbf{x}}\in\mbf{L}_{e,[a,b]}^{\mbf{n}_x}$. By~\eqref{eqn:dual-kyp-sys}, we have
+\begin{equation}\label{eqn:dual-kyp-dissipation}
+    \ip{\bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}}{\bmat{\mcl{T}_d^*\mcl{P}\mcl{A}_d + (*)& \mcl{T}_d^*\mcl{P}\mcl{B}_d\\
+            \mcl{B}_d^*\mcl{P}\mcl{T}_d & \epsilon_d I}\bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}}     
+    + \ip{\tilde{\underline{z}}(t)}
+    {\mcl{V}_d \tilde{\underline{z}}(t)} \leq 0.
 \end{equation}
+After integrating in time, we obtain
+\begin{equation*}
+    \epsilon_d\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}}
+    + \ip{p_T \tilde{\underline{z}}}{p_T\mcl{V}_d \tilde{\underline{z}}}_{\mbf L_{[a,b]}}
+    \leq -V(\underline{\mbf{x}}(T))+V(\underline{\mbf{x}}(0)).
+\end{equation*}
+Since $\underline{\mbf{x}}(0)=0$ and $V(\underline{\mbf{x}}(T))\geq0$,
+\begin{equation*}
+\ip{p_T\Psi_d\bmat{\underline{z}\\\underline{w}}}
+{p_T\mcl{M}_{\mcl{V}_d}\Psi_d\bmat{\underline{z}\\\underline{w}}}_{\mbf L_{[a,b]}}
+\leq -\epsilon_d\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}}.
+\end{equation*}
+Using the $(\mbf{D}(\Theta),J_{\mbf{n}_w,\mbf{n}_z})$ factorization, this is
+\begin{equation*}
+\ip{p_T\mbf{D}(\Theta)\bmat{\underline{z}\\\underline{w}}}
+{p_TJ_{\mbf{n}_w,\mbf{n}_z}\mbf{D}(\Theta)\bmat{\underline{z}\\\underline{w}}}_{\mbf L_{[a,b]}}
+\leq -\epsilon_d\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}}.
+\end{equation*}
+By Theorem~\ref{thm:primal-dual-iqc-feasibility}, there exists
+$\epsilon_p>0$ such that
+\begin{equation*}
+\ip{p_T\Theta\bmat{z\\w}}
+{p_TJ_{\mbf{n}_z,\mbf{n}_w}\Theta\bmat{z\\w}}_{\mbf L_{[a,b]}}
+\leq -\epsilon_p\|p_Tw\|^2_{\mbf L_{[a,b]}}.
+\end{equation*}
+Using the $(\Theta,J_{\mbf{n}_z,\mbf{n}_w})$ factorization gives the primal hard
+IQC, and Theorem~\ref{thm:robust-stability-performance} gives robust stability
+and robust performance.

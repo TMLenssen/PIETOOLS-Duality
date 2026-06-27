@@ -3,7 +3,7 @@
 \newcommand{\PrimalFilteredSymbols}{%
     \def\fdDelta{\Delta}%
     \def\fdPlant{G}%
-    \def\fdFilter{\hat{\Psi}}%
+    \def\fdFilter{\Theta}%
     \def\fdZ{z}%
     \def\fdTZ{\tilde{z}}%
     \def\fdTW{\tilde{w}}%
@@ -12,14 +12,14 @@
 \newcommand{\DualFilteredSymbols}{%
     \def\fdDelta{\Delta_d}%
     \def\fdPlant{G^\top}%
-    \def\fdFilter{\mbf{D}(\hat{\Psi})}%
+    \def\fdFilter{\mbf{D}(\Theta)}%
     \def\fdZ{\underline{z}}%
     \def\fdTZ{\tilde{\underline{z}}}%
     \def\fdTW{\tilde{\underline{w}}}%
     \def\fdW{\underline{w}}%
 }
 \newcommand{\PrimalPotapovSymbols}{%
-    \def\pgFilter{\hat{\Psi}^{\dagger}}%
+    \def\pgFilter{\Theta^{\dagger}}%
     \def\pgPlant{G}%
     \def\pgTW{\tilde{w}}%
     \def\pgTZ{\tilde{z}}%
@@ -27,7 +27,7 @@
     \def\pgW{w}%
 }
 \newcommand{\DualPotapovSymbols}{%
-    \def\pgFilter{(\hat{\Psi}^{\dagger})^\top}%
+    \def\pgFilter{(\Theta^{\dagger})^\top}%
     \def\pgPlant{G^\top}%
     \def\pgTW{\tilde{\underline{w}}}%
     \def\pgTZ{\tilde{\underline{z}}}%
@@ -128,7 +128,7 @@
 \draw[equiv] (DualFilteredBox.east) -- node[midway, below, yshift=-0.16cm]
     {(Lemma~\ref{lem:potapov-ginzburg-equivalence})} (DualPotapovBox.west);
 \draw[equiv] (PrimalFilteredBox.south) -- node[midway, right, xshift=0.16cm]
-    {(Theorem~\ref{thm:filtered-dual-l2-gain})} (DualFilteredBox.north);
+    {(Theorem~\ref{thm:primal-dual-iqc-feasibility})} (DualFilteredBox.north);
 \draw[equiv] (PrimalPotapovBox.south) -- node[midway, right, xshift=0.16cm]
     {(Theorem~\ref{thm:dual-l2-gain})} (DualPotapovBox.north);
 \end{tikzpicture}

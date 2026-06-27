@@ -39,40 +39,40 @@ functions $u : [0,\infty) \to \mathbf{H}$ such that
 \quad \forall\, T \ge 0.
 \] We use $\mathbf{L}_{e,[a,b]}$ and $\mathbf{L}_{[a,b]}$ to denote
 $\mathbf{L}_{e,\mathbf{H}}$ and $\mathbf{L}_{\mathbf{H}}$ with $\mathbf{H} = \R
-L_2[a,b]$. For any Hilbert space $\mathbf{H}$, the truncation operator $p_\tau :
+L_2[a,b]$. For any Hilbert space $\mathbf{H}$, the truncation operator $p_T :
 \mathbf{L}_{e,\mathbf{H}} \to \mathbf{L}_{e,\mathbf{H}}$ is defined for
 $\mathbf{y} \in \mathbf{L}_{e,\mathbf{H}}$ by
 \begin{equation*}
-(p_\tau \mathbf{y})(t) =
+(p_T \mathbf{y})(t) =
 \begin{cases}
-\mathbf{y}(t), & 0 \le t \le \tau, \\
+\mathbf{y}(t), & 0 \le t \le T, \\
 0,             & \text{otherwise}.
 \end{cases}
 \end{equation*}
-such that $(p_\tau \mbf{y})(t) \in \mbf{L}_\mathbf{H}$ for all $\tau \ge 0$.
+such that $(p_T \mbf{y})(t) \in \mbf{L}_\mathbf{H}$ for all $T \ge 0$.
 \begin{definition}
-Let $\mathbf{H}$ and $\mathbf{G}$ be Hilbert spaces. For all $\tau\geq0$, an
+Let $\mathbf{H}$ and $\mathbf{G}$ be Hilbert spaces. For all $T\geq0$, an
 operator $G : \mathbf{L}_{\mathbf{H}} \to \mathbf{L}_{\mathbf{G}}$ is:
 \begin{itemize}
-\item \textbf{Causal} if $p_\tau G = p_\tau G p_\tau$.
+\item \textbf{Causal} if $p_T G = p_T G p_T$.
 \item \textbf{Bounded on $\mathbf{L}_{\mathbf{H}}$} if $\|G
 \mathbf{v}\|_{\mathbf{L}_{\mathbf{G}}} \le C
 \|\mathbf{v}\|_{\mathbf{L}_{\mathbf{H}}}$ for some $C \ge 0$ and all $\mathbf{v}
 \in \mathbf{L}_{\mathbf{H}}$.
-\item \textbf{Bounded on $\mathbf{L}_{e,\mathbf{H}}$} if $\|p_\tau G
+\item \textbf{Bounded on $\mathbf{L}_{e,\mathbf{H}}$} if $\|p_T G
 \mathbf{v}\|_{\mathbf{L}_{\mathbf{G}}} \le C
-\|p_\tau\mathbf{v}\|_{\mathbf{L}_{\mathbf{H}}}$ for some $C \ge 0$ and all
+\|p_T\mathbf{v}\|_{\mathbf{L}_{\mathbf{H}}}$ for some $C \ge 0$ and all
 $\mathbf{v} \in \mathbf{L}_{e,\mathbf{H}}$.
 % \item \textbf{Incrementally $\mathbf{L}_{e,\mathbf{H}}$-bounded} if for some
 % $C \geq 0$,
 % \[
-% \|p_\tau (G \mathbf{v} - G \mathbf{u})\|_{\mathbf{L}_{\mathbf{G}}}
-% \le C \|p_\tau (\mathbf{v} - \mathbf{u})\|_{\mathbf{L}_{\mathbf{H}}}
+% \|p_T (G \mathbf{v} - G \mathbf{u})\|_{\mathbf{L}_{\mathbf{G}}}
+% \le C \|p_T (\mathbf{v} - \mathbf{u})\|_{\mathbf{L}_{\mathbf{H}}}
 % \]
 % for all $\mathbf{v}, \mathbf{u} \in \mathbf{L}_{e,\mathbf{H}}$.
 \end{itemize}
 \end{definition}
-Finally, for a given $\mcl K \in \mcl L(\RL^\mbf{n}, \RL^\mbf{m})$, we define
+Finally, we will note some operations. For a given $\mcl K \in \mcl L(\RL^\mbf{n}, \RL^\mbf{m})$, we define
 the operator $\mcl M_{\mcl K} : \mathbf{L}_{e,[a,b]}^\mbf{n} \to
 \mathbf{L}_{e,[a,b]}^\mbf{m}$ to compactly represent a multiplication operator.
 For $\mathbf{u} = \bmat{u_1 & \cdots & u_N}^\top$ with $\mathbf{u} \in \RL$, its
@@ -87,6 +87,11 @@ action at time $t$ is given by the block structure of $\mcl K_{ij}$:
 }
 \bmat{\mbf{u}_1 \\ \vdots \\ \mbf{u}_n}(t).
 \end{equation}
+Moreover, for a given $\mcl{A}\in \mcl L(\RL^{\mbf{n}_1}, \RL^{\mbf{m}_1})$ and $\mcl{B}\in \mcl L(\RL^{\mbf{n}_2}, \RL^{\mbf{m}_2})$, let the direct sum
+be defined by
+\begin{equation*}
+    \mcl{A}\oplus\mcl{B} = \bmat{\mcl{A} & 0 \\ 0 & \mcl{B}}.
+\end{equation*}
 \subsection{Partial Integral Equations (PIEs)}
 Partial Integral operators, also known as PI operators, are a class of bounded
 linear integral operators that are defined jointly on a vector space and Hilbert
@@ -136,7 +141,7 @@ compatible dimensions,
 and signals $w(t)\in \RL^{\mbf{n}_w}[a,b]$, we say
 $\mbf{x}(t)\in\RL[a,b]^{\mbf{n}_x}$ and $z(t)\in \RL^{\mbf{n}_z}[a,b]$
 satisfy the PIE with initial condition $\mbf{x}_0$ if
-\begin{equation}
+\begin{equation}\label{eqn:ss_primal}
 \bmat{\partial_t(\mcl{T}\mbf{x})(t)\\ z(t)} = \bmat{\mcl{A} & \mcl{B} \\
 \mcl{C} & \mcl{D}}\bmat{\mbf{x}(t) \\ w(t)}
 \end{equation}
@@ -155,7 +160,8 @@ satisfy the dual PIE, $G^\top$ with initial condition $\underline{\mbf{x}}_0$ if
 for all $t\geq0$ and $\mcl{T}^*\underline{\mbf{x}}(0) =
 \mcl{T}^*\underline{\mbf{x}}_0$.
 \end{definition}
-\begin{definition}[Generalization of $RH_\infty$]\label{def:pie-rhinf}
+
+\begin{definition}[Bounded Internally Stable PIE]\label{def:pie-rhinf}
 Let $G$ be a PIE system as in Definition~\ref{def:pie-system}. We say $G$ is internally
 stable and bounded with decay rate
 $\alpha>0$, $M>0$, and $L_2$-gain $\gamma>0$ if
@@ -173,19 +179,20 @@ M\|\mcl{T}\mbf{x}_0\|_{\mbf{L}_{[a,b]}}e^{-\alpha t},
 \item With zero initial condition $\mbf{x}(0)=0$, then for
 any input $w$ and output $z$,
 \[
-\|p_\tau z\|_{\mbf{L}_{[a,b]}}
+\|p_T z\|_{\mbf{L}_{[a,b]}}
 \leq
-\gamma\|p_\tau w\|_{\mbf{L}_{[a,b]}},
+\gamma\|p_T w\|_{\mbf{L}_{[a,b]}},
 \quad
-\forall\,\tau\geq0,\quad
+\forall\,T\geq0,\quad
 \forall\,w\in\mbf{L}_{e,[a,b]}^{\mbf{n}_w}.
 \]
 \end{itemize}
 Then $G\in\Hinf$. Clearly, $RH_\infty\subset\Hinf$
-\cite{TsaiGu2014RobustOptimalControl}.
-Also $G^\top\in\Hinf$ with the same decay rate, $L_2$-gain, and $M$
+\cite{zhou1996robust}.
+Also $G^\top\in\Hinf$ with the same decay rate, $\mbf{L}_{[a,b]}$-gain, and $M$
 \cite{shivaknew}.
 \end{definition}
+
 \begin{definition}[Linear Fractional Transformation (LFT)]\label{def:lft}
 Let $G$ have two input-output pairs, and let $H$ be a
 compatible causal system or operator with either two ports or one
