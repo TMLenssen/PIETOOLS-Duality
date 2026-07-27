@@ -18,11 +18,17 @@ the Banach space of bounded linear operators from $X$ to $Y$ with induced norm
 functions in \textbf{bold} (e.g., $\mathbf{x}$, indicating $\mathbf{x} \in \RL$)
 and operators in calligraphic font (e.g., $\mcl P \in \mcl L(\RL)$).
 For a Hilbert space $X$ and operator $\mcl A \in \mcl L(X)$, the adjoint $\mcl
-A^*$ is defined by
+ A^*$ is defined by
 \[
 \ip{\mathbf{x}}{\mcl A \mathbf{y}}_X = \ip{\mcl A^* \mathbf{x}}{\mathbf{y}}_X,
 \quad \forall\, \mathbf{x},\mathbf{y} \in X.
-\] The space $L_2^n[0,\infty)$ denotes $\R^n$-valued square-integrable signals
+\]
+For any matrix or operator $A$ with a specified $2\times2$ block partition,
+$(A)_{ij}$ denotes its $(i,j)$ block for $i,j\in\{1,2\}$. When the blocks of a
+named object are used repeatedly, we abbreviate $A_{ij}:=(A)_{ij}$. Thus, these
+subscripts refer to blocks in the specified partition rather than to scalar
+entries.
+The space $L_2^n[0,\infty)$ denotes $\R^n$-valued square-integrable signals
 defined on the temporal domain $[0,\infty)$, so that $x(t) \in \R^n$. Similarly,
 $\RL^n[0,\infty)$ denotes $\RL$-valued square-integrable temporal signals. For
 suitably differentiable $\mathbf{x} \in \RL^n[0,\infty)$, we write
@@ -32,16 +38,16 @@ square-integrable functions $u : [0,\infty) \to \mathbf{H}$ with inner product
 \[
 \ip{\mathbf{u}}{\mathbf{v}}_{\mathbf{L}_{\mathbf{H}}}
 = \int_0^\infty \ip{\mathbf{u}(t)}{\mathbf{v}(t)}_{\mathbf{H}}\, dt.
-\] We define the extended space $\mathbf{L}_{e,\mathbf{H}}$ to consist of
+\] We define the extended space $\mathbf{L}_{\mathrm{e},\mathbf{H}}$ to consist of
 functions $u : [0,\infty) \to \mathbf{H}$ such that
 \[
 \int_0^T \|\mathbf{u}(t)\|_{\mathbf{H}}^2\, dt < \infty
 \quad \forall\, T \ge 0.
-\] We use $\mathbf{L}_{e,[a,b]}$ and $\mathbf{L}_{[a,b]}$ to denote
-$\mathbf{L}_{e,\mathbf{H}}$ and $\mathbf{L}_{\mathbf{H}}$ with $\mathbf{H} = \R
+\] We use $\mathbf{L}_{\mathrm{e},[a,b]}$ and $\mathbf{L}_{[a,b]}$ to denote
+$\mathbf{L}_{\mathrm{e},\mathbf{H}}$ and $\mathbf{L}_{\mathbf{H}}$ with $\mathbf{H} = \R
 L_2[a,b]$. For any Hilbert space $\mathbf{H}$, the truncation operator $p_T :
-\mathbf{L}_{e,\mathbf{H}} \to \mathbf{L}_{e,\mathbf{H}}$ is defined for
-$\mathbf{y} \in \mathbf{L}_{e,\mathbf{H}}$ by
+\mathbf{L}_{\mathrm{e},\mathbf{H}} \to \mathbf{L}_{\mathrm{e},\mathbf{H}}$ is defined for
+$\mathbf{y} \in \mathbf{L}_{\mathrm{e},\mathbf{H}}$ by
 \begin{equation*}
 (p_T \mathbf{y})(t) =
 \begin{cases}
@@ -59,22 +65,22 @@ operator $G : \mathbf{L}_{\mathbf{H}} \to \mathbf{L}_{\mathbf{G}}$ is:
 \mathbf{v}\|_{\mathbf{L}_{\mathbf{G}}} \le C
 \|\mathbf{v}\|_{\mathbf{L}_{\mathbf{H}}}$ for some $C \ge 0$ and all $\mathbf{v}
 \in \mathbf{L}_{\mathbf{H}}$.
-\item \textbf{Bounded on $\mathbf{L}_{e,\mathbf{H}}$} if $\|p_T G
+\item \textbf{Bounded on $\mathbf{L}_{\mathrm{e},\mathbf{H}}$} if $\|p_T G
 \mathbf{v}\|_{\mathbf{L}_{\mathbf{G}}} \le C
 \|p_T\mathbf{v}\|_{\mathbf{L}_{\mathbf{H}}}$ for some $C \ge 0$ and all
-$\mathbf{v} \in \mathbf{L}_{e,\mathbf{H}}$.
-% \item \textbf{Incrementally $\mathbf{L}_{e,\mathbf{H}}$-bounded} if for some
+$\mathbf{v} \in \mathbf{L}_{\mathrm{e},\mathbf{H}}$.
+% \item \textbf{Incrementally $\mathbf{L}_{\mathrm{e},\mathbf{H}}$-bounded} if for some
 % $C \geq 0$,
 % \[
 % \|p_T (G \mathbf{v} - G \mathbf{u})\|_{\mathbf{L}_{\mathbf{G}}}
 % \le C \|p_T (\mathbf{v} - \mathbf{u})\|_{\mathbf{L}_{\mathbf{H}}}
 % \]
-% for all $\mathbf{v}, \mathbf{u} \in \mathbf{L}_{e,\mathbf{H}}$.
+% for all $\mathbf{v}, \mathbf{u} \in \mathbf{L}_{\mathrm{e},\mathbf{H}}$.
 \end{itemize}
 \end{definition}
 Finally, we will note some operations. For a given $\mcl K \in \mcl L(\RL^\mbf{n}, \RL^\mbf{m})$, we define
-the operator $\mcl M_{\mcl K} : \mathbf{L}_{e,[a,b]}^\mbf{n} \to
-\mathbf{L}_{e,[a,b]}^\mbf{m}$ to compactly represent a multiplication operator.
+the operator $\mcl M_{\mcl K} : \mathbf{L}_{\mathrm{e},[a,b]}^\mbf{n} \to
+\mathbf{L}_{\mathrm{e},[a,b]}^\mbf{m}$ to compactly represent a multiplication operator.
 For $\mathbf{u} = \bmat{u_1 & \cdots & u_N}^\top$ with $\mathbf{u} \in \RL$, its
 action at time $t$ is given by the block structure of $\mcl K_{ij}$:
 \begin{equation}
@@ -87,11 +93,7 @@ action at time $t$ is given by the block structure of $\mcl K_{ij}$:
 }
 \bmat{\mbf{u}_1 \\ \vdots \\ \mbf{u}_n}(t).
 \end{equation}
-Moreover, for a given $\mcl{A}\in \mcl L(\RL^{\mbf{n}_1}, \RL^{\mbf{m}_1})$ and $\mcl{B}\in \mcl L(\RL^{\mbf{n}_2}, \RL^{\mbf{m}_2})$, let the direct sum
-be defined by
-\begin{equation*}
-    \mcl{A}\oplus\mcl{B} = \bmat{\mcl{A} & 0 \\ 0 & \mcl{B}}.
-\end{equation*}
+
 \subsection{Partial Integral Equations (PIEs)}
 Partial Integral operators, also known as PI operators, are a class of bounded
 linear integral operators that are defined jointly on a vector space and Hilbert
@@ -149,7 +151,7 @@ for all $t\geq0$ and $\mcl{T}\mbf{x}(0) = \mcl{T}\mbf{x}_0$. Additionally, for
 signals $\underline{w}(t)\in\RL[a,b]^{\mbf{n}_z}$
 of compatible dimensions, we say $\underline{\mbf{x}}(t)\in\RL[a,b]^{\mbf{n}_x}$
 and $\underline{z}(t)\in L_2[a,b]^{\mbf{n}_w}$
-satisfy the dual PIE, $G^\top$ with initial condition $\underline{\mbf{x}}_0$ if
+satisfy the dual PIE, $G^\top$, with initial condition $\underline{\mbf{x}}_0$ if
 \begin{equation}
 \bmat{\mcl{T}^*\underline{\dot{\mbf{x}}}(t)\\ \underline{z}(t)}
 =
@@ -184,24 +186,21 @@ any input $w$ and output $z$,
 \gamma\|p_T w\|_{\mbf{L}_{[a,b]}},
 \quad
 \forall\,T\geq0,\quad
-\forall\,w\in\mbf{L}_{e,[a,b]}^{\mbf{n}_w}.
+\forall\,w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}.
 \]
 \end{itemize}
-Then $G\in\Hinf$. Clearly, $RH_\infty\subset\Hinf$
+Then $G\in\Hinf^{\mbf{n}_{z}\times\mbf{n}_{w}}$. Clearly, $RH_\infty\subset\Hinf$
 \cite{zhou1996robust}.
 Also $G^\top\in\Hinf$ with the same decay rate, $\mbf{L}_{[a,b]}$-gain, and $M$
 \cite{shivaknew}.
 \end{definition}
 
 \begin{definition}[Linear Fractional Transformation (LFT)]\label{def:lft}
-Let $G$ have two input-output pairs, and let $H$ be a
-compatible causal system or operator with either two ports or one
-port. Write
+Let $G$ be a causal system or operator with a specified $2\times2$ block
+partition, and let $H$ be compatible with either two ports or one port. Write
 \[
 \bmat{y_{11}\\ y_{12}}
-=
-\bmat{G_{11} & G_{12} \\ G_{21} & G_{22}}
-\bmat{u_{11}\\ u_{12}}.
+=G\bmat{u_{11}\\ u_{12}}.
 \]
 The Redheffer star products
 \cite{https://doi.org/10.1002/sapm1960391269} are the following
@@ -210,9 +209,7 @@ well--posed interconnections.
 \item If $H$ has two ports,
 \[
 \bmat{y_{21}\\ y_{22}}
-=
-\bmat{H_{11} & H_{12} \\ H_{21} & H_{22}}
-\bmat{u_{21}\\ u_{22}},
+=H\bmat{u_{21}\\ u_{22}},
 \]
 then
 \[

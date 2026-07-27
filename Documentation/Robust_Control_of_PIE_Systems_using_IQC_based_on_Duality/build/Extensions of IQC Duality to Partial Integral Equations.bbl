@@ -82,6 +82,12 @@ Raghu Venkataraman and Peter Seiler.
 \newblock {\em International Journal of Robust and Nonlinear Control},
   28(3):953--975, 2018.
 
+\bibitem{7353149}
+Chengzhi Yuan and Fen Wu.
+\newblock Dynamic iqc-based control of uncertain lft systems with time-varying
+  state delay.
+\newblock {\em IEEE Transactions on Cybernetics}, 46(12):3320--3329, 2016.
+
 \bibitem{zhou1996robust}
 Kemin Zhou, John~Comstock Doyle, Keith Glover, et~al.
 \newblock {\em Robust and optimal control}, volume~40.

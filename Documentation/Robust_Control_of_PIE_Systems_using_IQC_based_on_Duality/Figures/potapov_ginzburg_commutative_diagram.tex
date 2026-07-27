@@ -2,7 +2,7 @@
 \centering
 \newcommand{\PrimalFilteredSymbols}{%
     \def\fdDelta{\Delta}%
-    \def\fdPlant{G}%
+    \def\fdPlant{P}%
     \def\fdFilter{\Theta}%
     \def\fdZ{z}%
     \def\fdTZ{\tilde{z}}%
@@ -10,8 +10,8 @@
     \def\fdW{w}%
 }
 \newcommand{\DualFilteredSymbols}{%
-    \def\fdDelta{\Delta_d}%
-    \def\fdPlant{G^\top}%
+    \def\fdDelta{\underline{\Delta}}%
+    \def\fdPlant{P^\top}%
     \def\fdFilter{\mbf{D}(\Theta)}%
     \def\fdZ{\underline{z}}%
     \def\fdTZ{\tilde{\underline{z}}}%
@@ -20,7 +20,7 @@
 }
 \newcommand{\PrimalPotapovSymbols}{%
     \def\pgFilter{\Theta^{\dagger}}%
-    \def\pgPlant{G}%
+    \def\pgPlant{P}%
     \def\pgTW{\tilde{w}}%
     \def\pgTZ{\tilde{z}}%
     \def\pgZ{z}%
@@ -28,7 +28,7 @@
 }
 \newcommand{\DualPotapovSymbols}{%
     \def\pgFilter{(\Theta^{\dagger})^\top}%
-    \def\pgPlant{G^\top}%
+    \def\pgPlant{P^\top}%
     \def\pgTW{\tilde{\underline{w}}}%
     \def\pgTZ{\tilde{\underline{z}}}%
     \def\pgZ{\underline{z}}%
@@ -133,6 +133,6 @@
     {(Theorem~\ref{thm:dual-l2-gain})} (DualPotapovBox.north);
 \end{tikzpicture}
 \caption{Commutative diagram for primal and dual dynamic filtering under the
-Potapov--Ginzburg transform.}
+Potapov--Ginzburg transform. \cite{venkataraman}}
 \label{fig:potapov-ginzburg-commutative-diagram}
 \end{figure*}

@@ -1,40 +1,91 @@
+In this work we assume that the generalized plant $P\in\mcl{G}_2^{\mbf{n}_z\times\mbf{n}_w}$ is a PIE system, that admits a state-space representation.
+This work builds on the duality results in \cite{shivaknew} which shows that the state-feedback controller results in a convex optimization problem.
+We find that this duality result can be extended to the case of dynamic filters, where we want to know the properties of the dual dynamic filter. This is particularly
+usefull when examining the effect of uncertainties on the system when performing state-feedback controller synthesis, when using IQCs. The works from
+Seiler and Venkataraman \cite{6915700,venkataraman} show that, after $J$-spectral factorization, the dual of a dynamic filter can be found using the Potapov-Ginzburg transform.
+This section extends these results to PIE systems, and shows that the dual of a PIE system with a dynamic filter can be found
+using the Potapov-Ginzburg transform, identical to the work from Venkataraman. 
+
+\subsection{Duality under Dynamical Filtering}
+We begin by restating the main theorem from \cite{shivaknew}.
+
 \input{Figures/potapov_ginzburg_commutative_diagram}
 
 \begin{theorem}[Dual $L_2$-gain
 {\cite[Thm.~9]{shivaknew}}]\label{thm:dual-l2-gain}
-For a PIE system with corresponding PI operators $G\{\mcl{T}, \mcl{A}, \mcl{B},
+For a PIE system with corresponding PI operators $P\{\mcl{T}, \mcl{A}, \mcl{B},
 \mcl{C}, \mcl{D}\}\in\Hinf$, the following statements are equivalent.
 \begin{enumerate}
-\item For any $w\in\mbf{L}_{e,[a,b]}^{\mbf{n}_w}$, and $\mbf{x}(0)=0$, $G$
+\item For any $w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}$, and $\mbf{x}(0)=0$, $P$
 satisfies $\|p_T {z}\| \leq \|p_T {w}\|$.
-\item For any $\underline{w}\in\mbf{L}_{e,[a,b]}^{\mbf{n}_z}$, and
-$\underline{\mbf{x}}(0)=0$, $G^\top$ satisfies $\|p_T \underline{z}\| \leq
+\item For any $\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_z}$, and
+$\underline{\mbf{x}}(0)=0$, $P^\top$ satisfies $\|p_T \underline{z}\| \leq
 \|p_T \underline{w}\|$.
 \end{enumerate}
 \end{theorem}
+Relating an IQC to this gain duality requires two transformations. First,
+write $\bmat{\tilde z\\\tilde w}:=\Theta\bmat{z\\w}$. A $J$-spectral
+factorization gives, for every $T\geq0$,
+\begin{equation*}
+\begin{aligned}
+&\ip{p_T\Psi\bmat{z\\w}}
+{p_T\mcl M_{\mcl V}\Psi\bmat{z\\w}}_{\mbf L_{[a,b]}}\\
+&\quad=
+\|p_T\tilde z\|_{\mbf L_{[a,b]}}^2
+-\|p_T\tilde w\|_{\mbf L_{[a,b]}}^2.
+\end{aligned}
+\end{equation*}
+Thus the IQC quadratic form becomes the difference between the filtered
+output and input signals. Second, when $z=Pw$, the Potapov--Ginzburg
+transform produces an invertible change of coordinates $\Gamma$ such that
+\begin{equation*}
+\Theta\bmat{P\\I}w
+=
+\bmat{P\star\Theta^\dagger\\I}\Gamma w.
+\end{equation*}
+The lower block gives $\tilde w=\Gamma w$, while the upper block gives
+$\tilde z=(P\star\Theta^\dagger)\tilde w$. Consequently, the IQC inequality
+becomes an $L_2$-gain inequality for $P\star\Theta^\dagger$, to which
+Theorem~\ref{thm:dual-l2-gain} applies.
 
-
-\begin{definition}[Primal and Dual Dynamic Filters]\label{def:dynamic-filters}
-Let $\Theta=\bmat{\Theta_z & \Theta_{zw}\\ \Theta_{wz} & \Theta_w}$ satisfy
-$\Theta,\Theta^{-1}\in\Hinf$. Let $\hat{\mcl{J}}:=\bmat{0&I\\ -I&0}$.
-The dual filter associated with $\Theta$ is defined by the
-dual operation
+\begin{definition}[$J$-Spectral Factorization and Dual Filter
+{\cite{venkataraman}}]
+\label{def:dynamic-filters}\label{def:factorization}
+Let $(\Psi,\mcl M_{\mcl V})$ be a hard IQC, let
+\begin{equation*}
+J_{\mbf n_z,\mbf n_w}:=
+\bmat{I_{\mbf n_z}&0\\0&-I_{\mbf n_w}},
+\end{equation*}
+and let $\Theta,\Theta^{-1}\in\Hinf$. The pair
+$(\Theta,J_{\mbf n_z,\mbf n_w})$ is a $J$-spectral factorization of
+$(\Psi,\mcl M_{\mcl V})$ if,
+\begin{equation}\label{eq:j-spectral-factorization}
+\begin{aligned}
+&
+\ip{p_T\Psi\bmat{z\\w}}
+{p_T\mcl M_{\mcl V}\Psi\bmat{z\\w}}_{\mbf L_{[a,b]}}
+\\[-1mm]
+&\quad=
+\ip{p_T\Theta\bmat{z\\w}}
+{p_TJ_{\mbf n_z,\mbf n_w}\Theta\bmat{z\\w}}_{\mbf L_{[a,b]}}.
+\end{aligned}
+\end{equation}
+Define the matrix
+$\hat{J}:=\bmat{0&I\\-I&0}$. The dual filter associated with $\Theta$ is
+defined by
 \begin{equation}\label{eq:dual-filter-operation}
 \mbf{D}(\Theta)
 :=
-\left(\hat{\mcl{J}}^*\Theta^\top\hat{\mcl{J}}\right)^{-1}
-=
-\bmat{\Theta_w^\top & -\Theta_{zw}^\top\\
--\Theta_{wz}^\top & \Theta_z^\top}^{-1}.
+\left(\hat{J}^*\Theta^\top\hat{J}\right)^{-1}.
 \end{equation}
-Note $\mbf{D}(\Theta)\in\Hinf$. Since $\hat{\mcl{J}}^*=\hat{\mcl{J}}^{-1}$,
-$\hat{\mcl{J}}^*=-\hat{\mcl{J}}$, $(\Theta^\top)^\top=\Theta$, and
-$(\Theta^{-1})^{-1}=\Theta$, this operation is an involution:
-\begin{equation}\label{eq:dual-filter-involution}
-\mbf{D}(\mbf{D}(\Theta))=\Theta.
-\end{equation}
-The filtered primal and dual systems are obtained
-from
+Note $\mbf{D}(\Theta)\in\Hinf$.
+
+\end{definition}
+Finding a $J$--spectral factorization is the first step in applying the duality theory. For the construction of a $J$-spectral factorization, we partition
+\begin{equation*}
+\Theta=\bmat{\Theta_z & \Theta_{zw}\\ \Theta_{wz} & \Theta_w}.
+\end{equation*}
+The associated primal and dual filtered signals are
 \begin{equation}\label{eq:filtered-primal-signals}
 \Theta\bmat{z(t) \\ w(t)}
 =
@@ -43,9 +94,7 @@ from
 =
 \bmat{\tilde{\underline{z}}(t) \\ \tilde{\underline{w}}(t)}.
 \end{equation}
-\end{definition}
-
-The filter $\Theta$ admits the state-space realization
+The $J$-spectral factorization for the primal IQC leads to the state-space realization
 \begin{equation}\label{eq:primal-filter-realization}
 \bmat{\mcl{T}_{\Theta}\dot{\mbf{x}}_{\Theta}(t)\\ \tilde{z}(t) \\ \tilde{w}(t)}
 =
@@ -55,26 +104,34 @@ The filter $\Theta$ admits the state-space realization
 \bmat{\mbf{x}_{\Theta}(t) \\ z(t) \\ w(t)},
 \end{equation}
 where the entries are PI operators of appropriate dimension.
-Adopted from \cite{venkataraman}
+The second step is the required graph rearrangement, given by the Potapov--Ginzburg transform. We use the following
+construction from \cite{venkataraman}.
+
 \begin{definition}(Potapov--Ginzburg Transform)\label{def:potapov-ginzburg-transform}
-Given $\Theta$ as in Definition~\ref{def:dynamic-filters}, the Potapov--Ginzburg transform denoted by $\Theta^\dagger$ is defined by
+Given $\Theta:\bmat{z\\w} \to \bmat{\tilde{z}\\\tilde{w}}$ as in Definition~\ref{def:dynamic-filters}, the Potapov--Ginzburg transform denoted
+by $\Theta^\dagger:\bmat{\tilde{w}\\z} \to \bmat{\tilde{z}\\w}$ is defined by
 \begin{equation}\label{eq:potapov-ginzburg-transform}
 \Theta^\dagger=\bmat{\Theta_{zw}\Theta_w^{-1} & \Theta_z-\Theta_{zw}\Theta_w^{-1}\Theta_{wz}\\ \Theta_w^{-1} & -\Theta_w^{-1}\Theta_{wz}},
 \end{equation}
 \end{definition}
+The transform identifies the filtered graph of $P$ with the graph of
+$P\star\Theta^\dagger$, under an invertible change of coordinates. The next
+lemma establishes this relation for both the primal and dual
+interconnections.
 
 \begin{lemma} (Potapov--Ginzburg Transform Equivalence)\label{lem:potapov-ginzburg-equivalence}
-Let $\Theta, \mbf{D}(\Theta)\in \Hinf$ as in Definition~\ref{def:dynamic-filters}. Moreover, let $G$ and $G^\top$ be well-posed PIE systems such that
-\begin{equation*}
-\bmat{G\star\Theta^\dagger \\ I}\in\Hinf,
+Let $\Theta, \mbf{D}(\Theta)\in \Hinf$ as in Definition~\ref{def:dynamic-filters}. Moreover, let $(P\star\Theta^\dagger)\in\mcl{G}_2$ 
+and $(P^\top\star(\Theta^\dagger)^\top)\in\mcl{G}_2$ be well-posed PIE systems, such that
+\[
+(\mcl{D}_{\Theta}^{wz} \mcl{D} + \mcl{D}_{\Theta}^w)^{-1},
 \qquad
-\bmat{G^\top\star(\Theta^\dagger)^\top \\ I}\in\Hinf,
-\end{equation*}
-and $(\mcl{D}_{\Theta}^{wz} \mcl{D} + \mcl{D}_{\Theta}^w)^{-1}$ closed under inversion. Then, there invertible 
-bounded $\Gamma\in\Pi_4$ on the primal side and $\Gamma_d\in\Pi_4$ on the dual side such that
+(\mcl{D}_{\Theta}^z-\mcl{D}_{\Theta}^{zw}(\mcl{D}_\Theta^w)^{-1}\mcl{D}_{\Theta}^{wz})^{-1}
+\]
+exist and are closed under inversion. Then, there exists invertible coordinate transformations $\Gamma,\Gamma^{-1}\in\Pi_4$ on the primal side and
+$\underline{\Gamma},\underline{\Gamma}^{-1}\in\Pi_4$ on the dual side such that
 \begin{itemize}
-    \item $\Theta\bmat{G\\I} w = \bmat{G\star \Theta^\dagger \\ I}\Gamma w$ for all $w\in\mbf{L}_{e,[a,b]}^{\mbf{n}_w}$.
-    \item $\mbf{D}(\Theta)\bmat{G^\top\\I} \underline{w} = \bmat{G^\top\star (\Theta^\dagger)^\top \\ I}\Gamma_d\underline{w}$ for all $\underline{w}\in\mbf{L}_{e,[a,b]}^{\mbf{n}_z}$.
+    \item $\Theta\bmat{P\\I} w = \bmat{P\star \Theta^\dagger \\ I}\Gamma w$ for all $w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}$.
+    \item $\mbf{D}(\Theta)\bmat{P^\top\\I} \underline{w} = \bmat{P^\top\star (\Theta^\dagger)^\top \\ I}\underline{\Gamma}\,\underline{w}$ for all $\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_z}$.
 \end{itemize}
 \end{lemma}
 \begin{proof}

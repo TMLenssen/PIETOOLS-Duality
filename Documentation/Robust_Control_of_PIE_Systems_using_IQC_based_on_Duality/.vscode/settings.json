@@ -16,26 +16,13 @@
         "-outdir=%OUTDIR%",
         "%DOC%"
       ]
-    },
-    {
-      "name": "clean-build-dir",
-      "command": "powershell.exe",
-      "args": [
-        "-NoProfile",
-        "-NonInteractive",
-        "-ExecutionPolicy",
-        "Bypass",
-        "-Command",
-        "if (Test-Path '%OUTDIR%') { Get-ChildItem -LiteralPath '%OUTDIR%' -Force | Where-Object { $_.Name -notin @('%DOCFILE%.pdf', '%DOCFILE%.synctex.gz') } | Remove-Item -Recurse -Force }"
-      ]
     }
   ],
   "latex-workshop.latex.recipes": [
     {
-      "name": "latexmk -> clean build",
+      "name": "latexmk",
       "tools": [
-        "latexmk-build",
-        "clean-build-dir"
+        "latexmk-build"
       ]
     }
   ]

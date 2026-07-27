@@ -1,0 +1,1572 @@
+                                                                                                                                      1
+
+
+
+
+                                   Robust Controller Synthesis
+                                                Thijs Lenssen and Amritam Das
+
+
+
+  Abstract—                                                          the space of square-integrable functions u : [0, ∞) → H with
+  Index Terms—PDEs, Robust Control, LMIs;                            inner product
+                                                                                               Z ∞
+                                                                                   ⟨u, v⟩LH =       ⟨u(t), v(t)⟩H dt.
+                        I. I NTRODUCTION                                                          0
+                                                                     We define the extended space Le,H to consist of functions
+   This paper uses PN PI operators inspired by the works [2],        u : [0, ∞) → H such that
+[5], [13]. Then it IQC extends the results from [1], [4], [11].                   Z T
+[3] also covers robust control using dual iqc                                         ∥u(t)∥2H dt < ∞ ∀ T ≥ 0.
+                                                                                      0
+
+                       II. P RELIMINARIES                            We use Le,[a,b] and L[a,b] to denote Le,H and LH with H =
+                                                                     RL2 [a, b]. For any Hilbert space H, the truncation operator
+A. Notation
+                                                                     pT : Le,H → Le,H is defined for y ∈ Le,H by
+   Ln2 [a, b] denotes the set of Rn -valued, Lebesgue square-                                   (
+integrable equivalence classes of functions on the spatial                                        y(t), 0 ≤ t ≤ T,
+                                                                                    (pT y)(t) =
+domain [a, b] ⊂ R. The space RLn   2 [a,b] denotes
+                                                    the Cartesian                                0,     otherwise.
+                   n                     n 1
+product Rn1 × L2 2 [a, b], where n =          , with inner product   such that (pT y)(t) ∈ LH for all T ≥ 0.
+                                         n2
+                                                               Definition 1. Let H and G be Hilbert spaces. For all T ≥ 0,
+               x1    y
+                   , 1         := x⊤
+                                   1 y1 + ⟨x2 , y2 ⟩L2 .
+                                                                     an operator G : LH → LG is:
+               x2    y2 RL
+                               2                                       • Causal if pT G = pT GpT .
+
+When clear from context, we occasionally omit the subscript            • Bounded on LH if ∥Gv∥LG ≤ C∥v∥LH for some C ≥ 0
+
+and simply write ⟨·, ·⟩ := ⟨·, ·⟩RL2 . Since the only spatial             and all v ∈ LH .
+domain considered here is [a, b], we typically omit the domain         • Bounded on Le,H if ∥pT Gv∥LG ≤ C∥pT v∥LH for some
+
+and write Ln2 or RLn2 , further omitting dimensions when clear
+                                                                          C ≥ 0 and all v ∈ Le,H .
+from context. For a normed space X and Banach space Y ,              Finally, we will note some operations. For a given K ∈
+L(X, Y ) denotes the Banach space of bounded linear operators        L(RLn        m                                      n
+                                                                            2 , RL2 ), we define the operator MK : Le,[a,b] →
+from X to Y with induced norm                                          m
+                                                                     Le,[a,b] to compactly represent a multiplication operator. For
+                                                                                        ⊤
+                  ∥P∥L(X,Y ) = sup ∥Px∥Y ,                           u = u1 · · · uN         with u ∈ RL2 , its action at time t is
+                                   ∥x∥=1                             given by the block structure of Kij :
+and L(X) := L(X, X). Our notational convention is to write
+                                                                                                               
+                                                                                              K11 · · · K1n        u1
+functions in bold (e.g., x, indicating x ∈ RL2 ) and operators                               ..
+                                                                              (MK u)(t) :=  .       . .    .
+                                                                                                            .    .. 
+in calligraphic font (e.g., P ∈ L(RL2 )). For a Hilbert space
+                                                                                                         .  .   .  (t).      (1)
+X and operator A ∈ L(X), the adjoint A∗ is defined by                                         Km1     ···   Kmn        un
+
+            ⟨x, Ay⟩X = ⟨A∗ x, y⟩X ,        ∀ x, y ∈ X.               B. Partial Integral Equations (PIEs)
+                                                                        Partial Integral operators, also known as PI operators, are
+For any matrix or operator A with a specified 2 × 2 block
+                                                                     a class of bounded linear integral operators that are defined
+partition, (A)ij denotes its (i, j) block for i, j ∈ {1, 2}.
+                                                                     jointly on a vector space and Hilbert space.
+When the blocks of a named object are used repeatedly, we
+abbreviate Aij := (A)ij . Thus, these subscripts refer to blocks     Definition
+                                                                                2. Wesay P ∈ Πm×n  4     ⊂ L(RLn         m
+                                                                                                                     2 , RL2 ), denoted
+in the specified partition rather than to scalar entries. The           Q P        Q1
+                                                                     by                 , if there exist a matrix P and matrix poly-
+space Ln2 [0, ∞) denotes Rn -valued square-integrable signals               Q2 {R}
+defined on the temporal domain [0, ∞), so that x(t) ∈ Rn .           nomials Q1 , Q2 , R0 , R1 , and R2 (of compatible dimension)
+Similarly, RLn2 [0, ∞) denotes RL2 -valued square-integrable         such that,
+temporal signals. For suitably differentiable x ∈ RLn2 [0, ∞),
+                                                                                                                                  
+                                                                       "
+                                                                          Y P              !  #                Rb
+                                                                                      Q1        x            P x+ Q1 (s)x(s)ds
+we write ẋ := ∂x
+                ∂t . For a Hilbert space H, we denote by LH                                          (s) :=                         ,
+                                                                                Q2 {R}          x                  a
+                                                                                                               Q2 (s)x+Rx(s)
+  T. Lenssen and A. Das are with the Control Systems Group, Eind-
+hoven University of Technology, The Netherlands. Email addresses:                              Zs                   Zb
+t.m.lenssen@student.tue.nl,am.das@tue.nl                              (Rx)(s)=R0 (s)x(s)+ R1 (s, θ)x(θ)dθ+ R2 (s, θ)x(θ)dθ.
+  Corresponding author: am.das@tue.nl
+                                                                                              a                    s
+2
+
+
+
+The vector space of PI operators, given compatible dimen-                              •   If H has two ports,
+sions, are closed under composition, addition, adjoint and                                                           
+                                                                                                               y21     u
+concatenation – implying that Π4 is a composition algebra                                                          = H 21 ,
+                                                                                                               y22     u22
+[10].
+                                                                                           then
+Definition 3. (LPIs) For given PI operators {Ei,j , Fi,j , Gi }                                           
+and a convex linear functional L(·), a linear PI inequality is                                       u12    y
+                                                                                             G⋆H :       7→ 12 , u11 = y22 , u22 = y11 ,
+a convex optimization of the following form                                                          u21    y21
+                                                                                                          
+                                                                                                     u      y
+                     min              L({Pi , Q1i , Q2i , R0i , R1i , R2i })                 H ⋆ G : 11 7→ 11 , u21 = y12 , u12 = y21 .
+        Pi ,Q1i ,Q2i ,R0i ,R1i ,R2i
+                                                                                                     u22    y22
+               K           Y  Pi                                                     •   If H has one port, yH = HuH , then
+               X
+                      ∗                 Q1i
+        s.t.         Eij                      F + Gi ⪰ 0                       (2)
+                              Q2i      {Ri } ij                                                   G ⋆ H : u12 7→ y12 ,   u11 = yH ,     uH = y11 ,
+               j=1
+                                                                                                  H ⋆ G : u11 7→ y11 ,   uH = y12 ,     u12 = yH .
+Only LMIs are required to solve an optimization problem
+involving LPIs. These definitions are based on [7]
+                                                                                     C. PIETOOLS
+Definition 4 (PIE System). Given the PIE system                                        PIETOOLS is a MATLAB toolbox used for declaration,
+G{T , A, B, C, D} with PI operators T , A, B, C, and D                               manipulation and solving LPIs [9]. For learning how to use
+of compatible dimensions, and signals w(t) ∈ RL2nw [a, b], we                        PIETOOLS and its functionalities visit PIETOOLS homepage.
+say x(t) ∈ RL2 [a, b]nx and z(t) ∈ RLn2 [a, b] satisfy the PIE
+                                       z
+
+
+with initial condition x0 if
+                                                                                 III. IQC-BASED FRAMEWORK FOR ROBUST STABILITY
+                ∂t (T x)(t)    A B x(t)                                                               AND PERFORMANCE ANALYSIS
+                             =                              (3)
+                    z(t)        C D w(t)                                                This section develops a comprehensive framework for an-
+for all t ≥ 0 and T x(0) = T x0 . Additionally, for signals                          alyzing stability and performance of interconnected systems
+w(t) ∈ RL2 [a, b]nz of compatible dimensions, we say x(t) ∈                          in a Hilbert space, utilizing IQCs as the primary analytical
+RL2 [a, b]nx and z(t) ∈ L2 [a, b]nw satisfy the dual PIE, G⊤ ,                       tool. We begin by establishing the mathematical foundation
+with initial condition x0 if                                                         for system interconnections and formalizing the key concepts
+                ∗        ∗                                                        of stability and performance. The IQC methodology is then
+                                   C ∗ x(t)
+                                            
+                T ẋ(t)      A                                                       systematically developed to characterize system uncertainties
+                          =                     ,          (4)
+                  z(t)       B ∗ D∗ w(t)                                             and derive rigorous conditions that guarantee robust stability
+                                                                                     and performance.
+for all t ≥ 0 and T ∗ x(0) = T ∗ x0 .
+Definition 5 (Bounded Internally Stable PIE). Let G be a PIE                         A. Description of uncertain systems in a Hilbert-space
+system as in Definition 4. We say G is internally stable and
+                                                                                        We consider operators that map external inputs to external
+bounded with decay rate α > 0, M > 0, and L2 -gain γ > 0
+                                                                                     outputs through a feedback interconnection between a linear
+if
+                                                                                     (infinite dimensional) operator P and ∆. This interconnection
+   • The homogeneous part ∂t (T x)(t) = Ax(t), with                                  structure is formally defined as follows
+     T x(0) = T x0 is exponentially stable such that, for every
+     admissible initial condition x0 ∈ RL2                                           Definition 7 (Generalized Plant). Given operators P∆ :
+                                                                                       nw∆         nz∆              nwp        nz∆               nw∆
+                                                                                     Le,[a,b]  → Le,[a,b] , P∆p : Le,[a,b] → Le,[a,b] , Pp∆ : Le,[a,b]  →
+               ∥T x(t)∥L[a,b] ≤ M ∥T x0 ∥L[a,b] e−αt ,            ∀ t ≥ 0.             nzp            nwp          nzp                  nz∆         nw∆
+                                                                                     Le,[a,b] , Pp : Le,[a,b] → Le,[a,b] , and ∆ : Le,[a,b] → Le,[a,b] ,
+    •    With zero initial condition x(0) = 0, then for any input                    define
+                                                                                                                        
+         w and output z,                                                                 z∆           w∆        P∆ P∆p w∆
+                                                                                                =P           =                        , w∆ = ∆z∆ .
+                                                                                         zp           wp        Pp∆ Pp         wp
+         ∥pT z∥L[a,b] ≤ γ∥pT w∥L[a,b] ,           ∀ T ≥ 0,      ∀ w ∈ Ln
+                                                                       e,[a,b] .
+                                                                         w
+                                                                                                                                                       (5)
+                                                                                                           nwp                         nzp
+                                                                                     for input wp ∈ Le,[a,b]    and output zp ∈ Le,[a,b]     , there exist
+Then G ∈ G2nz ×nw . Clearly, RH∞ ⊂ G2 [15]. Also G⊤ ∈ G2                                                       nz∆                  nw∆
+                                                                                     internal signals z∆ ∈ Le,[a,b]    and w∆ ∈ Le,[a,b]    satisfying the
+with the same decay rate, L[a,b] -gain, and M [7].
+                                                                                     interconnected system zp = (P ⋆ ∆)wp .
+Definition 6 (Linear Fractional Transformation (LFT)). Let G
+                                                                                     The interconnection structure described above captures the
+be a causal system or operator with a specified 2 × 2 block
+                                                                                     feedback interaction between the nominal system P and the
+partition, and let H be compatible with either two ports or
+                                                                                     uncertainty ∆, where wp and zp represent external inputs and
+one port. Write                                                                  performance outputs, respectively, while w∆ and z∆ form
+                       y11        u
+                            = G 11 .                                                 the internal feedback loop through the uncertainty. Before
+                       y12        u12
+                                                                                     analyzing stability and performance, we must first ensure
+The Redheffer star products [6] are the following well–posed                         the well-posedness of the interconnection, such that solutions
+interconnections.                                                                    exist, are unique, and depend causally on inputs.
+                                                                                                                                     3
+
+
+
+Definition 8. We say that the uncertain interconnection P ⋆ ∆        Definition 11. Robust performance is achieved if the in-
+is well–posed if:                                                    terconnection P ⋆ ∆ is robustly stable for some hard per-
+   • Existence and Uniqueness: For any w ∈ Le,[a,b] , there          formance IQC (Ψp , MVp ) defined by the dynamic operator
+                                                                             nzp +nwp        nz̃p +nw̃p
+     exist unique z ∈ Le,[a,b] , z∆ ∈ Le,[a,b] and w∆ ∈ Le,[a,b]     Ψp : Le,[a,b]      → Le,[a,b]      and multiplication operator
+     such that, z, w, z∆ , w∆ satisfy the interconnection.           MVp , parameterized by Vp = Vp∗ ∈ L(RL2 , RL2 ) with
+                                                                                            nwp
+   • Causality: If z∆ , w∆ and ẑ∆ , ŵ∆ satisfy the interconnec-    Qp ⪰ 0. For wp ∈ Le,[a,b]     . Then there exists a sufficiently
+     tion, then pT (z∆ − ẑ∆ ) = 0 and pT (w∆ − ŵ∆ ) = 0, for       small ϵ > 0 such that, for all such wp and all T ≥ 0,
+     all T ≥ 0.                                                                                                  
+                                                                                   P ⋆∆                      P ⋆∆
+                                                                            pT Ψp          wp , pT MVp Ψp            wp
+Having established the class of uncertain systems and their                           I                        I          L  [a,b]
+well-posedness, we now develop a framework to guarantee
+                                                                                           ≤ −ϵ∥pT wp ∥2L[a,b] .
+robust stability and performance for the class of systems
+defined in Definition 7.                                             Moreover, let Vp {Qp , Sp , Rp } be parameterized as,
+                                                                                                           
+                                                                                                    Qp Sp
+                                                                                            Vp =
+B. Robust stability and performance                                                                 Sp∗ Rp
+   Traditional control system design often treats stability          In this framework, the multipliers MV∆ and MVp serve
+and performance shaping as separate objectives with distinct         distinct but complementary roles. The hard uncertainty IQC
+constraints. However, Integral Quadratic Constraints (IQCs)          (Ψ∆ , MV∆ ) characterizes the behavior of uncertainties, non-
+provide a unified framework where these trade-offs can be            linearities, and other perturbations captured by the opera-
+captured within a single constraint [11]. We now define what         tor ∆, ensuring that the IQC is satisfied for the class of
+it means for the system to remain stable despite uncertainties.      admissible disturbances. In contrast, the hard performance
+Robust stability requires that the system is well-posed for all      IQC (Ψp , MVp ) encodes performance requirements for the
+admissible uncertainties and that the input-output map remains       nominal system, such as L2 -gain, passivity conditions, or other
+bounded. This involves removal of the performance channels           desired input-output properties. Together, these multipliers
+in (5), and introducing auxiliary signals z0 and w0 .                enable simultaneous verification of robust stability against
+                                                                     perturbations and achievement of specified performance ob-
+Definition 9. The interconnection                                    jectives.
+           z∆ = P∆ w∆ + z0 ,      w∆ = ∆z∆ + w0 ,
+                                                                     C. Theorem for joint robust stability and performance
+with z0 , w0 ∈ Le,[a,b] , is said to be robustly stable if:             We now present the theoretical result that provides con-
+  1) The uncertain    system iswell-posed
+                                             for all ∆ ∈ ∆.         ditions for simultaneous robust stability and performance
+                          z0       z∆                                verification. For brevity we will refer to the hard IQC as,
+  2) The map from              to       is bounded on Le,[a,b] for
+                         w0        w∆                                         
+                                                                                Pw
+                                                                                               
+                                                                                                 Pw
+                                                                                                     
+      all ∆ ∈ ∆.                                                         pT Ψ         , pT MV Ψ                ≤ −ϵ∥pT w∥2L[a,b] (7)
+                                                                                 w                w     L [a,b]
+Within the IQC framework, the stability of an interconnection
+                                                                     Let Ψ∆ and Ψp have a 2 × 2 block partition and define
+P ⋆ ∆ is certified by verifying that the uncertainty operator                                                                     ⊤
+                                                                     Ψ
+                                                                      ij⊤ := ⊤
+                                                                              diag((Ψ           p )ij ) for i, j ∈ {1, 2}. Let w
+                                                                                      ∆ )ij , (Ψ                                   =
+∆ satisfies a quadratic constraint defined by an appropriate                           ⊤          ⊤      ⊤
+                                                                      w∆ wp and z = z∆ zp . Moreover, define Q =
+multiplier. This leads to the following formal definition
+                                                                     diag(Q∆ , Qp ), S = diag(S∆ , Sp ), and R = diag(R∆ , Rp ),
+                                                 nz         nw
+Definition 10. An uncertainty operator ∆ : Le,[a,b]
+                                                  ∆
+                                                    → Le,[a,b]∆      then V{Q, S, R}.
+is said to satisfy the hard uncertainty IQC (Ψ∆ , MV∆ ) defined      Theorem 1 (Robust Stability and Performance). Let P , ∆ ∈
+                                       nz∆ +nw∆      nz̃∆ +nw̃∆
+by the dynamic operator Ψ∆ : Le,[a,b]            → Le,[a,b]          ∆ be given, and there exists Ψ∆ , MV∆ , such that,
+                                                            ∗
+multiplication operator MV∆ , parameterized by V∆ = V∆         ∈        • The interconnection P ⋆ ∆ is well–posed for all ∆ ∈ ∆
+L(RL2 , RL2 ) if the inequality holds for all z∆ ∈ Le,[a,b] and         • The IQC in Definition 10 is satisfied for all ∆ ∈ ∆.
+all T ≥ 0,                                                           Then the interconnection P ⋆ ∆ is robustly stable and robust
+                                                                     performance is achieved with respect to some Ψp and MVp ,
+                                         
+                    z∆                    z∆
+         p T Ψ∆           , pT MV∆ Ψ∆               ≥ 0. (6)         in Definition 11, with Qp ⪰ 0, if,
+                   ∆z∆                   ∆z∆ L
+                                                  [a,b]                                                    
+                                                                                          Pw               Pw
+Moreover, let V∆ {Q∆ , S∆ , R∆ } be parameterized as,                               pT Ψ       , pT MV Ψ
+                                                                                         w                w     L[a,b]       (8)
+                             Q∆ S∆                                                                      2
+                    V∆ =       ∗                                                            ≤ −ϵ∥pT w∥L[a,b]
+                              S∆   R∆
+                                                                                    nw              nwp
+                                                                     for all w∆ ∈ Le,[a,b]
+                                                                                      ∆
+                                                                                           , wp ∈ Le,[a,b] and T ≥ 0.
+Beyond stability, we are interested in ensuring that the system
+meets certain performance specifications in the presence of          Proof. See Appendix A.1                                         ■
+uncertainty. Robust performance extends the notion of robust
+                                                                     Theorem 1 establishes a framework for deriving Linear PI
+stability by additionally requiring that a performance metric is
+                                                                     Inequalities (LPIs), which are used in assessing the robust
+satisfied.
+                                                                     performance of a system.
+4
+
+
+                                                                                                      
+                                                                                                0    I
+                      IV. IQC D UALITY                             Define the matrix Jˆ :=              . The dual filter associated
+                                                                                               −I    0
+   In this work we assume that the generalized plant P ∈           with Θ is defined by
+G2nz ×nw is a PIE system, that admits a state-space represen-                                          −1
+tation. This work builds on the duality results in [7] which                           D(Θ) := Jˆ∗ Θ⊤ Jˆ    .                    (10)
+shows that the state-feedback controller results in a convex
+optimization problem. We find that this duality result can be      Note D(Θ) ∈ G2 .
+extended to the case of dynamic filters, where we want to know
+                                                                   Finding a J–spectral factorization is the first step in applying
+the properties of the dual dynamic filter. This is particularly
+                                                                   the duality theory. For the construction of a J-spectral factor-
+usefull when examining the effect of uncertainties on the
+                                                                   ization, we partition
+system when performing state-feedback controller synthesis,                                               
+when using IQCs. The works from Seiler and Venkataraman                                         Θz Θzw
+                                                                                         Θ=                  .
+[8], [13] show that, after J-spectral factorization, the dual of                               Θwz Θw
+a dynamic filter can be found using the Potapov-Ginzburg           The associated primal and dual filtered signals are
+transform. This section extends these results to PIE systems,                                                     
+and shows that the dual of a PIE system with a dynamic filter             z(t)      z̃(t)                z(t)      z̃(t)
+                                                                     Θ          =           ,  D(Θ)            =           .     (11)
+can be found using the Potapov-Ginzburg transform, identical             w(t)      w̃(t)                w(t)       w̃(t)
+to the work from Venkataraman.                                     The J-spectral factorization for the primal IQC leads to the
+                                                                   state-space realization
+A. Duality under Dynamical Filtering
+                                                                                                  z      w
+                                                                                                               
+  We begin by restating the main theorem from [7].                         TΘ ẋΘ (t)      AΘ BΘ       BΘ     xΘ (t)
+                                                                          z̃(t)  =  CΘ   z     z     zw  
+                                                                                                DΘ    DΘ       z(t)  ,    (12)
+Theorem 2 (Dual L2 -gain [7, Thm. 9]). For a PIE system                      w̃(t)          w
+                                                                                           CΘ  DΘwz
+                                                                                                       DΘw
+                                                                                                               w(t)
+with corresponding PI operators P {T , A, B, C, D} ∈ G2 , the
+following statements are equivalent.                               where the entries are PI operators of appropriate dimension.
+                                                                   The second step is the required graph rearrangement, given
+   1) For any w ∈ Lne,[a,b] , and x(0) = 0, P satisfies ∥pT z∥ ≤
+                      w
+                                                                   by the Potapov–Ginzburg transform. We use the following
+      ∥pT w∥.
+                        nz                                         construction from [13].
+   2) For any w ∈ Le,[a,b]      , and x(0) = 0, P ⊤ satisfies
+      ∥pT z∥ ≤ ∥pT w∥.                                             Definition
+                                                                             13. (Potapov–Ginzburg Transform) Given Θ :
+                                                                     z          z̃
+Relating an IQC to this           requires two transforma-
+                          gain duality                                  →           as in Definition 12, the Potapov–Ginzburg
+                                                                     w         w̃
+                      z̃          z                                                                   
+tions. First, write        := Θ     . A J-spectral factorization                                w̃      z̃
+                     w̃           w                                transform denoted by Θ† :        →       is defined by
+gives, for every T ≥ 0,                                                                         z       w
+                                                                                      Θzw Θ−1    Θz − Θzw Θ−1
+                                                                                                                    
+                                                                                                             w Θwz
+                                      
+                          z              z                                    Θ† =          w
+                                                                                                                       ,  (13)
+                  pT Ψ       , pT MV Ψ                                                  Θ−1          −Θ−1
+                          w              w L                                              w              w Θwz
+                                                  [a,b]
+
+                  = ∥pT z̃∥2L[a,b] − ∥pT w̃∥2L[a,b] .              The transform identifies the filtered graph of P with the graph
+                                                                   of P ⋆ Θ† , under an invertible change of coordinates. The next
+Thus the IQC quadratic form becomes the difference between         lemma establishes this relation for both the primal and dual
+the filtered output and input signals. Second, when z = P w,       interconnections.
+the Potapov–Ginzburg transform produces an invertible change
+of coordinates Γ such that                                         Lemma 1. (Potapov–Ginzburg Transform Equivalence) Let
+                      
+                      P
+                               
+                                P ⋆ Θ†
+                                                                  Θ, D(Θ) ∈ G2 as in Definition 12. Moreover, let (P ⋆Θ† ) ∈ G2
+                  Θ       w=              Γw.                      and (P ⊤ ⋆ (Θ† )⊤ ) ∈ G2 be well-posed PIE systems such that
+                      I            I                                  wz         w −1
+                                                                   (DΘ   D + DΘ    )    closed under inversion. Then, there exists
+The lower block gives w̃ = Γw, while the upper block gives         invertible coordinate transformations Γ, Γ−1 ∈ Π4 on the
+z̃ = (P ⋆ Θ† )w̃. Consequently, the IQC inequality becomes an                             −1
+L2 -gain inequality for P ⋆ Θ† , to which Theorem 2 applies.                          Γ ∈† Π4 on the dual side such that
+                                                                   primal side and Γ,
+                                                                            P         P ⋆Θ
+                                                                      • Θ        w=             Γw for all w ∈ Ln    w
+                                                                                                                   e,[a,b] .
+Definition 12 (J-Spectral Factorization and Dual Filter [13]).               I           I
+                                                                                 P⊤          P ⊤ ⋆ (Θ† )⊤
+                                                                                                          
+Let (Ψ, MV ) be a hard IQC, let
+                                                                      • D(Θ)          w=                    Γ w for all w ∈ Ln z
+                                                                                                                             e,[a,b] .
+                            
+                             I        0
+                                                                                 I               I
+                 Jnz ,nw := nz             ,
+                               0 −Inw                              Proof. See Appendix A.2.                                        ■
+             −1
+and let Θ, Θ      ∈ G2 . The pair (Θ, Jnz ,nw ) is a J-spectral
+factorization of (Ψ, MV ) if,                                      B. Application on Dual IQC
+                                                                      Lemma 1 places the primal and dual filtered graphs in the
+                                
+                   z                z
+             pT Ψ     , pT MV Ψ                                    form required by Theorem 2. Combining these results shows
+                   w               w L
+                                           [a,b]
+                                                      (9)    that strict feasibility can be tested on either the primal system
+                         z                    z
+              = pT Θ        , pT Jnz ,nw Θ           .             or its dual.
+                         w                   w L
+                                                          [a,b]
+                                                                                                                                                    5
+
+
+
+
+                                                                          z̃                  w̃                       z̃
+                                                              Θ
+                                                                          w̃                             Θ†
+                                        ∆
+                           z                             w                                         z                  w
+                                                                               (Lemma 1)
+                                        P                                                                P
+
+                                                         (Theorem 3)                                          (Theorem 2)
+
+                                                                          z̃                  w̃                       z̃
+                                                             D(Θ)                                      (Θ† )⊤
+                                                                          w̃
+                                        ∆
+                           z                             w                                         z                  w
+                                                                               (Lemma 1)
+                                       P⊤                                                               P⊤
+
+Fig. 1. Commutative diagram for primal and dual dynamic filtering under the Potapov–Ginzburg transform. [13]
+
+
+
+Theorem 3 (Primal–Dual IQC Feasibility). Let P be a PIE                                 T PA + (∗) T ∗ PB
+                                                                                        ∗                        ∗
+                                                                                                                       C
+                                                                                     •
+                                                                                                                                
+realization of Definition 7, and let (Θ, Jnz ,nw ) be a J-spectral                                                +         V C D ⪯ 0 (17)
+                                                                                           B ∗ PT        ϵI           D∗
+factorization of the primal hard IQC. Let sufficiently small ϵ >                Then for any w, w ∈ Le,[a,b] , satisfies either
+0 and ϵ > 0 denote the primal and dual feasibility margins.                                                                
+Then the primal feasibility condition                                                       P           T ẋ(t)         A B x(t)
+                                                                                        Ψ       w :=               =                  (18)
+                                                                                      I            z̃(t)          C D w(t)
+           z                   z
+    pT Θ       , pT Jnz ,nw Θ         ≤ −ϵ∥pT w∥2L[a,b] ,                       or
+           w                   w L                           (14)
+                                     [a,b]                                                    ⊤                      
+         z = P w,                nw
+                         ∀w ∈ Le,[a,b] ,    ∀T ≥ 0,                                           P          T ẋ(t)   A B x(t)
+                                                                                         Ψ        w :=           =                              (19)
+                                                                                               I          z̃(t)     C D w(t)
+holds if and only if the dual feasibility condition
+                                                                          Then the interconnection P ⋆ ∆ with x(0) = 0 is robustly
+             z                      z                                           stable and robust performance is achieved.
+  pT D(Θ)       , pT Jnw ,nz D(Θ)          ≤ −ϵ∥pT w∥2L[a,b] ,
+            w                      w L
+                                                 [a,b]
+                                                                                Proof. See Appendix A.4                                           ■
+           z = P ⊤ w,                nz
+                               ∀w ∈ Le,[a,b] ,           ∀T ≥ 0,
+                                                                       (15)     Remark 1. Note that we do not require information about the
+holds for ϵ > 0.                                                                dual uncertainty ∆, only the primal uncertainty ∆.
+
+Proof. See Appendix A.3.                                                 ■
+                                                                                C. Classes of J-Spectral Factorizations
+  The preceding theorem transfers feasibility between the
+                                                                                  J-spectral factorizations exist for many performance and
+dual and primal systems. To turn either description into a
+                                                                                uncertainty multipliers. Following [12], we collect the relevant
+computational certificate for robust stability and performance,
+                                                                                multiplier families as classes.
+we combine it with the PIE KYP condition.
+                                                                                  1) Classes of J-Spectral Factorizations for Performance
+Theorem 4. Let the realization of P satisfy Definition 7. Let                   Multipliers:
+∆ ∈ ∆ and there exist either, a primal hard IQC (Ψ, MV ),
+                                                                                Class 1 (Induced L2 -gain). The primal hard performance IQC
+with V ∈ Π4 , or a dual hard IQC (Ψ, MV ), with V ∈ Π4 ,
+                                                                                is (Ψp , MVp ), where
+such that,
+  • The interconnection P ⋆ ∆ is well-posed for all ∆ ∈ ∆.
+                                                                                                             
+                                                                                                  Inzp     0
+  • The IQC in Definition 10 is satisfied for all ∆ ∈ ∆.
+                                                                                          Ψp :=                 ,
+                                                                                                    0    Inwp
+  • The primal hard IQC (Ψ, MV ) has a (Θ, Jnz ,nw ) fac-                                         −1                                  (20)
+                                                                                                  γ Inzp          0
+     torization.                                                                           Vp :=                       ,     γ > 0.
+                                                                                                      0      −γInwp
+  • The dual hard IQC (Ψ, MV ) has a (D(Θ), Jnw ,nz )
+     factorization.                                                             Robust performance then guarantees sup∆∈∆ ∥G ⋆ ∆∥L[a,b] ≤
+                                                                                                 nwp
+Suppose that either of the two statements hold for some Q ⪰ 0                   γ, for all wp ∈ Le,[a,b] . Its (Θ, Jnzp ,nwp ) factorization is given
+and P = P ∗ ⪰ 0 ∈ Π4 .                                                          by                       " 1                     #
+         T PA + (∗) T ∗ PB
+        ∗                        ∗
+                                     C                                                                     γ − 2 Inzp       0
+  •                                                                                              Θ :=                              .             (21)
+                                                  
+                                  +    ∗ V C     D ⪯ 0 (16)                                                               1
+              ∗                                                                                                 0       γ 2 Inwp
+            B PT           ϵI        D
+6
+
+
+
+The corresponding dual hard performance IQC is (Ψp , MV p ),        Here Q, S ∈ Rnv ×nv are matrices satisfying
+where
+                                                                                  Q = Q⊤ ≻ 0,          S = −S ⊤ ,              (27)
+                  Inwp    0
+          Ψp :=                ,                                    so V∆ = V∆⊤ ∈ R2nv ×2nv . Since a multiplier is strict PN
+                    0   Inzp
+                  −1                                (22)          if and only if its dual multiplier is strict PN [13], the dual
+                  γ Inwp         0
+          V p :=                     ,    γ > 0.                    hard uncertainty IQC (Ψ∆ , MV ∆ ) can be parameterized in
+                      0     −γInzp                                                               nv ×n
+                                                                    the same form. For ψ ∈ RH∞         , define
+Class 2 (Passivity). The primal hard performance IQC is                                                             
+                                                                                  ψ 0                     αQ       S
+(Ψp , MVp ), where                                                       Ψ∆ :=            ,    V ∆ :=                    ,    (28)
+                                                                              0 ψ                     S ⊤ −α−1 Q
+                  In 0                 0 In
+          Ψp :=           ,    Vp :=          .    (23)             where Q, S ∈ Rnv ×nv are matrices satisfying
+                   0 In               In 0
+Robust performance means that G ⋆ ∆ is strictly input passive                       Q = Q⊤ ≻ 0,          S = −S ⊤ .              (29)
+                          nwp
+for all ∆ ∈ ∆, and wp ∈ Le,[a,b] . Its (Θ, Jn,n ) factorization
+is given by                                                         Thus V ∆ = V ⊤    ∆ ∈ R
+                                                                                              2nv ×2nv
+                                                                                                       , and (Ψ∆ , MV ∆ ) is also
+                                                                    strict PN. Both pairs admit the required hard J-spectral
+                                       
+                        1 In In
+                 Θ := √                   .                (24)     factorizations, while their static parts V∆ and V ∆ remain
+                         2 In −In
+                                                                    explicit decision variables for synthesis.
+The corresponding dual hard performance IQC is (Ψp , MV p ),
+where                                                                  3) Classes of J-Spectral Factorizations for Uncertainty
+                                                                Multipliers on Infinite Dimensional Channels: As we do
+                 In 0                    0 In
+          Ψp :=           ,     V p :=          .     (25)          not have J-spectral factorization results for dynamic infinite-
+                  0 In                  In 0
+                                                                    dimensional PN hard uncertainty IQCs, we limit the real
+  2) Classes of J-Spectral Factorizations for Uncertainty           repeated scalar IQC from [11] to Ψ∆ = I and Ψ∆ = I. This is
+Multipliers on Finite Dimensional Channels: Many finite-            a conservative choice, but it allows us to use the duality results
+dimensional hard uncertainty IQCs have a strict positive-           in this paper. Also in the case of state-feedback controller
+negative (PN) multiplier structure.                                 synthesis, we need to use the same assumption.
+Definition 14 (Strict PN hard IQC [8]). The hard IQC                Class 4 (Real repeated scalar parameters on infinite-dimen-
+                              nz∆ +nw∆       nz̃∆ +nw̃∆
+(Ψ∆ , MV∆ ), with Ψ∆ : L2e,[0,∞)        → L2e,[0,∞)      and        sional channels). Consider the infinite-dimensional uncer-
+V∆ = V∆⊤ a real matrix of compatible dimensions, is strict          tainty class ∆ := {δI : δ ∈ R, |δ| ≤ α}, where α > 0. With
+positive-negative if there exists ϵ > 0 such that, for all          the convention w∆ (t) = δz∆ (t), w∆ , z∆ ∈ Lne,[a,b) , define the
+        nz ∆             nw∆
+z∆ ∈ L2e,[0,∞) , w∆ ∈ L2e,[0,∞) , and T ≥ 0,                        primal hard uncertainty IQC (I, MV∆ ) by
+                                                                                                            
+              
+               z
+                               
+                                z                                                             αQ       S
+       pT Ψ∆ ∆ , pT V∆ Ψ∆ ∆             ≥ ϵ∥pT z∆ ∥2L2 ,                              V∆ :=                    .                 (30)
+                0                0                                                             S ⊤ −α−1 Q
+                               L2
+                                                                    Here Q, S ∈ Πn×n
+             
+               0                 0                                               4   are PI operators satisfying
+      pT Ψ∆        , pT V∆ Ψ∆           ≤ −ϵ∥pT w∆ ∥2L2 .
+              w∆               w∆ L
+                                         2                                          Q = Q⊤ ≻ 0,          S = −S ⊤ ,              (31)
+Moreover, in this finite-dimensional setting, [8] shows that if
+                                                                    so V∆ = V∆ ⊤
+                                                                                 ∈ Π2n×2n
+                                                                                     4     . Using the approximation in ??, define
+the primal IQC is a strict PN multiplier, then a J-spectral fac-
+                                                                    the dual hard uncertainty IQC (I, MV ∆ ) by
+torization exists according to Definition 12. This factorization
+is doubly hard, and all solutions P = P ⊤ to the associated                                   
+                                                                                               αQ       S
+                                                                                                            
+KYP lemma satisfy P ≥ 0. Also, [13] shows that the primal                             V ∆ :=                  ,              (32)
+                                                                                                S ⊤ −α−1 Q
+IQC is a strict PN multiplier if and only if the corresponding
+dual multiplier is a strict PN multiplier. Classes 1, 2, 3, 5, 8,   where Q, S ∈ Πn×n
+                                                                                  4   are PI operators satisfying
+and 11 in [12] are strict PN multipliers. Classes 4, 6, 7, 12,
+13, 14, and 15 are strict PN after imposing the additional                          Q = Q⊤ ≻ 0,          S = −S ⊤ .              (33)
+constraints. We give an example of a strict PN multiplier           Thus V ∆ = V ⊤       2n×2n
+                                                                                  ∆ ∈ Π4       is also strict static PN PI operator.
+below, and refer to [12] for the complete list.                     Both pairs admit the required hard J-spectral factorizations,
+Class 3 (Real repeated scalar parameters on finite-dimensional      while their static parts V∆ and V ∆ remain explicit decision
+channels). Consider the finite-dimensional uncertainty class        variables for synthesis.
+∆ := {δI : δ ∈ R, |δ| ≤ α}, where α > 0. With the                   Another class for which we can find the dual representation
+convention w∆ (t) = δz∆ (t), and w∆ , z∆ ∈ Ln2e,[0,∞) , choose      is the class of sector-bounded uncertainties, also from [11]
+          nv ×n
+ψ ∈ RH∞          and define the primal hard uncertainty IQC
+(Ψ∆ , MV∆ ) by                                                      Class 5 (Sector-bounded uncertainties on infinite-dimensional
+                                                                channels). Consider the infinite-dimensional uncertainty class
+               ψ 0                  αQ        S
+     Ψ∆ :=            ,     V∆ :=                    .    (26)      ∆ := {ϕ : R → R | (ϕ(v) − αv)(βv − ϕ(v)) ≥ 0, ∀v ∈ R} ,
+                0 ψ                  S ⊤ −α−1 Q
+                                                                                                                                                        7
+
+
+                                                                                                                     
+where α < β. With the convention w∆ (s, t) = ϕ(z∆ (s, t)),                                                     (K ⋆ P)
+                                                                           As in (48), the realization Ψ                w takes the form
+let w∆ , z∆ ∈ Ln                                                                                                  I
+                e,[a,b) for all s ∈ [a, b] and t > 0. Define the
+primal hard uncertainty IQC (I, MV∆ ) by
+                                                                                                                                        
+                                                                            TP ẋP (t)       AP + Bu KP           Bu KΨ            BP              
+                                                                           TΨ ẋΨ (t)  B (CP + Dzu KP ) AΨ + B Dzu KΨ B DP + B  xP (t)
+                                                                                           z                        z          z        w
+                                                                                           Ψ                        Ψ         Ψ         Ψ
+                             ∗                                            z̃(t)  =  DΨ                                            zw  xΨ (t) .
+                                                                                       z                   z     z         z
+                                                                                                                                                  
+                                                                                             (CP + Dzu KP ) CΨ  + DΨ  Dzu KΨ DΨ  DP + DΨ
+                                                  
+                   βI −I          0 S       βI −I                                                                                              w(t)
+          V∆ :=                                        ,                      w̃(t)      DΨwz                 w
+                                                                                              (CP + Dzu KP ) CΨ    wz
+                                                                                                                + DΨ          wz
+                                                                                                                      Dzu KΨ DΨ          w
+                                                                                                                                  DP + D Ψ
+                  −αI I           S 0 −αI I                                                                                                       (37)
+                                                                                   (K ⋆ P)⊤
+                                                                                           
+where S ∈ Πn×n is a multiplication PI operator satisfying                  Thus Ψ             w takes the form
+           4                                                                           I
+   (Sx)(s, t) := S0 (s)x(s, t),        S0 (s) ≻ 0,       s ∈ [a, b].       Theorem 5. Let the realization of P satisfy Definition 7. Let
+                                                                           ∆ ∈ ∆, there exist dual hard IQC (Ψ, MV ), such that,
+Its (Θ, Jn,n ) factorization is given by,                                     • The interconnection P ⋆ ∆ is well-posed for all ∆ ∈ ∆.
+                                                                          • The IQC in Definition 10 is satisfied for all ∆ ∈ ∆.
+                       1 I S           βI       −I
+                Θ := √                                                        • The dual hard IQC (Ψ, MV ) has a (D(Θ), Jnw ,nz )
+                        2   I   −S    −αI       I
+                                                                                factorization.
+The corresponding dual hard uncertainty IQC is (I, MV ∆ ),                 Moreover there exist, Z, P ∈ Π4 with P = P ∗ ≻ 0, such that
+where                                                                      the following statement holds
+                                                                                 ∗
+                                                                                 T PA + (∗) T ∗ PB
+                              ∗                                                                        ∗
+                                                                                                            C
+                                                 
+              1      βI −I         0 S     βI −I                                                                          
+   V ∆ :=                                                                             ∗                  +    ∗ V C      D ⪯0       (38)
+           (β − α)2 −αI I         S 0 −αI I                                         B PT          ϵI        D
+
+with S = S −1 .                                                            A. Ψ∆ = I controller realization
+Proof. See Appendix A.5.                                               ■      When Ψ∆ = I and Ψ∆ = I, no multiplier state is required
+                                                                           in the controller. For a state-feedback operator KP , set u(t) =
+                                                                           KP xP (t). The resulting closed-loop PIE K ⋆ P is
+               V. A PPLICATION OF D UAL IQC                                                                                 
+                                                                                ∂t (TP xP )(t)       AP + Bu KP BP xP (t)
+   Theorem 4 provides a robust-performance certificate for                                      =                                  . (39)
+                                                                                     z(t)            CP + Dzu KP DP         w(t)
+PIE systems in terms of the dual IQC. For analysis, this
+merely reformulates the primal certificate, since primal–dual
+equivalence preserves feasibility. The principal benefit of the            B. Dynamic-filter controller realization
+dual formulation therefore appears in controller synthesis.                   Following [14], assume that the uncertainty ∆ is known and
+Both controller constructions below use the same synthesis                 that z∆ , w∆ = ∆z∆ , and wp are available to the controller.
+LPI, obtained by applying (17) to the corresponding closed-                For Ψ∆ ̸= I, find the realization of Ψ∆ = D(Ψ∆ ),
+loop PIE. The choice of dual uncertainty filter changes only the                                                       
+                                                                                                                      xΨ∆ (t)
+                                                                                                                                
+                                                                                                           z     w
+                                                                                             
+realization of the controller recovered from this LPI. A related                TΨ∆ ẋΨ∆ (t)     AΨ∆ BΨ∆ BΨ∆ 
+                                                                                              =                          z∆ (t)  . (40)
+application of IQC duality to convex feedforward controller                         y(t)           I       0     0
+                                                                                                                         w∆ (t)
+synthesis is given by Venkataraman and Seiler [13].
+   Let P , with zero initial condition x(0) = 0, have exogenous            We impose the zero initial condition xΨ∆ (0) = 0. The second
+input w, control input u, performance output z, and PIE                    block row gives y(t) = xΨ∆ (t). The complete controller has
+realization                                                                the PIE realization
+                                                                                                                                   
+                                             
+                                             x (t)
+                                                                                                                           xΨ∆ (t)
+                           AP BP Bu  P 
+                     
+       ∂t (TP xP )(t)                                                                                          z     w
+                                                                                                                      
+                       =                       w(t) .       (34)             TΨ∆ ẋΨ∆ (t)      AΨ∆       0 BΨ      BΨ       x(t) 
+            z(t)            CP DP Dzu                                                       =                    ∆     ∆           .
+                                                u(t)                             u(t)           KΨ KP          0     0  z∆ (t) 
+                                                                                                                             w∆ (t)
+We will consider cases of u(t) = KP xP (t) + KΨ xΨ (t).                                                                               (41)
+Also, if Ψ∆ ̸= I we assume that D(Ψ∆ ) exists, i.e.                        Hence xΨ∆ is the controller state, x, z∆ , and w∆ are its
+roughly speaking Ψ∗∆ MV Ψ∆ = Ψ∗∆ M∗U JMU Ψ∆ , with                         external inputs, and u is its output.
+                                           ∗
+U −1 ∈ Π4 and Ψ−1                               ∗
+                    ∆ ∈ G2 , such that Ψ∆ MU JΨ∆ MU =
+         ∗    ∗
+D(Ψ∆ ) MD(U ) JD(Ψ∆ )MD(U ) . Then K ⋆ P takes the form                           VI. N UMERICAL E XAMPLES
+                                                                              VII. C ONCLUSION
+  TP ẋP (t)            AP + Bu KP              Bu KΨ        BP           xP (t)
+TΨ ẋΨ (t) = AΨ + BΨ    z
+                             (CP + Dzu KP ) BΨ z
+                                                 Dzu KΨ BΨz        w 
+                                                            DP + B Ψ      xΨ (t)           R EFERENCES
+    z(t)               CP + Dzu KP             Dzu KΨ        DP[1] A. Das, w(t)
+                                                                            S. Shivakumar, M. Peet, and S. Weiland. Robust Analysis of
+                                                        (35)       Uncertain ODE-PDE Systems Using PI Multipliers, PIEs and LPIs. In
+                                                                   2020 59th IEEE Conference on Decision and Control (CDC), pages
+Write the realization of Ψ as                                      634–639, 2020.
+                             z     w
+                                                            [2] Bin Hu, Márcio J. Lacerda, and Peter Seiler. Robustness analysis of
+        TΨ ẋΨ (t)     AΨ BΨ        BΨ      xΨ (t)                 uncertain discrete-time systems with dissipation inequalities and integral
+       z̃(t)  =  CΨ   z       z    zw  
+                               DΨ   DΨ       z(t)  .   (36)       quadratic constraints. International Journal of Robust and Nonlinear
+                         w      wz     w                           Control, 27(11):1940–1962, 2017.
+           w̃(t)       CΨ     DΨ    DΨ       w(t)
+8
+
+
+
+ [3] I. Köse and C. Scherer. Robust L2 -gain feedforward control of uncertain
+     systems using dynamic IQCs. International Journal of Robust and
+     Nonlinear Control, 19(11):1224–1247, 2009.
+ [4] Thijs Lenssen, Aleksandr Talitckii, Matthew Peet, and Amritam Das.
+     A µ-Analysis and Synthesis Framework for Partial Integral Equations
+     using IQCs, 2025.
+ [5] Harald Pfifer and Peter Seiler. Less conservative robustness analysis
+     of linear parameter varying systems using integral quadratic constraints.
+     International Journal of Robust and Nonlinear Control, 26(16):3580–
+     3594, 2016.
+ [6] R. M. Redheffer. On a certain linear fractional transformation. Journal
+     of Mathematics and Physics, 39(1-4):269–286, 1960.
+ [7] M. Peet S. Shivakumar, A. Das. Dual Representations and H∞ -Optimal
+     Control of Partial Differential Equations. IEEE, Volume(Issue):Start–
+     End, 2026.
+ [8] Peter Seiler. Stability analysis with dissipation inequalities and inte-
+     gral quadratic constraints. IEEE Transactions on Automatic Control,
+     60(6):1704–1709, 2015.
+ [9] S. Shivakumar, A. Das, and M. Peet. PIETOOLS: A Matlab Toolbox for
+     Manipulation and Optimization of Partial Integral Operators. In 2020
+     American Control Conference (ACC), pages 2667–2672, 2020.
+[10] S. Shivakumar, A. Das, S. Weiland, and M. Peet. Extension of the Partial
+     Integral Equation Representation to GPDE Input–Output Systems. IEEE
+     Transactions on Automatic Control, 70(5):3240–3255, 2025.
+[11] A. Talitckii, M. Peet, and P. Seiler. Integral Quadratic Constraints with
+     Infinite-Dimensional Channels. In 2023 American Control Conference
+     (ACC), pages 1576–1583, 2023.
+[12] J. Veenman, C. Scherer, and H. Köroğlu. Robust stability and per-
+     formance analysis based on integral quadratic constraints. European
+     Journal of Control, 31:1–32, 2016.
+[13] Raghu Venkataraman and Peter Seiler. Convex LPV synthesis of estima-
+     tors and feedforwards using duality and integral quadratic constraints.
+     International Journal of Robust and Nonlinear Control, 28(3):953–975,
+     2018.
+[14] Chengzhi Yuan and Fen Wu. Dynamic iqc-based control of uncertain
+     lft systems with time-varying state delay. IEEE Transactions on
+     Cybernetics, 46(12):3320–3329, 2016.
+[15] Kemin Zhou, John Comstock Doyle, Keith Glover, et al. Robust and
+     optimal control, volume 40. Prentice hall New Jersey, 1996.
+                                                                                                                                9
+
+
+
+                                                        A PPENDIX A
+                                                   M ATHEMATICAL P ROOFS
+A. Proof of Theorem 1
+  Suppose that (8) holds. This implies,
+                                                                    
+                                            P∆                   P∆
+                                     pT Ψ∆       w∆ , pT MV∆ Ψ∆       w∆
+                                             I                    I        L
+                                                                      [a,b]
+                                                P                    P
+                                      + pT Ψp p∆ w∆ , pT MVp Ψp p∆ w∆
+                                                  0                    0          L            [a,b]
+
+                                     ≤ −ϵ∥pT w∆ ∥2L[a,b] .
+Since Qp ⪰ 0, we can then infer,
+                                                             
+                                     P∆ w ∆                P∆ w∆
+                             p T Ψ∆           , pT MV∆ Ψ∆                             ≤ −ϵ∥pT w∆ ∥2L[a,b] .
+                                      w∆                    w∆     L          [a,b]
+
+Then, using Theorem 6 in [11], we find that robust stability is guaranteed. Moreover, rewriting (8) as,
+                                                                   
+                                                 z∆                   z
+                                         pT Ψ∆        , pT MV∆ Ψ∆ ∆
+                                                 w∆                   w∆ L
+                                                                      [a,b]
+                                                      zp                  z
+                                          + pT Ψp          , pT MVp Ψp p
+                                                      wp                 wp L
+                                                                               [a,b]
+                                        ≤ −ϵ ∥pT w∆ ∥2L[a,b] + ∥pT wp ∥2L[a,b] ,
+and given that Ψ∆ and MV∆ satisfy the IQC in Definition 10 leads to,
+                                                      
+                                        zp               z
+                                p T Ψp     , pT MVp Ψp p             ≤ −ϵ∥pT wp ∥2L[a,b] .
+                                        wp               wp L
+                                                                      [a,b]
+
+Thus by Definition 11 robust performance is achieved.
+
+B. Proof of Lemma 1
+   We first show the primal derivation explicitly. To show sufficiency, first augment the primal system with the Potapov–Ginzburg
+transform of the primal filter, i.e. P ⋆ Θ† . Θ† admits the state-space representation
+                                                     †           †,w̃       †,z        
+                                         TΘ ẋΘ (t)       AΘ      BΘ        BΘ        xΘ (t)
+                                         z̃(t)  =  C †,z D†,zw̃ D†,z   w̃(t)  .                                        (42)
+                                                           Θ       Θ           Θ
+                                            w(t)           †,w     †,ww̃      †,wz     z(t)
+                                                         CΘ      DΘ        DΘ
+             w −1
+With WΘ := (DΘ ) , the transformed blocks are
+                         A†Θ := AΘ − BΘ
+                                      w      w
+                                        WΘ C Θ ,                                       †,w̃
+                                                                                      BΘ        w
+                                                                                            := BΘ WΘ ,
+                         †,z     z    w     wz                                         †,z     z    zw     w
+                        BΘ   := BΘ − BΘ WΘ DΘ  ,                                      CΘ   := CΘ − DΘ  WΘ CΘ ,
+                         †,z     z    zw     wz                                   †,z w̃     zw
+                        DΘ   := DΘ − DΘ  WΘ DΘ  ,                                DΘ      := DΘ  WΘ ,
+                         †,w         w                                           †,ww̃
+                        CΘ   := −WΘ CΘ ,                                        DΘ     := WΘ ,
+                        †,wz         wz
+                       DΘ    := −WΘ DΘ  .
+Substitution of z = Cx + Dw into (42) and solving for w gives the algebraic loop
+                                                †,wz          †,w          †,ww̃
+                                        w = Λw DΘ    Cx + Λw CΘ   xΘ + Λw DΘ     w̃.                                        (43)
+Define the algebraic loops
+                                                †,wz                            †,wz −1
+                                    Λw := (I − DΘ    D)−1 ,        Λz := (I − DDΘ   ) .
+                   w −1   w −1       w −1 wz                   †,wz
+Since (DΘwz
+            D + DΘ  ) = (DΘ ) (I + (DΘ ) DΘ D)−1 = (DΘ
+                                                     w −1
+                                                       ) (I − DΘ    D)−1 invertible, Λw , Λz invertible. Substituting
+(43) into (3) gives
+                                                  †,wz            †,w           †,ww̃
+                                 T ẋ = (A + BΛw DΘ    C)x + BΛw CΘ   xΘ + BΛw DΘ     w̃.
+                              †,wz
+Using DΛw = Λz D and I + DΛw DΘ    = Λz , we obtain
+                                                           †,w           †,ww̃
+                                          z = Λz Cx + Λz DCΘ   xΘ + Λz DDΘ     w̃.                                          (44)
+10
+
+
+
+Substitution into the equations for ẋΘ and z̃ yields P ⋆ Θ†
+                                           †,wz                †,w                       †,ww̃               
+                   T ẋ(t)       A + BΛw DΘ        C       BΛw CΘ                   BΛw DΘ                  x(t)
+                                       †,z
+                TΘ ẋΘ (t) =       BΘ   Λz C              †,z
+                                                      A†Θ + BΘ        †,w
+                                                                 Λz DCΘ     BΘ†,w̃     †,z
+                                                                                    + BΘ   Λz DDΘ †,ww̃  
+                                                                                                           xΘ (t)         (45)
+                    z̃(t)              †,z             †,z   †,z      †,w    †,z w̃     †,z        †,ww̃    w̃(t)
+                                      DΘ Λz C        CΘ + DΘ Λz DCΘ         DΘ + DΘ Λz DDΘ
+Define also
+                                                             wz      w −1
+                                                     Λc := (DΘ  D + DΘ ) .
+The invertible congruence transformation used directly on (45) is
+                                                                                                       
+                x(t)         I     0     0       x(t)           x(t)         I               0        0     x(t)
+             xΘ (t) =  0        I     0  xΘ (t)        xΘ (t) =     0               I        0  xΘ (t)         (46)
+                w̃(t)      DΘwz
+                                C CΘw
+                                        Λ−1
+                                          c      w(t)          w(t)      −Λc DΘwz
+                                                                                  C             w
+                                                                                           −Λc CΘ     Λc    w̃(t)
+The third row of (46) is
+                                                 wz       w        wz      w
+                                           w̃ = DΘ  Cx + CΘ xΘ + (DΘ  D + DΘ )w.                                           (47)
+Using z = Cx + Dw, this is equivalently
+                                                   w        wz        w
+                                             w̃ = CΘ xΘ + D Θ  z + DΘ   w,
+                                    
+                                    P
+which is the scaled input row of Θ     w. We now apply (46) directly to (45). The plant row of (45) gives
+                                    I
+                                                   †,wz            †,w           †,ww̃
+                                  T ẋ = (A + BΛw DΘ    C)x + BΛw CΘ   xΘ + BΛw DΘ     w̃
+                                                   †,wz          †,w          †,ww̃
+                                      = Ax + B(Λw DΘ    Cx + Λw CΘ   xΘ + Λw DΘ     w̃)
+                                      = Ax + Bw,
+where the last equality uses (43). The filter state row of (45) gives
+                                     †,z
+                           TΘ ẋΘ = BΘ                   †,z
+                                         Λz Cx + (A†Θ + BΘ        †,w
+                                                             Λz DCΘ   )xΘ
+                                           †,w̃    †,z      †,ww̃
+                                       + (BΘ    + BΘ   Λz DDΘ     )w̃
+                                              †,w̃
+                                  = A†Θ xΘ + BΘ          †,z
+                                                   w̃ + BΘ                 †,w
+                                                             (Λz Cx + Λz DCΘ             †,ww̃
+                                                                               xΘ + Λz DDΘ     w̃)
+                                              †,w̃
+                                  = A†Θ xΘ + BΘ          †,z
+                                                   w̃ + BΘ   z
+                                           w      w        w      w        wz      w
+                                  = (AΘ − BΘ WΘ C Θ )xΘ + BΘ WΘ (CΘ xΘ + D Θ  z + DΘ w)
+                                           z    w     wz
+                                       + (BΘ − BΘ WΘ DΘ  )z
+                                             z      w
+                                  = AΘ xΘ + BΘ z + BΘ w.
+                               w −1
+The output row of (45), WΘ = (DΘ ) and using (44) gives
+                                   †,z           †,z    †,z      †,w
+                             z̃ = DΘ   Λz Cx + (CΘ   + DΘ   Λz DCΘ   )xΘ
+                                        †,z w̃    †,z      †,ww̃
+                                    + (DΘ      + DΘ   Λz DDΘ     )w̃
+                                  †,z        †,z w̃       †,z               †,w           †,ww̃
+                               = CΘ   xΘ + D Θ      w̃ + DΘ   (Λz Cx + Λz DCΘ   xΘ + Λz DDΘ     w̃)
+                                  †,z        †,z w̃       †,z
+                               = CΘ   xΘ + D Θ      w̃ + DΘ   z
+                                   z    zw      w        zw      w        wz      w
+                               = (CΘ − DΘ  WΘ C Θ )xΘ + DΘ  WΘ (CΘ xΘ + D Θ  z + DΘ w)
+                                        z    zw     wz
+                                    + (DΘ − DΘ  WΘ DΘ  )z
+                                  z        z      zw
+                               = CΘ xΘ + D Θ z + DΘ  w.
+Substituting z = Cx + Dw in these recovered rows gives
+                                                                              
+                                       T ẋ(t)        A         0       B                
+                                    TΘ ẋΘ (t)  B z C AΘ B z D + B w  x(t)
+                                                 Θ                 Θ        Θ 
+                                                                              zw  xΘ (t) .
+                                     z̃(t)  =  DΘ                                                                        (48)
+                                                     z         z   z
+                                                                                          
+                                                         C CΘ      DΘ D + DΘ
+                                                      wz        w   wz         w     w(t)
+                                        w̃(t)       DΘ   C CΘ      DΘ  D + DΘ
+                                                      
+                                                      P
+The realization in (48) is the direct augmentation Θ       w. For necessity, applying the inverse of (46) to (48) recovers (45).
+                                                       I
+                             P ⋆ Θ†
+                                 
+                  P
+Thus we find Θ        w=              Γw for all w ∈ Ln w
+                                                      e,[a,b] .
+                  I             I
+                                                                                                                                                       11
+
+
+
+  Dual side. We now start directly with (Θ† )⊤ . Taking the adjoint of (42) gives
+                                ∗            † ∗           †,z ∗       †,w ∗           
+                                 TΘ ẋΘ (t)        AΘ        CΘ           CΘ            xΘ (t)
+                                                    †,w̃ ∗   †,z w̃ ∗    †,w w̃ ∗
+                                z̃(t)  =  B              DΘ           DΘ            w̃(t)  .                                                   (49)
+                                                    Θ 
+                                                    †,z   ∗    †,z ∗      †,wz  ∗
+                                   w(t)           BΘ         DΘ          DΘ              z(t)
+
+The dual plant P ⊤ is
+                                                                T ∗ ẋ = A∗ x + C ∗ w,
+                                                                                                                                                     (50)
+                                                                    z = B ∗ x + D∗ w.
+Substitution of the second row of (50) into the third row of (49) and solving for w gives
+                                                        †,wz ∗ ∗          †,z ∗
+                                           w = Λw DΘ            B x + Λ w BΘ      xΘ
+                                                           †,z ∗
+                                                                                                                                                     (51)
+                                                 + Λw DΘ w̃,
+Define the algebraic loops
+                                                        −1                                         −1
+                                               †,wz ∗ ∗                                      †,wz ∗
+                                    Λw := I − DΘ      D      ,                  Λz := I − D∗ DΘ           .
+
+The well-posedness of P ⊤ ⋆ (Θ† )⊤ gives the invertibility of Λw and Λz . Substituting (51) into the first row of (50) gives
+                                                                  †,wz ∗ ∗
+                                     T ∗ ẋ = (A∗ + C ∗ Λw DΘ              B )x
+                                                              †,z ∗                  †,z ∗
+                                                      ∗
+                                                  + C Λw BΘ xΘ + C ∗ Λw DΘ                   w̃.
+                                        †,wz   ∗
+Using D∗ Λw = Λz D∗ and I + D∗ Λw DΘ
+                                             
+                                                  = Λz , we obtain
+                                                                            †,z ∗
+                                                 z = Λz B ∗ x + Λz D∗ BΘ           xΘ
+                                                              ∗     †,z ∗
+                                                                                                                            (52)
+                                                     + Λz D DΘ w̃.
+Substitution of (51) and (52) into the remaining rows gives the realization of P ⊤ ⋆ (Θ† )⊤ :
+              ∗                 †,wz ∗ ∗                            †,z ∗                                           †,z ∗
+                 A + C ∗ Λw DΘ                             C ∗ Λ w BΘ                                      C ∗ Λw DΘ
+ ∗                                                                                                                                                
+  T ẋ(t)                                B                                                                                                     x(t)
+                         †,w ∗                         ∗        †,w ∗            †,z ∗          †,z ∗           †,w ∗             †,z ∗  
+TΘ∗ ẋΘ (t) =                Λ B∗           A†Θ + CΘ                 Λ D ∗ BΘ                                        Λz D∗ DΘ
+                                                                                                                                
+                       CΘ                                                                     CΘ         + CΘ                                 xΘ (t) .
+                        †,w w̃ ∗ z ∗          †, w̃ ∗         †,w w̃ ∗ z        †,z   ∗    †,z w̃   ∗         †,w w̃   ∗          †,z ∗
+    z̃(t)                                                                Λ z D ∗ BΘ                                         Λz D∗ DΘ           w̃(t)
+                                                                                                                      
+                      DΘ         Λz B        BΘ          + DΘ                                DΘ          + DΘ
+                                                                                                                                                      (53)
+Let the feedthrough inverse in the realization of D(Θ) be
+                                                                        zw∗ −1
+                                                  w∗                                 z
+                                                                                        RΘ Rzw
+                                                                                                     
+                                                      DΘ          −DΘ                            Θ
+                                          RΘ :=           wz∗           z∗        =                      .                                            (54)
+                                                    −DΘ              DΘ                Rwz Θ   Rw Θ
+
+Define                                                                                        w∗ 
+                                                       w∗            z∗
+                                                                                             −BΘ
+                                                 FΘ := −CΘ           CΘ    ,       HΘ :=        z∗  .
+                                                                                               BΘ
+Then the realization of D(Θ) can be written as
+                                  ∗                                                              
+                                   TΘ ẋΘ (t)   ∗                                           xΘ (t)
+                                  z̃(t)  = AΘ − FΘ RΘ HΘ                             FΘ RΘ 
+                                                                                               z(t)  .                                              (55)
+                                                   −RΘ HΘ                               RΘ
+                                     w̃(t)                                                     w(t)
+Define also
+                                                                       ∗                −1
+                                                            Λc := (Rwz     w
+                                                                    Θ D + RΘ )               .
+The invertible congruence transformation used directly on (53) is
+                                                                             
+                             x(t)          I               0          0      x(t)
+                          xΘ (t) =  0                   I          0  xΘ (t) ,
+                                               ∗                      −1
+                             w̃(t)      Rwz  B    R wz w∗
+                                                       B   −  R w z∗
+                                                                  B  Λc      w(t)
+                                    Θ            Θ   Θ       Θ Θ
+                                                                                                                                                  (56)
+                             x(t)            I                     0            0     x(t)
+                          xΘ (t) =        0                     I            0  xΘ (t) .
+                                               wz ∗           wz w∗     w z∗
+                             w(t)       −Λc RΘ B −Λc (RΘ BΘ − RΘ BΘ ) Λc             w̃(t)
+The third row of (56) is
+                                                      ∗                           −1
+                                             w̃ = Rwz        wz w∗   w z∗
+                                                   Θ B x + (RΘ BΘ − RΘ BΘ ) xΘ + Λc w
+                                                                                                                                                     (57)
+                                                = (Rwz w∗   w z∗         wz     w
+                                                    Θ BΘ − RΘ BΘ ) xΘ + RΘ z + RΘ w,
+12
+
+
+                                                                                                                        ⊤
+                                                                                                                        P
+where the last equality uses z = B ∗ x + D∗ w. This is the direct filtered input row of D(Θ)                                w. We now apply (56)
+                                                                                                                         I
+directly to (53). The plant row gives
+                                                        †,wz ∗ ∗              †,z ∗
+                               T ∗ ẋ = (A∗ + C ∗ Λw DΘ         B )x + C ∗ Λw BΘ      xΘ
+                                             ∗       †,z ∗
+                                          + C Λw DΘ w̃
+                                                                                                       
+                                                            †,wz ∗ ∗         †,z ∗          †,z ∗
+                                          ∗
+                                      = A x + C ∗ Λw DΘ            B x + Λ w BΘ      xΘ + Λw DΘ      w̃
+                                     = A∗ x + C ∗ w,
+
+where the last equality uses (51). The filter-state row gives
+                                                                                         
+                              †,w ∗                      ∗      †,w ∗           †,z ∗
+                 TΘ∗ ẋΘ = CΘ        Λz B ∗ x + A†Θ + CΘ                  Λ z D ∗ BΘ        xΘ
+                                                                           
+                                     †,z ∗        †,w ∗            †,z ∗
+                             + CΘ           + CΘ          Λz D∗ DΘ            w̃
+                                                                                                                         
+                                  ∗                 ∗              ∗                         †,z ∗             †,z ∗
+                         = A†Θ xΘ + CΘ        †,z            †,w
+                                                                       Λz B ∗ x + Λz D∗ BΘ          xΘ + Λz D∗ DΘ
+                                                               
+                                                      w̃ + CΘ                                                          w̃
+                                ∗            †,z ∗         †,w ∗
+                         = A†Θ xΘ + CΘ                w̃ + CΘ        z
+                                                                      
+                              ∗                                        z
+                         = (AΘ − FΘ RΘ HΘ ) xΘ + FΘ RΘ                     .
+                                                                       w
+The output row gives
+                                                                                                               
+                                         †,ww̃ ∗                        †,w̃ ∗        †,ww̃ ∗         †,z ∗
+                                  z̃ = DΘ          Λz B ∗ x + BΘ                  + DΘ            Λz D∗ BΘ        xΘ
+                                                                                                 
+                                                  †,z w̃   ∗         †,ww̃    ∗           †,z   ∗
+                                                                                Λz D∗ DΘ
+                                                                                            
+                                        + DΘ                 + DΘ                                   w̃
+                                         †,w̃ ∗              †,z w̃ ∗            †,ww̃ ∗
+                                     = BΘ        xΘ + DΘ                w̃ + DΘ             z
+                                                                                             
+                                         z          zw
+                                                                              z     zw
+                                                                                             z
+                                     = − RΘ RΘ HΘ xΘ + RΘ RΘ                                       .
+                                                                                              w
+Together with                                                                                      
+                                                                                                  z
+                                            w̃ = − Rwz         Rw       HΘ xΘ + Rwz         Rw
+                                                                             
+                                                    Θ           Θ                Θ           Θ        ,
+                                                                                                   w
+                                                       
+                                                       z
+these are the direct state-space rows of D(Θ)            . Substituting z = B ∗ x + D∗ w into the recovered rows gives
+                                                       w
+
+                  A∗                                                                                  C ∗ 
+                                                                                                                
+ ∗                                  0
+                        ∗
+                                                                                                            D∗
+          
+  T ẋ(t)    FΘ RΘ B
+                                                                                                                
+                             A∗Θ − FΘ RΘ HΘ
+                                                                                                                         
+   ∗
+T ẋΘ (t)                                                                                       FΘ RΘ          x(t)
+ Θ                    0                                                                                     I 
+ z̃(t)  =  z       B∗                                                                                   D∗  xΘ (t) .
+                                                                                                                   
+                   zw
+                               z      zw
+                                                                                                 z     zw
+             R   R         −  R     R      HΘ                                                    RΘ RΘ           w(t)
+   w̃(t)      Θ   Θ      0      Θ     Θ                                                                       I 
+                      ∗                                                                                  ∗
+                 Rwz
+                  Θ B       Rwz   w∗     w z∗
+                              Θ BΘ − R Θ BΘ                                                        Rwz
+                                                                                                     Θ D + RΘ
+                                                                                                               w
+                                                         ⊤                                                            (58)
+                                                         P
+The realization in (58) is the direct augmentation D(Θ)      w. For necessity, applying the inverse of (56) to (58) recovers
+                                                          I
+(53). Thus we find                                  ⊤      ⊤
+                                                             P ⋆ (Θ† )⊤
+                                                                        
+                                                    P
+                                            D(Θ)        w=                Γ w,                                          (59)
+                                                     I            I
+where Γ denotes the coordinate/input map in (56).
+  The realization of D(Θ), kept here for reference, is
+                                                       zw∗ −1
+                                        w∗                 w∗                                        w∗
+                                                                                                                  zw∗
+                                                                                                                                −1 
+   ∗               ∗
+                          w∗       z∗
+                                        DΘ       −DΘ         −BΘ                         w∗         z∗ DΘ    −DΘ                        
+   TΘ ẋΘ (t)      A
+                   Θ  −  −C Θ    CΘ        wz∗        z∗       z∗                        −CΘ        CΘ    wz∗     z∗               xΘ (t)
+                                         −D Θ       D          BΘ                                       −DΘ      D
+   z̃(t)  =                 w∗               Θ w∗ 
+                                             zw∗ −1
+                                                                                                   w∗           Θ
+                                                                                                             zw∗ −1
+                                                                                                                                     z(t)  .
+     w̃(t)
+                                DΘ      −DΘ           −BΘ                                          DΘ    −DΘ                      
+                                                                                                                                       w(t)
+                           −       wz∗       z∗           z∗                                         wz∗     z∗
+                               −DΘ         DΘ           BΘ                                         −DΘ     DΘ
+                                                                                                                                             (60)
+                                                                                                                                    13
+
+
+
+C. Proof of Theorem 3
+   Assume that the primal statement of the theorem holds. Then there exists a sufficiently small ϵ > 0 such that
+                                                            
+                                          P                   P
+                                    pT Θ     w, pT Jnz ,nw Θ       w         ≤ −ϵ∥pT w∥2L[a,b]                                    (61)
+                                          I                    I      L[a,b]
+                                                            
+                                                             P
+for all w ∈ Ln
+             e,[a,b] and T ≥ 0. By lemma 1, the system Θ I
+               w
+                                                                  has a realization of the form
+
+                                   P ⋆ Θ†                   P ⋆ Θ†
+                                                                     
+                               pT           Γw, pT Jnz ,nw            Γw          ≤ −ϵ∥pT w∥2L[a,b]                               (62)
+                                      I                         I            L            [a,b]
+
+
+substituting w̃ = Γw, Γ−1 w̃ = w, gives
+                                  P ⋆ Θ†                   P ⋆ Θ†
+                                                               
+                              pT           w̃, pT Jnz ,nw          w̃                     ≤ −ϵ∥pT Γ−1 w̃∥2L[a,b]                  (63)
+                                     I                       I        L           [a,b]
+
+
+Since Γ is causal and bounded, ∥pT w̃∥L[a,b] ≤ ∥Γ∥L(L[a,b] ) ∥pT Γ−1 w̃∥L[a,b] , and therefore
+                                                                             ϵ
+                                     ∥pT (P ⋆ Θ† )w̃∥2L[a,b] ≤ (1 −        2          )∥pT w̃∥2L[a,b] .                           (64)
+                                                                        ∥Γ∥L(L[a,b] )
+
+Then by Theorem 2, and (P ⋆ Θ† )⊤ = P ⊤ ⋆ (Θ† )⊤ , we find
+                                                                                ϵ
+                                  ∥pT (P ⊤ ⋆ (Θ† )⊤ )w̃∥2L[a,b] ≤ (1 −                    )∥pT w̃∥2L[a,b]                         (65)
+                                                                           ∥Γ∥2L(L[a,b] )
+recovering the dual statement of the theorem
+                      ⊤
+                          P ⋆ (Θ† )⊤
+                                                         ⊤
+                                                         P ⋆ (Θ† )⊤
+                                                                    
+                                                                                                        ϵ
+                      pT                 w̃, pT Jnw ,nz              w̃                      ≤−       2          ∥pT w̃∥2L[a,b]   (66)
+                               I                            I           L                          ∥Γ∥L(L[a,b] )
+                                                                                    [a,b]
+
+
+then w̃ = Γw, Γ−1 w̃ = w gives
+                  ⊤
+                       P ⋆ (Θ† )⊤
+                                                    ⊤
+                                                    P ⋆ (Θ† )⊤
+                                                                  
+                                                                                                        ϵ
+                  pT                Γw, pT Jnw ,nz               Γw                           ≤−      2          ∥pT Γw∥2L[a,b]   (67)
+                            I                          I              L                            ∥Γ∥L(L[a,b] )
+                                                                                     [a,b]
+
+
+Since Γ−1 is causal and bounded, ∥pT w∥L[a,b] ≤ ∥Γ−1 ∥L[a,b] ∥pT Γw∥L[a,b] , and this gives the dual statement
+                                     ⊤                        ⊤ 
+                                      P                          P
+                             pT D(Θ)        w, pT Jnw ,nz D(Θ)       w           ≤ −ϵ∥pT w∥2L[a,b]                                (68)
+                                       I                          I        L               [a,b]
+
+
+where
+                                                                    ϵ
+                                              ϵ :=                                          > 0.                                  (69)
+                                                     ∥Γ∥2L(L[a,b] ) ∥Γ−1 ∥2L(L[a,b] )
+Conversely, starting from the dual statement and reversing the same argument gives the corresponding primal margin
+                                                                ϵ
+                                            ϵ :=                                 > 0.                                             (70)
+                                                     2
+                                                 ∥Γ∥L(L[a,b] ) ∥Γ−1 ∥2L(L[a,b] )
+
+D. Proof of Theorem 4
+  If the primal LPI holds, the standard KYP integration gives the hard IQC
+                                                        
+                                             z             z
+                                       pT Ψ     , pT MV Ψ             ≤ −ϵ∥pT w∥2L[a,b] .
+                                             w             w L
+                                                                          [a,b]
+
+
+Theorem 1 then gives the result. It remains to consider the dual LPI. Define V (x) = ⟨T x, PT x⟩L[a,b] ≥ 0. For any w ∈ Ln z
+                                                                                                                         e,[a,b] ,
+                                          nx
+suppose z̃ satisfies (19) for some x ∈ Le,[a,b] . By (19), we have
+                                          ∗
+                                            T PA + (∗) T ∗ PB x(t)
+                                                                      
+                                   x(t)
+                                         ,                                    + ⟨z̃(t), Vz̃(t)⟩ ≤ 0.                        (71)
+                                   w(t)        B ∗ PT         ϵI     w(t)
+After integrating in time, we obtain
+                                  ϵ∥pT w∥2L[a,b] + ⟨pT z̃, pT Vz̃⟩L[a,b] ≤ −V (x(T )) + V (x(0)).
+14
+
+
+
+Since x(0) = 0 and V (x(T )) ≥ 0,
+                                                           
+                                                z             z
+                                          pT Ψ     , pT MV Ψ                    ≤ −ϵ∥pT w∥2L[a,b] .
+                                                w             w L
+                                                                        [a,b]
+
+
+Using the (D(Θ), Jnw ,nz ) factorization, this is
+                                                                  
+                                              z                      z
+                                  pT D(Θ)         , pT Jnw ,nz D(Θ)                      ≤ −ϵ∥pT w∥2L[a,b] .
+                                             w                       w L
+                                                                                 [a,b]
+
+By Theorem 3, there exists ϵ > 0 such that
+                                                          
+                                           z                 z
+                                    pT Θ     , pT Jnz ,nw Θ                      ≤ −ϵ∥pT w∥2L[a,b] .
+                                           w                 w L
+                                                                         [a,b]
+
+
+Using the (Θ, Jnz ,nw ) factorization gives the primal hard IQC, and Theorem 1 gives robust stability and robust performance.
+
+E. Proof of Class 5
+  We use the multiplicative property of the dual operation such that D(Θ1 Θ2 ) = D(Θ1 )D(Θ2 ) for any two invertible Θ1
+and Θ2 . Since S0 ⪰ 0, S is invertible with S0 −1 ⪰ 0. Applying this property to the two factors of Θ in Class 5 gives
+                                                                             
+                                                    1 I S              βI −I
+                                      D(Θ) = D( √              )D(               )
+                                                     2 I −S          −αI I
+                                                            −S −1 −I
+                                                                                    
+                                                     1                      βI −I
+                                            =√                 −1                       .
+                                                  2(β − α) −S         I    −αI I
+Therefore, direct block multiplication gives
+                        D(Θ)∗ Jn,n D(Θ)
+                                              ∗  −1
+                                                           −S −1
+                                                                        −1                                     
+                               1        βI −I      −S                     −S     −I     βI                     −I
+                        =                                           Jn,n     −1
+                          2(β − α)  2  −αI I         −I       I           −S       I   −αI                     I
+                                             ∗ 
+                                                        S −1
+                                                                       
+                              1        βI −I       0             βI −I
+                        =                                                   = V ∆,
+                          (β − α)2 −αI I          S −1   0      −αI I
+where the final equality substitutes S = S −1 .
+
+F. Derivation of the Dual Filtered Controller Realization
+                                                                                           
+                                                                                     x (t)
+                                                                                Bu  P 
+                                                             
+                                              ∂t (TP xP )(t)     AP    BP
+                                                              =                        w(t) .                           (72)
+                                                   z(t)          CP    DP       Dzu
+                                                                                       u(t)
+substitute u(t) = KP xP (t) + KΨ xΨ (t),
+                                                                                                      
+                                                                                               x (t)
+                                                                                           BP  P 
+                                                 
+                                  ∂t (TP xP )(t)     AP + Bu KP             Bu KΨ
+                                                  =                                              xΨ (t) .               (73)
+                                       z(t)         CP + Dzu KP             Dzu KΨ         DP
+                                                                                                 w(t)
+                             
+                        K⋆P
+Now give the system Ψ           w,
+                           I
+                                                                                                       
+                   TP ẋP (t)         AP + Bu KP                    Bu KΨ                         BP              
+                  TΨ ẋΨ (t)  B z (CP + Dzu KP )                   z                       z        w  xP (t)
+                               Ψ                             AΨ + BΨ  Dzu KΨ              BΨ  DP + BΨ
+                   z̃(t)  =  DΨ                                                                    zw  xΨ (t) .     (74)
+                                   z                           z     z                      z
+                                                                                                                 
+                                      (CP + Dzu KP )           CΨ + DΨ Dzu KΨ               DΨ  DP + DΨ
+                                    wz                          w    wz                      wz         w     w(t)
+                     w̃(t)         DΨ (CP + Dzu KP )           CΨ + DΨ  Dzu KΨ              DΨ   DP + DΨ
+We now repeat the proof of Lemma 1. Define
+                                                AK := AP + Bu KP ,       BK := Bu KΨ ,
+                                                                                                                        (75)
+                                                 CK := CP + Dzu KP ,    DK := Dzu KΨ .
+Then
+                                                   TP ẋP = AK xP + BK xΨ + BP w,
+                                                                                                                        (76)
+                                                       z = CK xP + DK xΨ + DP w.
+                                                                                                                                     15
+
+
+
+The Potapov–Ginzburg transform Ψ† has realization
+                                              †                †,w̃      †,z         
+                                   TΨ ẋΨ (t)     AΨ            BΨ        BΨ       xΨ (t)
+                                   z̃(t)  =  C †,z            †,z w̃
+                                                                DΨ        DΨ†,z  
+                                                                                    w̃(t)  .                                      (77)
+                                                   Ψ
+                                     w(t)          †,w           †,ww̃     †,wz     z(t)
+                                                  CΨ            DΨ        DΨ
+             w −1
+With WΨ := (DΨ ) , the transformed blocks are
+                           A†Ψ := AΨ − BΨ
+                                        w     w
+                                          WΨ CΨ ,                                †,w̃
+                                                                                BΨ        w
+                                                                                      := BΨ WΨ ,
+                            †,z     z    w     wz                                    †,z     z    zw      w
+                           BΨ   := BΨ − BΨ WΨ DΨ  ,                                 CΨ   := CΨ − DΨ  WΨ C Ψ ,
+                          †,z     z    zw     wz                                †,z w̃     zw
+                         DΨ   := DΨ − DΨ  WΨ DΨ  ,                             DΨ      := DΨ  WΨ ,
+                          †,w         w                                        †,ww̃
+                         CΨ   := −WΨ CΨ ,                                     DΨ     := WΨ ,
+                        †,wz         wz
+                       DΨ    := −WΨ DΨ  .
+Substitution of the second row of (76) into (77) and solving for w gives
+                                                †,wz
+                                        w = Λw DΨ    CK xP
+                                                     †,w    †,wz              †,ww̃
+                                                                                                                                   (78)
+                                              + Λw (CΨ   + DΨ    DK )xΨ + Λw DΨ     w̃,
+where
+                                                †,wz                                  †,wz −1
+                                    Λw := (I − DΨ    DP )−1 ,          Λz := (I − DP DΨ   ) .                                      (79)
+Since
+                                w −1    w −1       w −1 wz                     †,wz
+                       wz
+                     (DΨ  DP + DΨ ) = (DΨ ) (I + (DΨ ) DΨ DP )−1 = (DΨ
+                                                                     w −1
+                                                                       ) (I − DΨ    DP )−1
+is invertible, Λw and Λz are invertible. Substituting (78) into the first row of (76) gives
+                                                             †,wz
+                                        TP ẋP =(AK + BP Λw DΨ    CK )xP
+                                                                 †,w    †,wz
+                                                 + (BK + BP Λw (CΨ   + DΨ    DK ))xΨ
+                                                          †,ww̃
+                                                 + BP Λw DΨ     w̃.
+                                   †,wz
+Using DP Λw = Λz DP and I + DP Λw DΨ    = Λz , we obtain
+                                                                †,w              †,ww̃
+                                    z = Λz CK xP + Λz (DK + DP CΨ   )xΨ + Λz DP DΨ     w̃.                                         (80)
+                                                                   †
+Substitution into the equations for ẋΨ and z̃ yields (K ⋆ P) ⋆ Ψ :
+                                   †,wz                      †,w    †,wz                            †,ww̃               
+    TP ẋP (t)       AK + BP Λw DΨ         CK BK + BP Λw (CΨ        + DΨ    DK )              BP Λw DΨ                xP (t)
+                             †,z
+   TΨ ẋΨ (t) =         BΨ    Λ z CK         A†Ψ + BΨ†,z
+                                                            Λz (DK + DP CΨ †,w
+                                                                               )      BΨ†,w̃     †,z
+                                                                                              + BΨ   Λz DP DΨ†,ww̃  
+                                                                                                                       xΨ (t) .   (81)
+        z̃(t)                †,z                 †,z    †,z                 †,w        †,z w̃     †,z         †,ww̃    w̃(t)
+                           DΨ    Λz CK         CΨ    + DΨ   Λz (DK + DP CΨ      )     DΨ + DΨ Λz DP DΨ
+Define also
+                                                            wz       w −1
+                                                    Λc := (DΨ  DP + DΨ ) .                                                         (82)
+The invertible coordinate transformation for (81) is
+                                                                                                                        
+  xP (t)          I             0          0      xP (t)   xP (t)         I                          0                 0    xP (t)
+xΨ (t) =  0                  I          0  xΨ (t) , xΨ (t) =      0                         I                 0  xΨ (t) .
+  w̃(t)        DΨwz
+                    CK CΨ w
+                             + DΨ wz
+                                     DK Λ−1c       w(t)     w(t)      −Λc DΨwz
+                                                                               CK                  w
+                                                                                             −Λc (CΨ    wz
+                                                                                                     + DΨ  DK )        Λc    w̃(t)
+                                                                                                                                  (83)
+The third row of (83) is
+                                                   wz           w    wz
+                                             w̃ = DΨ  CK xP + (CΨ + DΨ  DK )xΨ
+                                                       wz       w                                                                  (84)
+                                                   + (DΨ  DP + DΨ )w.
+Using z = CK xP + DK xΨ + DP w, this is equivalently
+                                                        w       wz      w
+                                                  w̃ = CΨ xΨ + DΨ  z + DΨ w,
+                                          
+                                      K⋆P
+which is the filtered input row of Ψ         w.
+                                       I
+  Applying (83) to (81), the plant row gives
+                           TP ẋP = AK xP + BK xΨ
+                                              †,wz              †,w    †,wz              †,ww̃
+                                    + BP (Λw DΨ    CK xP + Λw (CΨ   + DΨ    DK )xΨ + Λw DΨ     w̃)
+                                 = AK xP + BK xΨ + BP w,
+16
+
+
+
+where the last equality uses (78). The filter-state row gives
+                                           †,w̃
+                        TΨ ẋΨ = A†Ψ xΨ + BΨ          †,z
+                                                w̃ + BΨ                            †,w
+                                                          (Λz CK xP + Λz (DK + DP CΨ                †,ww̃
+                                                                                       )xΨ + Λz DP DΨ     w̃)
+                                            †,w̃
+                                = A†Ψ xΨ + BΨ          †,z
+                                                 w̃ + BΨ   z
+                                         w      w
+                                = (AΨ − BΨ WΨ C Ψ )xΨ
+                                       w      w        wz      w
+                                    + BΨ WΨ (CΨ xΨ + D Ψ  z + DΨ w)
+                                        z    w     wz
+                                    + (BΨ − BΨ WΨ DΨ  )z
+                                           z      w
+                                = AΨ xΨ + BΨ z + BΨ w.
+Likewise, the output row gives
+                               †,z        †,z w̃       †,z                          †,w              †,ww̃
+                         z̃ = CΨ   xΨ + D Ψ      w̃ + DΨ   (Λz CK xP + Λz (DK + DP CΨ   )xΨ + Λz DP DΨ     w̃)
+                               †,z        †,z w̃       †,z
+                            = CΨ   xΨ + D Ψ      w̃ + DΨ   z
+                                z    zw      w
+                            = (CΨ − DΨ  WΨ C Ψ )xΨ
+                                   zw      w       wz      w
+                                + DΨ  WΨ (CΨ xΨ + DΨ  z + DΨ w)
+                                    z    zw     wz
+                                + (DΨ − DΨ  WΨ DΨ  )z
+                               z       z      zw
+                            = CΨ xΨ + DΨ z + DΨ  w.
+Substituting z = CK xP + DK xΨ + DP w into these recovered rows gives
+                                                                                   
+                            TP ẋP (t)       AK            BK                BP               
+                          TΨ ẋΨ (t)  B z CK               z          z         w  xP (t)
+                                         Ψ         AΨ + BΨ DK        BΨ DP + BΨ  
+                           z̃(t)  =  DΨ                                        zw  xΨ (t) .                           (85)
+                                             z        z      z         z
+                                                                                               
+                                                CK    CΨ + DΨ   DK DΨ      DP + DΨ
+                                             wz        w     wz         wz          w     w(t)
+                              w̃(t)         DΨ  CK CΨ    + DΨ    DK DΨ      DP + DΨ
+                                         
+                                    K⋆P
+This is the direct augmentation Ψ           w. Conversely, applying the inverse of (83) to (85) recovers (81). Therefore,
+                                        I
+                                                                K ⋆ P ⋆ Ψ†
+                                                                        
+                                                 K⋆P
+                                              Ψ          w=                  Γw.                                          (86)
+                                                   I                I
+     Dual side. The inverse relation D(Ψ)−1 = Jˆ∗ Ψ⊤ Jˆ has realization
+                                       ∗           ∗            w∗     z∗
+                                                                                      
+                                       TΨ ẋΨ (t)      AΨ      −CΨ       CΨ      xΨ (t)
+                                       z(t)  = −BΨ    w∗       w∗      zw∗  
+                                                                DΨ      −DΨ       z̃(t)  .                                                                   (87)
+                                                        z∗         wz∗    z∗
+                                         w(t)          BΨ     −DΨ        DΨ       w̃(t)
+Solving the second block row for z̃ and substituting it into the first and third block rows gives
+                                ∗           † ∗              †,z ∗        †,w ∗         
+                                 TΨ ẋΨ (t)       (AΨ )       (CΨ   )      (CΨ  )      xΨ (t)
+                                z̃(t)  = (B †,w̃ )∗ (D†,zw̃ )∗ (D†,ww̃ )∗   w̃(t)  .                                                                    (88)
+                                                    Ψ           Ψ            Ψ
+                                    w(t)            †,z ∗        †,z ∗       †,wz ∗     z(t)
+                                                  (BΨ   )     (DΨ   )     (DΨ    )
+Thus (K ⋆ P ⋆ Ψ† )⊤ has realization
+                                      †,wz ∗ ∗ ∗                                  †,z ∗                                        †,z ∗
+                       A∗K + CK  ∗                                        ∗ ∗                                          ∗ ∗
+ ∗                                                                                                                                                      
+ TP ẋP (t)                        (DΨ    ) Λw BP                        CK Λz (BΨ   )                               CK  Λz (DΨ   )                    xP (t)
+TΨ∗ ẋΨ (t) = B ∗ + ((C †,w )∗ + D∗ (D†,wz )∗ )Λ∗ B ∗   (A†Ψ )∗ + (DK∗
+                                                                          + (CΨ †,w ∗ ∗        †,z ∗
+                                                                                   ) DP )Λ∗z (BΨ  )      †,z ∗
+                                                                                                       (CΨ  ) + (DK  ∗
+                                                                                                                        + (CΨ†,w ∗ ∗
+                                                                                                                                ) DP )Λ∗z (DΨ †,z ∗  
+                                                                                                                                                 )      xΨ (t) .
+                  K       Ψ            K   Ψ       w P
+    z̃(t)                       †,ww̃ ∗ ∗ ∗                      †,w̃ ∗     †,ww̃ ∗ ∗ ∗     †,z ∗           †,z w̃ ∗     †,ww̃ ∗ ∗ ∗       †,z ∗        w̃(t)
+                             (DΨ     ) Λw BP                 (BΨ ) + (DΨ ) DP Λz (BΨ )                   (DΨ      ) + (DΨ      ) DP Λz (DΨ    )
+                                                                                                                                                              (89)
+Inverting (87) gives the realization of D(Ψ):
+                                                        zw∗ −1
+                                          w∗               w∗                                             w∗
+                                                                                                                       zw∗
+                                                                                                                                          −1 
+   ∗                ∗
+                            w∗       z∗
+                                          DΨ       −DΨ         −BΨ                           w∗          z∗ DΨ    −DΨ                               
+    TΨ ẋΨ (t)    AΨ − −CΨ          CΨ       wz∗      z∗         z∗                          −CΨ         CΨ    wz∗     z∗                      xΨ (t)
+                                           −D Ψ      D Ψ         BΨ                                          −DΨ      D
+   z̃(t)  =                      w∗       zw∗
+                                                  −1     w∗
+                                                                                                       w∗           Ψ
+                                                                                                                  zw∗ −1
+                                                                                                                                                 z(t)  .
+       w̃(t)
+                                  DΨ      −DΨ         −BΨ                                               DΨ    −DΨ                             
+                                                                                                                                                   w(t)
+                              −       wz∗     z∗          z∗                                              wz∗     z∗
+                                  −DΨ       DΨ           BΨ                                             −DΨ     DΨ
+                                                                                                                                                              (90)
+

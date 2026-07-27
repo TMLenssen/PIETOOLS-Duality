@@ -1,0 +1,177 @@
+
+Theorem~\ref{thm:dual-KYP} provides a robust-performance certificate for PIE
+systems in terms of the dual IQC. For analysis, this merely reformulates the
+primal certificate, since primal--dual equivalence preserves feasibility. The
+principal benefit of the dual formulation therefore appears in controller
+synthesis. Both controller constructions below use the same synthesis LPI,
+obtained by applying \eqref{eqn:dual-kyp-ineq} to the corresponding closed-loop
+PIE. The choice of dual uncertainty filter changes only the realization of the
+controller recovered from this LPI. A related application of IQC duality to
+convex feedforward controller synthesis is given by Venkataraman and
+Seiler~\cite{venkataraman}.
+
+Let $P$, with zero initial condition $\mbf{x}(0)=0$, have exogenous input $w$,
+control input $u$, performance output $z$, and PIE realization
+\begin{equation}
+\bmat{\partial_t(\mcl T_P\mbf{x}_P)(t)\\z(t)}
+=
+\bmat{
+\mcl A_P&\mcl B_P&\mcl B_u\\
+\mcl C_P&\mcl D_P&\mcl D_{zu}
+}
+\bmat{\mbf{x}_P(t)\\w(t)\\u(t)}.
+\end{equation}
+We will consider cases of $u(t) = \mcl{K}_{P} \mbf{x}_P(t) + \mcl{K}_{\Psi}\mbf{x}_\Psi(t)$. Also, if
+$\Psi_\Delta \neq I $ we assume that $\mbf{D}(\Psi_\Delta)$ exists, i.e. roughly speaking $\Psi_\Delta^*\mcl{M}_{\mcl{V}}\Psi_\Delta
+= \Psi_\Delta^*\mcl{M}_{\mcl{U}}^* J \mcl{M}_{\mcl{U}}\Psi_\Delta$, with $\mcl{U}^{-1}\in\Pi_4$ and $\Psi_\Delta^{-1}\in\Hinf$, such that
+$\underline{\Psi}_\Delta^*\mcl{M}_{\underline{\mcl{U}}}^* J \underline{\Psi}_\Delta\mcl{M}_{\underline{\mcl{U}}}
+= \mbf{D}(\Psi_\Delta)^*\mcl{M}_{\mbf{D}(\mcl{U})}^* J \mbf{D}(\Psi_\Delta)\mcl{M}_{\mbf{D}(\mcl{U})}$.
+Then $\mcl{K}\star\mcl{P}$ takes the form
+\begin{equation}
+    \bmat{\mcl{T}_P\dot{\mbf{x}}_P(t) \\ \mcl{T}_\Psi \dot{\mbf{x}}_\Psi(t)\\  z(t)} = \bmat{\mcl{A}_P+\mcl{B}_u\mcl{K}_P & \mcl{B}_u\mcl{K}_\Psi & \mcl{B}_P\\
+    \mcl{A}_\Psi + \mcl{B}_\Psi^z(\mcl{C}_P+\mcl{D}_{zu}\mcl{K}_P) & \mcl{B}_\Psi^z\mcl{D}_{zu}\mcl{K}_\Psi & \mcl{B}_\Psi^z\mcl{D}_P + \mcl{B}_\Psi^w \\
+    \mcl{C}_P+\mcl{D}_{zu}\mcl{K}_P & \mcl{D}_{zu}\mcl{K}_\Psi & \mcl{D}_P} \bmat{\mbf{x}_P(t) \\ \mbf{x}_\Psi(t) \\ w(t)}
+\end{equation}
+Write the realization of $\Psi$ as
+\begin{equation}
+\bmat{
+\mcl T_\Psi\dot{\mbf{x}}_\Psi(t)\\
+\tilde z(t)\\
+\tilde w(t)
+}
+=
+\bmat{
+\mcl A_\Psi&\mcl B_\Psi^z&\mcl B_\Psi^w\\
+\mcl C_\Psi^z&\mcl D_\Psi^z&\mcl D_\Psi^{zw}\\
+\mcl C_\Psi^w&\mcl D_\Psi^{wz}&\mcl D_\Psi^w
+}
+\bmat{\mbf{x}_\Psi(t)\\z(t)\\w(t)}.
+\end{equation}
+As in \eqref{eq:scaled-primal-system-realization}, the realization
+${\Psi}\bmat{(\mcl{K}\star\mcl{P}) \\ I}w$ takes the form
+\begin{equation}\label{eq:primal-filtered-controller-realization}
+\resizebox{\columnwidth}{!}{$\displaystyle
+\setlength{\arraycolsep}{1pt}
+\begin{aligned}
+&
+\bmat{
+\mcl T_P\dot{\mbf{x}}_P(t)\\
+\mcl T_\Psi\dot{\mbf{x}}_\Psi(t)\\
+\tilde z(t)\\
+\tilde w(t)
+}
+=
+\bmat{
+\mcl A_P+\mcl B_u\mcl K_P
+&\mcl B_u\mcl K_\Psi
+&\mcl B_P\\
+\mcl B_\Psi^z(\mcl C_P+\mcl D_{zu}\mcl K_P)
+&\mcl A_\Psi+\mcl B_\Psi^z\mcl D_{zu}\mcl K_\Psi
+&\mcl B_\Psi^z\mcl D_P+\mcl B_\Psi^w\\
+\mcl D_\Psi^z(\mcl C_P+\mcl D_{zu}\mcl K_P)
+&\mcl C_\Psi^z+\mcl D_\Psi^z\mcl D_{zu}\mcl K_\Psi
+&\mcl D_\Psi^z\mcl D_P+\mcl D_\Psi^{zw}\\
+\mcl D_\Psi^{wz}(\mcl C_P+\mcl D_{zu}\mcl K_P)
+&\mcl C_\Psi^w+\mcl D_\Psi^{wz}\mcl D_{zu}\mcl K_\Psi
+&\mcl D_\Psi^{wz}\mcl D_P+\mcl D_\Psi^w
+}
+\bmat{
+\mbf{x}_P(t)\\
+\mbf{x}_\Psi(t)\\
+w(t)
+}.
+\end{aligned}
+$}
+\end{equation}
+Thus $\underline{\Psi}\bmat{(\mcl{K}\star\mcl{P})^\top \\ I}w$
+takes the form
+
+
+
+\begin{theorem}
+    Let the realization of $P$ satisfy Definition~\ref{def:uncertain-interconnection}. Let $\Delta\in\mbf{\Delta}$, there exist dual hard IQC
+    $(\underline{\Psi}, \mcl{M}_{\underline{\mcl{V}}})$, such that,
+    \begin{itemize}
+        \item The interconnection $P\star\Delta$ is well-posed for all $\Delta\in\mbf{\Delta}$.
+        \item The IQC in Definition~\ref{def:uncertainty-iqc} is satisfied for all $\Delta\in\mbf{\Delta}$.
+        \item The dual hard IQC $(\underline{\Psi},\mcl{M}_{\underline{\mcl V}})$ has a $(\mbf{D}(\Theta),J_{\mbf{n}_w,\mbf{n}_z})$ factorization.
+    \end{itemize}
+     Moreover there exist, $\mcl{Z},\mcl{P}\in\Pi_4$ with $\mcl{P} = \mcl{P}^* \succ 0$, such that the following statement holds
+    \begin{equation}\label{eqn:dual-controller-kyp-ineq}
+            \bmat{\underline{\mcl T}^*\mcl P\underline{\mcl A} + (*)& \underline{\mcl T}^*\mcl P\underline{\mcl B}\\
+            \underline{\mcl B}^*\mcl P\underline{\mcl T} & \underline{\epsilon} I} + \bmat{\underline{\mcl C}^* \\ \underline{\mcl D}^*}\underline{\mcl V}\bmat{\underline{\mcl C} & \underline{\mcl D}} \preceq 0
+    \end{equation}
+\end{theorem}
+
+
+\subsection{\texorpdfstring{$\underline{\Psi}_\Delta = I$}
+{Dual-filter identity} controller realization}
+
+When $\Psi_\Delta=I$ and $\underline{\Psi}_\Delta=I$, no multiplier state is
+required in the controller. For a state-feedback operator $\mcl{K}_P$, set
+$u(t)=\mcl{K}_{P}\mbf{x}_P(t)$. The resulting closed-loop PIE
+$\mcl{K}\star\mcl{P}$ is
+\begin{equation}
+\bmat{\partial_t(\mcl{T}_P\mbf{x}_P)(t)\\z(t)}
+=
+\bmat{
+\mcl{A}_P+\mcl{B}_u\mcl{K}_P&\mcl{B}_P\\
+\mcl{C}_P+\mcl D_{zu}\mcl{K}_P&\mcl{D}_P
+}
+\bmat{\mbf{x}_P(t)\\w(t)}.
+\end{equation}
+
+\subsection{Dynamic-filter controller realization}
+
+Following \cite{7353149}, assume that the uncertainty $\Delta$ is known and
+that $z_\Delta$, $w_\Delta=\Delta z_\Delta$, and $w_{\mathrm p}$ are available
+to the controller. For $\underline{\Psi}_\Delta\neq I$, find the realization of $\Psi_\Delta = \mbf{D}(\underline{\Psi}_\Delta)$,
+\begin{equation}
+\bmat{
+\mcl T_{{\Psi}_\Delta}
+\dot{\mbf{x}}_{{\Psi}_\Delta}(t)\\
+y(t)
+}
+=
+\bmat{
+\mcl A_{{\Psi}_\Delta}
+&\mcl B_{{\Psi}_\Delta}^{z}
+&\mcl B_{{\Psi}_\Delta}^{w}\\
+I&0&0
+}
+\bmat{
+\mbf{x}_{{\Psi}_\Delta}(t)\\
+z_\Delta(t)\\
+w_\Delta(t)
+}.
+\end{equation}
+We impose the zero initial condition
+$\mbf{x}_{{\Psi}_\Delta}(0)=0$. The second block row gives
+$y(t)=\mbf{x}_{{\Psi}_\Delta}(t)$. The complete controller has the PIE
+realization
+\begin{equation}
+\begin{aligned}
+\bmat{
+\mcl T_{{\Psi}_\Delta}
+\dot{\mbf{x}}_{{\Psi}_\Delta}(t)\\
+u(t)
+}
+&=
+\bmat{
+\mcl A_{{\Psi}_\Delta}
+&0
+&\mcl B_{{\Psi}_\Delta}^{z}
+&\mcl B_{{\Psi}_\Delta}^{w}\\
+\mcl K_\Psi&\mcl K_P & 0 & 0
+}
+\bmat{
+\mbf{x}_{{\Psi}_\Delta}(t)\\
+\mbf{x}(t)\\
+z_\Delta(t)\\
+w_\Delta(t)
+}.
+\end{aligned}
+\end{equation}
+Hence $\mbf{x}_{{\Psi}_\Delta}$ is the controller state,
+$\mbf{x}$, $z_\Delta$, and $w_\Delta$ are its external inputs, and $u$ is its
+output.
