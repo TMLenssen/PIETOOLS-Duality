@@ -10,8 +10,8 @@ controller recovered from this LPI. A related application of IQC duality to
 convex feedforward controller synthesis is given by Venkataraman and
 Seiler~\cite{venkataraman}.
 
-Let $P$, with zero initial condition $\mbf{x}(0)=0$, have exogenous input $w$,
-control input $u$, performance output $z$, and PIE realization
+Let $P$, with zero initial condition $\mbf{x}(0)=0$, have input $w$,
+control input $u$, output $z$, and PIE realization
 \begin{equation}
 \bmat{\partial_t(\mcl T_P\mbf{x}_P)(t)\\z(t)}
 =
@@ -21,70 +21,33 @@ control input $u$, performance output $z$, and PIE realization
 }
 \bmat{\mbf{x}_P(t)\\w(t)\\u(t)}.
 \end{equation}
-We will consider cases of $u(t) = \mcl{K}_{P} \mbf{x}_P(t) + \mcl{K}_{\Psi}\mbf{x}_\Psi(t)$. Also, if
-$\Psi_\Delta \neq I $ we assume that $\mbf{D}(\Psi_\Delta)$ exists, i.e. roughly speaking $\Psi_\Delta^*\mcl{M}_{\mcl{V}}\Psi_\Delta
-= \Psi_\Delta^*\mcl{M}_{\mcl{U}}^* J \mcl{M}_{\mcl{U}}\Psi_\Delta$, with $\mcl{U}^{-1}\in\Pi_4$ and $\Psi_\Delta^{-1}\in\Hinf$, such that
-$\underline{\Psi}_\Delta^*\mcl{M}_{\underline{\mcl{U}}}^* J \underline{\Psi}_\Delta\mcl{M}_{\underline{\mcl{U}}}
-= \mbf{D}(\Psi_\Delta)^*\mcl{M}_{\mbf{D}(\mcl{U})}^* J \mbf{D}(\Psi_\Delta)\mcl{M}_{\mbf{D}(\mcl{U})}$.
-Then $\mcl{K}\star\mcl{P}$ takes the form
-\begin{equation}
-    \bmat{\mcl{T}_P\dot{\mbf{x}}_P(t) \\ \mcl{T}_\Psi \dot{\mbf{x}}_\Psi(t)\\  z(t)} = \bmat{\mcl{A}_P+\mcl{B}_u\mcl{K}_P & \mcl{B}_u\mcl{K}_\Psi & \mcl{B}_P\\
-    \mcl{A}_\Psi + \mcl{B}_\Psi^z(\mcl{C}_P+\mcl{D}_{zu}\mcl{K}_P) & \mcl{B}_\Psi^z\mcl{D}_{zu}\mcl{K}_\Psi & \mcl{B}_\Psi^z\mcl{D}_P + \mcl{B}_\Psi^w \\
-    \mcl{C}_P+\mcl{D}_{zu}\mcl{K}_P & \mcl{D}_{zu}\mcl{K}_\Psi & \mcl{D}_P} \bmat{\mbf{x}_P(t) \\ \mbf{x}_\Psi(t) \\ w(t)}
-\end{equation}
-Write the realization of $\Psi$ as
-\begin{equation}
-\bmat{
-\mcl T_\Psi\dot{\mbf{x}}_\Psi(t)\\
-\tilde z(t)\\
-\tilde w(t)
-}
-=
-\bmat{
-\mcl A_\Psi&\mcl B_\Psi^z&\mcl B_\Psi^w\\
-\mcl C_\Psi^z&\mcl D_\Psi^z&\mcl D_\Psi^{zw}\\
-\mcl C_\Psi^w&\mcl D_\Psi^{wz}&\mcl D_\Psi^w
-}
-\bmat{\mbf{x}_\Psi(t)\\z(t)\\w(t)}.
-\end{equation}
-As in \eqref{eq:scaled-primal-system-realization}, the realization
-${\Psi}\bmat{(\mcl{K}\star\mcl{P}) \\ I}w$ takes the form
-\begin{equation}\label{eq:primal-filtered-controller-realization}
-\resizebox{\columnwidth}{!}{$\displaystyle
-\setlength{\arraycolsep}{1pt}
-\begin{aligned}
-&
-\bmat{
-\mcl T_P\dot{\mbf{x}}_P(t)\\
-\mcl T_\Psi\dot{\mbf{x}}_\Psi(t)\\
-\tilde z(t)\\
-\tilde w(t)
-}
-=
-\bmat{
-\mcl A_P+\mcl B_u\mcl K_P
-&\mcl B_u\mcl K_\Psi
-&\mcl B_P\\
-\mcl B_\Psi^z(\mcl C_P+\mcl D_{zu}\mcl K_P)
-&\mcl A_\Psi+\mcl B_\Psi^z\mcl D_{zu}\mcl K_\Psi
-&\mcl B_\Psi^z\mcl D_P+\mcl B_\Psi^w\\
-\mcl D_\Psi^z(\mcl C_P+\mcl D_{zu}\mcl K_P)
-&\mcl C_\Psi^z+\mcl D_\Psi^z\mcl D_{zu}\mcl K_\Psi
-&\mcl D_\Psi^z\mcl D_P+\mcl D_\Psi^{zw}\\
-\mcl D_\Psi^{wz}(\mcl C_P+\mcl D_{zu}\mcl K_P)
-&\mcl C_\Psi^w+\mcl D_\Psi^{wz}\mcl D_{zu}\mcl K_\Psi
-&\mcl D_\Psi^{wz}\mcl D_P+\mcl D_\Psi^w
-}
-\bmat{
-\mbf{x}_P(t)\\
-\mbf{x}_\Psi(t)\\
-w(t)
-}.
-\end{aligned}
-$}
-\end{equation}
-Thus $\underline{\Psi}\bmat{(\mcl{K}\star\mcl{P})^\top \\ I}w$
-takes the form
+We will consider cases of $u(t) = \mcl{K}_{P} \mbf{x}_P(t) + \mcl{K}_{\Psi}\mbf{x}_\Psi(t)$. 
+Also, if $\Psi \neq I $ we assume that $\mbf{D}(\Psi)$ exists and $z,w$ are measurable.
+% , i.e. roughly speaking $\Psi^*\mcl{M}_{\mcl{V}}\Psi
+% = \Psi^*\mcl{M}_{\mcl{U}}^* J \mcl{M}_{\mcl{U}}\Psi$, with $\mcl{U}^{-1}\in\Pi_4$ and $\Psi^{-1}\in\Hinf$, such that
+% $\underline{\Psi}^*\mcl{M}_{\underline{\mcl{U}}}^* J \mcl{M}_{\underline{\mcl{U}}}\underline{\Psi}
+% = \mbf{D}(\Psi)^*\mcl{M}_{\mbf{D}(\mcl{U})}^* J \mcl{M}_{\mbf{D}(\mcl{U})}\mbf{D}(\Psi)$.
+% Then $\mcl{K}\star\mcl{P}$ takes the form
+% \begin{equation}
+%     \bmat{\mcl{T}_P\dot{\mbf{x}}_P(t) \\ \mcl{T}_\Psi \dot{\mbf{x}}_\Psi(t)\\  z(t)} = \bmat{\mcl{A}_P+\mcl{B}_u\mcl{K}_P & \mcl{B}_u\mcl{K}_\Psi & \mcl{B}_P\\
+%     \mcl{A}_\Psi + \mcl{B}_\Psi^z(\mcl{C}_P+\mcl{D}_{zu}\mcl{K}_P) & \mcl{B}_\Psi^z\mcl{D}_{zu}\mcl{K}_\Psi & \mcl{B}_\Psi^z\mcl{D}_P + \mcl{B}_\Psi^w \\
+%     \mcl{C}_P+\mcl{D}_{zu}\mcl{K}_P & \mcl{D}_{zu}\mcl{K}_\Psi & \mcl{D}_P} \bmat{\mbf{x}_P(t) \\ \mbf{x}_\Psi(t) \\ w(t)}
+% \end{equation}
+% Write the realization of $\Psi$ as
+% \begin{equation}
+% \bmat{
+% \mcl T_\Psi\dot{\mbf{x}}_\Psi(t)\\
+% \tilde z(t)\\
+% \tilde w(t)
+% }
+% =
+% \bmat{
+% \mcl A_\Psi&\mcl B_\Psi^z&\mcl B_\Psi^w\\
+% \mcl C_\Psi^z&\mcl D_\Psi^z&\mcl D_\Psi^{zw}\\
+% \mcl C_\Psi^w&\mcl D_\Psi^{wz}&\mcl D_\Psi^w
+% }
+% \bmat{\mbf{x}_\Psi(t)\\z(t)\\w(t)}.
+% \end{equation}
 
 
 
@@ -94,13 +57,74 @@ takes the form
     \begin{itemize}
         \item The interconnection $P\star\Delta$ is well-posed for all $\Delta\in\mbf{\Delta}$.
         \item The IQC in Definition~\ref{def:uncertainty-iqc} is satisfied for all $\Delta\in\mbf{\Delta}$.
-        \item The dual hard IQC $(\underline{\Psi},\mcl{M}_{\underline{\mcl V}})$ has a $(\mbf{D}(\Theta),J_{\mbf{n}_w,\mbf{n}_z})$ factorization.
+        \item The dual hard IQC $(\underline{\Psi},\mcl{M}_{\underline{\mcl V}})$ has a $(\mbf{D}(\Psi)\mcl{M}_{\mbf{D}(\mcl{U})},J_{\mbf{n}_w,\mbf{n}_z})$ factorization.
     \end{itemize}
      Moreover there exist, $\mcl{Z},\mcl{P}\in\Pi_4$ with $\mcl{P} = \mcl{P}^* \succ 0$, such that the following statement holds
     \begin{equation}\label{eqn:dual-controller-kyp-ineq}
-            \bmat{\underline{\mcl T}^*\mcl P\underline{\mcl A} + (*)& \underline{\mcl T}^*\mcl P\underline{\mcl B}\\
-            \underline{\mcl B}^*\mcl P\underline{\mcl T} & \underline{\epsilon} I} + \bmat{\underline{\mcl C}^* \\ \underline{\mcl D}^*}\underline{\mcl V}\bmat{\underline{\mcl C} & \underline{\mcl D}} \preceq 0
-    \end{equation}
+        \begin{gathered}
+            \bmat{
+\underline{\mcl T}^*\mcl P\underline{\mcl A}_0
++
+\underline{\mcl T}^*\mcl Z\bmat{\mcl B_u^*&0}
++(*)
+&
+\underline{\mcl T}^*\mcl P\underline{\mcl B}_0
++
+\underline{\mcl T}^*\mcl Z\mcl D_{zu}^*
+\\
+(*)&
+\underline\epsilon I
+}
+\\+
+\bmat{\underline{\mcl C}^*\\\underline{\mcl D}^*}
+\underline{\mcl V}
+\bmat{\underline{\mcl C}&\underline{\mcl D}}
+\preceq0.
+        \end{gathered}
+\end{equation}
+wherewhere
+\begin{equation*}
+\bmat{\underline{\mcl A}_0&\underline{\mcl B}_0}
+:=
+\bmat{
+\mcl A_P^*&0&\mcl C_P^*\\
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{\mcl B_P^*\\0}
+&
+\mcl A_\Psi^*
+-
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{-\mcl B_\Psi^{w*}\\\mcl B_\Psi^{z*}}
+&
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{0\\I}
+}.
+\end{equation*}
+The output rows are independent of the controller:
+\begin{equation*}
+\bmat{\underline{\mcl C}&\underline{\mcl D}}
+:=
+\bmat{
+\underline{\mcl D}_\Psi^{-1}
+\bmat{\mcl B_P^*\\0}
+&
+-
+\underline{\mcl D}_\Psi^{-1}
+\bmat{-\mcl B_\Psi^{w*}\\\mcl B_\Psi^{z*}}
+&
+\underline{\mcl D}_\Psi^{-1}
+\bmat{0\\I}
+}.
+\end{equation*}
+With
+\[
+\underline{\mcl T}:=\bmat{\mcl T_P^*&0\\0&\mcl T_\Psi^*},
+\qquad
+\mcl Z:=\mcl P\bmat{\mcl K_P^*\\\mcl K_\Psi^*},
+\]
 \end{theorem}
 
 

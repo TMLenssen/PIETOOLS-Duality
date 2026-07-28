@@ -1,0 +1,36 @@
+\subsection{Proof of Class~\ref{class:sector-bounded-infinite-dimensional}}
+\label{proof:sector-bounded-infinite-dimensional}
+We use the multiplicative property of the dual operation such that $\mbf{D}(\Theta_1\Theta_2)=\mbf D(\Theta_1)\mbf D(\Theta_2)$
+for any two invertible $\Theta_1$ and $\Theta_2$. Since $S_0\succeq 0$, $\mcl{S}$ is invertible with ${S_0}^{-1}\succeq 0$.
+Applying this property to the two factors of $\Theta$ in
+Class~\ref{class:sector-bounded-infinite-dimensional} gives
+\begin{align*}
+\mbf D(\Theta)
+&=\mbf D(
+\frac{1}{\sqrt{2}}
+\bmat{I&\mcl S\\I&-\mcl S}
+)
+\mbf D(
+\bmat{\beta I&-I\\-\alpha I&I}
+)\\
+&=\frac{1}{\sqrt{2}(\beta-\alpha)}
+\bmat{-\mcl S^{-1}&-I\\-\mcl S^{-1}&I}
+\bmat{\beta I&-I\\-\alpha I&I}.
+\end{align*}
+Therefore,
+\begin{align*}
+&\mbf D(\Theta)^*J_{\mbf n,\mbf n}\mbf D(\Theta)\\
+&=\frac{1}{2(\beta-\alpha)^2}
+\bmat{\beta I&-I\\-\alpha I&I}^*
+\bmat{-\mcl S^{-1}&-\mcl S^{-1}\\-I&I}
+J_{\mbf n,\mbf n}
+\bmat{-\mcl S^{-1}&-I\\-\mcl S^{-1}&I}
+\bmat{\beta I&-I\\-\alpha I&I}\\
+&=\frac{1}{(\beta-\alpha)^2}
+\bmat{\beta I&-I\\-\alpha I&I}^*
+\bmat{0&\mcl S^{-1}\\\mcl S^{-1}&0}
+\bmat{\beta I&-I\\-\alpha I&I}
+=\underline{\mcl V}_\Delta,
+\end{align*}
+where the final equality substitutes
+$\underline{\mcl S}=\mcl S^{-1}$.

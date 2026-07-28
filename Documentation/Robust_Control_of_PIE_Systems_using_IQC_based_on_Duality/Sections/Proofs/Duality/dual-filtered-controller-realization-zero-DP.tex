@@ -1,0 +1,596 @@
+\subsection{\texorpdfstring{Zero-Feedthrough Coordinate Transformation for $\mcl D_P=0$}{Zero-Feedthrough Coordinate Transformation for DP=0}}
+\label{proof:dual-filtered-controller-realization-zero-DP}
+
+This is the zero-feedthrough copy of the preceding derivation. Set
+$\mcl D_P=0$ and define
+\begin{equation*}
+\begin{aligned}
+\mcl A_K&:=\mcl A_P+\mcl B_u\mcl K_P,
+&
+\mcl B_K&:=\mcl B_u\mcl K_\Psi,\\
+\mcl C_K&:=\mcl C_P+\mcl D_{zu}\mcl K_P,
+&
+\mcl D_K&:=\mcl D_{zu}\mcl K_\Psi.
+\end{aligned}
+\end{equation*}
+Then
+\begin{equation*}
+\begin{aligned}
+\mcl T_P\dot{\mbf{x}}_P
+&=\mcl A_K\mbf{x}_P+\mcl B_K\mbf{x}_\Psi+\mcl B_Pw,\\
+z
+&=\mcl C_K\mbf{x}_P+\mcl D_K\mbf{x}_\Psi.
+\end{aligned}
+\end{equation*}
+The Potapov--Ginzburg transform $\Psi^\dagger$ has the same realization as in
+\eqref{eq:controller-pg-filter-realization}. Substitution of the output row
+above into that realization gives, with no algebraic loop,
+\begin{equation*}
+\begin{aligned}
+w
+={}&\mcl D_\Psi^{\dagger,wz}\mcl C_K\mbf{x}_P
++(\mcl C_\Psi^{\dagger,w}
++\mcl D_\Psi^{\dagger,wz}\mcl D_K)\mbf{x}_\Psi
++\mcl D_\Psi^{\dagger,w\tilde w}\tilde w .
+\end{aligned}
+\end{equation*}
+Thus $\Lambda_w=\Lambda_z=I$, and $(K\star P)\star\Psi^\dagger$ is
+\begin{equation*}
+\bmat{
+\mcl T_P\dot{\mbf{x}}_P(t)\\
+\mcl T_\Psi\dot{\mbf{x}}_\Psi(t)\\
+\tilde z(t)
+}
+=
+\bmat{
+\mcl A_K+\mcl B_P\mcl D_\Psi^{\dagger,wz}\mcl C_K
+&
+\mcl B_K+\mcl B_P
+(\mcl C_\Psi^{\dagger,w}+\mcl D_\Psi^{\dagger,wz}\mcl D_K)
+&
+\mcl B_P\mcl D_\Psi^{\dagger,w\tilde w}
+\\
+\mcl B_\Psi^{\dagger,z}\mcl C_K
+&
+\mcl A_\Psi^\dagger+\mcl B_\Psi^{\dagger,z}\mcl D_K
+&
+\mcl B_\Psi^{\dagger,\tilde w}
+\\
+\mcl D_\Psi^{\dagger,z}\mcl C_K
+&
+\mcl C_\Psi^{\dagger,z}+\mcl D_\Psi^{\dagger,z}\mcl D_K
+&
+\mcl D_\Psi^{\dagger,z\tilde w}
+}
+\bmat{
+\mbf{x}_P(t)\\
+\mbf{x}_\Psi(t)\\
+\tilde w(t)
+}.
+\end{equation*}
+Moreover
+\[
+\Lambda_c=(\mcl D_\Psi^w)^{-1}=W_\Psi,
+\]
+and the coordinate transformation is
+\begin{equation*}
+\bmat{
+\mbf{x}_P(t)\\
+\mbf{x}_\Psi(t)\\
+\tilde w(t)
+}
+=
+\bmat{
+I&0&0\\
+0&I&0\\
+\mcl D_\Psi^{wz}\mcl C_K
+&\mcl C_\Psi^w+\mcl D_\Psi^{wz}\mcl D_K
+&\Lambda_c^{-1}
+}
+\bmat{
+\mbf{x}_P(t)\\
+\mbf{x}_\Psi(t)\\
+w(t)
+}.
+\end{equation*}
+The third row is
+\begin{equation*}
+\tilde w
+=\mcl D_\Psi^{wz}\mcl C_K\mbf{x}_P
++(\mcl C_\Psi^w+\mcl D_\Psi^{wz}\mcl D_K)\mbf{x}_\Psi
++\mcl D_\Psi^w w,
+\end{equation*}
+which is equivalently
+\[
+\tilde w=\mcl C_\Psi^w\mbf{x}_\Psi+\mcl D_\Psi^{wz}z+\mcl D_\Psi^ww.
+\]
+Applying the inverse coordinate transformation recovers the direct
+augmentation
+\begin{equation*}
+\bmat{
+\mcl T_P\dot{\mbf{x}}_P(t)\\
+\mcl T_\Psi\dot{\mbf{x}}_\Psi(t)\\
+\tilde z(t)\\
+\tilde w(t)
+}
+=
+\bmat{
+\mcl A_K&\mcl B_K&\mcl B_P\\
+\mcl B_\Psi^z\mcl C_K
+&\mcl A_\Psi+\mcl B_\Psi^z\mcl D_K
+&\mcl B_\Psi^w\\
+\mcl D_\Psi^z\mcl C_K
+&\mcl C_\Psi^z+\mcl D_\Psi^z\mcl D_K
+&\mcl D_\Psi^{zw}\\
+\mcl D_\Psi^{wz}\mcl C_K
+&\mcl C_\Psi^w+\mcl D_\Psi^{wz}\mcl D_K
+&\mcl D_\Psi^w
+}
+\bmat{
+\mbf{x}_P(t)\\
+\mbf{x}_\Psi(t)\\
+w(t)
+}.
+\end{equation*}
+Hence
+\begin{equation*}
+\Psi\bmat{K\star P\\I}w
+=
+\bmat{K\star P\star\Psi^\dagger\\I}\Gamma w .
+\end{equation*}
+
+Taking the adjoint of the zero-feedthrough Potapov--Ginzburg realization
+above gives the transposed Potapov--Ginzburg realization
+\begin{equation*}
+\resizebox{\columnwidth}{!}{$\displaystyle
+\begin{aligned}
+&
+\bmat{
+\mcl T_P^*\dot{\underline{\mbf{x}}}_P(t)\\
+\mcl T_\Psi^*\dot{\underline{\mbf{x}}}_\Psi(t)\\
+\tilde{\underline z}(t)
+}
+=
+\bmat{
+\mcl A_K^*+\mcl C_K^*(\mcl D_\Psi^{\dagger,wz})^*\mcl B_P^*
+&
+\mcl C_K^*(\mcl B_\Psi^{\dagger,z})^*
+&
+\mcl C_K^*(\mcl D_\Psi^{\dagger,z})^*
+\\
+\mcl B_K^*
++\left((\mcl C_\Psi^{\dagger,w})^*
++\mcl D_K^*(\mcl D_\Psi^{\dagger,wz})^*\right)\mcl B_P^*
+&
+(\mcl A_\Psi^\dagger)^*
++\mcl D_K^*(\mcl B_\Psi^{\dagger,z})^*
+&
+(\mcl C_\Psi^{\dagger,z})^*
++\mcl D_K^*(\mcl D_\Psi^{\dagger,z})^*
+\\
+(\mcl D_\Psi^{\dagger,w\tilde w})^*\mcl B_P^*
+&
+(\mcl B_\Psi^{\dagger,\tilde w})^*
+&
+(\mcl D_\Psi^{\dagger,z\tilde w})^*
+}
+\bmat{
+\underline{\mbf{x}}_P(t)\\
+\underline{\mbf{x}}_\Psi(t)\\
+\tilde{\underline w}(t)
+}.
+\end{aligned}
+$}
+\end{equation*}
+Furthermore,
+\[
+\underline{\Lambda}_c
+=
+\left(
+\bmat{0&I}\underline{\mcl D}_\Psi^{-1}\bmat{0\\I}
+\right)^{-1}
+=(\mcl D_\Psi^{\dagger,z})^*.
+\]
+The coordinate transformations are
+\begin{equation*}
+\begin{aligned}
+\bmat{
+\underline{\mbf{x}}_P(t)\\
+\underline{\mbf{x}}_\Psi(t)\\
+\tilde{\underline w}(t)
+}
+&=
+\bmat{
+I&0&0\\
+0&I&0\\
+-
+\bigl((\mcl D_\Psi^{\dagger,z})^*\bigr)^{-1}
+\bigl(\mcl D_\Psi^{\dagger,wz}\bigr)^*
+\mcl B_P^*
+&
+-
+\bigl((\mcl D_\Psi^{\dagger,z})^*\bigr)^{-1}
+\bigl(\mcl B_\Psi^{\dagger,z}\bigr)^*
+&
+\bigl((\mcl D_\Psi^{\dagger,z})^*\bigr)^{-1}
+}
+\bmat{
+\underline{\mbf{x}}_P(t)\\
+\underline{\mbf{x}}_\Psi(t)\\
+\underline w(t)
+},
+\\
+\bmat{
+\underline{\mbf{x}}_P(t)\\
+\underline{\mbf{x}}_\Psi(t)\\
+\underline w(t)
+}
+&=
+\bmat{
+I&0&0\\
+0&I&0\\
+\bigl(\mcl D_\Psi^{\dagger,wz}\bigr)^*
+\mcl B_P^*
+&
+\bigl(\mcl B_\Psi^{\dagger,z}\bigr)^*
+&
+\bigl(\mcl D_\Psi^{\dagger,z}\bigr)^*
+}
+\bmat{
+\underline{\mbf{x}}_P(t)\\
+\underline{\mbf{x}}_\Psi(t)\\
+\tilde{\underline w}(t)
+}.
+\end{aligned}
+\end{equation*}
+The third row of the inverse transformation gives the input conversion
+\[
+\underline w
+=
+\bigl(\mcl D_\Psi^{\dagger,wz}\bigr)^*\mcl B_P^*
+\underline{\mbf{x}}_P
++
+\bigl(\mcl B_\Psi^{\dagger,z}\bigr)^*
+\underline{\mbf{x}}_\Psi
++
+\bigl(\mcl D_\Psi^{\dagger,z}\bigr)^*
+\tilde{\underline w}.
+\]
+The first transformation equivalently gives
+\begin{equation*}
+\begin{aligned}
+\tilde{\underline w}
+={}&
+-
+\bigl((\mcl D_\Psi^{\dagger,z})^*\bigr)^{-1}
+\bigl(\mcl D_\Psi^{\dagger,wz}\bigr)^*
+\mcl B_P^*\underline{\mbf{x}}_P
+-
+\bigl((\mcl D_\Psi^{\dagger,z})^*\bigr)^{-1}
+\bigl(\mcl B_\Psi^{\dagger,z}\bigr)^*
+\underline{\mbf{x}}_\Psi
++
+\bigl((\mcl D_\Psi^{\dagger,z})^*\bigr)^{-1}
+\underline w .
+\end{aligned}
+\end{equation*}
+Since $\mcl D_P=0$, the plant-adjoint block is
+\[
+\mcl T_P^*\dot{\underline{\mbf{x}}}_P
+=
+\mcl A_K^*\underline{\mbf{x}}_P+\mcl C_K^*\underline w,
+\qquad
+\bmat{\underline y_\Psi\\\underline z}
+=
+\bmat{\mcl B_K^*\\\mcl B_P^*}\underline{\mbf{x}}_P
++
+\bmat{\mcl D_K^*\\0}\underline w .
+\]
+The plant state row is recovered directly from the first row of the
+transposed Potapov--Ginzburg realization:
+\begin{align*}
+\mcl T_P^*\dot{\underline{\mbf{x}}}_P
+={}&
+\left(
+\mcl A_K^*
++
+\mcl C_K^*
+\bigl(\mcl D_\Psi^{\dagger,wz}\bigr)^*
+\mcl B_P^*
+\right)\underline{\mbf{x}}_P
++
+\mcl C_K^*
+\bigl(\mcl B_\Psi^{\dagger,z}\bigr)^*
+\underline{\mbf{x}}_\Psi
++
+\mcl C_K^*
+\bigl(\mcl D_\Psi^{\dagger,z}\bigr)^*
+\tilde{\underline w}\\
+={}&
+\mcl A_K^*\underline{\mbf{x}}_P
++
+\mcl C_K^*
+\left(
+\bigl(\mcl D_\Psi^{\dagger,wz}\bigr)^*
+\mcl B_P^*
+\underline{\mbf{x}}_P
++
+\bigl(\mcl B_\Psi^{\dagger,z}\bigr)^*
+\underline{\mbf{x}}_\Psi
++
+\bigl(\mcl D_\Psi^{\dagger,z}\bigr)^*
+\tilde{\underline w}
+\right)\\
+={}&
+\mcl A_K^*\underline{\mbf{x}}_P+\mcl C_K^*\underline w .
+\end{align*}
+For the algebraic rows, insert the zero-feedthrough plant-adjoint output
+directly into the algebraic part of $\mbf D(\Psi)^{-1}$:
+\[
+\bmat{\tilde{\underline z}\\\tilde{\underline w}}
+=
+-
+\underline{\mcl D}_\Psi^{-1}
+\bmat{-\mcl B_\Psi^{w*}\\\mcl B_\Psi^{z*}}
+\underline{\mbf{x}}_\Psi
++
+\underline{\mcl D}_\Psi^{-1}
+\bmat{\mcl B_P^*\underline{\mbf{x}}_P\\\underline w}.
+\]
+Hence
+\begin{align*}
+\tilde{\underline z}
+={}&
+\bmat{I&0}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{\mcl B_P^*\\0}
+\underline{\mbf{x}}_P
+-
+\bmat{I&0}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{-\mcl B_\Psi^{w*}\\\mcl B_\Psi^{z*}}
+\underline{\mbf{x}}_\Psi
++
+\bmat{I&0}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{0\\I}
+\underline w,\\
+\tilde{\underline w}
+={}&
+\bmat{0&I}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{\mcl B_P^*\\0}
+\underline{\mbf{x}}_P
+-
+\bmat{0&I}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{-\mcl B_\Psi^{w*}\\\mcl B_\Psi^{z*}}
+\underline{\mbf{x}}_\Psi
++
+\bmat{0&I}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{0\\I}
+\underline w .
+\end{align*}
+Using these two algebraic rows in the extended-filter state equation gives
+\begin{align*}
+\mcl T_\Psi^*\dot{\underline{\mbf{x}}}_\Psi
+={}&
+\mcl B_K^*\underline{\mbf{x}}_P+\mcl D_K^*\underline w
++
+\bigl(\mcl A_\Psi^\dagger\bigr)^*
+\underline{\mbf{x}}_\Psi
++
+\bigl(\mcl C_\Psi^{\dagger,z}\bigr)^*
+\tilde{\underline w}
++
+\bigl(\mcl C_\Psi^{\dagger,w}\bigr)^*
+\mcl B_P^*\underline{\mbf{x}}_P\\
+={}&
+\mcl B_K^*\underline{\mbf{x}}_P+\mcl D_K^*\underline w
++
+\mcl A_\Psi^*\underline{\mbf{x}}_\Psi
++
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\bmat{\tilde{\underline z}\\\tilde{\underline w}}\\
+={}&
+\left(
+\mcl B_K^*
++
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{\mcl B_P^*\\0}
+\right)\underline{\mbf{x}}_P\\
+&+
+\left(
+\mcl A_\Psi^*
+-
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{-\mcl B_\Psi^{w*}\\\mcl B_\Psi^{z*}}
+\right)\underline{\mbf{x}}_\Psi\\
+&+
+\left(
+\mcl D_K^*
++
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{0\\I}
+\right)\underline w .
+\end{align*}
+Collecting the recovered plant, filter, and algebraic rows gives
+\begin{equation*}
+\resizebox{\columnwidth}{!}{$\displaystyle
+\begin{aligned}
+&
+\bmat{
+\mcl T_P^*\dot{\underline{\mbf{x}}}_P(t)\\
+\mcl T_\Psi^*\dot{\underline{\mbf{x}}}_\Psi(t)\\
+\tilde{\underline z}(t)\\
+\tilde{\underline w}(t)
+}
+=
+\bmat{
+\mcl A_K^*
+&0
+&\mcl C_K^*
+\\
+\mcl B_K^*
++
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{\mcl B_P^*\\0}
+&
+\mcl A_\Psi^*
+-
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{-\mcl B_\Psi^{w*}\\\mcl B_\Psi^{z*}}
+&
+\mcl D_K^*
++
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{0\\I}
+\\
+\underline{\mcl D}_\Psi^{-1}
+\bmat{\mcl B_P^*\\0}
+&
+-
+\underline{\mcl D}_\Psi^{-1}
+\bmat{-\mcl B_\Psi^{w*}\\\mcl B_\Psi^{z*}}
+&
+\underline{\mcl D}_\Psi^{-1}
+\bmat{0\\I}
+}
+\bmat{
+\underline{\mbf{x}}_P(t)\\
+\underline{\mbf{x}}_\Psi(t)\\
+\underline w(t)
+}.
+\end{aligned}
+$}
+\end{equation*}
+Thus the coordinate transformation recovers the zero-feedthrough realization,
+and therefore
+\begin{equation*}
+\mbf D(\Psi)\bmat{(K\star P)^\top\\I}\underline w
+=
+\bmat{(K\star P\star\Psi^\dagger)^\top\\I}
+\underline{\Gamma}\underline w .
+\end{equation*}
+For synthesis, keep the recovered realization in the block form
+\[
+\bmat{
+\underline{\mcl T}\dot{\underline{\mbf{x}}}\\
+\tilde{\underline z}\\
+\tilde{\underline w}
+}
+=
+\bmat{
+\underline{\mcl A}_K&\underline{\mcl B}_K\\
+\underline{\mcl C}&\underline{\mcl D}
+}
+\bmat{\underline{\mbf{x}}\\\underline w},
+\qquad
+\underline{\mbf{x}}:=
+\bmat{\underline{\mbf{x}}_P\\\underline{\mbf{x}}_\Psi}.
+\]
+The state rows split as
+\begin{equation*}
+\bmat{\underline{\mcl A}_K&\underline{\mcl B}_K}
+=
+\bmat{\underline{\mcl A}_0&\underline{\mcl B}_0}
++
+\bmat{\mcl K_P^*\\\mcl K_\Psi^*}
+\bmat{\mcl B_u^*&0&\mcl D_{zu}^*},
+\end{equation*}
+where
+\begin{equation*}
+\resizebox{\columnwidth}{!}{$\displaystyle
+\bmat{\underline{\mcl A}_0&\underline{\mcl B}_0}
+:=
+\bmat{
+\mcl A_P^*&0&\mcl C_P^*\\
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{\mcl B_P^*\\0}
+&
+\mcl A_\Psi^*
+-
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{-\mcl B_\Psi^{w*}\\\mcl B_\Psi^{z*}}
+&
+\bmat{-\mcl C_\Psi^{w*}&\mcl C_\Psi^{z*}}
+\underline{\mcl D}_\Psi^{-1}
+\bmat{0\\I}
+}.
+$}
+\end{equation*}
+The output rows are independent of the controller:
+\begin{equation*}
+\bmat{\underline{\mcl C}&\underline{\mcl D}}
+:=
+\bmat{
+\underline{\mcl D}_\Psi^{-1}
+\bmat{\mcl B_P^*\\0}
+&
+-
+\underline{\mcl D}_\Psi^{-1}
+\bmat{-\mcl B_\Psi^{w*}\\\mcl B_\Psi^{z*}}
+&
+\underline{\mcl D}_\Psi^{-1}
+\bmat{0\\I}
+}.
+\end{equation*}
+With
+\[
+\underline{\mcl T}:=\bmat{\mcl T_P^*&0\\0&\mcl T_\Psi^*},
+\qquad
+\mcl Z:=\mcl P\bmat{\mcl K_P^*\\\mcl K_\Psi^*},
+\]
+the zero-feedthrough synthesis LPI is
+\begin{equation}
+\resizebox{\columnwidth}{!}{$\displaystyle
+\bmat{
+\underline{\mcl T}^*\mcl P\underline{\mcl A}_0
++
+\underline{\mcl T}^*\mcl Z\bmat{\mcl B_u^*&0}
++(*)
+&
+\underline{\mcl T}^*\mcl P\underline{\mcl B}_0
++
+\underline{\mcl T}^*\mcl Z\mcl D_{zu}^*
+\\
+(*)&
+\underline\epsilon I
+}
++
+\bmat{\underline{\mcl C}^*\\\underline{\mcl D}^*}
+\underline{\mcl V}
+\bmat{\underline{\mcl C}&\underline{\mcl D}}
+\preceq0.
+$}
+\label{eq:zero-DP-dual-controller-synthesis-LPI}
+\end{equation}
+Here $\mcl P=\mcl P^*\succ0$, $\mcl Z$, $\underline{\mcl V}\in\Pi_4$,
+and $\underline\epsilon>0$ are the decision variables.  If
+\eqref{eq:zero-DP-dual-controller-synthesis-LPI} is feasible, recover
+\[
+\bmat{\mcl K_P^*\\\mcl K_\Psi^*}=\mcl P^{-1}\mcl Z,
+\qquad
+\bmat{\mcl K_P&\mcl K_\Psi}=\mcl Z^*\mcl P^{-1}.
+\]
+Then
+\[
+\mcl P\bmat{\underline{\mcl A}_K&\underline{\mcl B}_K}
+=
+\mcl P\bmat{\underline{\mcl A}_0&\underline{\mcl B}_0}
++
+\mcl Z\bmat{\mcl B_u^*&0&\mcl D_{zu}^*},
+\]
+so the synthesis LPI is exactly the KYP inequality for the recovered
+realization.  The KYP/IQC argument then gives the required strict certificate,
+and hence the recovered controller robustly stabilizes the primal
+interconnection $K\star P\star\Delta$.

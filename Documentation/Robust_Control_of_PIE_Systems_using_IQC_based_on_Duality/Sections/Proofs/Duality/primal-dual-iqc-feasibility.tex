@@ -1,0 +1,47 @@
+\subsection{Proof of Theorem~\ref{thm:primal-dual-iqc-feasibility}}\label{proof:primal-dual-iqc-feasibility}
+Assume that the primal statement of the theorem holds. Then there exists a sufficiently small
+$\epsilon>0$ such that
+\begin{equation}\label{eq:primal-iqc-feasibility-proof}
+    \ip{p_T \Theta\bmat{P \\ I}w}{p_T J_{\mbf{n}_z,\mbf{n}_w} \Theta\bmat{P \\ I} w}_{\mbf L_{[a,b]}} \leq -\epsilon \|p_Tw\|_{\mbf L_{[a,b]}}^2
+\end{equation}
+for all $w \in \mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}$ and $T\geq 0$. By lemma~\ref{lem:potapov-ginzburg-equivalence}, the system $\Theta\bmat{P \\ I}$ has a realization of the form
+\begin{equation}\label{eq:primal-iqc-potapov-proof}
+    \ip{p_T \bmat{P \star \Theta^\dagger \\ I}\Gamma w}{p_T J_{\mbf{n}_z,\mbf{n}_w} \bmat{P \star \Theta^\dagger \\ I} \Gamma w}_{\mbf L_{[a,b]}} \leq -\epsilon \|p_Tw\|_{\mbf L_{[a,b]}}^2
+\end{equation}
+substituting $\tilde{w} = \Gamma w$, $\Gamma^{-1}\tilde{w} = w$, gives
+\begin{equation}\label{eq:primal-iqc-potapov-input-proof}
+    \ip{p_T \bmat{P \star \Theta^\dagger \\ I}\tilde{w}}{p_T J_{\mbf{n}_z,\mbf{n}_w}\bmat{P \star \Theta^\dagger \\ I} \tilde{w}}_{\mbf L_{[a,b]}} \leq -\epsilon \|p_T\Gamma^{-1}\tilde{w}\|_{\mbf L_{[a,b]}}^2
+\end{equation}
+Since $\Gamma$ is causal and bounded,
+$\|p_T\tilde{w}\|_{\mbf L_{[a,b]}}\leq
+\|\Gamma\|_{\mcl{L}(\mbf{L}_{[a,b]})}\|p_T\Gamma^{-1}\tilde{w}\|_{\mbf L_{[a,b]}}$, and therefore
+\begin{equation}
+    \|p_T(P\star\Theta^\dagger) \tilde{w}\|_{\mbf L_{[a,b]}}^2\leq (1 - \frac{\epsilon}{\|\Gamma\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2}) \|p_T\tilde{w}\|_{\mbf L_{[a,b]}}^2.
+\end{equation}
+Then by Theorem~\ref{thm:dual-l2-gain}, and $(P\star\Theta^\dagger)^\top = P^\top\star(\Theta^\dagger)^\top$, we find
+\begin{equation}
+\|p_T(P^\top\star(\Theta^\dagger)^\top)\underline{\tilde{w}}\|_{\mbf L_{[a,b]}}^2 \leq (1-\frac{\epsilon}{\|\Gamma\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2})\|p_T\underline{\tilde{w}}\|_{\mbf L_{[a,b]}}^2
+\end{equation}
+recovering the dual statement of the theorem
+\begin{equation}
+    \ip{p_T\bmat{P^\top\star(\Theta^\dagger)^\top\\ I}\underline{\tilde{w}}}{p_T J_{\mbf{n}_w,\mbf{n}_z} \bmat{P^\top\star(\Theta^\dagger)^\top \\ I} \underline{\tilde{w}}}_{\mbf L_{[a,b]}} \leq -\frac{\epsilon}{\|\Gamma\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2} \|p_T\underline{\tilde{w}}\|_{\mbf L_{[a,b]}}^2
+\end{equation}
+then $\underline{\tilde{w}} = \underline{\Gamma}\underline{w}$, $\underline{\Gamma}^{-1}\underline{\tilde{w}} = \underline{w}$ gives
+\begin{equation}
+    \ip{p_T\bmat{P^\top\star(\Theta^\dagger)^\top \\ I}\underline{\Gamma}\underline{w}}{p_T J_{\mbf{n}_w,\mbf{n}_z} \bmat{P^\top\star(\Theta^\dagger)^\top \\ I} \underline{\Gamma}\underline{w}}_{\mbf L_{[a,b]}} \leq -\frac{\epsilon}{\|\Gamma\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2} \|p_T\underline{\Gamma}\underline{w}\|_{\mbf L_{[a,b]}}^2
+\end{equation}
+Since $\underline{\Gamma}^{-1}$ is causal and bounded,
+$\|p_T\underline{w}\|_{\mbf L_{[a,b]}}\leq
+\|\underline{\Gamma}^{-1}\|_{\mcl{L}(\mbf{L}_{[a,b]})}\|p_T\underline{\Gamma}\underline{w}\|_{\mbf L_{[a,b]}}$, and this gives the dual statement
+\begin{equation}
+    \ip{p_T\mbf{D}(\Theta)\bmat{P^\top \\ I}\underline{w}}{p_T J_{\mbf{n}_w,\mbf{n}_z} \mbf{D}(\Theta)\bmat{P^\top \\ I} \underline{w}}_{\mbf L_{[a,b]}} \leq -\underline{\epsilon} \|p_T\underline{w}\|_{\mbf L_{[a,b]}}^2
+\end{equation}
+where
+\begin{equation}
+    \underline{\epsilon}:=\frac{\epsilon}{\|\Gamma\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2\|\underline{\Gamma}^{-1}\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2} > 0.
+\end{equation}
+Conversely, starting from the dual statement and reversing the same argument
+gives the corresponding primal margin
+\begin{equation}
+    \epsilon:=\frac{\underline{\epsilon}}{\|\underline{\Gamma}\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2\|\Gamma^{-1}\|_{\mcl{L}(\mbf{L}_{[a,b]})}^2} > 0.
+\end{equation}

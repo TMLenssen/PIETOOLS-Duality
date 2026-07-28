@@ -1,0 +1,48 @@
+\subsection{Proof of Theorem~\ref{thm:dual-KYP}}\label{proof:dual-KYP}
+If the primal LPI holds, the standard KYP integration gives the hard IQC
+\begin{equation*}
+\ip{p_T\Psi\bmat{z\\w}}
+{p_T\mcl{M}_{\mcl V}\Psi\bmat{z\\w}}_{\mbf L_{[a,b]}}
+\leq -\epsilon\|p_Tw\|^2_{\mbf L_{[a,b]}}.
+\end{equation*}
+Theorem~\ref{thm:robust-stability-performance} then gives the result. It
+remains to consider the dual LPI. Define
+$V(\underline{\mbf{x}})=\langle\underline{\mcl T}\underline{\mbf{x}},
+\mcl{P}\underline{\mcl T}\underline{\mbf{x}}\rangle_{\mbf{L}_{[a,b]}}\geq0$.
+For any $\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_z}$, suppose
+$\tilde{\underline{z}}$ satisfies~\eqref{eqn:dual-kyp-sys} for some
+$\underline{\mbf{x}}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_x}$. By~\eqref{eqn:dual-kyp-sys}, we have
+\begin{equation}\label{eqn:dual-kyp-dissipation}
+    \ip{\bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}}{\bmat{\underline{\mcl T}^*\mcl{P}\underline{\mcl A} + (*)& \underline{\mcl T}^*\mcl{P}\underline{\mcl B}\\
+            \underline{\mcl B}^*\mcl{P}\underline{\mcl T} & \underline{\epsilon} I}\bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}}
+    + \ip{\tilde{\underline{z}}(t)}
+    {\underline{\mcl V} \tilde{\underline{z}}(t)} \leq 0.
+\end{equation}
+After integrating in time, we obtain
+\begin{equation*}
+    \underline{\epsilon}\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}}
+    + \ip{p_T \tilde{\underline{z}}}{p_T\underline{\mcl V} \tilde{\underline{z}}}_{\mbf L_{[a,b]}}
+    \leq -V(\underline{\mbf{x}}(T))+V(\underline{\mbf{x}}(0)).
+\end{equation*}
+Since $\underline{\mbf{x}}(0)=0$ and $V(\underline{\mbf{x}}(T))\geq0$,
+\begin{equation*}
+\ip{p_T\underline{\Psi}\bmat{\underline{z}\\\underline{w}}}
+{p_T\mcl{M}_{\underline{\mcl V}}\underline{\Psi}\bmat{\underline{z}\\\underline{w}}}_{\mbf L_{[a,b]}}
+\leq -\underline{\epsilon}\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}}.
+\end{equation*}
+Using the $(\mbf{D}(\Theta),J_{\mbf{n}_w,\mbf{n}_z})$ factorization, this is
+\begin{equation*}
+\ip{p_T\mbf{D}(\Theta)\bmat{\underline{z}\\\underline{w}}}
+{p_TJ_{\mbf{n}_w,\mbf{n}_z}\mbf{D}(\Theta)\bmat{\underline{z}\\\underline{w}}}_{\mbf L_{[a,b]}}
+\leq -\underline{\epsilon}\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}}.
+\end{equation*}
+By Theorem~\ref{thm:primal-dual-iqc-feasibility}, there exists
+$\epsilon>0$ such that
+\begin{equation*}
+\ip{p_T\Theta\bmat{z\\w}}
+{p_TJ_{\mbf{n}_z,\mbf{n}_w}\Theta\bmat{z\\w}}_{\mbf L_{[a,b]}}
+\leq -\epsilon\|p_Tw\|^2_{\mbf L_{[a,b]}}.
+\end{equation*}
+Using the $(\Theta,J_{\mbf{n}_z,\mbf{n}_w})$ factorization gives the primal hard
+IQC, and Theorem~\ref{thm:robust-stability-performance} gives robust stability
+and robust performance.
