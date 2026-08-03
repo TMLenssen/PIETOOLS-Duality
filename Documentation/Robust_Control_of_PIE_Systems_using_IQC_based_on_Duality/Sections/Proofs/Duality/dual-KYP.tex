@@ -10,18 +10,18 @@ remains to consider the dual LPI. Define
 $V(\underline{\mbf{x}})=\langle\underline{\mcl T}\underline{\mbf{x}},
 \mcl{P}\underline{\mcl T}\underline{\mbf{x}}\rangle_{\mbf{L}_{[a,b]}}\geq0$.
 For any $\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_z}$, suppose
-$\tilde{\underline{z}}$ satisfies~\eqref{eqn:dual-kyp-sys} for some
-$\underline{\mbf{x}}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_x}$. By~\eqref{eqn:dual-kyp-sys}, we have
-\begin{equation}\label{eqn:dual-kyp-dissipation}
+${\underline{v}}$ satisfies~\eqref{eq:dual-system} for some
+$\underline{\mbf{x}}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_x}$. By~\eqref{eq:dual-system}, we have
+\begin{equation*}
     \ip{\bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}}{\bmat{\underline{\mcl T}^*\mcl{P}\underline{\mcl A} + (*)& \underline{\mcl T}^*\mcl{P}\underline{\mcl B}\\
             \underline{\mcl B}^*\mcl{P}\underline{\mcl T} & \underline{\epsilon} I}\bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}}
-    + \ip{\tilde{\underline{z}}(t)}
-    {\underline{\mcl V} \tilde{\underline{z}}(t)} \leq 0.
-\end{equation}
+    + \ip{{\underline{v}}(t)}
+    {\underline{\mcl V} {\underline{v}}(t)} \leq 0.
+\end{equation*}
 After integrating in time, we obtain
 \begin{equation*}
     \underline{\epsilon}\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}}
-    + \ip{p_T \tilde{\underline{z}}}{p_T\underline{\mcl V} \tilde{\underline{z}}}_{\mbf L_{[a,b]}}
+    + \ip{p_T {\underline{v}}}{p_T\underline{\mcl V} {\underline{v}}}_{\mbf L_{[a,b]}}
     \leq -V(\underline{\mbf{x}}(T))+V(\underline{\mbf{x}}(0)).
 \end{equation*}
 Since $\underline{\mbf{x}}(0)=0$ and $V(\underline{\mbf{x}}(T))\geq0$,

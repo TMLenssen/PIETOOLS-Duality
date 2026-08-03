@@ -41,12 +41,18 @@ transform produces an invertible change of coordinates $\Gamma$ such that
 \begin{equation*}
 \Theta\bmat{P\\I}w
 =
-\bmat{P\star\Theta^\dagger\\I}\Gamma w.
+\bmat{P\star(\Theta^\dagger R)\\I}\Gamma w.
 \end{equation*}
 The lower block gives $\tilde w=\Gamma w$, while the upper block gives
-$\tilde z=(P\star\Theta^\dagger)\tilde w$. Consequently, the IQC inequality
-becomes an $L_2$-gain inequality for $P\star\Theta^\dagger$, to which
-Theorem~\ref{thm:dual-l2-gain} applies.
+$\tilde z=(P\star(\Theta^\dagger R))\tilde w$. Consequently, the IQC inequality
+becomes an $L_2$-gain inequality for $P\star(\Theta^\dagger R)$, to which
+Theorem~\ref{thm:dual-l2-gain} applies. Define the channel swapping operator, so
+that
+\[
+R\bmat{z\\w}=\bmat{w\\z},
+\qquad
+R\bmat{w\\z}=\bmat{z\\w}.
+\]
 
 \begin{definition}[$J$-Spectral Factorization and Dual Filter
 {\cite{venkataraman}}]
@@ -59,7 +65,7 @@ J_{\mbf n_z,\mbf n_w}:=
 and let $\Theta,\Theta^{-1}\in\Hinf$. The pair
 $(\Theta,J_{\mbf n_z,\mbf n_w})$ is a $J$-spectral factorization of
 $(\Psi,\mcl M_{\mcl V})$ if,
-\begin{equation}\label{eq:j-spectral-factorization}
+\begin{equation*}
 \begin{aligned}
 &
 \ip{p_T\Psi\bmat{z\\w}}
@@ -69,15 +75,15 @@ $(\Psi,\mcl M_{\mcl V})$ if,
 \ip{p_T\Theta\bmat{z\\w}}
 {p_TJ_{\mbf n_z,\mbf n_w}\Theta\bmat{z\\w}}_{\mbf L_{[a,b]}}.
 \end{aligned}
-\end{equation}
+\end{equation*}
 Define the matrix
 $\hat{J}:=\bmat{0&I\\-I&0}$. The dual filter associated with $\Theta$ is
 defined by
-\begin{equation}\label{eq:dual-filter-operation}
+\begin{equation*}
 \mbf{D}(\Theta)
 :=
 \left(\hat{J}^*\Theta^\top\hat{J}\right)^{-1}.
-\end{equation}
+\end{equation*}
 Note $\mbf{D}(\Theta)\in\Hinf$.
 
 \end{definition}
@@ -86,50 +92,59 @@ Finding a $J$--spectral factorization is the first step in applying the duality 
 \Theta=\bmat{\Theta_z & \Theta_{zw}\\ \Theta_{wz} & \Theta_w}.
 \end{equation*}
 The associated primal and dual filtered signals are
-\begin{equation}\label{eq:filtered-primal-signals}
+\begin{equation*}
 \Theta\bmat{z(t) \\ w(t)}
 =
 \bmat{\tilde{z}(t) \\ \tilde{w}(t)}, \qquad \mbf{D}(\Theta)
 \bmat{\underline{z}(t) \\ \underline{w}(t)}
 =
 \bmat{\tilde{\underline{z}}(t) \\ \tilde{\underline{w}}(t)}.
-\end{equation}
+\end{equation*}
 The $J$-spectral factorization for the primal IQC leads to the state-space realization
-\begin{equation}\label{eq:primal-filter-realization}
+\begin{equation*}
 \bmat{\mcl{T}_{\Theta}\dot{\mbf{x}}_{\Theta}(t)\\ \tilde{z}(t) \\ \tilde{w}(t)}
 =
 \bmat{\mcl{A}_{\Theta} & \mcl{B}_{\Theta}^z & \mcl{B}_{\Theta}^w \\
 \mcl{C}_{\Theta}^z & \mcl{D}_{\Theta}^z & \mcl{D}_{\Theta}^{zw}\\
 \mcl{C}_{\Theta}^w & \mcl{D}_{\Theta}^{wz} & \mcl{D}_{\Theta}^w}
 \bmat{\mbf{x}_{\Theta}(t) \\ z(t) \\ w(t)},
-\end{equation}
+\end{equation*}
 where the entries are PI operators of appropriate dimension.
 The second step is the required graph rearrangement, given by the Potapov--Ginzburg transform. We use the following
 construction from \cite{venkataraman}.
 
 \begin{definition}(Potapov--Ginzburg Transform)\label{def:potapov-ginzburg-transform}
 Given $\Theta:\bmat{z\\w} \to \bmat{\tilde{z}\\\tilde{w}}$ as in Definition~\ref{def:dynamic-filters}, the Potapov--Ginzburg transform denoted
-by $\Theta^\dagger:\bmat{\tilde{w}\\z} \to \bmat{\tilde{z}\\w}$ is defined by
-\begin{equation}\label{eq:potapov-ginzburg-transform}
-\Theta^\dagger=\bmat{\Theta_{zw}\Theta_w^{-1} & \Theta_z-\Theta_{zw}\Theta_w^{-1}\Theta_{wz}\\ \Theta_w^{-1} & -\Theta_w^{-1}\Theta_{wz}},
-\end{equation}
+by $\Theta^\dagger:\bmat{z\\\tilde{w}} \to \bmat{\tilde{z}\\w}$ is defined by
+\begin{equation*}
+\Theta^\dagger
+=
+\bmat{
+\Theta_z-\Theta_{zw}\Theta_w^{-1}\Theta_{wz}
+&
+\Theta_{zw}\Theta_w^{-1}\\
+-\Theta_w^{-1}\Theta_{wz}
+&
+\Theta_w^{-1}
+},
+\end{equation*}
 \end{definition}
 The transform identifies the filtered graph of $P$ with the graph of
-$P\star\Theta^\dagger$, under an invertible change of coordinates. The next
+$P\star(\Theta^\dagger R)$, under an invertible change of coordinates. The next
 lemma establishes this relation for both the primal and dual
 interconnections.
 
 \begin{lemma} (Potapov--Ginzburg Transform Equivalence)\label{lem:potapov-ginzburg-equivalence}
-Let $\Theta, \mbf{D}(\Theta)\in \Hinf$ as in Definition~\ref{def:dynamic-filters}. Moreover, let $(P\star\Theta^\dagger)\in\mcl{G}_2$ 
-and $(P^\top\star(\Theta^\dagger)^\top)\in\mcl{G}_2$ be well-posed PIE systems, such that
+Let $\Theta, \mbf{D}(\Theta)\in \Hinf$ as in Definition~\ref{def:dynamic-filters}. Moreover, let $(P\star(\Theta^\dagger R))\in\mcl{G}_2$
+and $(P^\top\star(R(\Theta^\dagger)^\top))\in\mcl{G}_2$ be well-posed PIE systems, such that
 \[
 (\mcl{D}_{\Theta}^{wz} \mcl{D} + \mcl{D}_{\Theta}^w)^{-1},
 \]
-exist and are closed under inversion. Then, there exists invertible coordinate transformations $\Gamma,\Gamma^{-1}\in\Pi_4$ on the primal side and
-$\underline{\Gamma},\underline{\Gamma}^{-1}\in\Pi_4$ on the dual side such that
+exist and are closed under inversion. Then, there exists invertible coordinate transformations $\mcl{M}_{\Gamma},\mcl{M}_{\Gamma^{-1}}\in\Pi_4$ on the primal side and
+$\mcl{M}_{\underline{\Gamma}},\mcl{M}_{\underline{\Gamma}^{-1}}\in\Pi_4$ on the dual side such that
 \begin{itemize}
-    \item $\Theta\bmat{P\\I} w = \bmat{P\star \Theta^\dagger \\ I}\Gamma w$ for all $w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}$.
-    \item $\mbf{D}(\Theta)\bmat{P^\top\\I} \underline{w} = \bmat{P^\top\star (\Theta^\dagger)^\top \\ I}\underline{\Gamma}\,\underline{w}$ for all $\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_z}$.
+    \item $\Theta\bmat{P\\I} w = \bmat{P\star(\Theta^\dagger R) \\ I}\mcl{M}_{\Gamma} w$ for all $w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}$.
+    \item $\mbf{D}(\Theta)\bmat{P^\top\\I} \underline{w} = \bmat{P^\top\star(R(\Theta^\dagger)^\top) \\ I}\mcl{M}_{\underline{\Gamma}}\,\underline{w}$ for all $\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_z}$.
 \end{itemize}
 \end{lemma}
 \begin{proof}

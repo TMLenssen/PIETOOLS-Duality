@@ -11,18 +11,18 @@ $(\Theta,J_{\mbf{n}_z,\mbf{n}_w})$ be a $J$-spectral factorization of the
 primal hard IQC. Let sufficiently small $\epsilon>0$ and
 $\underline{\epsilon}>0$ denote the primal and dual feasibility margins. Then
 the primal feasibility condition
-\begin{equation}\label{eq:primal-iqc-feasibility}
+\begin{equation*}
 \begin{gathered}
 \begin{aligned}
-\ip{p_T\Theta\bmat{z \\ w}}
-{p_TJ_{\mbf{n}_z,\mbf{n}_w}\Theta\bmat{z \\ w}}_{\mbf L_{[a,b]}}
+\ip{p_T\Theta\bmat{P \\ I}w}
+{p_TJ_{\mbf{n}_z,\mbf{n}_w}\Theta\bmat{P \\ I}w}_{\mbf L_{[a,b]}}
 &\!\!\!\!\!\!\!\!\leq -\epsilon\|p_Tw\|^2_{\mbf L_{[a,b]}},
 \end{aligned}\\
-z=Pw,\qquad \forall w\in\mbf L_{\mathrm{e},[a,b]}^{\mbf{n}_w},\qquad \forall T\geq0,
 \end{gathered}
-\end{equation}
+\end{equation*}
+for all $w\in\mbf L_{\mathrm{e},[a,b]}^{\mbf{n}_w}$, and $T\geq0$,
 holds if and only if the dual feasibility condition
-\begin{equation}\label{eq:dual-iqc-feasibility}
+\begin{equation*}
 \begin{gathered}
 \begin{aligned}
 \ip{p_T\mbf{D}(\Theta)\bmat{\underline{z} \\ \underline{w}}}
@@ -32,7 +32,7 @@ holds if and only if the dual feasibility condition
 \underline{z}=P^\top\underline{w},\qquad
 \forall \underline{w}\in\mbf L_{\mathrm{e},[a,b]}^{\mbf{n}_z},\qquad \forall T\geq0,
 \end{gathered}
-\end{equation}
+\end{equation*}
 holds for $\underline{\epsilon}>0$.
 \end{theorem}
 \begin{proof}
@@ -56,26 +56,26 @@ robust stability and performance, we combine it with the PIE KYP condition.
     Suppose that \textbf{either} of the two statements hold for some $\mcl Q\succeq 0$ and $\mcl{P} = \mcl{P}^* \succeq 0 \in \Pi_4$.
     \begin{itemize}
         \item \begin{minipage}[c]{\linewidth}
-        \begin{equation}\label{eqn:primal-kyp-ineq}
+        \begin{equation*}
             \bmat{\mcl T^*\mcl P\mcl A + (*) & \mcl T^*\mcl P\mcl B\\
             \mcl B^*\mcl P\mcl T & \epsilon I} + \bmat{\mcl C^* \\ \mcl D^*}\mcl V\bmat{\mcl C & \mcl D} \preceq 0
-        \end{equation}
+        \end{equation*}
         \end{minipage}
         \item \begin{minipage}[c]{\linewidth}
-        \begin{equation}\label{eqn:dual-kyp-ineq}
+        \begin{equation}\label{eq:dual-kyp}
             \bmat{\underline{\mcl T}^*\mcl P\underline{\mcl A} + (*)& \underline{\mcl T}^*\mcl P\underline{\mcl B}\\
             \underline{\mcl B}^*\mcl P\underline{\mcl T} & \underline{\epsilon} I} + \bmat{\underline{\mcl C}^* \\ \underline{\mcl D}^*}\underline{\mcl V}\bmat{\underline{\mcl C} & \underline{\mcl D}} \preceq 0
         \end{equation}
         \end{minipage}
     \end{itemize}
     Then for any $w,\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}$, satisfies either
-    \begin{equation}\label{eqn:primal-kyp-sys}
-        \Psi\bmat{P\\I}w := \left\{ \bmat{\mcl T \dot{\mbf{x}}(t) \\ \tilde{z}(t)} = \bmat{\mcl A & \mcl B\\
+    \begin{equation*}
+        \Psi\bmat{P\\I}w := \left\{ \bmat{\mcl T \dot{\mbf{x}}(t) \\ v(t)} = \bmat{\mcl A & \mcl B\\
         \mcl C & \mcl D}\bmat{\mbf{x}(t) \\ w(t)}\right.
-    \end{equation}
+    \end{equation*}
     or
-    \begin{equation}\label{eqn:dual-kyp-sys}
-        \underline{\Psi}\bmat{P^\top\\I}\underline{w} := \left\{ \bmat{\underline{\mcl T} \dot{\underline{\mbf{x}}}(t) \\ \tilde{\underline{z}}(t)} = \bmat{\underline{\mcl A} & \underline{\mcl B}\\
+    \begin{equation}\label{eq:dual-system}
+        \underline{\Psi}\bmat{P^\top\\I}\underline{w} := \left\{ \bmat{\underline{\mcl T} \dot{\underline{\mbf{x}}}(t) \\ {\underline{v}}(t)} = \bmat{\underline{\mcl A} & \underline{\mcl B}\\
         \underline{\mcl C} & \underline{\mcl D}}\bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}\right.
     \end{equation}
     Then the interconnection $P\star\Delta$ with $\mbf{x}(0) = 0$ is robustly stable and robust performance is achieved.
@@ -97,7 +97,7 @@ multiplier families as classes.
 \begin{class}[Induced $L_2$-gain]
 The primal hard performance IQC is
 $(\Psi_{\mathrm{p}},\mcl{M}_{\mcl V_{\mathrm{p}}})$, where
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 \Psi_{\mathrm{p}}
 &:=
@@ -113,22 +113,22 @@ I_{\mbf{n}_{z_{\mathrm{p}}}} & 0 \\
 },
 \qquad \gamma>0 .
 \end{aligned}
-\end{equation}
+\end{equation*}
 Robust performance then guarantees
 $\sup_{\Delta\in\mbf{\Delta}}\|G\star\Delta\|_{\mbf L_{[a,b]}}\leq\gamma$, for all $w_{\mathrm{p}}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_{w_{\mathrm{p}}}}$.
 Its $(\Theta,J_{\mbf{n}_{z_{\mathrm{p}}},\mbf{n}_{w_{\mathrm{p}}}})$ factorization is given by
-\begin{equation}
+\begin{equation*}
 \Theta
 :=
 \bmat{
 \gamma^{-\frac{1}{2}}I_{\mbf{n}_{z_{\mathrm{p}}}} & 0 \\
 0 & \gamma^{\frac{1}{2}} I_{\mbf{n}_{w_{\mathrm{p}}}}
 }.
-\end{equation}
+\end{equation*}
 The corresponding dual hard performance IQC is
 $(\underline{\Psi}_{\mathrm{p}},
 \mcl{M}_{\underline{\mcl V}_{\mathrm{p}}})$, where
-\begin{equation}
+\begin{equation*}
 \begin{aligned}
 \underline{\Psi}_{\mathrm{p}}
 &:=
@@ -144,13 +144,13 @@ I_{\mbf{n}_{w_{\mathrm{p}}}} & 0 \\
 },
 \qquad \gamma>0 .
 \end{aligned}
-\end{equation}
+\end{equation*}
 \end{class}
 
 \begin{class}[Passivity]
 The primal hard performance IQC is
 $(\Psi_{\mathrm{p}},\mcl{M}_{\mcl V_{\mathrm{p}}})$, where
-\begin{equation}
+\begin{equation*}
 \Psi_{\mathrm{p}}
 :=
 \bmat{
@@ -164,12 +164,12 @@ I_{\mbf{n}} & 0 \\
 0 & I_{\mbf{n}} \\
 I_{\mbf{n}} & 0
 }.
-\end{equation}
+\end{equation*}
 Robust performance means that $G\star\Delta$ is strictly input passive for all
 $\Delta\in\mbf{\Delta}$, and
 $w_{\mathrm{p}}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_{w_{\mathrm{p}}}}$. Its
 $(\Theta,J_{\mbf{n},\mbf{n}})$ factorization is given by
-\begin{equation}
+\begin{equation*}
 \Theta
 :=
 \frac{1}{\sqrt{2}}
@@ -177,11 +177,11 @@ $(\Theta,J_{\mbf{n},\mbf{n}})$ factorization is given by
 I_{\mbf{n}} & I_{\mbf{n}} \\
 I_{\mbf{n}} & -I_{\mbf{n}}
 }.
-\end{equation}
+\end{equation*}
 The corresponding dual hard performance IQC is
 $(\underline{\Psi}_{\mathrm{p}},
 \mcl{M}_{\underline{\mcl V}_{\mathrm{p}}})$, where
-\begin{equation}
+\begin{equation*}
 \underline{\Psi}_{\mathrm{p}}
 :=
 \bmat{
@@ -195,7 +195,7 @@ I_{\mbf{n}} & 0 \\
 0 & I_{\mbf{n}} \\
 I_{\mbf{n}} & 0
 }.
-\end{equation}
+\end{equation*}
 \end{class}
 
 \subsubsection{Classes of J-Spectral Factorizations for Uncertainty Multipliers on Finite Dimensional Channels}
@@ -237,7 +237,7 @@ where $\alpha>0$. With the convention $w_\Delta(t)=\delta z_\Delta(t)$, and
 $w_\Delta,z_\Delta\in L_{2\mathrm{e},[0,\infty)}^{n}$, choose
 $\psi\in RH_\infty^{{n}_v \times n}$ and define the primal hard uncertainty IQC
 $(\Psi_\Delta,\mcl{M}_{V_\Delta})$ by
-\begin{equation}
+\begin{equation*}
 \Psi_\Delta
 :=
 \bmat{
@@ -251,18 +251,18 @@ V_\Delta
 \alpha Q & S \\
 S^\top & -\alpha^{-1}Q
 }.
-\end{equation}
+\end{equation*}
 Here $Q,S\in\R^{n_v\times n_v}$ are matrices satisfying
-\begin{equation}
+\begin{equation*}
 Q=Q^\top\succ0,
 \qquad
 S=-S^\top,
-\end{equation}
+\end{equation*}
 so $V_\Delta=V_\Delta^\top\in\R^{2n_v\times2n_v}$.
 Since a multiplier is strict PN if and only if its
 dual multiplier is strict PN \cite{venkataraman}, the dual hard uncertainty IQC $(\underline{\Psi}_\Delta, \mcl{M}_{\underline{V}_\Delta})$ can be
 parameterized in the same form. For $\underline{\psi}\in RH_\infty^{{n}_v \times n}$, define
-\begin{equation}
+\begin{equation*}
 \underline{\Psi}_\Delta
 :=
 \bmat{
@@ -276,13 +276,13 @@ parameterized in the same form. For $\underline{\psi}\in RH_\infty^{{n}_v \times
 \alpha\underline Q & \underline S \\
 \underline S^\top & -\alpha^{-1}\underline Q
 },
-\end{equation}
+\end{equation*}
 where $\underline Q,\underline S\in\R^{n_v\times n_v}$ are matrices satisfying
-\begin{equation}
+\begin{equation*}
 \underline Q=\underline Q^\top\succ0,
 \qquad
 \underline S=-\underline S^\top.
-\end{equation}
+\end{equation*}
 Thus $\underline V_\Delta=\underline V_\Delta^\top
 \in\R^{2n_v\times2n_v}$, and
 $(\underline{\Psi}_\Delta,\mcl{M}_{\underline V_\Delta})$ is also strict PN. Both pairs admit the
@@ -304,41 +304,42 @@ $\mbf{\Delta}:=\{\delta I:\delta\in\R,\ |\delta|\leq\alpha\}$,
 where $\alpha>0$. With the convention $w_\Delta(t)=\delta z_\Delta(t)$, $w_\Delta,z_\Delta\in \mbf{L}_{\mathrm{e},[a,b)}^{\mbf{n}}$,
 define the primal hard uncertainty IQC
 $(I,\mcl{M}_{\mcl{V}_\Delta})$ by
-\begin{equation}
+\begin{equation*}
 \mcl{V}_\Delta
 :=
 \bmat{
 \alpha \mcl{Q} & \mcl{S} \\
 \mcl{S}^\top & -\alpha^{-1}\mcl{Q}
 }.
-\end{equation}
+\end{equation*}
 Here $\mcl{Q},\mcl{S}\in\Pi_4^{\mbf{n}\times \mbf{n}}$ are PI operators satisfying
-\begin{equation}
+\begin{equation*}
 \mcl{Q}=\mcl{Q}^\top\succ0,
 \qquad
 \mcl{S}=-\mcl{S}^\top,
-\end{equation}
+\end{equation*}
 so $\mcl{V}_\Delta=\mcl{V}_\Delta^\top\in\Pi_4^{2\mbf{n}\times2\mbf{n}}$.
 Using the approximation in \ref{???}, define the dual hard uncertainty IQC $(I, \mcl{M}_{\underline{\mcl V}_\Delta})$ by
-\begin{equation}
+\begin{equation*}
 \underline{\mcl V}_\Delta
 :=
 \bmat{
 \alpha\underline{\mcl Q} & \underline{\mcl S} \\
 \underline{\mcl S}^\top & -\alpha^{-1}\underline{\mcl Q}
 },
-\end{equation}
+\end{equation*}
 where $\underline{\mcl Q},\underline{\mcl S}\in\Pi_4^{\mbf{n}\times \mbf{n}}$ are PI operators satisfying
-\begin{equation}
+\begin{equation*}
 \underline{\mcl Q}=\underline{\mcl Q}^\top\succ0,
 \qquad
 \underline{\mcl S}=-\underline{\mcl S}^\top.
-\end{equation}
+\end{equation*}
 Thus $\underline{\mcl V}_\Delta=\underline{\mcl V}_\Delta^\top
 \in\Pi_4^{2\mbf{n}\times2\mbf{n}}$ is also strict static PN PI operator. Both pairs admit the
 required hard $J$-spectral factorizations, while their static parts
 $\mcl{V}_\Delta$ and $\underline{\mcl V}_\Delta$ remain explicit decision variables for synthesis.
 \end{class}
+\input{Figures/primal_dual_controller_interconnections}
 Another class for which we can find the dual representation is the class of sector-bounded uncertainties, also from \cite{10156335}
 \begin{class}[Sector-bounded uncertainties on infinite-dimensional channels]
     \label{class:sector-bounded-infinite-dimensional}
@@ -358,8 +359,7 @@ Another class for which we can find the dual representation is the class of sect
     :=
     \bmat{\beta I & -I \\ -\alpha I & I}^*\bmat{0 & \mcl{S} \\ \mcl{S} & 0}\bmat{\beta I & -I \\ -\alpha I & I},
     \end{equation*}
-    where $\mcl{S}\in\Pi_4^{\mbf{n}\times\mbf{n}}$ is a multiplication PI
-    operator satisfying
+    where $\mcl{S}\in\Pi_4^{\mbf{n}\times\mbf{n}}$ 
     \begin{equation*}
     (\mcl{S}\mbf{x})(s,t):=S_0(s)\mbf{x}(s,t),\qquad  S_0(s)\succ0,\quad s\in[a,b].
     \end{equation*}

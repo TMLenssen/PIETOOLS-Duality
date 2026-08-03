@@ -33,7 +33,7 @@ and $\Delta :
 \mbf L_{\mathrm{e},[a,b]}^{\mbf{n}_{z_\Delta}}
 \to
 \mbf L_{\mathrm{e},[a,b]}^{\mbf{n}_{w_\Delta}}$, define
-\begin{equation}\label{eq:uncertain-interconnection-map}
+\begin{equation}\label{eq:uncertain-map}
 \bmat{z_\Delta\\ z_{\mathrm{p}}}
 = P\bmat{w_\Delta\\ w_{\mathrm{p}}} =
 \bmat{
@@ -88,7 +88,7 @@ uncertainties.
 Robust stability requires that the system is well-posed for all admissible
 uncertainties and that the input-output map remains bounded.
 This involves removal of the performance channels in
-\eqref{eq:uncertain-interconnection-map}, and
+\eqref{eq:uncertain-map}, and
 introducing auxiliary signals $z_0$ and $w_0$.
 \begin{definition}
 The interconnection
@@ -125,12 +125,12 @@ parameterized by
 $\mcl{V}_\Delta = \mcl{V}_\Delta^* \in \mcl L(\RL, \RL)$
 if the inequality holds for all
 $z_\Delta \in \mbf L_{\mathrm{e}, [a, b]}$ and all $T \geq 0$,
-\begin{equation}\label{eq:uncertainty-iqc}
+\begin{equation*}
 \ip{p_T \Psi_\Delta \bmat{z_\Delta\\ \Delta z_\Delta}}
 {p_T \mcl{M}_{\mcl{V}_\Delta}\Psi_\Delta\bmat{z_\Delta\\ \Delta z_\Delta}}
 _{\mbf L_{[a, b]}}
 \geq 0.
-\end{equation}
+\end{equation*}
 Moreover, let
 $\mcl{V}_\Delta\{\mcl{Q}_\Delta, \mcl{S}_\Delta, \mcl{R}_\Delta\}$
 be parameterized as,
@@ -157,8 +157,11 @@ multiplication operator
 $\mcl{M}_{\mcl{V}_{\mathrm{p}}}$,
 parameterized by
 $\mcl{V}_{\mathrm{p}}=\mcl{V}_{\mathrm{p}}^*\in\mcl L(\RL,\RL)$
-with $\mcl{Q}_{\mathrm{p}}\succeq0$. For
-$w_{\mathrm{p}} \in\mbf L_{\mathrm{e}, [a, b]}^{\mbf{n}_{w_{\mathrm{p}}}}$. Then there exists a sufficiently
+with 
+\begin{equation*}
+\ip{p_T \Psi_{\mathrm{p}}\bmat{v\\ 0}}{p_T\mcl{M}_{\mcl V_{\mathrm{p}}}\Psi_{\mathrm{p}}\bmat{v \\ 0}}_{\mbf L_{[a, b]}}
+\geq 0.
+\end{equation*} for all $v\in\mbf{L}_{e,[a,b]}^{\mbf{n}_{z_p}}$. Then there exists a sufficiently
 small $\epsilon>0$ such that, for all such $w_{\mathrm{p}}$ and all $T\geq0$,
 \begin{gather*}
 \ip{p_T\Psi_{\mathrm{p}}\bmat{P\star\Delta\\I}w_{\mathrm{p}}}{p_T\mcl{M}_{\mcl{V}_{\mathrm{p}}}\Psi_{\mathrm{p}}\bmat{P\star\Delta\\I}w_{\mathrm{p}}}_{\mbf L_{[a,b]}}
@@ -191,9 +194,9 @@ against perturbations and achievement of specified performance objectives.
 \subsection{Theorem for joint robust stability and performance}
 We now present the theoretical result that provides conditions for
 simultaneous robust stability and performance verification. For brevity we will refer to the hard IQC as,
-\begin{equation}
+\begin{equation*}
     \ip{p_T \Psi\bmat{Pw \\ w}}{p_T \mcl{M}_\mcl{V}\Psi\bmat{Pw \\ w}}_{\mbf L_{[a, b]}} \leq -\epsilon \|p_T w\|^2_{\mbf L_{[a, b]}}
-\end{equation}
+\end{equation*}
 Let $\Psi_\Delta$ and $\Psi_{\mathrm{p}}$ have a $2\times2$ block partition and define
 $\Psi_{ij}:=\operatorname{diag}((\Psi_\Delta)_{ij},(\Psi_{\mathrm{p}})_{ij})$ for
 $i,j\in\{1,2\}$. Let $w^\top=\bmat{w_\Delta^\top & w_{\mathrm{p}}^\top}$ and $z^\top=\bmat{z_\Delta^\top & z_{\mathrm{p}}^\top}$.
@@ -215,7 +218,7 @@ Then the interconnection $P \star \Delta$ is \textbf{robustly stable} and
 \textbf{robust performance} is achieved with respect to some $\Psi_{\mathrm{p}}$ and
 $\mcl{M}_{{\mcl{V}}_{\mathrm{p}}}$, in Definition~\ref{def:robust-performance}, with
 $\mcl{Q}_{\mathrm{p}} \succeq 0$, if,
-\begin{equation}\label{eq:robust-stability-performance-condition}
+\begin{equation}\label{eq:robust-condition}
 \begin{gathered}
 \ip{p_T\Psi\bmat{Pw \\ w}}{p_T\mcl{M}_{\mcl V}\Psi\bmat{Pw \\ w}}_{\mbf L_{[a, b]}} \\
 \leq

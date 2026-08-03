@@ -1,7 +1,6 @@
 \subsection{Proof of Lemma~\ref{lem:potapov-ginzburg-equivalence}}\label{proof:potapov-ginzburg-equivalence}
 
-We first show the primal derivation explicitly. To show
-sufficiency, first augment the primal system with the
+We first show the primal derivation explicitly. First augment the primal system with the
 Potapov--Ginzburg transform of the primal filter, i.e. $P\star\Theta^\dagger$.
 $\Theta^\dagger$ admits the state-space representation
 \begin{equation}\label{eq:potapov-ginzburg-realization}
@@ -12,15 +11,15 @@ w(t)}
 =
 \bmat{
 \mcl{A}_{\Theta}^\dagger
-    & \mcl{B}_{\Theta}^{\dagger,\tilde{w}}
-    & \mcl{B}_{\Theta}^{\dagger,z}\\
+    & \mcl{B}_{\Theta}^{\dagger,z}
+    & \mcl{B}_{\Theta}^{\dagger,\tilde{w}}\\
 \mcl{C}_{\Theta}^{\dagger,z}
-    & \mcl{D}_{\Theta}^{\dagger,z\tilde{w}}
-    & \mcl{D}_{\Theta}^{\dagger,z}\\
+    & \mcl{D}_{\Theta}^{\dagger,z}
+    & \mcl{D}_{\Theta}^{\dagger,z\tilde{w}}\\
 \mcl{C}_{\Theta}^{\dagger,w}
-    & \mcl{D}_{\Theta}^{\dagger,w\tilde{w}}
-    & \mcl{D}_{\Theta}^{\dagger,\mathrm{wz}}}
-\bmat{\mbf{x}_{\Theta}(t)\\ \tilde{w}(t)\\ z(t)}.
+    & \mcl{D}_{\Theta}^{\dagger,\mathrm{wz}}
+    & \mcl{D}_{\Theta}^{\dagger,w\tilde{w}}}
+\bmat{\mbf{x}_{\Theta}(t)\\ z(t)\\ \tilde{w}(t)}.
 \end{equation}
 With $W_{\Theta}:=(\mcl{D}_{\Theta}^w)^{-1}$, the transformed blocks are
 \begin{align*}
@@ -57,8 +56,17 @@ Define the algebraic loops
 \qquad
 \Lambda_z := (I-\mcl{D}\mcl{D}_{\Theta}^{\dagger,wz})^{-1}.
 \end{equation*}
-Since $(\mcl{D}_{\Theta}^{wz} \mcl{D} + \mcl{D}_{\Theta}^w)^{-1} = (\mcl{D}_{\Theta}^w)^{-1}(I+(\mcl{D}_{\Theta}^w)^{-1}\mcl{D}_{\Theta}^{wz}\mcl{D})^{-1}
-= (\mcl{D}_{\Theta}^w)^{-1}(I - \mcl{D}_{\Theta}^{\dagger,wz}\mcl{D})^{-1} $ invertible, $\Lambda_w, \Lambda_z$ invertible.
+Since
+\[
+(\mcl{D}_{\Theta}^{wz}\mcl{D}+\mcl{D}_{\Theta}^w)^{-1}
+=
+(I+(\mcl{D}_{\Theta}^w)^{-1}
+\mcl{D}_{\Theta}^{wz}\mcl{D})^{-1}
+(\mcl{D}_{\Theta}^w)^{-1}
+=
+\Lambda_w(\mcl{D}_{\Theta}^w)^{-1},
+\]
+this inverse, $\Lambda_w$, and $\Lambda_z$ are invertible.
 Substituting \eqref{eqn:solve_w} into \eqref{eqn:ss_primal} gives
 \begin{align*}
 \mcl{T}\dot{\mbf{x}}
@@ -97,7 +105,11 @@ $\tilde{z}$ yields $P\star\Theta^\dagger$
 \end{equation}
 Define also
 \begin{equation*}
-\Lambda_c := (\mcl{D}_{\Theta}^{wz} \mcl{D} + \mcl{D}_{\Theta}^w)^{-1}.
+\Lambda_c
+:=
+(\mcl{D}_{\Theta}^{wz}\mcl{D}+\mcl{D}_{\Theta}^w)^{-1}
+=
+\Lambda_w(\mcl{D}_{\Theta}^w)^{-1}.
 \end{equation*}
 The invertible congruence transformations, $\Gamma$ and $\Gamma^{-1}$, respectively, to recover \eqref{eq:scaled-primal-system-realization} and 
 \eqref{eq:primal-potapov-augmentation}, respectively, are,
@@ -212,7 +224,7 @@ Substituting $z=\mcl{C}\mbf{x}+\mcl{D}w$ in these recovered rows gives
 \bmat{\mbf{x}(t)\\ \mbf{x}_{\Theta}(t)\\ w(t)}.
 \end{equation}
 The realization in \eqref{eq:scaled-primal-system-realization} is the
-direct augmentation $\Theta\bmat{P \\ I}w$. For necessity, applying the inverse
+direct augmentation $\Theta\bmat{P \\ I}w$. Applying the inverse
 of \eqref{eq:pg-congruence-transform} to
 \eqref{eq:scaled-primal-system-realization} recovers
 \eqref{eq:primal-potapov-augmentation}. Thus we find $\Theta\bmat{P\\ I}{w} = \bmat{P \star \Theta^\dagger \\ I}\Gamma{w}$
@@ -549,8 +561,8 @@ Collecting these three rows gives the Potapov--Ginzburg realization of the
 dual filter,
 \begin{equation}\label{eq:dual-potapov-ginzburg-realization}
 \bmat{\mcl{T}_{\Theta}^*\dot{\underline{\mbf{x}}}_{\Theta}(t)\\
-\tilde{\underline{z}}(t)\\
-\underline{w}(t)}
+\underline{w}(t)\\
+\tilde{\underline{z}}(t)}
 =
 \bmat{
 \bigl(\mcl{A}_{\Theta}^\dagger\bigr)^*
@@ -558,16 +570,16 @@ dual filter,
 \bigl(\mcl{C}_{\Theta}^{\dagger,z}\bigr)^*
 &
 \bigl(\mcl{C}_{\Theta}^{\dagger,w}\bigr)^*\\
-\bigl(\mcl{B}_{\Theta}^{\dagger,\tilde{w}}\bigr)^*
-&
-\bigl(\mcl{D}_{\Theta}^{\dagger,z\tilde{w}}\bigr)^*
-&
-\bigl(\mcl{D}_{\Theta}^{\dagger,w\tilde{w}}\bigr)^*\\
 \bigl(\mcl{B}_{\Theta}^{\dagger,z}\bigr)^*
 &
 \bigl(\mcl{D}_{\Theta}^{\dagger,z}\bigr)^*
 &
-\bigl(\mcl{D}_{\Theta}^{\dagger,wz}\bigr)^*}
+\bigl(\mcl{D}_{\Theta}^{\dagger,wz}\bigr)^*\\
+\bigl(\mcl{B}_{\Theta}^{\dagger,\tilde{w}}\bigr)^*
+&
+\bigl(\mcl{D}_{\Theta}^{\dagger,z\tilde{w}}\bigr)^*
+&
+\bigl(\mcl{D}_{\Theta}^{\dagger,w\tilde{w}}\bigr)^*}
 \bmat{\underline{\mbf{x}}_{\Theta}(t)\\
 \tilde{\underline{w}}(t)\\
 \underline{z}(t)}.

@@ -23,11 +23,6 @@ For a Hilbert space $X$ and operator $\mcl A \in \mcl L(X)$, the adjoint $\mcl
 \ip{\mathbf{x}}{\mcl A \mathbf{y}}_X = \ip{\mcl A^* \mathbf{x}}{\mathbf{y}}_X,
 \quad \forall\, \mathbf{x},\mathbf{y} \in X.
 \]
-For any matrix or operator $A$ with a specified $2\times2$ block partition,
-$(A)_{ij}$ denotes its $(i,j)$ block for $i,j\in\{1,2\}$. When the blocks of a
-named object are used repeatedly, we abbreviate $A_{ij}:=(A)_{ij}$. Thus, these
-subscripts refer to blocks in the specified partition rather than to scalar
-entries.
 The space $L_2^n[0,\infty)$ denotes $\R^n$-valued square-integrable signals
 defined on the temporal domain $[0,\infty)$, so that $x(t) \in \R^n$. Similarly,
 $\RL^n[0,\infty)$ denotes $\RL$-valued square-integrable temporal signals. For
@@ -83,8 +78,7 @@ the operator $\mcl M_{\mcl K} : \mathbf{L}_{\mathrm{e},[a,b]}^\mbf{n} \to
 \mathbf{L}_{\mathrm{e},[a,b]}^\mbf{m}$ to compactly represent a multiplication operator.
 For $\mathbf{u} = \bmat{u_1 & \cdots & u_N}^\top$ with $\mathbf{u} \in \RL$, its
 action at time $t$ is given by the block structure of $\mcl K_{ij}$:
-\begin{equation}
-\label{eq:multiplication-operator}
+\begin{equation*}
 (\mcl M_{\mcl K} \mathbf{u})(t)
 := \bmat{
 \mcl K_{11} & \cdots & \mcl K_{1n} \\
@@ -92,7 +86,7 @@ action at time $t$ is given by the block structure of $\mcl K_{ij}$:
 \mcl K_{m1} & \cdots & \mcl K_{mn}
 }
 \bmat{\mbf{u}_1 \\ \vdots \\ \mbf{u}_n}(t).
-\end{equation}
+\end{equation*}
 
 \subsection{Partial Integral Equations (PIEs)}
 Partial Integral operators, also known as PI operators, are a class of bounded
@@ -125,14 +119,14 @@ composition algebra \cite{shivakumar2024GDPE}.
 For given PI operators $\{\mcl E_{i,j}, \mcl{F}_{i,j}, \mcl{G}_i\}$ and a convex
 linear functional $\mcl L(\cdot)$, a linear PI inequality is a convex
 optimization of the following form
-\begin{align}
+\begin{align*}
 & \min\limits_{P_i, Q_{1i}, Q_{2i}, R_{0i}, R_{1i}, R_{2i}}  \mcl L(\{P_i,
 Q_{1i}, Q_{2i}, R_{0i}, R_{1i}, R_{2i}\})\notag \\
 & \mathrm{s. t. }\ \sum\limits_{j = 1}^K \mcl E_{ij}^*\prod \begin{bmatrix}
 P_i    & Q_{1i}  \\
 Q_{2i} & \{R_i\} \\
 \end{bmatrix}\mcl F_{ij} +\mcl G_i \succeq 0
-\end{align}
+\end{align*}
 \end{definition}
 Only LMIs are required to solve an optimization problem involving LPIs.
 These definitions are based on \cite{shivaknew}
@@ -143,22 +137,22 @@ compatible dimensions,
 and signals $w(t)\in \RL^{\mbf{n}_w}[a,b]$, we say
 $\mbf{x}(t)\in\RL[a,b]^{\mbf{n}_x}$ and $z(t)\in \RL^{\mbf{n}_z}[a,b]$
 satisfy the PIE with initial condition $\mbf{x}_0$ if
-\begin{equation}\label{eqn:ss_primal}
+\begin{equation*}
 \bmat{\partial_t(\mcl{T}\mbf{x})(t)\\ z(t)} = \bmat{\mcl{A} & \mcl{B} \\
 \mcl{C} & \mcl{D}}\bmat{\mbf{x}(t) \\ w(t)}
-\end{equation}
+\end{equation*}
 for all $t\geq0$ and $\mcl{T}\mbf{x}(0) = \mcl{T}\mbf{x}_0$. Additionally, for
 signals $\underline{w}(t)\in\RL[a,b]^{\mbf{n}_z}$
 of compatible dimensions, we say $\underline{\mbf{x}}(t)\in\RL[a,b]^{\mbf{n}_x}$
 and $\underline{z}(t)\in L_2[a,b]^{\mbf{n}_w}$
 satisfy the dual PIE, $G^\top$, with initial condition $\underline{\mbf{x}}_0$ if
-\begin{equation}
+\begin{equation*}
 \bmat{\mcl{T}^*\underline{\dot{\mbf{x}}}(t)\\ \underline{z}(t)}
 =
 \bmat{\mcl{A}^* & \mcl{C}^*\\
 \mcl{B}^* & \mcl{D}^*}
 \bmat{\underline{\mbf{x}}(t)\\ \underline{w}(t)},
-\end{equation}
+\end{equation*}
 for all $t\geq0$ and $\mcl{T}^*\underline{\mbf{x}}(0) =
 \mcl{T}^*\underline{\mbf{x}}_0$.
 \end{definition}
@@ -235,4 +229,3 @@ H\star G &: u_{11}\mapsto y_{11},
 PIETOOLS is a MATLAB toolbox used for declaration, manipulation and solving LPIs
 \cite{9147712}. For learning how to use PIETOOLS and its functionalities visit
 \href{https://control.asu.edu/pietools/pietools}{PIETOOLS homepage}.
-

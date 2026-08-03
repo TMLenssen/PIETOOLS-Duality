@@ -1,0 +1,135 @@
+\subsection{Proof of Theorem~\ref{thm:state-feedback}}\label{proof:state-feedback}
+Since $\mcl P\succ0$, define $\mcl K_P$ and $\mcl K_\Psi$ by
+\[
+\mcl Z^*
+=
+\bmat{\mcl K_P&\mcl K_\Psi}\mcl P.
+\]
+Set
+\begin{equation*}
+\begin{aligned}
+\underline{\mcl A}
+&:=
+\underline{\mcl A}_0
++
+\bmat{\mcl K_P^*\\\mcl K_\Psi^*}
+\bmat{\mcl B_u^*&0},
+&
+\underline{\mcl B}
+&:=
+\underline{\mcl B}_0
++
+\bmat{\mcl K_P^*\\\mcl K_\Psi^*}
+\mcl D_{zu}^* .
+\end{aligned}
+\end{equation*}
+Then \eqref{eq:controller-kyp} is the dual KYP inequality for
+\begin{equation*}
+\mbf D(\Psi)
+\bmat{P_K^\top\\I}\underline w
+:=
+\left\{
+\bmat{
+\underline{\mcl T}\dot{\underline{\mbf{x}}}(t)\\
+\underline v(t)
+}
+=
+\bmat{
+\underline{\mcl A}&\underline{\mcl B}\\
+\underline{\mcl C}&\underline{\mcl D}
+}
+\bmat{
+\underline{\mbf{x}}(t)\\
+\underline w(t)
+}
+\right.,
+\qquad
+P_K:=K\star P,
+\qquad
+\underline{\mbf{x}}
+:=
+\bmat{\underline{\mbf{x}}_P\\\underline{\mbf{x}}_\Psi}.
+\end{equation*}
+For
+\[
+V(\underline{\mbf{x}})
+:=
+\ip{\underline{\mcl T}\underline{\mbf{x}}}
+{\mcl P\underline{\mcl T}\underline{\mbf{x}}}
+\geq0,
+\]
+the standard storage argument gives, for zero initial conditions,
+\begin{equation*}
+\ip{p_T\mbf D(\Psi)\bmat{P_K^\top\\I}\underline w}
+{p_T\mcl M_{\underline{\mcl V}}
+\mbf D(\Psi)\bmat{P_K^\top\\I}\underline w}_{\mbf L_{[a,b]}}
+\leq
+-\underline\epsilon
+\|p_T\underline w\|_{\mbf L_{[a,b]}}^2.
+\end{equation*}
+
+Define
+\[
+\Theta:=\mcl M_{\mcl U}\Psi.
+\]
+Using
+\[
+\underline{\mcl V}
+=
+\mbf D(\mcl U)^*
+J_{\mbf n_w,\mbf n_z}
+\mbf D(\mcl U),
+\qquad
+\mbf D(\Theta)
+=
+\mcl M_{\mbf D(\mcl U)}\mbf D(\Psi),
+\]
+the preceding inequality becomes
+\begin{equation}\label{eq:sf-dual-iqc}
+\ip{p_T\mbf D(\Theta)\bmat{P_K^\top\\I}\underline w}
+{p_TJ_{\mbf n_w,\mbf n_z}
+\mbf D(\Theta)\bmat{P_K^\top\\I}\underline w}_{\mbf L_{[a,b]}}
+\leq
+-\underline\epsilon
+\|p_T\underline w\|_{\mbf L_{[a,b]}}^2.
+\end{equation}
+
+By Lemma~\ref{lem:potapov-ginzburg-equivalence}, there exist invertible
+coordinate operators $\mcl M_{\Gamma_K}$ and
+$\mcl M_{\underline\Gamma_K}$ such that
+\begin{equation*}
+\begin{aligned}
+\Theta\bmat{P_K\\I}w
+&=
+\bmat{P_K\star(\Theta^\dagger R)\\I}
+\mcl M_{\Gamma_K}w,\\
+\mbf D(\Theta)\bmat{P_K^\top\\I}\underline w
+&=
+\bmat{P_K^\top\star\bigl(R(\Theta^\dagger)^\top\bigr)\\I}
+\mcl M_{\underline\Gamma_K}\underline w,
+\end{aligned}
+\end{equation*}
+where
+\begin{equation*}
+\mbf D(\Theta)^\dagger R
+=
+R(\Theta^\dagger)^\top,
+\qquad
+P_K^\top\star\bigl(R(\Theta^\dagger)^\top\bigr)
+=
+\left(P_K\star(\Theta^\dagger R)\right)^\top.
+\end{equation*}
+Thus \eqref{eq:sf-dual-iqc} is the dual feasibility condition associated
+with the primal filtered system. Theorem~\ref{thm:primal-dual-iqc-feasibility}
+therefore gives some $\epsilon>0$ such that
+\begin{equation*}
+\ip{p_T\Theta\bmat{P_K\\I}w}
+{p_TJ_{\mbf n_z,\mbf n_w}
+\Theta\bmat{P_K\\I}w}_{\mbf L_{[a,b]}}
+\leq
+-\epsilon\|p_Tw\|_{\mbf L_{[a,b]}}^2.
+\end{equation*}
+Since $(\Theta,J_{\mbf n_z,\mbf n_w})$
+is the primal hard-IQC factorization, Theorem~\ref{thm:robust-stability-performance}
+gives robust stability and robust performance of
+$K\star P\star\Delta$.

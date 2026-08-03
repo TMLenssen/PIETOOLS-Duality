@@ -1,0 +1,509 @@
+\subsection{Proof of
+Lemma~\ref{lem:potapov-ginzburg-equivalence}}
+\label{proof:potapov-ginzburg-equivalence}
+We prove the primal and dual identities in block form. Set
+\[
+v:=\bmat{z\\w},
+\qquad
+\tilde v:=\bmat{\tilde z\\\tilde w},
+\qquad
+v^\dagger:=\bmat{z\\\tilde w},
+\qquad
+\tilde v^\dagger:=\bmat{\tilde z\\w},
+\]
+Let
+\[
+R_{zw}:=\bmat{0&I\\I&0},
+\qquad
+R_{wz}:=\bmat{0&I\\I&0},
+\]
+where the block dimensions are determined by the indicated channel order, so
+that
+\[
+R_{zw}\bmat{z\\w}=\bmat{w\\z},
+\qquad
+R_{wz}\bmat{w\\z}=\bmat{z\\w}.
+\]
+We write $R$ when the channel order is clear from context.
+Partition the plant and filter as
+\begin{equation*}
+P := \left\{\bmat{\mcl T_P\dot{\mbf{x}}_P\\z}
+=
+\bmat{\mcl A_P&\mcl B_P\\\mcl C_P&\mcl D_P}
+\bmat{\mbf{x}_P\\w}\right.,
+\qquad
+\Theta :=\left\{
+\bmat{\mcl T\dot{\mbf{x}}\\\tilde v}
+=
+\bmat{
+\mcl A&\mcl B\\
+\mcl C&\mcl D
+}
+\bmat{\mbf{x}\\v}\right..
+\end{equation*}
+\[
+\mcl B:=\bmat{\mcl B_1&\mcl B_2},
+\qquad
+\mcl C:=\bmat{\mcl C_1\\\mcl C_2},
+\qquad
+\mcl D:=\bmat{\mcl D_{11}&\mcl D_{12}\\
+               \mcl D_{21}&\mcl D_{22}}.
+\]
+
+\emph{Primal.}
+The exchange operator places the external signal first:
+\[
+\Theta^\dagger R
+\bmat{\tilde w\\z}
+=
+\bmat{\tilde z\\w}.
+\]
+In the original port order,
+\begin{equation}\label{eq:pg-filter}
+\Theta^\dagger :=\left\{\bmat{
+\mcl T\dot{\mbf{x}}(t)\\
+\tilde{v}^\dagger(t)
+}
+=
+\bmat{
+\mcl A^\dagger&\mcl B^\dagger\\
+\mcl C^\dagger&\mcl D^\dagger
+}
+\bmat{\mbf{x}(t)\\v^\dagger(t)} \right.,
+\end{equation}
+The corresponding realization operators are
+\begin{equation}\label{eq:pg-filter-op}
+\bmat{
+\mcl A^\dagger&\mcl B^\dagger\\
+\mcl C^\dagger&\mcl D^\dagger
+}
+:=
+\bmat{
+\mcl A&\mcl B_1&0\\
+\mcl C_1&\mcl D_{11}&0\\
+0&0&0
+}
++
+\bmat{
+\mcl B_2\\
+\mcl D_{12}\\
+I
+}
+\mcl D_{22}^{-1}
+\bmat{
+-\mcl C_2&
+-\mcl D_{21}&
+I
+}.
+\end{equation}
+Substituting $z=\mcl C_P\mbf{x}_P+\mcl D_Pw$ into the last row gives
+\begin{equation}\label{eq:pg-w}
+w
+=
+\Lambda(\mcl{D}^\dagger_{22})^{-1}
+\left(
+\mcl D_{21}^\dagger\mcl C_P\mbf{x}_P
++\mcl C_2^\dagger\mbf{x}
++\mcl D_{22}^\dagger\tilde w
+\right),
+\end{equation}
+and therefore
+\begin{equation}\label{eq:pg-z}
+z
+=
+\mcl C_P\mbf{x}_P
++\mcl D_P\Lambda(\mcl{D}^\dagger_{22})^{-1}
+\left(
+\mcl D_{21}^\dagger\mcl C_P\mbf{x}_P
++\mcl C_2^\dagger\mbf{x}
++\mcl D_{22}^\dagger\tilde w
+\right).
+\end{equation}
+Substitution of \eqref{eq:pg-w}--\eqref{eq:pg-z} into the remaining rows
+gives
+\begin{equation}\label{eq:pg-primal}
+\bmat{
+\mcl T_P\dot{\mbf{x}}_P\\
+\mcl T\dot{\mbf{x}}\\
+\tilde z \\
+\tilde w
+}
+=
+\left[
+\bmat{
+\mcl A_P&0&0\\
+\mcl B_1^\dagger\mcl C_P&
+\mcl A^\dagger&
+\mcl B_2^\dagger\\
+\mcl D_{11}^\dagger\mcl C_P&
+\mcl C_1^\dagger&
+\mcl D_{12}^\dagger \\
+0&0&I
+}
++
+\bmat{
+\mcl B_P\\
+\mcl B_1^\dagger\mcl D_P\\
+\mcl D_{11}^\dagger\mcl D_P\\
+0
+}
+\Lambda(\mcl{D}^\dagger_{22})^{-1}
+\bmat{
+\mcl D_{21}^\dagger\mcl C_P&
+\mcl C_2^\dagger&
+\mcl D_{22}^\dagger
+}
+\right]
+\bmat{\mbf{x}_P\\\mbf{x}\\\tilde w}
+\end{equation}
+Here
+\begin{equation}\label{eq:pg-lambda}
+\Lambda
+:=
+\left(\mcl D_{21}\mcl D_P+\mcl D_{22}\right)^{-1},
+\qquad
+\Lambda(\mcl{D}^\dagger_{22})^{-1}
+=
+\left(I-\mcl D_{21}^\dagger\mcl D_P\right)^{-1}.
+\end{equation}
+Define the coordinate changes by
+\begin{equation*}
+\begin{aligned}
+\bmat{\mbf{x}_P\\\mbf{x}\\\tilde w}
+&=
+\underbrace{
+\bmat{
+I&0&0\\
+0&I&0\\
+\mcl D_{21}\mcl C_P
+&
+\mcl C_2
+&
+\Lambda^{-1}
+}}_{\displaystyle\Gamma}
+\bmat{\mbf{x}_P\\\mbf{x}\\w},\quad
+\bmat{\mbf{x}_P\\\mbf{x}\\w}
+&=
+\underbrace{
+\bmat{
+I&0&0\\
+0&I&0\\
+-\Lambda\mcl D_{21}\mcl C_P
+&
+-\Lambda\mcl C_2
+&
+\Lambda
+}}_{\displaystyle\Gamma^{-1}}
+\bmat{\mbf{x}_P\\\mbf{x}\\\tilde w}.
+\end{aligned}
+\end{equation*}
+Using \eqref{eq:pg-filter-op} and \eqref{eq:pg-lambda}, right
+multiplication of \eqref{eq:pg-primal} by $\Gamma$ gives
+\begin{equation}\label{eq:pg-gamma}
+\bmat{
+\mcl T_P\dot{\mbf{x}}_P\\
+\mcl T\dot{\mbf{x}}\\
+\tilde z \\
+\tilde w
+}
+=
+\left[
+\bmat{
+\mcl A_P&0& \mcl{B}_P\\
+\mcl B_1^\dagger\mcl C_P&
+\mcl A^\dagger&
+\mcl{B}^\dagger_1\mcl{D}_P\\
+\mcl D_{11}^\dagger\mcl C_P&
+\mcl C_1^\dagger&
+\mcl{D}_{11}^\dagger\mcl{D}_P\\ 0 & 0 & 0
+}
++
+\bmat{
+0\\
+\mcl B_2^\dagger\\
+\mcl D_{12}^\dagger\\
+I
+}
+(\mcl{D}^\dagger_{22})^{-1}
+\bmat{
+-\mcl D_{21}^\dagger\mcl C_P&
+-\mcl C_2^\dagger&
+I-\mcl D_{21}^\dagger\mcl D_P
+}
+\right]
+\bmat{\mbf{x}_P\\\mbf{x}\\w}.
+\end{equation}
+\[
+(\Theta^\dagger)^\dagger=\Theta.
+\]
+Consequently, the lower three rows of \eqref{eq:pg-gamma} reduce to
+\begin{equation}\label{eq:pg-recovery}
+\bmat{
+\mcl T\dot{\mbf{x}}\\
+\tilde z\\
+\tilde w
+}
+=
+\bmat{
+\mcl A&\mcl B\\
+\mcl C&\mcl D
+}
+\bmat{
+0&I&0\\
+\mcl C_P&0&\mcl D_P\\
+0&0&I
+}
+\bmat{\mbf{x}_P\\\mbf{x}\\w},
+\end{equation}
+which, together with the plant row, gives
+\begin{equation*}
+\bmat{
+\mcl T_P\dot{\mbf{x}}_P\\
+\mcl T\dot{\mbf{x}}\\
+\tilde z\\
+\tilde w
+}
+=
+\bmat{
+\mcl A_P&0&\mcl B_P\\
+\mcl B_1\mcl C_P&
+\mcl A&
+\mcl B_1\mcl D_P+\mcl B_2\\
+\mcl D_{11}\mcl C_P&
+\mcl C_1&
+\mcl D_{11}\mcl D_P+\mcl D_{12}\\
+\mcl D_{21}\mcl C_P&
+\mcl C_2&
+\mcl D_{21}\mcl D_P+\mcl D_{22}
+}
+\bmat{\mbf{x}_P\\\mbf{x}\\w}.
+\end{equation*}
+\[
+\Theta\bmat{P\\I}w
+=
+\bmat{P\star(\Theta^\dagger R)\\I}\mcl{M}_\Gamma w.
+\]
+\emph{Dual.}
+Set
+\[
+\underline v:=\bmat{\underline z\\\underline w},
+\qquad
+\tilde{\underline v}
+:=
+\bmat{\tilde{\underline z}\\\tilde{\underline w}},
+\qquad
+\hat J:=\bmat{0&I\\-I&0}.
+\]
+The dual filter satisfies
+\[
+\mbf D(\Theta)
+=
+\left(\hat J^*\Theta^\top\hat J\right)^{-1}
+\]
+and has realization
+\begin{equation*}
+\bmat{
+\mcl T^*\dot{\underline{\mbf{x}}}\\
+\tilde{\underline v}
+}
+=
+\bmat{
+\underline{\mcl A}&\underline{\mcl B}\\
+\underline{\mcl C}&\underline{\mcl D}}
+\bmat{\underline{\mbf{x}}\\\underline v},
+\end{equation*}
+with
+\begin{equation}\label{eq:pg-dual-op}
+\begin{aligned}
+\underline{\mcl A}
+&:=
+\mcl A^*
+-
+\mcl C^*\hat J\,
+\mbf D(\mcl D)\,
+\hat J^*\mcl B^*, 
+&\underline{\mcl B}
+&:=
+\mcl C^*\hat J\,\mbf D(\mcl D),\\
+\underline{\mcl C}
+&:=
+-\mbf D(\mcl D)\hat J^*\mcl B^*, 
+&\underline{\mcl D}
+&:=
+\mbf D(\mcl D)
+=
+\left(\hat J^*\mcl D^*\hat J\right)^{-1},
+\end{aligned}
+\end{equation}
+Block inversion and \eqref{eq:pg-filter-op} yield
+\begin{equation*}
+\begin{aligned}
+\mbf D(\mcl D)
+&=
+\bmat{
+(\mcl D_{22}^\dagger)^*
+-(\mcl D_{12}^\dagger)^*
+\left((\mcl D_{11}^\dagger)^*\right)^{-1}
+(\mcl D_{21}^\dagger)^*
+&
+(\mcl D_{12}^\dagger)^*
+\left((\mcl D_{11}^\dagger)^*\right)^{-1}
+\\
+-\left((\mcl D_{11}^\dagger)^*\right)^{-1}
+(\mcl D_{21}^\dagger)^*
+&
+\left((\mcl D_{11}^\dagger)^*\right)^{-1}
+}\\
+&=
+\bmat{(\mcl D_{22}^\dagger)^*&0\\0&0}
++
+\bmat{(\mcl D_{12}^\dagger)^*\\I}
+\left((\mcl D_{11}^\dagger)^*\right)^{-1}
+\bmat{-(\mcl D_{21}^\dagger)^*&I}.
+\end{aligned}
+\end{equation*}
+Thus \eqref{eq:pg-dual-op} becomes
+\begin{equation*}
+\bmat{
+\underline{\mcl A}&\underline{\mcl B}_1&\underline{\mcl B}_2\\
+\underline{\mcl C}_1&\underline{\mcl D}_{11}&\underline{\mcl D}_{12}\\
+\underline{\mcl C}_2&\underline{\mcl D}_{21}&\underline{\mcl D}_{22}}
+=
+\bmat{\mcl A^*&0&0\\0&0&0\\0&0&0}
++
+\bmat{-\mcl C_2^*&\mcl C_1^*\\I&0\\0&I}
+\mbf D(\mcl D)
+\bmat{\mcl B_2^*&I&0\\-\mcl B_1^*&0&I}.
+\end{equation*}
+Substitution gives
+\begin{equation}\label{eq:pg-dual-filter}
+\bmat{
+\underline{\mcl A}&\underline{\mcl B}_1&\underline{\mcl B}_2\\
+\underline{\mcl C}_1&\underline{\mcl D}_{11}&\underline{\mcl D}_{12}\\
+\underline{\mcl C}_2&\underline{\mcl D}_{21}&\underline{\mcl D}_{22}
+}
+:=
+\bmat{
+(\mcl A^\dagger)^*&(\mcl C_2^\dagger)^*&0\\
+(\mcl B_2^\dagger)^*&(\mcl D_{22}^\dagger)^*&0\\
+0&0&0
+}
++
+\bmat{
+(\mcl C_1^\dagger)^*\\
+(\mcl D_{12}^\dagger)^*\\
+I
+}
+\left((\mcl D_{11}^\dagger)^*\right)^{-1}
+\bmat{
+-(\mcl B_1^\dagger)^*&
+-(\mcl D_{21}^\dagger)^*&
+I
+}.
+\end{equation}
+The full block realization of
+$R(\Theta^\dagger)^\top R$ is
+\begin{equation*}
+\bmat{
+\mcl T^*\dot{\underline{\mbf{x}}}\\
+\tilde{\underline z}\\
+\underline w}
+=
+\bmat{
+(\mcl A^\dagger)^*&(\mcl C_2^\dagger)^*&(\mcl C_1^\dagger)^*\\
+(\mcl B_2^\dagger)^*&(\mcl D_{22}^\dagger)^*&(\mcl D_{12}^\dagger)^*\\
+(\mcl B_1^\dagger)^*&(\mcl D_{21}^\dagger)^*&(\mcl D_{11}^\dagger)^*
+}
+\bmat{
+\underline{\mbf{x}}\\
+\underline z\\
+\tilde{\underline w}}.
+\end{equation*}
+Comparison with \eqref{eq:pg-filter-op} and \eqref{eq:pg-dual-filter} gives
+\[
+\mbf D(\Theta)
+=
+\left(R(\Theta^\dagger)^\top R\right)^\dagger,
+\qquad
+\mbf D(\Theta)^\dagger
+=
+R(\Theta^\dagger)^\top R.
+\]
+The dual signals therefore satisfy
+\[
+\bmat{\tilde{\underline z}\\\underline w}
+=
+\mbf D(\Theta)^\dagger R
+\bmat{\tilde{\underline w}\\\underline z},
+\qquad
+\underline z=P^\top\underline w.
+\]
+Using $RR=I$,
+\[
+\mbf D(\Theta)^\dagger R
+=
+R(\Theta^\dagger)^\top.
+\]
+Transposition of the primal identity gives
+\[
+P^\top\star(R(\Theta^\dagger)^\top)
+=
+\left(P\star(\Theta^\dagger R)\right)^\top.
+\]
+Hence
+\[
+\mbf D(\Theta)\bmat{P^\top\\I}\underline w
+=
+\bmat{P^\top\star(R(\Theta^\dagger)^\top)\\I}
+\mcl M_{\underline\Gamma}\underline w.
+\]
+Finally, using \eqref{eq:pg-dual-filter}, define the dual interconnection
+operator in terms of the primal realization operators as
+\[
+\underline\Lambda
+:=
+\left(
+I
+-(\mcl{D}_{21}^\dagger)^{*}\mcl D_P^*
+\right)^{-1}
+(\mcl{D}_{11}^\dagger)^{*},
+\]
+with coordinate changes
+\begin{equation*}
+\begin{aligned}
+\bmat{
+\underline{\mbf{x}}_P\\
+\underline{\mbf{x}}\\
+\tilde{\underline w}}
+&=
+\underbrace{
+\bmat{
+I&0&0\\
+0&I&0\\
+\underline{\mcl D}_{21}\mcl B_P^*
+&\underline{\mcl C}_2
+&\underline\Lambda^{-1}
+}}_{\displaystyle\underline\Gamma}
+\bmat{
+\underline{\mbf{x}}_P\\
+\underline{\mbf{x}}\\
+\underline w},\\
+\bmat{
+\underline{\mbf{x}}_P\\
+\underline{\mbf{x}}\\
+\underline w}
+&=
+\underbrace{
+\bmat{
+I&0&0\\
+0&I&0\\
+-\underline\Lambda\underline{\mcl D}_{21}\mcl B_P^*
+&-\underline\Lambda\underline{\mcl C}_2
+&\underline\Lambda
+}}_{\displaystyle\underline\Gamma^{-1}}
+\bmat{
+\underline{\mbf{x}}_P\\
+\underline{\mbf{x}}\\
+\tilde{\underline w}}.
+\end{aligned}
+\end{equation*}
