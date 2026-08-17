@@ -73,6 +73,12 @@ A.~Talitckii, M.~Peet, and P.~Seiler.
 Matthew~C. Turner.
 \newblock Zames-falb multipliers: don't panic, 2022.
 
+\bibitem{veenman2016robust}
+J.~Veenman, C.~Scherer, and H.~K{\"o}ro{\u{g}}lu.
+\newblock {Robust stability and performance analysis based on integral
+  quadratic constraints}.
+\newblock {\em European Journal of Control}, 31:1--32, 2016.
+
 \bibitem{venkataraman}
 Raghu Venkataraman and Peter Seiler.
 \newblock {Convex LPV synthesis of estimators and feedforwards using duality

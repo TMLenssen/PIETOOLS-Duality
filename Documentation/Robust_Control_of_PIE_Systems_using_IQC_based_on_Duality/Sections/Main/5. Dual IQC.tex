@@ -25,15 +25,13 @@ holds if and only if the dual feasibility condition
 \begin{equation*}
 \begin{gathered}
 \begin{aligned}
-\ip{p_T\mbf{D}(\Theta)\bmat{\underline{z} \\ \underline{w}}}
-{p_TJ_{\mbf{n}_w,\mbf{n}_z}\mbf{D}(\Theta)\bmat{\underline{z} \\ \underline{w}}}_{\mbf L_{[a,b]}}
+\ip{p_T\mbf{D}(\Theta)\bmat{P^\top\\ I}\underline{w}}
+{p_TJ_{\mbf{n}_w,\mbf{n}_z}\mbf{D}(\Theta)\bmat{P^\top\\ I}\underline{w}}_{\mbf L_{[a,b]}}
 &\!\!\!\!\!\!\!\!\leq -\underline{\epsilon}\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}},
 \end{aligned}\\
-\underline{z}=P^\top\underline{w},\qquad
-\forall \underline{w}\in\mbf L_{\mathrm{e},[a,b]}^{\mbf{n}_z},\qquad \forall T\geq0,
 \end{gathered}
 \end{equation*}
-holds for $\underline{\epsilon}>0$.
+for all $\underline{w}\in\mbf L_{\mathrm{e},[a,b]}^{\mbf{n}_z}$, and $T\geq0$.
 \end{theorem}
 \begin{proof}
 See Appendix~\ref{proof:primal-dual-iqc-feasibility}.
@@ -88,292 +86,292 @@ robust stability and performance, we combine it with the PIE KYP condition.
     Note that we do not require information about the dual uncertainty $\underline{\Delta}$, only the primal uncertainty $\Delta$.
 \end{remark}
 
-\subsection{Classes of J-Spectral Factorizations}
-J-spectral factorizations exist for many performance and uncertainty
-multipliers.  Following \cite{veenman2016robust}, we collect the relevant
-multiplier families as classes.
-\subsubsection{Classes of J-Spectral Factorizations for Performance Multipliers}
+% \subsection{Classes of J-Spectral Factorizations}
+% J-spectral factorizations exist for many performance and uncertainty
+% multipliers.  Following \cite{veenman2016robust}, we collect the relevant
+% multiplier families as classes.
+% \subsubsection{Classes of J-Spectral Factorizations for Performance Multipliers}
 
-\begin{class}[Induced $L_2$-gain]
-The primal hard performance IQC is
-$(\Psi_{\mathrm{p}},\mcl{M}_{\mcl V_{\mathrm{p}}})$, where
-\begin{equation*}
-\begin{aligned}
-\Psi_{\mathrm{p}}
-&:=
-\bmat{
-I_{\mbf{n}_{z_{\mathrm{p}}}} & 0 \\
-0 & I_{\mbf{n}_{w_{\mathrm{p}}}}
-},\\
-\mcl V_{\mathrm{p}}
-&:=
-\bmat{
-\gamma^{-1}I_{\mbf{n}_{z_{\mathrm{p}}}} & 0 \\
-0 & -\gamma I_{\mbf{n}_{w_{\mathrm{p}}}}
-},
-\qquad \gamma>0 .
-\end{aligned}
-\end{equation*}
-Robust performance then guarantees
-$\sup_{\Delta\in\mbf{\Delta}}\|G\star\Delta\|_{\mbf L_{[a,b]}}\leq\gamma$, for all $w_{\mathrm{p}}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_{w_{\mathrm{p}}}}$.
-Its $(\Theta,J_{\mbf{n}_{z_{\mathrm{p}}},\mbf{n}_{w_{\mathrm{p}}}})$ factorization is given by
-\begin{equation*}
-\Theta
-:=
-\bmat{
-\gamma^{-\frac{1}{2}}I_{\mbf{n}_{z_{\mathrm{p}}}} & 0 \\
-0 & \gamma^{\frac{1}{2}} I_{\mbf{n}_{w_{\mathrm{p}}}}
-}.
-\end{equation*}
-The corresponding dual hard performance IQC is
-$(\underline{\Psi}_{\mathrm{p}},
-\mcl{M}_{\underline{\mcl V}_{\mathrm{p}}})$, where
-\begin{equation*}
-\begin{aligned}
-\underline{\Psi}_{\mathrm{p}}
-&:=
-\bmat{
-I_{\mbf{n}_{w_{\mathrm{p}}}} & 0 \\
-0 & I_{\mbf{n}_{z_{\mathrm{p}}}}
-},\\
-\underline{\mcl V}_{\mathrm{p}}
-&:=
-\bmat{
-\gamma^{-1}I_{\mbf{n}_{w_{\mathrm{p}}}} & 0 \\
-0 & -\gamma I_{\mbf{n}_{z_{\mathrm{p}}}}
-},
-\qquad \gamma>0 .
-\end{aligned}
-\end{equation*}
-\end{class}
+% \begin{class}[Induced $L_2$-gain]
+% The primal hard performance IQC is
+% $(\Psi_{\mathrm{p}},\mcl{M}_{\mcl V_{\mathrm{p}}})$, where
+% \begin{equation*}
+% \begin{aligned}
+% \Psi_{\mathrm{p}}
+% &:=
+% \bmat{
+% I_{\mbf{n}_{z_{\mathrm{p}}}} & 0 \\
+% 0 & I_{\mbf{n}_{w_{\mathrm{p}}}}
+% },\\
+% \mcl V_{\mathrm{p}}
+% &:=
+% \bmat{
+% \gamma^{-1}I_{\mbf{n}_{z_{\mathrm{p}}}} & 0 \\
+% 0 & -\gamma I_{\mbf{n}_{w_{\mathrm{p}}}}
+% },
+% \qquad \gamma>0 .
+% \end{aligned}
+% \end{equation*}
+% Robust performance then guarantees
+% $\sup_{\Delta\in\mbf{\Delta}}\|G\star\Delta\|_{\mbf L_{[a,b]}}\leq\gamma$, for all $w_{\mathrm{p}}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_{w_{\mathrm{p}}}}$.
+% Its $(\Theta,J_{\mbf{n}_{z_{\mathrm{p}}},\mbf{n}_{w_{\mathrm{p}}}})$ factorization is given by
+% \begin{equation*}
+% \Theta
+% :=
+% \bmat{
+% \gamma^{-\frac{1}{2}}I_{\mbf{n}_{z_{\mathrm{p}}}} & 0 \\
+% 0 & \gamma^{\frac{1}{2}} I_{\mbf{n}_{w_{\mathrm{p}}}}
+% }.
+% \end{equation*}
+% The corresponding dual hard performance IQC is
+% $(\underline{\Psi}_{\mathrm{p}},
+% \mcl{M}_{\underline{\mcl V}_{\mathrm{p}}})$, where
+% \begin{equation*}
+% \begin{aligned}
+% \underline{\Psi}_{\mathrm{p}}
+% &:=
+% \bmat{
+% I_{\mbf{n}_{w_{\mathrm{p}}}} & 0 \\
+% 0 & I_{\mbf{n}_{z_{\mathrm{p}}}}
+% },\\
+% \underline{\mcl V}_{\mathrm{p}}
+% &:=
+% \bmat{
+% \gamma^{-1}I_{\mbf{n}_{w_{\mathrm{p}}}} & 0 \\
+% 0 & -\gamma I_{\mbf{n}_{z_{\mathrm{p}}}}
+% },
+% \qquad \gamma>0 .
+% \end{aligned}
+% \end{equation*}
+% \end{class}
 
-\begin{class}[Passivity]
-The primal hard performance IQC is
-$(\Psi_{\mathrm{p}},\mcl{M}_{\mcl V_{\mathrm{p}}})$, where
-\begin{equation*}
-\Psi_{\mathrm{p}}
-:=
-\bmat{
-I_{\mbf{n}} & 0 \\
-0 & I_{\mbf{n}}
-},
-\qquad
-\mcl V_{\mathrm{p}}
-:=
-\bmat{
-0 & I_{\mbf{n}} \\
-I_{\mbf{n}} & 0
-}.
-\end{equation*}
-Robust performance means that $G\star\Delta$ is strictly input passive for all
-$\Delta\in\mbf{\Delta}$, and
-$w_{\mathrm{p}}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_{w_{\mathrm{p}}}}$. Its
-$(\Theta,J_{\mbf{n},\mbf{n}})$ factorization is given by
-\begin{equation*}
-\Theta
-:=
-\frac{1}{\sqrt{2}}
-\bmat{
-I_{\mbf{n}} & I_{\mbf{n}} \\
-I_{\mbf{n}} & -I_{\mbf{n}}
-}.
-\end{equation*}
-The corresponding dual hard performance IQC is
-$(\underline{\Psi}_{\mathrm{p}},
-\mcl{M}_{\underline{\mcl V}_{\mathrm{p}}})$, where
-\begin{equation*}
-\underline{\Psi}_{\mathrm{p}}
-:=
-\bmat{
-I_{\mbf{n}} & 0 \\
-0 & I_{\mbf{n}}
-},
-\qquad
-\underline{\mcl V}_{\mathrm{p}}
-:=
-\bmat{
-0 & I_{\mbf{n}} \\
-I_{\mbf{n}} & 0
-}.
-\end{equation*}
-\end{class}
+% \begin{class}[Passivity]
+% The primal hard performance IQC is
+% $(\Psi_{\mathrm{p}},\mcl{M}_{\mcl V_{\mathrm{p}}})$, where
+% \begin{equation*}
+% \Psi_{\mathrm{p}}
+% :=
+% \bmat{
+% I_{\mbf{n}} & 0 \\
+% 0 & I_{\mbf{n}}
+% },
+% \qquad
+% \mcl V_{\mathrm{p}}
+% :=
+% \bmat{
+% 0 & I_{\mbf{n}} \\
+% I_{\mbf{n}} & 0
+% }.
+% \end{equation*}
+% Robust performance means that $G\star\Delta$ is strictly input passive for all
+% $\Delta\in\mbf{\Delta}$, and
+% $w_{\mathrm{p}}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_{w_{\mathrm{p}}}}$. Its
+% $(\Theta,J_{\mbf{n},\mbf{n}})$ factorization is given by
+% \begin{equation*}
+% \Theta
+% :=
+% \frac{1}{\sqrt{2}}
+% \bmat{
+% I_{\mbf{n}} & I_{\mbf{n}} \\
+% I_{\mbf{n}} & -I_{\mbf{n}}
+% }.
+% \end{equation*}
+% The corresponding dual hard performance IQC is
+% $(\underline{\Psi}_{\mathrm{p}},
+% \mcl{M}_{\underline{\mcl V}_{\mathrm{p}}})$, where
+% \begin{equation*}
+% \underline{\Psi}_{\mathrm{p}}
+% :=
+% \bmat{
+% I_{\mbf{n}} & 0 \\
+% 0 & I_{\mbf{n}}
+% },
+% \qquad
+% \underline{\mcl V}_{\mathrm{p}}
+% :=
+% \bmat{
+% 0 & I_{\mbf{n}} \\
+% I_{\mbf{n}} & 0
+% }.
+% \end{equation*}
+% \end{class}
 
-\subsubsection{Classes of J-Spectral Factorizations for Uncertainty Multipliers on Finite Dimensional Channels}
+% \subsubsection{Classes of J-Spectral Factorizations for Uncertainty Multipliers on Finite Dimensional Channels}
 
-Many finite-dimensional hard uncertainty IQCs have a strict positive-negative (PN)
-multiplier structure.
-\begin{definition}[Strict PN hard IQC {\cite{6915700}}]
-The hard IQC $(\Psi_\Delta,\mcl M_{V_\Delta})$, with
-$\Psi_\Delta: L_{2\mathrm{e},[0,\infty)}^{n_{z_\Delta}+n_{w_\Delta}}
-\to L_{2\mathrm{e},[0,\infty)}^{n_{\tilde{z}_\Delta}+n_{\tilde{w}_\Delta}}$
-and $V_\Delta=V_\Delta^\top$ a real matrix of compatible dimensions, is
-strict positive-negative if there
-exists $\epsilon>0$ such that, for all
-$z_\Delta\in L_{2\mathrm{e},[0,\infty)}^{n_{z_\Delta}}$,
-$w_\Delta\in L_{2\mathrm{e},[0,\infty)}^{{n}_{w_\Delta}}$, and $T\geq0$,
-\begin{align*}
-\ip{p_T\Psi_\Delta\bmat{z_\Delta\\0}}
-{p_T V_\Delta\Psi_\Delta\bmat{z_\Delta\\0}}_{L_2}
-&\geq\epsilon\|p_Tz_\Delta\|_{L_2}^2,\\
-\ip{p_T\Psi_\Delta\bmat{0\\w_\Delta}}
-{p_T V_\Delta\Psi_\Delta\bmat{0\\w_\Delta}}_{L_2}
-&\leq-\epsilon\|p_Tw_\Delta\|_{L_2}^2.
-\end{align*}
-\end{definition}
-Moreover, in this finite-dimensional setting, \cite{6915700} shows that if the
-primal IQC is a strict PN multiplier, then a $J$-spectral factorization exists
-according to Definition~\ref{def:factorization}. This factorization is doubly hard,
-and all solutions $P=P^\top$ to the associated KYP lemma satisfy $P\geq0$.
-Also, \cite{venkataraman} shows that the primal IQC is a strict PN multiplier
-if and only if the corresponding dual multiplier is a strict PN multiplier.
-Classes 1, 2, 3, 5, 8, and 11 in \cite{veenman2016robust} are strict PN
-multipliers. Classes 4, 6, 7, 12, 13, 14, and 15 are strict PN after imposing
-the additional constraints. We give an example of a strict PN multiplier below, and refer to \cite{veenman2016robust} for the complete list.
+% Many finite-dimensional hard uncertainty IQCs have a strict positive-negative (PN)
+% multiplier structure.
+% \begin{definition}[Strict PN hard IQC {\cite{6915700}}]
+% The hard IQC $(\Psi_\Delta,\mcl M_{V_\Delta})$, with
+% $\Psi_\Delta: L_{2\mathrm{e},[0,\infty)}^{n_{z_\Delta}+n_{w_\Delta}}
+% \to L_{2\mathrm{e},[0,\infty)}^{n_{\tilde{z}_\Delta}+n_{\tilde{w}_\Delta}}$
+% and $V_\Delta=V_\Delta^\top$ a real matrix of compatible dimensions, is
+% strict positive-negative if there
+% exists $\epsilon>0$ such that, for all
+% $z_\Delta\in L_{2\mathrm{e},[0,\infty)}^{n_{z_\Delta}}$,
+% $w_\Delta\in L_{2\mathrm{e},[0,\infty)}^{{n}_{w_\Delta}}$, and $T\geq0$,
+% \begin{align*}
+% \ip{p_T\Psi_\Delta\bmat{z_\Delta\\0}}
+% {p_T V_\Delta\Psi_\Delta\bmat{z_\Delta\\0}}_{L_2}
+% &\geq\epsilon\|p_Tz_\Delta\|_{L_2}^2,\\
+% \ip{p_T\Psi_\Delta\bmat{0\\w_\Delta}}
+% {p_T V_\Delta\Psi_\Delta\bmat{0\\w_\Delta}}_{L_2}
+% &\leq-\epsilon\|p_Tw_\Delta\|_{L_2}^2.
+% \end{align*}
+% \end{definition}
+% Moreover, in this finite-dimensional setting, \cite{6915700} shows that if the
+% primal IQC is a strict PN multiplier, then a $J$-spectral factorization exists
+% according to Definition~\ref{def:factorization}. This factorization is doubly hard,
+% and all solutions $P=P^\top$ to the associated KYP lemma satisfy $P\geq0$.
+% Also, \cite{venkataraman} shows that the primal IQC is a strict PN multiplier
+% if and only if the corresponding dual multiplier is a strict PN multiplier.
+% Classes 1, 2, 3, 5, 8, and 11 in \cite{veenman2016robust} are strict PN
+% multipliers. Classes 4, 6, 7, 12, 13, 14, and 15 are strict PN after imposing
+% the additional constraints. We give an example of a strict PN multiplier below, and refer to \cite{veenman2016robust} for the complete list.
 
-\begin{class}[Real repeated scalar parameters on finite-dimensional channels]
-Consider the finite-dimensional uncertainty class
-$\mbf{\Delta}:=\{\delta I:\delta\in\R,\ |\delta|\leq\alpha\}$,
-where $\alpha>0$. With the convention $w_\Delta(t)=\delta z_\Delta(t)$, and
-$w_\Delta,z_\Delta\in L_{2\mathrm{e},[0,\infty)}^{n}$, choose
-$\psi\in RH_\infty^{{n}_v \times n}$ and define the primal hard uncertainty IQC
-$(\Psi_\Delta,\mcl{M}_{V_\Delta})$ by
-\begin{equation*}
-\Psi_\Delta
-:=
-\bmat{
-\psi & 0 \\
-0 & \psi
-},
-\qquad
-V_\Delta
-:=
-\bmat{
-\alpha Q & S \\
-S^\top & -\alpha^{-1}Q
-}.
-\end{equation*}
-Here $Q,S\in\R^{n_v\times n_v}$ are matrices satisfying
-\begin{equation*}
-Q=Q^\top\succ0,
-\qquad
-S=-S^\top,
-\end{equation*}
-so $V_\Delta=V_\Delta^\top\in\R^{2n_v\times2n_v}$.
-Since a multiplier is strict PN if and only if its
-dual multiplier is strict PN \cite{venkataraman}, the dual hard uncertainty IQC $(\underline{\Psi}_\Delta, \mcl{M}_{\underline{V}_\Delta})$ can be
-parameterized in the same form. For $\underline{\psi}\in RH_\infty^{{n}_v \times n}$, define
-\begin{equation*}
-\underline{\Psi}_\Delta
-:=
-\bmat{
-\underline{\psi} & 0 \\
-0 & \underline{\psi}
-},
-\qquad
-\underline V_\Delta
-:=
-\bmat{
-\alpha\underline Q & \underline S \\
-\underline S^\top & -\alpha^{-1}\underline Q
-},
-\end{equation*}
-where $\underline Q,\underline S\in\R^{n_v\times n_v}$ are matrices satisfying
-\begin{equation*}
-\underline Q=\underline Q^\top\succ0,
-\qquad
-\underline S=-\underline S^\top.
-\end{equation*}
-Thus $\underline V_\Delta=\underline V_\Delta^\top
-\in\R^{2n_v\times2n_v}$, and
-$(\underline{\Psi}_\Delta,\mcl{M}_{\underline V_\Delta})$ is also strict PN. Both pairs admit the
-required hard $J$-spectral factorizations, while their static parts
-$V_\Delta$ and $\underline V_\Delta$ remain explicit decision variables for synthesis.
-\end{class}
+% \begin{class}[Real repeated scalar parameters on finite-dimensional channels]
+% Consider the finite-dimensional uncertainty class
+% $\mbf{\Delta}:=\{\delta I:\delta\in\R,\ |\delta|\leq\alpha\}$,
+% where $\alpha>0$. With the convention $w_\Delta(t)=\delta z_\Delta(t)$, and
+% $w_\Delta,z_\Delta\in L_{2\mathrm{e},[0,\infty)}^{n}$, choose
+% $\psi\in RH_\infty^{{n}_v \times n}$ and define the primal hard uncertainty IQC
+% $(\Psi_\Delta,\mcl{M}_{V_\Delta})$ by
+% \begin{equation*}
+% \Psi_\Delta
+% :=
+% \bmat{
+% \psi & 0 \\
+% 0 & \psi
+% },
+% \qquad
+% V_\Delta
+% :=
+% \bmat{
+% \alpha Q & S \\
+% S^\top & -\alpha^{-1}Q
+% }.
+% \end{equation*}
+% Here $Q,S\in\R^{n_v\times n_v}$ are matrices satisfying
+% \begin{equation*}
+% Q=Q^\top\succ0,
+% \qquad
+% S=-S^\top,
+% \end{equation*}
+% so $V_\Delta=V_\Delta^\top\in\R^{2n_v\times2n_v}$.
+% Since a multiplier is strict PN if and only if its
+% dual multiplier is strict PN \cite{venkataraman}, the dual hard uncertainty IQC $(\underline{\Psi}_\Delta, \mcl{M}_{\underline{V}_\Delta})$ can be
+% parameterized in the same form. For $\underline{\psi}\in RH_\infty^{{n}_v \times n}$, define
+% \begin{equation*}
+% \underline{\Psi}_\Delta
+% :=
+% \bmat{
+% \underline{\psi} & 0 \\
+% 0 & \underline{\psi}
+% },
+% \qquad
+% \underline V_\Delta
+% :=
+% \bmat{
+% \alpha\underline Q & \underline S \\
+% \underline S^\top & -\alpha^{-1}\underline Q
+% },
+% \end{equation*}
+% where $\underline Q,\underline S\in\R^{n_v\times n_v}$ are matrices satisfying
+% \begin{equation*}
+% \underline Q=\underline Q^\top\succ0,
+% \qquad
+% \underline S=-\underline S^\top.
+% \end{equation*}
+% Thus $\underline V_\Delta=\underline V_\Delta^\top
+% \in\R^{2n_v\times2n_v}$, and
+% $(\underline{\Psi}_\Delta,\mcl{M}_{\underline V_\Delta})$ is also strict PN. Both pairs admit the
+% required hard $J$-spectral factorizations, while their static parts
+% $V_\Delta$ and $\underline V_\Delta$ remain explicit decision variables for synthesis.
+% \end{class}
 
 
-\subsubsection{Classes of J-Spectral Factorizations for Uncertainty Multipliers on Infinite Dimensional Channels}
+% \subsubsection{Classes of J-Spectral Factorizations for Uncertainty Multipliers on Infinite Dimensional Channels}
 
-As we do not have $J$-spectral factorization results for dynamic infinite-dimensional PN hard uncertainty IQCs, 
-we limit the real repeated scalar IQC from \cite{10156335} to $\Psi_\Delta=I$ and $\underline{\Psi}_\Delta=I$. 
-This is a conservative choice, but it allows us to use the duality results in this paper. Also in the case of state-feedback
-controller synthesis, we need to use the same assumption.
+% As we do not have $J$-spectral factorization results for dynamic infinite-dimensional PN hard uncertainty IQCs, 
+% we limit the real repeated scalar IQC from \cite{10156335} to $\Psi_\Delta=I$ and $\underline{\Psi}_\Delta=I$. 
+% This is a conservative choice, but it allows us to use the duality results in this paper. Also in the case of state-feedback
+% controller synthesis, we need to use the same assumption.
 
-\begin{class}[Real repeated scalar parameters on infinite-dimensional channels]
-Consider the infinite-dimensional uncertainty class
-$\mbf{\Delta}:=\{\delta I:\delta\in\R,\ |\delta|\leq\alpha\}$,
-where $\alpha>0$. With the convention $w_\Delta(t)=\delta z_\Delta(t)$, $w_\Delta,z_\Delta\in \mbf{L}_{\mathrm{e},[a,b)}^{\mbf{n}}$,
-define the primal hard uncertainty IQC
-$(I,\mcl{M}_{\mcl{V}_\Delta})$ by
-\begin{equation*}
-\mcl{V}_\Delta
-:=
-\bmat{
-\alpha \mcl{Q} & \mcl{S} \\
-\mcl{S}^\top & -\alpha^{-1}\mcl{Q}
-}.
-\end{equation*}
-Here $\mcl{Q},\mcl{S}\in\Pi_4^{\mbf{n}\times \mbf{n}}$ are PI operators satisfying
-\begin{equation*}
-\mcl{Q}=\mcl{Q}^\top\succ0,
-\qquad
-\mcl{S}=-\mcl{S}^\top,
-\end{equation*}
-so $\mcl{V}_\Delta=\mcl{V}_\Delta^\top\in\Pi_4^{2\mbf{n}\times2\mbf{n}}$.
-Using the approximation in \ref{???}, define the dual hard uncertainty IQC $(I, \mcl{M}_{\underline{\mcl V}_\Delta})$ by
-\begin{equation*}
-\underline{\mcl V}_\Delta
-:=
-\bmat{
-\alpha\underline{\mcl Q} & \underline{\mcl S} \\
-\underline{\mcl S}^\top & -\alpha^{-1}\underline{\mcl Q}
-},
-\end{equation*}
-where $\underline{\mcl Q},\underline{\mcl S}\in\Pi_4^{\mbf{n}\times \mbf{n}}$ are PI operators satisfying
-\begin{equation*}
-\underline{\mcl Q}=\underline{\mcl Q}^\top\succ0,
-\qquad
-\underline{\mcl S}=-\underline{\mcl S}^\top.
-\end{equation*}
-Thus $\underline{\mcl V}_\Delta=\underline{\mcl V}_\Delta^\top
-\in\Pi_4^{2\mbf{n}\times2\mbf{n}}$ is also strict static PN PI operator. Both pairs admit the
-required hard $J$-spectral factorizations, while their static parts
-$\mcl{V}_\Delta$ and $\underline{\mcl V}_\Delta$ remain explicit decision variables for synthesis.
-\end{class}
-\input{Figures/primal_dual_controller_interconnections}
-Another class for which we can find the dual representation is the class of sector-bounded uncertainties, also from \cite{10156335}
-\begin{class}[Sector-bounded uncertainties on infinite-dimensional channels]
-    \label{class:sector-bounded-infinite-dimensional}
-    Consider the infinite-dimensional uncertainty class
-    \begin{equation*}
-    \mbf{\Delta}:=\left\{\phi:\R\to\R\ \middle|\
-    (\phi(v)-\alpha v)(\beta v-\phi(v))\geq0,
-    \ \forall v\in\R\right\},
-    \end{equation*}
-    where $\alpha<\beta$. With the convention
-    $w_\Delta(s,t)=\phi(z_\Delta(s,t))$, let
-    $w_\Delta,z_\Delta\in\mbf{L}_{\mathrm{e},[a,b)}^{\mbf{n}}$ for all
-    $s\in[a,b]$ and $t>0$. Define the primal hard uncertainty IQC
-    $(I,\mcl{M}_{\mcl{V}_\Delta})$ by
-    \begin{equation*}
-    \mcl{V}_\Delta
-    :=
-    \bmat{\beta I & -I \\ -\alpha I & I}^*\bmat{0 & \mcl{S} \\ \mcl{S} & 0}\bmat{\beta I & -I \\ -\alpha I & I},
-    \end{equation*}
-    where $\mcl{S}\in\Pi_4^{\mbf{n}\times\mbf{n}}$ 
-    \begin{equation*}
-    (\mcl{S}\mbf{x})(s,t):=S_0(s)\mbf{x}(s,t),\qquad  S_0(s)\succ0,\quad s\in[a,b].
-    \end{equation*}
-    Its $(\Theta,J_{\mbf{n},\mbf{n}})$ factorization is given by,
-    \begin{equation*}
-    \Theta := \frac{1}{\sqrt{2}}\bmat{I & \mcl{S} \\ I & -\mcl{S}}\bmat{\beta I & -I \\ -\alpha I & I}
-    \end{equation*}
-    The corresponding dual hard uncertainty IQC is $(I, \mcl{M}_{\underline{\mcl V}_\Delta})$, where
-    \begin{equation*}
-    \underline{\mcl V}_\Delta := \frac{1}{(\beta - \alpha)^2}\bmat{\beta I & -I \\ -\alpha I& I}^*\bmat{0 & \underline{\mcl{S}} \\
-     \underline{\mcl{S}} & 0}\bmat{\beta I & -I \\ -\alpha I& I}
-    \end{equation*}
-    with $\underline{\mcl{S}}=\mcl{S}^{-1}$.
-\end{class}
-\begin{proof}
-    See Appendix~\ref{proof:sector-bounded-infinite-dimensional}.
-\end{proof}
+% \begin{class}[Real repeated scalar parameters on infinite-dimensional channels]
+% Consider the infinite-dimensional uncertainty class
+% $\mbf{\Delta}:=\{\delta I:\delta\in\R,\ |\delta|\leq\alpha\}$,
+% where $\alpha>0$. With the convention $w_\Delta(t)=\delta z_\Delta(t)$, $w_\Delta,z_\Delta\in \mbf{L}_{\mathrm{e},[a,b)}^{\mbf{n}}$,
+% define the primal hard uncertainty IQC
+% $(I,\mcl{M}_{\mcl{V}_\Delta})$ by
+% \begin{equation*}
+% \mcl{V}_\Delta
+% :=
+% \bmat{
+% \alpha \mcl{Q} & \mcl{S} \\
+% \mcl{S}^\top & -\alpha^{-1}\mcl{Q}
+% }.
+% \end{equation*}
+% Here $\mcl{Q},\mcl{S}\in\Pi_4^{\mbf{n}\times \mbf{n}}$ are PI operators satisfying
+% \begin{equation*}
+% \mcl{Q}=\mcl{Q}^\top\succ0,
+% \qquad
+% \mcl{S}=-\mcl{S}^\top,
+% \end{equation*}
+% so $\mcl{V}_\Delta=\mcl{V}_\Delta^\top\in\Pi_4^{2\mbf{n}\times2\mbf{n}}$.
+% Using the approximation in \ref{???}, define the dual hard uncertainty IQC $(I, \mcl{M}_{\underline{\mcl V}_\Delta})$ by
+% \begin{equation*}
+% \underline{\mcl V}_\Delta
+% :=
+% \bmat{
+% \alpha\underline{\mcl Q} & \underline{\mcl S} \\
+% \underline{\mcl S}^\top & -\alpha^{-1}\underline{\mcl Q}
+% },
+% \end{equation*}
+% where $\underline{\mcl Q},\underline{\mcl S}\in\Pi_4^{\mbf{n}\times \mbf{n}}$ are PI operators satisfying
+% \begin{equation*}
+% \underline{\mcl Q}=\underline{\mcl Q}^\top\succ0,
+% \qquad
+% \underline{\mcl S}=-\underline{\mcl S}^\top.
+% \end{equation*}
+% Thus $\underline{\mcl V}_\Delta=\underline{\mcl V}_\Delta^\top
+% \in\Pi_4^{2\mbf{n}\times2\mbf{n}}$ is also strict static PN PI operator. Both pairs admit the
+% required hard $J$-spectral factorizations, while their static parts
+% $\mcl{V}_\Delta$ and $\underline{\mcl V}_\Delta$ remain explicit decision variables for synthesis.
+% \end{class}
+% \input{Figures/primal_dual_controller_interconnections}
+% Another class for which we can find the dual representation is the class of sector-bounded uncertainties, also from \cite{10156335}
+% \begin{class}[Sector-bounded uncertainties on infinite-dimensional channels]
+%     \label{class:sector-bounded-infinite-dimensional}
+%     Consider the infinite-dimensional uncertainty class
+%     \begin{equation*}
+%     \mbf{\Delta}:=\left\{\phi:\R\to\R\ \middle|\
+%     (\phi(v)-\alpha v)(\beta v-\phi(v))\geq0,
+%     \ \forall v\in\R\right\},
+%     \end{equation*}
+%     where $\alpha<\beta$. With the convention
+%     $w_\Delta(s,t)=\phi(z_\Delta(s,t))$, let
+%     $w_\Delta,z_\Delta\in\mbf{L}_{\mathrm{e},[a,b)}^{\mbf{n}}$ for all
+%     $s\in[a,b]$ and $t>0$. Define the primal hard uncertainty IQC
+%     $(I,\mcl{M}_{\mcl{V}_\Delta})$ by
+%     \begin{equation*}
+%     \mcl{V}_\Delta
+%     :=
+%     \bmat{\beta I & -I \\ -\alpha I & I}^*\bmat{0 & \mcl{S} \\ \mcl{S} & 0}\bmat{\beta I & -I \\ -\alpha I & I},
+%     \end{equation*}
+%     where $\mcl{S}\in\Pi_4^{\mbf{n}\times\mbf{n}}$ 
+%     \begin{equation*}
+%     (\mcl{S}\mbf{x})(s,t):=S_0(s)\mbf{x}(s,t),\qquad  S_0(s)\succ0,\quad s\in[a,b].
+%     \end{equation*}
+%     Its $(\Theta,J_{\mbf{n},\mbf{n}})$ factorization is given by,
+%     \begin{equation*}
+%     \Theta := \frac{1}{\sqrt{2}}\bmat{I & \mcl{S} \\ I & -\mcl{S}}\bmat{\beta I & -I \\ -\alpha I & I}
+%     \end{equation*}
+%     The corresponding dual hard uncertainty IQC is $(I, \mcl{M}_{\underline{\mcl V}_\Delta})$, where
+%     \begin{equation*}
+%     \underline{\mcl V}_\Delta := \frac{1}{(\beta - \alpha)^2}\bmat{\beta I & -I \\ -\alpha I& I}^*\bmat{0 & \underline{\mcl{S}} \\
+%      \underline{\mcl{S}} & 0}\bmat{\beta I & -I \\ -\alpha I& I}
+%     \end{equation*}
+%     with $\underline{\mcl{S}}=\mcl{S}^{-1}$.
+% \end{class}
+% \begin{proof}
+%     See Appendix~\ref{proof:sector-bounded-infinite-dimensional}.
+% \end{proof}

@@ -1,7 +1,7 @@
-PWD c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality
+PWD C:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality
 INPUT C:\Users\thijs\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\Extensions of IQC Duality to Partial Integral Equations.tex
-OUTPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.log
+INPUT Extensions of IQC Duality to Partial Integral Equations.tex
+OUTPUT Extensions of IQC Duality to Partial Integral Equations.log
 INPUT .\IEEEtran.cls
 INPUT IEEEtran.cls
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\ot1ptm.fd
@@ -268,18 +268,18 @@ INPUT .\shortcuts.tex
 INPUT .\shortcuts.tex
 INPUT .\shortcuts.tex
 INPUT shortcuts.tex
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux
-OUTPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out
-OUTPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.pdf
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out
-OUTPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out
+INPUT .\Extensions of IQC Duality to Partial Integral Equations.aux
+INPUT .\Extensions of IQC Duality to Partial Integral Equations.aux
+INPUT Extensions of IQC Duality to Partial Integral Equations.aux
+OUTPUT Extensions of IQC Duality to Partial Integral Equations.aux
+INPUT .\Extensions of IQC Duality to Partial Integral Equations.out
+INPUT .\Extensions of IQC Duality to Partial Integral Equations.out
+INPUT Extensions of IQC Duality to Partial Integral Equations.out
+INPUT Extensions of IQC Duality to Partial Integral Equations.out
+OUTPUT Extensions of IQC Duality to Partial Integral Equations.pdf
+INPUT .\Extensions of IQC Duality to Partial Integral Equations.out
+INPUT .\Extensions of IQC Duality to Partial Integral Equations.out
+OUTPUT Extensions of IQC Duality to Partial Integral Equations.out
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\context\base\mkii\supp-pdf.mkii
@@ -370,6 +370,12 @@ INPUT .\Sections\Main\5. Dual IQC.tex
 INPUT Sections\Main\5. Dual IQC.tex
 INPUT .\Sections\Main\5. Dual IQC.tex
 INPUT Sections\Main\5. Dual IQC.tex
+INPUT .\Figures\primal_dual_controller_interconnections.tex
+INPUT .\Figures\primal_dual_controller_interconnections.tex
+INPUT Figures\primal_dual_controller_interconnections.tex
+INPUT .\Figures\primal_dual_controller_interconnections.tex
+INPUT .\Figures\primal_dual_controller_interconnections.tex
+INPUT Figures\primal_dual_controller_interconnections.tex
 INPUT .\Sections\Main\6. Application of Dual IQC.tex
 INPUT Sections\Main\6. Application of Dual IQC.tex
 INPUT .\Sections\Main\6. Application of Dual IQC.tex
@@ -382,9 +388,9 @@ INPUT .\Sections\Main\8. Conclusion.tex
 INPUT Sections\Main\8. Conclusion.tex
 INPUT .\Sections\Main\8. Conclusion.tex
 INPUT Sections\Main\8. Conclusion.tex
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl
+INPUT .\Extensions of IQC Duality to Partial Integral Equations.bbl
+INPUT .\Extensions of IQC Duality to Partial Integral Equations.bbl
+INPUT Extensions of IQC Duality to Partial Integral Equations.bbl
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr6.tfm
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi8.tfm
@@ -427,17 +433,19 @@ INPUT Sections\Proofs\Duality\dual-KYP.tex
 INPUT .\Sections\Proofs\Duality\dual-KYP.tex
 INPUT .\Sections\Proofs\Duality\dual-KYP.tex
 INPUT Sections\Proofs\Duality\dual-KYP.tex
+INPUT .\Sections\Proofs\Duality\sector-bounded-infinite-dimensional.tex
+INPUT .\Sections\Proofs\Duality\sector-bounded-infinite-dimensional.tex
+INPUT Sections\Proofs\Duality\sector-bounded-infinite-dimensional.tex
+INPUT .\Sections\Proofs\Duality\sector-bounded-infinite-dimensional.tex
+INPUT .\Sections\Proofs\Duality\sector-bounded-infinite-dimensional.tex
+INPUT Sections\Proofs\Duality\sector-bounded-infinite-dimensional.tex
 INPUT .\Sections\Proofs\Duality\dynamic_state_feedback.tex
 INPUT Sections\Proofs\Duality\dynamic_state_feedback.tex
 INPUT .\Sections\Proofs\Duality\dynamic_state_feedback.tex
 INPUT Sections\Proofs\Duality\dynamic_state_feedback.tex
-INPUT .\Sections\Proofs\III. Numerical Examples.tex
-INPUT Sections\Proofs\III. Numerical Examples.tex
-INPUT .\Sections\Proofs\III. Numerical Examples.tex
-INPUT Sections\Proofs\III. Numerical Examples.tex
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out
+INPUT Extensions of IQC Duality to Partial Integral Equations.aux
+INPUT .\Extensions of IQC Duality to Partial Integral Equations.out
+INPUT .\Extensions of IQC Duality to Partial Integral Equations.out
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx10.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx5.pfb

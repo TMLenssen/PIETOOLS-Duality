@@ -1,0 +1,168 @@
+\documentclass[11pt,a4paper,onecolumn]{article}
+
+% Page layout and typography
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+% Mathematics
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{mathtools}
+\usepackage{bm}
+
+% Figures, tables, and color
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{xcolor}
+
+% References and links
+\usepackage[hidelinks]{hyperref}
+
+\input{shortcuts}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{class}{Class}
+
+\title{ZF Multipliers}
+\author{Thijs Lenssen}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Slope restricted uncertainty (Soft IQC) \cite{turner2022zamesfalbmultipliersdontpanic}}
+
+This document concerns the hard factorization of Zames-Falb(ZF) type multipliers. More specifically,
+we will consider the multipliers that describe the class of incremental sector conditions. Consider the 
+nonlinear operator $w(t) = \Delta(z(t))$ for $t \geq 0$,
+$z\in L_2$, where ${\Delta}:\mathbb{R}\to\mathbb{R}$ satisfies ${\Delta}(0)=0$ as well
+as the incremental sector condition
+
+\begin{equation}\label{eqn:inc-sec}
+    0 \leq \frac{{\Delta}(x_1) - {\Delta}(x_2)}{x_1 - x_2} \leq \sup_{x_1 \neq x_2} \frac{{\Delta}(x_1) - {\Delta}(x_2)}{x_1 - x_2} < \alpha
+\end{equation}
+for all $x_1 \neq x_2$. The fixed constant $0<\beta$ can be viewed as the bounds on the slope of the 
+nonlinearities; due to $0\in[\alpha,\beta]$ it is assured that $\tau{\Delta}$ shares these properties with
+${\Delta}$ for all $\tau\in[0,1]$. Since ${\Delta}(0)=0$ we note that ${\Delta}$ also satisfies
+the sector condition
+\begin{equation}
+    ({\Delta}(x) - \alpha x)(\beta x - {\Delta}(x)) \geq 0, \quad \forall x\in\mathbb{R}
+\end{equation}
+
+\begin{class}
+Suppose that ${\Delta}:\R\to\R$ with ${\Delta}(0)=0$ satisfies the incremental sector condition~\eqref{eqn:inc-sec} for $0<\alpha$, 
+and let $\Delta$ denote the induced memoryless operator. Suppose that $h\in L_1(0,\infty)$ satisfies $h(t)\geq0$ a.e. and $\|h\|_1<1$, and define
+\begin{equation}
+    (Hx)(t):=\int_0^\infty h(\tau)x(t-\tau)\,d\tau, \qquad M:=I-H,
+\end{equation}
+where $x(t)=0$ for $t<0$. Then, for every $z\in L_2$, the corresponding Zames--Falb multiplier admits the soft factorization below,
+\begin{equation}\label{eqn:zf-hard}
+    \ip{\frac{1}{\sqrt{2}}\bmat{M & 1 \\ M & -1}\bmat{1 & -\frac{1}{\alpha} \\ 0 & 1} \bmat{z \\ \Delta(z)}}
+    {\bmat{1 & 0 \\ 0 & -1}\frac{1}{\sqrt{2}}\bmat{M & 1 \\ M & -1}\bmat{1 & -\frac{1}{\alpha} \\ 0 & I} \bmat{z \\ \Delta(z)}} \geq 0.
+\end{equation}
+\end{class}
+Extending in a similar way to $w(t,s) = \Delta(z(t,s))$ for $t\geq0$ and $s\in[a,b]$, such that~\eqref{eqn:inc-sec} also holds for $w(t,s), z(t,s)$ we can find the following
+class of zames-falb multipliers
+\begin{class}
+    Suppose that ${\Delta}: \R \to \R$ with ${\Delta}(0)=0$ satisfies the incremental sector condition~\eqref{eqn:inc-sec} for $0<\beta$, and let
+    $\Delta$ denote the induced memoryless operator. Suppose that $h \in L_1[0,\infty)\times[a,b]$, satisfies $h(t,s)\geq0$ a.e. and $\|h\|_1<1$, and define
+    \begin{equation}
+        (Hx)(t,s):= \int_0^\infty h(\tau,s)x(t-\tau,s)\,d\tau, \qquad M:=I-H,
+    \end{equation}
+    where $x(t,s)=0$ for $t<0$. Then, for every $z\in L_2[0,\infty)\times[a,b]$, the corresponding Zames--Falb multiplier admits the soft factorization below,
+    \begin{equation}\label{eqn:zf-hard-distr}
+    \ip{\frac{1}{\sqrt{2}}\bmat{M & 1 \\ M & -1}\bmat{1 & -\frac{1}{\alpha} \\ 0 & 1} \bmat{z \\ \Delta(z)}}
+    {\bmat{1 & 0 \\ 0 & -1}\frac{1}{\sqrt{2}}\bmat{M & 1 \\ M & -1}\bmat{1 & -\frac{1}{\alpha} \\ 0 & I} \bmat{z \\ \Delta(z)}} \geq 0.
+\end{equation}
+\end{class}
+Note that $h(t,s)$ acts pointwise in the spatial variable $s$, and therefore introduces no coupling between distinct spatial locations. In a PIE realization, 
+this corresponds to state-space operators that are spatially local, i.e., multiplication operators in $s$. Consequently, the integral-kernel components 
+of the associated 3-PI operators vanish, so that $R_1 = R_2 = 0$ with only the $R_0$ component remaining. A simple construction of such $h(t,s)$ is to take 
+$h(t,s) = h_{ODE}(t)\otimes I_{\mcl{L}(L_2[a,b])}$, where $h_{ODE}(t)$ is a scalar function that satisfies the conditions of the first class. This corresponds to the following
+3-PI system
+\begin{equation*}
+   H_{\mcl{L}(L_2[0,\infty)\times[a,b])} := \left\{ \begin{aligned}
+    \mcl{T} &= \mcl{A}\mbf{x}(t) + \mcl{B}w(t), \\
+    z(t) &= \mcl{C}\mbf{x}(t),
+   \end{aligned} \right.
+\end{equation*}
+Then we define the 3-PI operators of $H$ as $\mcl{T} = I$, $(\mcl{A}x)(s,t) = Ax(s,t)$, $(\mcl{B}w)(s,t) = Bw(s,t)$, and $(\mcl{C}x)(s,t) = Cx(s,t)$, 
+where $A,B,C$ are the corresponding matrices of $h_{ODE}(t)$.
+
+
+
+\subsection{Spatial Lifting of IQC}
+We denote the extended $L_2$ space as $L_{2,e}$, let $\mcl{F}$ denote the set of hard factorizations. We say the uncertainty 
+$\Delta : L_{2,e} \to L_{2,e}$ satisfies the hard iqc 
+\begin{equation}\label{eqn:temporal-IQC}
+    \ip{p_T\Psi\bmat{z\\ \Delta z}}{p_T V\Psi\bmat{z\\\Delta z}}_{L_2}\geq 0
+\end{equation}
+for all $T\geq0$, $z\in L_{2,e}$, and hard factorizations $(\Psi, V) \in \mcl{F}$, with $\Psi:L^n_{2,e}\to L^{\tilde{n}}_{2,e}$ and $V\in\R^{\tilde{n}\times \tilde{n}}$.
+Now we extend $\Delta$ pointwise over the spatial domain $[a,b]$. Denote the signal space
+$L_{\mbf{H},e} = L_2([0,T)\times [a,b])$ for any  signal $u\in L_{\mbf{H},e}$
+\begin{equation}
+    \ip{u}{u}_{L_\mbf{H,e}} = \int_0^T \int_a^b |u(t,s)|^2 ds\, dt < \infty, \quad \forall T \geq 0
+\end{equation}
+Define the lifted uncertainty operation, $\hat{\Delta}:L_{\mbf{H},e} \to L_{\mbf{H},e}$, with $(\hat\Delta v)(s) = \Delta v(s)$, 
+i.e. $\Delta$ applied at every $s\in[a,b]$, the lifted hard factorization $(\hat{\Psi}, \hat{V})$, with $\hat{\Psi}:L_{\mbf{H},e} \to L_{\mbf{H},e}$ and
+$\hat{V}:L_2[a,b] \to L_2[a,b]$, such that $(\hat{\Psi}(s), \hat{V}(s))\in\mcl{F}$ for all $s\in[a,b]$.
+
+\begin{corollary}
+    If~\eqref{eqn:temporal-IQC} holds for all $T >0$ and $z\in L_{2,e}[0,\infty)$, then
+\begin{equation}\label{eqn:spatial-IQC}
+    \ip{p_T \hat{\Psi}\bmat{u\\ \hat{\Delta} u}}{p_T \hat{V} \hat{\Psi}\bmat{u \\ \hat{\Delta}u}}_{L_\mbf{H}} \geq 0
+\end{equation}
+    for all $u\in L_{\mbf{H},e}$ and $T\geq 0$
+\end{corollary}
+\begin{proof}
+    Assume~\eqref{eqn:temporal-IQC} is satisfied. We need to show that~\eqref{eqn:spatial-IQC} is also satisfied.
+    First examine that 
+    \begin{equation*}
+        \ip{p_T\hat{\Psi}(s)\bmat{u(s)\\\Delta u(s)}}{p_T\hat{V}(s)\hat{\Psi}(s)\bmat{u(s)\\{\Delta}u(s)}}_{L_2} \geq 0, \quad \forall s\in[a,b]
+    \end{equation*}
+    Thus by integrating over $s$ we find
+    \begin{equation*}
+        \int_a^b \ip{p_T\hat{\Psi}(s)\bmat{u(s)\\\Delta u(s)}}{p_T\hat{V}(s)\hat{\Psi}(s)\bmat{u(s)\\{\Delta}u(s)}}_{L_2} ds = \ip{p_T \hat{\Psi}\bmat{u\\ \hat{\Delta} u}}{p_T \hat{V} \hat{\Psi}\bmat{u \\ \hat{\Delta}u}}_{L_\mbf{H}} \geq 0
+    \end{equation*}
+\end{proof}
+
+
+
+\section{Positive Negative multipliers yield hard factorizations \cite{6915700}}
+
+The main result of \cite{6915700} is the establishment of 
+\begin{enumerate}
+    \item $(\Psi, M)$ hard factorizations.
+    \item $P=P^\top$ is a solution to the KYP lemma. (no enforcement of $P>0$)
+\end{enumerate}
+for the class of postive-negative multipliers. Before stating the theorem we need to define $J$-spectral factors.
+\begin{definition}
+    $(\Psi, M)$ is called a $J_{n,m}$-spectral factor of $\Pi = \Pi^\sim\in\R\mathbb{L}_\infty^{(n+m)\times(n+m)}$ if $\Pi = \Psi^\sim M \Psi$, $M - \bmat{I_n & 0 \\ 0 & - I_m}$, and
+    $\Psi,\Psi^{-1}\in\mathbb{RH}_\infty^{(n+m)\times(n+m)}$
+\end{definition}
+Using $J$-spectral factorizations, Seiler \cite{6915700} derives the following theorem.
+\begin{theorem}
+    Let $\Pi=\Pi^\sim$ and partition as $\bmat{\Pi_{11} & \Pi^\sim_{21}\\ \Pi_{21} & \Pi_{22}}$ where $\Pi_{11}\in\mathbb{RL}_\infty^{n\times n}$ and $\Pi_{22}^{m\times m}$. If
+    $\Pi_{11}(j \omega)>0$ and $\Pi_{22}(j\omega)<0$, i.e. $\Pi$ is strictly positive-negative(PN), $\forall\mathbb{R}\cup\{\infty\}$, then
+    \begin{enumerate}
+        \item $\Pi$ has a $J_{n,m}$-spectral factorization $(\Psi, M)$.
+        \item The $J_{n,m}$-spectral factorization $(\Psi,M)$ is a hard factorization of $\Pi$.
+        \item For $G\in\mathbb{RH}_\infty^{n\times m}$, let $(\hat{A},\hat{B},\hat{C},\hat{D})$ denote the state-space realization of $\Psi\bmat{G\\I}$. All solutions
+              $P=P^\top$ to the KYP LMI satisfy $P\geq 0$.
+    \end{enumerate}
+\end{theorem}
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

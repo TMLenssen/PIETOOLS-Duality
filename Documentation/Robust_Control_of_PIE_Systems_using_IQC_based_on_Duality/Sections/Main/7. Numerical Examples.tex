@@ -1,97 +1,187 @@
-% In this section, we use PIETOOLS \cite{9147712} to construct the PIE
-% representation and solve the associated LPIs for analysis. As a practical first
-% step, it is generally advisable to synthesize a controller for the nominal
-% system before accounting for uncertainties. In addition, we incorporate
-% performance specifications through weighting filters. This is a standard
-% technique in optimal and robust control synthesis for finite dimensional
-% systems by embedding frequency-dependent performance characteristics into the
-% synthesis.
+\subsection{Spatial Lifting of IQC}
+We denote the extended $L_2$ space as $L_{2,e}$, let $\mcl{F}$ denote the set of hard factorizations. We say the causal bounded
+uncertainty $\Delta : L_{2,e} \to L_{2,e}$ satisfies the hard iqc 
+\begin{equation}\label{eqn:temporal-IQC}
+    \ip{p_T\Psi\bmat{z\\ \Delta z}}{p_T V\Psi\bmat{z\\\Delta z}}_{L_2}\geq 0
+\end{equation}
+for all $T\geq0$, $z\in L_{2,e}$, and hard factorizations $(\Psi, V) \in \mcl{F}$, with $\Psi:L^n_{2,e}\to L^{\tilde{n}}_{2,e}$ and $V\in\R^{\tilde{n}\times \tilde{n}}$.
+Now we extend $\Delta$ pointwise over the spatial domain $[a,b]$. Denote the signal space
+$L_{\mbf{H},e} = L_2([0,T)\times [a,b])$ for any  signal $u\in L_{\mbf{H},e}$
+\begin{equation}
+    \ip{u}{u}_{L_\mbf{H,e}} = \int_0^T \int_a^b |u(t,s)|^2 ds\, dt < \infty, \quad \forall T \geq 0
+\end{equation}
+Define the lifted uncertainty operation $(\hat\Delta v)(\cdot,s) = \Delta v(\cdot,s)$, i.e. $\Delta$ applied at almost every $s\in[a,b]$,
+the lifted hard factorization $(\hat{\Psi}, \hat{V})$, with $\hat{\Psi}:L_{\mbf{H},e} \to L_{\mbf{H},e}$ and
+$\hat{V}:L_2[a,b] \to L_2[a,b]$, such that $(\hat{\Psi}(\cdot,s), \hat{V}(\cdot,s))\in\mcl{F}$ for all $s\in[a,b]$.
 
-% \begin{figure}[h]
-% \centering
-% \includegraphics[width=1\linewidth]{Figures/Filtered_Optimal_Control.eps}
-% \caption{
-% Block schematic of the weighted diffusion--reaction system with boundary
-% control, where $W_u$ characterizes the inverse frequency-dependent
-% characteristics of the desired control input $u(t),$ and $W_{\mathrm{d}}$
-% characterizes the frequency content of the disturbance, i.e.,
-% $\tilde{u}(t) = W_u u(t)$ and $w(t) = W_{\mathrm{d}} \tilde{w}(t)$.
-% }
-% \label{fig:weighted-system}
-% \end{figure}
-% \begin{figure}[h]
-% \centering
-% \includegraphics[width=1\linewidth]{Figures/weighting_filters.eps}
-% \caption{
-% Bode magnitude plots of the input and disturbance weighting filters,
-% $W_u$ and $W_{\mathrm{d}}$, together with the combined inverse weighting
-% $W_u^{-1}W_{\mathrm{d}}^{-1}$. These weights are used to encode the desired
-% frequency-dependent characteristics of the control input and disturbance
-% in the weighted boundary control synthesis.
-% }
-% \label{fig:frequency-characterization}
-% \end{figure}
-% \noindent We begin by considering the boundary control problem for a
-% diffusion--reaction equation, adapted from \cite{shivaknew}. Throughout, we
-% assume that the disturbance and control input are measurable, as the
-% introduction of weighting filters gives rise to additional states that depend
-% explicitly on these signals.
-% \begin{example}[Reaction--Diffusion Equation]
-% Consider the boundary control of an unstable reaction--diffusion equation:
-% \begin{equation*}
-% \begin{aligned}
-% \dot{\mbf{v}}(t,s)     & = 5\mbf{v}(t,s) + \partial_s^2 \mbf{v}(t,s) +
-% C_{\tilde{d}}x_{\tilde{d}}(t) + D_{\tilde{d}}\tilde{d}(t), \\
-% \dot{x}_{u}(t)         & = \dot{u}(t),
-% \\
-% \dot{x}_{\tilde{u}}(t) & = A_{\tilde{u}}x_{\tilde{u}}(t) + B_{\tilde{u}}x_u(t),
-% \\
-% \dot{x}_{\tilde{d}}(t) & = A_{\tilde{d}}x_{\tilde{d}}(t) +
-% B_{\tilde{d}}\tilde{d}(t),                                             \\
-% z(t)                   & = \tilde{u}(t) = C_{\tilde{u}}x_{\tilde{u}}(t) +
-% D_{\tilde{u}}x_u(t),                                    \\
-% \mbf{v}(t,0)           & = 0, \qquad \partial_s \mbf{v}(t,1) = x_u(t).
-% \end{aligned}
-% \end{equation*}
-% Here, the state $x_{\tilde{u}}$ embeds the frequency characteristics of the
-% weighting filter $W_u$, while $x_{\tilde{d}}$ embeds those of the weighting
-% filter $W_{\mathrm{d}}$ shown in Fig.~\ref{fig:frequency-characterization}. Moreover, the input $u$ is
-% passed through an integrator so that the control input does not act directly
-% on the boundary. This ensures that $\mathcal{T}_u = 0$, which is required
-% for synthesis. Solving the associated synthesis conditions yields an
-% $\mathcal{H}_\infty$ gain of $\gamma = 0.9773$, that is,
-% \[
-% \frac{\|\tilde{u}\|_{L_2}}{\|\tilde{d}\|_{L_2}} < 0.9773.
-% \]
-% This performance is achieved together with an exponential decay rate of $\alpha
-% = 2$.
-% \end{example}
-% \DeclareRobustCommand{\estimatedtransferlegend}{%
-% \tikz[baseline=-0.6ex]\draw[blue,line width=0.8pt] (0,0) -- (0.4,0);%
-% }
-% \DeclareRobustCommand{\targetprofilelegend}{%
-% \tikz[baseline=-0.6ex]\draw[orange,line width=0.8pt,dashed] (0,0) -- (0.4,0);%
-% }
-% \begin{figure}[h]
-% \centering
-% \includegraphics[width=1\linewidth]{Figures/emperical_estimate.eps}
-% \caption[Empirical frequency-response estimate from disturbance input to control
-% input.]{
-% Empirical frequency-response estimate from the disturbance input to the
-% control input over the range $0.1$ rad/s to $10^4$ rad/s.
-% \estimatedtransferlegend\ $\frac{|U|}{|W|}$ denotes the estimated
-% transfer magnitude, while \targetprofilelegend\
-% $\frac{|W_u^{-1}|}{|W_{\mathrm{d}}|}$ denotes the target weighting profile.
-% }
-% \label{fig:empirical-estimate}
-% \end{figure}
-% To assess whether the weighting specifications are met in practice, we compute
-% an empirical transfer function estimate from the disturbance channel to the
-% control input. For this purpose, we excite the system with a unit-amplitude
-% frequency sweep ranging from $0.1$ rad/s to $10^{4}$ rad/s, filtered through
-% the disturbance weighting filter $W_{\mathrm{d}}$. The resulting signal is applied as the
-% disturbance input, while the corresponding control input is measured. An
-% estimate of the associated frequency response is then obtained from the Fourier
-% transforms of these signals. Comparing this estimate with the desired weighted
-% behavior allows us to verify that the imposed frequency-domain design
-% specifications are achieved.
+\begin{corollary}
+    If~\eqref{eqn:temporal-IQC} holds for all $T >0$ and $z\in L_{2,e}[0,\infty)$, then
+\begin{equation}\label{eqn:spatial-IQC}
+    \ip{p_T \hat{\Psi}\bmat{u\\ \hat{\Delta} u}}{p_T \hat{V} \hat{\Psi}\bmat{u \\ \hat{\Delta}u}}_{L_\mbf{H}} \geq 0
+\end{equation}
+    for all $u\in L_{\mbf{H},e}$ and $T\geq 0$
+\end{corollary}
+\begin{proof}
+    Assume~\eqref{eqn:temporal-IQC} is satisfied. We need to show that~\eqref{eqn:spatial-IQC} is also satisfied.
+    First examine that 
+    \begin{equation*}
+        \ip{p_T\hat{\Psi}(s)\bmat{u(s)\\\Delta u(s)}}{p_T\hat{V}(s)\hat{\Psi}(s)\bmat{u(s)\\{\Delta}u(s)}}_{L_2} \geq 0, \quad \forall s\in[a,b]
+    \end{equation*}
+    Thus by integrating over $s$ we find
+    \begin{align*}
+        &\int_a^b \ip{p_T\hat{\Psi}(s)\bmat{u(s)\\\Delta u(s)}}{p_T\hat{V}(s)\hat{\Psi}(s)\bmat{u(s)\\{\Delta}u(s)}}_{L_2} ds\\
+        &= \ip{p_T \hat{\Psi}\bmat{u\\ \hat{\Delta} u}}{p_T \hat{V} \hat{\Psi}\bmat{u \\ \hat{\Delta}u}}_{L_\mbf{H}} \geq 0
+    \end{align*}
+\end{proof}
+
+
+
+\begin{lemma}[Mixed-IQC]\label{lem:mixed-IQC}
+    Let $(\Theta_i, J_{\mbf{n}_{z},\mbf{n}_w})$ denote a hard-factorization, and $\gamma_i > 0$, then
+    \begin{equation}\label{eqn:primal-mixed}
+        \ip{p_T \bmat{P\\I}w}{p_T \sum_{i=1}^{n}\gamma_i^2 \Theta_i^*J\Theta_i\bmat{P\\I}w} \leq -\epsilon\|p_T w\|^2_{\mbf{L}_{[a,b]}}
+    \end{equation}
+    If and only if 
+    \begin{equation}\label{eqn:dual-mixed}
+        \ip{p_T \bmat{P^\top\\I}\underline{w}}{p_T \sum_{i=1}^{n}\frac{1}{\gamma_i^2} \mbf{D}(\Theta_i)^*J\mbf{D}{\Theta_i}\bmat{P\top\\I}\underline{w}} \leq -\underline{\epsilon}\|p_T \underline{w}\|^2_{\mbf{L}_{[a,b]}}
+    \end{equation}
+\end{lemma}
+\begin{proof}
+    See Appendix~\ref{proof:mixed-IQC}
+\end{proof}
+
+Consider the nonlinear unstable pendulum system with dynamics
+\begin{equation}\label{eq:pendulum} 
+    ml^2\ddot{\theta}(t) + b\dot{\theta}(t) - mgl\sin(\theta(t)) = u(t),
+\end{equation}
+where $m,l,b,g,\theta,u$, denote the mass, length, damping coefficient, gravitational coefficient, angular position, and control input
+of the pendulum, respectively. After substituting $\phi(\theta) = \theta - \sin(\theta)$, $x_1 = \theta$, $x_2 = \dot{\theta}$, 
+$z_\Delta = \theta$, $w_\Delta = \phi(\theta)$ we obtain
+\begin{equation}\label{eq:pendulum-gp}
+    \bmat{\dot{x}_1(t) \\ \dot{x}_2(t) \\ z_\Delta(t)}
+    =
+    \bmat{0 & 1 & 0 & 0\\
+    \frac{g}{l} & -\frac{b}{ml^2} & -\frac{g}{l} & \frac{1}{ml^2}\\
+    1 & 0 & 0 & 0}
+    \bmat{x_1(t) \\ x_2(t) \\ w_\Delta(t) \\ u(t)}.
+\end{equation}
+For $\theta\neq0$, let
+$r(\theta):=\phi(\theta)/\theta=1-\sin(\theta)/\theta$, and define
+$r(0):=0$ by continuity. The global bounds
+\begin{equation*}
+    -0.217234\leq\frac{\sin(\theta)}{\theta}\leq1,
+    \qquad \theta\neq0,
+\end{equation*}
+imply that
+\begin{equation*}
+    0\leq r(\theta)\leq1.217234 = \beta,\qquad \theta\in\R.
+\end{equation*}
+Hence, $\phi$ is globally sector bounded in $[\alpha,\beta]=[0,1.217234]$ and
+satisfies
+\begin{equation*}
+    \phi(\theta)\bigl(1.217234\theta-\phi(\theta)\bigr)\geq0,
+    \qquad \theta\in\R.
+\end{equation*}
+Moreover, $\phi(\theta)$ is also incrementally bounded or slope restricted such that 
+\begin{equation*}
+    0 \leq \frac{\phi(x_1) - \phi(x_2)}{x_1 - x_2} \leq 2 = \hat{\beta}, \quad \forall x_1,\,x_2\in\R
+\end{equation*}
+Since $\phi'(\theta) = 1 - \cos(\theta)$.
+
+\subsection{Dynamic Sector-Bounded IQC}
+In case of dynamic uncertainties for which we can find a sector bound we use the following IQC
+\begin{equation*}
+    \Pi_{\mathrm{sec}} = \ip{p_T \bmat{z_\Delta \\ \Delta z_\Delta}}{p_T\bmat{\beta & -1 \\ 0 & 1}^*\bmat{0 & 1 \\ 1 & 0}\bmat{\beta & -1 \\ 0 & 1}\bmat{z_\Delta \\ \Delta z_\Delta}} \geq 0
+\end{equation*}
+\subsection{Static Sector-Bounded IQC}
+For static sector bounded IQC we can use the Popov IQC
+\begin{equation}
+    \Pi_{\mathrm{Popov}} = \ip{\bmat{z_\Delta\\ \Delta z_\Delta}}{\bmat{0 & -j\omega \\ j\omega & 0}\bmat{z_\Delta \\ \Delta z_\Delta}} \geq 0
+\end{equation}
+In order to make this multiplier PN we need to have two conditions
+\begin{itemize}
+    \item $\Pi_{\mathrm{Popov}}\in\mathbb{RL}_\infty$ is solved by introducing a new channel $\hat{z}_\Delta = (s+1)z_\Delta$ and $\hat{\Delta} = \Delta \circ \frac{1}{s+1}$.
+    \item $\Pi_{\mathrm{Popov},11} > 0$ and $\Pi_{\mathrm{Popov},22} < 0$ such that a hard factorization exists.
+\end{itemize}
+To obtain a strict PN multiplier after the loop transformation, we add a hard
+norm IQC directly on the loop-shifted channels. The validity of this IQC is
+established below. Using the assumption that $\theta(0)=0$, the loop-shifted
+plant is
+\begin{equation}\label{eq:pendulum-gp}
+    \bmat{\dot{x}_1(t) \\ \dot{x}_2(t) \\ \hat{z}_\Delta(t)}
+    =
+    \bmat{0 & 1 & 0 & 0\\
+    \frac{g}{l} & -\frac{b}{ml^2} & -\frac{g}{l} & \frac{1}{ml^2}\\
+    1 & 1 & 0 & 0}
+    \bmat{x_1(t) \\ x_2(t) \\ w_\Delta(t) \\ u(t)}.
+\end{equation}
+Set $w_\Delta:=\hat\Delta\hat z_\Delta=\Delta z_\Delta$. Since
+$z_\Delta=(s+1)^{-1}\hat z_\Delta$, we have
+$\hat z_\Delta=z_\Delta+\dot z_\Delta$.
+
+\paragraph{A hard norm IQC for the loop-shifted uncertainty.}
+The sector condition implies
+$|w_\Delta(t)|\leq\beta|z_\Delta(t)|$ for almost every $t\geq0$.
+For every $T\geq0$, integration by parts gives
+\begin{align*}
+\|p_T\hat z_\Delta\|_{L_2}^2
+&=\int_0^T|z_\Delta(t)+\dot z_\Delta(t)|^2\,dt\\
+&=\|p_Tz_\Delta\|_{L_2}^2
+  +\|p_T\dot z_\Delta\|_{L_2}^2
+  +|z_\Delta(T)|^2-|z_\Delta(0)|^2.
+\end{align*}
+Using $z_\Delta(0)=0$ and the sector-induced norm bound, we obtain
+\begin{align*}
+&\|p_T\hat z_\Delta\|_{L_2}^2
+-\frac{1}{\beta^2}\|p_Tw_\Delta\|_{L_2}^2\\
+&\quad=
+\left(\|p_Tz_\Delta\|_{L_2}^2
+-\frac{1}{\beta^2}\|p_Tw_\Delta\|_{L_2}^2\right)
++\|p_T\dot z_\Delta\|_{L_2}^2+|z_\Delta(T)|^2
+\geq0.
+\end{align*}
+Consequently, $\hat\Delta$ satisfies the hard IQC
+\begin{equation}\label{eq:loop-shifted-norm-iqc}
+\ip{p_T\bmat{\hat z_\Delta\\\hat\Delta\hat z_\Delta}}
+{p_T\Pi_\delta\bmat{\hat z_\Delta\\\hat\Delta\hat z_\Delta}}_{L_2}
+\geq0,
+\qquad
+\Pi_\delta:=\bmat{I&0\\0&-\beta^{-2}I},
+\end{equation}
+for every $T\geq0$. This is an $L_2$-gain IQC; it does not assert that
+$\hat\Delta$ has the same pointwise sector bound as $\Delta$.
+
+Define
+\begin{equation*}
+L(j\omega):=\bmat{(j\omega+1)^{-1}&0\\0&1},
+\qquad
+\hat v_\Delta:=\bmat{\hat z_\Delta\\w_\Delta}.
+\end{equation*}
+The hard multiplier $\epsilon \Pi_\delta$ may now be added after the loop
+transformation. Define
+\begin{align*}
+\Pi_1(j\omega)
+&:=L(j\omega)^*\bmat{0&\beta\\\beta&-2}L(j\omega)
++\epsilon \Pi_\delta,\\
+\Pi_2(j\omega)
+&:=L(j\omega)^*\bmat{0&-j\omega\\j\omega&0}L(j\omega)
++\epsilon \Pi_\delta.
+\end{align*}
+
+\subsection{Slope restricted IQC}
+Conditions for Zames-Falb multiplier are $\Delta$ is a monotone increasing uncertainty, let $M = I - H$
+with $\|H\|_1 \leq 1$, and $h(t) \geq 0$ for non-odd functions.
+\begin{equation*}
+\Pi_3(j\omega)
+:=L(j\omega)^*
+\bmat{
+0&\hat\beta M(j\omega)^*\\
+\hat\beta M(j\omega)&-(M(j\omega)+M(j\omega)^*)
+}
+L(j\omega)+\epsilon \Pi_\delta.
+\end{equation*}
+Thus, $\Pi_1$, $\Pi_2$, and $\Pi_3$ all have the uniform upper-left block
+$\epsilon I$. Their lower-right blocks are strictly negative provided
+$M(j\omega)+M(j\omega)^*\succeq0$ for every $\omega$.
+A common realization is $M = I - \prod_{i=1}^{n}\frac{k_i}{s+a_i}$ with $a_i>0$, ($k_i>0 \implies h(t)>0$), 
+and $\prod_{i=1}^{n}\frac{a_i}{k_i}\leq1$ \cite{turner2022zamesfalbmultipliersdontpanic}. 
