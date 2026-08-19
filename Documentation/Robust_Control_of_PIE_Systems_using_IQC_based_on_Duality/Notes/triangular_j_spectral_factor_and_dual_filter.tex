@@ -1,0 +1,277 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,mathtools}
+\usepackage{microtype}
+\usepackage[hidelinks]{hyperref}
+
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\ip}[2]{\left\langle #1,#2\right\rangle}
+
+\begin{document}
+\begin{center}
+ {\LARGE Triangularization and Duality of the Normalized IQC System}
+\end{center}
+\vspace{1em}
+
+Let $P$ be the primal input--output operator and let
+\begin{equation*}
+ \Psi=\bmat{\Psi_{11}&\Psi_{12}\\\Psi_{21}&\Psi_{22}},
+ \qquad
+ J_{z,w}=\bmat{I_z&0\\0&-I_w},
+ \qquad
+ J_{w,z}=\bmat{I_w&0\\0&-I_z}.
+\end{equation*}
+Assume that $\Psi$ is boundedly and causally invertible.  To use the
+triangularization of Yuan and Wu, assume additionally that $\Psi_{22}$ has a
+bounded causal inverse.  Finally, assume that
+\begin{equation*}
+ F_0:=\Psi_{21}P+\Psi_{22}
+\end{equation*}
+has a bounded causal inverse.  This is the input--output counterpart of the
+current assumption in Lemma~1,
+$(\mathcal D_\Theta^{wz}\mathcal D+\mathcal D_\Theta^w)^{-1}\in\Pi_4$.
+Throughout, $\top$ denotes the causal dual of an input--output operator;
+$*$ is retained for realization operators.
+
+\section*{Triangularize the factor and normalize the primal graph}
+
+Following Yuan and Wu, introduce the invertible signal transformation
+\begin{equation*}
+ L_\Psi:=\bmat{I&0\\\Psi_{21}&\Psi_{22}},
+ \qquad
+ \bmat{z\\\tilde w}=L_\Psi\bmat{z\\w}.
+\end{equation*}
+Moving this transformation from the factor to the interconnection gives
+\begin{equation*}
+ \Psi_\triangle:=\Psi L_\Psi^{-1}
+ =\bmat{
+ \Psi_{11}-\Psi_{12}\Psi_{22}^{-1}\Psi_{21}
+ &\Psi_{12}\Psi_{22}^{-1}\\
+ 0&I
+ }.
+\end{equation*}
+Hence the triangular form is obtained by an invertible change of internal
+signals; it is not an additional restriction on the original factor.
+Moreover,
+\begin{equation*}
+ \Psi\bmat{z\\w}
+ =\Psi_\triangle\bmat{z\\\tilde w}.
+\end{equation*}
+
+On the graph $z=Pw$, the same transformation gives
+\begin{equation*}
+ L_\Psi\bmat{P\\I}w
+ =\bmat{P\\F_0}w
+ =\bmat{PF_0^{-1}\\I}F_0w.
+\end{equation*}
+Consequently,
+\begin{equation*}
+ \Psi\bmat{P\\I}w
+ =\Psi_\triangle\bmat{PF_0^{-1}\\I}F_0w
+ =\bmat{G_0\\I}F_0w,
+\end{equation*}
+where
+\begin{equation*}
+ G_0=(\Psi_{11}P+\Psi_{12})
+     (\Psi_{21}P+\Psi_{22})^{-1}.
+\end{equation*}
+Since $\tilde w=F_0w$, the normalized system is
+\setcounter{equation}{20}
+\begin{equation}
+ \widetilde z=G_0\widetilde w.
+ \label{eq:normalized-system}
+\end{equation}
+
+The primal IQC is now an ordinary gain condition:
+\begin{align*}
+ \mathcal I_T(w)
+ &:=
+ \ip{p_T\Psi\bmat{P\\I}w}
+ {J_{z,w}p_T\Psi\bmat{P\\I}w}_{L_\mathbf H}\\
+ &=\|p_TG_0F_0w\|^2
+   -\|p_TF_0w\|^2.
+\end{align*}
+If $\|G_0\|\leq\rho<1$, the bounded causal invertibility of $F_0$ assumed at
+the start gives
+\begin{equation*}
+ \mathcal I_T(w)
+ \leq-\frac{1-\rho^2}{\|F_0^{-1}\|^2}
+       \|p_Tw\|^2.
+\end{equation*}
+In a state-space representation, $L_\Psi$ induces the corresponding
+invertible congruence transformation between the original filtered
+realization and the normalized realization.
+
+\section*{Obtain the paired dual transformation}
+
+Define
+\begin{equation*}
+ \widehat J:=\bmat{0&I\\-I&0},
+ \qquad
+ \mathbf D(\Psi):=(\widehat J^*\Psi^\top\widehat J)^{-1}.
+\end{equation*}
+Calculate the dual filter directly.  Since
+\begin{equation*}
+ \widehat J^*\Psi^\top\widehat J
+ =\bmat{
+ \Psi_{22}^\top&-\Psi_{12}^\top\\
+ -\Psi_{21}^\top&\Psi_{11}^\top
+ },
+\end{equation*}
+and
+\begin{equation*}
+ (\Psi_{\triangle,11})^\top
+ =\Psi_{11}^\top
+  -\Psi_{21}^\top(\Psi_{22}^\top)^{-1}\Psi_{12}^\top,
+\end{equation*}
+the block inverse formula gives
+\begin{equation*}
+ \mathbf D(\Psi)
+ =\bmat{
+ (\Psi_{22}^\top)^{-1}
+ +(\Psi_{22}^\top)^{-1}\Psi_{12}^\top
+  ((\Psi_{\triangle,11})^\top)^{-1}
+  \Psi_{21}^\top(\Psi_{22}^\top)^{-1}
+ &
+ (\Psi_{22}^\top)^{-1}\Psi_{12}^\top
+  ((\Psi_{\triangle,11})^\top)^{-1}
+ \\
+ ((\Psi_{\triangle,11})^\top)^{-1}
+  \Psi_{21}^\top(\Psi_{22}^\top)^{-1}
+ &
+ ((\Psi_{\triangle,11})^\top)^{-1}
+ }.
+\end{equation*}
+The desired paired factorization can now be read off directly:
+\begin{equation*}
+ \underline\Psi_\triangle
+ :=\bmat{
+ (\Psi_{22}^\top)^{-1}
+ &(\Psi_{22}^\top)^{-1}\Psi_{12}^\top\\
+ 0&I
+ },
+ \qquad
+ \underline L_\Psi
+ :=\bmat{
+ I&0\\
+ \mathbf{D}(\Psi)_{21}
+ &\mathbf{D}(\Psi)_{22}
+ }.
+\end{equation*}
+
+\section*{Normalize the dual graph}
+
+Write $S:=\Psi_{\triangle,11}$.  The lower block of $\underline L_\Psi$
+defines the dual normalizer
+\begin{equation*}
+ \underline\Gamma_0
+ :=\mathbf D(\Psi)_{21}P^\top+\mathbf D(\Psi)_{22}
+ =S^{-\top}\left(I+\Psi_{21}^\top
+  \Psi_{22}^{-\top}P^\top\right).
+\end{equation*}
+Equivalently,
+\begin{equation*}
+ \underline\Gamma_0^\top
+ =\left(I+P\Psi_{22}^{-1}\Psi_{21}\right)S^{-1}.
+\end{equation*}
+Because $F_0=\Psi_{22}(I+\Psi_{22}^{-1}\Psi_{21}P)$ is invertible, the
+push-through rule shows that $I+P\Psi_{22}^{-1}\Psi_{21}$ is invertible.
+Hence $\underline\Gamma_0$ is invertible, with
+\begin{equation*}
+ \underline\Gamma_0^{-\top}
+ =S\left(I+P\Psi_{22}^{-1}\Psi_{21}\right)^{-1}.
+\end{equation*}
+
+On the dual graph $\underline z=P^\top\underline w$, the transformation
+$\underline L_\Psi$ now gives
+\begin{equation*}
+ \underline L_\Psi\bmat{P^\top\\I}\underline w
+ =\bmat{P^\top\\\underline\Gamma_0}\underline w
+ =\bmat{P^\top\underline\Gamma_0^{-1}\\I}
+  \underline\Gamma_0\underline w.
+\end{equation*}
+Consequently,
+\begin{align*}
+ \mathbf D(\Psi)\bmat{P^\top\\I}\underline w
+ &=\underline\Psi_\triangle
+   \bmat{P^\top\underline\Gamma_0^{-1}\\I}
+   \underline\Gamma_0\underline w\\
+ &=\bmat{\underline G_0\\I}
+   \underline\Gamma_0\underline w,
+\end{align*}
+where
+\begin{equation*}
+ \underline G_0
+ =(\Psi_{22}^\top)^{-1}
+  \left(P^\top\underline\Gamma_0^{-1}+\Psi_{12}^\top\right).
+\end{equation*}
+
+The same push-through identity gives
+\begin{equation*}
+ (I+P\Psi_{22}^{-1}\Psi_{21})^{-1}P\Psi_{22}^{-1}
+ =P(\Psi_{21}P+\Psi_{22})^{-1}=PF_0^{-1}.
+\end{equation*}
+It therefore identifies the normalized dual operator in three lines:
+\begin{align*}
+ \underline G_0^\top
+ &=\underline\Gamma_0^{-\top}P\Psi_{22}^{-1}
+   +\Psi_{12}\Psi_{22}^{-1}\\
+ &=\left(SP
+   +\Psi_{12}\Psi_{22}^{-1}F_0\right)F_0^{-1}\\
+ &=(\Psi_{11}P+\Psi_{12})F_0^{-1}
+ =G_0.
+\end{align*}
+Hence, with $\tilde{\underline w}:=\underline\Gamma_0\underline w$, the
+normalized dual system is
+\begin{equation*}
+ \tilde{\underline z}=G_0^\top\tilde{\underline w}.
+\end{equation*}
+Equivalently,
+\begin{equation*}
+ G_0^\top
+ =(P^\top\Psi_{21}^\top+\Psi_{22}^\top)^{-1}
+  (P^\top\Psi_{11}^\top+\Psi_{12}^\top),
+\end{equation*}
+where the first factor is $(F_0^\top)^{-1}=(F_0^{-1})^\top$.
+
+The dual IQC is now the same ordinary gain condition:
+\begin{align*}
+ \underline{\mathcal I}_T(\underline w)
+ &:={}
+ \ip{p_T\mathbf D(\Psi)\bmat{P^\top\\I}\underline w}
+ {J_{w,z}p_T\mathbf D(\Psi)\bmat{P^\top\\I}\underline w}_{L_\mathbf H}\\
+ &=\|p_TG_0^\top\underline\Gamma_0\underline w\|^2
+   -\|p_T\underline\Gamma_0\underline w\|^2.
+\end{align*}
+Since $\|G_0^\top\|=\|G_0\|\leq\rho<1$, bounded causal invertibility of
+$\underline\Gamma_0$ gives
+\begin{equation*}
+ \underline{\mathcal I}_T(\underline w)
+ \leq-\frac{1-\rho^2}{\|\underline\Gamma_0^{-1}\|^2}
+       \|p_T\underline w\|^2.
+\end{equation*}
+For the sign comparison, no strict upper bound on $\rho$ is needed.  For any
+common gain bound $\|G_0\|=\|G_0^\top\|\leq\rho$, define the pullback
+coefficients
+\begin{equation*}
+ \varepsilon_{\mathrm p}:=
+ \frac{1-\rho^2}{\|F_0^{-1}\|^2},
+ \qquad
+ \varepsilon_{\mathrm d}:=
+ \frac{1-\rho^2}{\|\underline\Gamma_0^{-1}\|^2}.
+\end{equation*}
+Because both normalizers are boundedly invertible, their inverse norms are
+finite and strictly positive.  Consequently,
+\begin{equation*}
+ \operatorname{sgn}(\varepsilon_{\mathrm p})
+ =\operatorname{sgn}(1-\rho^2)
+ =\operatorname{sgn}(\varepsilon_{\mathrm d}).
+\end{equation*}
+In particular, $\varepsilon_{\mathrm p}>0$ if and only if
+$\varepsilon_{\mathrm d}>0$.  A strict bound $\rho<1$ is needed only to
+conclude that this common sign is positive, in which case the coefficients are
+valid strict IQC margins.  Thus primal and dual strictness are equivalent,
+although the two positive margins need not have the same magnitude.
+
+\end{document}

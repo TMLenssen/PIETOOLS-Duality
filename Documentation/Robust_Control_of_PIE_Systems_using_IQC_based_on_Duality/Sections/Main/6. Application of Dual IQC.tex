@@ -12,28 +12,8 @@ Seiler~\cite{venkataraman}.
 
 \subsection{Primal and Dual Systems}
 Let $P$, with zero initial condition $\mbf{x}(0)=0$, have input $w$,
-control input $u$, output $z$, and PIE realization
-\begin{equation*}
-\bmat{\mcl T_P\dot{\mbf{x}}_P(t)\\z(t)\\y_P(t)}
-=
-\bmat{
-\mcl A_P&\mcl B_P&\mcl B_u\\
-\mcl C_P&\mcl D_P&\mcl D_{zu}\\
-I & 0 & 0
-}
-\bmat{\mbf{x}_P(t)\\w(t)\\u(t)}.
-\end{equation*}
-and its dual representation
-\begin{equation*}
-\bmat{\mcl T^*_P\dot{\underline{\mbf{x}}}_P(t)\\\underline{z}(t) \\ \underline{y}(t)}
-=
-\bmat{
-\mcl A_P^*&\mcl C_P^* & I\\
-\mcl B_P^*&\mcl D^*_P & 0\\
-\mcl B_u^*&\mcl D^*_{zu}& 0
-}
-\bmat{\underline{\mbf{x}}_P(t)\\\underline{w}(t)\\\underline{u}_P(t)}.
-\end{equation*}
+control input $u$, and output $z$. Its primal and dual PIE state-space
+realizations are summarized in the corresponding system-component boxes.
 We consider the controller and its adjoint
 \begin{equation*}
 \begin{aligned}
@@ -64,6 +44,66 @@ $y_\Psi=\mbf{x}_\Psi$, has realization
 Here
 $v:=\bmat{z\\w}$ and
 $\tilde v:=\bmat{\tilde z\\\tilde w}$.
+Partition the filter operators according to these input and output channels as
+\begin{equation*}
+\begin{aligned}
+\mcl B_\Psi&=\bmat{\mcl B_\Psi^z&\mcl B_\Psi^w},
+&
+\mcl C_\Psi&=\bmat{\mcl C_\Psi^z\\\mcl C_\Psi^w},\\
+\mcl D_\Psi&=
+\bmat{
+\mcl D_\Psi^z&\mcl D_\Psi^{zw}\\
+\mcl D_\Psi^{wz}&\mcl D_\Psi^w
+}.
+\end{aligned}
+\end{equation*}
+For compactness, define the controller-closed plant operators
+\begin{equation*}
+\begin{aligned}
+\mcl A_K&:=\mcl A_P+\mcl B_u\mcl K_P,
+&\mcl B_K&:=\mcl B_u\mcl K_\Psi,\\
+\mcl C_K&:=\mcl C_P+\mcl D_{zu}\mcl K_P,
+&\mcl D_K&:=\mcl D_{zu}\mcl K_\Psi.
+\end{aligned}
+\end{equation*}
+Then direct substitution of
+$z=\mcl C_K\mbf{x}_P+\mcl D_K\mbf{x}_\Psi+\mcl D_Pw$
+into the filter gives the augmented state-space realization
+\begin{equation}
+\resizebox{\columnwidth}{!}{$\displaystyle
+\bmat{
+\mcl T_P\dot{\mbf{x}}_P(t)\\
+\mcl T_\Psi\dot{\mbf{x}}_\Psi(t)\\
+\tilde z(t)\\
+\tilde w(t)
+}
+=
+\bmat{
+\mcl A_K
+&\mcl B_K
+&\mcl B_P\\
+\mcl B_\Psi^z\mcl C_K
+&\mcl A_\Psi+\mcl B_\Psi^z\mcl D_K
+&\mcl B_\Psi^z\mcl D_P+\mcl B_\Psi^w\\
+\mcl D_\Psi^z\mcl C_K
+&\mcl C_\Psi^z+\mcl D_\Psi^z\mcl D_K
+&\mcl D_\Psi^z\mcl D_P+\mcl D_\Psi^{zw}\\
+\mcl D_\Psi^{wz}\mcl C_K
+&\mcl C_\Psi^w+\mcl D_\Psi^{wz}\mcl D_K
+&\mcl D_\Psi^{wz}\mcl D_P+\mcl D_\Psi^w
+}
+\bmat{
+\mbf{x}_P(t)\\
+\mbf{x}_\Psi(t)\\
+w(t)
+}.
+$}
+\label{eq:primal-filtered-controller-realization}
+\end{equation}
+This is the state-space realization of
+$\Psi\bmat{K\star P\\I}w$, with augmented state
+$\mbf{\xi}:=\bmat{\mbf{x}_P\\\mbf{x}_\Psi}$ and output
+$\tilde v=\bmat{\tilde z\\\tilde w}$.
 Let $\hat J:=\bmat{0&I\\-I&0}$, with identity blocks of compatible
 dimensions, and assume that the static dual feedthrough
 $\mbf D(\mcl D_\Psi)=(\hat J^*\mcl D_\Psi^*\hat J)^{-1}$ exists. Then

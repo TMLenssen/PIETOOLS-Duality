@@ -35,21 +35,6 @@ $\hat{V}:L_2[a,b] \to L_2[a,b]$, such that $(\hat{\Psi}(\cdot,s), \hat{V}(\cdot,
 \end{proof}
 
 
-
-\begin{lemma}[Mixed-IQC]\label{lem:mixed-IQC}
-    Let $(\Theta_i, J_{\mbf{n}_{z},\mbf{n}_w})$ denote a hard-factorization, and $\gamma_i > 0$, then
-    \begin{equation}\label{eqn:primal-mixed}
-        \ip{p_T \bmat{P\\I}w}{p_T \sum_{i=1}^{n}\gamma_i^2 \Theta_i^*J\Theta_i\bmat{P\\I}w} \leq -\epsilon\|p_T w\|^2_{\mbf{L}_{[a,b]}}
-    \end{equation}
-    If and only if 
-    \begin{equation}\label{eqn:dual-mixed}
-        \ip{p_T \bmat{P^\top\\I}\underline{w}}{p_T \sum_{i=1}^{n}\frac{1}{\gamma_i^2} \mbf{D}(\Theta_i)^*J\mbf{D}{\Theta_i}\bmat{P\top\\I}\underline{w}} \leq -\underline{\epsilon}\|p_T \underline{w}\|^2_{\mbf{L}_{[a,b]}}
-    \end{equation}
-\end{lemma}
-\begin{proof}
-    See Appendix~\ref{proof:mixed-IQC}
-\end{proof}
-
 Consider the nonlinear unstable pendulum system with dynamics
 \begin{equation}\label{eq:pendulum} 
     ml^2\ddot{\theta}(t) + b\dot{\theta}(t) - mgl\sin(\theta(t)) = u(t),
@@ -58,12 +43,13 @@ where $m,l,b,g,\theta,u$, denote the mass, length, damping coefficient, gravitat
 of the pendulum, respectively. After substituting $\phi(\theta) = \theta - \sin(\theta)$, $x_1 = \theta$, $x_2 = \dot{\theta}$, 
 $z_\Delta = \theta$, $w_\Delta = \phi(\theta)$ we obtain
 \begin{equation}\label{eq:pendulum-gp}
-    \bmat{\dot{x}_1(t) \\ \dot{x}_2(t) \\ z_\Delta(t)}
+    \bmat{\dot{x}_1(t) \\ \dot{x}_2(t) \\ z_\Delta(t) \\ z(t)}
     =
-    \bmat{0 & 1 & 0 & 0\\
-    \frac{g}{l} & -\frac{b}{ml^2} & -\frac{g}{l} & \frac{1}{ml^2}\\
-    1 & 0 & 0 & 0}
-    \bmat{x_1(t) \\ x_2(t) \\ w_\Delta(t) \\ u(t)}.
+    \bmat{0 & 1 & 0 & 0 & 0\\
+    \frac{g}{l} & -\frac{b}{ml^2} & -\frac{g}{l} & \frac{1}{ml^2} & \frac{1}{ml^2}\\
+    1 & 0 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0 & 1}
+    \bmat{x_1(t) \\ x_2(t) \\ w_\Delta(t) \\ w(t) \\ u(t)}.
 \end{equation}
 For $\theta\neq0$, let
 $r(\theta):=\phi(\theta)/\theta=1-\sin(\theta)/\theta$, and define
@@ -110,9 +96,10 @@ plant is
 \begin{equation}\label{eq:pendulum-gp}
     \bmat{\dot{x}_1(t) \\ \dot{x}_2(t) \\ \hat{z}_\Delta(t)}
     =
-    \bmat{0 & 1 & 0 & 0\\
-    \frac{g}{l} & -\frac{b}{ml^2} & -\frac{g}{l} & \frac{1}{ml^2}\\
-    1 & 1 & 0 & 0}
+    \bmat{0 & 1 & 0 & 0 & 0\\
+    \frac{g}{l} & -\frac{b}{ml^2} & -\frac{g}{l} & \frac{1}{ml^2} & \frac{1}{ml^2}\\
+    1 & 1 & 0 & 0 & 0\\
+    0 & 0 & 0 & 0 & 1}
     \bmat{x_1(t) \\ x_2(t) \\ w_\Delta(t) \\ u(t)}.
 \end{equation}
 Set $w_\Delta:=\hat\Delta\hat z_\Delta=\Delta z_\Delta$. Since

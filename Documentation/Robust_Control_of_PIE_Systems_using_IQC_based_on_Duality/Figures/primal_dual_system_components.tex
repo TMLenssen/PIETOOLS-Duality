@@ -1,0 +1,60 @@
+% Reusable full-width primal and dual system-component boxes.
+% The controller-interconnection schematics used below are defined in
+% Figures/primal_dual_controller_interconnections.tex.
+
+% As a double-column float, each box is placed at the top of a suitable page.
+\NewDocumentCommand{\systemcomponents}{m +m +m}{%
+\begin{figure*}[!t]
+\begin{center}
+\setlength{\fboxsep}{8pt}%
+\noindent\fbox{%
+\begin{minipage}[t]{\dimexpr\textwidth-2\fboxsep-2\fboxrule\relax}
+\textbf{#1}\par\smallskip
+\begin{minipage}[c]{0.62\linewidth}
+\raggedright #2
+\end{minipage}%
+\hfill
+\begin{minipage}[c]{0.34\linewidth}
+\raggedleft #3
+\end{minipage}%
+\end{minipage}%
+}
+\end{center}
+\end{figure*}
+}
+
+\NewDocumentCommand{\primalsystemcomponents}{}{% 
+\systemcomponents{Primal-system components}{%
+\[
+\bmat{\mcl T_P\dot{\mbf{x}}_P(t)\\z(t)\\y_P(t)}
+=
+\bmat{
+\mcl A_P&\mcl B_P&\mcl B_u\\
+\mcl C_P&\mcl D_P&\mcl D_{zu}\\
+I & 0 & 0
+}
+\bmat{\mbf{x}_P(t)\\w(t)\\u(t)}.
+\]
+}{%
+\primalcontrollerschematic
+}%
+}
+
+\NewDocumentCommand{\dualsystemcomponents}{}{% 
+\systemcomponents{Dual-system components}{%
+\[
+\bmat{\mcl T^*_P\dot{\underline{\mbf{x}}}_P(t)\\
+\underline{z}(t)\\\underline{y}(t)}
+=
+\bmat{
+\mcl A_P^*&\mcl C_P^* & I\\
+\mcl B_P^*&\mcl D^*_P & 0\\
+\mcl B_u^*&\mcl D^*_{zu}& 0
+}
+\bmat{\underline{\mbf{x}}_P(t)\\
+\underline{w}(t)\\\underline{u}_P(t)}.
+\]
+}{%
+\dualcontrollerschematic
+}%
+}

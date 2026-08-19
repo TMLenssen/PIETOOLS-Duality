@@ -1,10 +1,8 @@
-This section develops a comprehensive framework for analyzing stability and
-performance of interconnected systems in a Hilbert space, utilizing IQCs as the
-primary analytical tool. We begin by establishing the mathematical foundation for system interconnections
-and formalizing the key concepts of stability and performance.
-The IQC methodology is then systematically developed to characterize system
-uncertainties and derive rigorous conditions that guarantee robust stability and
-performance.
+This section introduces the IQC objects used to study stability and performance
+of interconnected systems in a Hilbert space. We establish the generalized
+system interconnection, formalize stability and performance, and define the
+uncertainty and performance IQCs. These definitions provide the foundation for
+the primal-system analysis in Section~\ref{sec:primal-controller-analysis}.
 
 \subsection{Description of uncertain systems in a Hilbert-space}
 We consider operators that map external inputs to external outputs through a
@@ -190,12 +188,11 @@ Together, these multipliers enable simultaneous verification of robust stability
 against perturbations and achievement of specified performance objectives.
 % The interconnected structure for robust stability and performance analysis
 % can be viewed in Figure~\ref{fig:block structure}.
-
-\subsection{Theorem for joint robust stability and performance}
-We now present the theoretical result that provides conditions for
-simultaneous robust stability and performance verification. For brevity we will refer to the hard IQC as,
+This section applies the IQC framework to the primal system and gives a
+certificate for simultaneous robust stability and performance. For brevity,
+we write the hard IQC as
 \begin{equation*}
-    \ip{p_T \Psi\bmat{Pw \\ w}}{p_T \mcl{M}_\mcl{V}\Psi\bmat{Pw \\ w}}_{\mbf L_{[a, b]}} \leq -\epsilon \|p_T w\|^2_{\mbf L_{[a, b]}}
+    \ip{p_T \Psi\bmat{Pw \\ w}}{p_T \mcl{M}_\mcl{V}\Psi\bmat{Pw \\ w}}_{\mbf L_{[a, b]}} \leq -\epsilon \|p_T w\|^2_{\mbf L_{[a, b]}}.
 \end{equation*}
 Let $\Psi_\Delta$ and $\Psi_{\mathrm{p}}$ have a $2\times2$ block partition and define
 $\Psi_{ij}:=\operatorname{diag}((\Psi_\Delta)_{ij},(\Psi_{\mathrm{p}})_{ij})$ for
@@ -230,7 +227,7 @@ for all $w_\Delta \in \mbf L_{\mathrm{e},[a,b]}^{\mbf{n}_{w_\Delta}}$,
 $w_{\mathrm{p}} \in \mbf L_{\mathrm{e},[a,b]}^{\mbf{n}_{w_{\mathrm{p}}}}$ and $T \geq 0$.
 \end{theorem}
 \begin{proof}
-See Appendix~\ref{proof:robust-stability-performance}
+See Appendix~\ref{proof:robust-stability-performance}.
 \end{proof}
 Theorem~\ref{thm:robust-stability-performance} establishes a framework for deriving Linear PI
 Inequalities (LPIs), which are used in assessing the robust performance of a

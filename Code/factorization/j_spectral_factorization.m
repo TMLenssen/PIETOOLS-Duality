@@ -1,4 +1,5 @@
 clearvars; close all; clc; yalmip('clear');
+addpath(genpath("C:\Program Files\Mosek\11.0\toolbox\r2019b"));
 s = tf('s');
 
 %% IQCs
@@ -8,21 +9,28 @@ L = blkdiag(1/(s+1),1);
 M = 1 - 1/(s+1);
 Pid = diag([1,-1/beta^2]);
 
-Pi{1} = L'*[0 beta; beta -2]*L + epsIQC*Pid;
-Pi{2} = L'*[0 -s; s 0]*L + epsIQC*Pid;
-Pi{3} = L'*[0 hatbeta*M'; hatbeta*M -(M+M')]*L + epsIQC*Pid;
+Pi{1} = L'*[0 beta; beta -2]*L;
+Pi{2} = L'*[0 -s; s 0]*L;
+Pi{3} = L'*[0 hatbeta*M'; hatbeta*M -(M+M')]*L;
 
 %% Primal and dual J-factorizations
 PsiP = [];
 PsiD = [];
 
-for i = 1:3
-    [ThP,ThD] = jfactor(minreal(ss(Pi{i})),1,1);
-    PsiP = [PsiP; ThP];
-    PsiD = [PsiD; ThD];
-end
+PI = epsIQC*Pid+Pi{1}+Pi{2}+Pi{3};
 
-J = diag([1 -1]);
+D(1,1) = PI(1,1);
+D(2,2) = 1;
+D(1,3) = PI(1,2);
+D(3,1) = PI(2,1);
+D(3,3) = PI(2,2);
+D(4,4) = -1;
+
+[ThP,ThD] = jfactor(minreal(ss(D)),2,2);
+
+
+PsiP = ThP;
+PsiD = ThD;
 
 %% Pendulum
 g = 9.81; b = 0.2;
@@ -30,68 +38,92 @@ g = 9.81; b = 0.2;
 Ap = [0 1;
       g -b];
 
-Bp = [0;-g];
+Bp = [0, 0;-g,1];
 Bu = [0;1];
 
-Cp  = [1 1];
-Dp  = 0;
-Dzu = 0;
+Cp  = [1 1; 0 0];
+Dp  = zeros(2);
+Dzu = [0;1];
 
 np = size(Ap,1);
 
 opts = sdpsettings('solver','mosek','verbose',0);
 
 %% =========================================================
-% DUAL SYNTHESIS
+% NUMERICAL STRICTNESS USED DURING GAMMA/RHO OPTIMIZATION
+% ==========================================================
+
+epsFeas = 0;%1e-6;
+
+%% =========================================================
+% DUAL SYNTHESIS: STAGE 1 -- MINIMIZE RHO
 % ==========================================================
 
 plantD = ss(Ap',Cp',Bp',Dp');
 GD = augment(plantD,PsiD);
 
-Ad = GD.A; Bd = GD.B;
-Cd = GD.C; Dd = GD.D;
+Ad = GD.A;
+Bd = GD.B;
+Cd = GD.C;
+Dd = GD.D;
 
 nxD = size(Ad,1);
 nwD = size(Bd,2);
 
-PD  = sdpvar(nxD,nxD,'symmetric');
-Z   = sdpvar(nxD,1);
-muD = sdpvar(3,1);
+PD   = sdpvar(nxD,nxD,'symmetric');
+Z    = sdpvar(nxD,1);
+muD  = sdpvar(1);
+rhoD = sdpvar(1);
 
 Cy = [Bu', zeros(1,nxD-np)];
 
 X = PD*Ad + Z*Cy;
 Y = PD*Bd + Z*Dzu';
 
-VD = blkdiag(muD(1)*J, ...
-             muD(2)*J, ...
-             muD(3)*J);
+% 4x4 multiplier corresponding to jfactor(...,2,2)
+VD = [ muD, 0,    0,     0;
+       0,   1,    0,     0;
+       0,   0,   -muD,   0;
+       0,   0,    0,    -rhoD ];
 
-LD = [X+X' Y;
-      Y' 1e-6*eye(nwD)] ...
-     + [Cd Dd]'*VD*[Cd Dd];
+LD_rho = ...
+    [X+X', Y;
+     Y',   epsFeas*eye(nwD)] ...
+    + [Cd Dd]'*VD*[Cd Dd];
 
-conD = [PD >= 1e-3*eye(nxD), ...
-        LD <= 0, ...
-        muD >= 1e-4];
+conD_rho = [ ...
+    PD >= 1e-3*eye(nxD), ...
+    LD_rho <= 0, ...
+    muD >= 1e-4, ...
+    rhoD >= 0];
 
-solD = optimize(conD,sum(muD),opts);
-if solD.problem
-    error('Dual failed: %s',solD.info);
+solD_rho = optimize(conD_rho,rhoD,opts);
+
+if solD_rho.problem
+    error('Dual rho minimization failed: %s',solD_rho.info);
 end
 
-muDval = value(muD);
-K = value(Z)'/value(PD);
+%% Store the complete optimal dual solution
+
+PDval   = value(PD);
+Zval    = value(Z);
+muDval  = value(muD);
+rhoDval = value(rhoD);
+
+% Controller synthesized ONLY on the dual side
+K = Zval'/PDval;
 
 %% =========================================================
-% PRIMAL WITH FIXED K
+% PRIMAL CLOSED LOOP -- K FIXED FROM DUAL SYNTHESIS
 % ==========================================================
 
 plantP = ss(Ap,Bp,Cp,Dp);
-GP = augment(plantP,PsiP);
+GP = augment_controller(plantP,PsiP,Bu,Dzu,K);
 
-A0 = GP.A; B0 = GP.B;
-C0 = GP.C; D0 = GP.D;
+A0 = GP.A;
+B0 = GP.B;
+C0 = GP.C;
+D0 = GP.D;
 
 nxP = size(A0,1);
 nwP = size(B0,2);
@@ -99,58 +131,79 @@ nwP = size(B0,2);
 assert(size(K,2) == nxP, ...
     'Primal and dual augmented state dimensions differ.');
 
-BuAug = [Bu;
-         zeros(nxP-np,1)];
-
-Acl = A0 + BuAug*K;
 
 %% =========================================================
-% INDEPENDENT PRIMAL mu
+% PRIMAL ANALYSIS: STAGE 1 -- K FIXED, MINIMIZE RHO
 % ==========================================================
 
-PP  = sdpvar(nxP,nxP,'symmetric');
-muP = sdpvar(3,1);
+PP   = sdpvar(nxP,nxP,'symmetric');
+muP  = sdpvar(1);
+rhoP = sdpvar(1);
 
-VP = blkdiag(muP(1)*J, ...
-             muP(2)*J, ...
-             muP(3)*J);
+epsilonP = sdpvar(1);
 
-LP = [Acl'*PP + PP*Acl, PP*B0;
-      B0'*PP,           1e-6*eye(nwP)] ...
-     + [C0 D0]'*VP*[C0 D0];
+VP = [ muP, 0,       0,          0;
+          0,       1,       0,          0;
+          0,       0,      -muP,     0;
+          0,       0,       0,         -rhoP ];
 
-conP = [PP >= 1e-3*eye(nxP), ...
-        LP <= 0, ...
-        muP >= 1e-4];
+LP_eps = ...
+    [A0'*PP + PP*A0, PP*B0;
+     B0'*PP,             epsFeas*eye(nwP)] ...
+    + [C0 D0]'*VP*[C0 D0];
 
-solP = optimize(conP,sum(muP),opts);
-if solP.problem
-    error('Primal failed: %s',solP.info);
+conP_eps = [ ...
+    PP >= 1e-3*eye(nxP), ...
+    LP_eps <= 0, ...
+    muP >= 1e-4, ...
+    rhoP >= 0];
+
+solP_eps = optimize(conP_eps,rhoP,opts);
+
+if solP_eps.problem
+    error('Primal epsilon maximization failed: %s',solP_eps.info);
 end
 
+epsilonPval = epsFeas;%value(epsilonP);
 muPval = value(muP);
-
+rhoPval = value(rhoP);
 %% =========================================================
 % RESULTS
 % ==========================================================
 
+fprintf('\n====================================================\n');
+fprintf('DUAL SYNTHESIS / PRIMAL ANALYSIS COMPARISON\n');
+fprintf('====================================================\n');
+
 fprintf('\nK =\n');
 disp(K);
 
-fprintf('             mu_D        mu_P       1/mu_D     muP*muD\n');
-disp([muDval, muPval, muPval.*muDval]);
+fprintf('Dual:\n');
+fprintf('  rho_D     = %.10e\n',rhoDval);
+fprintf('  mu_D      = %.10e\n',muDval);
 
-fprintf('Dual max eig LMI   = %.3e\n', ...
-    max(eig((value(LD)+value(LD)')/2)));
+fprintf('\nPrimal:\n');
+fprintf('  mu_P      = %.10e\n',muPval);
+fprintf('  rho_P     = %.10e\n',rhoPval);
 
-fprintf('Primal max eig LMI = %.3e\n', ...
-    max(eig((value(LP)+value(LP)')/2)));
+LD_eps_val = value(LD_rho);
+LP_eps_val = value(LP_eps);
+
+fprintf('\nFinal epsilon-stage LMI residuals:\n');
+
+fprintf('  Dual max eig   = %.3e\n', ...
+    max(eig((LD_eps_val+LD_eps_val')/2)));
+
+fprintf('  Primal max eig = %.3e\n', ...
+    max(eig((LP_eps_val+LP_eps_val')/2)));
+
+fprintf('====================================================\n');
 
 %% =========================================================
 % SIMULATE NONLINEAR CLOSED LOOP
 % ==========================================================
 
-F = ss(PsiP);
+F = ss(PsiP([1 3], [1 3]));
 
 Af = F.A;
 Bf = F.B;
@@ -191,29 +244,6 @@ for i = 1:length(t)
     u(i) = Kp*xp + Kpsi*xpsi;
 end
 
-%% Animate pendulum
-l = 1;
-
-figure;
-axis equal
-axis([-1.2*l 1.2*l -1.2*l 1.2*l])
-grid on
-hold on
-
-% Ground / pivot
-plot([-0.3 0.3],[0 0],'k','LineWidth',2);
-plot(0,0,'ko','MarkerFaceColor','k');
-
-% Initial pendulum
-xp = l*sin(theta(1));
-yp = l*cos(theta(1));
-
-rod = plot([0 xp],[0 yp],'-o', ...
-    'LineWidth',3, ...
-    'MarkerSize',12, ...
-    'MarkerFaceColor','auto');
-
-titleText = title('');
 
 %% Plot
 figure;

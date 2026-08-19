@@ -1,4 +1,4 @@
-In this work we assume that the generalized plant $P\in\mcl{G}_2^{\mbf{n}_z\times\mbf{n}_w}$ is a PIE system, that admits a state-space representation.
+In this work we assume that the generalized plant $P$ is a PIE system, that admits a state-space representation.
 This work builds on the duality results in \cite{shivaknew} which shows that the state-feedback controller results in a convex optimization problem.
 We find that this duality result can be extended to the case of dynamic filters, where we want to know the properties of the dual dynamic filter. This is particularly
 usefull when examining the effect of uncertainties on the system when performing state-feedback controller synthesis, when using IQCs. The works from
@@ -36,23 +36,7 @@ factorization gives, for every $T\geq0$,
 \end{aligned}
 \end{equation*}
 Thus the IQC quadratic form becomes the difference between the filtered
-output and input signals. Second, when $z=Pw$, the Potapov--Ginzburg
-transform produces an invertible change of coordinates $\Gamma$ such that
-\begin{equation*}
-\Theta\bmat{P\\I}w
-=
-\bmat{P\star(\Theta^\dagger R)\\I}\Gamma w.
-\end{equation*}
-The lower block gives $\tilde w=\Gamma w$, while the upper block gives
-$\tilde z=(P\star(\Theta^\dagger R))\tilde w$. Consequently, the IQC inequality
-becomes an $L_2$-gain inequality for $P\star(\Theta^\dagger R)$, to which
-Theorem~\ref{thm:dual-l2-gain} applies. Define the channel swapping operator, so
-that
-\[
-R\bmat{z\\w}=\bmat{w\\z},
-\qquad
-R\bmat{w\\z}=\bmat{z\\w}.
-\]
+output and input signals. 
 
 \begin{definition}[$J$-Spectral Factorization and Dual Filter
 {\cite{venkataraman}}]
@@ -62,7 +46,7 @@ Let $(\Psi,\mcl M_{\mcl V})$ be a hard IQC, let
 J_{\mbf n_z,\mbf n_w}:=
 \bmat{I_{\mbf n_z}&0\\0&-I_{\mbf n_w}},
 \end{equation*}
-and let $\Theta,\Theta^{-1}\in\Hinf$. The pair
+and let $\Theta,\Theta^{-1}, \Theta_{22}, \Theta_{22}^{-1}$ be causal bounded linear operators. The pair
 $(\Theta,J_{\mbf n_z,\mbf n_w})$ is a $J$-spectral factorization of
 $(\Psi,\mcl M_{\mcl V})$ if,
 \begin{equation*}
@@ -84,8 +68,6 @@ defined by
 :=
 \left(\hat{J}^*\Theta^\top\hat{J}\right)^{-1}.
 \end{equation*}
-Note $\mbf{D}(\Theta)\in\Hinf$.
-
 \end{definition}
 Finding a $J$--spectral factorization is the first step in applying the duality theory. For the construction of a $J$-spectral factorization, we partition
 \begin{equation*}
@@ -150,3 +132,19 @@ $\mcl{M}_{\underline{\Gamma}},\mcl{M}_{\underline{\Gamma}^{-1}}\in\Pi_4$ on the 
 \begin{proof}
 See Appendix~\ref{proof:potapov-ginzburg-equivalence}.
 \end{proof}
+
+\begin{lemma} (Potapov--Ginzburg Transform Equivalence Generalized)
+Let $\Theta, \Theta^{-1}$ be causal bounded linear operators as in Definition~\ref{def:dynamic-filters}. Moreover, let $(P\star(\Theta^\dagger R))$
+and $(P^\top\star(R(\Theta^\dagger)^\top))$ be well-posed systems. Then, there exists static memoryless invertible coordinate transformations 
+$F,F^{-1}$ on the primal side and
+$\underline{F},\underline{F}^{-1}$ on the dual side such that
+\begin{itemize}
+    \item $\Theta\bmat{P\\I} w = \bmat{P\star(\Theta^\dagger R) \\ I}F w$ for all $w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}$.
+    \item $\mbf{D}(\Theta)\bmat{P^\top\\I} \underline{w} = \bmat{P^\top\star(R(\Theta^\dagger)^\top) \\ I}\underline{F}\,\underline{w}$ for all $\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_z}$.
+\end{itemize}
+\end{lemma}
+\begin{proof}
+See Appendix
+\end{proof}
+
+

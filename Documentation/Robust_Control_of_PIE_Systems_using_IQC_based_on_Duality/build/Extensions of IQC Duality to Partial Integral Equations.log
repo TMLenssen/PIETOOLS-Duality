@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.10)  17 AUG 2026 14:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.10)  19 AUG 2026 19:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -581,7 +581,7 @@ File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfarrowlength=\dimen302
 \pgfarrowwidth=\dimen303
 \pgfarrowlinewidth=\dimen304
-) (shortcuts.tex)
+) (Figures/primal_dual_controller_interconnections.tex) (shortcuts.tex) (Figures/primal_dual_system_components.tex)
 \c@definition=\count355
 \c@lemma=\count356
 \c@theorem=\count357
@@ -603,27 +603,27 @@ LaTeX Warning: Label `eq:pendulum-gp' multiply defined.
 )
 \openout1 = `"Extensions of IQC Duality to Partial Integral Equations.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 44.
-LaTeX Font Info:    ... okay on input line 44.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
+LaTeX Font Info:    ... okay on input line 46.
 
 -- Lines per column: 58 (exact).
-Package hyperref Info: Link coloring OFF on input line 44.
+Package hyperref Info: Link coloring OFF on input line 46.
 (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out) (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out)
 \@outlinefile=\write4
 \openout4 = `"Extensions of IQC Duality to Partial Integral Equations.out"'.
@@ -647,11 +647,11 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 62.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 64.
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 4001) in paragraph at lines 62--62
+Underfull \hbox (badness 4001) in paragraph at lines 64--64
 \OT1/ptm/m/n/8 hoven Uni-ver-sity of Tech-nol-ogy, The Nether-lands. Email ad-dresses:
  []
 
@@ -690,13 +690,18 @@ Overfull \hbox (1.31978pt too wide) detected at line 184
 \OMS/cmsy/m/n/10 k\OML/cmm/m/it/10 p[]z\OMS/cmsy/m/n/10 k[] ^^T \OML/cmm/m/it/10 ^^M\OMS/cmsy/m/n/10 k\OML/cmm/m/it/10 p[]w\OMS/cmsy/m/n/10 k[]\OML/cmm/m/it/10 ;  \OMS/cmsy/m/n/10 8 \OML/cmm/m/it/10 T \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ;  \OMS/cmsy/m/n/10 8 \OML/cmm/m/it/10 w \OMS/cmsy/m/n/10 2 \OT1/cmr/bx/n/10 L[]\OML/cmm/m/it/10 :
  []
 
-) (Sections/Main/3.Quadratic_Contraints_for_stability_and_performance_analysis.tex [2]) (Sections/Main/4. Duality under Dynamic Filtering.tex [3] (Figures/potapov_ginzburg_commutative_diagram.tex) [4]) (Sections/Main/5. Dual IQC.tex
-Overfull \hbox (31.81065pt too wide) detected at line 33
-[][]
- []
+) (Sections/Main/3.Quadratic_Contraints_for_stability_and_performance_analysis.tex [2]) (Sections/Main/4. Controller Analysis (Primal System).tex) (Sections/Main/5. Duality.tex [3] (Figures/potapov_ginzburg_commutative_diagram.tex
 
-) (Sections/Main/6. Application of Dual IQC.tex [5]
-Underfull \hbox (badness 10000) in paragraph at lines 124--125
+LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 4 undefined on input line 127.
+
+
+LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 4 undefined on input line 129.
+
+
+LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 4 undefined on input line 131.
+
+) [4]) (Sections/Main/6. Application of Dual IQC.tex [5]
+Underfull \hbox (badness 10000) in paragraph at lines 164--165
 []\OT1/ptm/m/it/10 The dual hard IQC $\OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 M[]\OT1/cmr/m/n/10 )$ \OT1/ptm/m/it/10 has a
  []
 
@@ -706,61 +711,72 @@ Overfull \hbox (14.98021pt too wide) detected at line 29
  []
 
 
-Overfull \hbox (26.8306pt too wide) detected at line 47
-[][][][] \OMS/cmsy/m/n/10 ^^T ^^@[]k\OML/cmm/m/it/10 p[][]\OMS/cmsy/m/n/10 k[]
- []
-
-
-Overfull \hbox (25.4573pt too wide) detected at line 95
+Overfull \hbox (25.4573pt too wide) detected at line 81
 \OT1/cmr/m/n/10 ^^E[] = [] \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 0
  []
 
 
-Overfull \hbox (0.90868pt too wide) detected at line 132
+Overfull \hbox (0.90868pt too wide) detected at line 119
 []
  []
 
 
-Overfull \hbox (25.00352pt too wide) detected at line 142
+Overfull \hbox (25.00352pt too wide) detected at line 129
 []
  []
 
 
-Overfull \hbox (8.93782pt too wide) detected at line 150
+Overfull \hbox (8.93782pt too wide) detected at line 137
 [][][][][] \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ;  \OT1/cmr/m/n/10 ^^E[] := [] \OML/cmm/m/it/10 ;
  []
 
 [7]
-Overfull \hbox (29.94116pt too wide) detected at line 182
+Overfull \hbox (29.94116pt too wide) detected at line 169
 \OT1/cmr/m/n/10 ^^E[](\OML/cmm/m/it/10 j!\OT1/cmr/m/n/10 ) := \OML/cmm/m/it/10 L\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 j!\OT1/cmr/m/n/10 )[] [] \OML/cmm/m/it/10 L\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 j!\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 ^^O\OT1/cmr/m/n/10 ^^E[]\OML/cmm/m/it/10 :
  []
 
-) (Sections/Main/8. Conclusion.tex) (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl) [8] (Sections/Proofs/I. IQC.tex) (Sections/Proofs/II. Duality.tex (Sections/Proofs/Duality/potapov-ginzburg-equivalence-compact.tex [9
+) (Sections/Main/8. Conclusion.tex) (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl) [8
 
-] [10]) (Sections/Proofs/Duality/primal-dual-iqc-feasibility.tex [11]) (Sections/Proofs/Duality/dual-KYP.tex) (Sections/Proofs/Duality/dynamic_state_feedback.tex [12])) (Sections/Proofs/III. Numerical Examples.tex [13]) [14] (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux)
+] (Sections/Proofs/I. IQC.tex) (Sections/Proofs/II. Duality.tex (Sections/Proofs/Duality/dual-IQC.tex [9
+
+]) (Sections/Proofs/Duality/dual-KYP.tex
+
+LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 10 undefined on input line 39.
+
+) (Sections/Proofs/Duality/dynamic_state_feedback.tex [10]
+
+LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 11 undefined on input line 97.
+
+
+LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 11 undefined on input line 123.
+
+)) [11] (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `"Extensions of IQC Duality to Partial Integral Equations".out' has not changed.
-(rerunfilecheck)             Checksum: 19586AF7C35F480D31EB143F69FCE819;5704.
+(rerunfilecheck)             Checksum: 5664D3D772EAF5D1D7F27C379A14296F;4963.
  ) 
 Here is how much of TeX's memory you used:
- 23330 strings out of 467871
- 444798 string characters out of 5418376
- 892682 words of memory out of 5000000
- 51613 multiletter control sequences out of 15000+600000
+ 23574 strings out of 467871
+ 450415 string characters out of 5418376
+ 909535 words of memory out of 5000000
+ 51875 multiletter control sequences out of 15000+600000
  669191 words of font info for 124 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,22n,94p,705b,1051s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,20n,94p,705b,1049s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.pdf" (14 pages, 422290 bytes).
+Output written on "c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.pdf" (11 pages, 399081 bytes).
 PDF statistics:
- 509 PDF objects out of 1000 (max. 8388607)
- 119 named destinations out of 1000 (max. 500000)
- 261 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 436 PDF objects out of 1000 (max. 8388607)
+ 101 named destinations out of 1000 (max. 500000)
+ 237 words of extra memory for PDF output out of 10000 (max. 10000000)
 

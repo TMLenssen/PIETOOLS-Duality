@@ -17,10 +17,12 @@
 \usepackage{tikz}
 
 \usetikzlibrary{arrows.meta}
+\input{Figures/primal_dual_controller_interconnections}
 
 \renewcommand{\qedsymbol}{$\blacksquare$}
 
 \input{shortcuts}
+\input{Figures/primal_dual_system_components}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
 T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
@@ -67,16 +69,22 @@ PDEs, Robust Control, LMIs;
 \end{IEEEkeywords}
 \section{Introduction}
 \subfile{Sections/Main/1.Introduction}
-\section{Preliminaries}
+\section{Notation \& Preliminaries}
 \subfile{Sections/Main/2.Preliminaries}
 
-\section{IQC-Based framework for robust stability and performance analysis}
+\section{IQC Theory}\label{sec:iqc-theory}
 \subfile{Sections/Main/3.Quadratic_Contraints_for_stability_and_performance_analysis}
 
-\section{IQC Duality}\label{sec:dynamic-filtering-duality}
-\subfile{Sections/Main/4. Duality under Dynamic Filtering}
-\subfile{Sections/Main/5. Dual IQC}
-\section{Application of Dual IQC}
+\section{Controller Analysis (Primal System)}\label{sec:primal-controller-analysis}
+\primalsystemcomponents
+\subfile{Sections/Main/4. Controller Analysis (Primal System)}
+
+\section{Duality}\label{sec:duality}\label{sec:dynamic-filtering-duality}
+\subfile{Sections/Main/5. Duality}
+% Queue the dual overview early enough for normal IEEE double-column placement.
+\dualsystemcomponents
+
+\section{Convex Controller Synthesis (Dual System)}\label{sec:dual-controller-synthesis}
 \subfile{Sections/Main/6. Application of Dual IQC}
 
 \section{Numerical Examples}
@@ -100,7 +108,6 @@ PDEs, Robust Control, LMIs;
 \subfile{Sections/Proofs/I. IQC.tex}
 % \subfile{Sections/I. Proofs by Section.tex}
 \subfile{Sections/Proofs/II. Duality.tex}
-\subfile{Sections/Proofs/III. Numerical Examples.tex}
 
 
 \vspace{12pt}

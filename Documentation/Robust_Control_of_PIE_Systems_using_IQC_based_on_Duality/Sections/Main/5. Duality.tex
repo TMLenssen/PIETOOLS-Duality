@@ -1,0 +1,142 @@
+In this work we assume that the generalized plant $P$ is a PIE system, that admits a state-space representation.
+This work builds on the duality results in \cite{shivaknew} which shows that the state-feedback controller results in a convex optimization problem.
+We find that this duality result can be extended to the case of dynamic filters, where we want to know the properties of the dual dynamic filter. This is particularly
+usefull when examining the effect of uncertainties on the system when performing state-feedback controller synthesis, when using IQCs. The works from
+Seiler and Venkataraman \cite{6915700,venkataraman} show that, after $J$-spectral factorization, the dual of a dynamic filter can be found using the Potapov-Ginzburg transform.
+This section extends these results to PIE systems, and shows that the dual of a PIE system with a dynamic filter can be found
+using the Potapov-Ginzburg transform, identical to the work from Venkataraman. 
+
+\subsection{Duality under Dynamical Filtering}
+We begin by restating the main theorem from \cite{shivaknew}.
+
+\input{Figures/potapov_ginzburg_commutative_diagram}
+
+\begin{theorem}[Dual $L_2$-gain
+{\cite[Thm.~9]{shivaknew}}]\label{thm:dual-l2-gain}
+For a PIE system with corresponding PI operators $P\{\mcl{T}, \mcl{A}, \mcl{B},
+\mcl{C}, \mcl{D}\}$, the following statements are equivalent.
+\begin{enumerate}
+\item For any $w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}$, and $\mbf{x}(0)=0$, $P$
+satisfies $\|p_T {z}\| \leq \|p_T {w}\|$.
+\item For any $\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_z}$, and
+$\underline{\mbf{x}}(0)=0$, $P^\top$ satisfies $\|p_T \underline{z}\| \leq
+\|p_T \underline{w}\|$.
+\end{enumerate}
+\end{theorem}
+Relating an IQC to this gain duality requires two transformations. First,
+write $\bmat{\tilde z\\\tilde w}:=\Theta\bmat{z\\w}$. A $J$-spectral
+factorization gives, for every $T\geq0$,
+\begin{equation*}
+\begin{aligned}
+&\ip{p_T\Psi\bmat{z\\w}}
+{p_T\mcl M_{\mcl V}\Psi\bmat{z\\w}}_{\mbf L_{[a,b]}}\\
+&\quad=
+\|p_T\tilde z\|_{\mbf L_{[a,b]}}^2
+-\|p_T\tilde w\|_{\mbf L_{[a,b]}}^2.
+\end{aligned}
+\end{equation*}
+Thus the IQC quadratic form becomes the difference between the filtered
+output and input signals. 
+
+\begin{definition}[$J$-Spectral Factorization and Dual Filter
+{\cite{venkataraman}}]
+\label{def:dynamic-filters}\label{def:factorization}
+Let $(\Psi,\mcl M_{\mcl V})$ be a hard IQC, let
+\begin{equation*}
+J_{\mbf n_z,\mbf n_w}:=
+\bmat{I_{\mbf n_z}&0\\0&-I_{\mbf n_w}},
+\end{equation*}
+and let $\Theta,\Theta^{-1}, \Theta_{22}, \Theta_{22}^{-1}$ be causal bounded linear operators. The pair
+$(\Theta,J_{\mbf n_z,\mbf n_w})$ is a $J$-spectral factorization of
+$(\Psi,\mcl M_{\mcl V})$ if,
+\begin{equation*}
+\begin{aligned}
+&
+\ip{p_T\Psi\bmat{z\\w}}
+{p_T\mcl M_{\mcl V}\Psi\bmat{z\\w}}_{\mbf L_{[a,b]}}
+\\[-1mm]
+&\quad=
+\ip{p_T\Theta\bmat{z\\w}}
+{p_TJ_{\mbf n_z,\mbf n_w}\Theta\bmat{z\\w}}_{\mbf L_{[a,b]}}.
+\end{aligned}
+\end{equation*}
+Define the matrix
+$\hat{J}:=\bmat{0_{\mbf n_z\times\mbf n_w}&I_{\mbf n_z}\\-I_{\mbf n_w}&0_{\mbf n_w\times\mbf n_z}}$. The dual filter associated with $\Theta$ is
+defined by
+\begin{equation*}
+\mbf{D}(\Theta)
+:=
+\left(\hat{J}^*\Theta^\top\hat{J}\right)^{-1}.
+\end{equation*}
+\end{definition}
+Give the primal inner product,
+\[\mcl{I} := \ip{p_T \Theta\bmat{Pw \\ w}}
+{p_T J_{\mbf{n}_z, \mbf{n}_w}\Theta\bmat{Pw \\ w}}_{\mbf L_{[a, b]}} \]
+and corresponding dual iqc
+\[\underline{\mcl{I}} := \ip{p_T \mbf{D}(\Theta)\bmat{P^\top\underline{w} \\ \underline{w}}}
+{p_T J_{\mbf{n}_w, \mbf{n}_z}\mbf{D}(\Theta)\bmat{P^\top\underline{w} \\ \underline{w}}}_{\mbf L_{[a, b]}} \]
+
+
+\begin{theorem}\label{thm:dual-iqc}
+    Let $P$ satisfy Definition~\ref{def:uncertain-interconnection} and let $(\Theta, J_{\mbf{n}_z,\mbf{n}_w})$ be a hard J-spectral factorization.
+    Finally, assume $(\Theta_{21}P +\Theta_{22})$ has a bounded causal inverse. 
+    Define 
+    \begin{equation*}
+        G_0 = (\Theta_{11}P +\Theta_{12})(\Theta_{21}P+\Theta_{22})^{-1}
+    \end{equation*} 
+    then the following statements are equivalent,
+    \begin{enumerate}
+        \item $\|p_T G_0 \tilde{w}\|^2_{\mbf{L}_{[a,b]}}<\|p_T \tilde{w}\|^2_{\mbf{L}_[a,b]}$ for every $\tilde{w}$ and $T\geq 0 $.
+        \item There exists some $\epsilon > 0$ such that $\mcl{I}\leq - \epsilon \|p_T w\|_{\mbf{L}_{[a,b]}}^2$ for every $w$ and $T\geq0$.
+        \item There exists some $\underline{\epsilon}>0$ such that $\underline{\mcl{I}} \leq - \underline{\epsilon}\|p_T\underline{w}\|_{\mbf{L}_{[a,b]}}^2$ for every $\underline w$ and $T\geq0$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    See Appendix~\ref{proof:dual-iqc}.
+\end{proof}
+
+\begin{theorem}\label{thm:dual-KYP}
+    Let the realization of $P$ satisfy Definition~\ref{def:uncertain-interconnection}. 
+    Let $\Delta \in \mbf{\Delta}$ and there exist \textbf{either}, a primal hard IQC $(\Psi,\mcl{M}_{\mcl V})$,
+    with $\mcl V\in\Pi_4$, or a dual hard IQC $(\underline{\Psi},\mcl{M}_{\underline{\mcl V}})$,
+    with $\underline{\mcl V}\in\Pi_4$, such that,
+    \begin{itemize}
+        \item The interconnection $P\star\Delta$ is well-posed for all $\Delta\in\mbf{\Delta}$.
+        \item The IQC in Definition~\ref{def:uncertainty-iqc} is satisfied for all $\Delta\in\mbf{\Delta}$.
+        \item The primal hard IQC $(\Psi,\mcl{M}_{\mcl V})$ has a hard $(\Theta,J_{\mbf{n}_z,\mbf{n}_w})$ factorization.
+    \end{itemize}
+    Suppose that \textbf{either} of the two statements hold for some $\mcl{P} = \mcl{P}^* \succeq 0 \in \Pi_4$.
+    \begin{itemize}
+        \item \begin{minipage}[c]{\linewidth}
+        \begin{equation*}
+            \bmat{\mcl T^*\mcl P\mcl A + (*) & \mcl T^*\mcl P\mcl B\\
+            \mcl B^*\mcl P\mcl T & \epsilon I} + \bmat{\mcl C^* \\ \mcl D^*}\mcl V\bmat{\mcl C & \mcl D} \preceq 0
+        \end{equation*}
+        \end{minipage}
+        \item \begin{minipage}[c]{\linewidth}
+        \begin{equation}\label{eq:dual-kyp}
+            \bmat{\underline{\mcl T}^*\mcl P\underline{\mcl A} + (*)& \underline{\mcl T}^*\mcl P\underline{\mcl B}\\
+            \underline{\mcl B}^*\mcl P\underline{\mcl T} & \underline{\epsilon} I} + \bmat{\underline{\mcl C}^* \\ \underline{\mcl D}^*}\underline{\mcl V}\bmat{\underline{\mcl C} & \underline{\mcl D}} \preceq 0
+        \end{equation}
+        \end{minipage}
+    \end{itemize}
+    Then for any $w,\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}$, satisfies either
+    \begin{equation*}
+        \Psi\bmat{P\\I}w := \left\{ \bmat{\mcl T \dot{\mbf{x}}(t) \\ v(t)} = \bmat{\mcl A & \mcl B\\
+        \mcl C & \mcl D}\bmat{\mbf{x}(t) \\ w(t)}\right.
+    \end{equation*}
+    or
+    \begin{equation}\label{eq:dual-system}
+        \underline{\Psi}\bmat{P^\top\\I}\underline{w} := \left\{ \bmat{\underline{\mcl T} \dot{\underline{\mbf{x}}}(t) \\ {\underline{v}}(t)} = \bmat{\underline{\mcl A} & \underline{\mcl B}\\
+        \underline{\mcl C} & \underline{\mcl D}}\bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}\right.
+    \end{equation}
+    Then the interconnection $P\star\Delta$ with $\mbf{x}(0) = 0$ is robustly performing.
+\end{theorem}
+\begin{proof}
+    See Appendix~\ref{proof:dual-KYP}
+\end{proof}
+
+\begin{remark}
+    Note that we do not require information about the dual uncertainty $\underline{\Delta}$, only the primal uncertainty $\Delta$.
+\end{remark}
+

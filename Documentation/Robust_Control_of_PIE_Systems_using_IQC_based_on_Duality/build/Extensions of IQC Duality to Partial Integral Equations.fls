@@ -263,11 +263,21 @@ INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
+INPUT .\Figures\primal_dual_controller_interconnections.tex
+INPUT .\Figures\primal_dual_controller_interconnections.tex
+INPUT .\Figures\primal_dual_controller_interconnections.tex
+INPUT .\Figures\primal_dual_controller_interconnections.tex
+INPUT Figures\primal_dual_controller_interconnections.tex
 INPUT .\shortcuts.tex
 INPUT .\shortcuts.tex
 INPUT .\shortcuts.tex
 INPUT .\shortcuts.tex
 INPUT shortcuts.tex
+INPUT .\Figures\primal_dual_system_components.tex
+INPUT .\Figures\primal_dual_system_components.tex
+INPUT .\Figures\primal_dual_system_components.tex
+INPUT .\Figures\primal_dual_system_components.tex
+INPUT Figures\primal_dual_system_components.tex
 INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux
 INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux
 INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux
@@ -356,20 +366,20 @@ INPUT .\Sections\Main\3.Quadratic_Contraints_for_stability_and_performance_analy
 INPUT Sections\Main\3.Quadratic_Contraints_for_stability_and_performance_analysis.tex
 INPUT .\Sections\Main\3.Quadratic_Contraints_for_stability_and_performance_analysis.tex
 INPUT Sections\Main\3.Quadratic_Contraints_for_stability_and_performance_analysis.tex
-INPUT .\Sections\Main\4. Duality under Dynamic Filtering.tex
-INPUT Sections\Main\4. Duality under Dynamic Filtering.tex
-INPUT .\Sections\Main\4. Duality under Dynamic Filtering.tex
-INPUT Sections\Main\4. Duality under Dynamic Filtering.tex
+INPUT .\Sections\Main\4. Controller Analysis (Primal System).tex
+INPUT Sections\Main\4. Controller Analysis (Primal System).tex
+INPUT .\Sections\Main\4. Controller Analysis (Primal System).tex
+INPUT Sections\Main\4. Controller Analysis (Primal System).tex
+INPUT .\Sections\Main\5. Duality.tex
+INPUT Sections\Main\5. Duality.tex
+INPUT .\Sections\Main\5. Duality.tex
+INPUT Sections\Main\5. Duality.tex
 INPUT .\Figures\potapov_ginzburg_commutative_diagram.tex
 INPUT .\Figures\potapov_ginzburg_commutative_diagram.tex
 INPUT Figures\potapov_ginzburg_commutative_diagram.tex
 INPUT .\Figures\potapov_ginzburg_commutative_diagram.tex
 INPUT .\Figures\potapov_ginzburg_commutative_diagram.tex
 INPUT Figures\potapov_ginzburg_commutative_diagram.tex
-INPUT .\Sections\Main\5. Dual IQC.tex
-INPUT Sections\Main\5. Dual IQC.tex
-INPUT .\Sections\Main\5. Dual IQC.tex
-INPUT Sections\Main\5. Dual IQC.tex
 INPUT .\Sections\Main\6. Application of Dual IQC.tex
 INPUT Sections\Main\6. Application of Dual IQC.tex
 INPUT .\Sections\Main\6. Application of Dual IQC.tex
@@ -411,16 +421,10 @@ INPUT .\Sections\Proofs\II. Duality.tex
 INPUT Sections\Proofs\II. Duality.tex
 INPUT .\Sections\Proofs\II. Duality.tex
 INPUT Sections\Proofs\II. Duality.tex
-INPUT .\Sections\Proofs\Duality\potapov-ginzburg-equivalence-compact.tex
-INPUT Sections\Proofs\Duality\potapov-ginzburg-equivalence-compact.tex
-INPUT .\Sections\Proofs\Duality\potapov-ginzburg-equivalence-compact.tex
-INPUT Sections\Proofs\Duality\potapov-ginzburg-equivalence-compact.tex
-INPUT .\Sections\Proofs\Duality\primal-dual-iqc-feasibility.tex
-INPUT .\Sections\Proofs\Duality\primal-dual-iqc-feasibility.tex
-INPUT Sections\Proofs\Duality\primal-dual-iqc-feasibility.tex
-INPUT .\Sections\Proofs\Duality\primal-dual-iqc-feasibility.tex
-INPUT .\Sections\Proofs\Duality\primal-dual-iqc-feasibility.tex
-INPUT Sections\Proofs\Duality\primal-dual-iqc-feasibility.tex
+INPUT .\Sections\Proofs\Duality\dual-IQC.tex
+INPUT Sections\Proofs\Duality\dual-IQC.tex
+INPUT .\Sections\Proofs\Duality\dual-IQC.tex
+INPUT Sections\Proofs\Duality\dual-IQC.tex
 INPUT .\Sections\Proofs\Duality\dual-KYP.tex
 INPUT .\Sections\Proofs\Duality\dual-KYP.tex
 INPUT Sections\Proofs\Duality\dual-KYP.tex
@@ -431,10 +435,6 @@ INPUT .\Sections\Proofs\Duality\dynamic_state_feedback.tex
 INPUT Sections\Proofs\Duality\dynamic_state_feedback.tex
 INPUT .\Sections\Proofs\Duality\dynamic_state_feedback.tex
 INPUT Sections\Proofs\Duality\dynamic_state_feedback.tex
-INPUT .\Sections\Proofs\III. Numerical Examples.tex
-INPUT Sections\Proofs\III. Numerical Examples.tex
-INPUT .\Sections\Proofs\III. Numerical Examples.tex
-INPUT Sections\Proofs\III. Numerical Examples.tex
 INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux
 INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out
 INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out
