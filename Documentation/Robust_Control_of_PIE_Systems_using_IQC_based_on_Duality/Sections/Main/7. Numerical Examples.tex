@@ -1,174 +1,28 @@
-\subsection{Spatial Lifting of IQC}
-We denote the extended $L_2$ space as $L_{2,e}$, let $\mcl{F}$ denote the set of hard factorizations. We say the causal bounded
-uncertainty $\Delta : L_{2,e} \to L_{2,e}$ satisfies the hard iqc 
-\begin{equation}\label{eqn:temporal-IQC}
-    \ip{p_T\Psi\bmat{z\\ \Delta z}}{p_T V\Psi\bmat{z\\\Delta z}}_{L_2}\geq 0
-\end{equation}
-for all $T\geq0$, $z\in L_{2,e}$, and hard factorizations $(\Psi, V) \in \mcl{F}$, with $\Psi:L^n_{2,e}\to L^{\tilde{n}}_{2,e}$ and $V\in\R^{\tilde{n}\times \tilde{n}}$.
-Now we extend $\Delta$ pointwise over the spatial domain $[a,b]$. Denote the signal space
-$L_{\mbf{H},e} = L_2([0,T)\times [a,b])$ for any  signal $u\in L_{\mbf{H},e}$
-\begin{equation}
-    \ip{u}{u}_{L_\mbf{H,e}} = \int_0^T \int_a^b |u(t,s)|^2 ds\, dt < \infty, \quad \forall T \geq 0
-\end{equation}
-Define the lifted uncertainty operation $(\hat\Delta v)(\cdot,s) = \Delta v(\cdot,s)$, i.e. $\Delta$ applied at almost every $s\in[a,b]$,
-the lifted hard factorization $(\hat{\Psi}, \hat{V})$, with $\hat{\Psi}:L_{\mbf{H},e} \to L_{\mbf{H},e}$ and
-$\hat{V}:L_2[a,b] \to L_2[a,b]$, such that $(\hat{\Psi}(\cdot,s), \hat{V}(\cdot,s))\in\mcl{F}$ for all $s\in[a,b]$.
+% !TEX root = ../../Extensions of IQC Duality to Partial Integral Equations.tex
+We will consider examples from \cite{shivaknew}
+but add uncertainty. Moreover, an additional example is considered namely
+the problem of oscillations in the Subthalamic Nucleus.
 
-\begin{corollary}
-    If~\eqref{eqn:temporal-IQC} holds for all $T >0$ and $z\in L_{2,e}[0,\infty)$, then
-\begin{equation}\label{eqn:spatial-IQC}
-    \ip{p_T \hat{\Psi}\bmat{u\\ \hat{\Delta} u}}{p_T \hat{V} \hat{\Psi}\bmat{u \\ \hat{\Delta}u}}_{L_\mbf{H}} \geq 0
-\end{equation}
-    for all $u\in L_{\mbf{H},e}$ and $T\geq 0$
-\end{corollary}
-\begin{proof}
-    Assume~\eqref{eqn:temporal-IQC} is satisfied. We need to show that~\eqref{eqn:spatial-IQC} is also satisfied.
-    First examine that 
-    \begin{equation*}
-        \ip{p_T\hat{\Psi}(s)\bmat{u(s)\\\Delta u(s)}}{p_T\hat{V}(s)\hat{\Psi}(s)\bmat{u(s)\\{\Delta}u(s)}}_{L_2} \geq 0, \quad \forall s\in[a,b]
-    \end{equation*}
-    Thus by integrating over $s$ we find
-    \begin{align*}
-        &\int_a^b \ip{p_T\hat{\Psi}(s)\bmat{u(s)\\\Delta u(s)}}{p_T\hat{V}(s)\hat{\Psi}(s)\bmat{u(s)\\{\Delta}u(s)}}_{L_2} ds\\
-        &= \ip{p_T \hat{\Psi}\bmat{u\\ \hat{\Delta} u}}{p_T \hat{V} \hat{\Psi}\bmat{u \\ \hat{\Delta}u}}_{L_\mbf{H}} \geq 0
-    \end{align*}
-\end{proof}
-
-
-Consider the nonlinear unstable pendulum system with dynamics
-\begin{equation}\label{eq:pendulum} 
-    ml^2\ddot{\theta}(t) + b\dot{\theta}(t) - mgl\sin(\theta(t)) = u(t),
-\end{equation}
-where $m,l,b,g,\theta,u$, denote the mass, length, damping coefficient, gravitational coefficient, angular position, and control input
-of the pendulum, respectively. After substituting $\phi(\theta) = \theta - \sin(\theta)$, $x_1 = \theta$, $x_2 = \dot{\theta}$, 
-$z_\Delta = \theta$, $w_\Delta = \phi(\theta)$ we obtain
-\begin{equation}\label{eq:pendulum-gp}
-    \bmat{\dot{x}_1(t) \\ \dot{x}_2(t) \\ z_\Delta(t) \\ z(t)}
-    =
-    \bmat{0 & 1 & 0 & 0 & 0\\
-    \frac{g}{l} & -\frac{b}{ml^2} & -\frac{g}{l} & \frac{1}{ml^2} & \frac{1}{ml^2}\\
-    1 & 0 & 0 & 0 & 0\\
-    0 & 0 & 0 & 0 & 1}
-    \bmat{x_1(t) \\ x_2(t) \\ w_\Delta(t) \\ w(t) \\ u(t)}.
-\end{equation}
-For $\theta\neq0$, let
-$r(\theta):=\phi(\theta)/\theta=1-\sin(\theta)/\theta$, and define
-$r(0):=0$ by continuity. The global bounds
-\begin{equation*}
-    -0.217234\leq\frac{\sin(\theta)}{\theta}\leq1,
-    \qquad \theta\neq0,
-\end{equation*}
-imply that
-\begin{equation*}
-    0\leq r(\theta)\leq1.217234 = \beta,\qquad \theta\in\R.
-\end{equation*}
-Hence, $\phi$ is globally sector bounded in $[\alpha,\beta]=[0,1.217234]$ and
-satisfies
-\begin{equation*}
-    \phi(\theta)\bigl(1.217234\theta-\phi(\theta)\bigr)\geq0,
-    \qquad \theta\in\R.
-\end{equation*}
-Moreover, $\phi(\theta)$ is also incrementally bounded or slope restricted such that 
-\begin{equation*}
-    0 \leq \frac{\phi(x_1) - \phi(x_2)}{x_1 - x_2} \leq 2 = \hat{\beta}, \quad \forall x_1,\,x_2\in\R
-\end{equation*}
-Since $\phi'(\theta) = 1 - \cos(\theta)$.
-
-\subsection{Dynamic Sector-Bounded IQC}
-In case of dynamic uncertainties for which we can find a sector bound we use the following IQC
-\begin{equation*}
-    \Pi_{\mathrm{sec}} = \ip{p_T \bmat{z_\Delta \\ \Delta z_\Delta}}{p_T\bmat{\beta & -1 \\ 0 & 1}^*\bmat{0 & 1 \\ 1 & 0}\bmat{\beta & -1 \\ 0 & 1}\bmat{z_\Delta \\ \Delta z_\Delta}} \geq 0
-\end{equation*}
-\subsection{Static Sector-Bounded IQC}
-For static sector bounded IQC we can use the Popov IQC
-\begin{equation}
-    \Pi_{\mathrm{Popov}} = \ip{\bmat{z_\Delta\\ \Delta z_\Delta}}{\bmat{0 & -j\omega \\ j\omega & 0}\bmat{z_\Delta \\ \Delta z_\Delta}} \geq 0
-\end{equation}
-In order to make this multiplier PN we need to have two conditions
-\begin{itemize}
-    \item $\Pi_{\mathrm{Popov}}\in\mathbb{RL}_\infty$ is solved by introducing a new channel $\hat{z}_\Delta = (s+1)z_\Delta$ and $\hat{\Delta} = \Delta \circ \frac{1}{s+1}$.
-    \item $\Pi_{\mathrm{Popov},11} > 0$ and $\Pi_{\mathrm{Popov},22} < 0$ such that a hard factorization exists.
-\end{itemize}
-To obtain a strict PN multiplier after the loop transformation, we add a hard
-norm IQC directly on the loop-shifted channels. The validity of this IQC is
-established below. Using the assumption that $\theta(0)=0$, the loop-shifted
-plant is
-\begin{equation}\label{eq:pendulum-gp}
-    \bmat{\dot{x}_1(t) \\ \dot{x}_2(t) \\ \hat{z}_\Delta(t)}
-    =
-    \bmat{0 & 1 & 0 & 0 & 0\\
-    \frac{g}{l} & -\frac{b}{ml^2} & -\frac{g}{l} & \frac{1}{ml^2} & \frac{1}{ml^2}\\
-    1 & 1 & 0 & 0 & 0\\
-    0 & 0 & 0 & 0 & 1}
-    \bmat{x_1(t) \\ x_2(t) \\ w_\Delta(t) \\ u(t)}.
-\end{equation}
-Set $w_\Delta:=\hat\Delta\hat z_\Delta=\Delta z_\Delta$. Since
-$z_\Delta=(s+1)^{-1}\hat z_\Delta$, we have
-$\hat z_\Delta=z_\Delta+\dot z_\Delta$.
-
-\paragraph{A hard norm IQC for the loop-shifted uncertainty.}
-The sector condition implies
-$|w_\Delta(t)|\leq\beta|z_\Delta(t)|$ for almost every $t\geq0$.
-For every $T\geq0$, integration by parts gives
+\begin{example}[Reaction-Diffusion Equation]
+Consider boundary control of an unstable uncertain reaction-diffusion equation:
 \begin{align*}
-\|p_T\hat z_\Delta\|_{L_2}^2
-&=\int_0^T|z_\Delta(t)+\dot z_\Delta(t)|^2\,dt\\
-&=\|p_Tz_\Delta\|_{L_2}^2
-  +\|p_T\dot z_\Delta\|_{L_2}^2
-  +|z_\Delta(T)|^2-|z_\Delta(0)|^2.
+    &\dot{\mbf{v}}(t,s) = \partial_s^2\mbf{v}(t,s) + 5\mbf{v}(t,s) +  w_{\Delta,1}(t,s) + w_{\Delta,2}(t,s) + \frac{1}{10}w(t), \\
+    &\mbf{v}(t,0) =0, \quad \partial_s\mbf{v}(t,1) = x(t), \quad \dot{x}(t) = u(t),\\
+    &z_\Delta(t,s) = \bmat{\mbf{v}(t,s)\\\partial_s^2\mbf{v}(t,s)}, \quad z(t) = \bmat{x(t) \\ \int_0^1 \mbf{v}(t,s)ds}, 
 \end{align*}
-Using $z_\Delta(0)=0$ and the sector-induced norm bound, we obtain
+The PIE realization of P has state $\mbf{x}(t) = \partial_s^2\mbf{v}(t)$ and PI operators,
 \begin{align*}
-&\|p_T\hat z_\Delta\|_{L_2}^2
--\frac{1}{\beta^2}\|p_Tw_\Delta\|_{L_2}^2\\
-&\quad=
-\left(\|p_Tz_\Delta\|_{L_2}^2
--\frac{1}{\beta^2}\|p_Tw_\Delta\|_{L_2}^2\right)
-+\|p_T\dot z_\Delta\|_{L_2}^2+|z_\Delta(T)|^2
-\geq0.
+    &\mcl{T}_\mathrm{P} = \PIop{1}{0}{s}{\{0,-\theta,-s\}}, \, \mcl{A}_\mathrm{P}=\PIop{0}{0}{5s}{\{1,-5\theta,-5s\}}\\
+    &\mcl B_\mathrm{P} = \PIop{0}{\bmat{0&0}}{0.1}{\left\{\bmat{\frac45&\frac45},\bmat{0&0},\bmat{0&0}\right\}}\\
+    &\mcl B_\mathrm{u} = \PIop{1}{\emptyset}{0}{\{\emptyset\}}\\
+    &\mcl{C}_\mathrm{P}=\PIop{\bmat{1\\\frac12}}{\bmat{0\\\frac12s^2-s}}{\bmat{0\\s}}{\left\{\bmat{0\\1}, \bmat{0\\-\theta}, \bmat{0\\-s}\right\}}\\
 \end{align*}
-Consequently, $\hat\Delta$ satisfies the hard IQC
-\begin{equation}\label{eq:loop-shifted-norm-iqc}
-\ip{p_T\bmat{\hat z_\Delta\\\hat\Delta\hat z_\Delta}}
-{p_T\Pi_\delta\bmat{\hat z_\Delta\\\hat\Delta\hat z_\Delta}}_{L_2}
-\geq0,
-\qquad
-\Pi_\delta:=\bmat{I&0\\0&-\beta^{-2}I},
-\end{equation}
-for every $T\geq0$. This is an $L_2$-gain IQC; it does not assert that
-$\hat\Delta$ has the same pointwise sector bound as $\Delta$.
+\end{example}
 
-Define
-\begin{equation*}
-L(j\omega):=\bmat{(j\omega+1)^{-1}&0\\0&1},
-\qquad
-\hat v_\Delta:=\bmat{\hat z_\Delta\\w_\Delta}.
-\end{equation*}
-The hard multiplier $\epsilon \Pi_\delta$ may now be added after the loop
-transformation. Define
-\begin{align*}
-\Pi_1(j\omega)
-&:=L(j\omega)^*\bmat{0&\beta\\\beta&-2}L(j\omega)
-+\epsilon \Pi_\delta,\\
-\Pi_2(j\omega)
-&:=L(j\omega)^*\bmat{0&-j\omega\\j\omega&0}L(j\omega)
-+\epsilon \Pi_\delta.
-\end{align*}
+\begin{example}[Wave--equation]
 
-\subsection{Slope restricted IQC}
-Conditions for Zames-Falb multiplier are $\Delta$ is a monotone increasing uncertainty, let $M = I - H$
-with $\|H\|_1 \leq 1$, and $h(t) \geq 0$ for non-odd functions.
-\begin{equation*}
-\Pi_3(j\omega)
-:=L(j\omega)^*
-\bmat{
-0&\hat\beta M(j\omega)^*\\
-\hat\beta M(j\omega)&-(M(j\omega)+M(j\omega)^*)
-}
-L(j\omega)+\epsilon \Pi_\delta.
-\end{equation*}
-Thus, $\Pi_1$, $\Pi_2$, and $\Pi_3$ all have the uniform upper-left block
-$\epsilon I$. Their lower-right blocks are strictly negative provided
-$M(j\omega)+M(j\omega)^*\succeq0$ for every $\omega$.
-A common realization is $M = I - \prod_{i=1}^{n}\frac{k_i}{s+a_i}$ with $a_i>0$, ($k_i>0 \implies h(t)>0$), 
-and $\prod_{i=1}^{n}\frac{a_i}{k_i}\leq1$ \cite{turner2022zamesfalbmultipliersdontpanic}. 
+\end{example}
+
+\begin{example}[Euler--Bernoulli]
+
+\end{example}

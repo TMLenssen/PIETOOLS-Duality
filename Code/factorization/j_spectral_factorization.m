@@ -2,6 +2,8 @@ clearvars; close all; clc; yalmip('clear');
 addpath(genpath("C:\Program Files\Mosek\11.0\toolbox\r2019b"));
 s = tf('s');
 
+echo off
+
 %% IQCs
 beta = 1.217234; hatbeta = 2; epsIQC = 1e-2;
 
@@ -26,7 +28,9 @@ D(3,1) = PI(2,1);
 D(3,3) = PI(2,2);
 D(4,4) = -1;
 
-[ThP,ThD] = jfactor(minreal(ss(D)),2,2);
+nzJ = 2;
+nwJ = 2;
+[ThP,ThD] = jfactor(minreal(ss(D)),nzJ,nwJ);
 
 
 PsiP = ThP;
@@ -145,7 +149,7 @@ epsilonP = sdpvar(1);
 VP = [ muP, 0,       0,          0;
           0,       1,       0,          0;
           0,       0,      -muP,     0;
-          0,       0,       0,         -rhoP ];
+          0,       0,       0,         -rhoDval ];
 
 LP_eps = ...
     [A0'*PP + PP*A0, PP*B0;
@@ -166,7 +170,56 @@ end
 
 epsilonPval = epsFeas;%value(epsilonP);
 muPval = value(muP);
-rhoPval = value(rhoP);
+rhoPval = rhoDval;%value(rhoP);
+
+%% =========================================================
+% INDUCED L2 GAINS OF G_0 AND G_0^T
+% ==========================================================
+
+% Construct G_0 from the primal analysis solution. The primal LMI uses
+%   VP = diag(muP,1,-muP,-rhoP) = RP'*Jp*RP,
+% so the primal J-spectral factor is ThetaP = RP*PsiP.
+% (Here rhoP is the squared performance gain coefficient, so sqrt(rhoP)
+% appears in the spectral factor.)
+if muPval <= 0 || rhoPval <= 0 || muDval <= 0 || rhoDval <= 0
+    error('The primal and dual multiplier parameters must be positive.');
+end
+
+RP = diag([sqrt(muPval), 1, ...
+           sqrt(muPval), sqrt(rhoPval)]);
+
+% GP maps w -> PsiP*[P_K; I]*w. Premultiplication by RP gives the
+% optimized primal factor. Thus
+% G_0 = (Theta_11*P_K + Theta_12) ...
+%       *(Theta_21*P_K + Theta_22)^(-1).
+GPscaled = RP*GP;
+G0 = normalized_graph_map(GPscaled,nzJ,nwJ);
+
+% Construct G_0^T independently from the dual synthesis solution. The dual
+% LMI uses VD = diag(muD,1,-muD,-rhoD) = RD'*Jd*RD, so its optimized
+% J-spectral factor is ThetaD = RD*PsiD.
+RD = diag([sqrt(muDval), 1, ...
+           sqrt(muDval), sqrt(rhoDval)]);
+
+% Close the dual filtered graph with the same K and construct G_0^T.
+% This maps w_bar -> [z_tilde_bar; w_tilde_bar]
+%                 = D(Theta)*[P_K^T; I]*w_bar.
+GDcl = ss(Ad + K'*Cy, ...
+          Bd + K'*Dzu', ...
+          Cd, Dd);
+GDclScaled = RD*GDcl;
+G0T = normalized_graph_map(GDclScaled,nwJ,nzJ);
+
+if ~isstable(G0) || ~isstable(G0T)
+    error('G_0 or G_0^T is unstable; its induced L2 gain is infinite.');
+end
+
+[gainG0,peakFreqG0]   = norm(G0,inf);
+[gainG0T,peakFreqG0T] = norm(G0T,inf);
+
+% These factors use independently optimized primal and dual scalings, so
+% G0T need not equal G0.' as a transfer matrix.
+gainRelativeError = abs(gainG0-gainG0T)/max([1,gainG0,gainG0T]);
 %% =========================================================
 % RESULTS
 % ==========================================================
@@ -185,6 +238,19 @@ fprintf('  mu_D      = %.10e\n',muDval);
 fprintf('\nPrimal:\n');
 fprintf('  mu_P      = %.10e\n',muPval);
 fprintf('  rho_P     = %.10e\n',rhoPval);
+
+fprintf('\nNormalized filtered-graph gains:\n');
+fprintf('  primal spectral-factor mu_P  = %.10e\n',muPval);
+fprintf('  primal spectral-factor rho_P = %.10e (sqrt(rho_P) = %.10e)\n', ...
+    rhoPval,sqrt(rhoPval));
+fprintf('  dual spectral-factor mu_D    = %.10e\n',muDval);
+fprintf('  dual spectral-factor rho_D   = %.10e (sqrt(rho_D) = %.10e)\n', ...
+    rhoDval,sqrt(rhoDval));
+fprintf('  ||G_0||_inf       = %.10e  (peak at %.6g rad/s)\n', ...
+    gainG0,peakFreqG0);
+fprintf('  ||G_0^T||_inf     = %.10e  (peak at %.6g rad/s)\n', ...
+    gainG0T,peakFreqG0T);
+fprintf('  relative gain gap = %.3e\n',gainRelativeError);
 
 LD_eps_val = value(LD_rho);
 LP_eps_val = value(LP_eps);
@@ -291,4 +357,40 @@ dxpsi = Af*xpsi + Bz*zhat + Bw*w;
 dx = [dxp;
       dxpsi];
 
+end
+
+function G = normalized_graph_map(filteredGraph,nz,nw)
+%NORMALIZED_GRAPH_MAP Convert [N; Gamma] into N*Gamma^(-1).
+% The filtered graph must map an nw-dimensional original input to nz+nw
+% outputs ordered as [z_tilde; w_tilde]. The inverse realization below is
+% valid when Gamma has nonsingular feedthrough, as required by bounded
+% causal invertibility for a proper finite-dimensional LTI system.
+
+tol = 1e-10;
+
+assert(size(filteredGraph,1) == nz+nw, ...
+    'Filtered graph outputs must be ordered as [z_tilde; w_tilde].');
+assert(size(filteredGraph,2) == nw, ...
+    'The lower filtered-graph block must be square.');
+
+N = filteredGraph(1:nz,:);
+Gamma = filteredGraph(nz+(1:nw),:);
+
+[Ag,Bg,Cg,Dg] = ssdata(Gamma);
+if rcond(Dg) <= tol
+    error(['Gamma has singular or ill-conditioned feedthrough; ', ...
+           'a proper bounded causal inverse cannot be formed.']);
+end
+
+DgInv = Dg\eye(nw);
+GammaInv = ss(Ag-Bg*DgInv*Cg, ...
+              Bg*DgInv, ...
+              -DgInv*Cg, ...
+              DgInv);
+
+if ~isstable(GammaInv)
+    error('Gamma does not have a stable causal inverse.');
+end
+
+G = minreal(N*GammaInv,1e-8);
 end

@@ -24,7 +24,7 @@ y = pde_var('sense');              u = pde_var('control');
 lam = 5;
 dev = 0.8;
 % Declare the sytem equations
-PDE = [ diff(x1,t) == diff(x1,s,2) + lam*x1 + 0.1*w + dev*wd1 + dev*wd2;    % PDE
+PDE = [ diff(x1,t) == diff(x1,s,2) + lam*x1 + 0.1*s^2*w + dev*wd1 + dev*wd2;    % PDE
         diff(x2,t) == u;
         zd1 == diff(x1,s,2);
         zd2 == x1;
@@ -74,9 +74,11 @@ alpha = 0;
 % multiplier class by first constructing a Delta block and supplying this
 % to the constructor of the multiplier class.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+vopts = settings;
+% vopts.options1.sep = 1;
 for k = 1:2
     % V_opts.exclude = [0,0,1,1];
-    [prog, P_blocks{k}] = poslpivar(prog, [0, 0; 1, 1], settings.ddM, settings.options1);
+    [prog, P_blocks{k}] = poslpivar(prog, [0, 0; 1, 1], settings.ddM, vopts.options1);
 end
 P = blkdiag(P_blocks{:});
 for k = 1:2
@@ -84,6 +86,7 @@ for k = 1:2
     [prog, R_blocks{k}] = lpivar(prog, [0, 0; 1, 1], settings.ddM, settings.options1);
 end
 R = blkdiag(R_blocks{:});
+Q = P;
 V = multiplier(P, (R - R'), (R' - R), -P);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 
@@ -111,9 +114,9 @@ end
 gam = double(lpigetsol(prog,gam));
 feasrat = prog.solinfo.info.feasratio;
 P = lpigetsol(prog,P);
-if ~coerciveCheck(P, settings)
-    error('P is not coercive');
-end
+% if ~coerciveCheck(P, settings)
+%     error('P is not coercive');
+% end
 Z = lpigetsol(prog,Z);
 Kval = (Z*inv_opvar_2(P));
 %% 

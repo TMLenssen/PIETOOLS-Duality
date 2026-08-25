@@ -1,3 +1,4 @@
+% !TEX root = ../../Extensions of IQC Duality to Partial Integral Equations.tex
 In this work we assume that the generalized plant $P$ is a PIE system, that admits a state-space representation.
 This work builds on the duality results in \cite{shivaknew} which shows that the state-feedback controller results in a convex optimization problem.
 We find that this duality result can be extended to the case of dynamic filters, where we want to know the properties of the dual dynamic filter. This is particularly
@@ -6,7 +7,7 @@ Seiler and Venkataraman \cite{6915700,venkataraman} show that, after $J$-spectra
 This section extends these results to PIE systems, and shows that the dual of a PIE system with a dynamic filter can be found
 using the Potapov-Ginzburg transform, identical to the work from Venkataraman. 
 
-\subsection{Duality under Dynamical Filtering}
+\subsection{Duality under Dynamic Filtering}
 We begin by restating the main theorem from \cite{shivaknew}.
 
 \input{Figures/potapov_ginzburg_commutative_diagram}
@@ -14,13 +15,13 @@ We begin by restating the main theorem from \cite{shivaknew}.
 \begin{theorem}[Dual $L_2$-gain
 {\cite[Thm.~9]{shivaknew}}]\label{thm:dual-l2-gain}
 For a PIE system with corresponding PI operators $P\{\mcl{T}, \mcl{A}, \mcl{B},
-\mcl{C}, \mcl{D}\}$, the following statements are equivalent.
+\mcl{C}, \mcl{D}\}$, and some $\gamma > 0$, the following statements are equivalent.
 \begin{enumerate}
 \item For any $w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}$, and $\mbf{x}(0)=0$, $P$
-satisfies $\|p_T {z}\| \leq \|p_T {w}\|$.
+satisfies $\|p_T {z}\|_{\mbf{L}} \leq \gamma \|p_T {w}\|_{\mbf{L}}$.
 \item For any $\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_z}$, and
-$\underline{\mbf{x}}(0)=0$, $P^\top$ satisfies $\|p_T \underline{z}\| \leq
-\|p_T \underline{w}\|$.
+$\underline{\mbf{x}}(0)=0$, $P^\top$ satisfies $\|p_T \underline{z}\|_{\mbf{L}} \leq \gamma
+\|p_T \underline{w}\|_{\mbf{L}}$.
 \end{enumerate}
 \end{theorem}
 Relating an IQC to this gain duality requires two transformations. First,
@@ -75,8 +76,7 @@ Give the primal inner product,
 and corresponding dual iqc
 \[\underline{\mcl{I}} := \ip{p_T \mbf{D}(\Theta)\bmat{P^\top\underline{w} \\ \underline{w}}}
 {p_T J_{\mbf{n}_w, \mbf{n}_z}\mbf{D}(\Theta)\bmat{P^\top\underline{w} \\ \underline{w}}}_{\mbf L_{[a, b]}} \]
-
-
+Although the following theorem can be derived using state-space realizations, the proof is cumbersome; for conciseness and clarity, we instead use an operator-based derivation.
 \begin{theorem}\label{thm:dual-iqc}
     Let $P$ satisfy Definition~\ref{def:uncertain-interconnection} and let $(\Theta, J_{\mbf{n}_z,\mbf{n}_w})$ be a hard J-spectral factorization.
     Finally, assume $(\Theta_{21}P +\Theta_{22})$ has a bounded causal inverse. 
@@ -86,7 +86,7 @@ and corresponding dual iqc
     \end{equation*} 
     then the following statements are equivalent,
     \begin{enumerate}
-        \item $\|p_T G_0 \tilde{w}\|^2_{\mbf{L}_{[a,b]}}<\|p_T \tilde{w}\|^2_{\mbf{L}_[a,b]}$ for every $\tilde{w}$ and $T\geq 0 $.
+        \item There exists a $0<\rho < 1$ such that $\|p_T G_0 \tilde{w}\|_{\mbf{L}_{[a,b]}}\leq \rho \|p_T \tilde{w}\|_{\mbf{L}_{[a,b]}}$ for every $\tilde{w}$ and $T\geq 0 $.
         \item There exists some $\epsilon > 0$ such that $\mcl{I}\leq - \epsilon \|p_T w\|_{\mbf{L}_{[a,b]}}^2$ for every $w$ and $T\geq0$.
         \item There exists some $\underline{\epsilon}>0$ such that $\underline{\mcl{I}} \leq - \underline{\epsilon}\|p_T\underline{w}\|_{\mbf{L}_{[a,b]}}^2$ for every $\underline w$ and $T\geq0$.
     \end{enumerate}
@@ -94,6 +94,16 @@ and corresponding dual iqc
 \begin{proof}
     See Appendix~\ref{proof:dual-iqc}.
 \end{proof}
+
+\begin{remark}[On the invertibility assumption]
+Bounded causal invertibility of $\Gamma:=\Theta_{21}P+\Theta_{22}$ can be
+certified using the bounded-real lemma. First verify that the feedthrough of
+$\Gamma$ has a bounded causal inverse and use it to construct a PIE
+realization of $\Gamma^{-1}$. Feasibility of the bounded-real KYP inequality
+for this realization, with a coercive Lyapunov operator and a strict decay
+margin, certifies exponential internal stability and finite $L_2$-gain of the
+causal inverse.
+\end{remark}
 
 \begin{theorem}\label{thm:dual-KYP}
     Let the realization of $P$ satisfy Definition~\ref{def:uncertain-interconnection}. 

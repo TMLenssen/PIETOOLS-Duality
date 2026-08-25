@@ -1,35 +1,39 @@
+% !TEX root = ../../../Extensions of IQC Duality to Partial Integral Equations.tex
 \subsection{Proof of Theorem~\ref{thm:dual-iqc}}\label{proof:dual-iqc}
-Here $\|\cdot\|=\|\cdot\|_{\mbf L_{[a,b]}}$ denotes the signal norm and
-$\|\cdot\|_{\mathrm{op}} = \|\cdot\|_{\mcl{L}(\mbf{L}_{[a,b]})}$ the induced operator norm. Also define $\Gamma:=\Theta_{21}P+\Theta_{22}$.
-
-$1)\implies2)$ Assume $\|p_T G_0\|^2_{\mathrm{op}}<1$. We need to show that
-$\mcl I\leq-\epsilon\|p_Tw\|^2$ for some $\epsilon>0$. First since $\Gamma$ is causally boundedly invertible,
+$1)\implies2)$ Assume there exists a $0<\rho<1$ such that
+$\|p_T G_0\tilde w\|_{\mbf{L}}\leq\rho\|p_T \tilde w\|_{\mbf{L}}$
+for all $\tilde{w}\in \mbf{L}$ and $T\geq0$. We need to show that
+$\mcl I\leq-\epsilon\|p_Tw\|_{\mbf{L}}^2$ for some $\epsilon>0$. First since $\Gamma$ is causally boundedly invertible,
 $\Theta\bmat{P\\I}w=\bmat{G_0\\I}\Gamma w$, and hence
-$\mcl I=\|p_TG_0\Gamma w\|^2-\|p_T\Gamma w\|^2$. Choose $\rho$ such that
-$\|p_TG_0\|^2_{\mathrm{op}}\leq\rho<1$. By causality of $G_0$,
+$\mcl I=\|p_TG_0\Gamma  w\|_{\mbf{L}}^2-\|p_T\Gamma  w\|_\mbf{L}^2$. By statement 1 and causality of $G_0$,
 \[
-    \mcl I\leq-(1-\rho^2)\|p_T\Gamma w\|^2
-    \leq-\frac{1-\rho^2}{\|\Gamma^{-1}\|_{\mathrm{op}}^2}\|p_Tw\|^2,
+    \mcl I\leq-(1-\rho^2)\|p_T\Gamma w\|_{\mbf{L}}^2
+    \leq-\frac{1-\rho^2}{\|\Gamma^{-1}\|_{\mcl{L}(\mbf{L})}^2}\|p_Tw\|_{\mbf{L}}^2,
 \]
 where the second inequality follows from
-$\|p_Tw\|=\|p_T\Gamma^{-1}p_T\Gamma w\|
-\leq\|\Gamma^{-1}\|_{\mathrm{op}}\|p_T\Gamma w\|$. Thus, $\epsilon=\frac{(1-\rho^2)}{\|\Gamma^{-1}\|_{\mathrm{op}}^2}>0$.
+$\|p_Tw\|_{\mbf{L}}=\|p_T\Gamma^{-1}p_T\Gamma w\|_{\mbf{L}}
+\leq\|\Gamma^{-1}\|_{\mcl{L}(\mbf{L})}\|p_T\Gamma w\|_{\mbf{L}}$. Thus, $\epsilon=\frac{(1-\rho^2)}{\|\Gamma^{-1}\|_{\mcl{L}(\mbf{L})}^2}>0$.
 
-$2)\implies1)$ Assume that $\mcl I\leq-\epsilon\|p_Tw\|^2$ for some
-$\epsilon>0$, every $w$, and every $T\geq0$. We need to show that $\|p_T G_0\|_{\mathrm{op}}^2<1$. For arbitrary $\tilde w$, 
+$2)\implies1)$ Assume that there exists a $\epsilon > 0$ such that $\mcl I\leq-\epsilon\|p_Tw\|_{\mbf{L}}^2$ for every $w$, and every $T\geq0$. 
+We need to establish there exists a $0<\rho<1$ such that
+$\|p_T G_0\tilde w\|_{\mbf{L}}\leq\rho\|p_T \tilde w\|_{\mbf{L}}$
+for all $\tilde{w}\in \mbf{L}$ and $T\geq0$. For arbitrary $\tilde w$, 
 set $w=\Gamma^{-1}\tilde w$. Then
 \[
-    \|p_TG_0\tilde w\|^2-\|p_T\tilde w\|^2
-    \leq-\epsilon\|p_T\Gamma^{-1}\tilde w\|^2.
+    \|p_TG_0\tilde w\|_{\mbf{L}}^2-\|p_T\tilde w\|_{\mbf{L}}^2
+    \leq-\epsilon\|p_T\Gamma^{-1}\tilde w\|_{\mbf{L}}^2.
 \]
 Since $\Gamma$ is bounded and causal,
-$\|p_T\tilde w\|\leq
-\|\Gamma\|_{\mathrm{op}}\|p_T\Gamma^{-1}\tilde w\|$. Therefore,
+$\|p_T\tilde w\|_{\mbf{L}}\leq
+\|\Gamma\|_{\mcl{L}(\mbf{L})}\|p_T\Gamma^{-1}\tilde w\|_{\mbf{L}}$. Therefore,
 \[
-    \frac{\|p_TG_0\tilde w\|^2}{\|p_T\tilde w\|^2}
-    \leq\left(1-\frac{\epsilon}{\|\Gamma\|_{\mathrm{op}}^2}\right)<1
+    \|p_TG_0\tilde w\|_{\mbf{L}}^2
+    \leq\left(1-\frac{\epsilon}{\|\Gamma\|_{\mcl{L}(\mbf{L})}^2}\right)
+    \|p_T\tilde w\|_{\mbf{L}}^2.
 \]
-for every $\tilde w$ and $T\geq0$. Therefore $\|p_TG_0\|_{\mathrm{op}}^2<1$.
+Choose $0<\rho<1$ such that $1-\epsilon/\|\Gamma\|^2\leq\rho^2<1$, 
+then $\|p_TG_0\tilde w\|_{\mbf{L}}\leq\rho\|p_T\tilde w\|_{\mbf{L}}$
+for every $\tilde w$ and $T\geq0$.
 
 $1)\iff3)$ We show that there exists a causally boundedly invertible
 $\underline\Gamma$ such that
@@ -97,7 +101,7 @@ where the second identity is the push-through rule, yields
         \Gamma^{-1}
       \right]^\top.
 \end{align*}
-We now shows that the first part reduces to
+We now show that the first part reduces to
 \begin{align*}
     SP+\Theta_{12}\Theta_{22}^{-1}\Gamma
     &=\Theta_{11}P
@@ -117,10 +121,44 @@ and hence
     \mbf D(\Theta)\bmat{P^\top\\I}\underline w
     =\bmat{G_0^\top\\I}\underline\Gamma\underline w.
 \]
-By the dual $L_2$-gain result in Theorem~\ref{thm:dual-l2-gain},
-$\|p_TG_0^\top\|^2_{\mathrm{op}}=\|p_TG_0\|^2_{\mathrm{op}}$. Since
+By Theorem~\ref{thm:dual-l2-gain}, $G_0$ and $G_0^\top$ have the
+same induced $L_2$-gain. Hence, for any $\rho>0$,
+\[
+\begin{aligned}
+&\|p_TG_0\tilde w\|_{\mbf L}
+ \leq\rho\|p_T\tilde w\|_{\mbf L}
+ \quad\text{for all $\tilde w$ and $T\geq0$}
+&\qquad\Longleftrightarrow\qquad
+\|p_TG_0^\top\underline{\tilde w}\|_{\mbf L}
+ \leq\rho\|p_T\underline{\tilde w}\|_{\mbf L}
+ \quad\text{for all $\underline{\tilde w}$ and $T\geq0$}.
+\end{aligned}
+\] Since
 $\underline\Gamma$ is causally boundedly invertible, the same arguments used
 for $1)\implies2)$ and $2)\implies1)$, with
 $G_0$, $\Gamma$, $w$, and $\mcl I$ replaced by
 $G_0^\top$, $\underline\Gamma$, $\underline w$, and
 $\underline{\mcl I}$, respectively, establish $1)\iff3)$.
+
+\paragraph{Realization of $G_0$.}
+Let $\mbf x$ collect the plant, filter, and any controller states, so that the
+controller is already included in the primal operators. Partition the filtered realization as
+\[
+\bmat{\mcl T\dot{\mbf x}\\\tilde z\\\tilde w}
+=
+\bmat{\mcl A&\mcl B\\\mcl C_z&\mcl D_z\\
+\mcl C_w&\mcl D_w}
+\bmat{\mbf x\\w}.
+\]
+If $\mcl D_w$ is invertible, eliminating $w$ gives the realization
+\begin{equation}\label{eq:G0-primal-realization}
+G_0\sim
+\left\{
+\mcl T,
+\mcl A-\mcl B\mcl D_w^{-1}\mcl C_w,
+\mcl B\mcl D_w^{-1},
+\mcl C_z-\mcl D_z\mcl D_w^{-1}\mcl C_w,
+\mcl D_z\mcl D_w^{-1}
+\right\},
+\end{equation}
+with input $\tilde w$ and output $\tilde z$.

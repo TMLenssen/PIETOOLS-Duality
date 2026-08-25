@@ -1,3 +1,4 @@
+% !TEX root = Extensions of IQC Duality to Partial Integral Equations.tex
 % Define commands for sets and operators
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Ltwo}{\mathcal{L}_2}
@@ -16,3 +17,14 @@
 \newcommand{\oldlatex}[1]{{\color{red}#1}}
 \newcommand{\newlatex}[1]{{\color{blue}#1}}
 \newcommand{\Hinf}{\mathcal{G}_{2}}
+
+% Partitioned representation of a 4-PI operator:
+% \PIop{P}{Q_1}{Q_2}{\{R_0,R_1,R_2\}}
+\newcommand{\PIop}[4]{%
+    \Pi\!\left[
+    \begin{array}{c|c}
+        #1 & #2\\
+        \hline
+        #3 & #4
+    \end{array}
+    \right]}

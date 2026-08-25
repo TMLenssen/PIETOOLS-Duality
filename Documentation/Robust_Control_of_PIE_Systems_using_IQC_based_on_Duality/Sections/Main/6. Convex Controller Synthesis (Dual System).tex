@@ -1,3 +1,5 @@
+% !TEX root = ../../Extensions of IQC Duality to Partial Integral Equations.tex
+\dualcontrollerfigure
 
 Theorem~\ref{thm:dual-KYP} provides a robust-performance certificate for PIE
 systems in terms of the dual IQC. For analysis, this merely reformulates the
@@ -14,141 +16,8 @@ Seiler~\cite{venkataraman}.
 Let $P$, with zero initial condition $\mbf{x}(0)=0$, have input $w$,
 control input $u$, and output $z$. Its primal and dual PIE state-space
 realizations are summarized in the corresponding system-component boxes.
-We consider the controller and its adjoint
-\begin{equation*}
-\begin{aligned}
-u(t)
-&=\mcl K_P\mbf{x}_P(t)+\mcl K_\Psi\mbf{x}_\Psi(t),\\
-\bmat{\underline u_P(t)\\\underline u_\Psi(t)}
-&=
-\bmat{\mcl K_P^*\\\mcl K_\Psi^*}\underline y(t).
-\end{aligned}
-\end{equation*}
 If $\Psi\neq I$, assume that $\mbf D(\Psi)$ exists and that $z,w$ are
-measurable. The primal filter, augmented with the state output
-$y_\Psi=\mbf{x}_\Psi$, has realization
-\begin{equation*}
-    \bmat{
-        \mcl T_\Psi\dot{\mbf{x}}_\Psi(t)\\
-        \tilde v(t)\\
-        y_\Psi(t)
-    }
-    =
-    \bmat{
-        \mcl A_\Psi&\mcl B_\Psi\\
-        \mcl C_\Psi&\mcl D_\Psi\\
-        I&0
-    }
-    \bmat{\mbf{x}_\Psi(t)\\v(t)}.
-\end{equation*}
-Here
-$v:=\bmat{z\\w}$ and
-$\tilde v:=\bmat{\tilde z\\\tilde w}$.
-Partition the filter operators according to these input and output channels as
-\begin{equation*}
-\begin{aligned}
-\mcl B_\Psi&=\bmat{\mcl B_\Psi^z&\mcl B_\Psi^w},
-&
-\mcl C_\Psi&=\bmat{\mcl C_\Psi^z\\\mcl C_\Psi^w},\\
-\mcl D_\Psi&=
-\bmat{
-\mcl D_\Psi^z&\mcl D_\Psi^{zw}\\
-\mcl D_\Psi^{wz}&\mcl D_\Psi^w
-}.
-\end{aligned}
-\end{equation*}
-For compactness, define the controller-closed plant operators
-\begin{equation*}
-\begin{aligned}
-\mcl A_K&:=\mcl A_P+\mcl B_u\mcl K_P,
-&\mcl B_K&:=\mcl B_u\mcl K_\Psi,\\
-\mcl C_K&:=\mcl C_P+\mcl D_{zu}\mcl K_P,
-&\mcl D_K&:=\mcl D_{zu}\mcl K_\Psi.
-\end{aligned}
-\end{equation*}
-Then direct substitution of
-$z=\mcl C_K\mbf{x}_P+\mcl D_K\mbf{x}_\Psi+\mcl D_Pw$
-into the filter gives the augmented state-space realization
-\begin{equation}
-\resizebox{\columnwidth}{!}{$\displaystyle
-\bmat{
-\mcl T_P\dot{\mbf{x}}_P(t)\\
-\mcl T_\Psi\dot{\mbf{x}}_\Psi(t)\\
-\tilde z(t)\\
-\tilde w(t)
-}
-=
-\bmat{
-\mcl A_K
-&\mcl B_K
-&\mcl B_P\\
-\mcl B_\Psi^z\mcl C_K
-&\mcl A_\Psi+\mcl B_\Psi^z\mcl D_K
-&\mcl B_\Psi^z\mcl D_P+\mcl B_\Psi^w\\
-\mcl D_\Psi^z\mcl C_K
-&\mcl C_\Psi^z+\mcl D_\Psi^z\mcl D_K
-&\mcl D_\Psi^z\mcl D_P+\mcl D_\Psi^{zw}\\
-\mcl D_\Psi^{wz}\mcl C_K
-&\mcl C_\Psi^w+\mcl D_\Psi^{wz}\mcl D_K
-&\mcl D_\Psi^{wz}\mcl D_P+\mcl D_\Psi^w
-}
-\bmat{
-\mbf{x}_P(t)\\
-\mbf{x}_\Psi(t)\\
-w(t)
-}.
-$}
-\label{eq:primal-filtered-controller-realization}
-\end{equation}
-This is the state-space realization of
-$\Psi\bmat{K\star P\\I}w$, with augmented state
-$\mbf{\xi}:=\bmat{\mbf{x}_P\\\mbf{x}_\Psi}$ and output
-$\tilde v=\bmat{\tilde z\\\tilde w}$.
-Let $\hat J:=\bmat{0&I\\-I&0}$, with identity blocks of compatible
-dimensions, and assume that the static dual feedthrough
-$\mbf D(\mcl D_\Psi)=(\hat J^*\mcl D_\Psi^*\hat J)^{-1}$ exists. Then
-$\mbf D(\Psi)$, including the additional input dual to $y_\Psi$, is
-\begin{equation*}
-    \bmat{
-        \mcl T_\Psi^*\dot{\underline{\mbf{x}}}_\Psi(t)\\
-        \tilde{\underline v}(t)
-    }
-    =
-    \bmat{
-        \underline{\mcl A}_\Psi&\underline{\mcl B}_\Psi&I\\
-        \underline{\mcl C}_\Psi&\underline{\mcl D}_\Psi&0
-    }
-    \bmat{
-        \underline{\mbf{x}}_\Psi(t)\\
-        \underline v(t)\\
-        \underline u_\Psi(t)
-    },
-\end{equation*}
-where all dual-filter operators are expressed in the primal operators as
-\begin{equation*}
-\begin{aligned}
-\underline{\mcl A}_\Psi
-&:=
-\mcl A_\Psi^*
--
-\mcl C_\Psi^*\hat J\,
-\mbf D(\mcl D_\Psi)\,
-\hat J^*\mcl B_\Psi^*,\\
-\underline{\mcl B}_\Psi
-&:=
-\mcl C_\Psi^*\hat J\,\mbf D(\mcl D_\Psi),\\
-\underline{\mcl C}_\Psi
-&:=
--\mbf D(\mcl D_\Psi)\hat J^*\mcl B_\Psi^*,\\
-\underline{\mcl D}_\Psi
-&:=
-\mbf D(\mcl D_\Psi).
-\end{aligned}
-\end{equation*}
-Here
-$\underline v:=\bmat{\underline z\\\underline w}$ and
-$\tilde{\underline v}:=
-\bmat{\tilde{\underline z}\\\tilde{\underline w}}$.
+measurable. 
 
 \subsection{State Feedback LPI}
 
@@ -156,12 +25,11 @@ $\tilde{\underline v}:=
 
 
 \begin{theorem}\label{thm:state-feedback}
-    Let the realization of $P$ satisfy Definition~\ref{def:uncertain-interconnection}. Let $\Delta\in\mbf{\Delta}$, there exist dual hard IQC
-    $(\underline{\Psi}, \mcl{M}_{\underline{\mcl{V}}})$, such that,
+    Let the realization of $P$ satisfy Definition~\ref{def:uncertain-interconnection}. Let $\Delta\in\mbf{\Delta}$, there exists a primal hard IQC
+    $({\Theta}, J_{\mbf{n}_\mathrm{z}, \mbf{n}_\mathrm{w}})$, such that,
     \begin{itemize}
         \item The interconnection $P\star\Delta$ is well-posed for all $\Delta\in\mbf{\Delta}$.
         \item The IQC in Definition~\ref{def:uncertainty-iqc} is satisfied for all $\Delta\in\mbf{\Delta}$.
-        \item The dual hard IQC $(\underline{\Psi},\mcl{M}_{\underline{\mcl V}})$ has a $(\mcl{M}_{\mbf{D}(\mcl{U})}\mbf{D}(\Psi),J_{\mbf{n}_w,\mbf{n}_z})$ factorization.
     \end{itemize}
      Moreover there exist, $\mcl{Z},\mcl{P}\in\Pi_4$ with $\mcl{P} = \mcl{P}^* \succ 0$, such that the following statement holds
     \begin{equation}\label{eq:controller-kyp}
@@ -282,5 +150,5 @@ w_\Delta(t)
 \end{aligned}
 \end{equation*}
 Hence $\mbf{x}_{{\Psi}_\Delta}$ is the controller state,
-$\mbf{x}$, $z_\Delta$, and $w_\Delta$ are its external inputs, and $u$ is its
+$\mbf{x}$, and relevant, $z_\Delta$, and $w_\Delta$ are its external inputs, and $u$ is its
 output.

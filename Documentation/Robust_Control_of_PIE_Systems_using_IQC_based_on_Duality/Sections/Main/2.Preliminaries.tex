@@ -1,3 +1,4 @@
+% !TEX root = ../../Extensions of IQC Duality to Partial Integral Equations.tex
 \subsection{Notation}
 $L_2^n[a,b]$ denotes the set of $\R^n$-valued, Lebesgue square-integrable
 equivalence classes of functions on the spatial domain $[a,b]\subset\R$. The
@@ -94,16 +95,12 @@ linear integral operators that are defined jointly on a vector space and Hilbert
 space.
 \begin{definition}
 We say $\mcl P \in {\Pi}_4^{\mbf{m}\times\mbf{n}} \subset \mcl L(\RL^\mbf{n},
-\RL^\mbf{m})$, denoted by $\prod \begin{bmatrix}
-P   & Q_1   \\
-Q_2 & \{R\} \\
-\end{bmatrix}$, if there exist a matrix $P$ and matrix polynomials $Q_1, Q_2,
+\RL^\mbf{m})$, denoted by
+$\PIop{P}{Q_1}{Q_2}{\{R_0,R_1,R_2\}}$, if there exist a matrix $P$ and matrix polynomials $Q_1, Q_2,
 R_0, R_1$, and $R_2$ (of compatible dimension) such that,
 \begin{gather*}
-\Bigg[\Bigg(\prod \begin{bmatrix}
-P   & Q_1   \\
-Q_2 & \{R\} \\
-\end{bmatrix}\Bigg)\! \! \bmat{x \\ \mbf{x}}\Bigg](s)\! :=\! \bmat{Px\!
+\Bigg[\Bigg(\PIop{P}{Q_1}{Q_2}{\{R_0,R_1,R_2\}}\Bigg)\! \!
+\bmat{x \\ \mbf{x}}\Bigg](s)\! :=\! \bmat{Px\!
 +\!\int\limits_a^b\!Q_1(s)\mbf x(s)ds\\Q_2(s)x\!+\!\mcl R \mbf x(s)},\\
 (\mcl R \mbf x)(s)\!\! =\!\! R_0(s)\mbf x(s)\! +\!
 \int\limits_a^s\!\!\!R_1(s,\theta)\mbf x(\theta)d\theta\!

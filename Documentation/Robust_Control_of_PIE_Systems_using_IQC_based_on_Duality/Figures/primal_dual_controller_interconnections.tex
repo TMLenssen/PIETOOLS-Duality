@@ -1,3 +1,4 @@
+% !TEX root = ../Extensions of IQC Duality to Partial Integral Equations.tex
 % Reusable controller-interconnection schematics for the component boxes.
 % Each command produces only a TikZ picture, so it can be positioned by the
 % surrounding layout without creating a separate numbered figure.
@@ -46,7 +47,7 @@
 ]
     \node[controller schematic uncertainty] (DeltaP) at (0,0.94) {$\Delta$};
     \node[controller schematic block] (PlantP) at (0,0) {$P$};
-    \node[controller schematic block] (FilterP) at (1.90,1.32) {$\Psi$};
+    \node[controller schematic block] (FilterP) at (1.90,1.32) {$\Theta$};
     \node[controller schematic controller] (ControllerP) at (0,-0.96) {$K$};
 
     \coordinate (FilterPInTop) at ([yshift=0.20cm]FilterP.west);
@@ -91,7 +92,7 @@
         -- node[controller schematic label, right] {$y_P$}
         (PWLegBot |- ControllerPInTop) -- (ControllerPInTop);
     \draw[controller schematic signal] (FilterP.south)
-        -- node[controller schematic label, right] {$y_\Psi$} (1.90,-1.09)
+        -- node[controller schematic label, right] {$y_\Theta$} (1.90,-1.09)
         -- (ControllerPInBot);
 \end{tikzpicture}%
 }
@@ -104,54 +105,54 @@
     \node[controller schematic uncertainty] (DeltaD) at (0,0.94)
         {$\underline{\Delta}$};
     \node[controller schematic block] (PlantD) at (0,0) {$P^\top$};
-    \node[controller schematic block] (FilterD) at (1.90,1.32)
-        {$\mbf{D}(\Psi)$};
+    \node[controller schematic block] (FilterD) at (-1.90,1.32)
+        {$\mbf{D}(\Theta)$};
     \node[controller schematic controller] (ControllerD) at (0,-0.96)
         {$K^\top$};
 
-    \coordinate (FilterDInTop) at ([yshift=0.20cm]FilterD.west);
-    \coordinate (FilterDInBot) at ([yshift=-0.20cm]FilterD.west);
-    \coordinate (FilterDOutTop) at ([yshift=0.20cm]FilterD.east);
-    \coordinate (FilterDOutBot) at ([yshift=-0.20cm]FilterD.east);
+    \coordinate (FilterDInTop) at ([yshift=0.20cm]FilterD.east);
+    \coordinate (FilterDInBot) at ([yshift=-0.20cm]FilterD.east);
+    \coordinate (FilterDOutTop) at ([yshift=0.20cm]FilterD.west);
+    \coordinate (FilterDOutBot) at ([yshift=-0.20cm]FilterD.west);
     \coordinate (DZLegBot) at ([xshift=-0.62cm]PlantD.west);
     \coordinate (DZLegTop) at (DZLegBot |- DeltaD.west);
     \coordinate (DWLegBot) at ([xshift=0.62cm]PlantD.east);
     \coordinate (DWLegTop) at (DWLegBot |- DeltaD.east);
-    \coordinate (DZFilterTap) at ([xshift=0.30cm]DZLegTop |- FilterDInTop);
-    \coordinate (DWFilterTap) at ([xshift=-0.30cm]DWLegTop |- FilterDInBot);
+    \coordinate (DZFilterTap) at ([xshift=-0.30cm]DWLegTop |- FilterDInTop);
+    \coordinate (DWFilterTap) at ([xshift=0.30cm]DZLegTop |- FilterDInBot);
 
-    \draw[controller schematic signal] (PlantD.west) -- (DZLegBot)
-        -- node[controller schematic label, left] {$\underline z$}
-        (DZLegTop) -- (DeltaD.west);
-    \draw[controller schematic signal] (DeltaD.east) -- (DWLegTop)
-        -- node[controller schematic label, right] {$\underline w$}
-        (DWLegBot) -- (PlantD.east);
-    \draw[controller schematic signal] ([xshift=0.30cm]DZLegTop)
-        -- (DZFilterTap) -- (FilterDInTop);
+    \draw[controller schematic signal] (DeltaD.west) -- (DZLegTop)
+        -- node[controller schematic label, left] {$\underline w$}
+        (DZLegBot) -- (PlantD.west);
+    \draw[controller schematic signal] (PlantD.east) -- (DWLegBot)
+        -- node[controller schematic label, right] {$\underline z$}
+        (DWLegTop) -- (DeltaD.east);
     \draw[controller schematic signal] ([xshift=-0.30cm]DWLegTop)
+        -- (DZFilterTap) -- (FilterDInTop);
+    \draw[controller schematic signal] ([xshift=0.30cm]DZLegTop)
         -- (DWFilterTap) -- (FilterDInBot);
     \draw[controller schematic signal] (FilterDOutTop)
-        -- ([xshift=0.62cm]FilterDOutTop)
-        node[controller schematic label, right] {$\tilde{\underline z}$};
+        -- ([xshift=-0.62cm]FilterDOutTop)
+        node[controller schematic label, left] {$\tilde{\underline z}$};
     \draw[controller schematic signal] (FilterDOutBot)
-        -- ([xshift=0.62cm]FilterDOutBot)
-        node[controller schematic label, right] {$\tilde{\underline w}$};
+        -- ([xshift=-0.62cm]FilterDOutBot)
+        node[controller schematic label, left] {$\tilde{\underline w}$};
 
-    \coordinate (PlantDControllerOut) at ([yshift=-0.25cm]PlantD.west);
-    \coordinate (PlantDExtraIn) at ([yshift=-0.25cm]PlantD.east);
-    \coordinate (ControllerDOutTop) at ([yshift=0.13cm]ControllerD.east);
-    \coordinate (ControllerDOutBot) at ([yshift=-0.13cm]ControllerD.east);
+    \coordinate (PlantDControllerOut) at ([yshift=-0.25cm]PlantD.east);
+    \coordinate (PlantDExtraIn) at ([yshift=-0.25cm]PlantD.west);
+    \coordinate (ControllerDOutTop) at ([yshift=0.13cm]ControllerD.west);
+    \coordinate (ControllerDOutBot) at ([yshift=-0.13cm]ControllerD.west);
 
     \draw[controller schematic signal] (PlantDControllerOut)
-        -- (DZLegBot |- PlantDControllerOut)
-        -- node[controller schematic label, left] {$\underline y$}
-        (DZLegBot |- ControllerD.west) -- (ControllerD.west);
+        -- (DWLegBot |- PlantDControllerOut)
+        -- node[controller schematic label, right] {$\underline y$}
+        (DWLegBot |- ControllerD.east) -- (ControllerD.east);
     \draw[controller schematic signal] (ControllerDOutTop)
-        -- (DWLegBot |- ControllerDOutTop)
-        -- node[controller schematic label, right] {$\underline u_P$}
-        (DWLegBot |- PlantDExtraIn) -- (PlantDExtraIn);
-    \draw[controller schematic signal] (ControllerDOutBot) -- (1.90,-1.09)
-        -- node[controller schematic label, right] {$\underline u_\Psi$}
+        -- (DZLegBot |- ControllerDOutTop)
+        -- node[controller schematic label, left] {$\underline u_P$}
+        (DZLegBot |- PlantDExtraIn) -- (PlantDExtraIn);
+    \draw[controller schematic signal] (ControllerDOutBot) -- (-1.90,-1.09)
+        -- node[controller schematic label, left] {$\underline u_\Psi$}
         (FilterD.south);
 \end{tikzpicture}%
 }

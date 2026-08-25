@@ -69,10 +69,6 @@ A.~Talitckii, M.~Peet, and P.~Seiler.
 \newblock In {\em 2023 American Control Conference (ACC)}, pages 1576--1583,
   2023.
 
-\bibitem{turner2022zamesfalbmultipliersdontpanic}
-Matthew~C. Turner.
-\newblock Zames-falb multipliers: don't panic, 2022.
-
 \bibitem{venkataraman}
 Raghu Venkataraman and Peter Seiler.
 \newblock {Convex LPV synthesis of estimators and feedforwards using duality

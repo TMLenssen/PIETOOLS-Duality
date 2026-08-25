@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.10)  19 AUG 2026 19:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.10)  24 AUG 2026 11:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -581,16 +581,41 @@ File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfarrowlength=\dimen302
 \pgfarrowwidth=\dimen303
 \pgfarrowlinewidth=\dimen304
-) (Figures/primal_dual_controller_interconnections.tex) (shortcuts.tex) (Figures/primal_dual_system_components.tex)
-\c@definition=\count355
-\c@lemma=\count356
-\c@theorem=\count357
-\c@example=\count358
-\c@corollary=\count359
-\c@assumption=\count360
-\c@sublemma=\count361
-\c@remark=\count362
-\c@class=\count363
+) (Figures/primal_dual_controller_interconnections.tex) (shortcuts.tex) (Figures/primal_dual_system_components.tex (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcolorbox.sty
+Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
+ (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
+Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
+\every@verbatim=\toks46
+\verbatim@line=\toks47
+\verbatim@in@stream=\read3
+) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/environ\environ.sty
+Package: environ 2014/05/04 v0.3 A new way to define environments
+ (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspaces.sty
+Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
+))
+\tcb@titlebox=\box71
+\tcb@upperbox=\box72
+\tcb@lowerbox=\box73
+\tcb@phantombox=\box74
+\c@tcbbreakpart=\count355
+\c@tcblayer=\count356
+\c@tcolorbox@number=\count357
+\l__tcobox_tmpa_box=\box75
+\l__tcobox_tmpa_dim=\dimen305
+\tcb@temp=\box76
+\tcb@temp=\box77
+\tcb@temp=\box78
+\tcb@temp=\box79
+))
+\c@definition=\count358
+\c@lemma=\count359
+\c@theorem=\count360
+\c@example=\count361
+\c@corollary=\count362
+\c@assumption=\count363
+\c@sublemma=\count364
+\c@remark=\count365
+\c@class=\count366
 
 
 LaTeX Warning: Unused global option(s):
@@ -598,7 +623,7 @@ LaTeX Warning: Unused global option(s):
 
 (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux
 
-LaTeX Warning: Label `eq:pendulum-gp' multiply defined.
+LaTeX Warning: Label `' multiply defined.
 
 )
 \openout1 = `"Extensions of IQC Duality to Partial Integral Equations.aux"'.
@@ -630,17 +655,17 @@ Package hyperref Info: Link coloring OFF on input line 46.
 
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count364
-\scratchdimen=\dimen305
-\scratchbox=\box71
-\nofMPsegments=\count365
-\nofMParguments=\count366
-\everyMPshowfont=\toks46
-\MPscratchCnt=\count367
-\MPscratchDim=\dimen306
-\MPnumerator=\count368
-\makeMPintoPDFobject=\count369
-\everyMPtoPDFconversion=\toks47
+\scratchcounter=\count367
+\scratchdimen=\dimen306
+\scratchbox=\box80
+\nofMPsegments=\count368
+\nofMParguments=\count369
+\everyMPshowfont=\toks48
+\MPscratchCnt=\count370
+\MPscratchDim=\dimen307
+\MPnumerator=\count371
+\makeMPintoPDFobject=\count372
+\everyMPtoPDFconversion=\toks49
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
@@ -656,101 +681,71 @@ Underfull \hbox (badness 4001) in paragraph at lines 64--64
  []
 
 (Sections/Main/1.Introduction.tex) (Sections/Main/2.Preliminaries.tex
-LaTeX Font Info:    Trying to load font information for U+msa on input line 2.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 2.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 2.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 3.
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-) [1{C:/Users/thijs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
+)
+Overfull \hbox (24.74973pt too wide) detected at line 108
+[]
+ []
+
+[1{C:/Users/thijs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 134--140
+Underfull \hbox (badness 10000) in paragraph at lines 131--137
 [][]\OT1/ptm/b/n/10 Definition 4 \OT1/ptm/m/n/10 (PIE Sys-tem)\OT1/ptm/b/n/10 . []\OT1/ptm/m/it/10 Given the PIE sys-tem
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 134--140
+Underfull \hbox (badness 2285) in paragraph at lines 131--137
 \OML/cmm/m/it/10 G\OMS/cmsy/m/n/10 fT\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 A\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 B\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 C\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 Dg$ \OT1/ptm/m/it/10 with PI op-er-a-tors $\OMS/cmsy/m/n/10 T\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 A\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 B\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 C\OML/cmm/m/it/10 ;$ \OT1/ptm/m/it/10 and $\OMS/cmsy/m/n/10 D$
  []
 
 
-Underfull \hbox (badness 1902) in paragraph at lines 165--169
+Underfull \hbox (badness 1902) in paragraph at lines 162--166
 []\OT1/ptm/m/it/10 The ho-mo-ge-neous part $\OML/cmm/m/it/10 @[]\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 T\OT1/cmr/bx/n/10 x\OT1/cmr/m/n/10 )(\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 A\OT1/cmr/bx/n/10 x\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )$\OT1/ptm/m/it/10 , with
  []
 
 
-Overfull \hbox (1.31978pt too wide) detected at line 184
+Overfull \hbox (1.31978pt too wide) detected at line 181
 \OMS/cmsy/m/n/10 k\OML/cmm/m/it/10 p[]z\OMS/cmsy/m/n/10 k[] ^^T \OML/cmm/m/it/10 ^^M\OMS/cmsy/m/n/10 k\OML/cmm/m/it/10 p[]w\OMS/cmsy/m/n/10 k[]\OML/cmm/m/it/10 ;  \OMS/cmsy/m/n/10 8 \OML/cmm/m/it/10 T \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ;  \OMS/cmsy/m/n/10 8 \OML/cmm/m/it/10 w \OMS/cmsy/m/n/10 2 \OT1/cmr/bx/n/10 L[]\OML/cmm/m/it/10 :
  []
 
-) (Sections/Main/3.Quadratic_Contraints_for_stability_and_performance_analysis.tex [2]) (Sections/Main/4. Controller Analysis (Primal System).tex) (Sections/Main/5. Duality.tex [3] (Figures/potapov_ginzburg_commutative_diagram.tex
-
-LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 4 undefined on input line 127.
-
-
-LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 4 undefined on input line 129.
-
-
-LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 4 undefined on input line 131.
-
-) [4]) (Sections/Main/6. Application of Dual IQC.tex [5]
-Underfull \hbox (badness 10000) in paragraph at lines 164--165
-[]\OT1/ptm/m/it/10 The dual hard IQC $\OT1/cmr/m/n/10 ([]\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 M[]\OT1/cmr/m/n/10 )$ \OT1/ptm/m/it/10 has a
- []
-
-) (Sections/Main/7. Numerical Examples.tex [6]
-Overfull \hbox (14.98021pt too wide) detected at line 29
-[][] \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ;  \OMS/cmsy/m/n/10 8\OML/cmm/m/it/10 s \OMS/cmsy/m/n/10 2 \OT1/cmr/m/n/10 [\OML/cmm/m/it/10 a; b\OT1/cmr/m/n/10 ]
- []
-
-
-Overfull \hbox (25.4573pt too wide) detected at line 81
-\OT1/cmr/m/n/10 ^^E[] = [] \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 0
- []
-
-
-Overfull \hbox (0.90868pt too wide) detected at line 119
+) (Sections/Main/3. IQC Theory.tex [2]) (Sections/Main/4. Controller Analysis (Primal System).tex) [3] (Sections/Main/5. Duality.tex (Figures/potapov_ginzburg_commutative_diagram.tex) [4]) (Sections/Main/6. Convex Controller Synthesis (Dual System).tex [5]) (Sections/Main/7. Numerical Examples.tex
+Overfull \hbox (22.03857pt too wide) detected at line 12
 []
  []
 
 
-Overfull \hbox (25.00352pt too wide) detected at line 129
+Overfull \hbox (6.63249pt too wide) detected at line 19
 []
  []
 
+) (Sections/Main/8. Conclusion.tex) (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl [6]) [7
 
-Overfull \hbox (8.93782pt too wide) detected at line 137
-[][][][][] \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ;  \OT1/cmr/m/n/10 ^^E[] := [] \OML/cmm/m/it/10 ;
- []
-
-[7]
-Overfull \hbox (29.94116pt too wide) detected at line 169
-\OT1/cmr/m/n/10 ^^E[](\OML/cmm/m/it/10 j!\OT1/cmr/m/n/10 ) := \OML/cmm/m/it/10 L\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 j!\OT1/cmr/m/n/10 )[] [] \OML/cmm/m/it/10 L\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 j!\OT1/cmr/m/n/10 ) + \OML/cmm/m/it/10 ^^O\OT1/cmr/m/n/10 ^^E[]\OML/cmm/m/it/10 :
- []
-
-) (Sections/Main/8. Conclusion.tex) (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl) [8
-
-] (Sections/Proofs/I. IQC.tex) (Sections/Proofs/II. Duality.tex (Sections/Proofs/Duality/dual-IQC.tex [9
+] (Sections/Proofs/I. IQC.tex) (Sections/Proofs/II. Duality.tex (Sections/Proofs/Duality/dual-IQC.tex [8
 
 ]) (Sections/Proofs/Duality/dual-KYP.tex
 
-LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 10 undefined on input line 39.
+LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 9 undefined on input line 40.
 
-) (Sections/Proofs/Duality/dynamic_state_feedback.tex [10]
+[9]) (Sections/Proofs/Duality/dynamic_state_feedback.tex
 
-LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 11 undefined on input line 97.
+LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 10 undefined on input line 98.
 
 
-LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 11 undefined on input line 123.
+LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 10 undefined on input line 124.
 
-)) [11] (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux)
+)) [10] (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
@@ -763,20 +758,20 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `"Extensions of IQC Duality to Partial Integral Equations".out' has not changed.
-(rerunfilecheck)             Checksum: 5664D3D772EAF5D1D7F27C379A14296F;4963.
+(rerunfilecheck)             Checksum: D5791A16FB58C459B58EDB9DFA8D5D69;4229.
  ) 
 Here is how much of TeX's memory you used:
- 23574 strings out of 467871
- 450415 string characters out of 5418376
- 909535 words of memory out of 5000000
- 51875 multiletter control sequences out of 15000+600000
- 669191 words of font info for 124 fonts, out of 8000000 for 9000
+ 25734 strings out of 467871
+ 507548 string characters out of 5418376
+ 964783 words of memory out of 5000000
+ 54024 multiletter control sequences out of 15000+600000
+ 671209 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,20n,94p,705b,1049s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.pdf" (11 pages, 399081 bytes).
+ 84i,23n,94p,705b,1053s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
+Output written on "c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.pdf" (10 pages, 424202 bytes).
 PDF statistics:
- 436 PDF objects out of 1000 (max. 8388607)
- 101 named destinations out of 1000 (max. 500000)
- 237 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 430 PDF objects out of 1000 (max. 8388607)
+ 96 named destinations out of 1000 (max. 500000)
+ 205 words of extra memory for PDF output out of 10000 (max. 10000000)
 

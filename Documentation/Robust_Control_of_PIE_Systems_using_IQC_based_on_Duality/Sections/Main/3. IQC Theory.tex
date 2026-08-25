@@ -1,3 +1,4 @@
+% !TEX root = ../../Extensions of IQC Duality to Partial Integral Equations.tex
 This section introduces the IQC objects used to study stability and performance
 of interconnected systems in a Hilbert space. We establish the generalized
 system interconnection, formalize stability and performance, and define the
@@ -157,9 +158,9 @@ parameterized by
 $\mcl{V}_{\mathrm{p}}=\mcl{V}_{\mathrm{p}}^*\in\mcl L(\RL,\RL)$
 with 
 \begin{equation*}
-\ip{p_T \Psi_{\mathrm{p}}\bmat{v\\ 0}}{p_T\mcl{M}_{\mcl V_{\mathrm{p}}}\Psi_{\mathrm{p}}\bmat{v \\ 0}}_{\mbf L_{[a, b]}}
+\ip{p_T \Psi_{\mathrm{p}}\bmat{P_{\mathrm{p}\Delta}\\ 0}w_{\mathrm{p}}}{p_T\mcl{M}_{\mcl V_{\mathrm{p}}}\Psi_{\mathrm{p}}\bmat{P_{\mathrm{p}\Delta}\\ 0}w_\mathrm{p}}_{\mbf L_{[a, b]}}
 \geq 0.
-\end{equation*} for all $v\in\mbf{L}_{e,[a,b]}^{\mbf{n}_{z_p}}$. Then there exists a sufficiently
+\end{equation*} for all $w_{\mathrm{p}}\in\mbf{L}_{e,[a,b]}^{\mbf{n}_{w_\mathrm{p}}}$. Then there exists a sufficiently
 small $\epsilon>0$ such that, for all such $w_{\mathrm{p}}$ and all $T\geq0$,
 \begin{gather*}
 \ip{p_T\Psi_{\mathrm{p}}\bmat{P\star\Delta\\I}w_{\mathrm{p}}}{p_T\mcl{M}_{\mcl{V}_{\mathrm{p}}}\Psi_{\mathrm{p}}\bmat{P\star\Delta\\I}w_{\mathrm{p}}}_{\mbf L_{[a,b]}}
@@ -213,11 +214,10 @@ $\Delta\in\mbf{\Delta}$.
 \end{itemize}
 Then the interconnection $P \star \Delta$ is \textbf{robustly stable} and
 \textbf{robust performance} is achieved with respect to some $\Psi_{\mathrm{p}}$ and
-$\mcl{M}_{{\mcl{V}}_{\mathrm{p}}}$, in Definition~\ref{def:robust-performance}, with
-$\mcl{Q}_{\mathrm{p}} \succeq 0$, if,
+$\mcl{M}_{{\mcl{V}}_{\mathrm{p}}}$, in Definition~\ref{def:robust-performance}, if,
 \begin{equation}\label{eq:robust-condition}
 \begin{gathered}
-\ip{p_T\Psi\bmat{Pw \\ w}}{p_T\mcl{M}_{\mcl V}\Psi\bmat{Pw \\ w}}_{\mbf L_{[a, b]}} \\
+\ip{p_T\Psi\bmat{Pw \\ w}}{p_T\mcl{M}_{\mcl V}\Psi\bmat{Pw \\ w}}_{\mbf L_{[a, b]}} 
 \leq
 -\epsilon
 \|p_Tw\|^2_{\mbf L_{[a, b]}}
