@@ -43,10 +43,8 @@ dom = G.dom;
 T = G.T;
 A = G.A;
 B = G.B1;
-C = [G.C1;
-     G.C2];
-D = [G.D11;
-     G.D21];
+C = block_vcat(G.C1,G.C2,vars,dom);
+D = block_vcat(G.D11,G.D21,vars,dom);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Get settings information, following the PIETOOLS executive structure.
@@ -101,9 +99,11 @@ Pdec = Pdec+mat2opvar(Imat,Pdec.dim(:,2),vars,dom);
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 2: Define the KYP operator from Theorem dual-KYP.
 Iw = mat2opvar(eye(sum(B.dim(:,2))),B.dim(:,2),vars,dom);
-KYP = [T'*Pdec*A+(T'*Pdec*A)', T'*Pdec*B;
-       B'*Pdec*T,              epsilon*Iw] ...
-      +[C,D]'*V*[C,D];
+K11 = T'*Pdec*A+(T'*Pdec*A)';
+K12 = T'*Pdec*B;
+CD = block_hcat(C,D,vars,dom);
+KYP = block_2x2(K11,K12,K12',epsilon*Iw,vars,dom) ...
+      +CD'*V*CD;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 3: Impose the negativity constraint.
@@ -127,5 +127,35 @@ P = lpigetsol(prog,Pdec);
 end
 
 function prog = quiet_lpisolve(prog,sos_opts) %#ok<INUSD>
-evalc('prog = lpisolve(prog,sos_opts);');
+% evalc('prog = lpisolve(prog,sos_opts);');
+prog = lpisolve(prog,sos_opts);
+end
+
+function G = block_vcat(G1,G2,vars,dom)
+outDim = ioDimensions(["r1","r2"],[G1.dim(:,1)'; G2.dim(:,1)']);
+inDim = ioDimensions("c1",G1.dim(:,2)');
+grid = gridBuilder(outDim,inDim,vars,dom);
+grid(1,1) = G1;
+grid(2,1) = G2;
+G = grid();
+end
+
+function G = block_hcat(G1,G2,vars,dom)
+outDim = ioDimensions("r1",G1.dim(:,1)');
+inDim = ioDimensions(["c1","c2"],[G1.dim(:,2)'; G2.dim(:,2)']);
+grid = gridBuilder(outDim,inDim,vars,dom);
+grid(1,1) = G1;
+grid(1,2) = G2;
+G = grid();
+end
+
+function G = block_2x2(G11,G12,G21,G22,vars,dom)
+outDim = ioDimensions(["r1","r2"],[G11.dim(:,1)'; G21.dim(:,1)']);
+inDim = ioDimensions(["c1","c2"],[G11.dim(:,2)'; G12.dim(:,2)']);
+grid = gridBuilder(outDim,inDim,vars,dom);
+grid(1,1) = G11;
+grid(1,2) = G12;
+grid(2,1) = G21;
+grid(2,2) = G22;
+G = grid();
 end

@@ -1,237 +1,152 @@
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% PIE_sim_nl.m
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Assemble and simulate the PIE feedback interconnection
+function sim = PIE_sim_nl(PIE,wd,tspan,x0,opts)
+%PIE_SIM_NL Simulate a PIE with supplied wp and nonlinear wd channels.
 %
-%   u = K*[xP;xTheta],       wDelta = Delta(zDelta).
+%   sim = PIE_sim_nl(PIE,wd,tspan,x0,opts)
 %
-% PI operators are assembled first and closed with closedLoopPIE. PIESIM
-% then discretizes the complete linear block. Numeric indexing, ode45, and
-% fsolve are used only after this discretization.
+% The linear PIE must expose the nonlinear loop through its B1/C1 channels:
 %
-% CALL:
-%   sim = PIE_sim_nl(CL,Delta,tspan,x0)
-%   sim = PIE_sim_nl(CL,Delta,tspan,x0,opts)
+%   zd = C1*x + D11*[wd;wp],      wd = wd(zd).
 %
-% REQUIRED FIELDS OF CL:
-% P         - plant box with vars,dom,T,A,B1,Bu,C1,D11,Dzu
-% Theta     - filter box with T,A,B1,B2
-% K         - PI controller mapping [xP;xTheta] to u
-% CDelta    - PI operator mapping xP to zDelta
+% By default, finite-dimensional B1 inputs are supplied exogenous inputs wp,
+% and distributed B1 inputs are nonlinear wd inputs. If opts.nwd0 is
+% positive, the first opts.nwd0 finite-dimensional B1 inputs are included in
+% the nonlinear wd loop; the remaining finite-dimensional B1 inputs are wp.
 %
-% OPTIONAL FIELDS OF CL:
-% DDeltaW   - PI operator mapping [wDelta;wp] to zDelta (default zero)
-% DDeltaU   - PI operator mapping u to zDelta (default zero)
+% Main options:
+%   opts.N        PIESIM Chebyshev degree. Default: 16.
+%   opts.splot    Physical plotting grid in the original PIE domain.
+%   opts.wp       Supplied finite-dimensional input, either constant vector
+%                 or function handle wp(t). Default: zero.
+%   opts.nwd0     Number of finite-dimensional nonlinear wd channels.
+%                 Default: 0.
+%   opts.statePIE PIE used only for initial-condition/state metadata. This
+%                 is useful when simulating closedLoopPIE(P,K), whose x_tab
+%                 metadata should still come from P.
+%   opts.ode      ODE solver options. Default: odeset tolerances.
+%   opts.alg      fsolve options for algebraic D11 wd feedthrough loops.
 %
-% OPTIONAL SETTINGS:
-% N         - PIESIM polynomial degree (default 8)
-% nDelta    - number of finite-dimensional wDelta channels
-% wp        - function handle or constant disturbance vector (default zero)
-% ode,alg   - ode45 and fsolve options
-% zeroTol   - tolerance for detecting zero DDelta (default 1e-12)
-% algTol    - accepted algebraic residual (default 1e-9)
-% plot      - plot selected discretized states and u (default false)
-% states    - discretized-state indices to plot (default first two)
-% labels    - labels corresponding to opts.states
+% Initial condition:
+%   x0 may be a numeric PIESIM fundamental-state vector, or a struct:
 %
-% x0 may be either:
-%   1) a numeric vector in PIESIM-discretized fundamental-state
-%      coordinates (the original interface), or
-%   2) a physical-state struct with fields x0.ode and x0.pde. x0.ode is
-%      the vector of finite-dimensional initial states, and x0.pde is a
-%      cell array of function handles or symbolic primary-PDE profiles.
-%      PIE_sim_nl differentiates these profiles according to CL.P.x_tab
-%      and performs the Chebyshev discretization internally.
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-function sim = PIE_sim_nl(CL,Delta,tspan,x0,opts)
+%       x0.ode = finite-dimensional initial states;
+%       x0.pde = {primaryPDEState1, primaryPDEState2, ...};
+%
+%   Entries of x0.pde may be function handles of physical position s or
+%   scalar constants. The conversion to PIESIM fundamental Chebyshev
+%   coefficients is performed internally using PIE.x_tab.
+%
+% Nonlinearity input/output layout:
+%   The wd handle receives one column vector containing
+%
+%       [finite nonlinear zd values;
+%        distributed nonlinear zd values on Chebyshev nodes].
+%
+%   It must return the same layout for wd. Distributed values are converted
+%   to Chebyshev coefficients internally.
+%
+% Useful returned fields:
+%   sim.t              time grid returned by the ODE solver
+%   sim.x              PIESIM fundamental state coefficients
+%   sim.wp             supplied finite-dimensional input values
+%   sim.zFinite        finite nonlinear zd channels
+%   sim.wdFinite       finite nonlinear wd channels
+%   sim.zPlot          distributed nonlinear zd channels on sim.splot
+%   sim.wdPlot         distributed nonlinear wd channels on sim.splot
+%   sim.outputFinite   all finite-dimensional regulated C1/D11 outputs
+%   sim.outputPlot     all distributed regulated C1/D11 outputs on sim.splot
+%   sim.z1, sim.z2     aliases for outputFinite(:,1/2), when present
+%   sim.inputCoeff     full B1 input coefficient history in PIESIM order
+%   sim.outputCoeff    full C1/D11 output coefficient history in PIESIM order
+%   sim.Dop            PIESIM discretization data
+%
+% Quick plotting examples:
+%   surf(sim.splot,sim.t,sim.zPlot,'EdgeColor','none'); view(2);
+%   plot(sim.t,sim.outputFinite(:,1));
 
 narginchk(4,5);
 if nargin<5 || isempty(opts)
     opts = struct();
 end
-if ~isstruct(CL)
-    error('CL must be a closed-loop data struct.');
+if ~isa(wd,'function_handle')
+    error('wd must be a function handle.');
 end
-fields = {'P','Theta','K','CDelta'};
-missing = fields(~isfield(CL,fields));
-if ~isempty(missing)
-    error('CL is missing field(s): %s.',strjoin(missing,', '));
-end
-if ~isa(Delta,'function_handle')
-    error('Delta must be a function handle.');
+opts = simulation_options(opts);
+
+statePIE = PIE;
+if isfield(opts,'statePIE') && ~isempty(opts.statePIE)
+    statePIE = opts.statePIE;
 end
 
-% Assemble the PI operators and close K without using ss or numeric LFTs.
-[PIE,K] = build_closed_loop(CL);
-opts = simulation_options(opts,PIE);
+psize = piesim_size(statePIE,opts.N);
+opts = validate_channel_options(opts,psize);
+x0 = discretize_initial_condition(x0,statePIE,psize,statePIE.dom,opts.N);
 
-% Discretize the complete linear PIE block around Delta.
-[P,Dop,x0] = discretize_PIE(PIE,opts.N,x0);
-nw = size(P.B,2);
-if opts.nDelta>nw
-    error('nDelta exceeds the number of discretized input channels.');
+PIE = rescalePIE(PIE,[-1,1]);
+Dop = PIESIM_discretize_ops(PIE,psize);
+if ~isempty(Dop.Twcheb) && any(abs(Dop.Twcheb(:))>opts.zeroTol)
+    error('A nonlinear wd input with a nonzero Tw term is not supported.');
 end
 
-% Numeric channel indexing starts only after PIESIM discretization.
-iDelta = 1:opts.nDelta;
-ip = opts.nDelta+1:nw;
-P.BDelta = P.B(:,iDelta);
-P.Bp = P.B(:,ip);
-P.DDelta = P.D(:,iDelta);
-P.Dp = P.D(:,ip);
+A = Dop.Atotal;
+B = Dop.Tcheb_inv*Dop.B1cheb;
+C = Dop.C1cheb;
+D = Dop.D11cheb;
 
-[t,x,zDelta,wDelta,wp] = integrate_nonlinearity( ...
-    P,Delta,tspan,x0,opts);
+channels = simulation_channels(psize,opts.N,opts.nwd0);
 
-% C2/D21 were reserved for u before calling PIESIM.
-input = [wDelta,wp];
-u = x*P.Cu'+input*P.Du';
+Bp = B(:,channels.wpCols);
+Bwd = B(:,channels.wdCols);
+Cz = C(channels.zRows,:);
+Dzp = D(channels.zRows,channels.wpCols);
+Dzwd = D(channels.zRows,channels.wdCols);
+Eplot = cheb_eval_matrix(2*opts.splot(:)-1,opts.N);
+
+[t,x,zCoeff,wdCoeff,wp] = integrate_wd_loop( ...
+    A,Bp,Bwd,Cz,Dzp,Dzwd,wd,tspan,x0,opts,channels);
 
 sim.t = t;
 sim.x = x;
-sim.u = u;
-sim.zDelta = zDelta;
-sim.wDelta = wDelta;
 sim.wp = wp;
+sim.zCoeff = zCoeff;
+sim.wdCoeff = wdCoeff;
+sim.inputCoeff = assemble_input_coefficients(wp,wdCoeff,channels);
+sim.outputCoeff = x*C' + sim.inputCoeff*D';
+sim.outputFinite = sim.outputCoeff(:,1:psize.nr0);
+sim.outputPlot = evaluate_all_distributed_outputs( ...
+    sim.outputCoeff(:,psize.nr0+1:end),Eplot,opts.N,psize.nrx);
+sim.zFinite = zCoeff(:,1:channels.nwd0);
+sim.wdFinite = wdCoeff(:,1:channels.nwd0);
+sim.zPlot = evaluate_distributed_output(zCoeff,Eplot,channels);
+sim.wdPlot = evaluate_distributed_output(wdCoeff,Eplot,channels);
+if psize.nr0>=1
+    sim.z1 = sim.outputFinite(:,1);
+end
+if psize.nr0>=2
+    sim.z2 = sim.outputFinite(:,2);
+end
+sim.splot = opts.splot(:);
+sim.s = sim.splot;
 sim.PIE = PIE;
-sim.P = P;
 sim.Dop = Dop;
-sim.K = K;
-
-if opts.plot
-    plot_simulation(sim,opts);
 end
 
-end
-
-function [PIE,K] = build_closed_loop(CL)
-P = CL.P;
-Theta = CL.Theta;
-plantFields = {'vars','dom','T','A','B1','Bu','C1','D11','Dzu'};
-filterFields = {'T','A','B1','B2'};
-missing = plantFields(~isfield(P,plantFields));
-if ~isempty(missing)
-    error('CL.P is missing field(s): %s.',strjoin(missing,', '));
-end
-missing = filterFields(~isfield(Theta,filterFields));
-if ~isempty(missing)
-    error('CL.Theta is missing field(s): %s.',strjoin(missing,', '));
-end
-
-vars = P.vars;
-dom = P.dom;
-TP = P.T;
-AP = P.A;
-BP = P.B1;
-Bu = P.Bu;
-CP = P.C1;
-DP = P.D11;
-Dzu = P.Dzu;
-
-TTheta = Theta.T;
-ATheta = Theta.A;
-B1Theta = Theta.B1;
-B2Theta = Theta.B2;
-
-CDelta = operator_value(CL.CDelta,TP.dim(:,2),vars,dom,'CDelta');
-if any(CDelta.dim(2:end,1))
-    error('Delta must currently have finite-dimensional input channels.');
-end
-
-T = blkdiag(TP,TTheta);
-ZPTheta = zero_operator(TP.dim(:,1),TTheta.dim(:,2),vars,dom);
-A = [AP,           ZPTheta;
-     B1Theta*CP,   ATheta];
-B1 = [BP;
-      B1Theta*DP+B2Theta];
-B2 = [Bu;
-      B1Theta*Dzu];
-if any(B2.dim(2:end,2))
-    error('The controller output u must currently be finite-dimensional.');
-end
-
-ZDeltaTheta = zero_operator( ...
-    CDelta.dim(:,1),TTheta.dim(:,2),vars,dom);
-C1 = [CDelta,ZDeltaTheta];
-
-if isfield(CL,'DDeltaW') && ~isempty(CL.DDeltaW)
-    D11 = compatible_operator(CL.DDeltaW, ...
-        C1.dim(:,1),B1.dim(:,2),vars,dom,'DDeltaW');
-else
-    D11 = zero_operator(C1.dim(:,1),B1.dim(:,2),vars,dom);
-end
-if isfield(CL,'DDeltaU') && ~isempty(CL.DDeltaU)
-    D12 = compatible_operator(CL.DDeltaU, ...
-        C1.dim(:,1),B2.dim(:,2),vars,dom,'DDeltaU');
-else
-    D12 = zero_operator(C1.dim(:,1),B2.dim(:,2),vars,dom);
-end
-
-% Reserve the second output for u. closedLoopPIE maps it to K*x because
-% C2=0, D21=0, and D22=I before closing u=K*x.
-C2 = zero_operator(B2.dim(:,2),T.dim(:,2),vars,dom);
-D21 = zero_operator(B2.dim(:,2),B1.dim(:,2),vars,dom);
-D22 = identity_operator(B2.dim(:,2),vars,dom);
-Tw = zero_operator(T.dim(:,1),B1.dim(:,2),vars,dom);
-Tu = zero_operator(T.dim(:,1),B2.dim(:,2),vars,dom);
-
-K = compatible_operator(CL.K,B2.dim(:,2),T.dim(:,2),vars,dom,'K');
-
-% Preserve the plant state metadata. PIESIM uses the differentiability
-% order in x_tab to select the polynomial degree of each fundamental PDE
-% state and to convert physical primary-state initial conditions.
-stateTable = [];
-if isfield(P,'x_tab')
-    stateTable = P.x_tab;
-end
-
-PIE = pie_struct();
-PIE.vars = vars;
-PIE.dom = dom;
-PIE.T = T;
-PIE.Tw = Tw;
-PIE.Tu = Tu;
-PIE.A = A;
-PIE.B1 = B1;
-PIE.B2 = B2;
-PIE.C1 = C1;
-PIE.D11 = D11;
-PIE.D12 = D12;
-PIE.C2 = C2;
-PIE.D21 = D21;
-PIE.D22 = D22;
-PIE = initialize(PIE);
-if ~isempty(stateTable)
-    PIE.x_tab = stateTable;
-end
-PIE = closedLoopPIE(PIE,K,'controller');
-if ~isempty(stateTable)
-    PIE.x_tab = stateTable;
-end
-end
-
-function opts = simulation_options(opts,PIE)
+function opts = simulation_options(opts)
 if ~isfield(opts,'N') || isempty(opts.N)
-    opts.N = 8;
+    opts.N = 16;
 end
-if ~isfield(opts,'nDelta') || isempty(opts.nDelta)
-    opts.nDelta = sum(PIE.C1.dim(:,1));
+if ~isfield(opts,'splot') || isempty(opts.splot)
+    opts.splot = linspace(0,1,200).';
 end
-if ~isscalar(opts.nDelta) || opts.nDelta<1 || ...
-        opts.nDelta~=floor(opts.nDelta)
-    error('opts.nDelta must be a positive integer.');
-end
-if any(PIE.B1.dim(2:end,2))
-    error('Delta and wp must currently be finite-dimensional inputs.');
-end
-if ~isfield(opts,'wp')
+if ~isfield(opts,'wp') || isempty(opts.wp)
     opts.wp = [];
+end
+if ~isfield(opts,'nwd0') || isempty(opts.nwd0)
+    opts.nwd0 = 0;
 end
 if ~isfield(opts,'ode') || isempty(opts.ode)
     opts.ode = odeset('RelTol',1e-8,'AbsTol',1e-10);
 end
-if ~isfield(opts,'alg')
+if ~isfield(opts,'alg') || isempty(opts.alg)
     opts.alg = [];
 end
 if ~isfield(opts,'zeroTol') || isempty(opts.zeroTol)
@@ -240,152 +155,161 @@ end
 if ~isfield(opts,'algTol') || isempty(opts.algTol)
     opts.algTol = 1e-9;
 end
-if ~isfield(opts,'plot') || isempty(opts.plot)
-    opts.plot = false;
-end
-if ~isfield(opts,'states')
-    opts.states = [];
-end
-if ~isfield(opts,'labels')
-    opts.labels = {};
+if ~isfield(opts,'solver') || isempty(opts.solver)
+    opts.solver = @ode15s;
 end
 end
 
-function [t,x,zDelta,wDelta,wpOut] = integrate_nonlinearity( ...
-    P,Delta,tspan,x0,opts)
+function opts = validate_channel_options(opts,psize)
+if ~isscalar(opts.nwd0) || opts.nwd0<0 || opts.nwd0~=floor(opts.nwd0)
+    error('opts.nwd0 must be a nonnegative integer.');
+end
+if opts.nwd0>psize.nw0
+    error('opts.nwd0 cannot exceed the number of finite-dimensional inputs.');
+end
+if psize.nrx~=psize.nwx
+    error('The number of distributed zd and wd channels must match.');
+end
+if psize.nr0<opts.nwd0
+    error('C1 must contain at least opts.nwd0 finite-dimensional zd outputs.');
+end
+if opts.nwd0+psize.nwx==0
+    error('There must be at least one nonlinear wd channel.');
+end
+end
 
-nx = size(P.A,1);
-nDelta = size(P.BDelta,2);
-nzDelta = size(P.C,1);
-np = size(P.Bp,2);
+function channels = simulation_channels(psize,N,nwd0)
+nDist = psize.nwx;
+nDistCoeff = nDist*(N+1);
+
+channels.nwd0 = nwd0;
+channels.nDist = nDist;
+channels.N = N;
+channels.nwCoeff = psize.nw0+nDistCoeff;
+
+channels.wdFiniteCols = 1:nwd0;
+channels.wpCols = nwd0 + (1:(psize.nw0-nwd0));
+channels.wdDistCols = psize.nw0 + (1:nDistCoeff);
+channels.wdCols = [channels.wdFiniteCols,channels.wdDistCols];
+
+channels.zFiniteRows = 1:nwd0;
+channels.zDistRows = psize.nr0 + (1:nDistCoeff);
+channels.zRows = [channels.zFiniteRows,channels.zDistRows];
+end
+
+function inputCoeff = assemble_input_coefficients(wp,wdCoeff,channels)
+inputCoeff = zeros(size(wdCoeff,1),channels.nwCoeff);
+if ~isempty(channels.wpCols)
+    inputCoeff(:,channels.wpCols) = wp;
+end
+if channels.nwd0>0
+    inputCoeff(:,channels.wdFiniteCols) = wdCoeff(:,1:channels.nwd0);
+end
+if ~isempty(channels.wdDistCols)
+    inputCoeff(:,channels.wdDistCols) = wdCoeff(:,channels.nwd0+1:end);
+end
+end
+
+function [t,x,zCoeff,wdCoeff,wpOut] = integrate_wd_loop( ...
+    A,Bp,Bwd,Cz,Dzp,Dzwd,wd,tspan,x0,opts,channels)
+
+nx = size(A,1);
+nwd = size(Cz,1);
+nwp = size(Bp,2);
 if numel(x0)~=nx
-    error(['x0 must contain %d PIESIM fundamental-state ', ...
-        'coefficients.'],nx);
+    error('x0 must contain %d PIESIM fundamental-state coefficients.',nx);
 end
 x0 = x0(:);
 
 if isempty(opts.wp)
-    wpFun = @(t) zeros(np,1);
+    wpFun = @(t) zeros(nwp,1);
 elseif isa(opts.wp,'function_handle')
     wpFun = opts.wp;
 else
-    wpValue = opts.wp;
+    wpValue = opts.wp(:);
     wpFun = @(t) wpValue;
 end
 
-hasLoop = norm(P.DDelta,inf)>opts.zeroTol;
-if hasLoop
-    if exist('fsolve','file')~=2
-        error('A nonzero DDelta requires fsolve or a DAE formulation.');
-    end
-    if isempty(opts.alg)
-        opts.alg = optimoptions('fsolve','Display','off', ...
-            'FunctionTolerance',opts.algTol,'StepTolerance',opts.algTol, ...
-            'OptimalityTolerance',opts.algTol);
-    end
+hasLoop = norm(Dzwd,inf)>opts.zeroTol;
+if hasLoop && exist('fsolve','file')~=2
+    error('A nonzero wd feedthrough requires fsolve or a DAE formulation.');
+end
+if hasLoop && isempty(opts.alg)
+    opts.alg = optimoptions('fsolve','Display','off', ...
+        'FunctionTolerance',opts.algTol,'StepTolerance',opts.algTol, ...
+        'OptimalityTolerance',opts.algTol);
 end
 
-p0 = input_value(tspan(1));
-wLast = delta_value(P.C*x0+P.Dp*p0);
-[t,x] = ode45(@rhs,tspan,x0,opts.ode);
+wp0 = input_value(tspan(1));
+wdLast = wd_coefficients(Cz*x0+Dzp*wp0);
+[t,x] = opts.solver(@rhs,tspan,x0,opts.ode);
 
-zDelta = zeros(numel(t),nzDelta);
-wDelta = zeros(numel(t),nDelta);
-wpOut = zeros(numel(t),np);
-wGuess = wLast;
+zCoeff = zeros(numel(t),nwd);
+wdCoeff = zeros(numel(t),nwd);
+wpOut = zeros(numel(t),nwp);
+wdGuess = wdLast;
 for k = 1:numel(t)
-    p = input_value(t(k));
-    q = P.C*x(k,:)'+P.Dp*p;
-    [w,z] = close_loop(q,wGuess);
-    zDelta(k,:) = z';
-    wDelta(k,:) = w';
-    wpOut(k,:) = p';
-    wGuess = w;
+    wpNow = input_value(t(k));
+    q = Cz*x(k,:)'+Dzp*wpNow;
+    [wdNow,zNow] = close_loop(q,wdGuess);
+    zCoeff(k,:) = zNow.';
+    wdCoeff(k,:) = wdNow.';
+    wpOut(k,:) = wpNow.';
+    wdGuess = wdNow;
 end
 
     function dx = rhs(tNow,xNow)
-        p = input_value(tNow);
-        q = P.C*xNow+P.Dp*p;
-        [w,~] = close_loop(q,wLast);
-        wLast = w;
-        dx = P.A*xNow+P.BDelta*w+P.Bp*p;
+        wpNow = input_value(tNow);
+        q = Cz*xNow+Dzp*wpNow;
+        [wdNow,~] = close_loop(q,wdLast);
+        wdLast = wdNow;
+        dx = A*xNow+Bp*wpNow+Bwd*wdNow;
     end
 
-    function [w,z] = close_loop(q,wGuess)
+    function [wdNow,zNow] = close_loop(q,wdGuess)
         if ~hasLoop
-            z = q;
-            w = delta_value(z);
+            zNow = q;
+            wdNow = wd_coefficients(zNow);
             return
         end
-        F = @(wTry) wTry-delta_value(q+P.DDelta*wTry);
-        [w,residual] = fsolve(F,wGuess,opts.alg);
-        w = w(:);
-        if norm(residual,inf)>opts.algTol
-            error(['The Delta algebraic loop did not converge ', ...
-                '(residual %.3e).'],norm(residual,inf));
+        residual = @(wdTry) wdTry-wd_coefficients(q+Dzwd*wdTry);
+        [wdNow,res] = fsolve(residual,wdGuess,opts.alg);
+        wdNow = wdNow(:);
+        if norm(res,inf)>opts.algTol
+            error('The wd algebraic loop did not converge (residual %.3e).', ...
+                norm(res,inf));
         end
-        z = q+P.DDelta*w;
+        zNow = q+Dzwd*wdNow;
     end
 
-    function p = input_value(tNow)
-        p = wpFun(tNow);
-        p = p(:);
-        if numel(p)~=np
+    function wpNow = input_value(tNow)
+        wpNow = wpFun(tNow);
+        wpNow = wpNow(:);
+        if numel(wpNow)~=nwp
             error('wp(t) has incompatible dimensions.');
         end
     end
 
-    function w = delta_value(z)
-        w = Delta(z);
-        w = w(:);
-        if numel(w)~=nDelta
-            error('Delta(zDelta) has incompatible dimensions.');
+    function wdNow = wd_coefficients(zNow)
+        zValues = unpack_nonlinear_signal(zNow,channels);
+        wdValues = wd(zValues);
+        wdValues = wdValues(:);
+        expectedValues = channels.nwd0 + channels.nDist*(channels.N+1);
+        if numel(wdValues)~=expectedValues || any(~isfinite(wdValues))
+            error('wd(z) returned invalid values.');
         end
+        wdNow = pack_nonlinear_signal(wdValues,channels);
     end
-end
-
-function [PN,Dop,x0] = discretize_PIE(P,N,x0)
-physicalDomain = P.dom;
-psize.N = N;
-nx = P.T.dim(2,1);
-if isempty(P.x_tab)
-    psize.n = nx;
-else
-    psize.n = zeros(1,max(P.x_tab(:,end))+1);
-    for order = 0:max(P.x_tab(:,end))
-        psize.n(order+1) = sum( ...
-            P.x_tab(P.x_tab(:,end)==order & P.x_tab(:,3),2));
-    end
-end
-
-x0 = discretize_initial_condition(x0,P,psize,physicalDomain,N);
-P = rescalePIE(P,[-1,1]);
-
-Dop = PIESIM_discretize_ops(P,psize);
-if ~isempty(Dop.Twcheb) && any(abs(Dop.Twcheb)>1e-12,'all')
-    error('A nonlinear input with a nonzero Tw term is not supported.');
-end
-
-% PIESIM already returns Atotal=Tcheb_inv*Acheb.
-PN.A = Dop.Atotal;
-PN.B = Dop.Tcheb_inv*Dop.B1cheb;
-PN.C = Dop.C1cheb;
-PN.D = Dop.D11cheb;
-PN.Cu = Dop.C2cheb;
-PN.Du = Dop.D21cheb;
 end
 
 function x0 = discretize_initial_condition( ...
     initialCondition,PIE,psize,physicalDomain,N)
-% Convert physical primary-state profiles to fundamental-state Chebyshev
-% coefficients. Numeric input retains the original pre-discretized API.
 if isnumeric(initialCondition)
     x0 = initialCondition(:);
     return
 end
 if ~isstruct(initialCondition)
-    error(['x0 must be a numeric fundamental-state vector or a struct ', ...
-           'with fields ode and pde.']);
+    error('x0 must be numeric or a struct with fields ode and pde.');
 end
 
 numberOfODEStates = PIE.T.dim(1,2);
@@ -398,7 +322,7 @@ else
 end
 if numel(odeInitial)~=numberOfODEStates
     error('x0.ode must contain %d finite-dimensional states.', ...
-          numberOfODEStates);
+        numberOfODEStates);
 end
 
 if isfield(initialCondition,'pde')
@@ -411,87 +335,57 @@ if ~iscell(pdeInitial)
 end
 if numel(pdeInitial)~=numberOfPDEStates
     error('x0.pde must contain %d primary PDE profiles.', ...
-          numberOfPDEStates);
+        numberOfPDEStates);
 end
 
 differentiabilityOrder = repelem(0:numel(psize.n)-1,psize.n);
 pdeCoefficients = cell(numberOfPDEStates,1);
 for stateIndex = 1:numberOfPDEStates
     derivativeOrder = differentiabilityOrder(stateIndex);
-    polynomialDegree = N-derivativeOrder;
-    if polynomialDegree<1
-        error(['PIESIM degree N=%d is too small for PDE state %d, ', ...
-               'which has differentiability order %d.'], ...
-              N,stateIndex,derivativeOrder);
-    end
-
-    computationalGrid = cos(pi*(0:polynomialDegree)/polynomialDegree)';
-    physicalGrid = 0.5*(physicalDomain(2)-physicalDomain(1))* ...
-                   computationalGrid + 0.5*sum(physicalDomain);
     profile = pdeInitial{stateIndex};
 
-    if isa(profile,'sym')
-        spatialVariables = symvar(profile);
-        if numel(spatialVariables)>1
-            error('Each symbolic x0.pde profile may use one variable.');
-        elseif isempty(spatialVariables)
-            if derivativeOrder==0
-                profileValues = double(profile)*ones(size(physicalGrid));
-            else
-                profileValues = zeros(size(physicalGrid));
-            end
-        else
-            fundamentalProfile = diff( ...
-                profile,spatialVariables(1),derivativeOrder);
-            profileValues = double(subs( ...
-                fundamentalProfile,spatialVariables(1),physicalGrid));
-        end
+    if isa(profile,'function_handle')
+        pdeCoefficients{stateIndex} = profile_coefficients( ...
+            profile,N,derivativeOrder,physicalDomain);
     elseif isnumeric(profile) && isscalar(profile)
-        if derivativeOrder==0
-            profileValues = profile*ones(size(physicalGrid));
-        else
-            profileValues = zeros(size(physicalGrid));
-        end
-    elseif isa(profile,'function_handle')
-        % Sample the physical primary state at the degree-N Chebyshev
-        % nodes, transform it, and differentiate its coefficients. Each
-        % derivative lowers the degree by one and introduces the physical
-        % domain scaling d/ds = 2/(b-a) d/dxi.
-        primaryComputationalGrid = cos(pi*(0:N)/N)';
-        primaryPhysicalGrid = 0.5*(physicalDomain(2)-physicalDomain(1))* ...
-                              primaryComputationalGrid + ...
-                              0.5*sum(physicalDomain);
-        primaryValues = profile(primaryPhysicalGrid);
-        primaryValues = primaryValues(:);
-        if numel(primaryValues)~=N+1 || any(~isfinite(primaryValues))
-            error('Function-handle x0.pde profile %d returned invalid values.', ...
-                  stateIndex);
-        end
-        coefficients = fcht(primaryValues);
-        derivativeScale = 2/(physicalDomain(2)-physicalDomain(1));
-        for derivativeIndex = 1:derivativeOrder
-            coefficients = derivativeScale* ...
-                differentiate_chebyshev_coefficients(coefficients);
-        end
-        pdeCoefficients{stateIndex} = coefficients;
-        continue
+        pdeCoefficients{stateIndex} = constant_profile_coefficients( ...
+            profile,N,derivativeOrder);
     else
         error('Unsupported x0.pde profile for state %d.',stateIndex);
     end
-
-    profileValues = profileValues(:);
-    if numel(profileValues)~=polynomialDegree+1 || ...
-            any(~isfinite(profileValues))
-        error('x0.pde profile %d returned invalid grid values.',stateIndex);
-    end
-    pdeCoefficients{stateIndex} = fcht(profileValues);
 end
 
 x0 = [odeInitial;vertcat(pdeCoefficients{:})];
 end
 
+function coefficients = profile_coefficients( ...
+    profile,N,derivativeOrder,physicalDomain)
+grid = cos(pi*(0:N)/N).';
+physicalGrid = 0.5*(physicalDomain(2)-physicalDomain(1))*grid + ...
+    0.5*sum(physicalDomain);
+values = profile(physicalGrid);
+values = values(:);
+if numel(values)~=N+1 || any(~isfinite(values))
+    error('Initial-condition function returned invalid values.');
+end
+
+coefficients = fcht(values);
+derivativeScale = 2/(physicalDomain(2)-physicalDomain(1));
+for derivativeIndex = 1:derivativeOrder
+    coefficients = derivativeScale* ...
+        differentiate_chebyshev_coefficients(coefficients);
+end
+end
+
+function coefficients = constant_profile_coefficients(value,N,derivativeOrder)
+if derivativeOrder==0
+    coefficients = fcht(value*ones(N+1,1));
+else
+    coefficients = zeros(N+1-derivativeOrder,1);
+end
+end
+
 function derivative = differentiate_chebyshev_coefficients(coefficients)
-% Differentiate sum_k coefficients(k+1)*T_k(xi) in coefficient space.
 coefficients = coefficients(:);
 degree = numel(coefficients)-1;
 if degree<1
@@ -499,7 +393,7 @@ if degree<1
     return
 end
 
-work = zeros(degree+1,1,class(coefficients));
+work = zeros(degree+1,1);
 work(degree) = 2*degree*coefficients(degree+1);
 for coefficientDegree = degree-2:-1:0
     work(coefficientDegree+1) = work(coefficientDegree+3) + ...
@@ -509,73 +403,107 @@ work(1) = 0.5*work(1);
 derivative = work(1:degree);
 end
 
-function P = operator_value(value,inputDim,vars,dom,name)
-if isnumeric(value)
-    outputDim = zeros(size(inputDim));
-    outputDim(1) = size(value,1);
-    if size(value,2)~=sum(inputDim)
-        error('%s has incompatible dimensions.',name);
-    end
-    P = mat2opvar(value,[outputDim,inputDim],vars,dom);
-elseif isa(value,'opvar')
-    P = value;
-    if ~all(P.dim(:,2)==inputDim)
-        error('%s has incompatible input dimensions.',name);
-    end
-else
-    error('%s must be numeric or a PI operator.',name);
+function psize = piesim_size(PIE,N)
+psize.dim = 1;
+psize.N = N;
+psize.n0 = PIE.T.dim(1,1);
+psize.n = zeros(1,max(PIE.x_tab(:,end))+1);
+for k = 0:max(PIE.x_tab(:,end))
+    psize.n(k+1) = sum(PIE.x_tab(PIE.x_tab(:,end)==k & PIE.x_tab(:,3),2));
+end
+psize.nw0 = PIE.B1.dim(1,2);
+psize.nwx = PIE.B1.dim(2,2);
+psize.nw = psize.nw0+psize.nwx;
+psize.nu0 = PIE.B2.dim(1,2);
+psize.nux = PIE.B2.dim(2,2);
+psize.nu = psize.nu0+psize.nux;
+psize.nr0 = PIE.C1.dim(1,1);
+psize.nrx = PIE.C1.dim(2,1);
+psize.no0 = PIE.C2.dim(1,1);
+psize.nox = PIE.C2.dim(2,1);
+end
+
+function values = unpack_nonlinear_signal(coefficients,channels)
+coefficients = coefficients(:);
+finiteValues = coefficients(1:channels.nwd0);
+distributedCoefficients = coefficients(channels.nwd0+1:end);
+distributedValues = cheb_coefficients_to_values(distributedCoefficients, ...
+    channels.N,channels.nDist);
+values = [finiteValues;distributedValues];
+end
+
+function coefficients = pack_nonlinear_signal(values,channels)
+values = values(:);
+finiteValues = values(1:channels.nwd0);
+distributedValues = values(channels.nwd0+1:end);
+distributedCoefficients = cheb_values_to_coefficients(distributedValues, ...
+    channels.N,channels.nDist);
+coefficients = [finiteValues;distributedCoefficients];
+end
+
+function values = cheb_coefficients_to_values(coefficients,N,nChannels)
+values = zeros(nChannels*(N+1),1);
+for channelIndex = 1:nChannels
+    idx = (channelIndex-1)*(N+1) + (1:N+1);
+    values(idx) = real(ifcht(coefficients(idx)));
 end
 end
 
-function P = compatible_operator(value,outputDim,inputDim,vars,dom,name)
-if isnumeric(value)
-    if ~isequal(size(value),[sum(outputDim),sum(inputDim)])
-        error('%s has incompatible dimensions.',name);
-    end
-    P = mat2opvar(value,[outputDim,inputDim],vars,dom);
-elseif isa(value,'opvar')
-    P = value;
-    if ~all(P.dim(:,1)==outputDim) || ~all(P.dim(:,2)==inputDim)
-        error('%s has incompatible PI dimensions.',name);
-    end
-else
-    error('%s must be numeric or a PI operator.',name);
+function coefficients = cheb_values_to_coefficients(values,N,nChannels)
+coefficients = zeros(nChannels*(N+1),1);
+for channelIndex = 1:nChannels
+    idx = (channelIndex-1)*(N+1) + (1:N+1);
+    coefficients(idx) = fcht(values(idx));
 end
 end
 
-function P = zero_operator(outputDim,inputDim,vars,dom)
-P = mat2opvar(zeros(sum(outputDim),sum(inputDim)), ...
-    [outputDim,inputDim],vars,dom);
+function values = evaluate_distributed_output(coefficients,Eplot,channels)
+if channels.nDist==0
+    values = [];
+    return
 end
 
-function P = identity_operator(dim,vars,dom)
-P = mat2opvar(eye(sum(dim)),[dim,dim],vars,dom);
-end
-
-function plot_simulation(sim,opts)
-indices = opts.states(:)';
-if isempty(indices)
-    indices = 1:min(2,size(sim.x,2));
-end
-if any(indices<1) || any(indices>size(sim.x,2))
-    error('opts.states contains an invalid discretized-state index.');
-end
-
-figure('Color','w');
-tiledlayout(numel(indices)+1,1);
-for k = 1:numel(indices)
-    nexttile;
-    plot(sim.t,sim.x(:,indices(k)),'LineWidth',1.5);
-    grid on;
-    if numel(opts.labels)>=k
-        ylabel(opts.labels{k});
-    else
-        ylabel(sprintf('x_%d',indices(k)));
+values = zeros(size(coefficients,1),size(Eplot,1),channels.nDist);
+distributedCoefficients = coefficients(:,channels.nwd0+1:end);
+for timeIndex = 1:size(coefficients,1)
+    for channelIndex = 1:channels.nDist
+        idx = (channelIndex-1)*(channels.N+1) + (1:channels.N+1);
+        values(timeIndex,:,channelIndex) = ...
+            real(Eplot*distributedCoefficients(timeIndex,idx).').';
     end
 end
-nexttile;
-plot(sim.t,sim.u,'LineWidth',1.5);
-grid on;
-ylabel('u');
-xlabel('Time [s]');
+if channels.nDist==1
+    values = values(:,:,1);
+end
+end
+
+function values = evaluate_all_distributed_outputs(coefficients,Eplot,N,nChannels)
+if nChannels==0
+    values = [];
+    return
+end
+
+values = zeros(size(coefficients,1),size(Eplot,1),nChannels);
+for timeIndex = 1:size(coefficients,1)
+    for channelIndex = 1:nChannels
+        idx = (channelIndex-1)*(N+1) + (1:N+1);
+        values(timeIndex,:,channelIndex) = ...
+            real(Eplot*coefficients(timeIndex,idx).').';
+    end
+end
+if nChannels==1
+    values = values(:,:,1);
+end
+end
+
+function E = cheb_eval_matrix(x,N)
+x = x(:);
+E = zeros(numel(x),N+1);
+E(:,1) = 1;
+if N>=1
+    E(:,2) = x;
+end
+for k = 2:N
+    E(:,k+1) = 2*x.*E(:,k)-E(:,k-1);
+end
 end

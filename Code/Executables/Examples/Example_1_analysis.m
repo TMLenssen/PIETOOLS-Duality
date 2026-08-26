@@ -5,7 +5,7 @@ path_to_PIE = 'C:\Program Files\MATLAB\PIETOOLS\PIETOOLS';
 addpath(genpath(path_to_PIE))
 addpath(genpath("C:\Program Files\Mosek\11.0\toolbox\r2019b"))
 addpath(genpath("C:\Program Files\MATLAB\R2023a\toolbox\symbolic"));
-codeRoot = fileparts(mfilename('fullpath'));
+codeRoot = fileparts(fileparts(mfilename('fullpath')));
 addpath(genpath(codeRoot));
 
 %% Plant
@@ -13,6 +13,7 @@ pvar t s
 a = 0;
 b = 1;
 x1 = pde_var(1,s,[a,b]);
+x3 = pde_var(1,s,[a,b]);
 x2 = pde_var('state');
 zd = pde_var('output',1,s,[a,b]);
 wd = pde_var('input',1,s,[a,b]);
@@ -22,15 +23,16 @@ z2 = pde_var('out');
 y = pde_var('sense');
 u = pde_var('control');
 
-lam = 5;
+lam = 1;
 dev = 0.8;
-PDE = [diff(x1,t) == diff(x1,s,2)+lam*x1+0.1*w+dev*wd;
-       diff(x2,t) == u;
-       zd == x1;
-       z1 == x2;
+PDE = [diff(x1,t) == diff(x1,s,2)+lam*x1+dev*wd+s*(s-1)*w;
+       % diff(x2,t) == u;
+       zd == x1;%diff(x1,s,2);
+       % z1 == x2;
        z2 == int(x1,s,[a,b]);
        subs(x1,s,a) == 0;
-       subs(diff(x1,s,1),s,b) == x2];
+       subs(diff(x1,s,1),s,b) == 0];
+
 
 display_PDE(PDE);
 P = convert(PDE);
@@ -44,55 +46,31 @@ Psi = id_filter(zDim,wDim,P.vars,P.dom);
 DPsi = id_filter(wDim,zDim,P.vars,P.dom);
 
 settings = lpisettings('veryheavy');
+settings.ddZ = 3;
+settings.dd1 = 6;
+settings.dd2 = 6;
+settings.dd3 = 6;
+settings.dd12 = 6;
 settings.ddM = 5;
 settings.epneg = 1e-8;
-settings.options1.sep = 1;
-settings.options12.sep = 1;
+settings.eppn = 0;
 settings.kmax = 100;
-pnEps = 1e-6;
+pnEps = settings.eppn;
+% settings.options1.sep = 1;
+% settings.options12.sep = 1;
 
-%% Dual synthesis with an independent PN multiplier
-progS = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
-[progS,Vd,rhoD] = iqcvar(progS,wDim,zDim,settings,pnEps,P.vars,P.dom,'rhoD');
-[K,Zs,Ps,progS] = PIETOOLS_IQC_controller_synthesis( ...
-    progS,settings,P,DPsi,Vd);
-
-sFR = feasratio(progS);
-check_feasible(sFR,'synthesis');
-rhoD = double(lpigetsol(progS,rhoD));
-Vd = lpigetsol(progS,Vd);
-fprintf('\nSynthesis feasibility ratio: %.10g\n',sFR);
-fprintf('Dual synthesis gain:          %.10e\n',sqrt(rhoD));
-fprintf('Certified controller bound:    %.10e\n',settings.kmax);
 
 %% Identity-filtered primal and dual closed-loop graphs
-PB.vars = P.vars;
-PB.dom = P.dom;
-PB.T = P.T;
-PB.A = P.A;
-PB.B1 = P.B1;
-PB.C1 = P.C1;
-PB.D11 = P.D11;
 
-PT.vars = P.vars;
-PT.dom = P.dom;
-PT.T = P.T';
-PT.A = P.A';
-PT.B1 = P.C1';
-PT.C1 = P.B1';
-PT.D11 = P.D11';
+GP = PIETOOLS_IQC_primal_graph(P,Psi);
+GD = PIETOOLS_IQC_dual_graph(P,DPsi);
 
-GP = PIETOOLS_IQC_graph(PB,Psi);
-GD = PIETOOLS_IQC_graph(PT,DPsi);
 
-GP.A = GP.A+P.B2*K;
-GP.C1 = GP.C1+P.D12*K;
-GD.A = GD.A+K'*P.B2';
-GD.B1 = GD.B1+K'*P.D12';
+
 
 %% Primal analysis with a new PN multiplier
 progP = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
-[progP,Vp,rhoP] = pnvar(progP,zDim,wDim,settings,pnEps,P.vars,P.dom,'rhoP');
+[progP,Vp,rhoP] = iqcvar(progP,zDim,wDim,settings,P.vars,P.dom,'rhoP');
 [Pp,progP] = PIETOOLS_IQC_analysis(progP,settings,GP,Vp);
 
 pFR = feasratio(progP);
@@ -101,7 +79,7 @@ Vp = lpigetsol(progP,Vp);
 
 %% Dual analysis with another new PN multiplier
 progD = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
-[progD,Va,rhoA] = pnvar(progD,wDim,zDim,settings,pnEps,P.vars,P.dom,'rhoA');
+[progD,Va,rhoA] = iqcvar(progD,wDim,zDim,settings,P.vars,P.dom,'rhoA');
 [Pd,progD] = PIETOOLS_IQC_analysis(progD,settings,GD,Va);
 
 dFR = feasratio(progD);
@@ -116,8 +94,6 @@ check_feasible(pFR,'primal analysis');
 check_feasible(dFR,'dual analysis');
 
 Certificates = struct( ...
-    'K',K,'Zs',Zs,'Ps',Ps,'progS',progS,'sFR',sFR, ...
-    'rhoD',rhoD,'Vd',Vd, ...
     'GP',GP,'Vp',Vp,'Pp',Pp,'progP',progP,'pFR',pFR,'rhoP',rhoP, ...
     'GD',GD,'Va',Va,'Pd',Pd,'progD',progD,'dFR',dFR,'rhoA',rhoA, ...
     'pnEps',pnEps,'dev',dev);
@@ -136,7 +112,7 @@ F.D21 = zerosPI(d2,d1,vars,dom);
 F.D22 = eyePI(d2,vars,dom);
 end
 
-function [prog,V,rho] = iqcvar(prog,dp,dn,set,pnEps,vars,dom,name)
+function [prog,V,rho] = iqcvar(prog,dp,dn,set,vars,dom,name)
 % Structured scalar-channel IQC multiplier used for synthesis.
 if dp(2)~=dn(2)
     error('The scalar distributed positive/negative channel counts must match.');
@@ -157,8 +133,8 @@ end
 Q = blkdiag(Qb{:});
 S = blkdiag(Sb{:});
 I = eyePI([0;n],vars,dom);
-R = [Q+pnEps*I, S-S';
-     S'-S, -Q-pnEps*I];
+R = [Q+set.eppn*I, S-S';
+     S'-S, -Q-set.eppn*I];
 
 d = dp+dn;
 V = opvar2dopvar(zerosPI(d,d,vars,dom));
@@ -166,35 +142,6 @@ V.P = blkdiag(eye(dp(1)),-rho*eye(dn(1)));
 V.R = R.R;
 end
 
-function [prog,V,rho] = pnvar(prog,dp,dn,set,pnEps,vars,dom,name)
-% Full normalized strict PN multiplier used for each analysis.
-if dp(2)~=dn(2)
-    error('The scalar distributed positive/negative channel counts must match.');
-end
-[prog,rho] = lpidecvar(prog,name);
-prog = lpi_ineq(prog,rho);
-prog = lpisetobj(prog,rho);
-
-n = dp(2);
-Qb = cell(1,n);
-Sb = cell(1,n);
-op = set.options1;
-op.sep = 0;
-for k = 1:n
-    [prog,Qb{k}] = poslpivar(prog,[0,0;1,1],set.ddM,op);
-    [prog,Sb{k}] = lpivar(prog,[0,0;1,1],set.ddM,op);
-end
-Q = blkdiag(Qb{:});
-S = blkdiag(Sb{:});
-I = eyePI([0;n],vars,dom);
-M = [Q+pnEps*I, S;
-     S', -Q-pnEps*I];
-
-d = dp+dn;
-V = opvar2dopvar(zerosPI(d,d,vars,dom));
-V.P = blkdiag(eye(dp(1)),-rho*eye(dn(1)));
-V.R = M.R;
-end
 
 function ratio = feasratio(prog)
 try

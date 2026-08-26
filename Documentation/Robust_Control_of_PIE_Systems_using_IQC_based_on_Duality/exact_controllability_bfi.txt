@@ -1,0 +1,1412 @@
+      International Journal of Control
+
+
+
+
+      ISSN: 0020-7179 (Print) 1366-5820 (Online) Journal homepage: www.tandfonline.com/journals/tcon20
+
+
+
+
+Exact controllability of a class of nonlinear
+distributed parameter systems using back-and-
+forth iterations
+
+Vivek Natarajan, Hua-Cheng Zhou , George Weiss & Emilia Fridman
+
+To cite this article: Vivek Natarajan, Hua-Cheng Zhou , George Weiss & Emilia Fridman
+(2019) Exact controllability of a class of nonlinear distributed parameter systems
+using back-and-forth iterations, International Journal of Control, 92:1, 145-162, DOI:
+10.1080/00207179.2016.1266513
+
+To link to this article: https://doi.org/10.1080/00207179.2016.1266513
+
+
+
+
+       Published online: 22 Dec 2016.
+
+
+
+       Submit your article to this journal
+
+
+
+       Article views: 431
+
+
+
+       View related articles
+
+
+
+       View Crossmark data
+
+
+
+       Citing articles: 5 View citing articles
+
+
+
+
+                      Full Terms & Conditions of access and use can be found at
+             https://www.tandfonline.com/action/journalInformation?journalCode=tcon20
+INTERNATIONAL JOURNAL OF CONTROL
+2019, VOL. 92, NO. 1, 145–162
+http://dx.doi.org/./..
+
+
+
+
+Exact controllability of a class of nonlinear distributed parameter systems using
+back-and-forth iterations
+Vivek Natarajana , Hua-Cheng Zhou                              b
+                                                                   , George Weissb and Emilia Fridmanb
+a
+  Systems and Control Engineering Group, Indian Institute of Technology Bombay, Mumbai, India; b School of Electrical Engineering, Tel Aviv
+University, Ramat Aviv, Israel
+
+
+
+    ABSTRACT                                                                                                                ARTICLE HISTORY
+    We investigate the exact controllability of a nonlinear plant described by the equation ẋ(t ) = Ax(t ) +               Received  February 
+    Bu(t ) + BN N (x(t ), t ), where t  0. Here A is the infinitesimal generator of a strongly continuous                  Accepted  November 
+    group T on a Hilbert space X, B and BN , defined on Hilbert spaces U and UN , respectively, are admis-
+                                                                                                                            KEYWORDS
+    sible control operators for T and the function N : X × [0, ∞) → UN is continuous in t and Lipschitz                    Back-and-forth iterations;
+    in x, with Lipschitz constant LN independent of t. Thus, B and BN can be unbounded as operators                         exact controllability;
+    from U and UN to X, in which case the nonlinear term BN N (x(t ), t ) in the plant is in general not Lip-               nonlinear perturbation;
+    schitz in x. We assume that there exist linear operators F and Fb such that the triples (A, [B BN ], F )                regular linear system;
+    and (−A, [B BN ], Fb ) are regular and A + BF and −A + BFb,  are generators of operator semigroups                    Russell’s principle;
+    Tf and Tb on X such that Ttf  · Ttb  decays to zero exponentially. We prove that if LN is sufficiently              stabilisability
+    small, then the nonlinear plant is exactly controllable in some time τ > 0. Our proof is constructive,
+    i.e. given an initial state x0  X and a final state xτ  X, we propose an approach for constructing a
+    control signal u of class L2 for the nonlinear plant which ensures that if x(0) = x0 , then x(τ ) = xτ . We
+    illustrate our approach using two examples: a sine-Gordon equation and a nonlinear wave equation.
+    Our main result can be regarded as an extension of Russell’s principle on exact controllability to a
+    class of nonlinear plants.
+
+
+
+1. Introduction                                                                          The function f (the drift term in (1.1)) is an X−1 -valued
+                                                                                      function such that
+Let X, U and UN be Hilbert spaces, let T be a strongly
+continuous group of operators on X with generator A and
+let X−1 be the completion of X with respect to the norm                                                f ∈ Hloc
+                                                                                                             1
+                                                                                                                ((0, ∞); X−1 ),
+x−1 = (βI − A)−1 x, where β is an arbitrary (but
+fixed) element in the resolvent set ρ(A). In this paper we                            which means that the function t → f (t ) − f (0) can be
+study the exact controllability of a nonlinear distributed                            written as the integral of a function in L2loc ([0, ∞); X−1 ).
+parameter system described by the state equation                                      In the Abstract we took f = 0 for simplicity.
+                                                                                          By exact controllability in time τ > 0 of the plant (1.1),
+                                                                                      we mean the following: For any initial state x(0)  X we
+  ẋ(t ) = Ax(t ) + Bu(t ) + BN N (x(t ), t ) + f (t ),                       (1.1)   can steer the final state x(τ ) of the plant to any desired
+                                                                                      point in X, by using an input function u  L2 ([0, τ ]; U).
+where B ∈ L(U, X−1 ) and BN ∈ L(UN , X−1 ) are admis-                                 By exact controllability we mean exact controllability in
+sible control operators for T, the input signal u takes val-                          some time τ > 0. Exact controllability of nonlinear partial
+ues in U and the nonlinear function N : X × [0, ∞) →                                 differential equations is a classical research area, see for
+UN is continuous in the second argument t (the time) and                              instance Balachandran and Dauer (2002), Chen (1979),
+Lipschitz in the first argument x with Lipschitz constant                             Dehman and Lebeau (2009), Zuazua (1993) and the refer-
+LN independent of t, i.e.                                                             ences therein. The plants considered in the present work
+                                                                                      differ from those in the above, and many other, works in
+              N (x1 , t ) − N (x2 , t ) ≤ LN x1 − x2                              that (i) B can be unbounded, so that the control signal
+                                                                                      may drive the PDE while acting on a measure zero subset
+                          ∀ x1 , x2 ∈ X,              ∀ t ≥ 0.                (1.2)   of its domain, like in the case of boundary control, (ii) BN
+
+
+
+CONTACT Vivek Natarajan              vivekn@sc.iitb.ac.in
+©  Informa UK Limited, trading as Taylor & Francis Group
+146      V. NATARAJAN ET AL.
+
+
+can be unbounded as well, so that the nonlinear pertur-            (2005). A more general result (in dual form) is in Sec-
+bation term BN N (x(t ), t ) is not Lipschitz continuous on        tion 6.3 of Tucsnak and Weiss (2009). It concerns a class
+the state space X.                                                 of unbounded perturbations, similar to what we have in
+    We assume that the pairs (A, B) and (−A, B) are                this paper, but linear. A further generalisation (again in
+jointly exponentially stabilisable in a certain sense which        dual form) is in the recent work (Jiang, Liu, & Zhang,
+is inspired by the definition of stabilisability in Weiss and      2015) which considers nonlinear unbounded perturba-
+Curtain (1997). Using terminology that will be recalled in         tions. However, our results are not a simple extension of
+Section 3, the requirements of joint exponential stabilis-         the results in these works, because the approach we use
+ability are that there exist linear operators F and Fb such        here is entirely different. Our main result can be regarded
+that the triples (A, B, F) and (−A, B, Fb ) are regular, I is an   as an extension of Russell’s principle to a class of non-
+admissible feedback operator for both of the regular sys-          linear plants. We remark that the idea of extending Rus-
+tems with generating operators (A, B, F, 0) and (−A, B,            sell’s principle to nonlinear systems was raised (but not
+Fb , 0) and the corresponding closed-loop semigroups T f           addressed) in Chen (1979).
+(whose generator is A + BF ) and Tb (whose generator is              We show that for each sufficiently small Lipschitz con-
+−A + BFb,  ) satisfy, for some M  1 and μ > 0,                   stant LN there exists τ ∗  0 such that the plant (1.1) is
+                                                                   exactly controllable in each time τ > τ ∗ . Our proof is
+              Tt  · Ttb ≤ Me−μt
+                  f
+                                             ∀ t ≥ 0.     (1.3)    novel and constructive, i.e. we present an algorithm for
+                                                                   constructing the required control signal u that takes x
+Here, the subscript  denotes the -extension of an oper-          from a given x(0) to a desired x(τ ). Briefly, we define a
+ator, see Section 3. In addition, we assume that the triples       sequence of forward and backward state equations that
+(A, BN , F ) and (−A, BN , Fb ) are regular. These assump-         have the same structure as (1.1), but without drift terms
+tions will be explained in more detail in Section 4.               and with different functions in place of N . Using solu-
+   In the linear case (when N = 0) our assumptions on A            tions of this sequence of systems on the time interval
+and B imply that the system (A, B) is exactly controllable:        [0, τ ], that satisfy suitable boundary conditions, we con-
+this is the well-known Russell’s principle for controlla-          struct the required control signal u. When the plant is
+bility, for which we refer to Russell (1974, 1978), Chen           linear, our approach for determining u reduces to solv-
+(1979), Komornik (1992), Rebarber and Weiss (1997).                ing the plant with linear feedback, back and forth in
+This principle (which can be stated in many different ver-         time on the interval [0, τ ], with different initial condi-
+sions, of varying generality) states that if the pairs (A,         tions. For simplicity, we explain our approach when X is
+B) and (−A, B) are jointly exponentially stabilisable (in          finite-dimensional in Section 2. The details for infinite-
+the sense explained above), then (A, B) is exactly control-        dimensional X are in Section 4. Section 5 contains numer-
+lable. For the dual version (which concerns exact observ-          ical examples.
+ability) we refer to Ramdani, Tucsnak, and Weiss (2010)               We simplify our notation by adopting the following
+(specifically, Proposition 3.3 and the comments after it).         convention: if in a sum the summation index runs from
+The latter paper studied exact observability via a sequence        m ∈ Z to n ∈ Z and n < m, then the sum is zero.
+of forward and backward observers. This approach was
+extended to some nonlinear wave and beam equations
+in Fridman (2013), Fridman and Terushkin (2016). The
+                                                                   2. Discussion in finite dimensions
+most general statement of Russell’s principle (the linear
+exact controllability question) known to us is in the con-         To make our ideas easily understood, we first present
+ference paper (Natarajan & Weiss, 2013b), where it is              them in the simpler context of finite-dimensional control
+stated informally in the comments after Theorem 4.1. In            theory. Thus in this section X = C p , U = Cq , UN = Cr
+that reference T is not assumed to be invertible, the stabil-      and A, B, BN , F and Fb are matrices of suitable dimen-
+                                                                                                                f
+isability concept is weaker than what we use in this work          sions such that (1.3) holds (note that Tt = e(A+BF )t and
+and the conclusion is the null-controllability of the system       Ttb = e(−A+BFb )t ). We shall see later (see Remark 2.2) that
+(A, B) in some time.                                               in this finite-dimensional context, the existence of F and
+   Our assumptions on A, B and BN allow us to regard               Fb such that (1.3) holds is equivalent to the fact that (A,
+the nonlinear system (1.1) as a perturbation of the cor-           B) is controllable.
+responding linear system (where N = 0) if the Lipschitz                We assume that N is a nonlinear function as in the text
+constant LN is small enough. The fact that exact con-              before (1.2), N satisfies the Lipschitz assumption (1.2)
+trollability of a linear system is preserved under small           and the plant is described by (1.1). The drift function
+bounded linear perturbations has been proved in Hadd                f : [0, ∞) → X is now only assumed to be continuous.
+                                                                                            INTERNATIONAL JOURNAL OF CONTROL                        147
+
+                                                                                        ∗
+In this setting, it follows from the standard theory for           M f Mb e−(ω f +ωb )τ = 1. Fix τ > τ ∗ , then clearly
+the existence and uniqueness of solutions to ordinary dif-
+ferential equations (ODEs) that for any input u  C([0,                             := M f Mb e−(ω f +ωb )τ < 1.                                 (2.4)
+); U) and every initial condition x0  X, there exists
+a unique solution x  C1 ([0, ); X) for (1.1) such that
+                                                                       The second step is to introduce a sequence of ODEs
+x(0) = x0 . In the theorem below we assume, for the sake
+                                                                   defined recursively, meaning that each ODE in the
+of simplicity, that the desired final state is 0 (i.e. we study
+                                                                   sequence (except the first) is defined using the solutions
+the null controllability of (1.1)). This simplifying assump-
+                                                                   of the previous ODEs in the sequence. Fix x0  X. The
+tion can be eliminated, see Remark 2.1.
+                                                                   first ODE is
+Theorem 2.1: Under the above assumptions, if LN is suf-
+ficiently small, then there exists τ ∗  0 such that the fol-      ẋ0 (t ) = Ax0 (t ) + BN N (x0 (t ), t ) + f (t ) ∀ t ∈ [0, τ ],
+lowing holds: For any τ > τ ∗ and any x0  X there exists
+                                                                   x0 (0) = x0 .                                                                  (2.5)
+an input function u  C([0, τ ]; U) such that the solution
+x of (1.1) corresponding to x(0) = x0 and this u satisfies
+x(τ ) = 0.                                                         For each n ∈ N and all t  [0, τ ] we consider the ‘back-
+                                                                   ward’ ODE
+Proof: In the first step, we consider the systems
+                                                                          ẋbn (t ) = (A − BFb )xbn (t ) + BN hnb (xbn (t ), t ),
+ ẋ f (t ) = (A + BF )x f (t ) + BN h(x f (t ), t )   ∀ t ≥ 0,            xbn (τ ) = xn−1 (τ ),                                                   (2.6)
+                                                           (2.1)
+                                                                   where hnb is defined using the solutions of the previous
+ẋb (t ) = (−A + BFb )xb (t ) + BN hb (xb (t ), t )    ∀ t ≥ 0,    ODEs: for all x  X and t  [0, τ ],
+                                                           (2.2)
+                                                                                         n−1                                       
+                                                                                                               
+                                                                                                                n−1
+
+and each ODE (except the first) in the sequence of ODEs               hnb (x, t ) = N              x (t ) −
+                                                                                                    k
+                                                                                                                      xbk (t ), t
+that we will associate with the plant (1.1) in the next step                                 k=0                k=1
+                                                                                              n−1                                         
+resembles one of the above two systems. Here the func-                                                           
+                                                                                                                  n−1
+
+tions h and hb are continuous in their second argument t                           −N                x (t ) −
+                                                                                                        k
+                                                                                                                         xbk (t ) − x, t       . (2.7)
+                                                                                               k=0                k=1
+and Lipschitz in their first argument, with the same Lip-
+schitz constant LN as for N . In other words, for all x1 ,
+                                                                   For each n ∈ N and all t  [0, τ ] we consider the ‘forward’
+x2  X and each t  0,
+                                                                   ODE
+
+          h(x1 , t ) − h(x2 , t ) ≤ LN x1 − x2 ,
+                                                                          ẋn (t ) = (A + BF )xn (t ) + BN hn (xn (t ), t ),
+          hb (x1 , t ) − hb (x2 , t ) ≤ LN x1 − x2 .
+                                                                          xn (0) = xbn (0),                                                       (2.8)
+
+Furthermore, these functions satisfy h(0, t) = hb (0, t) =
+                                                                   where hn is defined using the solutions of the previous
+0 for all t  0. It follows from the standard theory on the
+                                                                   ODEs: x  X and t  [0, τ ]
+solutions to ODEs that for each x0  X there exist unique
+C1 solutions xf for (2.1) and xb for (2.2), on the time inter-                                                                               
+val [0, ), such that xf (0) = x0 and xb (0) = x0 . In addition,                                        
+                                                                                                        n−1               
+                                                                                                                          n
+                                                                         hn (x, t ) = N          x+           xk (t ) −         xbk (t ), t
+since (1.3) holds, if LN is sufficiently small (as discussed
+                                                                                                        k=0               k=1
+in more detail in Section 4), then there exist constants Mf ,                                     n−1                                  
+                                                                                                                       
+                                                                                                                        n
+Mb  1 and ω f , ωb ∈ R (independent of x0 and the spe-                                 −N                  xk (t ) −         xbk (t ), t . (2.9)
+cific forms of h and hb ) such that                                                                k=0                  k=1
+
+
+           x f (t ) ≤ M f e−ω f t x0 ,                         The structure of hnb and hn implies that these ODEs must
+              xb (t ) ≤ Mb e−ωbt x0         ∀t ≥ 0     (2.3)   be solved sequentially on [0, τ ], i.e. we must find x0 , xb1 ,
+                                                                   x1 , xb2 , x2 and so on, in this order. For example,
+and ωf + ωb > 0. The above estimates are estab-                                                                  
+lished in Section 4 when X is infinite-dimensional (see                   ẋb1 (t ) = (A − BFb )xb1 (t ) + BN N (x0 (t ), t )
+                                                                                                                 
+Lemma 4.1 and Lemma 4.2). Let τ ∗  0 be such that                                    −N (x0 (t ) − xb1 (t ), t ) ,
+148        V. NATARAJAN ET AL.
+
+
+                                                                                              xn (t ) ≤ M f e−ω f t xbn (0).                   (2.10)
+
+                                                                             Combining the above estimates for n = 1 and t = τ and
+                                                                             using the notation  from (2.4), we obtain x1 (τ ) 
+                                                                             x0 (τ ). By iterating this process, we get
+
+                                                                                       xn (τ ) ≤  n x0 (τ )                     ∀n ∈ N        (2.11)
+
+                                                                             which, along with the first inequality in (2.10), implies
+                                                                             that
+
+                                                                                        xbn (t ) ≤ Mbe−ωb (τ −t )  n−1 x0 (τ )
+                                                                                                       ∀ t ∈ [0, τ ], n ∈ N.                       (2.12)
+
+                                                                             From here and (2.10) it follows that
+
+                                                                                     xn (t ) ≤ M f e−ω f t Mbe−ωb τ  n−1 x0 (τ )
+                                                                                                    ∀ t ∈ [0, τ ], n ∈ N.                          (2.13)
+Figure . Illustration of the back-and-forth algorithm used to con-
+                                                                                The fourth step is to find the desired input function
+struct a null control signal u for the nonlinear plant (.) with ini-
+tial state x() = x . While x is a state trajectory of (.), xbn and xn   u for the plant (1.1). For each n ∈ N and t  [0, τ ], we
+(for n  ) are state trajectories of (.) and (.). The dashed curve      define
+xn (see (.)) is a state trajectory of (.) when u = un . We have
+limn →  xn (τ ) = .                                                                                
+                                                                                                     n                    
+                                                                                                                          n
+                                                                                         xn (t ) =        x (t ) −
+                                                                                                           k
+                                                                                                                                xbk (t ),
+                                                                                                     k=0                  k=1
+which is solved backwards on [0, τ ] starting from xb1 (τ ) =                                          n                        
+                                                                                                                                 n
+x0 (τ ), and                                                                            un (t ) = F            x (t ) + Fb
+                                                                                                                k
+                                                                                                                                       xbk (t ).   (2.14)
+                                                                                                         k=1                     k=1
+                                          
+      ẋ1 (t ) = (A + BF )x1 (t ) + BN N (x1 (t ) − xb1 (t )
+                                                                            Then xn (shown in Figure 1 as a dashed line) is the unique
+                 +x0 (t ), t ) − N (x0 (t ) − xb1 (t ), t ) ,                solution of (1.1) on the time interval [0, τ ] with xn (0) =
+                                                                             x0 and input u = un , i.e.
+which is solved forwards on [0, τ ] starting from x1 (0) =
+xb1 (0). This sequence of back-and-forth state trajectories                         ẋn (t ) = Axn (t ) + Bun (t ) + BN N (xn (t ), t )
+is illustrated in Figure 1.
+                                                                                              + f (t )          ∀ t ∈ [0, τ ],                     (2.15)
+     The third step is to obtain estimates for the solutions
+of this sequence of ODEs. For this, notice that for t  [0,
+                                                                             and moreover xn (τ ) = xn (τ ). The functions hnb and hn
+τ ], (2.8) is an equation of the form (2.1), with h = hn .
+                                                                             have been chosen precisely so that xn satisfies (2.15). This
+It is clear that (2.6) can be rewritten, using the notation
+                                                                             can be shown by a simple computation based on (2.5)–
+z(t ) = xbn (τ − t ), as
+                                                                             (2.9) (which involves many cancellations). We define u :
+                                                                             [0, τ ] → U by
+      ż(t ) = (−A + BFb )z(t ) − BN hnb (z(t ), τ − t ),
+      z(0) = xn−1 (τ ),                                                                     ∞
+                                                                                                                ∞
+                                                                                                                 
+                                                                                u(t ) = F         xk (t ) + Fb            xbk (t )       ∀ t ∈ [0, τ ].
+which for t  [0, τ ] is an equation of the form (2.2), with                                k=1                     k=1
+                                                                                                                                                   (2.16)
+          hb (x, t ) = −hnb (x, τ − t )           ∀ x ∈ X.
+                                                                             It follows using (2.12) and (2.13) that both series in (2.16)
+It is easy to see that the nonlinear functions h and hb just                 converge to a finite sum for each t  [0, τ ], and more-
+defined possess all the properties assumed after Equa-                       over limn→∞ u − un L∞ [0,τ ] = 0. The function u, being
+tions (2.1) and (2.2). Therefore, the estimates (2.3) hold,                  the uniform limit of a sequence of continuous functions,
+meaning that for every n ∈ N and t  [0, τ ],                                is continuous on [0, τ ].
+                                                                                 Let x be the unique solution of (1.1) on [0, τ ] when
+             xbn (τ − t ) ≤ Mbe−ωbt xn−1 (τ ),                           x(0) = x0 and u is as in (2.16). From the continuous
+                                                                                    INTERNATIONAL JOURNAL OF CONTROL                  149
+
+
+dependence of the state trajectories of systems described        and Tucsnak and Weiss (2009). For a Hilbert space Y and
+by ODEs on their inputs (see, for instance, Khalil, 2002,        α ∈ R, we define the Hilbert space
+Theorem 3.4), we get that
+                                                                                                                        
+                                                                                                                         
+           x(t ) = lim xn (t )      ∀ t ∈ [0, τ ].                  L2α ([0, ∞); Y ) =           φ ∈ L2loc ([0, ∞); Y ) 
+                   n→∞
+
+                                                                                                       ∞
+This, together with the fact that xn (τ ) = xn (τ ) and the
+                                                                                                           e−2αt φ(t )2 dt < ∞ ,
+estimate in (2.11), implies that x(τ ) = 0 as desired.                                            0
+
+   We remark that when N = 0 and f = 0, if we replace
+A with A + BF in (2.5) and add Fx0 (t) to the right side         with the norm being the square-root of the integral
+of (2.16), then the above construction of the null control       appearing above. For each τ  0, let Pτ be the projection
+signal u reduces to the one described in Natarajan and           of L2 ([0, ); Y) onto L2 ([0, τ ]; Y) by truncation.
+Weiss (2013b).                                                      Let A be the generator of a strongly continuous opera-
+   As promised at the beginning of this section, in the          tor semigroup T on a Hilbert space X. The growth bound
+next remark we explain how the null controllability in           of T is denoted by ωT . This means that ωT is the small-
+Theorem 2.1 can be replaced with controllability.                est real number with the following property: For each
+                                                                 ω > ωT there exists a Mω > 0 such that
+Remark 2.1: Suppose that for the plant (1.1), with N as
+in (1.2), the initial state is x(0) = x0 and the desired final
+state is x(τ ) = xτ  X. Define M(z, t ) = N (z + xτ , t )                     Tt  ≤ Mω eωt                    ∀ t ≥ 0.
+for each z  X and t  0. Consider the modified nonlinear
+plant                                                            We call T (or A) exponentially stable if ωT < 0. For β 
+                                                                 ρ(A), we define
+         ż(t ) = Az(t ) + Bu(t ) + BN M(z(t ), t )
+                 + f (t ) + Axτ      ∀ t ≥ 0.          (2.17)      X1 = D(A) with the norm x1 = (βI − A)x.
+
+It is easy to verify that if z(0) = x0 − xτ and u  C([0, τ ];
+                                                                 The space X−1 has been defined before (1.1). These spaces
+U) is a null control signal for (2.17) in time τ , so that the
+                                                                 are independent of the choice of β. The operators Tt
+corresponding solution z  C1 ([0, τ ]; X) of (2.17) satisfies
+                                                                 extend to X−1 and form an operator semigroup on it. The
+z(τ ) = 0, then x defined by x(t) = z(t) + xτ for each t  [0,
+                                                                 generator of the extended operator semigroup is an exten-
+τ ] solves (1.1) for the same u and satisfies x(0) = x0 and
+                                                                 sion of A to an operator in L(X, X−1 ). We use the same
+x(τ ) = xτ . Hence, this control signal u takes (1.1) from
+                                                                 notation Tt and A for these extended operators. If T is a
+x0 to xτ in time τ (which is our control objective). If we
+                                                                 strongly continuous group on X, then so is its extension
+introduce the new drift function g(t) = f(t) + Axτ , then
+                                                                 to X−1 . The space X1d is defined similarly to X1 , but with
+the problem of finding a null control signal for (2.17) for
+                                                                 A∗ in place of A. Then X−1 can be regarded as the dual
+any given initial state fits into the framework of Theorem
+                                                                 space of X1d with respect to the pivot space X.
+2.1 (with M in place of N and g in place of f ) and hence
+                                                                     Let U be a Hilbert space. An operator B ∈ L(U, X−1 )
+it can be solved under the assumptions of that theorem.
+                                                                 is an admissible control operator for T if for some (hence,
+Thus, Theorem 2.1 can be strengthened by replacing the
+                                                                 for each) τ > 0 and for every u  L2 ([0, ); U),
+conclusion of null controllability in time τ with control-
+lability in time τ .                                                                         τ
+Remark 2.2: If we take N = 0 in Theorem 2.1, then we                           τu =              Tτ −σ Bu(σ ) dσ ∈ X             (3.1)
+                                                                                         0
+get that the joint stabilisability of (A, B) and (−A, B) (i.e.
+the estimate (1.3)) implies that (A, B) is controllable. The
+                                                                 (the integral is computed in X−1 ). Then, this integral gives
+converse statement is clearly also true. This equivalence
+                                                                 the strong solution of ż(t ) = Az(t ) + Bu(t ) in the space
+is the finite-dimensional version of Russell’s principle.
+                                                                 X−1 , corresponding to z(0) = 0, evaluated at the time τ .
+                                                                 B is called bounded if B ∈ L(U, X ), and unbounded oth-
+3. Background on regular systems                                 erwise. If B is admissible and α > ωT , then there exists
+                                                                 Mα  0 such that
+This section is a brief introduction to regular linear sys-
+tems based on Staffans (2004), Staffans and Weiss (2004),
+                                                                                                            Mα
+Weiss (1994a), Weiss (1994b), Weiss and Curtain (1997)            (sI − A)−1 BL(U,X ) ≤ √                           for Re s > α.
+                                                                                                           Re s − α
+150           V. NATARAJAN ET AL.
+
+
+If the semigroup T is normal, or invertible, or contrac-              For any regular triple (A, B, C) and any D ∈ L(U, Y ),
+tive, then the above estimate is sufficient for the admissi-       the equations
+bility of B. For A and B as above (so that in particular, B is
+admissible), for each τ  0 we define the input map τ :             ẋ(t ) = Ax(t ) + Bu(t ),        y(t ) = C x(t ) + Du(t ),
+L2 ([0, ); U) → X by (3.1). It can be shown that these                                                                     (3.5)
+operators are bounded. Since τ u = τ Pτ u, the opera-
+tors τ have an obvious extension to L2loc ([0, ∞); U ). For        define a regular linear system with input space U, state
+any u ∈ L2loc ([0, ∞); U ), t u is a continuous X-valued           space X and output space Y. For any initial state x(0) =
+function of the time t. If A is exponentially stable, then the     x0  X and any input u ∈ L2α ([0, ∞); U ) (where α ∈ R)
+operators t are uniformly bounded. If we denote their              there exists a unique state trajectory x  C([0, ); X) and
+uniform bound by   , then obviously                             output y for such that y ∈ L2γ ([0, ∞); Y ) for all γ  α
+                                                                   with γ > ωT and both equations in (3.5) hold for almost
+         t u ≤       ∞  · uL2   ∀ u ∈ L2 ([0, ∞); U ),       every t  0. The state trajectory x can be written as
+      ∀ t ≥ 0.                                             (3.2)
+                                                                               x(t ) = Tt x0 +     tu     ∀ t ≥ 0,
+For A and B as above, if Tt is invertible for some t > 0,
+then it is invertible for every t > 0 and the inverses form        where t is as in (3.1). The operators (A, B, C, D) are
+a new operator semigroup with generator −A. In this                called the generating operators of . The transfer function
+case T can be extended to a strongly continuous group              of is
+of operators via T−t = Tt−1 and B is admissible also for
+the inverse semigroup.                                                          G(s) = C (sI − A)−1 B + D,
+   Let Y be a Hilbert space. An operator C ∈ L(X1 , Y )
+is an admissible observation operator for T if for some            which is an L(U, Y )-valued analytic function defined
+(hence, for every) τ > 0 there exists mτ > 0 such that             on the right half-plane where Re s > ωT . Denoting the
+                                                                   Laplace transformation by a hat, for u, x0 , y and γ as in
+              τ                                                    the text after (3.5), we have
+                  CTt z2 dt ≤ mτ z2     ∀ z ∈ D(A). (3.3)
+          0
+                                                                      ŷ(s) = C(sI − A)−1 x0 + G(s)û(s) for Re s > γ
+If B ∈ L(U, X−1 ), then B∗ ∈ L(X1d , U ). B is an admissi-
+                                                                   and lims →  G(s)v = Dv for any v  U, where s is positive.
+ble control operator for T iff B∗ is an admissible observa-
+                                                                      For a system as above, there exist linear maps ∞ :
+tion operator for the adjoint operator semigroup T∗ . The
+                                                                   X → L2loc ([0, ∞); Y ) (called the extended output map)
+-extension of an operator C ∈ L(X1 , Y ) (with respect to
+                                                                   and F∞ : L2loc ([0, ∞); U ) → L2loc ([0, ∞); Y ) (called the
+A), denoted C , is defined as follows:
+                                                                   extended input-output map) such that the output y
+                                                                   from (3.5) can be expressed as y = ∞ x0 + F∞ u. The
+                    C x = lim Cλ(λI − A)−1 x              (3.4)   extended input-output map is causal, i.e. Pτ F∞ =
+                           λ → +∞
+                                                                   Pτ F∞ Pτ for all τ  0. This and the above expression for
+and its domain D(C ) consists of those x  X for which            the output y give
+the above limit exists. If C is admissible for T, then
+for every x  X the formula y(t ) = C Tt x makes sense                  Pτ y = Pτ ∞ x0 + Pτ F∞ Pτ u          ∀ τ ≥ 0.     (3.6)
+for almost every t  0 and it defines a function y ∈
+L2α ([0, ∞); Y ) for every α > ωT . We call C bounded if           For every ω > ωT ,   is bounded from X to
+it can be extended so that C ∈ L(X, Y ) and unbounded              L2ω ([0, ∞); Y ) with norm   ω and F∞ is bounded
+otherwise.                                                         from L2ω ([0, ∞); U ) to L2ω ([0, ∞); Y ) with norm
+                                                                   F∞ ω . Moreover
+Definition 3.1: Let U, X and Y be Hilbert spaces. Let A
+be the generator of a strongly continuous semigroup T
+                                                                                   F∞ ω = sup G(s).
+on X and let B ∈ L(U, X−1 ) and C ∈ L(X1 , Y ) be admis-                                         Re s>ω
+sible control and observation operators, respectively, for
+T. Then the triple (A, B, C) is called regular if for some         Definition 3.2: With the notation from Definition 3.1,
+(hence, for every) s  ρ(A), C (sI − A)−1 B exists and            let G be the transfer function of and let K ∈ L(Y, U ).
+the map s →C (sI − A)−1 B is bounded on some right               We say that K is an admissible feedback operator for if
+half-plane.                                                        [I − KG(s)]−1 exists and is uniformly bounded on some
+                                                                                             INTERNATIONAL JOURNAL OF CONTROL            151
+
+
+right half-plane (equivalently, [I − G(s)K]−1 exists and is         First, we define a solution concept for the nonlinear
+uniformly bounded on some right half-plane).                     systems encountered in this section, following Definition
+Proposition 3.1: We work under the assumptions of the            4.1.1 in Tucsnak and Weiss (2009).
+above definition, and moreover we assume that I − KD is          Definition 4.1: Consider the nonlinear differential
+invertible (equivalently, I − DK is invertible). Then there      equation
+exists a unique regular linear system K with generating
+operators (AK , BK , CK , DK ) and transfer function GK deter-     ẋ(t ) = Ax(t ) + BG G(x(t ), t ) + f (t ) ∀ t ≥ 0, (4.1)
+mined as follows:
+                                                                 where A is the generator of a strongly continuous semi-
+ A x = [A + BK(I − DK ) C ]x
+   K                          −1
+                                           ∀ x ∈ D(A ),K         group T on X, BG ∈ L(U, X−1 ), G : X × [0, ∞) → U is a
+                                                                 nonlinear function and f ∈ Hloc  1
+                                                                                                     ((0, ∞); X−1 ). A strong
+where D(AK ) consists precisely of those x ∈ D(C ) for          solution of (4.1) in X−1 is a function
+which the above expression for AK x is in X. For any x ∈
+D(AK ) we have                                                             x ∈ L1loc ([0, ∞); X ) ∩ C([0, ∞); X−1 )
+
+                                                                 with the following properties:
+  BK = B(I − KD)−1 ,          CK x = (I − DK )−1C x,               (a) Gx ∈ L2loc ([0, ∞); U ), where (Gx)(t ) = G(x(t ), t )
+                                                                 for almost all t  0.
+         DK = D(I − KD)−1 = (I − DK )−1 D,                          (b) The following equality holds for every t  0:
+
+         GK = G(I − KG)−1 = (I − GK )−1 G.                                                   t                                   
+                                                                 x(t ) − x(0) =                      Ax(σ ) + BG (Gx)(σ ) + f (σ ) dσ.
+                                                                                         0
+   With the notation and the assumptions of the above
+proposition, let Ũ be a Hilbert space and B̃ ∈ L(Ũ , X−1 ).       It is easy to see that the strong solution x in the above
+If (A, B̃, C) is a regular triple, then B̃ is an admissible      definition (if it exists) satisfies (4.1) pointwise in X−1 for
+control operator for the semigroup generated by AK . (A          almost every t  0.
+similar statement holds for admissible observation oper-         Proposition 4.1: Suppose that T is a strongly continuous
+ators, we omit the details.) Furthermore, if D = 0, then         semigroup of operators on X with infinitesimal generator
+(AK , B̃, C̃) is a regular triple, where C̃ is the restriction   A, B ∈ L(U, X−1 ) and BN ∈ L(UN , X−1 ) are admissible
+of C from (3.4) to D(AK ). The -extension of C̃ with           control operators for T and N : X × [0, ∞) → UN is con-
+respect to AK is C (the same as for C).                         tinuous in its second argument and satisfies the uniform
+   The following definition uses the above proposition           Lipschitz condition (1.2) for some LN > 0. Assume that
+with D = 0.                                                       f ∈ Hloc
+                                                                        1
+                                                                           ((0, ∞); X−1 ) and define
+Definition 3.3: Suppose that A and B are as in (3.1).
+Then (A, B) is exponentially stabilisable if there exists                                        t
+F ∈ L(X1 , U ) such that:                                                  F (t ) =                  Tt−σ f (σ ) dσ     ∀ t ≥ 0.
+                                                                                             0
+
+   (1) (A, B, F) is a regular triple,                                For each t  0, recall the operator t from (3.1) and
+   (2) [I − F (sI − A)−1 B]−1 exists and is bounded on          define a similar operator tN : L2 ([0, ∞); UN ) → X as
+       some right half-plane,                                    follows:
+   (3) The operator semigroup generated by A + BF is
+       exponentially stable.                                                    t
+                                                                   N
+                                                                   t z =            Tt−σ BN z(σ ) dσ              ∀ z ∈ L2 ([0, ∞); UN ).
+                                                                            0
+In this case, we call F a stabilising state feedback operator
+for (A, B).                                                         Then for every u ∈ L2loc ([0, ∞); U ) and each x0  X
+                                                                 there exists a unique function x  C([0, ); X) such that
+
+4. Exact controllability of nonlinear DPS                        x(t ) = Tt x0 +                         N
+                                                                                         tu +            t (N x)(t ) + F (t )      ∀ t ≥ 0,
+In this section we study the exact controllability of the                                                                             (4.2)
+possibly infinite-dimensional nonlinear plant (1.1) using
+the approach described for finite-dimensional systems in         where (N x)(t ) = N (x(t ), t ) for all t  0. For every t >
+Section 2. In this section X, U, UN and Y denote Hilbert         0, x(t) depends continuously on x0 and on Pτ u (the trunca-
+spaces.                                                          tion of u to [0, τ ]). Moreover, the function x defined above
+152      V. NATARAJAN ET AL.
+
+
+is the unique strong solution of (1.1) in X−1 that satisfies     nonlinear system
+x(0) = x0 .
+                                                                 ẋ(t ) = Ax(t ) + Bg(x(t ), t )                     x(0) = x0
+                                                                                                                      ∀ t ≥ 0,
+    Outline of the proof. First we notice that from The-                                                                   (4.4)
+orem 4.1.6 in Tucsnak and Weiss (2009) we have F ∈               satisfies x(t ) ≤ Mγ x0 e−ωγ t for all t  0. Here −ωγ =
+C([0, ∞); X ).                                                   γ +  γ∞ 2 L2 , where  γ∞  is as introduced just before
+    The existence of x and its continuous dependence on          the lemma.
+x0 and on Pτ u can be shown by a slight adaptation of                Furthermore, if C ∈ L(X1 , Y ) is an admissible observa-
+the proof of Theorem 3.1 in Natarajan and Weiss (2013a).         tion operator for T and (A, B, C) is a regular triple, then for
+Indeed, in the cited reference, N is independent of time,        every trajectory x of (4.4) x(t ) ∈ D(C ) for almost all t 
+while here N may depend on t, but this does not change           0 and for each γ > ωT and α > −ωγ there exist constants
+anything. In the cited reference, for our purpose, we must       cα , dα > 0 such that
+take the output y of the well-posed system P to be equal
+to its state x and replace t1 u1 with t u + F (t ) and Ft1 u1     Pτ C xL2α ≤ cα x0  + dα Pτ xL2α                            ∀ τ ≥ 0. (4.5)
+with Pt ( u + F ) in Section 3 there. Here ( u)(t) = t u
+for all t  0. It follows from Remark 3.2 in the cited ref-      Proof: For each x0  X, it follows from Proposition 4.1
+erence that this proposition holds without any restriction       that there exists a unique state trajectory x  C([0, ); X)
+on the Lipschitz constant LN . This is because our obser-        for (4.4) which satisfies
+vation operator is the identity operator on X, which is                                  t
+bounded. Theorem 3.1 from Natarajan and Weiss (2013a)             x(t ) = Tt x0 +            Tt−σ Bg(x(σ ), σ ) dσ                      ∀ t ≥ 0.
+is presented as Theorem 7.2 in the survey paper Tucsnak                              0
+
+and Weiss (2014).
+                                                                 Fix γ > ωT and define z(t) = e−γ t x(t). Recall the notation
+    To use the concept of strong solution for (1.1), we
+                                                                 Sγ and tγ introduced just before this lemma. It is easy to
+have to fit (1.1) into the framework of (4.1). For this,
+                                                                 verify using the last equation that
+we define BG = [B BN ] and G(x, t ) = [u(t ) N (x, t )] .
+Adapting the proof of Proposition 4.2.5 in Tucsnak and                                            t
+Weiss (2009) we can check that x is the unique strong                z(t ) = Stγ x0 +                  γ
+                                                                                                      St−σ Be−γ σ g(eγ σ z(σ ), σ ) dσ
+                                                                                              0
+solution for (1.1) in X−1 that satisfies x(0) = x0 .       
+                                                                     ∀ t ≥ 0.
+    The function x in the above proposition is called the
+state trajectory of (1.1) corresponding to the initial state
+                                                                 For any fixed t  0, if we define u(σ ) = e−γ σ g(eγ σ z(σ ),
+x0 and the input u.
+                                                                 σ ) for σ  [0, t] and u(σ ) = 0 for σ > t, then the above
+    Let A, B and T be as in Proposition 4.1. Then clearly
+                                                                 equation gives us that z(t ) = Stγ x0 + tγ u. Using this and
+A − γ I is the generator of an operator semigroup Sγ
+                                                                 (4.3) we get that for some M  1
+for each γ ∈ R, with Stγ = e−γ t Tt for all t  0, and B is
+an admissible control operator for Sγ . Define tγ analo-                     z(t ) ≤ Mx0  +                       γ
+                                                                                                                       ∞  · uL2 ,
+gously to t by replacing T with Sγ in (3.1). If γ > ωT ,                                                   t
+then Sγ is exponentially stable and from the discussion                         u2L2 ≤ L2                    z(σ )2 dσ.
+above (3.2) we get that the operators tγ are uniformly                                                 0
+
+bounded by a constant  γ∞ .
+                                                                 Therefore, for all t  0,
+Lemma 4.1: Suppose that A is the generator of a strongly                                                                        t
+                                                                                                                  γ 2 2
+continuous semigroup T on X with growth bound ωT . Let             z(t )2 ≤ 2M 2 x0 2 + 2                    ∞ L              z(σ )2 dσ.
+B ∈ L(U, X−1 ) be an admissible control operator for T and                                                                  0
+
+let g: X × [0, ) → U be a function which is continuous in       Applying Gronwall’s inequality (see, for instance, (Cod-
+its second argument, g(0, t) = 0 for all t  0 and g satisfies   dington & Levinson, 1955 ), (Khalil, 2002 )) to the above
+the Lipschitz condition                                          expression, we get that
+                                                                                                                  γ
+                                                                       z(t )2 ≤ 2M 2 x0 2 e2 ∞  L t
+                                                                                                                      2 2
+            g(x1 , t ) − g(x2 , t ) ≤ Lx1 − x2                                                                                  ∀ t ≥ 0.
+               ∀ x1 , x2 ∈ X,      ∀ t ≥ 0,             (4.3)                                                        √
+                                                                 This and the definitions z(t) = e−γ t x(t), Mγ = 2M
+                                                                 imply the estimate for x(t).
+for some L > 0. Then for every γ > ωT there exists Mγ >             Let C be as in the theorem. Then we can regard (4.4)
+1 such that for each x0  X, the state trajectory x of the       along with the equation y(t) = C x(t) as a regular linear
+                                                                                             INTERNATIONAL JOURNAL OF CONTROL                  153
+
+
+system with input u given by u(t) = g(x(t), t) for all t                Lipschitz constant LN , i.e. for all x1 , x2  X and t  0
+0 and output y. The existence of cα and dα such that (4.5)
+holds follows from (3.6) and the discussion below it, (4.3)                        h(x1 , t ) − h(x2 , t ) ≤ LN x1 − x2 ,
+and the estimate for x(t).                                                      hb (x1 , t ) − hb (x2 , t ) ≤ LN x1 − x2 .
+Remark 4.1: The constants Mγ , ωγ , cα and dα in the
+above lemma do not depend on the specific form of the                    Moreover, assume that h(0, t) = hb (0, t) = 0 for all t  0.
+                                                                                                                                 f ,γ
+nonlinear function g, as long as g satisfies (4.3). This is                  For each t  0 and every γ ∈ R, let St =
+                                                                                   f
+evident from the proof of Lemma 4.1.                                     e−γ t Tt and Stb,γ = e−γ t Ttb and define the maps
+                                                                            f ,γ     b,γ
+Assumption 4.1: The operators in (1.1) are such that (A,                   t , t         : L2 ([0, ∞); UN ) → X as follows: for each
+B) and (−A, B) are jointly exponentially stabilisable, as                z ∈ L ([0, ∞); UN ),
+                                                                                 2
+
+defined in Section 1. Thus, there exist F, Fb ∈ L(X1 , U )                                              t
+                                                                                           f ,γ              f ,γ
+                                                                                          t z =             St−σ BN z(σ ) dσ,
+such that the triples (A, B, F) and (−A, B, Fb ) are regular,
+I is an admissible feedback operator for both of the regular                                        0
+                                                                                                        t
+systems with generating operators (A, B, F, 0) and (−A, B,                                b,γ                b,γ
+                                                                                          t z =             St−σ BN z(σ ) dσ.
+Fb , 0) and the corresponding closed-loop generators                                                0
+
+                                                                         For every γ ∈ R denote
+    A f = A + BF             and          Ab = −A + BFb,
+                                                                               f ,γ              f ,γ                                   b,γ
+                                                                              ∞  = sup       t ,                     ∞  = sup 
+                                                                                                                          b,γ
+                                                                                                                                        t .
+generate operator semigroups T and T on X that satisfy
+                                       f            b
+                                                                                     t≥0                                        t≥0
+(1.3) for some M  1 and μ > 0. (That Af and Ab gen-
+                                                                                                                                  f ,γ f
+erate operator semigroups follows from Proposition 3.1.)                 Then for each γ f > ωT f and γb > ωTb ,                 ∞  < ∞ and
+Furthermore, we assume that the triples (A, BN , F ) and                  b,γ
+                                                                            ∞  < ∞.
+                                                                               b
+
+(−A, BN , Fb ) are regular.
+                                                                             If LN is sufficiently small, then there exist constants
+Remark 4.2: We discuss some immediate consequences                       γ f > ωT f and γb > ωTb such that ωf + ωb > 0, where
+of Assumption 4.1.
+   First, from the statement after Proposition 3.1 it fol-                                                               f ,γ f 2 2
+                                                                                         − ωf = γf +                   ∞  LN ,
+lows that BN is an admissible control operator for T f and
+Tb, the operator semigroups generated by Af and Ab .                                      −ωb = γb +                   ∞  LN ,
+                                                                                                                        b,γb 2 2
+                                                                                                                                           (4.9)
+   Let ωT f and ωTb be the growth bounds for T f and Tb,
+                                             f                           and there exist constants Mf , Mb  1, which are indepen-
+respectively. According to (1.3) we have Tt  · Ttb ≤
+   −μt                                                                   dent of the specific form of h and hb , such that the following
+Me . Clearly this implies that
+                                                                         holds: For each x0  X, there exist unique state trajectories
+1            1           1                                               xf for (4.7) and xb for (4.8) such that xf (0) = x0 , xb (0) = x0
+         f
+  log Tt  + log Ttb ≤ log M − μ                        ∀ t > 0.      and for all t ≥ 0 ,
+t            t           t
+
+Taking limits as t → ∞, and using the expression for the                                  x f (t ) ≤ M f x0 e−ω f t ,
+growth bound from Proposition 2.1.2 of Tucsnak and                                         xb (t ) ≤ Mb x0 e−ωbt .                    (4.10)
+Weiss (2009), we get
+                                                                         Proof: The facts that for any γ f > ωT f and γb > ωTb we
+                                                                                  f ,γ
+                    ωT f + ωTb ≤ −μ < 0.                         (4.6)   have  ∞ f  < ∞ and  b,γ      ∞  < ∞ follow from the dis-
+                                                                                                           b
+
+
+                                                                         cussion before Lemma 4.1.
+Lemma 4.2: Suppose that Assumption 4.1 holds for the                         To see that it is possible to satisfy ωf + ωb > 0 if LN > 0
+linear operators of the plant (1.1). We use the notation from            is sufficiently small, notice that if we choose γ f sufficiently
+Remark 4.2. Consider the nonlinear systems                               close to ωT f and γ b sufficiently close to ωTb , then from
+                                                                         (4.6) we have γ f + γ b < 0. Now the claim follows easily
+                                                                         from (4.9).
+    ẋ f (t ) = A f x f (t ) + BN h(x f (t ), t )       ∀ t ≥ 0, (4.7)       The existence of unique state trajectories xf for (4.7)
+                                                                         and xb for (4.8) such that xf (0) = x0 and xb (0) = x0 follows
+    ẋb (t ) = Abxb (t ) + BN hb (xb (t ), t )          ∀ t ≥ 0, (4.8)   from Proposition 4.1.
+                                                                             Finally, the claims (4.10) follow by applying Lemma
+where h, hb : X × [0, ∞) → UN are continuous in the                      4.1 to (4.7) with γ = γ f and (4.8) with γ = γ b and from
+second argument t and Lipschitz in the first argument with               Remark 4.1.                                                   
+154        V. NATARAJAN ET AL.
+
+
+Definition 4.2: The nonlinear plant (1.1) is exactly con-             strong solution in X−1 to the equation
+trollable in time τ > 0 if for every x0 , xτ  X, there exists
+a u  L2 ([0, τ ]; U) such that the state trajectory x of (1.1)               ẋ(t ) = Ax(t ) + BF x f (t ) + BN h(x(t ), t )
+corresponding to this input u and initial state x(0) = x0
+                                                                                ∀ t ≥ 0,         x(0) = x0 ,
+satisfies x(τ ) = xτ .
+
+      The following is the main result of this paper.                 and xb is the unique strong solution in X−1 to the equa-
+Theorem 4.1: Suppose that Assumption 4.1 holds for the                tion
+linear operators of the plant (1.1). Then for each LN suf-
+ficiently small, if N is continuous in the second argument                  ẋ(t ) = −Ax(t ) + BFb, xb (t ) + BN hb (x(t ), t )
+and satisfies (1.2), then there exists τ ∗ > 0 (independent of                ∀ t ≥ 0,         x(0) = x0 .
+N ) such that for every τ > τ ∗ , the system (1.1) is exactly
+controllable in time τ .
+                                                                      We remark that all the claims in this paragraph hold triv-
+Proof: We follow the same four steps used to prove                    ially when X is finite-dimensional and hence were not dis-
+Theorem 2.1 to establish the null controllability of the              cussed in the proof of Theorem 2.1.
+nonlinear plant (1.1) in some time τ > 0 and then we                      The second step is to introduce a sequence of non-
+mimic Remark 2.1 to conclude the exact controllability                linear differential equations defined recursively, meaning
+of the plant in the same time. We use the notation from               that each equation in the sequence (except the first) is
+Assumption 4.1 and Remark 4.2.                                        defined using the solutions of the previous equations in
+     In the first step, we consider the nonlinear differential        the sequence. Fix x0  X. The first equation is (2.5) (with
+equations (4.7) and (4.8), where h and hb are as described            the current meaning of the symbols). For each n ∈ N and
+in Lemma 4.2. Each equation (except the first) in the                 all t  [0, τ ] we consider the ‘backward’ equation
+sequence of differential equations that we will associate
+with the nonlinear plant (1.1) in the next step resembles
+either (4.7) or (4.8). We know from Lemma 4.2 that if LN                         ẋbn (t ) = −Abxbn (t ) + BN hnb (xbn (t ), t ),
+is sufficiently small, then there exist constants Mf , Mb                       xbn (τ ) = xn−1 (τ ),                              (4.13)
+1 and ω f , ωb ∈ R (independent of the initial state x0 for
+(4.7) and (4.8) and the specific forms of h and hb ) such             where hnb is defined using the solutions of the previous
+that (4.10) holds and ωf + ωb > 0. For the remainder of               equations and is given by (2.7). For each n ∈ N and all t
+this proof, we suppose that LN is sufficiently small so that           [0, τ ] we consider the ‘forward’ equation
+(4.10) holds with ωf + ωb > 0.
+                                                  ∗
+     Let τ ∗  0 be such that M f Mb e−(ω f +ωb )τ = 1. Fix τ >
+                                                                                                                   xn (0) = xbn (0),
+                                                                       ẋn (t ) = A f xn (t ) + BN hn (xn (t ), t ),
+τ ∗ , then clearly (2.4) holds. We will show that (1.1) is null
+                                                                                                                               (4.14)
+controllable in time τ .                                                         n
+                                                                      where h is defined using the solutions of the previous
+     Next we derive some useful properties for the state tra-
+                                                                      equations and is given by (2.9). The structure of hnb and hn
+jectories xf of (4.7) and xb of (4.8) that satisfy xf (0) =
+                                                                      implies that these equations must be solved sequentially.
+xb (0) = x0 . The discussion below Proposition 3.1 implies
+                                                                      Hence we solve the above equations for x0 , xb1 , x1 , xb2 , x2 ,
+that (A f , BN , F ) and (Ab, BN , Fb, ) are regular triples
+                                                                      xb3 , x3 and so on, in this order, on the time interval [0, τ ].
+and the -extensions of F and Fb,  with respect to Af                        f       b
+                                                                      Let X−1 and X−1     be the extensions of X defined similarly
+and Ab , respectively, are F with domain D(F ) and Fb, 
+                                                                      to X−1 but using Af and Ab , respectively, in place of A. By
+with domain D(Fb, ). It now follows from the last part of
+                                                                      solving the above equations, we mean finding the func-
+Lemma 4.1 that x f (t ) ∈ D(F ) and xb (t ) ∈ D(Fb, ) for
+                                                                      tions in C([0, τ ]; X) which satisfy the differential equa-
+almost all t  0 and there exist constants cf , df , cb , db > 0                                                               b
+                                                                      tions in (2.5), (4.13) and (4.14) pointwise in X−1 , X−1    and
+(independent of x0 and the specific forms of h and hb , see               f
+Remark 4.1) such that                                                 X−1 , respectively, for almost all t  [0, τ ] and which also
+                                                                      satisfy the boundary conditions. Using these solutions we
+                                                                      will construct the required control signal.
+            Pτ F x f L2 ≤ c f x0  + d f Pτ x f L2 ,   (4.11)         The third step is to obtain estimates for the solutions
+                                                                      of this sequence of equations. From Proposition 4.1 we
+            Pτ Fb, xbL2 ≤ cb x0  + db Pτ xb L2 .      (4.12)   get that there exists a unique strong solution x0 in X−1
+                                                                      for (2.5) such that x0  C([0, τ ]; X) and x0 (0) = x0 . Next
+Furthermore, using Theorem 6.1 in Weiss (1994b) (in                   notice that for t  [0, τ ], (4.14) is an equation of the form
+particular (6.1) there), we can show that xf is the unique            (4.7), with h = hn . Also (4.13) can be formally rewritten,
+                                                                                                    INTERNATIONAL JOURNAL OF CONTROL                155
+
+
+using the notation z(t ) = xbn (τ − t ), as                                  and moreover xn (τ ) = xn (τ ). From Proposition 4.1 we
+                                                                             have
+ż(t ) = Abz(t ) − BN hnb (z(t ), τ − t ), z(0) = xn−1 (τ ),
+                                                                                                                      N
+                                                                   (4.15)          xn (t ) = Tt x0 +       t un +     t (N xn )(t ) + F (t )
+                                                                                   ∀ t ∈ [0, τ ].                                                (4.19)
+which for t  [0, τ ] is an equation of the form (4.8), with
+                                                                             Here (N xn )(t ) = N (xn (t ), t ) for all t  [0, τ ]. It fol-
+         hb (x, t ) = −hnb (x, τ − t )           ∀ x ∈ X.                    lows from (2.12), (2.13), (4.17) and (4.18) that (un )∞  n=1 is
+                                                                             a Cauchy sequence in L ([0, τ ]; U). Define u  L ([0, τ ];
+                                                                                                      2                            2
+
+It is easy to see that the nonlinear functions h and hb just                 U) to be its limit, i.e.
+defined possess all the properties assumed after the equa-
+                                                                                                    ∞
+                                                                                                                    ∞
+                                                                                                                     
+tions (4.7) and (4.8). It now follows from Lemma 4.2 that
+there exist unique state trajectories xn for (4.14) and z for                                u=            F xk +            Fb, xbk .         (4.20)
+                                                                                                     k=1             k=1
+(4.15) for which the estimates in (4.10) hold. This, and the
+relation z(t ) = xbn (τ − t ) for all t  [0, τ ], means that for
+                                                                               Let x be the strong solution of (1.1) on [0, τ ] for this u
+every n ∈ N and t  [0, τ ],
+                                                                             when x(0) = x0 . Then, according to Proposition 4.1, (4.2)
+                                                                             holds. From (4.19) and (4.2) we get that for all t  [0, τ ],
+             xbn (τ − t ) ≤ Mb e−ωbt xn−1 (τ ),
+                    xn (t ) ≤ M f e−ω f t xbn (0).             (4.16)             x(t ) − xn (t ) ≤ αu − un L2 [0,t]
+                                                                                                              +βLN x − xn L2 [0,t] ,
+It is easy to see using Proposition 4.1 that the functions x0 ,
+xbn and xn mentioned above are solutions of (2.5), (4.13)
+                                                                             where        α = supt∈[0,τ ]  t  =  τ    and      β=
+and (4.14) in the sense discussed earlier. From (4.16) we                                   N        N
+                                                                             supt∈[0,τ ]  t  =  τ . Hence for all t  [0, τ ],
+can deduce (like in the proof of Theorem 2.1) that x0 , xbn
+and xn satisfy the estimates in (2.11), (2.12) and (2.13).
+                                                                              x(t ) − xn (t )2 ≤ 2α 2 u − un 2L2 [0,τ ]
+     The fourth step is to find the desired control signal u
+                                                                                                                          t
+which will ensure that the state trajectory x of the plant
+                                                                                                      + 2β 2 L2N              x(σ ) − xn (σ )2 dσ.
+(1.1) corresponding to the initial state x(0) = x0 satis-                                                             0
+fies x(τ ) = 0. We will regard xn , xbn , F xn and Fb, xbn as
+functions on the interval [0, τ ]. Applying (4.11) to (4.14)                 Applying Gronwall’s inequality to the above estimate we
+and (4.12) to (4.15) (and recalling the notation z(t ) =                     get that
+xbn (τ − t ) for all t  [0, τ ]), we get that for each n  1
+                                                                                  x(τ ) − xn (τ )2 ≤ 2α 2 u − un 2L2 [0,τ ] e2β LN τ .
+                                                                                                                                           2 2
+
+
+
+
+     F xn L2 [0,τ ] ≤ c f xbn (0) + d f xn L2 [0,τ ] ,      (4.17)
+                                                                             Since u − un L2 [0,τ ] → 0 as n → , xn (τ ) = xn (τ ) and
+                                                                             xn (τ ) → 0 as n →  (see (2.11)), it follows from the above
+   Fb, xbn L2 [0,τ ] ≤ cbxn−1 (τ ) + db xbn L2 [0,τ ] . (4.18)
+                                                                             equation that x(τ ) = 0. Hence the control signal u takes
+                                                                             the nonlinear plant (1.1) from the given initial state x0 to
+    For each n ∈ N, we define xn  C([0, τ ]; X) and un                     0 in time τ , i.e. we have established the null controllability
+L2 ([0, τ ]; U) as follows:                                                  of the plant (1.1) in every time τ > τ ∗ .
+                                                                                 Next we show that (1.1) is exactly controllable in any
+       
+       n            
+                    n                    
+                                         n                
+                                                          n
+xn =         xk −         xbk ,   un =          F xk +         Fb, xbk .   time τ > τ ∗ . Suppose that for (1.1) the given initial state
+       k=0          k=1                   k=1             k=1                is x(0) = x0 and the desired final state is x(τ ) = xτ . Define
+                                                                             M(z, t ) = N (z + xτ , t ) for each z  X and t  0. Then
+It can be verified using the structure of the nonlinear                      M is continuous in its second argument and Lipschitz
+terms in (2.5), (4.13) and (4.14) and the discussion below                   in the first argument with the same Lipschitz constant as
+(4.11)–(4.12) that xn is a strong solution in X−1 for (1.1)                  N , i.e. M(x1 , t ) − M(x2 , t ) ≤ LN x1 − x2  for all x1 ,
+on the time interval [0, τ ] with xn (0) = x0 and u = un , i.e.              x2  X and each t  0. Consider the modified nonlinear
+for almost all t  [0, τ ],                                                  plant
+
+       ẋn (t ) = Axn (t ) + Bun (t ) + BN N (xn (t ), t )                        ż(t ) = Az(t ) + Bu(t ) + BN M(z(t ), t ) + f (t )
+                    + f (t ) in X−1                                                        +Axτ            ∀ t ≥ 0,                              (4.21)
+156      V. NATARAJAN ET AL.
+
+                                                                                                                             
+where f(t) + Axτ is the drift term. The proof described                                                               f1    f
+above for (1.1) applies to (4.21) and hence we can con-                 = f1,x , f2,x L2 + g1 , g2 L2           ∀           , 2 ∈ X.
+                                                                                                                         g1    g2
+clude that (4.21) is null controllable in each time τ > τ ∗ .
+Following the algorithm in the proof above, construct u                              
+                                                                 If we let z = w wt , then the plant (5.1) can be written
+ L2 ([0, τ ]; U) such that the state trajectory z of (4.21)
+                                                                 as an abstract differential equation on X as follows:
+corresponding to z(0) = x0 − xτ satisfies z(τ ) = 0. It
+is easy to verify that x defined by x(t) = z(t) + xτ for
+each t  [0, τ ] solves (1.1) for the same u and satisfies                   ż(t ) = Az(t ) + Bu(t ) + BN σ sin(z1 (t )),
+                                                                                               
+x(0) = x0 and x(τ ) = xτ . Hence this control signal u                       z(0) = w10 w20 ,                                     (5.2)
+takes (1.1) from x0 to xτ in time τ (which is our control
+objective).                                                                                                     
+                                                                 where we use the notation z(t ) = z1 (t ) z2 (t ) and A,
+                                                                 B and BN are defined by
+5. Examples                                                                
+                                                                                                        
+                                                                            f                           
+In this section we present two numerical examples to               D(A) =      ∈ H 2 (0, 1) × HL1 (0, 1) f (0) = 0,
+illustrate our main result. In the first example the plant is               g
+described by a sine-Gordon equation on the interval [0, 1]
+with Neumann boundary control at x = 1. In this example                           f  (1) = 0 ,
+B is unbounded and BN is bounded. We obtain estimates                                                      
+relating the Lipschitz constant LN of the nonlinearity to                       f           g                  f
+                                                                             A      = d2 f                  ∀     ∈ D(A),
+the controllability time τ (recall that we are interested in                    g
+                                                                                           d2 x
+                                                                                                               g
+the exact controllability of the plant in time τ ). For LN =                                                    
+                                                                                          0                       0
+0.2 we verify analytically that the condition (2.4) for exact                     B=            ,           BN =     .
+                                                                                          δ1                      I
+controllability holds when τ = 14. Then we numerically
+demonstrate the proof of Theorem 4.1 by constructing a
+                                                                 Here δ 1 is the Dirac pulse at x = 1 and I is the identity
+control signal u that takes the plant from an initial state to
+                                                                 operator on L2 (0, 1). This follows from the material in
+a final state in 14 seconds. The second example is a wave
+                                                                 Section 10.2.2 of Tucsnak and Weiss (2009), where the
+equation on the interval [0, 1] with Neumann boundary
+                                                                 linear system corresponding to σ = 0 is shown to be
+control at x = 1 and the nonlinearity entering at x = 0 as
+                                                                 a well-posed boundary control system having the above
+part of a Robin boundary condition. Hence in this case
+                                                                 abstract description. We have added the nonlinear term
+both B and BN are unbounded. We verify Assumption
+                                                                 into the abstract description to obtain (5.2).
+4.1 to show that the conclusions of Theorem 4.1 apply to
+                                                                    From the same reference we know that the operator
+this plant. We then demonstrate the exact controllability
+                                                                 A is skew-adjoint and generates a strongly continuous
+of the plant numerically for LN = 0.3.
+                                                                 group T on X and B is an admissible control operator for
+Example 5.1: We consider the sine-Gordon equation on             T. Moreover, if we denote the adjoint of B by B∗ , then
+the unit interval with Neumann boundary control u(t) at
+                                                                                                         
+the right end point (x = 1) and homogenous Dirichlet                 ∗       ϕ                          ϕ
+                                                                    B                = ψ (1)    ∀               ∈ D(A∗ ) = D(A).
+boundary condition at the left end point (x = 0):                            ψ                          ψ
+⎧
+⎪
+⎪ w (x, t ) = wxx (x, t ) + σ sin(w(x, t )), x ∈ (0, 1),         The operator BN , being bounded, is also an admissi-
+⎨ tt                                                             ble control operator for T. The nonlinearity σ sin(·) :
+  w(x, 0) = w10 (x),        wt (x, 0) = w20 (x),     (5.1)
+⎪
+⎪                                                                HL1 (0, 1) → L2 (0, 1) is globally Lipschitz with Lipschitz
+⎩ w(0, t ) = 0,     w (1, t ) = u(t ).
+                          x                                      constant LN = |σ |.
+                                                                     The pairs (A, B) and (−A, B) are exponentially sta-
+Here w10 ∈ HL1 (0, 1) and w20 ∈ L2 (0, 1) describe the           bilisable in the sense of Definition 3.3. In fact, for each
+initial state, σ ∈ R is a constant and HL1 (0, 1) = { f ∈        k > 0, the operator F = −kB∗ is a stabilising state feedback
+H 1 (0, 1) | f (0) = 0}.                                         operator both for (A, B) and for (−A, B). This follows
+   Let X = HL1 (0, 1) × L2 (0, 1) be the state space with        from Curtain and Weiss (2006). Moreover, since BN is
+the following inner product:                                     bounded, it is clear that (A, BN , F ) and (−A, BN , F ) are
+                                                                 regular. Thus, the system (5.2) satisfies Assumption 4.1.
+                                                           It follows from Theorem 4.1 that if (2.4) holds for some
+       f1    f
+           , 2                                                   τ > 0, then (5.2) is exactly controllable in time τ . We can
+       g1    g2 X
+                                                                                                  INTERNATIONAL JOURNAL OF CONTROL          157
+
+
+then use the algorithm described in the proof of that the-                     Therefore
+orem to construct the control signal which takes the plant
+from any given initial state to any final state in time τ .                                  1+γ                 γ (1 − 2|σ |) − |σ |
+                                                                                     Mf =        ,        ωf =                        .
+   In this example, it is possible to find explicit bounds                                   1−γ                       1+γ
+for τ . For this we consider differential equations (4.7) and
+(4.8) (with minor changes) corresponding to the opera-                         We can similarly show that Mb and ωb are also given by
+tors defined in this example and find expressions for Mf ,                     the above expressions, i.e. Mb = Mf and ωb = ωf . So for
+Mb , ωf , ωb . Fix k > 0 such that A − kBB∗ and −A − kBB∗                    any τ > 0 the formula for  in (2.4) takes the form
+are exponentially stable. Then (4.7) can be written as
+                                                                                                 2                               
+  ⎧                                                                                         1+γ              γ (1 − 2|σ |) − |σ |
+                                                                                  =                   exp −                      2τ .
+  ⎪
+  ⎪ v (x, t ) = v xx (x, t ) + g(v (x, t ), t ), x ∈ (0, 1),                                1−γ                    1+γ
+  ⎨ tt
+    v (x, 0) = v 10 (x),       vt (x, 0) = v 20 (x),
+  ⎪
+  ⎪                                                                            Clearly for  < 1 to hold, we require that
+  ⎩ v (0, t ) = 0,       v (1, t ) = −kv (1, t ),
+                                   x                t
+
+                                                         (5.3)                                   1+γ              1+γ
+where v 10 v 20 ∈ X and g : HL1 (0, 1) × [0, ∞) →                                       τ>                       ln     > 0.              (5.5)
+                                                                                             γ (1 − 2|σ |) − |σ | 1 − γ
+L2 (0, 1) is continuous in its second argument and satis-
+fies g(0, t) = 0 and g(v 1 , t) − g(v 2 , t)  |σ |v 1 − v 2 
+                                                                                   The restrictions γ > 0 and 2k > γ (k2 + 1) imply that
+for all v 1 , v 2 ∈ HL1 (0, 1) and each t  0. Define V(t) =
+                                                                               if |σ | < 1/3, then there exist k, γ , τ > 0 (which can be
+E(t) + γ ρ(t), where γ  (0, 1) is a constant and
+                                                                               computed) such that  < 1, i.e. the plant (5.1) is exactly
+                           1                                                  controllable in time τ . Suppose σ = 0 and let k = 1, then
+                   1                                         
+         E(t ) =                   v x2 (x, t ) + vt2 (x, t ) dx,              it is easy to see that for any τ > 2 there exists γ > 0 suffi-
+                   2   0                                                       ciently small such that  < 1. In other words, we recover
+                                                                               the well-known result that the 1D wave equation on [0, 1]
+and                                                                            with Neumann boundary control is exactly controllable
+                               1                                               in any time τ > 2. For |σ | > 0, our estimate for τ based
+             ρ(t ) =               xv x (x, t )vt (x, t )dx.                   on the above discussion is typically conservative.
+                           0                                                       To illustrate our results numerically we choose σ = 0.2
+                                                                               in (5.1). Then for k = 1, γ = 0.7 and τ = 14 we have  <
+Clearly (1 − γ )E(t)  V(t)  (1 + γ )E(t) for all t  0.                      1. Let the initial and final states for the plant be
+Differentiating V along a solution of (5.3), we get after a
+simple calculation that if 2k > γ (k2 + 1), then                                                             
+                                                                                        w10 (x)       2x − x2
+                                                                                                 =                  and
+                                                                                        w20 (x)     1 − 2x + x2
+          V̇ (t ) ≤ −(γ (1 − 2|σ |) − |σ |)E(t )                                                           
+                                                                                        w1τ (x)     −2x + x2
+                 −(k − γ (k2 + 1)/2)vt2 (1, t )                                                  =                ∀ x ∈ (0, 1), (5.6)
+                                                                                      w2τ (x)        2x
+                     γ (1 − 2|σ |) − |σ |
+                ≤−                          V (t )
+                           1+γ                                                 respectively. Using the algorithm in Theorem 4.1 we
+                                                                               numerically construct the control signal u that takes the
+which implies that                                                             plant from this initial state to the final state in τ = 14
+                                                                             seconds (see Figure 2). To discretise the plant and the
+                     γ (1 − 2|σ |) − |σ |                                      associated sequence of forward and backward systems,
+V (t ) ≤ V (0) exp −                      t                         ∀ t ≥ 0.
+                           1+γ                                                 we use the backward Euler scheme for the time variable
+                                                        (5.4)                  with step size 0.002 and the Chebyshev spectral method
+Strictly speaking, we can differentiate V only along clas-                     for the spatial variable with 20 grid points. Simulations
+sical solutions of (5.3). But we can show using regularity                     are performed in MATLAB and the results are shown in
+results (such as Theorem 1.5 in Chapter 6 of Pazy (1983                        Figures 2–6. As seen in Figures 5 and 6, the constructed
+)) that the estimate in (5.4) is valid along all solutions of                  u ensures that the plant state at τ = 14 seconds is close
+(5.3). Hence from (5.4) we get that                                            to the desired final state. To construct u we have taken n
+                                                                           = 1 (i.e. only one set of forward and backward systems),
+              1+γ                            γ (1 − 2|σ |) − |σ |              which is enough partly due to the fact that our estimate for
+ E(t ) ≤ E(0)                          exp −                      t
+              1−γ                                  1+γ                         τ is conservative. For smaller τ , larger n will be required
+ ∀ t ≥ 0.                                                                      to get a good approximation for u.
+158            V. NATARAJAN ET AL.
+
+
+          6                                                                         0
+
+          4                                                                                                                w1τ (x)
+                                                                                                                           w(x,τ)
+          2
+                                                                                 -0.5
+      u
+
+
+
+          0
+
+          -2
+
+          -4
+                                                                                   -1
+          -6
+                                                                                        0       0.2       0.4        0.6   0.8           1
+               0      2      4       6       8   10   12     14                                                  x
+                                         t
+                                                                        Figure . The actual and desired displacement w at τ = 
+Figure . The control signal u that takes the plant (.) from the      seconds.
+                                                 
+initial state w10 w20 to the ﬁnal state w1τ w2τ deﬁned in
+(.).                                                                             2
+                                                                                                      w2τ (x)
+                                                                                 1.5                  wt (x,τ)
+
+                                                                                   1
+
+                                                                                 0.5
+
+                                                                                   0
+                                                                                       0        0.2       0.4        0.6   0.8           1
+                                                                                                                 x
+
+                                                                        Figure . The actual and desired velocity wt at τ =  seconds.
+
+
+                                                                        (4.7) and (4.8) the following conditions hold:
+Figure . The displacement w of the plant (.) under the control
+signal shown in Figure .
+                                                                          V̇ f + 2ω f V f ≤ 0,                   ∀ t ≥ 0.
+                                                                                                           V̇b + 2ωbVb ≤ 0
+                                                                                                                       (5.7)
+                                                                        Assume additionally that ωf + ωb > 0, and for some
+                                                                        τ ∗ > 0 and all t ≥ 0
+                                                                                            ∗                                    ∗
+                                                                           V f (t )e−2ω f τ ≤ Vb (t ),   Vb (t )e−2ωb τ ≤ V f (t ).
+                                                                                                                                 (5.8)
+                                                                         Then (1.1) is exactly controllable in any time τ > τ ∗ .
+                                                                           Thus, in Example 5.1 with σ = 0.1, by verifying lin-
+                                                                        ear matrix inequalities that guarantee (5.7) and (5.8) (see
+                                                                        Theorem 2 of Fridman & Terushkin, 2016) we arrive at
+                                                                        τ > τ ∗ = 3.78, which is less (i.e. gives a stronger result)
+                                                                        than the estimate τ > 6 that follows from (5.5) and guar-
+Figure . The velocity wt of the plant (.) under the control signal   antees (2.4).
+shown in Figure .
+                                                                        Example 5.2: Consider the following wave equation on
+                                                                        [0, 1] with Neumann boundary control at x = 1 and Robin
+Remark 5.1: A less restrictive bound on τ than the                      boundary condition, with a nonlinear boundary term, at
+one given by (5.5) can be derived via Lyapunov func-                    x = 0:
+tions, as was suggested in Fridman (2013), Fridman and
+                                                                        ⎧
+Terushkin (2016). By using arguments from Lemma 3                       ⎪  w (x, t ) = wxx (x, t ), x ∈ (0, 1),
+                                                                        ⎪
+                                                                        ⎨ tt
+of Fridman and Terushkin (2016), the following can be
+                                                                           w(x, 0) = w10 (x), wt (x, 0) = w20 (x),
+proved. Let Vb (t) and Vf (t) be Lyapunov functions cor-                ⎪
+                                                                        ⎪
+responding to (4.7) and (4.8), respectively. Assume that                ⎩ w (0, t ) = w(0, t ) + σ sin(w(0, t )), w (1, t ) = u(t ).
+                                                                             x                                                       x
+there exist ωf  0 and ωb  0 such that along solutions of                                                                                   (5.9)
+                                                                                                 INTERNATIONAL JOURNAL OF CONTROL                159
+
+
+The functions w10 ∈ H 1 (0, 1)         and w20 ∈ L2 (0, 1)          are admissible observation operators for the adjoint semi-
+describe the initial state, σ ∈ R is a constant and u is the        group T∗ (Tucsnak and Weiss (2009, Theorem 4.4.3))
+control input.                                                      or equivalently that (i) B∗ , B∗N ∈ L(X1d , C), where X1d =
+   Let X = H1 (0, 1) × L2 (0, 1) be the state space with the        D(A∗ ) with the graph norm, and (ii) for each T > 0 there
+following inner product:                                            exists MT > 0 such that for every initial state [v 10 v 20 ] ∈
+                                                              D(A∗ ), the outputs v t (0, t) and v t (1, t) of the system
+     f1    f                             
+         , 2    = f1,x , f2,x L2 + g1 , g2 L2                                 ⎧
+     g1    g2 X                                                                ⎪
+                                                                               ⎪ v (x, t ) = v xx (x, t ),      x ∈ (0, 1),
+                                                                           ⎨ tt
+                                          f1     f                               v (x, 0) = v 10 (x),      vt (x, 0) = v 20 (x), (5.11)
+                 + f1 (0) f2 (0) ∀             , 2 ∈ X.                        ⎪
+                                                                               ⎪
+                                          g1     g2                            ⎩ v (0, t ) = v (0, t ),     v x (1, t ) = 0,
+                                                                                  x
+
+Here a bar denotes a complex conjugate. Defining z =
+                                                                    satisfy
+[w wt ] , (5.9) can be written as an abstract differential
+equation on X as follows:                                                                                                               2
+                                                                           T                                 T                          v 10 
+                                                                               |vt (0, t )|2 dt +                |vt (1, t )|2 dt ≤ MT        
+                                                                                                                                        v 20  .
+       ż(t ) = Az(t ) + Bu(t ) + BN σ sin(Q0 z(t )), (5.10)           0                                 0                                       X
+                                                                                                                                             (5.12)
+with initial state z(0) = [w10 w20 ] . Here A and Q0 are
+operators defined by                                                From the definitions of B∗ , B∗N and X1d , it is easy to see that
+                                                                    (i) holds. To establish (ii), we define the following func-
+                                                                 tions along the solution [v v t ] of (5.11):
+                                         f  (0) = f (0),
+           f                            
+D(A) =         ∈ H 2 (0, 1) × H 1 (0, 1)                  ,
+           g                                   f  (1) = 0                                  1
+                                                                              1                                           v 2 (0, t )
+             f         g           f                                   E(t ) =                   v x2 (x, t ) + vt2 (x, t ) dx +             ,
+        A       = d2 f        ∀        ∈ D(A),                                      2   0                                             2
+             g         2           g                                                              1
+                      d x
+                                                                             ρ(t ) =              (x − 0.5)v x (x, t )vt (x, t )dx.
+             f                     f
+       Q0       = f (0)      ∀         ∈ X.                                                   0
+             g                     g
+                                                                    Clearly |ρ(t)|  E(t) for all t  0. It is easy to check that
+Denoting the adjoint of an operator using ∗ , a simple              Ė(t ) = 0 and therefore E(T) = E(0) for all T > 0. All this,
+computation shows that D(A∗ ) = D(A) and A∗ = −A.                   and the expression
+From Tucsnak and Weiss (2009, Theorem 3.8.6), A gen-
+erates a unitary group T on X. The operators B and BN                                       1 2                                      
+                                                                                ρ̇(t ) =       vt (0, t ) + vt2 (1, t ) + v 2 (0, t )
+can be computed using the theory of boundary control                                        4
+systems in Tucsnak and Weiss (2009, Sect. 10.1). It is                                        1 1 2                           
+                                                                                            −         v x (x, t ) + vt2 (x, t ) dx
+more straightforward to compute [B∗ B∗N ] first, using                                        2 0
+formula (10.1.7) in Tucsnak and Weiss (2009), where
+G [ f g] = [ f  (1) f  (0) − f (0)] . After some simple           implies that (5.12) holds with MT = 4(T + 2). This com-
+integrations by parts, we obtain that                               pletes the proof of the claim that B and BN are admissi-
+                                                                    ble for T. Now the equivalence of (5.10) and (5.9) can be
+                                                  
+            ∗       ϕ                            ϕ                  shown using Tucsnak and Weiss (2009, Proposition 4.2.5
+        B                   = ψ (1),   B∗N               = −ψ (0)   and Remark 4.2.6). The map N = σ sin(Q0 (·)) : X → C
+                    ψ                            ψ
+                                                                  is Lipschitz with Lipschitz constant |σ |.
+                                  ϕ
+                              ∀      ∈ D(A∗ ).                          Define F = −kB∗ for some k > 0. From the dis-
+                                  ψ
+                                                                    cussion above, F is an admissible observation opera-
+This implies that we have                                           tor for T. Let Fb = −kB∗ . We claim that (A, B, F),
+                                                                    (−A, B, Fb ), (A, BN , F ) and (−A, BN , Fb ) are all regu-
+                                            
+                       0                    0                       lar triples. We will now discuss the proof of the regular-
+                    B=      ,         BN =       ,                  ity of (A, BN , F ) briefly, the regularity of the other three
+                       δ1                  −δ0
+                                                                    triples can be established similarly. We will complete the
+where δ a is the Dirac pulse at x = a, with a suitable inter-       proof of regularity of (A, BN , F ) in two steps. In the first
+pretation.                                                          step we will compute (sI − A)−1 BN . In the second step
+   We now prove that B and BN are admissible control                we will show that (sI − A)−1 BN ∈ D(F ) and compute
+operators for T. For this, it suffices to show that B∗ and B∗N      F (sI − A)−1 BN . Consider the following system with
+160             V. NATARAJAN ET AL.
+
+
+input u,                                                                                 V(x) = x2 − 2x − 3 for x  [0, 1]. It is easy to check that
+          ⎧                                                                                                  
+          ⎪
+          ⎪ v (x, t ) = v xx (x, t ), x ∈ (0, 1),                                                      H(s)    V
+          ⎨ tt                                                                                               −    ∈ D(A) ⊂ D(F ).
+            v (x, 0) = 0, vt (x, 0) = 0,                  (5.13)                                      sH(s)    0
+          ⎪
+          ⎪
+          ⎩ v (0, t ) = v (0, t ) + u(t ), v (1, t ) = 0,
+                x                                               x                        Hence to show that (sI − A)−1 BN ∈ D(F ), it is suffi-
+                                                                                         cient to check that [V 0] ∈ D(F ). For each λ > 0, it
+which can be written as an abstract differential equation                                follows from an elementary calculation that
+on X as follows:
+                                                                                                                                             
+                                                                                                                     −1       V            qλ
+               ṗ(t ) = Ap(t ) + BN u(t ),                      p(0) = 0,                             (λI − A)                        =           ,    (5.17)
+                                                                                (5.14)                                        0         λqλ − V
+
+where p = [v v t ] . For each α ∈ R and u ∈                                             where qλ is defined as follows: For each x  [0, 1],
+L2α ([0, ∞); R), we have
+                                                                                                                            V (x)   2
+                                                     −1                                       qλ (x) = eλx f1 (λ) + e−λx f2 (λ) + + 3,
+                         p̂(s) = (sI − A) BN û(s)                              (5.15)                                        λ     λ
+                                                                                                       qλ (0) qλ (0)    3   1     1
+for all s ∈ C with Re s sufficiently large. Here a hat denotes                                f1 (λ) =       +       +    +    − 3,
+                                                                                                         2     2λ      2λ λ2      λ
+the Laplace transform. It follows from Tucsnak and Weiss                                               qλ (0) qλ (0)    3   1     1
+(2009, Remark 4.2.6) that the mild solution to (5.14) is the                                  f2 (λ) =       −       +    − 2 − 3,
+                                                                                                         2     2λ      2λ λ       λ
+unique solution to the weak formulation of (5.13) written
+as                                                                                       where qλ (0) must be found using the condition qλx (1) = 0
+                             t
+                                                                                         which can be equivalently written as
+vt , ϕL2 = −                   v x , ϕx dt
+                         0                                                                                   eλ f1 (λ) = e−λ f2 (λ).                   (5.18)
+                             t
+                     −           (v (0, t ) + u(t ))ϕ(0)dt ∀ϕ ∈ H 1 (0, 1).              It is easy to check using (5.18) that as λ → , qλ (0) → 0
+                         0
+                                                                                         and f1 (λ)e2λ → 0. This, along with the expression
+This means that for all s with Re s sufficiently large and all                                                      
+ϕ  H1 (0, 1),                                                                            Fλ(λI − A)    −1       V
+                                                                                                                         = λ2 eλ f1 (λ) + λ2 f2 (λ)e−λ +
+                                                                                                                                                           2
+                                                                                                                 0                                         λ
+          1                                          1
+              s2 v̂ (x, s)ϕ(x)dx = −                     v̂ x (x, s)ϕx (x) dx            which follows from (5.17) and the definition of F, implies
+      0                                          0
+                                            −(v̂ (0, s) + û(s))ϕ(0). (5.16)             that [V 0] ∈ D(F ) and F [V 0] = 0. We now get
+                                                                                         from the discussion above (5.17) that (sI − A)−1 BN ∈
+Taking the Laplace transform of the expressions in (5.13)                                D(F ) for all s with Re s > 0 and
+formally, we get that for each u ∈ L2α ([0, ∞); R)                                                                         
+                                                                                               F (sI − A)−1 BN = −ks H(s) (1)
+                                
+              v̂ (x, s) = H(s) (x)û(s)      ∀ x ∈ [0, 1],                                                                  2ks
+                                                                                                               =                       .
+                       ∀ s ∈ {z ∈ CRe z > α}.                                                                    (s + 1)e − (s − 1)e−s
+                                                                                                                          s
+
+
+                                                                                         It now follows from Definition 3.1 that (A, BN , F ) is a
+Here
+                                                                                         regular triple.
+                                          esx−s + e−sx+s                                  By computing F (sI − A)−1 B and Fb,  (sI
+                 H(s) (x) =                                    .                         + A)−1 B, similarly to how we computed
+                                        (s − 1)e−s − (s + 1)es
+                                                                                         F (sI − A)−1 BN above, we can check that both
+It is now easy to check that v̂ (x, s) defined above satisfies                           [I − F (sI − A)−1 B]−1 and [I − Fb,  (sI + A)−1 B]−1
+(5.16) which, along with (5.15), implies that                                            exist and are bounded on some right half-plane. The
+                                                                                         exponential stability of A + BF and −A + BFb,  can
+                                          
+              H(s)
+                −1                                                                       be inferred from Krstic, Guo, Balogh, and Smyshlyaev
+(sI − A) BN =                                            ∀ s satisfying Re s > 0.
+              sH(s)                                                                      (2008, Lemma 1). Thus F and Fb are stabilising feedback
+                                                                                         operators for (A, B) and (−A, B), respectively. From all
+This completes the first step in the proof of regularity of                              the above discussions, we get that Assumption 4.1 holds
+(A, BN , F ). We now proceed with the second step. Define                                for (5.9). It now follows from Theorem 4.1 that if |σ |
+                                                                                           INTERNATIONAL JOURNAL OF CONTROL            161
+
+
+       4
+
+     3.5
+
+       3
+u
+
+
+
+
+     2.5
+
+       2
+
+     1.5
+           0           1            2            3             4
+                                    t
+
+Figure . The control signal u that takes the plant (.) from the   Figure . The velocity wt of the plant (.) under the control signal
+                                                  
+initial state w10 w20 to the ﬁnal state w1τ w2τ deﬁned in            shown in Figure .
+(.).
+                                                                              1
+
+                                                                            0.8
+
+                                                                            0.6
+
+                                                                            0.4                                      w1τ (x)
+                                                                                                                     w(x,τ)
+                                                                            0.2
+
+                                                                              0
+                                                                                  0     0.2       0.4          0.6     0.8      1
+                                                                                                           x
+
+                                                                     Figure . The actual and desired displacement w at τ = 
+Figure . The displacement w of the plant (.) under the control    seconds.
+signal shown in Figure .
+                                                                              1
+is small and τ is large so that (2.4) holds, then we can                    0.8
+construct a control signal u which takes (5.9) from any
+given initial state to any desired final state in time τ .                  0.6                 w2τ (x)
+   To illustrate our theory numerically, we let σ = 0.3,                                        wt (x,τ)
+                                                                            0.4
+k = 1, τ = 4. The initial and final states are
+                          2                                             0.2
+                 w10 (x)     3x − 2x3
+                          =                and
+                 w20 (x)    −3x2 + 2x3                                        0
+                                                                              0     0.2       0.4          0.6     0.8      1
+                 w1τ (x)    x                                                                              x
+                          = 2       ∀ x ∈ (0, 1),          (5.19)
+                 w2τ (x)    x
+                                                                     Figure . The actual and desired velocity wt at τ =  seconds.
+respectively. We implement our algorithm for construct-
+ing u in MATLAB. To approximate u we have taken
+                                                                     6. Conclusions
+n = 5. To discretise the plant and the associated sequence
+of forward and backward systems, we use the backward                 In this work we have derived conditions for the exact
+Euler scheme for the time variable with step size 0.001              controllability of a class of nonlinear distributed param-
+and the Chebyshev spectral method for the spatial vari-              eter systems. In general, the control operator B for the
+able with 20 grid points. The simulation results are shown           plants in this class are unbounded and the time-varying
+in Figures 7–11. As seen in Figures 10 and 11, the con-              nonlinear term BN N (x, t ) is not a Lipschitz in x map
+structed u ensures that the plant state at τ = 4 seconds is          from X × [0, ) to the state space X. Our proof of exact
+close to the desired final state.                                    controllability is constructive and can be regarded as an
+162      V. NATARAJAN ET AL.
+
+
+extension of Russell’s principle to a class of nonlinear sys-      Khalil, H. K. (2002). Nonlinear systems (3rd ed.). Upper Saddle
+tems. Future work could focus on relaxing the regular-                 River, NJ: Prentice Hall.
+ity requirements in Assumption 4.1. Another interesting            Komornik, V. (1992). On the exact internal controllability of
+                                                                       a Petrowsky system. Journal de Mathématiques Pures et
+direction to explore is the applicability of the techniques            Appliquées, 71, 331–342.
+in this paper to study the exact controllability of plants         Krstic, M., Guo, B. Z., Balogh, A., & Smyshlyaev, A. (2008).
+in which the nonlinear function N is only assumed to be                Output-feedback stabilization of an unstable wave equa-
+locally Lipschitz in the state, or it is a polynomial function         tion. Automatica, 44, 63–74.
+of the state.                                                      Natarajan, V., & Weiss, G. (2013a). Behavior of a stable non-
+                                                                       linear infinite-dimensional system under the influence of a
+                                                                       nonlinear exosystem. In Proceedings of the 1st IFAC Work-
+                                                                       shop on Control of Systems Governed by PDEs (pp. 155–160).
+Disclosure statement                                                   Paris: IFAC.
+No potential conflict of interest was reported by the authors.     Natarajan, V., & Weiss, G. (2013b). Improving the exponential
+                                                                       decay rate by back and forth iterations of the feedback in
+                                                                       time. In Proceedings of the 52nd IEEE Conference on Decison
+Funding                                                                and Control (pp. 2715–2719). Florence.
+                                                                   Pazy, A. (1983). Semigroups of linear operators and applications
+This work was partially supported by Israel Science Foundation
+                                                                       to partial differential equations. New York, NY: Springer-
+[Grant Number 800/14].
+                                                                       Verlag.
+                                                                   Ramdani, K., Tucsnak, M., & Weiss, G. (2010). Recovering
+                                                                       the initial state of an infinite-dimensional system using
+ORCID                                                                  observers. Automatica, 46, 1616–1625.
+                                                                   Rebarber, R., & Weiss, G. (1997). An extension of Russell’s prin-
+Hua-Cheng Zhou      http://orcid.org/0000-0001-6856-2358
+                                                                       ciple on exact controllability. Proceedings of the Fourth Euro-
+                                                                       pean Control Conference, Brussels, Belgium.
+                                                                   Russell, D. L. (1974). Exact boundary value controllability the-
+References                                                             orems for wave and heat processes in star-complemented
+                                                                       regions. In Differential Games and Control Theory (Proc.
+Balachandran, K., & Dauer, J. P. (2002). Controllability of non-
+                                                                       NSF–CBMS Regional Res. Conf., Univ. Rhode Island,
+    linear systems in Banach spaces: A survey. Journal of Opti-
+                                                                       Kingston, R.I., 1973). 10, pp. 291–319. Lecture Notes in
+    mization Theory and Applications, 115, 7–28.
+                                                                       Pure Appl. Math. New York: M. Dekker.
+Chen, G. (1979). Control and stabilization for the wave equa-
+                                                                   Russell, D. L. (1978). Controllability and stabilizability theory
+    tion in a bounded domain. SIAM Journal of Control and
+                                                                       for linear partial differential equations: recent progress and
+    Optimization, 17, 66–81.
+                                                                       open questions. SIAM Reviews, 20, 639–739.
+Coddington, E. A., & Levinson, N. (1955). Theory of ordinary
+                                                                   Staffans, O. J. (2004). Well-posed linear systems. Cambridge:
+    differential equations. New York, NY: Tata McGraw-Hill.
+                                                                       Cambridge University Press.
+Curtain, R. F., & Weiss, G. (2006). Exponential stabilization of
+                                                                   Staffans, O. J., & Weiss, G. (2004). Transfer functions of regu-
+    well-posed systems by colocated feedback. SIAM Journal of
+                                                                       lar linear systems. Part III: inversions and duality. Integral
+    Control and Optimization, 45, 273–297.
+                                                                       Equations and Operator Theory, 49, 517–558.
+Dehman, B., & Lebeau, G. (2009). Analysis of the HUM control
+                                                                   Tucsnak, M., & Weiss, G. (2009). Observation and control for
+    operator and exact controllability for semilinear waves in
+                                                                       operator semigroups. Basel: Birkhäuser Verlag.
+    uniform time. SIAM Journal of Control and Optimization,
+                                                                   Tucsnak, M., & Weiss, G. (2014). Well-posed systems – The LTI
+    48, 521–550.
+                                                                       case and beyond. Automatica, 50, 1757–1779.
+Fridman, E. (2013). Observers and initial state recovering for
+                                                                   Weiss, G. (1994a). Transfer functions of regular linear systems,
+    a class of hyperbolic systems via Lyapunov method. Auto-
+                                                                       part I: Characterizations of regularity. Transactions of the
+    matica, 49, 2250–2260.
+                                                                       AMS, 342, 827–854.
+Fridman, E., & Terushkin, M. (2016). New Stability and exact
+                                                                   Weiss, G. (1994b). Regular linear systems with feedback. Math-
+    observability conditions for semilinear wave equations.
+                                                                       ematics of Control, Signals and Systems, 7, 23–57.
+    Automatica, 63, 1–10.
+                                                                   Weiss, G., & Curtain, R.F. (1997). Dynamic stabilization of reg-
+Hadd, S. (2005). Exact controllability of infinite dimensional
+                                                                       ular linear systems. IEEE Transactions on Automatic Con-
+    systems persists under small perturbations. Journal of Evo-
+                                                                       trol, 42, 4–21.
+    lution Equations, 5, 545–555.
+                                                                   Zuazua, E. (1993). Exact controllability for semilinear wave
+Jiang, W., Liu, B., & Zhang, Z. (2015). Robust observability for
+                                                                       equations in one space dimension. Annals of the Institute
+    regular linear systems under nonlinear perturbation. Elec-
+                                                                       Henri Poincaré, 10, 109–129.
+    tronic Journal of Differential Equations, 218, 1–14.
+

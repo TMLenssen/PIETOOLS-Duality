@@ -144,14 +144,11 @@ if hasFilterStates
     ZuTheta = mat2opvar(zeros(sum(Bu.dim(:,2)),sum(TD.dim(:,2))), ...
         [Bu.dim(:,2),TD.dim(:,2)],vars,dom);
 
-    Tdual = blkdiag(TP',TD);
-    A0dual = [AP',                 ZxTheta;
-              B1D*BP',             AD];
-    B0dual = [CP';
-              B1D*DP'+B2D];
-    Cdual = [D11D*BP',             C1D;
-             D21D*BP',             C2D];
-    BuT = [Bu',ZuTheta];
+    Tdual = block_diag2(TP',TD,vars,dom);
+    A0dual = block_2x2(AP',ZxTheta,B1D*BP',AD,vars,dom);
+    B0dual = block_vcat(CP',B1D*DP'+B2D,vars,dom);
+    Cdual = block_2x2(D11D*BP',C1D,D21D*BP',C2D,vars,dom);
+    BuT = block_hcat(Bu',ZuTheta,vars,dom);
 else
     % A feedthrough-only filter has no state to augment. Removing the
     % empty block row/column avoids ambiguous zero-dimensional opvar
@@ -159,12 +156,10 @@ else
     Tdual = TP';
     A0dual = AP';
     B0dual = CP';
-    Cdual = [D11D*BP';
-             D21D*BP'];
+    Cdual = block_vcat(D11D*BP',D21D*BP',vars,dom);
     BuT = Bu';
 end
-Ddual = [D11D*DP'+D12D;
-         D21D*DP'+D22D];
+Ddual = block_vcat(D11D*DP'+D12D,D21D*DP'+D22D,vars,dom);
 DzuT = Dzu';
 
 if isnumeric(Vbar) || isa(Vbar,'dpvar')
@@ -206,8 +201,7 @@ if isfield(settings,'kmax') && ~isempty(settings.kmax)
     end
     pmin = min([eppos,eppos2]);
     Iu = mat2opvar(eye(sum(BuT.dim(:,1))),BuT.dim(:,1),vars,dom);
-    Kb = [pmin*kmax^2*Iu,Zdec';
-          Zdec,             Pdec];
+    Kb = block_2x2(pmin*kmax^2*Iu,Zdec',Zdec,Pdec,vars,dom);
     if sosineq_on
         prog = lpi_ineq(prog,Kb,opts);
     else
@@ -228,12 +222,12 @@ end
 % Bdual = B0dual+[Kp';KTheta']*Dzu'
 Iw = mat2opvar(eye(sum(B0dual.dim(:,2))),B0dual.dim(:,2),vars,dom);
 
-KYP = [Tdual'*Pdec*A0dual+Tdual'*Zdec*BuT+ ...
-           (Tdual'*Pdec*A0dual+Tdual'*Zdec*BuT)', ...
-       Tdual'*Pdec*B0dual+Tdual'*Zdec*DzuT;
-       (Tdual'*Pdec*B0dual+Tdual'*Zdec*DzuT)', ...
-       epsIQC*Iw] ...
-      +[Cdual,Ddual]'*Vbar*[Cdual,Ddual];
+K11 = Tdual'*Pdec*A0dual+Tdual'*Zdec*BuT+ ...
+      (Tdual'*Pdec*A0dual+Tdual'*Zdec*BuT)';
+K12 = Tdual'*Pdec*B0dual+Tdual'*Zdec*DzuT;
+CDdual = block_hcat(Cdual,Ddual,vars,dom);
+KYP = block_2x2(K11,K12,K12',epsIQC*Iw,vars,dom) ...
+      +CDdual'*Vbar*CDdual;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 3: Impose the negativity constraint.
@@ -258,11 +252,12 @@ prog = quiet_lpisolve(prog,sos_opts);
 P = lpigetsol(prog,Pdec);
 Z = lpigetsol(prog,Zdec);
 
-K = Z'*inv_opvar(P);
+K = Z'*inv_opvar(P,0);
+K = clean_opvar(K,1e-4);
 
 end
 
-function prog = quiet_lpisolve(prog,sos_opts) %#ok<INUSD>
+function prog = quiet_lpisolve(prog,sos_opts)
 % evalc('prog = lpisolve(prog,sos_opts);');
 prog = lpisolve(prog,sos_opts);
 end
@@ -278,4 +273,41 @@ end
 function missing = missing_members(container,required)
 present = cellfun(@(name) has_member(container,name),required);
 missing = required(~present);
+end
+
+function G = block_vcat(G1,G2,vars,dom)
+outDim = ioDimensions(["r1","r2"],[G1.dim(:,1)'; G2.dim(:,1)']);
+inDim = ioDimensions("c1",G1.dim(:,2)');
+grid = gridBuilder(outDim,inDim,vars,dom);
+grid(1,1) = G1;
+grid(2,1) = G2;
+G = grid();
+end
+
+function G = block_hcat(G1,G2,vars,dom)
+outDim = ioDimensions("r1",G1.dim(:,1)');
+inDim = ioDimensions(["c1","c2"],[G1.dim(:,2)'; G2.dim(:,2)']);
+grid = gridBuilder(outDim,inDim,vars,dom);
+grid(1,1) = G1;
+grid(1,2) = G2;
+G = grid();
+end
+
+function G = block_2x2(G11,G12,G21,G22,vars,dom)
+outDim = ioDimensions(["r1","r2"],[G11.dim(:,1)'; G21.dim(:,1)']);
+inDim = ioDimensions(["c1","c2"],[G11.dim(:,2)'; G12.dim(:,2)']);
+grid = gridBuilder(outDim,inDim,vars,dom);
+grid(1,1) = G11;
+grid(1,2) = G12;
+grid(2,1) = G21;
+grid(2,2) = G22;
+G = grid();
+end
+
+function G = block_diag2(G1,G2,vars,dom)
+dim = ioDimensions(["d1","d2"],[G1.dim(:,1)'; G2.dim(:,1)']);
+grid = gridBuilder(dim,dim,vars,dom);
+grid(1,1) = G1;
+grid(2,2) = G2;
+G = grid();
 end

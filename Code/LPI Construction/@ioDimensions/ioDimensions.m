@@ -49,8 +49,8 @@ classdef ioDimensions < handle
 
             obj.variableList{end+1} = struct('name', varName, 'dimensions', dimensions);
 
-            fprintf("Added variable '%s' with dimensions [%d, %d] at index %d\n", ...
-                varName, dimensions(1), dimensions(2), numel(obj.variableList));
+            % fprintf("Added variable '%s' with dimensions [%d, %d] at index %d\n", ...
+            %     varName, dimensions(1), dimensions(2), numel(obj.variableList));
         end
         function dim = getDimensions(obj)
             dim = zeros(1,2);

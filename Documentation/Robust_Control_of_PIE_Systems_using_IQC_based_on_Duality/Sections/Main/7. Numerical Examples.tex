@@ -6,21 +6,56 @@ the problem of oscillations in the Subthalamic Nucleus.
 \begin{example}[Reaction-Diffusion Equation]
 Consider boundary control of an unstable uncertain reaction-diffusion equation:
 \begin{align*}
-    &\dot{\mbf{v}}(t,s) = \partial_s^2\mbf{v}(t,s) + 5\mbf{v}(t,s) +  w_{\Delta,1}(t,s) + w_{\Delta,2}(t,s) + \frac{1}{10}w(t), \\
+    &\dot{\mbf{v}}(t,s) = \partial_s^2\mbf{v}(t,s) + 5\mbf{v}(t,s) +  \frac{8}{5}w_{\Delta}(t,s) + s(1-s)w_p(t), \\
     &\mbf{v}(t,0) =0, \quad \partial_s\mbf{v}(t,1) = x(t), \quad \dot{x}(t) = u(t),\\
-    &z_\Delta(t,s) = \bmat{\mbf{v}(t,s)\\\partial_s^2\mbf{v}(t,s)}, \quad z(t) = \bmat{x(t) \\ \int_0^1 \mbf{v}(t,s)ds}, 
+    &z_\Delta(t,s) = \mbf{v}(t,s), \quad z_p(t) = \bmat{x(t) \\ \int_0^1 \mbf{v}(t,s)ds}, 
 \end{align*}
-The PIE realization of P has state $\mbf{x}(t) = \partial_s^2\mbf{v}(t)$ and PI operators,
+The PIE realization of P has state $\mbf{x}(t) = \partial_s^2\mbf{v}(t)$, $(\Delta z_\Delta) = \delta z_\Delta$
+with $|\delta| < 1$ and PI operators,
 \begin{align*}
     &\mcl{T}_\mathrm{P} = \PIop{1}{0}{s}{\{0,-\theta,-s\}}, \, \mcl{A}_\mathrm{P}=\PIop{0}{0}{5s}{\{1,-5\theta,-5s\}}\\
     &\mcl B_\mathrm{P} = \PIop{0}{\bmat{0&0}}{0.1}{\left\{\bmat{\frac45&\frac45},\bmat{0&0},\bmat{0&0}\right\}}\\
     &\mcl B_\mathrm{u} = \PIop{1}{\emptyset}{0}{\{\emptyset\}}\\
     &\mcl{C}_\mathrm{P}=\PIop{\bmat{1\\\frac12}}{\bmat{0\\\frac12s^2-s}}{\bmat{0\\s}}{\left\{\bmat{0\\1}, \bmat{0\\-\theta}, \bmat{0\\-s}\right\}}\\
 \end{align*}
+For this example we used $\underline{\Delta} = \Delta^* =\Delta$ instead of relying on factorization. $\underline{\Delta}=\Delta^*=\Delta$ implies that
+the same multiplier structure can be used on the primal and dual side. \cite{10156335} gives the following primal mutliplier structure 
+$\mcl{V}_\Delta\{\mcl{Q}_\Delta,\mcl{S}_\Delta, -\mcl{Q}_\Delta\}$,
+with $\mcl{Q}_\Delta^*=\mcl{Q}_\Delta\succeq 0\in\Pi_4$ and 
+$\mcl{S}_\Delta^*=-\mcl{S}_\Delta\in\Pi_4$ with $\Psi_\Delta = I$
+as $\Delta$ is assumed to be unmeasurable. The dual operators associated with the uncertainty have identical properties.
+Then define the primal $\mcl{V}_p\{I_2, 0, -\gamma^2\}$ and dual 
+$\underline{V}_p\{1, 0, -\underline{\gamma}^2I_2\}$, i.e. we are looking
+for the induced $L_2$-gain on the primal and dual side. Synthesizing a state 
+feedback controller corresponding to Theorem~\ref{thm:state-feedback} yields,
+\begin{align*}
+    u(t) = &-247.26x(t) + \int_0^1 K(s)\partial_s^2\mbf{v}(t,s)ds,\\
+    K(s) = &1.93s^10 - 20.76s^9 + 81.61s^8 - 165.38s^7 + 191.14s^6 \\
+        &-94.18s^5 + 0.20s^4 - 102.86s^3 - 14.63s^2 + 335.30s \\
+        &- 0.004   
+\end{align*}
+Synthesis yielded a gain of $0.14242$, analysis yielded 
+$\gamma=0.13972$ and $\underline{\gamma}=0.13979$.
 \end{example}
 
-\begin{example}[Wave--equation]
-
+\begin{example}[Sine--Gordon Wave Equation]
+Consider boundary control of the sine--Gordon equation shifted about the
+unstable equilibrium $v=\pi$:
+\begin{align*}
+    &\partial_t^2\mbf{v}(t,s) = \partial_s^2\mbf{v}(t,s) - 3\sin(\mbf{v}(t,s)),\\
+    &\mbf{v}(t,0)=\pi,\quad \partial_s\mbf{v}(t,1)=x(t),\quad \dot{x}(t)=u(t).
+\end{align*}
+Let $\mbf{z}(t,s)=\mbf{v}(t,s)-\pi$. Then $\sin(\mbf{v})=-\sin(\mbf{z})$ and
+the shifted dynamics are
+\begin{align*}
+    &\partial_t^2\mbf{z}(t,s)
+    = \partial_s^2\mbf{z}(t,s) + 3\mbf{z}(t,s)-3w_\Delta(t,s) + s(1-s)w_p(t),\\
+    &\mbf{z}(t,0)=0,\quad \partial_s\mbf{z}(t,1)=x(t),\quad
+    \dot{x}(t)=u(t),\\
+    &z_\Delta(t,s)=\mbf{z}(t,s),\quad z_p(t)=\bmat{x(t) \\ \int_0^1 \mbf{z}(t,s)ds}.
+\end{align*}
+The PIE realization of P has state $\mbf{x}(t)=\bmat{x(t) & \partial_s^2\mbf{z}(t) & \dot{\mbf{z}}(t)}^\top = \bmat{x(t) & \partial_s^2\mbf{v}(t) & \dot{\mbf{v}}(t)}^\top$, 
+$(\Delta z_\Delta)(t,s) = \mbf{z} - \sin(\mbf{z})$ and PI operators
 \end{example}
 
 \begin{example}[Euler--Bernoulli]

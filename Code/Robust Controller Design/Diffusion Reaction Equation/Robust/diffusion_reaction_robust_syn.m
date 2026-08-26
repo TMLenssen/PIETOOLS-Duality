@@ -173,27 +173,27 @@ PIE_CL = initialize(PIE_CL);
 % =============================================
 % === Simulate the system
 
-% % Declare initial values and disturbance
-syms st sx real
-uinput.ic = 0;%sin(sx*pi/2);
-uinput.w = heaviside(st-1) - heaviside(st-2);% sin(5 * (st - 1)) * exp(-(st - 1)) * heaviside(st-1);
-
-% % Set options for discretization and simulation
-opts.plot = 'yes';   % don't plot final solution
-opts.N = 16;        % expand using 16 Chebyshev polynomials
-opts.tf = 15;        % simulate up to t = 2
-opts.dt = 1e-3;     % use time step of 10^-2
-
-% % Perform the actual simulation
-% Simulate uncontrolled PIE and extract solution
-[solution_OL,grid] = PIESIM(PIE,opts,uinput);
-% tval = solution_OL.timedep.dtime;
-x_OL = reshape(solution_OL.timedep.primary{2}(:,1,:),opts.N+1,[]);
-z_OL = solution_OL.timedep.regulated{1}(1,:);
-% Simulate controlled PIE and extract solution
-[solution_CL,~] = PIESIM(PIE_CL,opts,uinput);
-tval = solution_CL.timedep.dtime;
-x_CL = reshape(solution_CL.timedep.primary{2}(:,1,:),opts.N+1,[]);
-z_CL = solution_CL.timedep.regulated{1}(1,:);
-u_CL = solution_CL.timedep.regulated{1}(2,:);
-wval = double(subs(uinput.w,st,tval));
+% % % Declare initial values and disturbance
+% syms st sx real
+% uinput.ic = 0;%sin(sx*pi/2);
+% uinput.w = heaviside(st-1) - heaviside(st-2);% sin(5 * (st - 1)) * exp(-(st - 1)) * heaviside(st-1);
+% 
+% % % Set options for discretization and simulation
+% opts.plot = 'yes';   % don't plot final solution
+% opts.N = 16;        % expand using 16 Chebyshev polynomials
+% opts.tf = 15;        % simulate up to t = 2
+% opts.dt = 1e-3;     % use time step of 10^-2
+% 
+% % % Perform the actual simulation
+% % Simulate uncontrolled PIE and extract solution
+% [solution_OL,grid] = PIESIM(PIE,opts,uinput);
+% % tval = solution_OL.timedep.dtime;
+% x_OL = reshape(solution_OL.timedep.primary{2}(:,1,:),opts.N+1,[]);
+% z_OL = solution_OL.timedep.regulated{1}(1,:);
+% % Simulate controlled PIE and extract solution
+% [solution_CL,~] = PIESIM(PIE_CL,opts,uinput);
+% tval = solution_CL.timedep.dtime;
+% x_CL = reshape(solution_CL.timedep.primary{2}(:,1,:),opts.N+1,[]);
+% z_CL = solution_CL.timedep.regulated{1}(1,:);
+% u_CL = solution_CL.timedep.regulated{1}(2,:);
+% wval = double(subs(uinput.w,st,tval));

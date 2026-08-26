@@ -1,5 +1,4 @@
-function [Theta,J,info] = PIETOOLS_static_J_factorization( ...
-    V,positiveDim,tol,samplePoints)
+function [Theta,J,info] = PIETOOLS_static_J_factorization(V,positiveDim,tol,samplePoints)
 %PIETOOLS_STATIC_J_FACTORIZATION Factor a numerical static PN multiplier.
 %
 % [THETA,J,INFO] = PIETOOLS_STATIC_J_FACTORIZATION(V,POSITIVEDIM,...)
@@ -43,7 +42,7 @@ end
 
 Ipositive = eyePI(positiveDim,V.vars,V.I);
 Inegative = eyePI(negativeDim,V.vars,V.I);
-J = blkdiag(Ipositive,-Inegative);
+J = block_diag2(Ipositive,-Inegative,V.vars,V.I);
 
 adjointError = sample_opvar_error(V21-V12',samplePoints);
 if adjointError > 1e-6
@@ -70,8 +69,7 @@ Theta12 = A*V11inv*V12;
 Theta21 = zerosPI(negativeDim,positiveDim,V.vars,V.I);
 Theta22 = B;
 
-Theta.operator = [Theta11,Theta12;
-                  Theta21,Theta22];
+Theta.operator = block_2x2(Theta11,Theta12,Theta21,Theta22,V.vars,V.I);
 % Feedthrough-only realization for PIETOOLS_IQC_graph.
 stateDim = zeros(size(positiveDim));
 Theta.T = zerosPI(stateDim,stateDim,V.vars,V.I);
@@ -190,10 +188,16 @@ function Xinv = invert_op(X,opts,pts)
 scale = max(1,sample_opvar_error(X,pts));
 sepErr = max_abs_2d(X.R.R1-X.R.R2,X.var1,X.var2,pts);
 if sepErr<=1e-10*scale
-    Xinv = inv_opvar_old(X);
-else
-    Xinv = inv_opvar_2(X,opts);
+    try
+        Xinv = inv_opvar(X);
+        return
+    catch ME
+        warning('PIETOOLS_static_J_factorization:OldInverseFallback', ...
+            'inv_opvar failed (%s); using inv_opvar_2 instead.', ...
+            ME.message);
+    end
 end
+Xinv = inv_opvar_2(X,opts);
 end
 
 function validate_multiplier_type(V)
@@ -273,4 +277,23 @@ for k = 1:numel(samplePoints)
         err = max(err,max(abs(evaluated),[],'all'));
     end
 end
+end
+
+function G = block_2x2(G11,G12,G21,G22,vars,dom)
+outDim = ioDimensions(["r1","r2"],[G11.dim(:,1)'; G21.dim(:,1)']);
+inDim = ioDimensions(["c1","c2"],[G11.dim(:,2)'; G12.dim(:,2)']);
+grid = gridBuilder(outDim,inDim,vars,dom);
+grid(1,1) = G11;
+grid(1,2) = G12;
+grid(2,1) = G21;
+grid(2,2) = G22;
+G = grid();
+end
+
+function G = block_diag2(G1,G2,vars,dom)
+dim = ioDimensions(["d1","d2"],[G1.dim(:,1)'; G2.dim(:,1)']);
+grid = gridBuilder(dim,dim,vars,dom);
+grid(1,1) = G1;
+grid(2,2) = G2;
+G = grid();
 end
