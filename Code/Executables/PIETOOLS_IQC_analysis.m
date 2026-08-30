@@ -17,9 +17,10 @@
 % OUTPUT:
 % P        - storage operator proving the IQC inequality
 % prog     - solved PIETOOLS LPI program
+% kypBound - signed-mode decision variable; empty in normal mode
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [P,prog] = PIETOOLS_IQC_analysis(prog,settings,G,V)
+function [P,prog,kypBound] = PIETOOLS_IQC_analysis(prog,settings,G,V)
 
 % Check if all inputs are properly specified.
 narginchk(4,4);
@@ -70,7 +71,15 @@ else
     dd2 = settings.dd2;
     dd3 = settings.dd3;
 end
-epsilon = epneg;
+epsIQC = epneg;
+kypSlackMode = 'normal';
+if isfield(settings,'kypSlackMode') && ~isempty(settings.kypSlackMode)
+    kypSlackMode = lower(char(settings.kypSlackMode));
+end
+if ~ismember(kypSlackMode,{'signed','normal'})
+    error('settings.kypSlackMode must be signed or normal.');
+end
+kypBound = [];
 
 if isnumeric(V) || isa(V,'dpvar')
     if ~isequal(size(V),[sum(C.dim(:,1)),sum(C.dim(:,1))])
@@ -98,11 +107,28 @@ Pdec = Pdec+mat2opvar(Imat,Pdec.dim(:,2),vars,dom);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 2: Define the KYP operator from Theorem dual-KYP.
+if strcmp(kypSlackMode,'signed')
+    kypMarginUpper = 1e6;
+    if isfield(settings,'kypMarginUpper') && ~isempty(settings.kypMarginUpper)
+        kypMarginUpper = settings.kypMarginUpper;
+    end
+    if ~isscalar(kypMarginUpper) || ~isfinite(kypMarginUpper) ...
+            || kypMarginUpper <= 0
+        error('settings.kypMarginUpper must be a positive finite scalar.');
+    end
+
+    [prog,kypBound] = lpidecvar(prog,'kypAnalysisSignedBound');
+    prog = lpi_ineq(prog,kypMarginUpper+kypBound);
+    prog = lpi_ineq(prog,kypMarginUpper-kypBound);
+    prog = lpisetobj(prog,-kypBound);
+    epsIQC = kypBound;
+end
+
 Iw = mat2opvar(eye(sum(B.dim(:,2))),B.dim(:,2),vars,dom);
 K11 = T'*Pdec*A+(T'*Pdec*A)';
 K12 = T'*Pdec*B;
 CD = block_hcat(C,D,vars,dom);
-KYP = block_2x2(K11,K12,K12',epsilon*Iw,vars,dom) ...
+KYP = block_2x2(K11,K12,K12',epsIQC*Iw,vars,dom) ...
       +CD'*V*CD;
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -126,8 +152,7 @@ P = lpigetsol(prog,Pdec);
 
 end
 
-function prog = quiet_lpisolve(prog,sos_opts) %#ok<INUSD>
-% evalc('prog = lpisolve(prog,sos_opts);');
+function prog = quiet_lpisolve(prog,sos_opts)
 prog = lpisolve(prog,sos_opts);
 end
 

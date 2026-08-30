@@ -17,6 +17,7 @@
 % Z    - controller variable satisfying Z = P*K'
 % P    - storage operator proving the dual IQC inequality
 % prog - solved PIETOOLS LPI program
+% kypBound - optimized scalar KYP relaxation/margin
 %
 % REQUIRED MEMBERS OF P:
 % vars, dom, T, A, B1, C1, D11, and either the plant-box aliases Bu/Dzu
@@ -26,14 +27,16 @@
 % T, A, B1, B2, C1, C2, D11, D12, D21, D22
 %
 % OPTIONAL SETTING:
-% settings.kmax - certified induced-norm upper bound on K
+% settings.kmax             - certified induced-norm upper bound on K
+% settings.kypSlackMode      - 'signed' or 'normal'
+% settings.kypMarginUpper    - absolute bound for the optimized KYP scalar
 %
 % NOTE: Initialize prog and declare the parameters in Vbar before calling
 % this function. Bounds and objectives on those parameters must also be
 % added to prog by the caller.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-function [K,Z,P,prog] = PIETOOLS_IQC_controller_synthesis(prog,settings,P,Theta,Vbar)
+function [K,Z,P,prog,kypBound] = PIETOOLS_IQC_controller_synthesis(prog,settings,P,Theta,Vbar)
 
 % Check if all inputs are properly specified.
 narginchk(5,5);
@@ -133,7 +136,14 @@ else
 end
 % Use the standard PIETOOLS negativity margin for the epsilon*I term in
 % the paper; no additional settings fields are introduced.
-epsIQC = epneg;
+kypSlackMode = 'normal';
+if isfield(settings,'kypSlackMode') && ~isempty(settings.kypSlackMode)
+    kypSlackMode = lower(char(settings.kypSlackMode));
+end
+if ~ismember(kypSlackMode,{'signed','normal'})
+    error('settings.kypSlackMode must be signed or normal.');
+end
+kypBound = [];
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Assemble the open-loop dual augmented system D(Theta)*[P^T;I].
@@ -183,8 +193,8 @@ else
 end
 
 % Enforce strict positivity of the storage operator.
-Imat = blkdiag(eppos*eye(Pdec.dim(1,:)), ...
-               eppos2*eye(Pdec.dim(2,:)));
+Imat = blkdiag(eppos*eye(Pdec.dim(1,:)),eppos2*eye(Pdec.dim(2,:)));
+
 Pdec = Pdec+mat2opvar(Imat,Pdec.dim(:,2),vars,dom);
 
 % Z = P*[Kp';KTheta'] maps the controller output space into the augmented
@@ -215,7 +225,24 @@ if isfield(settings,'kmax') && ~isempty(settings.kmax)
         prog = lpi_eq(prog,Kbp-Kb,'symmetric');
     end
 end
+if strcmp(kypSlackMode,'signed')
+    kypMarginUpper = 1e6;
+    if isfield(settings,'kypMarginUpper') && ~isempty(settings.kypMarginUpper)
+        kypMarginUpper = settings.kypMarginUpper;
+    end
+    if ~isscalar(kypMarginUpper) || ~isfinite(kypMarginUpper) ...
+            || kypMarginUpper <= 0
+        error('settings.kypMarginUpper must be a positive finite scalar.');
+    end
 
+    [prog,kypBound] = lpidecvar(prog,'kypSignedBound');
+    prog = lpi_ineq(prog,kypMarginUpper+kypBound);
+    prog = lpi_ineq(prog,kypMarginUpper-kypBound);
+    prog = lpisetobj(prog,-kypBound);
+    epsIQC = kypBound;
+else
+    epsIQC = epneg;
+end
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % STEP 2: Define the controller KYP operator from (controller-kyp).
 % Adual = A0dual+[Kp';KTheta']*[Bu' 0]
@@ -247,18 +274,30 @@ end
 % Solve the LPI program.
 prog = quiet_lpisolve(prog,sos_opts);
 
-% Extract the solution and recover K = Z'*P^(-1). For separable P,
-% inv_opvar uses the analytic 4-PI inverse.
-P = lpigetsol(prog,Pdec);
-Z = lpigetsol(prog,Zdec);
-
-K = Z'*inv_opvar(P,0);
-K = clean_opvar(K,1e-4);
+maxRecoveryNumerr = 1;
+if isfield(settings,'maxNumerr') && ~isempty(settings.maxNumerr)
+    maxRecoveryNumerr = settings.maxNumerr;
+end
+feasratioTolerance = 0.3;
+if isfield(settings,'feasratioTolerance') && ~isempty(settings.feasratioTolerance)
+    feasratioTolerance = settings.feasratioTolerance;
+end
+canRecover = has_acceptable_solution(prog,maxRecoveryNumerr,feasratioTolerance);
+if true %canRecover
+    % For separable P, inv_opvar uses the analytic 4-PI inverse.
+    P = lpigetsol(prog,Pdec);
+    Z = lpigetsol(prog,Zdec);
+    K = Z'*inv_opvar(P,0);
+    K = clean_opvar(K,1e-6);
+else
+    K = [];
+    Z = [];
+    P = [];
+end
 
 end
 
 function prog = quiet_lpisolve(prog,sos_opts)
-% evalc('prog = lpisolve(prog,sos_opts);');
 prog = lpisolve(prog,sos_opts);
 end
 
@@ -268,6 +307,26 @@ if isstruct(container)
 else
     tf = isprop(container,name);
 end
+end
+
+function tf = has_acceptable_solution(prog,maxNumerr,feasratioTolerance)
+tf = false;
+if ~isfield(prog,'solinfo') || ~isfield(prog.solinfo,'info')
+    return
+end
+info = prog.solinfo.info;
+required = {'feasratio','pinf','dinf','numerr'};
+if ~all(isfield(info,required))
+    return
+end
+ratio = double(info.feasratio);
+pinf = double(info.pinf);
+dinf = double(info.dinf);
+numerr = double(info.numerr);
+tf = isfinite(ratio) && abs(ratio-1) <= feasratioTolerance ...
+    && isfinite(pinf) && pinf == 0 ...
+    && isfinite(dinf) && dinf == 0 ...
+    && isfinite(numerr) && numerr <= maxNumerr;
 end
 
 function missing = missing_members(container,required)

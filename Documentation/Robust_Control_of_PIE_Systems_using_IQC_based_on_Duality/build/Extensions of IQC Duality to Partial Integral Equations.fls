@@ -421,13 +421,21 @@ INPUT ./Sections/Main/7. Numerical Examples.tex
 INPUT Sections/Main/7. Numerical Examples.tex
 INPUT ./Sections/Main/7. Numerical Examples.tex
 INPUT Sections/Main/7. Numerical Examples.tex
-INPUT ./Sections/Main/8. Conclusion.tex
-INPUT Sections/Main/8. Conclusion.tex
-INPUT ./Sections/Main/8. Conclusion.tex
-INPUT Sections/Main/8. Conclusion.tex
-INPUT build/Extensions of IQC Duality to Partial Integral Equations.bbl
-INPUT build/Extensions of IQC Duality to Partial Integral Equations.bbl
-INPUT build/Extensions of IQC Duality to Partial Integral Equations.bbl
+INPUT ./Figures/example2_state.pdf
+INPUT ./Figures/example2_state.pdf
+INPUT Figures/example2_state.pdf
+INPUT ./Figures/example2_state.pdf
+INPUT ./Figures/example2_state.pdf
+INPUT ./Figures/example2_amplitude.pdf
+INPUT ./Figures/example2_amplitude.pdf
+INPUT Figures/example2_amplitude.pdf
+INPUT ./Figures/example2_amplitude.pdf
+INPUT ./Figures/example2_amplitude.pdf
+INPUT ./Figures/example2_effort.pdf
+INPUT ./Figures/example2_effort.pdf
+INPUT Figures/example2_effort.pdf
+INPUT ./Figures/example2_effort.pdf
+INPUT ./Figures/example2_effort.pdf
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmr8.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmmi8.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmsy8.tfm
@@ -436,6 +444,13 @@ INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/cm/cmbx8.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam10.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/public/rsfs/rsfs10.tfm
+INPUT ./Sections/Main/8. Conclusion.tex
+INPUT Sections/Main/8. Conclusion.tex
+INPUT ./Sections/Main/8. Conclusion.tex
+INPUT Sections/Main/8. Conclusion.tex
+INPUT build/Extensions of IQC Duality to Partial Integral Equations.bbl
+INPUT build/Extensions of IQC Duality to Partial Integral Equations.bbl
+INPUT build/Extensions of IQC Duality to Partial Integral Equations.bbl
 INPUT c:/texlive/2025/texmf-dist/fonts/vf/adobe/times/ptmri7t.vf
 INPUT c:/texlive/2025/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
 INPUT ./Sections/Proofs/I. IQC.tex
@@ -460,12 +475,17 @@ INPUT ./Sections/Proofs/Duality/dynamic_state_feedback.tex
 INPUT Sections/Proofs/Duality/dynamic_state_feedback.tex
 INPUT ./Sections/Proofs/Duality/dynamic_state_feedback.tex
 INPUT Sections/Proofs/Duality/dynamic_state_feedback.tex
+INPUT ./Sections/Proofs/Multipliers/multiplier_proof.tex
+INPUT Sections/Proofs/Multipliers/multiplier_proof.tex
+INPUT ./Sections/Proofs/Multipliers/multiplier_proof.tex
+INPUT Sections/Proofs/Multipliers/multiplier_proof.tex
 INPUT build/Extensions of IQC Duality to Partial Integral Equations.aux
 INPUT build/Extensions of IQC Duality to Partial Integral Equations.out
 INPUT build/Extensions of IQC Duality to Partial Integral Equations.out
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb
@@ -477,11 +497,13 @@ INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb
+INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
 INPUT c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb

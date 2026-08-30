@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.5.28)  26 AUG 2026 17:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) (preloaded format=pdflatex 2025.5.28)  30 AUG 2026 17:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -759,44 +759,71 @@ Overfull \hbox (1.6111pt too wide) detected at line 36
 
 
 [6]
-Overfull \hbox (0.66945pt too wide) detected at line 56
-[]
+
+
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 139--145
+\OT1/ptm/m/it/10 The PIE re-al-iza-tion of $\OML/cmm/m/it/10 P$ \OT1/ptm/m/it/10 has fun-da-men-tal state
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--59
-\OT1/ptm/m/it/10 The PIE re-al-iza-tion of P has state $\OT1/cmr/bx/n/10 x\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) =
+Underfull \hbox (badness 10000) in paragraph at lines 139--145
+\OT1/cmr/bx/n/10 x[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) = [][]$\OT1/ptm/m/it/10 , un-cer-tainty
  []
 
+<Figures/example2_state.pdf, id=286, 505.89604pt x 252.94801pt>
+File: Figures/example2_state.pdf Graphic file (type pdf)
+<use Figures/example2_state.pdf>
+Package pdftex.def Info: Figures/example2_state.pdf  used on input line 199.
+(pdftex.def)             Requested size: 252.0pt x 125.99895pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 56--59
-[][] \OT1/cmr/m/n/10 = [][]$\OT1/ptm/m/it/10 ,
- []
+Underfull \vbox (badness 1028) has occurred while \output is active []
 
+
+
+<Figures/example2_amplitude.pdf, id=287, 220.825pt x 158.5925pt>
+File: Figures/example2_amplitude.pdf Graphic file (type pdf)
+<use Figures/example2_amplitude.pdf>
+Package pdftex.def Info: Figures/example2_amplitude.pdf  used on input line 209.
+(pdftex.def)             Requested size: 122.22015pt x 87.77786pt.
+<Figures/example2_effort.pdf, id=288, 212.795pt x 158.5925pt>
+File: Figures/example2_effort.pdf Graphic file (type pdf)
+<use Figures/example2_effort.pdf>
+Package pdftex.def Info: Figures/example2_effort.pdf  used on input line 216.
+(pdftex.def)             Requested size: 122.22015pt x 91.09074pt.
 ) (./Sections/Main/8. Conclusion.tex) (build/Extensions of IQC Duality to Partial Integral Equations.bbl
 
-)
+[8 <./Figures/example2_state.pdf> <./Figures/example2_amplitude.pdf> <./Figures/example2_effort.pdf>])
 
-[7] (./Sections/Proofs/I. IQC.tex) (./Sections/Proofs/II. Duality.tex (./Sections/Proofs/Duality/dual-IQC.tex
 
-[8
+
+[9
+
+] (./Sections/Proofs/I. IQC.tex) (./Sections/Proofs/II. Duality.tex (./Sections/Proofs/Duality/dual-IQC.tex
+
+[10
 
 ]) (./Sections/Proofs/Duality/dual-KYP.tex
 
-LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 9 undefined on input line 40.
+LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 11 undefined on input line 40.
 
 
 
-[9]) (./Sections/Proofs/Duality/dynamic_state_feedback.tex
+[11]) (./Sections/Proofs/Duality/dynamic_state_feedback.tex
 
-LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 10 undefined on input line 98.
+LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 12 undefined on input line 98.
 
 
-LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 10 undefined on input line 124.
+LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 12 undefined on input line 124.
 
-))
+)) (./Sections/Proofs/Multipliers/multiplier_proof.tex
 
-[10] (build/Extensions of IQC Duality to Partial Integral Equations.aux)
+[12]
+
+[13])
+
+[14] (build/Extensions of IQC Duality to Partial Integral Equations.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-29>
@@ -809,21 +836,21 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `"Extensions of IQC Duality to Partial Integral Equations".out' has not changed.
-(rerunfilecheck)             Checksum: D5791A16FB58C459B58EDB9DFA8D5D69;4229.
+(rerunfilecheck)             Checksum: DB86211A7B8B35156254587BD4400EB1;5213.
  ) 
 Here is how much of TeX's memory you used:
- 25701 strings out of 469590
- 496486 string characters out of 5474519
- 939396 words of memory out of 5000000
- 51964 multiletter control sequences out of 15000+600000
+ 25770 strings out of 469590
+ 498359 string characters out of 5474519
+ 941386 words of memory out of 5000000
+ 52008 multiletter control sequences out of 15000+600000
  670313 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  84i,23n,87p,705b,1057s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "build/Extensions of IQC Duality to Partial Integral Equations.pdf" (10 pages, 377286 bytes).
+<c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2025/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm7.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmbi8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmr8a.pfb><c:/texlive/2025/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on "build/Extensions of IQC Duality to Partial Integral Equations.pdf" (14 pages, 7645715 bytes).
 PDF statistics:
- 437 PDF objects out of 1000 (max. 8388607)
- 365 compressed objects within 4 object streams
- 96 named destinations out of 1000 (max. 500000)
- 205 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 613 PDF objects out of 1000 (max. 8388607)
+ 503 compressed objects within 6 object streams
+ 113 named destinations out of 1000 (max. 500000)
+ 252 words of extra memory for PDF output out of 10000 (max. 10000000)
 

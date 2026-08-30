@@ -1,0 +1,165 @@
+
+\subsection{Proof of Lemma~\ref{lem:sec-bound}}
+\label{proof:sec-bound}
+Suppose that the dual IQC
+\begin{equation*}
+     \ip{p_T\bmat{P_\Delta^\top\underline{w}_\Delta \\ \underline{w}_\Delta}}
+{p_T \mcl{M}_{\underline{V}_\Delta}\bmat{P^\top\underline{w}_\Delta \\ \underline{w}_\Delta}}_{\mbf L_{[a, b]}}
+\end{equation*}
+is parametized according to \eqref{eqn:dual-sec-mult}. We need to show that $\Delta$ satisfies the primal IQC.
+First, observe the dual IQC can be factorized as
+\begin{equation}\label{eqn:dual-sec-fact}
+    \underline{\mcl{V}}_\Delta = \frac{1}{2}\bmat{\beta & -1\\ -\alpha & 1}^*
+    \bmat{\mcl S & I \\ \mcl S & -I}^*\bmat{I & 0 \\ 0 & -I}\underbrace{\bmat{\mcl S & I \\ \mcl S & -I}}_{\underline{\Theta}_1}\underbrace{\bmat{\beta & -1\\ -\alpha & 1}}_{\underline{\Theta}_2}
+\end{equation}
+Them, we use the multiplicative and involutive property of the dual operation such that $\mbf{D}(\Theta_1\Theta_2)=\mbf D(\Theta_1)\mbf D(\Theta_2)$
+for any two invertible $\Theta_1$ and $\Theta_2$  and $\mbf{D}(\mbf{D}(\Theta))=\Theta$ to recover the primal IQC.
+Since $\underline{S}_0\succeq 0$, $\underline{\mcl{S}}$ is closed under inversion with ${\underline{S}_0}^{-1}\succeq 0$. 
+Applying these properties to the two factors of $\underline{\Theta}$ in \eqref{eqn:dual-sec-fact} gives
+\begin{align*}
+\Theta = \mbf D(\underline{\Theta})
+&=\mbf D(
+\frac{1}{\sqrt{2}}
+\bmat{I&\underline{\mcl S}\\I&-\underline{\mcl S}}
+)
+\mbf D(
+\bmat{\beta&-1\\-\alpha &1}
+)\\
+&=\frac{1}{\sqrt{2}(\beta-\alpha)}
+\bmat{-\underline{\mcl S}^{-1}&-I\\-\underline{\mcl S}^{-1}&I}
+\bmat{\beta &-1\\-\alpha&1}.
+\end{align*}
+We omit $\frac{1}{(\beta - \alpha)}>0$ therefore,
+\begin{align*}
+{\mcl V}_\Delta = \bmat{\beta&-1\\-\alpha &1}^*
+\bmat{0&\underline{\mcl S}^{-1}\\\underline{\mcl S}^{-1}&0}
+\bmat{\beta &-1\\-\alpha &1}
+\end{align*}
+For completion we use the proof in \cite{10156335}
+Then, for all $s\in[a,b]$ and $t>0$, we have that
+\begin{equation*}
+    (\beta z_\Delta(s,t)-\phi(z_\Delta(s,t)))
+    (\phi(z_\Delta(s,t))-\alpha z_\Delta(s,t))\geq0,
+\end{equation*}
+and hence
+\begin{equation*}
+    (\beta z_\Delta(s,t)-\phi(z_\Delta(s,t)))\underline S^{-1}_0(s)
+    (\phi(z_\Delta(s,t))-\alpha z_\Delta(s,t))\geq0.
+\end{equation*}
+Therefore, $\Delta$ satisfies the IQC defined by $\underline\Psi_\Delta=I$ and \eqref{eqn:dual-sec-mult}.
+
+\subsection{Proof of the Primal Slope Restricted IQC}
+\label{proof:primal-slope}
+Suppose that the primal IQC
+\begin{equation*}
+    \ip{p_T\bmat{z_\Delta\\\Delta z_\Delta}}
+    {p_T\mcl M_{\mcl V_\Delta}\bmat{z_\Delta\\\Delta z_\Delta}}
+    _{\mbf L_{[a,b]}}
+\end{equation*}
+is parametized according to \eqref{eqn:primal-slope-mult}. We need to show
+that $\Delta$ satisfies the primal IQC.
+Define
+\begin{equation*}
+    p(s,t):=\hat\beta z_\Delta(s,t)-\phi(z_\Delta(s,t)),\qquad
+    q(s,t):=\phi(z_\Delta(s,t))-\hat\alpha z_\Delta(s,t).
+\end{equation*}
+Applying the slope restriction to $z_\Delta(s,t)$ and $0$, and using
+$\phi(0)=0$, gives
+\begin{equation*}
+    p(s,t)q(s,t)\geq0.
+\end{equation*}
+Likewise, applying it to $z_\Delta(s,t)$ and $z_\Delta(\theta,t)$ gives
+\begin{equation*}
+    (p(s,t)-p(\theta,t))(q(s,t)-q(\theta,t))\geq0.
+\end{equation*}
+Using the 3-PI representation of $\mcl S$, we obtain
+\begin{align*}
+(\mcl Sx)(s)
+&=S_0(s)x(s)+\int_a^sS_1(s,\theta)x(\theta)d\theta
++\int_s^bS_2(s,\theta)x(\theta)d\theta\\
+&=\left(m(s)+\int_a^bH(s,\eta)d\eta\right)x(s)
+-\int_a^sH(s,\theta)x(\theta)d\theta
+-\int_s^bH(s,\theta)x(\theta)d\theta\\
+&=m(s)x(s)+\int_a^bH(s,\theta)(x(s)-x(\theta))d\theta.
+\end{align*}
+Hence, using $H(s,\theta)=H(\theta,s)$,
+\begin{equation*}
+\ip{\bmat{p\\q}}
+{\bmat{0&\mcl S\\\mcl S&0}\bmat{p\\q}}_{\mbf L_{[a,b]}}=2\int_a^b m(s)p(s,t)q(s,t)ds+\int_a^b\int_a^bH(s,\theta)
+(p(s,t)-p(\theta,t))(q(s,t)-q(\theta,t))d\theta ds\geq0.
+\end{equation*}
+Integrating this inequality over $t\in[0,T]$ proves the IQC for every
+$T\geq0$, and hence proves the stated primal hard IQC.
+
+\subsection{Proof of the Dual Slope Restricted IQC}
+\label{proof:dual-slope}
+Suppose that the dual IQC
+\begin{equation*}
+    \ip{p_T\bmat{P_\Delta^\top\underline w_\Delta\\\underline w_\Delta}}
+    {p_T\mcl M_{\underline{\mcl V}_\Delta}
+    \bmat{P_\Delta^\top\underline w_\Delta\\\underline w_\Delta}}
+    _{\mbf L_{[a,b]}}
+\end{equation*}
+is parametized according to \eqref{eqn:dual-slope-mult}. We need to show that
+$\Delta$ satisfies the primal IQC.
+First, the 3-PI coefficients in the lemma give
+\begin{equation*}
+(\underline{\mcl S}x)(s)
+=(R_0(s)+\lambda)x(s)+\lambda\int_a^b x(\theta)d\theta.
+\end{equation*}
+Let
+\begin{equation*}
+    r(s):=(R_0(s)+\lambda)^{-1},\qquad
+    R:=\int_a^b r(\eta)d\eta.
+\end{equation*}
+% Even when \(R_0\) is polynomial, $r(s)=(R_0(s)+\lambda)^{-1}$ need not be polynomial. 
+% Hence, \(\underline{\mathcal{S}}^{-1}\) may lie outside the polynomially parameterized PI subclass, 
+% although it remains a bounded \(3\)-PI operator. This causes no computational restriction, 
+% since only \(\underline{\mathcal{S}}\) is parameterized during synthesis. Its inverse is used solely 
+% to establish the validity of the dual multiplier. 
+To compute the inverse, set $y=\underline{\mcl S}x$ and
+$\mu:=\int_a^b x(\theta)d\theta$. Then, by the preceding expression for $\underline{\mcl S}$,
+\begin{equation*}
+    y(s)=(R_0(s)+\lambda)x(s)+\lambda\mu.
+\end{equation*}
+Thus, $(R_0(s)+\lambda)x(s)=y(s)-\lambda\mu$. Since $R_0(s)>0$ and $\lambda\geq 0$,
+$R_0(s)+\lambda$ is invertible, and multiplication by $r(s)=(R_0(s)+\lambda)^{-1}$ gives
+\begin{equation*}
+    x(s)=r(s)(y(s)-\lambda\mu).
+\end{equation*}
+Integrating both sides over $s$ gives
+\begin{align*}
+    \mu
+    &=\int_a^b r(s)y(s)ds-\lambda\mu\int_a^b r(s)ds,\\
+    (1+\lambda R)\mu&=\int_a^b r(s)y(s)ds,
+\end{align*}
+and therefore
+\begin{equation*}
+    \mu=\frac{\int_a^b r(\theta)y(\theta)d\theta}{1+\lambda R}.
+\end{equation*}
+Substitution into the expression for $x$ yields
+\begin{equation}\label{eqn:dual-slope-inverse}
+    (\underline{\mcl S}^{-1}y)(s)
+    =r(s)y(s)-\frac{\lambda r(s)}{1+\lambda R}
+    \int_a^b r(\theta)y(\theta)d\theta.
+\end{equation}
+Now define
+\begin{equation*}
+    H(s,\theta):=\frac{\lambda}{1+\lambda R}r(s)r(\theta)\geq0,\qquad
+    m(s):=\frac{r(s)}{1+\lambda R}>0.
+\end{equation*}
+Both are nonnegative, and
+\begin{equation*}
+    m(s)+\int_a^bH(s,\theta)d\theta
+    =\frac{r(s)}{1+\lambda R}
+    +\frac{\lambda Rr(s)}{1+\lambda R}=r(s).
+\end{equation*}
+Consequently,
+\begin{align*}
+&m(s)y(s)+\int_a^bH(s,\theta)(y(s)-y(\theta))d\theta\\
+&\quad=r(s)y(s)-\frac{\lambda r(s)}{1+\lambda R}
+\int_a^b r(\theta)y(\theta)d\theta,
+\end{align*}
+which is exactly \eqref{eqn:dual-slope-inverse}. Thus
+$\underline{\mcl S}^{-1}$ has the primal slope form. Then we can apply the arguments from the preceding
+proofs to conclude that $\Delta$ satisfies the IQC defined by $\underline{\Psi}_\Delta = I$ and \eqref{eqn:dual-slope-mult}.

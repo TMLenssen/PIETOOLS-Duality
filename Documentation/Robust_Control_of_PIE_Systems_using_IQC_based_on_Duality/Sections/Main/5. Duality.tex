@@ -18,10 +18,10 @@ For a PIE system with corresponding PI operators $P\{\mcl{T}, \mcl{A}, \mcl{B},
 \mcl{C}, \mcl{D}\}$, and some $\gamma > 0$, the following statements are equivalent.
 \begin{enumerate}
 \item For any $w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}$, and $\mbf{x}(0)=0$, $P$
-satisfies $\|p_T {z}\|_{\mbf{L}} \leq \gamma \|p_T {w}\|_{\mbf{L}}$.
+satisfies $\|p_T {z}\|_{\mbf{L}} \leq \gamma \|p_T {w}\|_{\mbf{L}}$ for all $T>0$.
 \item For any $\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_z}$, and
 $\underline{\mbf{x}}(0)=0$, $P^\top$ satisfies $\|p_T \underline{z}\|_{\mbf{L}} \leq \gamma
-\|p_T \underline{w}\|_{\mbf{L}}$.
+\|p_T \underline{w}\|_{\mbf{L}}$ for all $T>0$.
 \end{enumerate}
 \end{theorem}
 Relating an IQC to this gain duality requires two transformations. First,
@@ -105,7 +105,7 @@ margin, certifies exponential internal stability and finite $L_2$-gain of the
 causal inverse.
 \end{remark}
 
-\begin{theorem}\label{thm:dual-KYP}
+\begin{corollary}\label{thm:dual-KYP}
     Let the realization of $P$ satisfy Definition~\ref{def:uncertain-interconnection}. 
     Let $\Delta \in \mbf{\Delta}$ and there exist \textbf{either}, a primal hard IQC $(\Psi,\mcl{M}_{\mcl V})$,
     with $\mcl V\in\Pi_4$, or a dual hard IQC $(\underline{\Psi},\mcl{M}_{\underline{\mcl V}})$,
@@ -141,7 +141,7 @@ causal inverse.
         \underline{\mcl C} & \underline{\mcl D}}\bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}\right.
     \end{equation}
     Then the interconnection $P\star\Delta$ with $\mbf{x}(0) = 0$ is robustly performing.
-\end{theorem}
+\end{corollary}
 \begin{proof}
     See Appendix~\ref{proof:dual-KYP}
 \end{proof}
