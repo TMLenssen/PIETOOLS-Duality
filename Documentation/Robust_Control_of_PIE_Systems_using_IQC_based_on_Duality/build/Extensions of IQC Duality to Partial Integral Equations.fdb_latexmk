@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex build/Extensions of IQC Duality to Partial Integral Equations"] 1788180519.75747 "build/Extensions of IQC Duality to Partial Integral Equations.aux" "build/Extensions of IQC Duality to Partial Integral Equations.bbl" "build/Extensions of IQC Duality to Partial Integral Equations" 1788180523.50478 0
+["bibtex build/Extensions of IQC Duality to Partial Integral Equations"] 1788180519.75747 "build/Extensions of IQC Duality to Partial Integral Equations.aux" "build/Extensions of IQC Duality to Partial Integral Equations.bbl" "build/Extensions of IQC Duality to Partial Integral Equations" 1788204982.53881 0
   "./references.bib" 1788180100 22938 ac62c639c52332f7636df38dcf041363 ""
   "C:/Users/thijs/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/plain.bst" 1291864736 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
-  "build/Extensions of IQC Duality to Partial Integral Equations.aux" 1788180522 12227 00d41b12f3a5ccc40a3c03180b1f6c10 "pdflatex"
+  "build/Extensions of IQC Duality to Partial Integral Equations.aux" 1788204981 12227 00d41b12f3a5ccc40a3c03180b1f6c10 "pdflatex"
   (generated)
   "build/Extensions of IQC Duality to Partial Integral Equations.bbl"
   "build/Extensions of IQC Duality to Partial Integral Equations.blg"
   (rewritten before read)
-["pdflatex"] 1788180520.11875 "c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality/Extensions of IQC Duality to Partial Integral Equations.tex" "build/Extensions of IQC Duality to Partial Integral Equations.pdf" "Extensions of IQC Duality to Partial Integral Equations" 1788180523.50545 0
+["pdflatex"] 1788204979.35361 "c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality/Extensions of IQC Duality to Partial Integral Equations.tex" "build/Extensions of IQC Duality to Partial Integral Equations.pdf" "Extensions of IQC Duality to Partial Integral Equations" 1788204982.53948 0
   "C:/Users/thijs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1788116131 476530 933aef29bee9689d04270f63ced0b1db ""
   "C:/Users/thijs/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1775832057 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/thijs/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1775832058 684 3a51bd4fd9600428d5264cf25f04bb9a ""
@@ -230,7 +230,7 @@
   "Sections/Main/4. Controller Analysis (Primal System).tex" 1787319979 104 b52f279dbf99ca3bb15890a735110d79 ""
   "Sections/Main/5. Duality.tex" 1788112568 8372 0152de0f1681d8b2f6dff086afca364b ""
   "Sections/Main/6. Convex Controller Synthesis (Dual System).tex" 1788112568 5072 055e74449f6f83f924ba4c93ba905f99 ""
-  "Sections/Main/7. Numerical Examples.tex" 1788180515 12531 b121b91403d532699f2dabf425ef396a ""
+  "Sections/Main/7. Numerical Examples.tex" 1788204978 12726 3ab3d582ceb81b109b6c7dfb1dfab835 ""
   "Sections/Main/8. Conclusion.tex" 1787319983 80 4f676751c198c270c4060e6559124be2 ""
   "Sections/Proofs/Duality/dual-IQC.tex" 1787319998 5979 41d83b36aafa090b3aa3ee75fe5a0c88 ""
   "Sections/Proofs/Duality/dual-KYP.tex" 1787319999 2680 409333c592da43db8932462418af1f3c ""
@@ -238,9 +238,9 @@
   "Sections/Proofs/I. IQC.tex" 1787319997 2027 2e3c8b55bc744d6cc12ace27091d7136 ""
   "Sections/Proofs/II. Duality.tex" 1787319998 226 598435eb705fe78a5402a911df3f7f01 ""
   "Sections/Proofs/Multipliers/multiplier_proof.tex" 1788112568 7043 b0d4a112a274e2851f4663d2ccec2a81 ""
-  "build/Extensions of IQC Duality to Partial Integral Equations.aux" 1788180522 12227 00d41b12f3a5ccc40a3c03180b1f6c10 "pdflatex"
+  "build/Extensions of IQC Duality to Partial Integral Equations.aux" 1788204981 12227 00d41b12f3a5ccc40a3c03180b1f6c10 "pdflatex"
   "build/Extensions of IQC Duality to Partial Integral Equations.bbl" 1788180520 3767 ee29c500bccea6bb62ecc9c8482441fa "bibtex build/Extensions of IQC Duality to Partial Integral Equations"
-  "build/Extensions of IQC Duality to Partial Integral Equations.out" 1788180522 5546 70555ee9957a7cd516e706f45981a95b "pdflatex"
+  "build/Extensions of IQC Duality to Partial Integral Equations.out" 1788204981 5546 70555ee9957a7cd516e706f45981a95b "pdflatex"
   "c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality/Extensions of IQC Duality to Partial Integral Equations.tex" 1788112567 4032 e9437c96d90fb8b7c2d021596aa6da8f ""
   "shortcuts.tex" 1787319958 1085 efe17d9db012f0de56d8350340b9f21e ""
   (generated)

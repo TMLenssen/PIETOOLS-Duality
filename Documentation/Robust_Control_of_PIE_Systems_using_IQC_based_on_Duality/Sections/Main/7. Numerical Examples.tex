@@ -125,17 +125,18 @@ with $R_0(s)>0$ and $\lambda\geq0$.
 Consider boundary control of the sine--Gordon equation shifted about the
 unstable equilibrium $v=\pi$:
 \begin{align*}
-    &\partial_t^2\mbf{v}(t,s) = \partial_s^2\mbf{v}(t,s) - 3\sin(\mbf{v}(t,s)),\\
-    &\mbf{v}(t,0)=\pi,\quad \partial_s\mbf{v}(t,1)=x(t),\quad \dot{x}(t)=u(t).
+    &\partial_t^2\mbf{v}(t,s) = \partial_s^2\mbf{v}(t,s) - 3\sin(\mbf{v}(t,s)) - \frac{1}{5}\mbf{v}(t,s) + w_p(t),\\
+    &\mbf{v}(t,0)=\pi,\quad \partial_s\mbf{v}(t,1)=x(t),\quad \dot{x}(t)=u(t),\\
+    &z_p = \bmat{x(t) \\ \int_a^b\mbf{v}(t,s)dt}
 \end{align*}
 Let $\mbf{z}(t,s)=\mbf{v}(t,s)-\pi$. Then $\sin(\mbf{v})=-\sin(\mbf{z})$ and
 the shifted dynamics are
 \begin{align*}
     &\partial_t^2\mbf{z}(t,s)
-    = \partial_s^2\mbf{z}(t,s) + 3\mbf{z}(t,s)-3w_\Delta(t,s),\\
+    = \partial_s^2\mbf{z}(t,s) + 3\mbf{z}(t,s)-3w_\Delta(t,s) - \frac{1}{5}\mbf{z}(t,s) + w_p(t),\\
     &\mbf{z}(t,0)=0,\quad \partial_s\mbf{z}(t,1)=x(t),\quad
     \dot{x}(t)=u(t),\\
-    &z_\Delta(t,s)=\mbf{z}(t,s),
+    &z_\Delta(t,s)=\mbf{z}(t,s),\quad z_p = \bmat{x(t) \\ \int_a^b\mbf{z}(t,s)dt}
 \end{align*}
 The PIE realization of $P$ has fundamental state
 $\mbf{x}_P(t)=\bmat{x(t) & \partial_s\dot{\mbf{z}}(t) &

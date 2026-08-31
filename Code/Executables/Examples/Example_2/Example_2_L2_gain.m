@@ -1,0 +1,443 @@
+clear; clc; close all; clear stateNameGenerator
+echo off
+
+path_to_PIE = 'C:\Program Files\MATLAB\PIETOOLS\PIETOOLS';
+addpath(genpath(path_to_PIE))
+addpath(genpath("C:\Program Files\Mosek\11.0\toolbox\r2019b"))
+addpath(genpath("C:\Program Files\MATLAB\R2023a\toolbox\symbolic"));
+codeRoot = fileparts(fileparts(fileparts(mfilename('fullpath'))));
+addpath(genpath(codeRoot));
+
+%% Plant
+pvar t s
+a = 0;
+b = 1;
+d = 1;
+sigma = 3;
+damp = 0.2;
+alpha = 0;
+beta = 1.217234;
+hatalpha = 0;
+hatbeta = 2;
+useSlope = 0;
+plotSimulation = true;
+
+% Bisection settings for the closed-loop L2 gain from wp to zp.
+gammaLower = 0;
+gammaUpper = 0.2;
+gammaTolerance = 1e-3;
+
+%% Plant variables
+x = pde_var('state',1,[],[]);
+v1 = pde_var(s,[a,b]);
+v2 = pde_var(s,[a,b]);
+zd = pde_var('output',1,s,[a,b]);
+wd = pde_var('input',1,s,[a,b]);
+zp1 = pde_var('output',1);
+zp2 = pde_var('output',1);
+wp = pde_var('input',1);
+u = pde_var('control',1);
+PDE = [diff(v1,t) == v2;    % PDE
+    diff(v2,t) == d*diff(v1,s,2) + sigma*v1 - damp*v2 - sigma*wd + s*(1-s)*wp;
+    diff(x,t) == u;
+    zd == v1;
+    % zp1 == x;
+    zp2 == int(v1,s,[a,b]);
+    subs(v1,s,a) == 0;
+    subs(v2,s,a) == 0;
+    subs(diff(v1,s),s,b)==x];
+P = convert(PDE);
+
+wDim = P.B1.dim(:,2);
+zDim = P.C1.dim(:,1);
+
+% convert() stores finite-dimensional channels before distributed ones.
+% Hence w = [wp;wd] and z = [zp;zd], with zp = [zp1;zp2].
+wpDim = wDim(1);
+zpDim = zDim(1);
+if ~isequal(wDim,[wpDim;1]) || ~isequal(zDim,[zpDim;1])
+    error('Example_2_L2_gain:UnexpectedChannels', ...
+        'Expected wDim=[1;1] and zDim=[2;1], but received [%s] and [%s].', ...
+        num2str(wDim.'),num2str(zDim.'));
+end
+
+% Identity filters only establish the primal [z;w] and dual [w;z]
+% channel order. They have no states.
+Psi = id_filter(zDim,wDim,P.vars,P.dom);
+DPsi = id_filter(wDim,zDim,P.vars,P.dom);
+
+settings = lpisettings('veryheavy');
+% settings.ddZ = 2;
+% settings.dd1 = 2;
+% settings.dd12 = 2;
+% settings.dd2 = 6;
+% settings.dd3 = 6;
+settings.ddM = 4;
+% settings.kmax = 1000;
+settings.multiplierUpper = 1e6;
+settings.inverseFloor =  1e-6;
+settings.epneg = 1e-8;
+% settings.kypMarginUpper = 1e+2;
+settings.kypSlackMode = 'signed';
+settings.options1.sep = 1;
+settings.options12.sep = 1;
+
+%% Minimize the robust-performance L2 gain by bisection
+K = [];
+gamma = NaN;
+
+while gammaUpper-gammaLower > gammaTolerance
+    gammaTrial = 0.5*(gammaLower+gammaUpper);
+    progTrial = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
+
+    if useSlope
+        [progTrial,Vd] = PIETOOLS_IQC_slope_dual(progTrial,wDim,zDim, ...
+            hatalpha,hatbeta,settings,P.vars,P.dom);
+    else
+        [progTrial,Vd] = PIETOOLS_IQC_sector(progTrial,wDim,zDim, ...
+            alpha,beta,settings,P.vars,P.dom);
+    end
+
+    % Dual performance multiplier, ordered [wp;zp].
+    Vd.P = blkdiag(eye(wpDim),-gammaTrial^2*eye(zpDim));
+    [KTrial,~,~,progTrial,kypDecision] = ...
+        PIETOOLS_IQC_controller_synthesis( ...
+        progTrial,settings,P,DPsi,Vd);
+
+    [FR,pinf,dinf,numerr] = solve_info(progTrial);
+    kypTrial = double(lpigetsol(progTrial,kypDecision));
+    feasible = pinf==0 && dinf==0 && numerr<=1 && abs(FR-1)<=0.3;
+
+    fprintf('gamma=%g, feasible=%d, kypBound=%g\n', ...
+        gammaTrial,feasible,kypTrial);
+
+    if feasible && kypTrial>0
+        gammaUpper = gammaTrial;  % decrease gamma
+        gamma = gammaTrial;
+        K = KTrial;
+        progS = progTrial;
+        synthKypBound = kypTrial;
+        sFR = FR;
+        sPinf = pinf;
+        sDinf = dinf;
+        sNumerr = numerr;
+    else
+        gammaLower = gammaTrial;  % increase gamma
+    end
+end
+
+if isempty(K)
+    error('No feasible synthesis was found. Increase gammaUpper.');
+end
+
+analysisSettings = settings;
+% analysisSettings.options1.sep = 0;
+% analysisSettings.options12.sep = 0;
+
+%% Identity-filtered primal and dual closed-loop graphs
+GP = PIETOOLS_IQC_primal_graph(P,Psi,K);
+GD = PIETOOLS_IQC_dual_graph(P,DPsi,K);
+
+%% Primal analysis with the selected multiplier
+progP = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
+if useSlope
+    [progP,Vp] = PIETOOLS_IQC_slope(progP,zDim,wDim,hatalpha,hatbeta,analysisSettings,P.vars,P.dom);
+else
+    [progP,Vp] = PIETOOLS_IQC_sector(progP,zDim,wDim,alpha,beta,analysisSettings,P.vars,P.dom);
+end
+% Primal performance multiplier, ordered [zp;wp].
+Vp.P = blkdiag(eye(zpDim),-gamma^2*eye(wpDim));
+[~,progP,primalKypBound] = PIETOOLS_IQC_analysis( ...
+    progP,analysisSettings,GP,Vp);
+primalKypBound = double(lpigetsol(progP,primalKypBound));
+[pFR,pPinf,pDinf,pNumerr] = solve_info(progP);
+
+%% Dual analysis with the selected multiplier
+progD = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
+if useSlope
+    [progD,Va] = PIETOOLS_IQC_slope_dual(progD,wDim,zDim,hatalpha,hatbeta,analysisSettings,P.vars,P.dom,'rhoD');
+else
+    [progD,Va] = PIETOOLS_IQC_sector(progD,wDim,zDim,alpha,beta,analysisSettings,P.vars,P.dom);
+end
+% Dual performance multiplier, ordered [wp;zp].
+Va.P = blkdiag(eye(wpDim),-gamma^2*eye(zpDim));
+
+[~,progD,dualKypBound] = PIETOOLS_IQC_analysis(progD,analysisSettings,GD,Va);
+dualKypBound = double(lpigetsol(progD,dualKypBound));
+[dFR,dPinf,dDinf,dNumerr] = solve_info(progD);
+
+%% Nonlinear closed-loop simulation
+
+Psim = disturbed_simulation_plant(a,b,d,sigma,damp,t,s);
+Nsim = 16;
+Tsim = 35;
+amp = 0;
+
+wp = @(t) 20*sin(t).*(t >= pi).*(t <= 4*pi);
+
+splot = linspace(0,1,200).';
+boundaryState0 = 0;
+z0 = @(s) amp*sin(pi*s/2);
+zt0 = @(s) zeros(size(s));
+wd = @(z) z-sin(z);
+
+samp = 3000;
+tgrid = linspace(0,Tsim,samp);
+x0.ode = boundaryState0;
+x0.pde = {zt0,z0};
+
+simOpts.N = Nsim;
+simOpts.splot = splot;
+simOpts.statePIE = Psim;
+simOpts.nwd0 = 0;
+simOpts.wp = wp;
+simOpts.ode = odeset('RelTol',1e-6,'AbsTol',1e-8);
+
+simOL = PIE_sim_nl(Psim,wd,tgrid,x0,simOpts);
+simCL = PIE_sim_nl(closedLoopPIE(Psim,K),wd,tgrid,x0,simOpts);
+
+tsim = simOL.t;
+disturbanceInput = simCL.wp(:,1);
+zsimOL = simOL.zPlot;
+zsimCL = simCL.zPlot;
+controlEffort = simCL.outputFinite(:,1);
+zpSimulation = simCL.outputFinite(:,1);
+spatialAmpOpen = max(abs(zsimOL),[],2);
+spatialAmpClosed = max(abs(zsimCL),[],2);
+wpEnergy = trapz(tsim,disturbanceInput.^2);
+zpEnergy = trapz(tsim,sum(zpSimulation.^2,2));
+gammaSimulation = sqrt(zpEnergy/wpEnergy);
+fprintf('Peak boundary control |x(t)|: %.10g\n',max(abs(controlEffort)));
+fprintf('Final open-loop spatial amplitude: %.10g\n',spatialAmpOpen(end));
+fprintf('Final closed-loop spatial amplitude: %.10g\n',spatialAmpClosed(end));
+fprintf('Simulated finite-horizon L2 gain: %.10g\n',gammaSimulation);
+
+if plotSimulation
+    figure('Color','w');
+    tiledlayout(2,2,'TileSpacing','compact');
+
+    nexttile;
+    surf(splot,tsim,zsimOL,'EdgeColor','none');
+    xlabel('s'); ylabel('t'); zlabel('z(t,s)');
+    title('Open loop'); view(3); axis tight; colorbar;
+
+    nexttile;
+    surf(splot,tsim,zsimCL,'EdgeColor','none');
+    xlabel('s'); ylabel('t'); zlabel('z(t,s)');
+    title('Closed loop'); view(3); axis tight; colorbar;
+
+    nexttile;
+    plot(tsim,spatialAmpOpen,'LineWidth',1.2); hold on;
+    plot(tsim,spatialAmpClosed,'LineWidth',1.2);
+    xlabel('t'); ylabel('max_s |z(t,s)|');
+    legend('Open loop','Closed loop','Location','best'); grid on;
+
+    nexttile;
+    plot(tsim,disturbanceInput,'LineWidth',1.2); hold on;
+    plot(tsim,controlEffort,'LineWidth',1.2);
+    xlabel('t'); ylabel('Signal value');
+    legend('w_p','x','Location','best'); grid on;
+end
+
+
+% %% Distributed pendulum video
+% videoFile = fullfile(paperFigureDir,'example2_distributed_pendulum_CL.mp4');
+% title = 'Closed-loop distributed pendulum';
+% make_pendulum_video(tsim,splot,zsimCL,controlEffort,videoFile,title);
+% fprintf('Pendulum video written to: %s\n',videoFile);
+% OLcontolEffort = zeros(samp,1);
+% title = 'Open-loop distributed pendulum';
+% videoFile = fullfile(paperFigureDir,'example2_distributed_pendulum_OL.mp4');
+% make_pendulum_video(tsim,splot,zsimOL,OLcontolEffort,videoFile,title);
+% fprintf('Pendulum video written to: %s\n',videoFile);
+
+fprintf('\nCertified synthesis L2 gain: %.10g\n',gamma);
+fprintf('Final bisection interval:     [%.10g, %.10g]\n',gammaLower,gammaUpper);
+fprintf('Synthesis feasibility ratio: %.10g\n',sFR);
+fprintf('Synthesis status:             pinf=%g, dinf=%g, numerr=%g\n',sPinf,sDinf,sNumerr);
+fprintf('Synthesis KYP bound:          %.10g\n',synthKypBound);
+
+fprintf('\nPrimal analysis feasibility ratio: %.10g\n',pFR);
+fprintf('Primal analysis status:           pinf=%g, dinf=%g, numerr=%g\n',pPinf,pDinf,pNumerr);
+fprintf('Primal analysis KYP bound:        %.10g\n',primalKypBound);
+fprintf('Dual analysis feasibility ratio:   %.10g\n',dFR);
+fprintf('Dual analysis status:             pinf=%g, dinf=%g, numerr=%g\n',dPinf,dDinf,dNumerr);
+fprintf('Dual analysis KYP bound:          %.10g\n',dualKypBound);
+
+function Psim = disturbed_simulation_plant(a,b,d,sigma,damp,t,s)
+x = pde_var('state',1,[],[]);
+v1 = pde_var(s,[a,b]);
+v2 = pde_var(s,[a,b]);
+zd = pde_var('output',1,s,[a,b]);
+wd = pde_var('input',1,s,[a,b]);
+zp1 = pde_var('output',1);
+zp2 = pde_var('output',1);
+wp = pde_var('input',1);
+u = pde_var('control',1);
+
+PDE = [diff(v1,t) == v2;
+    diff(v2,t) == d*diff(v1,s,2) + sigma*v1 - damp*v2 - sigma*wd + s*(1-s)*wp;
+    diff(x,t) == u;
+    zd == v1;
+    % zp1 == x;
+    zp2 == int(v1,s,[a,b]);
+    subs(v1,s,a) == 0;
+    subs(v2,s,a) == 0;
+    subs(diff(v1,s),s,b) == x];
+Psim = convert(PDE);
+end
+
+function F = id_filter(d1,d2,vars,dom)
+d0 = zeros(size(d1));
+F.T = zerosPI(d0,d0,vars,dom);
+F.A = zerosPI(d0,d0,vars,dom);
+F.B1 = zerosPI(d0,d1,vars,dom);
+F.B2 = zerosPI(d0,d2,vars,dom);
+F.C1 = zerosPI(d1,d0,vars,dom);
+F.C2 = zerosPI(d2,d0,vars,dom);
+F.D11 = eyePI(d1,vars,dom);
+F.D12 = zerosPI(d1,d2,vars,dom);
+F.D21 = zerosPI(d2,d1,vars,dom);
+F.D22 = eyePI(d2,vars,dom);
+end
+
+function [ratio,pinf,dinf,numerr] = solve_info(prog)
+info = prog.solinfo.info;
+ratio = double(info.feasratio);
+pinf = double(info.pinf);
+dinf = double(info.dinf);
+numerr = double(info.numerr);
+end
+
+function make_pendulum_video(t,s,q,xBoundary,filename,titleName)
+% Animate the PIESIM state q(t,s) as a distributed pendulum array.
+% q = 0 is upright; neighboring bobs are connected to show spatial coupling.
+
+fps = 30;
+Npend = min(35,numel(s));
+rodLength = 0.12;
+bobSize = 28;
+
+t = t(:);
+s = s(:);
+
+if size(q,1) ~= numel(t) && size(q,2) == numel(t)
+    q = q.';
+end
+if size(q,1) ~= numel(t) || size(q,2) ~= numel(s)
+    error('q must have size length(t)-by-length(s).');
+end
+
+xBoundary = xBoundary(:);
+if numel(xBoundary) ~= numel(t)
+    error('xBoundary must have the same number of samples as t.');
+end
+
+% Spatial and temporal downsampling for the video.
+idx = unique(round(linspace(1,numel(s),Npend)));
+sDraw = s(idx);
+qDraw = q(:,idx);
+
+tVideo = (t(1):1/fps:t(end)).';
+if tVideo(end) < t(end)
+    tVideo(end+1,1) = t(end);
+end
+
+qVideo = interp1(t,qDraw,tVideo,'linear');
+xVideo = interp1(t,xBoundary,tVideo,'linear');
+
+% Fixed pivot positions.
+xp = (sDraw-sDraw(1))/(sDraw(end)-sDraw(1));
+
+fig = figure('Color','w','Position',[100 100 1100 500]);
+ax = axes(fig);
+hold(ax,'on');
+axis(ax,'equal');
+box(ax,'on');
+
+xlim(ax,[-0.08 1.08]);
+ylim(ax,[-1.25*rodLength 1.35*rodLength]);
+xlabel(ax,'$s$','Interpreter','latex');
+yticks(ax,[]);
+title(ax,titleName, ...
+    'Interpreter','latex');
+
+% Support and pivots.
+plot(ax,[0 1],[0 0],'k-','LineWidth',0.8);
+plot(ax,xp,zeros(size(xp)),'k.','MarkerSize',8);
+
+% Pendulum rods and bobs.
+rods = gobjects(Npend,1);
+for k = 1:Npend
+    rods(k) = plot(ax,[xp(k) xp(k)],[0 rodLength], ...
+        'k-','LineWidth',1.1);
+end
+
+bobs = scatter(ax,xp,rodLength*ones(size(xp)),bobSize, ...
+    'filled','MarkerFaceColor',[0.10 0.45 0.85], ...
+    'MarkerEdgeColor','k');
+
+% Springs between neighboring bobs.
+springs = gobjects(Npend-1,1);
+for k = 1:Npend-1
+    springs(k) = plot(ax,nan,nan,'k-','LineWidth',0.7);
+end
+
+text(ax,0,-0.055,'$q(0,t)=0$', ...
+    'Interpreter','latex','HorizontalAlignment','left');
+text(ax,1,-0.055,'$q_s(1,t)=x(t)$', ...
+    'Interpreter','latex','HorizontalAlignment','right');
+
+timeText = text(ax,0.02,0.95,'','Units','normalized', ...
+    'Interpreter','latex','FontSize',11);
+boundaryText = text(ax,0.98,0.95,'','Units','normalized', ...
+    'Interpreter','latex','FontSize',11, ...
+    'HorizontalAlignment','right');
+
+vid = VideoWriter(filename,'MPEG-4');
+vid.FrameRate = fps;
+vid.Quality = 95;
+open(vid);
+
+for j = 1:numel(tVideo)
+    theta = qVideo(j,:).';
+
+    % q = 0 is the upright equilibrium.
+    xb = xp + rodLength*sin(theta);
+    yb = rodLength*cos(theta);
+
+    for k = 1:Npend
+        set(rods(k),'XData',[xp(k) xb(k)],'YData',[0 yb(k)]);
+    end
+    set(bobs,'XData',xb,'YData',yb);
+
+    % Draw a small sinusoidal spring between adjacent bobs.
+    for k = 1:Npend-1
+        xa = xb(k);   ya = yb(k);
+        xc = xb(k+1); yc = yb(k+1);
+
+        xx = linspace(xa,xc,12);
+        yy = linspace(ya,yc,12);
+
+        ell = hypot(xc-xa,yc-ya);
+        if ell > 0
+            nx = -(yc-ya)/ell;
+            ny =  (xc-xa)/ell;
+            wiggle = 0.0035*sin(linspace(0,6*pi,12));
+            xx = xx + nx*wiggle;
+            yy = yy + ny*wiggle;
+        end
+
+        set(springs(k),'XData',xx,'YData',yy);
+    end
+
+    set(timeText,'String',sprintf('$t=%.2f$',tVideo(j)));
+    set(boundaryText,'String',sprintf('$x(t)=%.3f$',xVideo(j)));
+
+    drawnow;
+    writeVideo(vid,getframe(fig));
+end
+
+close(vid);
+close(fig);
+end
