@@ -22,9 +22,8 @@ plotSettings.surfaceAlpha = 0.8;
 plotSettings.surfaceTimeSamples = 1024;
 plotSettings.surfaceSpaceSamples = 512;
 
-% Align each surface-line family with its corresponding axis ticks. Enabling
-% the minor switch adds surface lines at minor ticks without labeling them.
-plotSettings.alignSurfaceLinesWithTicks = true;
+% Each surface-line family follows its corresponding axis ticks. The minor
+% switch adds surface lines at minor ticks without labeling them.
 plotSettings.includeMinorTicksInSurfaceLines = true;
 
 % Appearance shared by surface lines at labeled major ticks and unlabeled
@@ -67,7 +66,7 @@ plotSettings.tTickValues = [];
 plotSettings.tMajorTickSpacing = 5;
 plotSettings.tMajorTickOrigin = 0;
 plotSettings.tMinorTickValues = [];
-plotSettings.tMinorTicksBetweenMajor = 10;
+plotSettings.tMinorTicksBetweenMajor = 9;
 
 % Temporal lines vary with t at selected fixed spatial positions.
 % Explicit sTickValues override spacing; empty values retain automatic ticks.
@@ -76,12 +75,12 @@ plotSettings.sTickValues = [];
 plotSettings.sMajorTickSpacing = 0.5;
 plotSettings.sMajorTickOrigin = 0;
 plotSettings.sMinorTickValues = [];
-plotSettings.sMinorTicksBetweenMajor = 5;
+plotSettings.sMinorTicksBetweenMajor = 4;
 
-% Constant-z contours use the selected z-axis ticks when no values are supplied.
+% Constant-z contours follow the selected z-axis ticks.
 plotSettings.showSurfaceLevels = true;
-plotSettings.surfaceLevelValues = [];
-plotSettings.surfaceLevelExcludedValues = 0;
+% Keep surface levels tick-driven while omitting only the z = 0 contour.
+plotSettings.showZeroSurfaceLevel = false;
 % Suppress tiny contours caused by numerical noise on nearly flat regions.
 plotSettings.surfaceLevelFlatTolerance = 1e-3;
 plotSettings.surfaceLevelMinRelativeLength = 1e-2;
@@ -89,7 +88,7 @@ plotSettings.zTickValues = [];
 plotSettings.zMajorTickSpacing = [];
 plotSettings.zMajorTickOrigin = 0;
 plotSettings.zMinorTickValues = [];
-plotSettings.zMinorTicksBetweenMajor = 10;
+plotSettings.zMinorTicksBetweenMajor = 9;
 % Open- and closed-loop z ticks can be tuned independently. A nonempty
 % panel setting overrides the shared z setting above.
 % plotSettings.openZTickValues = -10:5:10;
@@ -121,18 +120,18 @@ plotSettings.vectorDotMarkerScale = 6;
 % Raster depth shading is the fallback when vectorizeSurfaceLines is false.
 plotSettings.depthShadeSurfaceLines = true;
 
-% Surface lines replace the t- and s-grids. Draw ZTick levels only on the
-% t-z wall; MATLAB's built-in ZGrid would repeat them on the s-z wall.
+% Surface lines replace the t- and s-grids. Draw ZTick levels on the far
+% s-oriented face; MATLAB's built-in ZGrid repeats them on faces.
 plotSettings.showAxesGrid = false;
 plotSettings.showZGrid = false;
 plotSettings.showTZGrid = true;
-plotSettings.tzGridSLocation = 'max';
+plotSettings.zPlaneLocation = 's';
 plotSettings.showTZFrame = true;
 plotSettings.tzFrameColor = [0 0 0];
 plotSettings.tzFrameAlpha = 1;
 plotSettings.tzFrameLineWidth = 0.55;
 plotSettings.tzFrameLineStyle = '-';
-% Thick connector from the front t-axis endpoint to the rear t-z plane.
+% Thick connector from the foreground rulers to the far z-plane corner.
 plotSettings.showTEndConnector = true;
 plotSettings.tEndConnectorColor = [0 0 0];
 plotSettings.tEndConnectorAlpha = 1;
@@ -140,12 +139,11 @@ plotSettings.tEndConnectorLineWidth = 0.55;
 plotSettings.tEndConnectorLineStyle = '-';
 plotSettings.showAxesBox = false;
 
-% Put the t- and s-rulers at z=0 and depth-occlude their hidden segments.
+% Put the t- and s-rulers at z=0. Automatic edge selection follows the
+% camera azimuth; hidden ruler segments are depth-occluded below.
 plotSettings.axesAtZeroLevel = true;
-plotSettings.tAxisSLocation = 'min';
-plotSettings.sAxisTLocation = 'min';
-plotSettings.positionZAxisOnTZPlane = true;
-plotSettings.zAxisTLocation = 'min';
+plotSettings.tAxisSLocation = 'auto';
+plotSettings.sAxisTLocation = 'auto';
 plotSettings.depthShadeAxesLines = true;
 plotSettings.occludeAxesLinesBehindSurface = true;
 plotSettings.axesLineWidth = 0.55;
@@ -153,6 +151,10 @@ plotSettings.axesGridLineWidth = 0.55;
 
 % Camera azimuth/elevation, axis text, and panel titles.
 plotSettings.view = [-38 27];
+% Camera controls shared with standalone surface plots.
+plotSettings.projection = 'orthographic';
+plotSettings.cameraViewAngle = [];
+plotSettings.keepZAxisVertical = true;
 plotSettings.axisLabels = {'$t$','$s$','$z(t,s)$'};
 plotSettings.panelTitles = {'(a) Open-loop response', ...
     '(b) Closed-loop response'};
@@ -164,7 +166,7 @@ plotSettings.amplitudeYLabel = '$\max_{s\in[0,1]}|z(t,s)|$';
 plotSettings.signalLegend = {'$d(t)$','$x(t)$'};
 
 % Colorbar and typography shared by the paper figures.
-plotSettings.colorbarLocation = 'southoutside';
+plotSettings.colorbarLocation = 'south';
 plotSettings.showColorbar = true;
 plotSettings.fontName = 'Times New Roman';
 plotSettings.fontSize = 8;

@@ -287,7 +287,7 @@ if true %canRecover
     % For separable P, inv_opvar uses the analytic 4-PI inverse.
     P = lpigetsol(prog,Pdec);
     Z = lpigetsol(prog,Zdec);
-    K = Z'*inv_opvar(P,0);
+    K = Z'*inv_opvar(P,1e-14);
     K = clean_opvar(K,1e-6);
 else
     K = [];

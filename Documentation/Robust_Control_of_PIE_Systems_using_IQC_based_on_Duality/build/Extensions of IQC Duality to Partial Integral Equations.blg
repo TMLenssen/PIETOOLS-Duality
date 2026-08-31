@@ -1,46 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2025)
+This is BibTeX, Version 0.99e
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: Extensions of IQC Duality to Partial Integral Equations.aux
+Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: plain.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-You've used 14 entries,
+You've used 15 entries,
             2118 wiz_defined-function locations,
-            588 strings with 6523 characters,
-and the built_in function-call counts, 5199 in all, are:
-= -- 506
-> -- 219
+            597 strings with 6801 characters,
+and the built_in function-call counts, 5599 in all, are:
+= -- 547
+> -- 237
 < -- 4
-+ -- 86
-- -- 72
-* -- 379
-:= -- 830
-add.period$ -- 41
-call.type$ -- 14
-change.case$ -- 76
++ -- 93
+- -- 78
+* -- 414
+:= -- 895
+add.period$ -- 44
+call.type$ -- 15
+change.case$ -- 82
 chr.to.int$ -- 0
-cite$ -- 14
-duplicate$ -- 191
-empty$ -- 431
-format.name$ -- 72
-if$ -- 1118
+cite$ -- 15
+duplicate$ -- 202
+empty$ -- 462
+format.name$ -- 78
+if$ -- 1199
 int.to.chr$ -- 0
-int.to.str$ -- 14
-missing$ -- 14
-newline$ -- 72
-num.names$ -- 28
-pop$ -- 76
+int.to.str$ -- 15
+missing$ -- 15
+newline$ -- 77
+num.names$ -- 30
+pop$ -- 80
 preamble$ -- 1
-purify$ -- 63
+purify$ -- 68
 quote$ -- 0
-skip$ -- 148
+skip$ -- 155
 stack$ -- 0
-substring$ -- 409
-swap$ -- 49
+substring$ -- 451
+swap$ -- 50
 text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 54
+type$ -- 58
 warning$ -- 0
-while$ -- 45
-width$ -- 16
-write$ -- 153
+while$ -- 49
+width$ -- 17
+write$ -- 164

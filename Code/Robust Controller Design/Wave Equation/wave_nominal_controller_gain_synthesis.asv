@@ -16,26 +16,26 @@ b=1;
 d = 1;
 lam = 3;
 damp = 0.2;
-wscale = 0.1*s;
+% wscale = s*(1-s);
 % Standard implementation using v1 = z and v2 = z_t.
 % Nominal shifted sine-Gordon model about v = pi:
 %   z_tt = d*z_ss + lam*z - damp*z_t + s*(s-1)*w.
 % This nominal formulation sets z_delta = 0 and w_delta = 0.
-% x = pde_var('state',1,[],[]);
-% v1 = pde_var(s,[a,b]);
-% v2 = pde_var(s,[a,b]);
-% z1 = pde_var('output',1);
-% z2 = pde_var('output',1);
-% w = pde_var('input',1);
-% u = pde_var('control',1);
-% PDE = [diff(v1,t) == v2;    % PDE
-%     diff(v2,t) == d*diff(v1,s,2) + lam*v1 - damp*v2 + wscale*w;
-%     diff(x,t) == u;
-%     z1 == x;
-%     z2 == int(v1,s,[a,b]);
-%     subs(v1,s,a) == 0;
-%     subs(v2,s,a) == 0;
-%     subs(diff(v1,s),s,1)==x];
+x = pde_var('state',1,[],[]);
+v1 = pde_var(s,[a,b]);
+v2 = pde_var(s,[a,b]);
+z1 = pde_var('output',1);
+z2 = pde_var('output',1);
+w = pde_var('input',1);
+u = pde_var('control',1);
+PDE = [diff(v1,t) == v2;    % PDE
+    diff(v2,t) == d*diff(v1,s,2) + lam*v1 - damp*v2 + 0.1*s*w;
+    diff(x,t) == u;
+    z1 == x;
+    z2 == int(v1,s,[a,b]);
+    subs(v1,s,a) == 0;
+    subs(v2,s,a) == 0;
+    subs(diff(v1,s),s,1)==x];
 
 % Alternative implementation using eta = z and v = z_t-z_s.
 % This block is equivalent to the nominal shifted sine-Gordon model:
@@ -59,16 +59,16 @@ wscale = 0.1*s;
 % Nominal shifted sine-Gordon dynamics about v = pi:
   % z_tt = d*z_ss + lam*z - damp*z_t + s*(s-1)*w.
 % This nominal formulation sets z_delta = 0 and w_delta = 0.
-phi = pde_var('state',2,s,[0,1]);   x = pde_var('state',1,[],[]);
-w = pde_var('input',1);             r = pde_var('output',2);
-u = pde_var('control');   
-zrec = int([1 0]*phi,s,[0,s]);
-eq_dyn = [diff(x,t,1)==u
-          diff(phi,t,1)==[0 1; d 0]*diff(phi,s,1) + [0;1]*(lam*zrec-damp*([0 1]*phi)) + [0;wscale]*w];
-eq_out= r ==[x;int((1-s)*([1 0]*phi),s,[0,1])];
-bc1 = [0 1]*subs(phi,s,0)==0;   
-bc2 = [1 0]*subs(phi,s,1)==x;
-PDE = [eq_dyn;eq_out;bc1;bc2];
+% phi = pde_var('state',2,s,[0,1]);   x = pde_var('state',1,[],[]);
+% w = pde_var('input',1);             r = pde_var('output',2);
+% u = pde_var('control');   
+% zrec = int([1 0]*phi,s,[0,s]);
+% eq_dyn = [diff(x,t,1)==u
+%           diff(phi,t,1)==[0 1; d 0]*diff(phi,s,1) + [0;1]*(lam*zrec-damp*([0 1]*phi)) + [0;wscale]*w];
+% eq_out= r ==[x;int((1-s)*([1 0]*phi),s,[0,1])];
+% bc1 = [0 1]*subs(phi,s,0)==0;   
+% bc2 = [1 0]*subs(phi,s,1)==x;
+% PDE = [eq_dyn;eq_out;bc1;bc2];
 
 % % Convert PDE to PIE
 PIE = convert(PDE);

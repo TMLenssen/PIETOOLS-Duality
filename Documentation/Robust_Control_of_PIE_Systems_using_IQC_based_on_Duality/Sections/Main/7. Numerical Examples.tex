@@ -224,3 +224,57 @@ synthesized the following controller,
     and boundary control effort $x(t)$.}
     \label{fig:example2-simulation-data}
 \end{figure}
+
+\subsection{Connection to finite dimensional dynamic multipliers}
+\label{sec:finite-dimensional-dynamic-multipliers}
+
+Consider the delayed firing-rate model in Eq.~(5) of
+\cite{nevadoHolgado2010betaOscillations}. Let $\widehat{x}_1$ and
+$\widehat{x}_2$ denote the physical firing rates of the subthalamic nucleus
+(STN) and globus pallidus pars externa (GPe). Its activation functions are
+\begin{equation}\label{eq:stn-gpe-uncentered-sigmoid}
+F_i(q)=\frac{M_i}{1+\exp(-4q/M_i)(M_i-B_i)/B_i},
+\qquad i\in\{S,G\},
+\end{equation}
+so $F_i(0)=B_i$. Define the sigmoid midpoint and its centered form as
+\begin{equation}\label{eq:stn-gpe-centered-sigmoid}
+\begin{aligned}
+c_i&:=\frac{M_i}{4}\log\!\left(\frac{M_i-B_i}{B_i}\right),\\
+\sigma_i(q)&:=\frac{M_i}{1+\exp(-4q/M_i)}-\frac{M_i}{2}
+             =\frac{M_i}{2}\tanh\!\left(\frac{2q}{M_i}\right).
+\end{aligned}
+\end{equation}
+Then $F_i(q)=\sigma_i(q-c_i)+M_i/2$. With the centered states
+\begin{equation*}
+x_1:=\widehat{x}_1-\frac{M_S}{2},
+\qquad
+x_2:=\widehat{x}_2-\frac{M_G}{2},
+\end{equation*}
+and offsets
+\begin{equation*}
+\begin{aligned}
+b_S&:=w_{CS}\mathrm{Ctx}-\frac{w_{GS}M_G}{2}-c_S,\\
+b_G&:=\frac{w_{SG}M_S}{2}-\frac{w_{GG}M_G}{2}
+      -w_{XG}\mathrm{Str}-c_G.
+\end{aligned}
+\end{equation*}
+Equation~(5) is exactly equivalent to the centered model
+\begin{equation}\label{eq:stn-gpe-centered}
+\begin{aligned}
+z_S(t)&:=-w_{GS}x_2(t-\tau_{GS})+b_S,\\
+z_G(t)&:=w_{SG}x_1(t-\tau_{SG})
+          -w_{GG}x_2(t-\tau_{GG})+b_G,\\
+\tau_S\dot{x}_1(t)
+      &=\sigma_S(z_S(t))-x_1(t)+I_{\mathrm{stim}}(t),\\
+\tau_G\dot{x}_2(t)
+      &=\sigma_G(z_G(t))-x_2(t).
+\end{aligned}
+\end{equation}
+where $I_{\mathrm{stim}}=I_e\mathrm{Stim}$ in the notation of
+\cite{nevadoHolgado2010betaOscillations}. Here $\tau_{ij}$ and $w_{ij}$ denote
+the corresponding transmission delays and synaptic weights.
+Thus $\sigma_i(0)=0$, $\sigma_i$ is odd, and
+$0<\sigma_i'(q)\leq1$. No approximation or linearization has been made:
+the physical firing rates are recovered as
+$\widehat{x}_1=x_1+M_S/2$ and $\widehat{x}_2=x_2+M_G/2$. Therefore the
+centering changes only the coordinates, not the physical dynamics.

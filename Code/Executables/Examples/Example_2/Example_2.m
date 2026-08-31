@@ -12,7 +12,7 @@ addpath(genpath(codeRoot));
 pvar t s
 a = 0;
 b = 1;
-d = 0.4;
+d = 1;
 sigma = 3;
 damp = 0.2;
 alpha = 0;
@@ -20,7 +20,7 @@ beta = 1.217234;
 hatalpha = 0;
 hatbeta = 2;
 useSlope = 1;
-renderFigures = true;
+renderFigures = false;
 
 %% Figure settings
 plotSettings = example_2_plot_settings();
@@ -48,15 +48,16 @@ Psi = id_filter(zDim,wDim,P.vars,P.dom);
 DPsi = id_filter(wDim,zDim,P.vars,P.dom);
 
 settings = lpisettings('veryheavy');
-settings.ddZ = 1;
-settings.dd1 = 2;
-settings.dd12 = 2;
-settings.dd2 = 5;
-settings.dd3 = 5;
-settings.ddM = 2;
-settings.kmax = 1000;
+% settings.ddZ = 1;
+% settings.dd1 = 2;
+% settings.dd12 = 2;
+% settings.dd2 = 6;
+% settings.dd3 = 6;
+settings.ddM = 3;
+% settings.kmax = 10000;
 settings.multiplierUpper = 1e6;
-settings.inverseFloor = 1e-6;
+settings.inverseFloor =  1e-6;
+settings.epneg = 1e-8;
 % settings.kypMarginUpper = 1e+2;
 settings.kypSlackMode = 'signed';
 
@@ -76,10 +77,8 @@ settings.options12.sep = 1;
 synthKypBound = double(lpigetsol(progS,kypBound));
 
 analysisSettings = settings;
-analysisSettings.dd1 = 4;
-analysisSettings.dd12 = 4;
-analysisSettings.options1.sep = 0;
-analysisSettings.options12.sep = 0;
+% analysisSettings.options1.sep = 0;
+% analysisSettings.options12.sep = 0;
 
 %% Identity-filtered primal and dual closed-loop graphs
 GP = PIETOOLS_IQC_primal_graph(P,Psi,K);
@@ -152,15 +151,15 @@ fprintf('Final open-loop spatial amplitude: %.10g\n',spatialAmpOpen(end));
 fprintf('Final closed-loop spatial amplitude: %.10g\n',spatialAmpClosed(end));
 
 if renderFigures
-    paperFigureDir = fullfile(fileparts(codeRoot),'Documentation', ...
-        'Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality','Figures');
     generate_pde_simulation_figures(paperFigureDir,splot,tsim,zsimOL,zsimCL, ...
         disturbanceInput,controlEffort,plotSettings);
     fprintf('Paper figures written to: %s\n',paperFigureDir);
 end
+paperFigureDir = fullfile(fileparts(codeRoot),'Documentation', ...
+        'Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality','Figures');
 
 
-%% Distributed pendulum video
+% %% Distributed pendulum video
 % videoFile = fullfile(paperFigureDir,'example2_distributed_pendulum_CL.mp4');
 % title = 'Closed-loop distributed pendulum';
 % make_pendulum_video(tsim,splot,zsimCL,controlEffort,videoFile,title);
