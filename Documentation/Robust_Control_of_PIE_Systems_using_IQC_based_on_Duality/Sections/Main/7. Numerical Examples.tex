@@ -30,7 +30,7 @@ for the induced $L_2$-gain on the primal and dual side. Synthesizing a state
 feedback controller corresponding to Theorem~\ref{thm:state-feedback} yields,
 \begin{align*}
     u(t) = &-247.26x(t) + \int_0^1 K(s)\partial_s^2\mbf{v}(t,s)ds,\\
-    K(s) = &1.93s^10 - 20.76s^9 + 81.61s^8 - 165.38s^7 + 191.14s^6 \\
+    K(s) = &1.93s^{10} - 20.76s^9 + 81.61s^8 - 165.38s^7 + 191.14s^6 \\
         &-94.18s^5 + 0.20s^4 - 102.86s^3 - 14.63s^2 + 335.30s \\
         &- 0.004   
 \end{align*}
@@ -62,220 +62,98 @@ with $\underline{S}_0(s)> 0$
     See Appendix~\ref{proof:sec-bound}.
 \end{proof}
 
-\begin{lemma}[Primal Slope Restricted IQC]
-Suppose that for $z_\Delta\in\mbf{L}_{e,[a,b]}$, $(\Delta z_\Delta)(s,t) = \phi(z_\Delta(s,t))$ for all
-$s\in[a,b]$ and $t>0$, where $\phi(0)=0$ and $\phi$ satisfies
-\begin{equation*}
-    \hat{\alpha}\leq\frac{\phi(z_1)-\phi(z_2)}{z_1-z_2}<\hat{\beta}
-    \quad \text{for all} \quad z_1,z_2\in\R,\quad z_1\neq z_2
-\end{equation*}
-with $\hat{\beta}>0$. Then $\Delta$ satisfies the primal Hard IQC defined by $\Psi_\Delta=I$
-and
-\begin{equation}\label{eqn:primal-slope-mult}
-    \mcl{V}_\Delta = \bmat{\hat{\beta} & -1\\ -\hat{\alpha} & 1}^*
-    \bmat{0 & \mcl{S}\\ \mcl{S} & 0}\bmat{\hat{\beta} & -1\\ -\hat{\alpha} & 1}
-\end{equation}
-for any $\mcl{S}=\mcl{P}_{\{S_0,S_1,S_2\}}\in\Pi_3$ with
-\begin{equation*}
-\begin{aligned}
-    S_0(s)&:=m(s)+\int_a^b H(s,\eta)d\eta,\\
-    S_1(s,\theta)& = S_2(s,\theta):=-H(s,\theta),\\
-\end{aligned}
-\end{equation*}
-with $m(s)\geq0$ and
-$H(s,\theta)=H(\theta,s)\geq0$ for all $s,\theta\in[a,b]$.
-\end{lemma}
-\begin{proof}
-    See Appendix~\ref{proof:primal-slope}.
-\end{proof}
 
-\begin{corollary}[Dual Slope Restricted IQC]
-Suppose that for $z_\Delta\in\mbf{L}_{e,[a,b]}$, $(\Delta z_\Delta)(s,t) = \phi(z_\Delta(s,t))$ for all
-$s\in[a,b]$ and $t>0$, where $\phi(0)=0$ and $\phi$ satisfies
-\begin{equation*}
-    \hat{\alpha}\leq\frac{\phi(z_1)-\phi(z_2)}{z_1-z_2}<\hat{\beta}
-    \quad \text{for all} \quad z_1,z_2\in\R,\quad z_1\neq z_2
-\end{equation*}
-with $\hat{\beta}>0$. Then $\Delta$ satisfies the dual Hard IQC defined by $\underline{\Psi}_\Delta=I$
-and
-\begin{equation}\label{eqn:dual-slope-mult}
-    \underline{\mcl{V}}_\Delta = \bmat{\hat{\beta} & -1\\ -\hat{\alpha} & 1}^*
-    \bmat{0 & \underline{\mcl{S}}\\ \underline{\mcl{S}} & 0}
-    \bmat{\hat{\beta} & -1\\ -\hat{\alpha} & 1}
-\end{equation}
-for any
-$\underline{\mcl{S}}
-=\mcl{P}_{\{\underline{S}_0,\underline{S}_1,\underline{S}_2\}}
-\in\Pi_3$ with
-\begin{equation*}
-\begin{aligned}
-    \underline{S}_0(s)&:=R_0(s)+\lambda, \quad
-    \underline{S}_1(s,\theta)&:=\lambda, \quad
-    \underline{S}_2(s,\theta)&:=\lambda
-\end{aligned}
-\end{equation*}
-with $R_0(s)>0$ and $\lambda\geq0$.
-\end{corollary}
-\begin{proof}
-    See Appendix~\ref{proof:dual-slope}.
-\end{proof}
 
-\newpage
 \begin{example}[Sine--Gordon Wave Equation]\label{ex:sine-gordon}
 Consider boundary control of the sine--Gordon equation shifted about the
 unstable equilibrium $v=\pi$:
 \begin{align*}
-    &\partial_t^2\mbf{v}(t,s) = \partial_s^2\mbf{v}(t,s) - 3\sin(\mbf{v}(t,s)) - \frac{1}{5}\mbf{v}(t,s) + w_p(t),\\
-    &\mbf{v}(t,0)=\pi,\quad \partial_s\mbf{v}(t,1)=x(t),\quad \dot{x}(t)=u(t),\\
-    &z_p = \bmat{x(t) \\ \int_a^b\mbf{v}(t,s)dt}
+    &\partial_t^2\mbf{v}(t,s) = \partial_s^2\mbf{v}(t,s) -3\sin(\mbf{v}(t,s))-2\partial_t\mbf{v}(t,s)+sw_\mathrm{p}(t),\\
+    &\mbf{v}(t,0)=\pi,\, \partial_s\mbf{v}(t,1)=x(t),\, \dot{x}(t)=u(t),\\
+    &z_p = \bmat{x(t) \\ \int_0^1\mbf{v}(t,s)ds}.
 \end{align*}
 Let $\mbf{z}(t,s)=\mbf{v}(t,s)-\pi$. Then $\sin(\mbf{v})=-\sin(\mbf{z})$ and
-the shifted dynamics are
+the shifted dynamics used for the primal formulation are
 \begin{align*}
     &\partial_t^2\mbf{z}(t,s)
-    = \partial_s^2\mbf{z}(t,s) + 3\mbf{z}(t,s)-3w_\Delta(t,s) - \frac{1}{5}\mbf{z}(t,s) + w_p(t),\\
-    &\mbf{z}(t,0)=0,\quad \partial_s\mbf{z}(t,1)=x(t),\quad
+    =\partial_s^2\mbf{z}(t,s)-2\partial_t\mbf{z}(t,s)
+    +3w_\Delta(t,s)+sw_\mathrm{p}(t),\\
+    &\mbf{z}(t,0)=0,\, \partial_s\mbf{z}(t,1)=x(t),\,
     \dot{x}(t)=u(t),\\
-    &z_\Delta(t,s)=\mbf{z}(t,s),\quad z_p = \bmat{x(t) \\ \int_a^b\mbf{z}(t,s)dt}
+    &z_\Delta(t,s)=\mbf{z}(t,s),\,
+    (\Delta z_\Delta)(t,s)=\sin(z_\Delta(t,s)),\\
+    &w_\Delta=\Delta z_\Delta,\,
+    z_p(t) = \bmat{x(t) \\ \int_0^1\mbf{z}(t,s)ds}.
 \end{align*}
-The PIE realization of $P$ has fundamental state
-$\mbf{x}_P(t)=\bmat{x(t) & \partial_s\dot{\mbf{z}}(t) &
-\partial_s^2\mbf{z}(t)}^\top$, uncertainty
-$(\Delta z_\Delta)(t,s)=\mbf{z}(t,s)-\sin(\mbf{z}(t,s))$, and PI
-operators
+Define the spatial operator $\mcl{J}\in\Pi_3$ with $(\mcl{J}f)(t,s) = \int_0^s f(t,\theta)d\theta$. The system supplied to the dual graph construction and to the controller
+synthesis LPI is
 \begin{align*}
-    &\mcl{T}_P := \PIop{1}{\bmat{0&0}}{\bmat{0\\s}}
-    {\left\{\bmat{0&0\\0&0}, \bmat{1&0\\ 0&-\theta}, \bmat{0&0\\0&-s} \right\}},\\
-    &\mcl{A}_P := \PIop{0}{\bmat{0&0}}{\bmat{3s\\0}}
-    {\left\{\bmat{0&1\\0&0},\bmat{-\frac{1}{5}&-3\theta\\1&0},
-    \bmat{0&-3s\\0&0}\right\}},\\
-    &\mcl{B}_P :=
-    \PIop{\emptyset}{0}{\emptyset}
-    {\left\{\bmat{-3\\0},\bmat{0\\0},\bmat{0\\0}\right\}},\\
-    &\mcl{B}_u :=
-    \PIop{1}{\emptyset}{\bmat{0\\0}}
-    {\left\{\emptyset,\emptyset,\emptyset\right\}},\\
-    &\mcl{C}_P :=
-    \PIop{\emptyset}{\emptyset}{s}
-    {\left\{\bmat{0&0},\bmat{0&-\theta},\bmat{0&-s}\right\}}
+    &\partial_t^2\mbf{z}(t,s)    =\partial_s^2\mbf{z}(t,s)  -2\partial_t\mbf{z}(t,s) +3(\mcl{J} w_\Delta)(t,s) + sw_\mathrm{p}(t),\\
+    &\mbf{z}(t,0)=0,\, \partial_s\mbf{z}(t,1)=x(t),\, \dot{x}(t)=u(t),\, z_\Delta(t,s)=\partial_s\mbf{z}(t,s),\\
+    &(\Delta z_\Delta)(t,s) = \cos(\int_0^s z_\Delta(t,\theta)d\theta)z_\Delta(t,s),\\
+    &w_\Delta = \Delta z_\Delta, \, z_p(t) = \bmat{x(t) \\ \int_0^1\mbf{z}(t,s)ds}.
 \end{align*}
-Since no performance channels are included, we consider only robust
-stability. Accordingly, we maximize the stability margin $\epsilon$ in
-\eqref{eq:controller-kyp}, any solution with $\epsilon>0$ certifies robust
-stability. We perform two tests. The first uses the dual sector multiplier
-$\underline{\mcl{V}}^{\mathrm{sec}}_\Delta$, parameterized as in
-\eqref{eqn:dual-sec-mult}, and the second uses the dual slope multiplier
-$\underline{\mcl{V}}^{\mathrm{slope}}_\Delta$, parameterized as in
-\eqref{eqn:dual-slope-mult}. The resulting margins are
-$\epsilon^{\mathrm{sec}}=1.1\times10^{-4}$ and
-$\epsilon^{\mathrm{slope}}=6.5\times10^{-4}$, respectively. Where the latter
-synthesized the following controller,
-\begin{align*}
-    u(t)={}&-16.55x(t)
-    +\int_0^1K_1(s)\partial_s\dot{\mbf{z}}(t,s)\,ds\\
-    &+\int_0^1K_2(s)\partial_s^2\mbf{z}(t,s)\,ds,\\
-    K_1(s)={}&13.96s^{10}-32.93s^9+21.90s^8-27.01s^7\\
-    &+57.58s^6-12.80s^5-62.88s^4+71.53s^3\\
-    &-42.35s^2+10.88s-8.02,\\
-    K_2(s)={}&26.53s^{10}-31.31s^9-282.70s^8+839.04s^7\\
-    &-934.40s^6+474.54s^5-39.19s^4-58.83s^3\\
-    &-21.15s^2+32.48s-0.39.
-\end{align*}
+Note that $s w_\mathrm{p}(t) = (\mcl{J}w_\mathrm{p})(t,s)$. This LFR is exact because
+\begin{equation*}
+    \mcl{J} w_\Delta =\mcl{J}\!\left(\cos(\mbf{z})\partial_s\mbf{z}\right)=\sin(\mbf{z})-\sin(\mbf{z}(t,0))=\sin(\mbf{z}).
+\end{equation*}
+Furthermore,
+\begin{equation*}
+    - z_\Delta^2   \leq  z_\Delta w_\Delta \leq  z_\Delta^2,
+\end{equation*}
+so $\underline\Delta$ satisfies the dual sector IQC on $[-1,1]$.
 \end{example}
 
-% For simulation only, we augment the uncertainty input according to
-% \begin{align*}
-%     z_\Delta(t,s)&=\mbf{z}(t,s)+s(1-s)d(t),\\
-%     d(t)&=5\cos(t)_{t\in[\pi,4\pi]},
-% \end{align*}
-% and record the boundary control effort $x(t)$. These channels are not included in the
-% synthesis problem. We use zero initial conditions and simulate over
-% $t\in[0,35]$ using a PIESIM approximation of order $N=16$
-% with $30000$ output times. The simulation uses the full-precision
-% slope-multiplier controller rather than the rounded coefficients reported
-% above.
+% \subsection{Connection to finite dimensional dynamic multipliers}
+% \label{sec:finite-dimensional-dynamic-multipliers}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\columnwidth]{Figures/example2_state.pdf}
-    \caption{Nonlinear simulation sine--Gordon: (a) open-loop response and
-    (b) response under the slope-multiplier controller.}
-    \label{fig:example2-state-simulation}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{minipage}[t]{0.485\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Figures/example2_amplitude.pdf}
-        \vspace{-1mm}
-
-        {\footnotesize (a) Spatial-amplitude comparison}
-    \end{minipage}\hfill
-    \begin{minipage}[t]{0.485\columnwidth}
-        \centering
-        \includegraphics[width=\linewidth]{Figures/example2_effort.pdf}
-        \vspace{-1mm}
-
-        {\footnotesize (b) Disturbance and control effort}
-    \end{minipage}
-    \caption{Time-domain data corresponding to
-    Fig.~\ref{fig:example2-state-simulation}: (a) the spatial peak
-    $\max_{s\in[0,1]}|\mbf{z}(t,s)|$ and (b) the injected disturbance $d(t)$
-    and boundary control effort $x(t)$.}
-    \label{fig:example2-simulation-data}
-\end{figure}
-
-\subsection{Connection to finite dimensional dynamic multipliers}
-\label{sec:finite-dimensional-dynamic-multipliers}
-
-Consider the delayed firing-rate model in Eq.~(5) of
-\cite{nevadoHolgado2010betaOscillations}. Let $\widehat{x}_1$ and
-$\widehat{x}_2$ denote the physical firing rates of the subthalamic nucleus
-(STN) and globus pallidus pars externa (GPe). Its activation functions are
-\begin{equation}\label{eq:stn-gpe-uncentered-sigmoid}
-F_i(q)=\frac{M_i}{1+\exp(-4q/M_i)(M_i-B_i)/B_i},
-\qquad i\in\{S,G\},
-\end{equation}
-so $F_i(0)=B_i$. Define the sigmoid midpoint and its centered form as
-\begin{equation}\label{eq:stn-gpe-centered-sigmoid}
-\begin{aligned}
-c_i&:=\frac{M_i}{4}\log\!\left(\frac{M_i-B_i}{B_i}\right),\\
-\sigma_i(q)&:=\frac{M_i}{1+\exp(-4q/M_i)}-\frac{M_i}{2}
-             =\frac{M_i}{2}\tanh\!\left(\frac{2q}{M_i}\right).
-\end{aligned}
-\end{equation}
-Then $F_i(q)=\sigma_i(q-c_i)+M_i/2$. With the centered states
-\begin{equation*}
-x_1:=\widehat{x}_1-\frac{M_S}{2},
-\qquad
-x_2:=\widehat{x}_2-\frac{M_G}{2},
-\end{equation*}
-and offsets
-\begin{equation*}
-\begin{aligned}
-b_S&:=w_{CS}\mathrm{Ctx}-\frac{w_{GS}M_G}{2}-c_S,\\
-b_G&:=\frac{w_{SG}M_S}{2}-\frac{w_{GG}M_G}{2}
-      -w_{XG}\mathrm{Str}-c_G.
-\end{aligned}
-\end{equation*}
-Equation~(5) is exactly equivalent to the centered model
-\begin{equation}\label{eq:stn-gpe-centered}
-\begin{aligned}
-z_S(t)&:=-w_{GS}x_2(t-\tau_{GS})+b_S,\\
-z_G(t)&:=w_{SG}x_1(t-\tau_{SG})
-          -w_{GG}x_2(t-\tau_{GG})+b_G,\\
-\tau_S\dot{x}_1(t)
-      &=\sigma_S(z_S(t))-x_1(t)+I_{\mathrm{stim}}(t),\\
-\tau_G\dot{x}_2(t)
-      &=\sigma_G(z_G(t))-x_2(t).
-\end{aligned}
-\end{equation}
-where $I_{\mathrm{stim}}=I_e\mathrm{Stim}$ in the notation of
-\cite{nevadoHolgado2010betaOscillations}. Here $\tau_{ij}$ and $w_{ij}$ denote
-the corresponding transmission delays and synaptic weights.
-Thus $\sigma_i(0)=0$, $\sigma_i$ is odd, and
-$0<\sigma_i'(q)\leq1$. No approximation or linearization has been made:
-the physical firing rates are recovered as
-$\widehat{x}_1=x_1+M_S/2$ and $\widehat{x}_2=x_2+M_G/2$. Therefore the
-centering changes only the coordinates, not the physical dynamics.
+% Consider the delayed firing-rate model in Eq.~(5) of
+% \cite{nevadoHolgado2010betaOscillations}. Let $\widehat{x}_1$ and
+% $\widehat{x}_2$ denote the physical firing rates of the subthalamic nucleus
+% (STN) and globus pallidus pars externa (GPe). Its activation functions are
+% \begin{equation}\label{eq:stn-gpe-uncentered-sigmoid}
+% F_i(q)=\frac{M_i}{1+\exp(-4q/M_i)(M_i-B_i)/B_i},
+% \qquad i\in\{S,G\},
+% \end{equation}
+% so $F_i(0)=B_i$. Define the sigmoid midpoint and its centered form as
+% \begin{equation}\label{eq:stn-gpe-centered-sigmoid}
+% \begin{aligned}
+% c_i&:=\frac{M_i}{4}\log\!\left(\frac{M_i-B_i}{B_i}\right),\\
+% \sigma_i(q)&:=\frac{M_i}{1+\exp(-4q/M_i)}-\frac{M_i}{2}
+%              =\frac{M_i}{2}\tanh\!\left(\frac{2q}{M_i}\right).
+% \end{aligned}
+% \end{equation}
+% Then $F_i(q)=\sigma_i(q-c_i)+M_i/2$. With the centered states
+% \begin{equation*}
+% x_1:=\widehat{x}_1-\frac{M_S}{2},
+% \qquad
+% x_2:=\widehat{x}_2-\frac{M_G}{2},
+% \end{equation*}
+% and offsets
+% \begin{equation*}
+% \begin{aligned}
+% b_S&:=w_{CS}\mathrm{Ctx}-\frac{w_{GS}M_G}{2}-c_S,\\
+% b_G&:=\frac{w_{SG}M_S}{2}-\frac{w_{GG}M_G}{2}
+%       -w_{XG}\mathrm{Str}-c_G.
+% \end{aligned}
+% \end{equation*}
+% Equation~(5) is exactly equivalent to the centered model
+% \begin{equation}\label{eq:stn-gpe-centered}
+% \begin{aligned}
+% z_S(t)&:=-w_{GS}x_2(t-\tau_{GS})+b_S,\\
+% z_G(t)&:=w_{SG}x_1(t-\tau_{SG})
+%           -w_{GG}x_2(t-\tau_{GG})+b_G,\\
+% \tau_S\dot{x}_1(t)
+%       &=\sigma_S(z_S(t))-x_1(t)+I_{\mathrm{stim}}(t),\\
+% \tau_G\dot{x}_2(t)
+%       &=\sigma_G(z_G(t))-x_2(t).
+% \end{aligned}
+% \end{equation}
+% where $I_{\mathrm{stim}}=I_e\mathrm{Stim}$ in the notation of
+% \cite{nevadoHolgado2010betaOscillations}. Here $\tau_{ij}$ and $w_{ij}$ denote
+% the corresponding transmission delays and synaptic weights.
+% Thus $\sigma_i(0)=0$, $\sigma_i$ is odd, and
+% $0<\sigma_i'(q)\leq1$. No approximation or linearization has been made:
+% the physical firing rates are recovered as
+% $\widehat{x}_1=x_1+M_S/2$ and $\widehat{x}_2=x_2+M_G/2$. Therefore the
+% centering changes only the coordinates, not the physical dynamics.

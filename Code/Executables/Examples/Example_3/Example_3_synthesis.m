@@ -1,0 +1,263 @@
+clear; clc; close all; clear stateNameGenerator
+echo off
+
+path_to_PIE = 'C:\Program Files\MATLAB\PIETOOLS\PIETOOLS';
+addpath(genpath(path_to_PIE))
+addpath(genpath("C:\Program Files\Mosek\11.0\toolbox\r2019b"))
+codeRoot = fileparts(fileparts(fileparts(fileparts(mfilename('fullpath')))));
+addpath(genpath(codeRoot));
+
+%% Example 5 with boundary control
+%
+%   q_tt = q_ss - damping*q_t + lambda*sin(q),
+%   q(0,t) = 0,  q_s(1,t) = xb(t),  xb_dot = u.
+%
+% For dual synthesis, use the exact transformed LFR
+%
+%   q_tt = q_ss - damping*q_t + lambda*J*wd,    zd = q_s,
+%   wd   = cos(J*zd).*zd,
+%
+% where (Jf)(s)=int_0^s f(theta)dtheta. The transformed nonlinearity is
+% sector bounded because zd*wd=cos(J*zd)*zd^2, and therefore
+% -zd^2<=zd*wd<=zd^2. Equivalently,
+% (zd-wd)*(wd+zd)=sin(J*zd)^2*zd^2>=0.
+% The controller is full-state boundary feedback u=K*[xb;q;q_t].
+pvar t s
+a = 0;
+b = 1;
+damping = 2;
+alpha = -1;
+beta = 1;
+kypSlackMode = 'signed';     % 'normal' or 'signed'
+residualFactor = 1.1;
+
+lambdaTolerance = 1e-1;
+runSimulation = true;
+plotSimulation = true;
+plotOpenLoop = false;       % true also simulates and plots the open loop
+simulationFinalTime = 5;
+
+settings = lpisettings('veryheavy');
+settings.sos_opts.solver = 'mosek';
+settings.ddM = 2;
+settings.multiplierUpper = 1e4;
+settings.inverseFloor = 1e-8;
+settings.kypMarginUpper = 100;
+settings.kypSlackMode = kypSlackMode;
+settings.kmax = 10000;
+settings.controllerCleanTol = 1e-10;
+settings.options1.sep = 1;
+settings.options12.sep = 1;
+
+%% Bisection over lambda
+lambdaLower = 0;
+lambdaUpper = 10;
+K = [];
+while lambdaUpper-lambdaLower > lambdaTolerance
+    lambdaTrial = 0.5*(lambdaLower+lambdaUpper);
+    [feasible,Ktrial,eps,residual,feasratio,numerr] = ...
+        synthesize_lambda(lambdaTrial,a,b,damping,alpha,beta,settings,t,s, ...
+        residualFactor);
+    if strcmpi(kypSlackMode,'signed')
+        fprintf(['lambda=%7.3f, feasible=%d, eps=% .3e, residual=%.2e, ' ...
+            'FR=%.3f, numerr=%g\n'],lambdaTrial,feasible,eps, ...
+            residual,feasratio,numerr);
+    else
+        fprintf(['lambda=%7.3f, feasible=%d, normal mode, residual=%.2e, ' ...
+            'FR=%.3f, numerr=%g\n'],lambdaTrial,feasible, ...
+            residual,feasratio,numerr);
+    end
+    if feasible
+        lambdaLower = lambdaTrial;
+        K = Ktrial;
+    else
+        lambdaUpper = lambdaTrial;
+    end
+end
+if isempty(K)
+    error('No feasible synthesis point was found in the bisection interval.');
+end
+fprintf('\nCertified closed-loop interval: [%.6g, %.6g]\n', ...
+    lambdaLower,lambdaUpper);
+fprintf('Open-loop worst-case limit:   (pi/2)^2 = %.6g\n', ...
+    (pi/2)^2);
+fprintf('Controller norm bound:        %.6g\n',settings.kmax);
+
+%% Simulate sin(q) at the final certified lambda
+if runSimulation
+    [simOpen,simClosed] = simulate_best_controller( ...
+        lambdaLower,K,damping,a,b,t,s,simulationFinalTime,plotOpenLoop);
+    fprintf('\nSimulation at lambda = %.6g with phi(q)=sin(q)\n',lambdaLower);
+    if plotOpenLoop
+        fprintf('Open-loop  final/initial L2 ratio: %.6g\n', ...
+            simOpen.stateL2(end)/simOpen.stateL2(1));
+    end
+    fprintf('Closed-loop final/initial L2 ratio: %.6g\n', ...
+        simClosed.stateL2(end)/simClosed.stateL2(1));
+    if plotSimulation
+        plot_simulation(simOpen,simClosed,plotOpenLoop);
+    end
+end
+
+function [feasible,K,eps,residual,feasratio,numerr] = ...
+        synthesize_lambda(lambda,a,b,damping,alpha,beta,settings,t,s, ...
+        residualFactor)
+P = boundary_control_plant(lambda,damping,a,b,t,s);
+
+wDim = P.B1.dim(:,2);
+zDim = P.C1.dim(:,1);
+DPsi = id_filter(wDim,zDim,P.vars,P.dom);
+
+progS = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
+[progS,Vd] = PIETOOLS_IQC_sector(progS,wDim,zDim, ...
+    alpha,beta,settings,P.vars,P.dom);
+[K,~,~,progS,kypS] = PIETOOLS_IQC_controller_synthesis( ...
+    progS,settings,P,DPsi,Vd);
+
+cert = certificate(progS,kypS,residualFactor,settings.kypSlackMode);
+feasible = cert.feasible;
+eps = cert.eps;
+residual = cert.residual;
+feasratio = cert.feasratio;
+numerr = cert.numerr;
+if ~feasible
+    K = [];
+end
+end
+
+function P = boundary_control_plant(lambda,damping,a,b,t,s)
+% Exact transformed plant used for dual synthesis.
+q = pde_var(s,[a,b]);
+v = pde_var(s,[a,b]);
+xb = pde_var('state');
+zd = pde_var('output',1,s,[a,b]);
+wd = pde_var('input',1,s,[a,b]);
+u = pde_var('control',1);
+
+PDE = [diff(q,t) == v;
+       diff(v,t) == diff(q,s,2) - damping*v + wd;
+       diff(xb,t) == u;
+       zd == diff(q,s);
+       subs(q,s,a) == 0;
+       subs(v,s,a) == 0;
+       subs(diff(q,s),s,b) == xb];
+P = convert(PDE);
+
+% Replace the pointwise uncertainty input by lambda*J.
+inputDirection = P.B1.R.R0;
+P.B1.R.R0 = 0*inputDirection;
+P.B1.R.R1 = lambda*inputDirection;
+P.B1.R.R2 = 0*inputDirection;
+end
+
+function P = boundary_control_simulation_plant(lambda,damping,a,b,t,s)
+% Original pointwise sine plant used by PIE_sim_nl.
+q = pde_var(s,[a,b]);
+v = pde_var(s,[a,b]);
+xb = pde_var('state');
+zd = pde_var('output',1,s,[a,b]);
+wd = pde_var('input',1,s,[a,b]);
+u = pde_var('control',1);
+
+PDE = [diff(q,t) == v;
+       diff(v,t) == diff(q,s,2) - damping*v + lambda*wd;
+       diff(xb,t) == u;
+       zd == q;
+       subs(q,s,a) == 0;
+       subs(v,s,a) == 0;
+       subs(diff(q,s),s,b) == xb];
+P = convert(PDE);
+end
+
+function [simOpen,simClosed] = simulate_best_controller( ...
+        lambda,K,damping,a,b,t,s,tFinal,simulateOpenLoop)
+P = boundary_control_simulation_plant(lambda,damping,a,b,t,s);
+nonlinearity = @(q) sin(q);
+tgrid = linspace(0,tFinal,501).';
+splot = linspace(a,b,151).';
+
+x0.ode = 0;
+% convert() orders the H1 velocity profile before the H2 displacement.
+x0.pde = {@(position) zeros(size(position)); ...
+          @(position) 0.05*sin(0.5*pi*position)};
+simOpts.N = 20;
+simOpts.splot = splot;
+simOpts.statePIE = P;
+simOpts.nwd0 = 0;
+simOpts.ode = odeset('RelTol',1e-7,'AbsTol',1e-9);
+
+simClosed = PIE_sim_nl( ...
+    closedLoopPIE(P,K),nonlinearity,tgrid,x0,simOpts);
+simClosed.stateL2 = sqrt(trapz(splot.',simClosed.zPlot.^2,2));
+if simulateOpenLoop
+    simOpen = PIE_sim_nl(P,nonlinearity,tgrid,x0,simOpts);
+    simOpen.stateL2 = sqrt(trapz(splot.',simOpen.zPlot.^2,2));
+else
+    simOpen = [];
+end
+end
+
+function fig = plot_simulation(simOpen,simClosed,plotOpenLoop)
+fig = figure('Color','w');
+if plotOpenLoop
+    tiledlayout(1,3,'TileSpacing','compact','Padding','compact');
+    nexttile;
+    surf(simOpen.splot,simOpen.t,simOpen.zPlot,'EdgeColor','none');
+    xlabel('s'); ylabel('t'); zlabel('q(s,t)'); title('Open loop');
+    view(3); axis tight;
+else
+    tiledlayout(1,2,'TileSpacing','compact','Padding','compact');
+end
+nexttile;
+surf(simClosed.splot,simClosed.t,simClosed.zPlot,'EdgeColor','none');
+xlabel('s'); ylabel('t'); zlabel('q(s,t)'); title('Boundary controlled');
+view(3); axis tight;
+nexttile;
+if plotOpenLoop
+    semilogy(simOpen.t,simOpen.stateL2,'--','LineWidth',1.4);
+    hold on;
+end
+semilogy(simClosed.t,simClosed.stateL2,'LineWidth',1.4);
+xlabel('t'); ylabel('Displacement L_2 norm');
+if plotOpenLoop
+    hold off;
+    legend('Open loop','Boundary controlled','Location','best');
+else
+    legend('Boundary controlled','Location','best');
+end
+grid on;
+end
+
+function cert = certificate(prog,epsDecision,residualFactor,kypSlackMode)
+info = prog.solinfo.info;
+cert.feasratio = double(info.feasratio);
+cert.pinf = double(info.pinf);
+cert.dinf = double(info.dinf);
+cert.numerr = double(info.numerr);
+cert.residual = double(prog.solinfo.residual);
+if strcmpi(kypSlackMode,'signed')
+    cert.eps = double(lpigetsol(prog,epsDecision));
+    cert.marginRatio = cert.eps/max(cert.residual,eps);
+    cert.feasible = cert.eps > residualFactor*cert.residual;
+else
+    cert.eps = NaN;
+    cert.marginRatio = NaN;
+    cert.feasible = cert.pinf==0 && cert.dinf==0 && cert.numerr<=1 ...
+    && isfinite(cert.feasratio) && abs(cert.feasratio-1)<=0.3 ...
+    && isfinite(cert.residual);
+end
+end
+
+function F = id_filter(d1,d2,vars,dom)
+d0 = zeros(size(d1));
+F.T = zerosPI(d0,d0,vars,dom);
+F.A = zerosPI(d0,d0,vars,dom);
+F.B1 = zerosPI(d0,d1,vars,dom);
+F.B2 = zerosPI(d0,d2,vars,dom);
+F.C1 = zerosPI(d1,d0,vars,dom);
+F.C2 = zerosPI(d2,d0,vars,dom);
+F.D11 = eyePI(d1,vars,dom);
+F.D12 = zerosPI(d1,d2,vars,dom);
+F.D21 = zerosPI(d2,d1,vars,dom);
+F.D22 = eyePI(d2,vars,dom);
+end

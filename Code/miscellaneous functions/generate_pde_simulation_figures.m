@@ -11,6 +11,7 @@ end
 % rendering defaults remain in default_surface_plot_settings.
 simulationDefaults.filePrefix = 'simulation';
 simulationDefaults.showPreview = true;
+simulationDefaults.plotOpenLoop = true;
 simulationDefaults.previewFigureName = 'PDE simulation';
 simulationDefaults.previewSurfaceTitles = ...
     {'Open-loop state','Closed-loop state'};
@@ -41,8 +42,12 @@ for k = 1:numel(names)
     end
 end
 settings = default_surface_plot_settings(settings);
+if ~isscalar(settings.plotOpenLoop)
+    error('settings.plotOpenLoop must be a scalar logical value.');
+end
+settings.plotOpenLoop = logical(settings.plotOpenLoop);
 [s,t,zOpen,zClosed,inputSignal,controlSignal] = normalize_inputs( ...
-    s,t,zOpen,zClosed,inputSignal,controlSignal);
+    s,t,zOpen,zClosed,inputSignal,controlSignal,settings.plotOpenLoop);
 
 if ~isfolder(outDir)
     mkdir(outDir);
@@ -52,8 +57,12 @@ files.amplitude = fullfile(outDir,[settings.filePrefix,'_amplitude.pdf']);
 files.effort = fullfile(outDir,[settings.filePrefix,'_effort.pdf']);
 files.preview = gobjects(0);
 
-ampOpen = max(abs(zOpen),[],2);
 ampClosed = max(abs(zClosed),[],2);
+if settings.plotOpenLoop
+    ampOpen = max(abs(zOpen),[],2);
+else
+    ampOpen = [];
+end
 
 if settings.showPreview
     files.preview = write_preview_figure(s,t,zOpen,zClosed,inputSignal, ...
@@ -61,7 +70,12 @@ if settings.showPreview
 end
 
 surfaceIdx = sample_indices(numel(t),settings.surfaceTimeSamples);
-write_state_figure(files.state,s,t(surfaceIdx),zOpen(surfaceIdx,:), ...
+if settings.plotOpenLoop
+    zOpenSurface = zOpen(surfaceIdx,:);
+else
+    zOpenSurface = [];
+end
+write_state_figure(files.state,s,t(surfaceIdx),zOpenSurface, ...
     zClosed(surfaceIdx,:),settings);
 write_amplitude_figure(files.amplitude,t,ampOpen,ampClosed,settings);
 write_effort_figure(files.effort,t,inputSignal,controlSignal,settings);
@@ -73,6 +87,34 @@ fig = figure('Name',settings.previewFigureName, ...
     'Color',settings.figureBackground);
 timeIdx = sample_indices(numel(t),settings.surfaceTimeSamples);
 spaceIdx = sample_indices(numel(s),settings.surfaceSpaceSamples);
+
+if ~settings.plotOpenLoop
+    subplot(1,3,1);
+    surfaceSettings = panel_surface_settings( ...
+        settings,settings.previewSurfaceTitles{2},'closed');
+    plot_pde_surface(gca,s(spaceIdx),t(timeIdx), ...
+        zClosed(timeIdx,spaceIdx),surfaceSettings);
+
+    subplot(1,3,2);
+    plot(t,ampClosed,'LineWidth',1.4);
+    grid on;
+    xlabel(settings.axisLabels{1},'Interpreter',settings.interpreter);
+    ylabel(settings.amplitudeYLabel,'Interpreter',settings.interpreter);
+    title(settings.amplitudeTitle,'Interpreter',settings.interpreter);
+    format_paper_axes(gca,settings);
+
+    subplot(1,3,3);
+    plot(t,inputSignal,'LineWidth',1.3); hold on;
+    plot(t,controlSignal,'LineWidth',1.3);
+    grid on;
+    xlabel(settings.axisLabels{1},'Interpreter',settings.interpreter);
+    ylabel(settings.signalYLabel,'Interpreter',settings.interpreter);
+    legend(settings.signalLegend,'Interpreter',settings.interpreter, ...
+        'Location','best');
+    title(settings.signalTitle,'Interpreter',settings.interpreter);
+    format_paper_axes(gca,settings);
+    return
+end
 
 subplot(2,2,1);
 surfaceSettings = panel_surface_settings( ...
@@ -111,15 +153,22 @@ end
 
 function write_amplitude_figure(fileName,t,ampOpen,ampClosed,settings)
 fig = paper_figure(settings.lineFigureSize,settings);
-plot(t,ampOpen,'-.','Color',[0.10 0.10 0.10],'LineWidth',1.15);
-hold on;
+if settings.plotOpenLoop
+    plot(t,ampOpen,'-.','Color',[0.10 0.10 0.10],'LineWidth',1.15);
+    hold on;
+end
 plot(t,ampClosed,'Color',[0.00 0.45 0.74],'LineWidth',1.25);
 grid on;
 box on;
 xlabel(settings.axisLabels{1},'Interpreter',settings.interpreter);
 ylabel(settings.amplitudeYLabel,'Interpreter',settings.interpreter);
-legend(settings.amplitudeLegend,'Interpreter',settings.interpreter, ...
-    'Location','northwest','FontSize',7);
+if settings.plotOpenLoop
+    legend(settings.amplitudeLegend,'Interpreter',settings.interpreter, ...
+        'Location','northwest','FontSize',7);
+else
+    legend(settings.amplitudeLegend(end),'Interpreter',settings.interpreter, ...
+        'Location','northwest','FontSize',7);
+end
 format_paper_axes(gca,settings);
 xlim([t(1),t(end)]);
 export_pde_surface_pdf(fig,fileName,settings);
@@ -147,9 +196,21 @@ end
 
 function write_state_figure(fileName,s,t,zOpen,zClosed,settings)
 fig = paper_figure(settings.figureSize,settings);
-layout = tiledlayout(fig,1,2,'Padding','compact','TileSpacing','compact');
 spaceIdx = sample_indices(numel(s),settings.surfaceSpaceSamples);
 
+if ~settings.plotOpenLoop
+    layout = tiledlayout(fig,1,1,'Padding','compact','TileSpacing','compact');
+    closedSettings = panel_surface_settings( ...
+        settings,settings.panelTitles{2},'closed');
+    axClosed = nexttile(layout);
+    plot_pde_surface(axClosed,s(spaceIdx),t,zClosed(:,spaceIdx),closedSettings);
+    drawnow;
+    export_pde_surface_pdf(fig,fileName,settings);
+    close(fig);
+    return
+end
+
+layout = tiledlayout(fig,1,2,'Padding','compact','TileSpacing','compact');
 openSettings = panel_surface_settings( ...
     settings,settings.panelTitles{1},'open');
 axOpen = nexttile(layout);
@@ -182,12 +243,16 @@ end
 end
 
 function [s,t,zOpen,zClosed,inputSignal,controlSignal] = normalize_inputs( ...
-    s,t,zOpen,zClosed,inputSignal,controlSignal)
+    s,t,zOpen,zClosed,inputSignal,controlSignal,plotOpenLoop)
 s = s(:);
 t = t(:);
 inputSignal = inputSignal(:);
 controlSignal = controlSignal(:);
-zOpen = orient_surface(zOpen,numel(t),numel(s),'zOpen');
+if plotOpenLoop
+    zOpen = orient_surface(zOpen,numel(t),numel(s),'zOpen');
+else
+    zOpen = [];
+end
 zClosed = orient_surface(zClosed,numel(t),numel(s),'zClosed');
 if numel(inputSignal) ~= numel(t) || numel(controlSignal) ~= numel(t)
     error('Input and control signals must contain one value per time sample.');

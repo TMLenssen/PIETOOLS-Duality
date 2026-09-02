@@ -412,24 +412,13 @@ INPUT .\Sections\Main\7. Numerical Examples.tex
 INPUT Sections\Main\7. Numerical Examples.tex
 INPUT .\Sections\Main\7. Numerical Examples.tex
 INPUT Sections\Main\7. Numerical Examples.tex
-INPUT .\Figures\example2_state.pdf
-INPUT .\Figures\example2_state.pdf
-INPUT Figures\example2_state.pdf
-INPUT .\Figures\example2_state.pdf
-INPUT .\Figures\example2_state.pdf
-INPUT .\Figures\example2_state.pdf
-INPUT .\Figures\example2_amplitude.pdf
-INPUT .\Figures\example2_amplitude.pdf
-INPUT Figures\example2_amplitude.pdf
-INPUT .\Figures\example2_amplitude.pdf
-INPUT .\Figures\example2_amplitude.pdf
-INPUT .\Figures\example2_amplitude.pdf
-INPUT .\Figures\example2_effort.pdf
-INPUT .\Figures\example2_effort.pdf
-INPUT Figures\example2_effort.pdf
-INPUT .\Figures\example2_effort.pdf
-INPUT .\Figures\example2_effort.pdf
-INPUT .\Figures\example2_effort.pdf
+INPUT .\Sections\Main\8. Conclusion.tex
+INPUT Sections\Main\8. Conclusion.tex
+INPUT .\Sections\Main\8. Conclusion.tex
+INPUT Sections\Main\8. Conclusion.tex
+INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl
+INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl
+INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmr8.tfm
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmmi8.tfm
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmsy8.tfm
@@ -438,13 +427,6 @@ INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx8.tfm
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msam10.tfm
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
 INPUT C:\Users\thijs\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
-INPUT .\Sections\Main\8. Conclusion.tex
-INPUT Sections\Main\8. Conclusion.tex
-INPUT .\Sections\Main\8. Conclusion.tex
-INPUT Sections\Main\8. Conclusion.tex
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmri7t.vf
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmri8r.tfm
 INPUT .\Sections\Proofs\I. IQC.tex
@@ -482,8 +464,6 @@ INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx5.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx7.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx7.pfb
-INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx8.pfb
-INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmbx8.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmex10.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmmi10.pfb
@@ -506,8 +486,6 @@ INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr6.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr7.pfb
-INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
-INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr8.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr9.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmr9.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy10.pfb
@@ -518,8 +496,6 @@ INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\c
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy6.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy7.pfb
-INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
-INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy8.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy9.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\cm\cmsy9.pfb
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\type1\public\amsfonts\symbols\msam10.pfb

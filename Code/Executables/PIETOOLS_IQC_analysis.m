@@ -154,6 +154,18 @@ end
 
 function prog = quiet_lpisolve(prog,sos_opts)
 prog = lpisolve(prog,sos_opts);
+prog.solinfo.residual = program_residual(prog);
+end
+
+function residual = program_residual(prog)
+% SOSTOOLS prints this value but does not retain it in solinfo.
+Atf = [];
+bf = [];
+for k = 1:prog.expr.num
+    Atf = [Atf,prog.expr.At{k}]; %#ok<AGROW>
+    bf = [bf;prog.expr.b{k}]; %#ok<AGROW>
+end
+residual = norm(Atf.'*prog.solinfo.RRx-bf);
 end
 
 function G = block_vcat(G1,G2,vars,dom)

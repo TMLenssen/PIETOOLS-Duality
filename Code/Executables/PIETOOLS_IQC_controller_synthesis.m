@@ -283,12 +283,17 @@ if isfield(settings,'feasratioTolerance') && ~isempty(settings.feasratioToleranc
     feasratioTolerance = settings.feasratioTolerance;
 end
 canRecover = has_acceptable_solution(prog,maxRecoveryNumerr,feasratioTolerance);
-if true %canRecover
+if true%canRecover
     % For separable P, inv_opvar uses the analytic 4-PI inverse.
     P = lpigetsol(prog,Pdec);
     Z = lpigetsol(prog,Zdec);
     K = Z'*inv_opvar(P,0);
-    K = clean_opvar(K,1e-6);
+    controllerCleanTol = 1e-6;
+    if isfield(settings,'controllerCleanTol') ...
+            && ~isempty(settings.controllerCleanTol)
+        controllerCleanTol = settings.controllerCleanTol;
+    end
+    K = clean_opvar(K,controllerCleanTol);
 else
     K = [];
     Z = [];
@@ -299,6 +304,18 @@ end
 
 function prog = quiet_lpisolve(prog,sos_opts)
 prog = lpisolve(prog,sos_opts);
+prog.solinfo.residual = program_residual(prog);
+end
+
+function residual = program_residual(prog)
+% Store the same affine-equation residual printed by SOSTOOLS.
+Atf = [];
+bf = [];
+for k = 1:prog.expr.num
+    Atf = [Atf,prog.expr.At{k}]; %#ok<AGROW>
+    bf = [bf;prog.expr.b{k}]; %#ok<AGROW>
+end
+residual = norm(Atf.'*prog.solinfo.RRx-bf);
 end
 
 function tf = has_member(container,name)

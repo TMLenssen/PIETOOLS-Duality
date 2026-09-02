@@ -4,270 +4,138 @@ echo off
 path_to_PIE = 'C:\Program Files\MATLAB\PIETOOLS\PIETOOLS';
 addpath(genpath(path_to_PIE))
 addpath(genpath("C:\Program Files\Mosek\11.0\toolbox\r2019b"))
-addpath(genpath("C:\Program Files\MATLAB\R2023a\toolbox\symbolic"));
-codeRoot = fileparts(fileparts(fileparts(mfilename('fullpath'))));
+codeRoot = fileparts(fileparts(fileparts(fileparts(mfilename('fullpath')))));
 addpath(genpath(codeRoot));
 
-%% Plant
+%% Example 4: robust L2-gain synthesis at fixed lambda
+%
+%   x_t = x_ss + lambda*sin(x) + J*wp,
+%   x(0,t)=0, x_s(1,t)=xb(t), xb_dot=u,
+%   zp = [xb; int_0^1 x(s)ds].
+%
+% Synthesis uses the equivalent dual-friendly uncertainty LFR
+%
+%   x_t = x_ss + lambda*J*wd + J*wp,
+%   zd = x_s,  wd = cos(J*zd).*zd,
+%
+% where (J*wp)(s)=(s-a)*wp for the scalar performance input. Thus both
+% exogenous inputs enter through the x_s coordinate. The transformed
+% uncertainty is sector bounded in [-1,1]. The dual
+% performance multiplier is ordered [wp;zp] and is separate from the
+% uncertainty multiplier.
 pvar t s
 a = 0;
 b = 1;
-d = 1;
-sigma = 3;
-damp = 0.2;
-alpha = 0;
-beta = 1.217234;
-hatalpha = 0;
-hatbeta = 2;
-useSlope = 0;
-plotSimulation = true;
+lambda = 5;
+kypSlackMode = 'signed';     % 'normal' or 'signed'
 
-% Bisection settings for the closed-loop L2 gain from wp to zp.
 gammaLower = 0;
-gammaUpper = 0.2;
-gammaTolerance = 1e-3;
+gammaUpper = 10;
+gammaTolerance = 1e-2;
+residualFactor = 1.1;
 
-%% Plant variables
-x = pde_var('state',1,[],[]);
-v1 = pde_var(s,[a,b]);
-v2 = pde_var(s,[a,b]);
-zd = pde_var('output',1,s,[a,b]);
-wd = pde_var('input',1,s,[a,b]);
-zp1 = pde_var('output',1);
-zp2 = pde_var('output',1);
-wp = pde_var('input',1);
-u = pde_var('control',1);
-PDE = [diff(v1,t) == v2;    % PDE
-    diff(v2,t) == d*diff(v1,s,2) + sigma*v1 - damp*v2 - sigma*wd + s*(1-s)*wp;
-    diff(x,t) == u;
-    zd == v1;
-    % zp1 == x;
-    zp2 == int(v1,s,[a,b]);
-    subs(v1,s,a) == 0;
-    subs(v2,s,a) == 0;
-    subs(diff(v1,s),s,b)==x];
-P = convert(PDE);
-
-wDim = P.B1.dim(:,2);
-zDim = P.C1.dim(:,1);
-
-% convert() stores finite-dimensional channels before distributed ones.
-% Hence w = [wp;wd] and z = [zp;zd], with zp = [zp1;zp2].
-wpDim = wDim(1);
-zpDim = zDim(1);
-if ~isequal(wDim,[wpDim;1]) || ~isequal(zDim,[zpDim;1])
-    error('Example_2_L2_gain:UnexpectedChannels', ...
-        'Expected wDim=[1;1] and zDim=[2;1], but received [%s] and [%s].', ...
-        num2str(wDim.'),num2str(zDim.'));
-end
-
-% Identity filters only establish the primal [z;w] and dual [w;z]
-% channel order. They have no states.
-Psi = id_filter(zDim,wDim,P.vars,P.dom);
-DPsi = id_filter(wDim,zDim,P.vars,P.dom);
+runSimulation = true;
+createImages = true;
+simulationFinalTime = 35;
+paperFigureDir = fullfile(fileparts(codeRoot),'Documentation', ...
+    'Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality','Figures');
+simulationDataFile = fullfile(fileparts(mfilename('fullpath')), ...
+    'Example_2_L2_simulation.mat');
 
 settings = lpisettings('veryheavy');
-% settings.ddZ = 2;
-% settings.dd1 = 2;
-% settings.dd12 = 2;
-% settings.dd2 = 6;
-% settings.dd3 = 6;
+settings.sos_opts.solver = 'mosek';
 settings.ddM = 4;
+settings.multiplierUpper = 1e4;
+settings.inverseFloor = 1e-8;
+settings.kypMarginUpper = 100;
+settings.kypSlackMode = kypSlackMode;
 % settings.kmax = 1000;
-settings.multiplierUpper = 1e6;
-settings.inverseFloor =  1e-6;
-settings.epneg = 1e-8;
-% settings.kypMarginUpper = 1e+2;
-settings.kypSlackMode = 'signed';
+settings.controllerCleanTol = 1e-10;
 settings.options1.sep = 1;
 settings.options12.sep = 1;
 
-%% Minimize the robust-performance L2 gain by bisection
+%% Bisection over gamma
 K = [];
-gamma = NaN;
-
+bestTest = struct([]);
 while gammaUpper-gammaLower > gammaTolerance
     gammaTrial = 0.5*(gammaLower+gammaUpper);
-    progTrial = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
+    trial = synthesize_gamma(gammaTrial,lambda,a,b,settings,t,s, ...
+        residualFactor);
 
-    if useSlope
-        [progTrial,Vd] = PIETOOLS_IQC_slope_dual(progTrial,wDim,zDim, ...
-            hatalpha,hatbeta,settings,P.vars,P.dom);
+    if strcmpi(kypSlackMode,'signed')
+        fprintf(['gamma=%9.5f, feasible=%d | eps=% .3e, residual=%.2e, ' ...
+            'FR=%.3f, numerr=%g\n'],gammaTrial,trial.feasible, ...
+            trial.eps,trial.residual,trial.feasratio,trial.numerr);
     else
-        [progTrial,Vd] = PIETOOLS_IQC_sector(progTrial,wDim,zDim, ...
-            alpha,beta,settings,P.vars,P.dom);
+        fprintf(['gamma=%9.5f, feasible=%d | normal mode, residual=%.2e, ' ...
+            'FR=%.3f, numerr=%g\n'],gammaTrial,trial.feasible, ...
+            trial.residual,trial.feasratio,trial.numerr);
     end
 
-    % Dual performance multiplier, ordered [wp;zp].
-    Vd.P = blkdiag(eye(wpDim),-gammaTrial^2*eye(zpDim));
-    [KTrial,~,~,progTrial,kypDecision] = ...
-        PIETOOLS_IQC_controller_synthesis( ...
-        progTrial,settings,P,DPsi,Vd);
-
-    [FR,pinf,dinf,numerr] = solve_info(progTrial);
-    kypTrial = double(lpigetsol(progTrial,kypDecision));
-    feasible = pinf==0 && dinf==0 && numerr<=1 && abs(FR-1)<=0.3;
-
-    fprintf('gamma=%g, feasible=%d, kypBound=%g\n', ...
-        gammaTrial,feasible,kypTrial);
-
-    if feasible && kypTrial>0
-        gammaUpper = gammaTrial;  % decrease gamma
-        gamma = gammaTrial;
-        K = KTrial;
-        progS = progTrial;
-        synthKypBound = kypTrial;
-        sFR = FR;
-        sPinf = pinf;
-        sDinf = dinf;
-        sNumerr = numerr;
+    if trial.feasible
+        gammaUpper = gammaTrial;
+        K = trial.K;
+        bestTest = trial;
     else
-        gammaLower = gammaTrial;  % increase gamma
+        gammaLower = gammaTrial;
     end
 end
 
 if isempty(K)
-    error('No feasible synthesis was found. Increase gammaUpper.');
+    error('No feasible synthesis point was found. Increase gammaUpper.');
+end
+fprintf('\nExample 4 robust-performance synthesis, lambda = %.6g\n',lambda);
+fprintf('Certified induced-L2-gain interval: [%.6g, %.6g]\n', ...
+    gammaLower,gammaUpper);
+% fprintf('Controller norm bound: %.6g\n',settings.kmax);
+
+%% Old finite-horizon simulation setup
+if runSimulation
+    [simOpen,simClosed] = simulate_controller( ...
+        lambda,K,a,b,t,s,simulationFinalTime);
+    fprintf('Open-loop simulated finite-horizon L2 ratio:  %.6g\n', ...
+        simOpen.gamma);
+    fprintf('Closed-loop simulated finite-horizon L2 ratio: %.6g\n', ...
+        simClosed.gamma);
+    plotData = compact_plot_data(simOpen,simClosed);
+    save(simulationDataFile,'plotData','-v7.3');
+    fprintf('Saved plotting data to: %s\n',simulationDataFile);
+    if createImages
+        files = plot_Example_L2_gain(2,simulationDataFile,paperFigureDir);
+        fprintf('Simulation figures written to: %s\n',paperFigureDir);
+        disp(files)
+    end
 end
 
-analysisSettings = settings;
-% analysisSettings.options1.sep = 0;
-% analysisSettings.options12.sep = 0;
-
-%% Identity-filtered primal and dual closed-loop graphs
-GP = PIETOOLS_IQC_primal_graph(P,Psi,K);
-GD = PIETOOLS_IQC_dual_graph(P,DPsi,K);
-
-%% Primal analysis with the selected multiplier
-progP = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
-if useSlope
-    [progP,Vp] = PIETOOLS_IQC_slope(progP,zDim,wDim,hatalpha,hatbeta,analysisSettings,P.vars,P.dom);
-else
-    [progP,Vp] = PIETOOLS_IQC_sector(progP,zDim,wDim,alpha,beta,analysisSettings,P.vars,P.dom);
-end
-% Primal performance multiplier, ordered [zp;wp].
-Vp.P = blkdiag(eye(zpDim),-gamma^2*eye(wpDim));
-[~,progP,primalKypBound] = PIETOOLS_IQC_analysis( ...
-    progP,analysisSettings,GP,Vp);
-primalKypBound = double(lpigetsol(progP,primalKypBound));
-[pFR,pPinf,pDinf,pNumerr] = solve_info(progP);
-
-%% Dual analysis with the selected multiplier
-progD = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
-if useSlope
-    [progD,Va] = PIETOOLS_IQC_slope_dual(progD,wDim,zDim,hatalpha,hatbeta,analysisSettings,P.vars,P.dom,'rhoD');
-else
-    [progD,Va] = PIETOOLS_IQC_sector(progD,wDim,zDim,alpha,beta,analysisSettings,P.vars,P.dom);
-end
-% Dual performance multiplier, ordered [wp;zp].
-Va.P = blkdiag(eye(wpDim),-gamma^2*eye(zpDim));
-
-[~,progD,dualKypBound] = PIETOOLS_IQC_analysis(progD,analysisSettings,GD,Va);
-dualKypBound = double(lpigetsol(progD,dualKypBound));
-[dFR,dPinf,dDinf,dNumerr] = solve_info(progD);
-
-%% Nonlinear closed-loop simulation
-
-Psim = disturbed_simulation_plant(a,b,d,sigma,damp,t,s);
-Nsim = 16;
-Tsim = 35;
-amp = 0;
-
-wp = @(t) 20*sin(t).*(t >= pi).*(t <= 4*pi);
-
-splot = linspace(0,1,200).';
-boundaryState0 = 0;
-z0 = @(s) amp*sin(pi*s/2);
-zt0 = @(s) zeros(size(s));
-wd = @(z) z-sin(z);
-
-samp = 3000;
-tgrid = linspace(0,Tsim,samp);
-x0.ode = boundaryState0;
-x0.pde = {zt0,z0};
-
-simOpts.N = Nsim;
-simOpts.splot = splot;
-simOpts.statePIE = Psim;
-simOpts.nwd0 = 0;
-simOpts.wp = wp;
-simOpts.ode = odeset('RelTol',1e-6,'AbsTol',1e-8);
-
-simOL = PIE_sim_nl(Psim,wd,tgrid,x0,simOpts);
-simCL = PIE_sim_nl(closedLoopPIE(Psim,K),wd,tgrid,x0,simOpts);
-
-tsim = simOL.t;
-disturbanceInput = simCL.wp(:,1);
-zsimOL = simOL.zPlot;
-zsimCL = simCL.zPlot;
-controlEffort = simCL.outputFinite(:,1);
-zpSimulation = simCL.outputFinite(:,1);
-spatialAmpOpen = max(abs(zsimOL),[],2);
-spatialAmpClosed = max(abs(zsimCL),[],2);
-wpEnergy = trapz(tsim,disturbanceInput.^2);
-zpEnergy = trapz(tsim,sum(zpSimulation.^2,2));
-gammaSimulation = sqrt(zpEnergy/wpEnergy);
-fprintf('Peak boundary control |x(t)|: %.10g\n',max(abs(controlEffort)));
-fprintf('Final open-loop spatial amplitude: %.10g\n',spatialAmpOpen(end));
-fprintf('Final closed-loop spatial amplitude: %.10g\n',spatialAmpClosed(end));
-fprintf('Simulated finite-horizon L2 gain: %.10g\n',gammaSimulation);
-
-if plotSimulation
-    figure('Color','w');
-    tiledlayout(2,2,'TileSpacing','compact');
-
-    nexttile;
-    surf(splot,tsim,zsimOL,'EdgeColor','none');
-    xlabel('s'); ylabel('t'); zlabel('z(t,s)');
-    title('Open loop'); view(3); axis tight; colorbar;
-
-    nexttile;
-    surf(splot,tsim,zsimCL,'EdgeColor','none');
-    xlabel('s'); ylabel('t'); zlabel('z(t,s)');
-    title('Closed loop'); view(3); axis tight; colorbar;
-
-    nexttile;
-    plot(tsim,spatialAmpOpen,'LineWidth',1.2); hold on;
-    plot(tsim,spatialAmpClosed,'LineWidth',1.2);
-    xlabel('t'); ylabel('max_s |z(t,s)|');
-    legend('Open loop','Closed loop','Location','best'); grid on;
-
-    nexttile;
-    plot(tsim,disturbanceInput,'LineWidth',1.2); hold on;
-    plot(tsim,controlEffort,'LineWidth',1.2);
-    xlabel('t'); ylabel('Signal value');
-    legend('w_p','x','Location','best'); grid on;
+function result = synthesize_gamma( ...
+        gamma,lambda,a,b,settings,t,s,residualFactor)
+P = synthesis_plant(lambda,a,b,t,s);
+wDim = P.B1.dim(:,2);
+zDim = P.C1.dim(:,1);
+wpDim = wDim(1);
+zpDim = zDim(1);
+if ~isequal(wDim,[1;1]) || ~isequal(zDim,[2;1])
+    error('Expected w=[wp;wd] with [1;1] and z=[zp;zd] with [2;1].');
 end
 
+DPsi = id_filter(wDim,zDim,P.vars,P.dom);
+prog = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
+[prog,Vd] = PIETOOLS_IQC_sector(prog,wDim,zDim, ...
+    -1,1,settings,P.vars,P.dom);
+Vd.P = blkdiag(eye(wpDim),-gamma^2*eye(zpDim));
+[K,~,~,prog,kyp] = PIETOOLS_IQC_controller_synthesis( ...
+    prog,settings,P,DPsi,Vd);
 
-% %% Distributed pendulum video
-% videoFile = fullfile(paperFigureDir,'example2_distributed_pendulum_CL.mp4');
-% title = 'Closed-loop distributed pendulum';
-% make_pendulum_video(tsim,splot,zsimCL,controlEffort,videoFile,title);
-% fprintf('Pendulum video written to: %s\n',videoFile);
-% OLcontolEffort = zeros(samp,1);
-% title = 'Open-loop distributed pendulum';
-% videoFile = fullfile(paperFigureDir,'example2_distributed_pendulum_OL.mp4');
-% make_pendulum_video(tsim,splot,zsimOL,OLcontolEffort,videoFile,title);
-% fprintf('Pendulum video written to: %s\n',videoFile);
+result = certificate(prog,kyp,residualFactor,settings.kypSlackMode);
+result.K = K;
+if ~result.feasible
+    result.K = [];
+end
+end
 
-fprintf('\nCertified synthesis L2 gain: %.10g\n',gamma);
-fprintf('Final bisection interval:     [%.10g, %.10g]\n',gammaLower,gammaUpper);
-fprintf('Synthesis feasibility ratio: %.10g\n',sFR);
-fprintf('Synthesis status:             pinf=%g, dinf=%g, numerr=%g\n',sPinf,sDinf,sNumerr);
-fprintf('Synthesis KYP bound:          %.10g\n',synthKypBound);
-
-fprintf('\nPrimal analysis feasibility ratio: %.10g\n',pFR);
-fprintf('Primal analysis status:           pinf=%g, dinf=%g, numerr=%g\n',pPinf,pDinf,pNumerr);
-fprintf('Primal analysis KYP bound:        %.10g\n',primalKypBound);
-fprintf('Dual analysis feasibility ratio:   %.10g\n',dFR);
-fprintf('Dual analysis status:             pinf=%g, dinf=%g, numerr=%g\n',dPinf,dDinf,dNumerr);
-fprintf('Dual analysis KYP bound:          %.10g\n',dualKypBound);
-
-function Psim = disturbed_simulation_plant(a,b,d,sigma,damp,t,s)
-x = pde_var('state',1,[],[]);
-v1 = pde_var(s,[a,b]);
-v2 = pde_var(s,[a,b]);
+function P = synthesis_plant(lambda,a,b,t,s)
+x = pde_var(s,[a,b]);
+xb = pde_var('state');
 zd = pde_var('output',1,s,[a,b]);
 wd = pde_var('input',1,s,[a,b]);
 zp1 = pde_var('output',1);
@@ -275,16 +143,99 @@ zp2 = pde_var('output',1);
 wp = pde_var('input',1);
 u = pde_var('control',1);
 
-PDE = [diff(v1,t) == v2;
-    diff(v2,t) == d*diff(v1,s,2) + sigma*v1 - damp*v2 - sigma*wd + s*(1-s)*wp;
-    diff(x,t) == u;
-    zd == v1;
-    % zp1 == x;
-    zp2 == int(v1,s,[a,b]);
-    subs(v1,s,a) == 0;
-    subs(v2,s,a) == 0;
-    subs(diff(v1,s),s,b) == x];
-Psim = convert(PDE);
+PDE = [diff(x,t) == diff(x,s,2) + wd + (s-a)*wp;
+       diff(xb,t) == u;
+       zd == diff(x,s);
+       zp1 == xb;
+       zp2 == int(x,s,[a,b]);
+       subs(x,s,a) == 0;
+       subs(diff(x,s),s,b) == xb];
+P = convert(PDE);
+
+% Replace the pointwise wd input by lambda*J*wd.
+inputDirection = P.B1.R.R0;
+P.B1.R.R0 = 0*inputDirection;
+P.B1.R.R1 = lambda*inputDirection;
+P.B1.R.R2 = 0*inputDirection;
+end
+
+function P = simulation_plant(lambda,a,b,t,s)
+x = pde_var(s,[a,b]);
+xb = pde_var('state');
+zd = pde_var('output',1,s,[a,b]);
+wd = pde_var('input',1,s,[a,b]);
+zp1 = pde_var('output',1);
+zp2 = pde_var('output',1);
+wp = pde_var('input',1);
+u = pde_var('control',1);
+
+PDE = [diff(x,t) == diff(x,s,2) + lambda*wd + (s-a)*wp;
+       diff(xb,t) == u;
+       zd == x;
+       zp1 == xb;
+       zp2 == int(x,s,[a,b]);
+       subs(x,s,a) == 0;
+       subs(diff(x,s),s,b) == xb];
+P = convert(PDE);
+end
+
+function [simOpen,simClosed] = simulate_controller( ...
+        lambda,K,a,b,t,s,tFinal)
+P = simulation_plant(lambda,a,b,t,s);
+tgrid = linspace(0,tFinal,30000);
+splot = linspace(a,b,200).';
+wp = @(time) 8*cos(time).*(time>=pi).*(time<=4*pi);
+x0.ode = 0;
+x0.pde = {@(position) zeros(size(position))};
+
+opts.N = 16;
+opts.splot = splot;
+opts.statePIE = P;
+opts.nwd0 = 0;
+opts.wp = wp;
+opts.ode = odeset('RelTol',1e-6,'AbsTol',1e-8);
+simOpen = PIE_sim_nl(P,@(z) sin(z),tgrid,x0,opts);
+simClosed = PIE_sim_nl(closedLoopPIE(P,K),@(z) sin(z),tgrid,x0,opts);
+simOpen.gamma = finite_horizon_gain(simOpen);
+simClosed.gamma = finite_horizon_gain(simClosed);
+end
+
+function gamma = finite_horizon_gain(sim)
+inputEnergy = trapz(sim.t,sim.wp(:,1).^2);
+performance = sim.outputFinite(:,1:2);
+outputEnergy = trapz(sim.t,sum(performance.^2,2));
+gamma = sqrt(outputEnergy/inputEnergy);
+end
+
+function data = compact_plot_data(simOpen,simClosed)
+data.s = simClosed.splot;
+data.t = simClosed.t;
+data.zOpen = simOpen.zPlot;
+data.zClosed = simClosed.zPlot;
+data.inputSignal = simClosed.wp(:,1);
+data.boundarySignal = simClosed.outputFinite(:,1);
+data.gammaOpen = simOpen.gamma;
+data.gammaClosed = simClosed.gamma;
+end
+
+function cert = certificate(prog,epsDecision,residualFactor,kypSlackMode)
+info = prog.solinfo.info;
+cert.feasratio = double(info.feasratio);
+cert.pinf = double(info.pinf);
+cert.dinf = double(info.dinf);
+cert.numerr = double(info.numerr);
+cert.residual = double(prog.solinfo.residual);
+if strcmpi(kypSlackMode,'signed')
+    cert.eps = double(lpigetsol(prog,epsDecision));
+    cert.marginRatio = cert.eps/max(cert.residual,eps);
+    cert.feasible = cert.eps > residualFactor*cert.residual;
+else
+    cert.eps = NaN;
+    cert.marginRatio = NaN;
+    cert.feasible = cert.pinf==0 && cert.dinf==0 && cert.numerr<=1 ...
+    && isfinite(cert.feasratio) && abs(cert.feasratio-1)<=0.3 ...
+    && isfinite(cert.residual);
+end
 end
 
 function F = id_filter(d1,d2,vars,dom)
@@ -299,145 +250,4 @@ F.D11 = eyePI(d1,vars,dom);
 F.D12 = zerosPI(d1,d2,vars,dom);
 F.D21 = zerosPI(d2,d1,vars,dom);
 F.D22 = eyePI(d2,vars,dom);
-end
-
-function [ratio,pinf,dinf,numerr] = solve_info(prog)
-info = prog.solinfo.info;
-ratio = double(info.feasratio);
-pinf = double(info.pinf);
-dinf = double(info.dinf);
-numerr = double(info.numerr);
-end
-
-function make_pendulum_video(t,s,q,xBoundary,filename,titleName)
-% Animate the PIESIM state q(t,s) as a distributed pendulum array.
-% q = 0 is upright; neighboring bobs are connected to show spatial coupling.
-
-fps = 30;
-Npend = min(35,numel(s));
-rodLength = 0.12;
-bobSize = 28;
-
-t = t(:);
-s = s(:);
-
-if size(q,1) ~= numel(t) && size(q,2) == numel(t)
-    q = q.';
-end
-if size(q,1) ~= numel(t) || size(q,2) ~= numel(s)
-    error('q must have size length(t)-by-length(s).');
-end
-
-xBoundary = xBoundary(:);
-if numel(xBoundary) ~= numel(t)
-    error('xBoundary must have the same number of samples as t.');
-end
-
-% Spatial and temporal downsampling for the video.
-idx = unique(round(linspace(1,numel(s),Npend)));
-sDraw = s(idx);
-qDraw = q(:,idx);
-
-tVideo = (t(1):1/fps:t(end)).';
-if tVideo(end) < t(end)
-    tVideo(end+1,1) = t(end);
-end
-
-qVideo = interp1(t,qDraw,tVideo,'linear');
-xVideo = interp1(t,xBoundary,tVideo,'linear');
-
-% Fixed pivot positions.
-xp = (sDraw-sDraw(1))/(sDraw(end)-sDraw(1));
-
-fig = figure('Color','w','Position',[100 100 1100 500]);
-ax = axes(fig);
-hold(ax,'on');
-axis(ax,'equal');
-box(ax,'on');
-
-xlim(ax,[-0.08 1.08]);
-ylim(ax,[-1.25*rodLength 1.35*rodLength]);
-xlabel(ax,'$s$','Interpreter','latex');
-yticks(ax,[]);
-title(ax,titleName, ...
-    'Interpreter','latex');
-
-% Support and pivots.
-plot(ax,[0 1],[0 0],'k-','LineWidth',0.8);
-plot(ax,xp,zeros(size(xp)),'k.','MarkerSize',8);
-
-% Pendulum rods and bobs.
-rods = gobjects(Npend,1);
-for k = 1:Npend
-    rods(k) = plot(ax,[xp(k) xp(k)],[0 rodLength], ...
-        'k-','LineWidth',1.1);
-end
-
-bobs = scatter(ax,xp,rodLength*ones(size(xp)),bobSize, ...
-    'filled','MarkerFaceColor',[0.10 0.45 0.85], ...
-    'MarkerEdgeColor','k');
-
-% Springs between neighboring bobs.
-springs = gobjects(Npend-1,1);
-for k = 1:Npend-1
-    springs(k) = plot(ax,nan,nan,'k-','LineWidth',0.7);
-end
-
-text(ax,0,-0.055,'$q(0,t)=0$', ...
-    'Interpreter','latex','HorizontalAlignment','left');
-text(ax,1,-0.055,'$q_s(1,t)=x(t)$', ...
-    'Interpreter','latex','HorizontalAlignment','right');
-
-timeText = text(ax,0.02,0.95,'','Units','normalized', ...
-    'Interpreter','latex','FontSize',11);
-boundaryText = text(ax,0.98,0.95,'','Units','normalized', ...
-    'Interpreter','latex','FontSize',11, ...
-    'HorizontalAlignment','right');
-
-vid = VideoWriter(filename,'MPEG-4');
-vid.FrameRate = fps;
-vid.Quality = 95;
-open(vid);
-
-for j = 1:numel(tVideo)
-    theta = qVideo(j,:).';
-
-    % q = 0 is the upright equilibrium.
-    xb = xp + rodLength*sin(theta);
-    yb = rodLength*cos(theta);
-
-    for k = 1:Npend
-        set(rods(k),'XData',[xp(k) xb(k)],'YData',[0 yb(k)]);
-    end
-    set(bobs,'XData',xb,'YData',yb);
-
-    % Draw a small sinusoidal spring between adjacent bobs.
-    for k = 1:Npend-1
-        xa = xb(k);   ya = yb(k);
-        xc = xb(k+1); yc = yb(k+1);
-
-        xx = linspace(xa,xc,12);
-        yy = linspace(ya,yc,12);
-
-        ell = hypot(xc-xa,yc-ya);
-        if ell > 0
-            nx = -(yc-ya)/ell;
-            ny =  (xc-xa)/ell;
-            wiggle = 0.0035*sin(linspace(0,6*pi,12));
-            xx = xx + nx*wiggle;
-            yy = yy + ny*wiggle;
-        end
-
-        set(springs(k),'XData',xx,'YData',yy);
-    end
-
-    set(timeText,'String',sprintf('$t=%.2f$',tVideo(j)));
-    set(boundaryText,'String',sprintf('$x(t)=%.3f$',xVideo(j)));
-
-    drawnow;
-    writeVideo(vid,getframe(fig));
-end
-
-close(vid);
-close(fig);
 end

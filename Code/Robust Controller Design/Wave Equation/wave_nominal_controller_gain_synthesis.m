@@ -31,7 +31,7 @@ u = pde_var('control',1);
 PDE = [diff(v1,t) == v2;    % PDE
     diff(v2,t) == d*diff(v1,s,2) + lam*v1 - damp*v2 + wscale*w;
     diff(x,t) == u;
-    z1 == x;
+    % z1 == x;
     z2 == int(v1,s,[a,b]);
     subs(v1,s,a) == 0;
     subs(v2,s,a) == 0;

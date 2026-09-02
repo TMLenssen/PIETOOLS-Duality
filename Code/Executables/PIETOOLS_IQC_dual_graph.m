@@ -46,31 +46,23 @@ D21D = DTheta.D21;
 D22D = DTheta.D22;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-TPT = TP';
-APT = AP';
-BPT = BP';
-BuT = Bu';
-CPT = CP';
-DPT = DP';
-DzuT = Dzu';
-
-T = block_diag2(TPT,TD,vars,dom);
+T = block_diag2(TP',TD,vars,dom);
 K = compatible_operator(K,Bu.dim(:,2),T.dim(:,2),vars,dom,'K');
 
-ZPTheta = zero_operator(TPT.dim(:,1),TD.dim(:,2),vars,dom);
-ZuTheta = zero_operator(BuT.dim(:,1),TD.dim(:,2),vars,dom);
+ZPTheta = zero_operator(TP.dim(:,1),TD.dim(:,2),vars,dom);
+ZuTheta = zero_operator(Bu.dim(:,2),TD.dim(:,2),vars,dom);
 
 % These blocks expand exactly to Eq. (dual-system-components) with
 % K = [K_p K_Theta].
-A0 = block_2x2(APT,ZPTheta,B1D*BPT,AD,vars,dom);
-Cy = block_hcat(BuT,ZuTheta,vars,dom);
+A0 = block_2x2(AP',ZPTheta,B1D*BP',AD,vars,dom);
+Cy = block_hcat(Bu',ZuTheta,vars,dom);
 A = A0+K'*Cy;
 
-B1 = block_vcat(CPT,B1D*DPT+B2D,vars,dom)+K'*DzuT;
-C1 = block_hcat(D11D*BPT,C1D,vars,dom);
-C2 = block_hcat(D21D*BPT,C2D,vars,dom);
-D11 = D11D*DPT+D12D;
-D21 = D21D*DPT+D22D;
+B1 = block_vcat(CP',B1D*DP'+B2D,vars,dom)+K'*Dzu';
+C1 = block_hcat(D11D*BP',C1D,vars,dom);
+C2 = block_hcat(D21D*BP',C2D,vars,dom);
+D11 = D11D*DP'+D12D;
+D21 = D21D*DP'+D22D;
 
 G.vars = vars;
 G.dom = dom;
