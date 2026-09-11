@@ -75,3 +75,16 @@ The previously saved synthesis at alpha=.5, nu=0 returned gain .71147,
 numerr=0 and relative residual 3.98e-9. Solver acceptance follows the
 existing examples' status, feasibility-ratio and finite-residual checks.
 
+
+## Figure 7 plot style
+
+The plot uses the shared ../plot_veenman_fig7.m renderer: red curves, tall
+logarithmic panels, negative pole labels and alpha | best-gain labels as in
+Veenman et al. Figure 7. There is one panel per entry of result.nu, in that
+order; nu=0 uses the narrow static strip only when requested. Figure width
+adapts to the number of degrees. No legend or point markers are added.
+Missing bounds remain gaps. Labels use the minimum of the available sampled
+bounds; no interpolation or optimization is performed by the plotter.
+An optional second argument [ymin ymax] fixes the shared logarithmic gain
+limits; otherwise they adapt to the computed minima. The source paper's
+numerical bounds are not substituted for this example's results.

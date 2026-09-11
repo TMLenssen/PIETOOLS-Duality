@@ -8,11 +8,11 @@ addpath(genpath(codeRoot)); addpath(exampleDir,'-begin');
 rmpath(fullfile(exampleDir,'compat'));
 
 %% Settings: boundary-feedback synthesis only
-runPoleSweep=false;               % Same single-point / sweep switch as Example 6
+runPoleSweep=true;               % Same single-point / sweep switch as Example 6
 alpha=.5;                         % Repeated real uncertainty: |delta|<=alpha
 nu=1;                             % Temporal basis order, as in Example 6
 rho=-1;                           % Negative temporal pole
-settings=lpisettings('veryheavy');
+settings=lpisettings('heavy');% Modify heavy settings n1 = 2, n2 = 2, n3 = 2
 settings.sos_opts.solver='mosek';
 settings.sos_opts.simplify=true;
 settings.ddM=3;
@@ -68,9 +68,9 @@ if ~runPoleSweep
     save(fullfile(exampleDir,'Example_7_synthesis.mat'),'Synthesis','P','settings','-v7.3');
     fprintf('\nDual synthesis gain bound: %.9g; accepted=%d\n',Synthesis.gamma,Synthesis.feasible);
 else
-    alphaGrid=[.03,.27,.46,.60,.71,.80,.89,.96];
-    rhoGrid=-logspace(3,-3,25);
-    nuGrid=0:3;
+    alphaGrid=[.03,.27];%,.46,.60,.71,.80,.89,.96];
+    rhoGrid=-logspace(3,-3,1);
+    nuGrid=0:1;
     Results=struct('alpha',alphaGrid,'rho',rhoGrid,'nu',nuGrid,'side','dual',...
         'gamma',nan(numel(alphaGrid),numel(rhoGrid),numel(nuGrid)),...
         'diagnostics',{cell(numel(alphaGrid),numel(rhoGrid),numel(nuGrid))});
