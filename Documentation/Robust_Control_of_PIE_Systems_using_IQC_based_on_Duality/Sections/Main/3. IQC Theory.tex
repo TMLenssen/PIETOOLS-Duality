@@ -1,6 +1,9 @@
 % !TEX root = ../../Extensions of IQC Duality to Partial Integral Equations.tex
 This section introduces the IQC objects used to study stability and performance
-of interconnected systems in a Hilbert space. We establish the generalized
+of interconnected systems in a Hilbert space. The construction builds on the
+IQC framework of Megretski and Rantzer~\cite{megretski1997system} and its
+extension to hard IQCs for infinite-dimensional
+channels~\cite{10156335}. We establish the generalized
 system interconnection, formalize stability and performance, and define the
 uncertainty and performance IQCs. These definitions provide the foundation for
 the primal-system analysis in Section~\ref{sec:primal-controller-analysis}.
@@ -58,15 +61,15 @@ well-posedness of the interconnection, such that solutions exist, are unique,
 and depend causally on inputs.
 \begin{definition}
 We say that the uncertain interconnection $P\star\Delta$ is
-\textbf{well--posed} if:
+\emph{well--posed} if:
 \begin{itemize}
-\item \textbf{Existence and Uniqueness}: For any
+\item \emph{Existence and Uniqueness}, For any
 $w\in \mbf L_{\mathrm{e}, [a, b]}$, there exist unique
 $z\in\mbf L_{\mathrm{e}, [a, b]}$,
 $z_\Delta \in \mbf L_{\mathrm{e}, [a, b]}$ and
 $w_\Delta \in  \mbf L_{\mathrm{e}, [a, b]}$ such that, $z$, $w$,
 $z_\Delta, w_\Delta$ satisfy the interconnection.
-\item \textbf{Causality}: If $z_\Delta, w_\Delta$ and
+\item \emph{Causality}, If $z_\Delta, w_\Delta$ and
 $\hat{z}_\Delta, \hat{w}_\Delta$ satisfy the interconnection,
 then $p_T(z_\Delta - \hat{z}_\Delta) = 0$ and
 $p_T(w_\Delta - \hat{w}_\Delta) = 0$, for all
@@ -78,10 +81,10 @@ now develop a framework to guarantee robust stability and performance for the
 class of systems defined in Definition~\ref{def:uncertain-interconnection}.
 
 \subsection{Robust stability and performance}
-Traditional control system design often treats stability and performance
-shaping as separate objectives with distinct constraints.
-However, Integral Quadratic Constraints (IQCs) provide a unified framework where
-these trade-offs can be captured within a single constraint \cite{10156335}.
+IQCs describe both uncertainty and performance specifications through
+quadratic constraints on interconnection signals~\cite{veenman2016robust}.
+For PIE systems, this formulation also supports structured robustness and
+performance analysis~\cite{lenssen2025muanalysissynthesisframeworkpartial}.
 We now define what it means for the system to remain stable despite
 uncertainties.
 Robust stability requires that the system is well-posed for all admissible
@@ -96,7 +99,7 @@ z_\Delta = P_\Delta w_\Delta + z_0, \quad
 w_\Delta = \Delta z_\Delta + w_0,
 \end{align*}
 with $z_0, w_0 \in \mbf{L}_{\mathrm{e},[a,b]}$, is said to be
-\textbf{robustly stable} if:
+\emph{robustly stable} if:
 \begin{enumerate}
 \item The uncertain system is well-posed for all $\Delta\in\mbf{\Delta}$.
 \item The map from $\bmat{z_0\\w_0}$ to
@@ -104,23 +107,24 @@ $\bmat{z_\Delta\\w_\Delta}$ is bounded on $\mbf L_{\mathrm{e},[a,b]}$
 for all $\Delta\in\mbf{\Delta}$.
 \end{enumerate}
 \end{definition}
-Within the IQC framework, the stability of an interconnection $P\star\Delta$ is
-certified by verifying that the uncertainty operator $\Delta$ satisfies a
-quadratic constraint defined by an appropriate multiplier.
-This leads to the following formal definition
+Within the IQC framework, the uncertainty operator $\Delta$ is described by a
+quadratic constraint defined by an appropriate multiplier. A stability
+certificate combines this constraint with a complementary condition on the
+plant. We use the finite-horizon, or hard, IQC
+formulation~\cite{6915700,10156335}, leading to the following definition.
 \begin{definition}\label{def:uncertainty-iqc}
+
 An uncertainty operator
 $\Delta:
 \mbf L_{\mathrm{e},[a,b]}^{\mbf{n}_{z_\Delta}}
 \to
 \mbf L_{\mathrm{e},[a,b]}^{\mbf{n}_{w_\Delta}}$
-is said to satisfy the hard uncertainty IQC $(\Psi_\Delta, \mcl M_{\mcl V_\Delta})$ defined by the dynamic operator
+is said to satisfy the hard IQC $(\Psi_\Delta, \mcl M_{\mcl V_\Delta})$ defined by the dynamic operator
 $\Psi_\Delta:
 \mbf L^{\mbf{n}_{z_\Delta} + \mbf{n}_{w_\Delta}}_{\mathrm{e}, [a, b]}
 \to
 \mbf L^{\mbf{n}_{\tilde{z}_{\Delta}} + \mbf{n}_{\tilde{w}_{\Delta}}}_{\mathrm{e}, [a, b]}$
-multiplication operator $\mcl M_{\mcl V_\Delta}$,
-parameterized by
+and 
 $\mcl{V}_\Delta = \mcl{V}_\Delta^* \in \mcl L(\RL, \RL)$
 if the inequality holds for all
 $z_\Delta \in \mbf L_{\mathrm{e}, [a, b]}$ and all $T \geq 0$,
@@ -145,37 +149,23 @@ Beyond stability, we are interested in ensuring that the system meets certain
 performance specifications in the presence of uncertainty.
 Robust performance extends the notion of robust stability by additionally
 requiring that a performance metric is satisfied.
-\begin{definition}\label{def:robust-performance}
-\textbf{Robust performance} is achieved if the interconnection $P \star \Delta$
-is \textbf{robustly stable} for some hard performance IQC $(\Psi_{\mathrm{p}}, \mcl M_{\mcl V_{\mathrm{p}}})$ defined by the
-dynamic operator $\Psi_{\mathrm{p}}:
+\begin{definition}
+\label{def:robust-performance}\emph{Robust performance} is achieved if the interconnection $P \star \Delta$
+is \emph{robustly stable} and for IQC $(\Psi_{\mathrm{p}}, \mcl M_{\mcl V_{\mathrm{p}}})$ defined by $\Psi_{\mathrm{p}}:
 \mbf L^{\mbf{n}_{z_{\mathrm{p}}} + \mbf{n}_{w_{\mathrm{p}}}}_{\mathrm{e}, [a, b]}
 \to
 \mbf L^{\mbf{n}_{\tilde{z}_{\mathrm{p}}} + \mbf{n}_{\tilde{w}_{\mathrm{p}}}}_{\mathrm{e}, [a, b]}$ and
-multiplication operator
-$\mcl{M}_{\mcl{V}_{\mathrm{p}}}$,
-parameterized by
-$\mcl{V}_{\mathrm{p}}=\mcl{V}_{\mathrm{p}}^*\in\mcl L(\RL,\RL)$
-with 
-\begin{equation*}
-\ip{p_T \Psi_{\mathrm{p}}\bmat{P_{\mathrm{p}\Delta}\\ 0}w_{\mathrm{p}}}{p_T\mcl{M}_{\mcl V_{\mathrm{p}}}\Psi_{\mathrm{p}}\bmat{P_{\mathrm{p}\Delta}\\ 0}w_\mathrm{p}}_{\mbf L_{[a, b]}}
-\geq 0.
-\end{equation*} for all $w_{\mathrm{p}}\in\mbf{L}_{e,[a,b]}^{\mbf{n}_{w_\mathrm{p}}}$. Then there exists a sufficiently
-small $\epsilon>0$ such that, for all such $w_{\mathrm{p}}$ and all $T\geq0$,
+$\mcl{V}_{\mathrm{p}}=\mcl{V}_{\mathrm{p}}^*\in\mcl L(\RL,\RL)$ we have 
 \begin{gather*}
 \ip{p_T\Psi_{\mathrm{p}}\bmat{P\star\Delta\\I}w_{\mathrm{p}}}{p_T\mcl{M}_{\mcl{V}_{\mathrm{p}}}\Psi_{\mathrm{p}}\bmat{P\star\Delta\\I}w_{\mathrm{p}}}_{\mbf L_{[a,b]}}
 \\ \leq -\epsilon\|p_Tw_{\mathrm{p}}\|_{\mbf L_{[a,b]}}^2.
 \end{gather*}
-Moreover, let
-${\mcl{V}}_{\mathrm{p}}\{{\mcl{Q}}_{\mathrm{p}}, {\mcl{S}}_{\mathrm{p}}, {\mcl{R}}_{\mathrm{p}}\}$
-be parameterized as,
-\begin{equation*}
-{\mcl{V}}_{\mathrm{p}} =
-\bmat{
-{\mcl{Q}}_{\mathrm{p}} & {\mcl{S}}_{\mathrm{p}} \\
-{\mcl{S}}_{\mathrm{p}}^* & {\mcl{R}}_{\mathrm{p}}
-}
-\end{equation*}
+% with 
+% \begin{equation*}
+% \ip{p_T \Psi_{\mathrm{p}}\bmat{v\\ 0}}{p_T\mcl{M}_{\mcl V_{\mathrm{p}}}\Psi_{\mathrm{p}}\bmat{v \\ 0}}_{\mbf L_{[a, b]}}
+% \geq 0.
+% \end{equation*}
+for all $w_p\in\mbf{L}_{e,[a,b]}^{\mbf{n}_{w_p}}$ and $T \geq 0$. 
 \end{definition}
 In this framework, the multipliers $\mcl M_{\mcl V _\Delta}$ and
 $\mcl M_{{\mcl{V}}_{\mathrm{p}}}$ serve distinct but complementary roles.
@@ -204,20 +194,21 @@ $\mcl{R} = \operatorname{diag}(\mcl{R}_\Delta, \mcl{R}_{\mathrm{p}})$, then
 $\mcl{V}\{\mcl{Q}, \mcl{S}, \mcl{R}\}$.
 
 \begin{theorem}[Robust Stability and Performance]\label{thm:robust-stability-performance}
-Let $P$, $\Delta\in\mbf{\Delta}$ be given, and there exists $\Psi_\Delta$,
-$\mcl{M}_{\mcl{V}_\Delta}$, such that,
+Let $P$, $\mbf{\Delta}$ be given, and there exists $\Psi_\Delta$,
+${\mcl{V}_\Delta}$, such that,
 \begin{itemize}
 \item The interconnection $P\star\Delta$ is well--posed for all
 $\Delta\in\mbf{\Delta}$
-\item The IQC in Definition~\ref{def:uncertainty-iqc} is satisfied for all
-$\Delta\in\mbf{\Delta}$.
+\item Any uncertainty
+$\Delta\in\mbf{\Delta}$ satisfy the hard IQC defined by $\Psi_\Delta$ and $\mcl V_\Delta$ .
 \end{itemize}
-Then the interconnection $P \star \Delta$ is \textbf{robustly stable} and
-\textbf{robust performance} is achieved with respect to some $\Psi_{\mathrm{p}}$ and
-$\mcl{M}_{{\mcl{V}}_{\mathrm{p}}}$, in Definition~\ref{def:robust-performance}, if,
+Then the interconnection $P \star \Delta$ is \emph{robustly stable} and
+\emph{robust performance} is achieved with respect to some $\Psi_{\mathrm{p}}$ and
+${{\mcl{V}}_{\mathrm{p}}} =\{\mcl Q_p, \mcl S_p, \mcl R_p\}$ (Definition~\ref{def:robust-performance}), with
+$\mcl{Q}_{\mathrm{p}} \succeq 0$, if,
 \begin{equation}\label{eq:robust-condition}
 \begin{gathered}
-\ip{p_T\Psi\bmat{Pw \\ w}}{p_T\mcl{M}_{\mcl V}\Psi\bmat{Pw \\ w}}_{\mbf L_{[a, b]}} 
+\ip{p_T\Psi\bmat{Pw \\ w}}{p_T\mcl{M}_{\mcl V}\Psi\bmat{Pw \\ w}}_{\mbf L_{[a, b]}} \\
 \leq
 -\epsilon
 \|p_Tw\|^2_{\mbf L_{[a, b]}}

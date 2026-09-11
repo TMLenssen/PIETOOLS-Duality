@@ -16,7 +16,7 @@ the Banach space of bounded linear operators from $X$ to $Y$ with induced norm
 \[
 \|\mcl P\|_{\mcl L(X,Y)} = \sup_{\|\mbf{x}\| = 1} \|\mcl P \mathbf{x}\|_Y,
 \] and $\mcl L(X) := \mcl L(X,X)$. Our notational convention is to write
-functions in \textbf{bold} (e.g., $\mathbf{x}$, indicating $\mathbf{x} \in \RL$)
+functions in {bold} (e.g., $\mathbf{x}$, indicating $\mathbf{x} \in \RL$)
 and operators in calligraphic font (e.g., $\mcl P \in \mcl L(\RL)$).
 For a Hilbert space $X$ and operator $\mcl A \in \mcl L(X)$, the adjoint $\mcl
  A^*$ is defined by
@@ -56,12 +56,12 @@ such that $(p_T \mbf{y})(t) \in \mbf{L}_\mathbf{H}$ for all $T \ge 0$.
 Let $\mathbf{H}$ and $\mathbf{G}$ be Hilbert spaces. For all $T\geq0$, an
 operator $G : \mathbf{L}_{\mathbf{H}} \to \mathbf{L}_{\mathbf{G}}$ is:
 \begin{itemize}
-\item \textbf{Causal} if $p_T G = p_T G p_T$.
-\item \textbf{Bounded on $\mathbf{L}_{\mathbf{H}}$} if $\|G
+\item \emph{Causal} if $p_T G = p_T G p_T$.
+\item \emph{Bounded on $\mathbf{L}_{\mathbf{H}}$} if $\|G
 \mathbf{v}\|_{\mathbf{L}_{\mathbf{G}}} \le C
 \|\mathbf{v}\|_{\mathbf{L}_{\mathbf{H}}}$ for some $C \ge 0$ and all $\mathbf{v}
 \in \mathbf{L}_{\mathbf{H}}$.
-\item \textbf{Bounded on $\mathbf{L}_{\mathrm{e},\mathbf{H}}$} if $\|p_T G
+\item \emph{Bounded on $\mathbf{L}_{\mathrm{e},\mathbf{H}}$} if $\|p_T G
 \mathbf{v}\|_{\mathbf{L}_{\mathbf{G}}} \le C
 \|p_T\mathbf{v}\|_{\mathbf{L}_{\mathbf{H}}}$ for some $C \ge 0$ and all
 $\mathbf{v} \in \mathbf{L}_{\mathrm{e},\mathbf{H}}$.
@@ -92,7 +92,7 @@ action at time $t$ is given by the block structure of $\mcl K_{ij}$:
 \subsection{Partial Integral Equations (PIEs)}
 Partial Integral operators, also known as PI operators, are a class of bounded
 linear integral operators that are defined jointly on a vector space and Hilbert
-space.
+space~\cite{peet2021pierepresentation,shivakumar2024GDPE}.
 \begin{definition}
 We say $\mcl P \in {\Pi}_4^{\mbf{m}\times\mbf{n}} \subset \mcl L(\RL^\mbf{n},
 \RL^\mbf{m})$, denoted by
@@ -100,11 +100,14 @@ $\PIop{P}{Q_1}{Q_2}{\{R_0,R_1,R_2\}}$, if there exist a matrix $P$ and matrix po
 R_0, R_1$, and $R_2$ (of compatible dimension) such that,
 \begin{gather*}
 \Bigg[\Bigg(\PIop{P}{Q_1}{Q_2}{\{R_0,R_1,R_2\}}\Bigg)\! \!
-\bmat{x \\ \mbf{x}}\Bigg](s)\! :=\! \bmat{Px\!
+\bmat{x \\ \mbf{x}}\Bigg](s)\\
+:=\! \bmat{Px\!
 +\!\int\limits_a^b\!Q_1(s)\mbf x(s)ds\\Q_2(s)x\!+\!\mcl R \mbf x(s)},\\
-(\mcl R \mbf x)(s)\!\! =\!\! R_0(s)\mbf x(s)\! +\!
+\begin{aligned}
+(\mcl R \mbf x)(s) &= R_0(s)\mbf x(s) +
 \int\limits_a^s\!\!\!R_1(s,\theta)\mbf x(\theta)d\theta\!
-+\!\int\limits_s^b\!\!\!R_2(s,\theta)\mbf x(\theta) d\theta.
+\\&\quad+\!\int\limits_s^b\!\!\!R_2(s,\theta)\mbf x(\theta) d\theta.
+\end{aligned}
 \end{gather*}
 \end{definition}
 The vector space of PI operators, given compatible dimensions, are closed under
@@ -155,22 +158,7 @@ for all $t\geq0$ and $\mcl{T}^*\underline{\mbf{x}}(0) =
 \end{definition}
 
 \begin{definition}[Bounded Internally Stable PIE]\label{def:pie-rhinf}
-Let $G$ be a PIE system as in Definition~\ref{def:pie-system}. We say $G$ is internally
-stable and bounded with decay rate
-$\alpha>0$, $M>0$, and $L_2$-gain $\gamma>0$ if
-\begin{itemize}
-\item The homogeneous part \(\partial_t(\mcl{T}\mbf{x})(t)=\mcl{A}\mbf{x}(t)\),
-with \(\mcl{T}\mbf{x}(0)=\mcl{T}\mbf{x}_0\)
-is exponentially stable such that, for every admissible initial condition
-$\mbf{x}_0 \in \RL$
-\[
-\|\mcl{T}\mbf{x}(t)\|_{\mbf{L}_{[a,b]}}
-\leq
-M\|\mcl{T}\mbf{x}_0\|_{\mbf{L}_{[a,b]}}e^{-\alpha t},
-\quad \forall\,t\geq0.
-\]
-\item With zero initial condition $\mbf{x}(0)=0$, then for
-any input $w$ and output $z$,
+Given a PIE system $G$. We say $G$ is input-output stable if for any $z, w \in \mbf L_{e, [a, b]}$ satisfying $z = G w$ with $x_0 = 0$, we have
 \[
 \|p_T z\|_{\mbf{L}_{[a,b]}}
 \leq
@@ -179,50 +167,56 @@ any input $w$ and output $z$,
 \forall\,T\geq0,\quad
 \forall\,w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}.
 \]
-\end{itemize}
-Then $G\in\Hinf^{\mbf{n}_{z}\times\mbf{n}_{w}}$. Clearly, $RH_\infty\subset\Hinf$
-\cite{zhou1996robust}.
-Also $G^\top\in\Hinf$ with the same decay rate, $\mbf{L}_{[a,b]}$-gain, and $M$
-\cite{shivaknew}.
+% Let $G$ be a PIE system as in Definition~\ref{def:pie-system}. We say $G$ is internally
+% stable and bounded with decay rate
+% $\alpha>0$, $M>0$, and $L_2$-gain $\gamma>0$ if
+% \begin{itemize}
+% \item The homogeneous part \(\partial_t(\mcl{T}\mbf{x})(t)=\mcl{A}\mbf{x}(t)\),
+% with \(\mcl{T}\mbf{x}(0)=\mcl{T}\mbf{x}_0\)
+% is exponentially stable such that, for every admissible initial condition
+% $\mbf{x}_0 \in \RL$
+% \[
+% \|\mcl{T}\mbf{x}(t)\|_{\mbf{L}_{[a,b]}}
+% \leq
+% M\|\mcl{T}\mbf{x}_0\|_{\mbf{L}_{[a,b]}}e^{-\alpha t},
+% \quad \forall\,t\geq0.
+% \]
+% \item With zero initial condition $\mbf{x}(0)=0$, then for
+% any input $w$ and output $z$,
+% \[
+% \|p_T z\|_{\mbf{L}_{[a,b]}}
+% \leq
+% \gamma\|p_T w\|_{\mbf{L}_{[a,b]}},
+% \quad
+% \forall\,T\geq0,\quad
+% \forall\,w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}.
+% \]
+% \end{itemize}
+% Then $G\in\Hinf^{\mbf{n}_{z}\times\mbf{n}_{w}}$. Clearly, $RH_\infty\subset\Hinf$
+% \cite{zhou1996robust}.
+% Also $G^\top\in\Hinf$ with the same decay rate, $\mbf{L}_{[a,b]}$-gain, and $M$
+% \cite{shivaknew}.
 \end{definition}
 
-\begin{definition}[Linear Fractional Transformation (LFT)]\label{def:lft}
-Let $G$ be a causal system or operator with a specified $2\times2$ block
-partition, and let $H$ be compatible with either two ports or one port. Write
+\begin{definition}[Redheffer Star Product]\label{def:lft}
+For compatible causal systems or operators $G$ and $H$, write
 \[
-\bmat{y_{11}\\ y_{12}}
-=G\bmat{u_{11}\\ u_{12}}.
+\bmat{y_1\\y_2}=G\bmat{u_1\\u_2}.
 \]
-The Redheffer star products
-\cite{https://doi.org/10.1002/sapm1960391269} are the following
-well--posed interconnections.
-\begin{itemize}
-\item If $H$ has two ports,
-\[
-\bmat{y_{21}\\ y_{22}}
-=H\bmat{u_{21}\\ u_{22}},
-\]
-then
+The Redheffer star products~\cite{https://doi.org/10.1002/sapm1960391269}
+denote the feedback maps
 \[
 \begin{aligned}
-G\star H &: \bmat{u_{12}\\u_{21}}\mapsto\bmat{y_{12}\\y_{21}},
-& u_{11} = y_{22}, \quad&u_{22} = y_{11},\\
-H\star G &: \bmat{u_{11}\\u_{22}}\mapsto\bmat{y_{11}\\y_{22}},
-& u_{21} = y_{12}, \quad& u_{12} = y_{21}.
+G\star H &: u_2\mapsto y_2, \qquad u_1=Hy_1,\\
+H\star G &: u_1\mapsto y_1, \qquad u_2=Hy_2,
 \end{aligned}
 \]
-\item If $H$ has one port, $y_H=Hu_H$, then
-\[
-\begin{aligned}
-G\star H &: u_{12}\mapsto y_{12},
-& u_{11}= y_H, \quad& u_H=y_{11},\\
-H\star G &: u_{11}\mapsto y_{11},
-& u_H = y_{12}, \quad& u_{12} = y_H.
-\end{aligned}
-\]
-\end{itemize}
+provided the respective interconnections are well-posed.
+Here, $P\star\Delta$ closes the uncertainty loop and $K\star P$ closes
+the controller loop.
 \end{definition}
 \subsection{PIETOOLS}
 PIETOOLS is a MATLAB toolbox used for declaration, manipulation and solving LPIs
-\cite{9147712}. For learning how to use PIETOOLS and its functionalities visit
+\cite{9147712}. Its operator syntax, PDE-to-PIE conversion, and optimization
+workflows are documented in the user manual~\cite{pietools2025manual}; see also the
 \href{https://control.asu.edu/pietools/pietools}{PIETOOLS homepage}.

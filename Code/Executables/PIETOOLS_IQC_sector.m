@@ -40,7 +40,7 @@ end
 
 function [prog,M] = positive_pointwise_weight(prog,set)
 op = set.options1;
-op.sep = 0;
+op.sep = 1;
 op.exclude = [0 0 1 1];
 op.psatz = 0;
 [prog,M] = poslpivar(prog,[0;1],set.ddM,op);

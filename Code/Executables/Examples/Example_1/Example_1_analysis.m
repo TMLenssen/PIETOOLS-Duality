@@ -5,7 +5,7 @@ path_to_PIE = 'C:\Program Files\MATLAB\PIETOOLS\PIETOOLS';
 addpath(genpath(path_to_PIE))
 addpath(genpath("C:\Program Files\Mosek\11.0\toolbox\r2019b"))
 addpath(genpath("C:\Program Files\MATLAB\R2023a\toolbox\symbolic"));
-codeRoot = fileparts(fileparts(mfilename('fullpath')));
+codeRoot = fileparts(fileparts(fileparts(fileparts(mfilename('fullpath')))));
 addpath(genpath(codeRoot));
 
 %% Plant
@@ -46,18 +46,15 @@ Psi = id_filter(zDim,wDim,P.vars,P.dom);
 DPsi = id_filter(wDim,zDim,P.vars,P.dom);
 
 settings = lpisettings('veryheavy');
-settings.ddZ = 3;
-settings.dd1 = 6;
-settings.dd2 = 6;
-settings.dd3 = 6;
-settings.dd12 = 6;
-settings.ddM = 5;
-settings.epneg = 1e-8;
-settings.eppn = 0;
-settings.kmax = 100;
+settings.sos_opts.solver = 'mosek';
+settings.ddM = 2;
+settings.multiplierUpper = 1e4;
+settings.inverseFloor = 1e-8;
+settings.kypSlackMode = 'normal';
+settings.controllerCleanTol = 1e-10;
+settings.options1.sep = 0;
+settings.options12.sep = 0;
 pnEps = settings.eppn;
-% settings.options1.sep = 1;
-% settings.options12.sep = 1;
 
 
 %% Identity-filtered primal and dual closed-loop graphs
@@ -70,7 +67,12 @@ GD = PIETOOLS_IQC_dual_graph(P,DPsi);
 
 %% Primal analysis with a new PN multiplier
 progP = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
-[progP,Vp,rhoP] = iqcvar(progP,zDim,wDim,settings,P.vars,P.dom,'rhoP');
+[progP,rhoP] = lpidecvar(progP,'rhoP');
+progP = lpi_ineq(progP,rhoP);
+[progP,Vp] = PIETOOLS_IQC_parametric( ...
+    progP,zDim,wDim,settings,P.vars,P.dom);
+Vp.P = blkdiag(eye(zDim(1)),-rhoP*eye(wDim(1)));
+progP = lpisetobj(progP,rhoP);
 [Pp,progP] = PIETOOLS_IQC_analysis(progP,settings,GP,Vp);
 
 pFR = feasratio(progP);
@@ -79,7 +81,12 @@ Vp = lpigetsol(progP,Vp);
 
 %% Dual analysis with another new PN multiplier
 progD = lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);
-[progD,Va,rhoA] = iqcvar(progD,wDim,zDim,settings,P.vars,P.dom,'rhoA');
+[progD,rhoA] = lpidecvar(progD,'rhoA');
+progD = lpi_ineq(progD,rhoA);
+[progD,Va] = PIETOOLS_IQC_parametric( ...
+    progD,wDim,zDim,settings,P.vars,P.dom);
+Va.P = blkdiag(eye(wDim(1)),-rhoA*eye(zDim(1)));
+progD = lpisetobj(progD,rhoA);
 [Pd,progD] = PIETOOLS_IQC_analysis(progD,settings,GD,Va);
 
 dFR = feasratio(progD);
@@ -111,37 +118,6 @@ F.D12 = zerosPI(d1,d2,vars,dom);
 F.D21 = zerosPI(d2,d1,vars,dom);
 F.D22 = eyePI(d2,vars,dom);
 end
-
-function [prog,V,rho] = iqcvar(prog,dp,dn,set,vars,dom,name)
-% Structured scalar-channel IQC multiplier used for synthesis.
-if dp(2)~=dn(2)
-    error('The scalar distributed positive/negative channel counts must match.');
-end
-[prog,rho] = lpidecvar(prog,name);
-prog = lpi_ineq(prog,rho);
-prog = lpisetobj(prog,rho);
-
-n = dp(2);
-Qb = cell(1,n);
-Sb = cell(1,n);
-op = set.options1;
-op.sep = 0;
-for k = 1:n
-    [prog,Qb{k}] = poslpivar(prog,[0,0;1,1],set.ddM,op);
-    [prog,Sb{k}] = lpivar(prog,[0,0;1,1],set.ddM,op);
-end
-Q = blkdiag(Qb{:});
-S = blkdiag(Sb{:});
-I = eyePI([0;n],vars,dom);
-R = [Q+set.eppn*I, S-S';
-     S'-S, -Q-set.eppn*I];
-
-d = dp+dn;
-V = opvar2dopvar(zerosPI(d,d,vars,dom));
-V.P = blkdiag(eye(dp(1)),-rho*eye(dn(1)));
-V.R = R.R;
-end
-
 
 function ratio = feasratio(prog)
 try

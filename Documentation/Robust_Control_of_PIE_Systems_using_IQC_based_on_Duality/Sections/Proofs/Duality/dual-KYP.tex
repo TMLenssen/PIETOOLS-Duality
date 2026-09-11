@@ -1,49 +1,46 @@
 % !TEX root = ../../../Extensions of IQC Duality to Partial Integral Equations.tex
-\subsection{Proof of Theorem~\ref{thm:dual-KYP}}\label{proof:dual-KYP}
-If the primal LPI holds, the standard KYP integration gives the hard IQC
+\subsection{Proof of Corollary~\ref{thm:dual-KYP}}\label{proof:dual-KYP}
+The last row of the primal component block gives the PI coordinate map
 \begin{equation*}
-\ip{p_T\Psi\bmat{z\\w}}
-{p_T\mcl{M}_{\mcl V}\Psi\bmat{z\\w}}_{\mbf L_{[a,b]}}
-\leq -\epsilon\|p_Tw\|^2_{\mbf L_{[a,b]}}.
+\begin{aligned}
+\mcl M_\Gamma
+&:=\bmat{
+I&0&0\\
+0&I&0\\
+\mcl D_{21}\mcl C_P&\mcl C_2
+&\mcl D_{21}\mcl D_P+\mcl D_{22}
+},
+&
+\mcl M_{\Gamma^{-1}}
+&:=\bmat{
+I&0&0\\
+0&I&0\\
+-\Lambda\mcl D_{21}\mcl C_P&-\Lambda\mcl C_2&\Lambda
+}.
+\end{aligned}
 \end{equation*}
-Theorem~\ref{thm:robust-stability-performance} then gives the result. It
-remains to consider the dual LPI. Define
-$V(\underline{\mbf{x}})=\langle\underline{\mcl T}\underline{\mbf{x}},
-\mcl{P}\underline{\mcl T}\underline{\mbf{x}}\rangle_{\mbf{L}_{[a,b]}}\geq0$.
-For any $\underline{w}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_z}$, suppose
-${\underline{v}}$ satisfies~\eqref{eq:dual-system} for some
-$\underline{\mbf{x}}\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_x}$. By~\eqref{eq:dual-system}, we have
+Both maps belong to $\Pi_4$, and direct block multiplication verifies that
+they are inverses. In particular,
 \begin{equation*}
-    \ip{\bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}}{\bmat{\underline{\mcl T}^*\mcl{P}\underline{\mcl A} + (*)& \underline{\mcl T}^*\mcl{P}\underline{\mcl B}\\
-            \underline{\mcl B}^*\mcl{P}\underline{\mcl T} & \underline{\epsilon} I}\bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}}
-    + \ip{{\underline{v}}(t)}
-    {\underline{\mcl V} {\underline{v}}(t)} \leq 0.
+\bmat{\mbf x_P\\\mbf x_\Theta\\\tilde w}
+=\mcl M_\Gamma
+\bmat{\mbf x_P\\\mbf x_\Theta\\w},
+\qquad
+\bmat{\mbf x_P\\\mbf x_\Theta\\w}
+=\mcl M_{\Gamma^{-1}}
+\bmat{\mbf x_P\\\mbf x_\Theta\\\tilde w}.
 \end{equation*}
-After integrating in time, we obtain
-\begin{equation*}
-    \underline{\epsilon}\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}}
-    + \ip{p_T {\underline{v}}}{p_T\underline{\mcl V} {\underline{v}}}_{\mbf L_{[a,b]}}
-    \leq -V(\underline{\mbf{x}}(T))+V(\underline{\mbf{x}}(0)).
-\end{equation*}
-Since $\underline{\mbf{x}}(0)=0$ and $V(\underline{\mbf{x}}(T))\geq0$,
-\begin{equation*}
-\ip{p_T\underline{\Psi}\bmat{\underline{z}\\\underline{w}}}
-{p_T\mcl{M}_{\underline{\mcl V}}\underline{\Psi}\bmat{\underline{z}\\\underline{w}}}_{\mbf L_{[a,b]}}
-\leq -\underline{\epsilon}\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}}.
-\end{equation*}
-Using the $(\mbf{D}(\Theta),J_{\mbf{n}_w,\mbf{n}_z})$ factorization, this is
-\begin{equation*}
-\ip{p_T\mbf{D}(\Theta)\bmat{\underline{z}\\\underline{w}}}
-{p_TJ_{\mbf{n}_w,\mbf{n}_z}\mbf{D}(\Theta)\bmat{\underline{z}\\\underline{w}}}_{\mbf L_{[a,b]}}
-\leq -\underline{\epsilon}\|p_T\underline{w}\|^2_{\mbf L_{[a,b]}}.
-\end{equation*}
-By Theorem~\ref{thm:dual-iqc}, there exists
-$\epsilon>0$ such that
-\begin{equation*}
-\ip{p_T\Theta\bmat{z\\w}}
-{p_TJ_{\mbf{n}_z,\mbf{n}_w}\Theta\bmat{z\\w}}_{\mbf L_{[a,b]}}
-\leq -\epsilon\|p_Tw\|^2_{\mbf L_{[a,b]}}.
-\end{equation*}
-Using the $(\Theta,J_{\mbf{n}_z,\mbf{n}_w})$ factorization gives the primal hard
-IQC, and Theorem~\ref{thm:robust-stability-performance} gives robust stability
-and robust performance.
+Thus $\mcl M_\Gamma$ is the PI congruence on the augmented
+state--input coordinates; the causal map $\Gamma:w\mapsto\tilde w$ in
+Theorem~\ref{thm:dual-iqc} is its induced input--output map. The construction
+in the proof of
+Theorem~\ref{thm:dual-iqc} shows that the corresponding coordinate map from
+the dual component block is then invertible as well.
+
+The primal and dual LPIs are the KYP inequalities for their respective
+component blocks. Integration with the nonnegative storage gives statements~2
+and~3 of Theorem~\ref{thm:dual-iqc}, respectively. Since these are equivalent,
+either LPI yields
+the strict primal hard IQC~\eqref{eq:robust-condition}.
+Theorem~\ref{thm:robust-stability-performance}
+then gives robust stability and robust performance.

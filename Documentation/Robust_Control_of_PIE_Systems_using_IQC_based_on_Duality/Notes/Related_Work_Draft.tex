@@ -1,0 +1,68 @@
+% Candidate introduction/related-work text, not included by the main document.
+% Uses references.bib and Literature_Review_Additions.bib.
+% Apply Literature_Review_Replacements.bib by replacing matching entries,
+% not by loading a second database containing the same keys.
+% The final paragraph intentionally describes scope without claiming priority
+% or asserting completion of the proof obligations in Literature_Review.md.
+
+Robust control of distributed-parameter systems requires methods that account
+for both spatial dynamics and uncertainty. Established approaches include PDE
+backstepping, direct Lyapunov methods for uncertain parabolic systems, and
+semidefinite programming for PDE stability
+analysis~\cite{krstic2008boundary,fridman2012sampled,valmorbida2016pdesdp}.
+The partial integral equation (PIE) representation provides an algebraic
+description of a class of PDEs through bounded partial integral (PI)
+operators~\cite{peet2021pierepresentation,shivakumar2024GDPE}.
+Its dual representation enables nominal state-feedback synthesis using
+operator inequalities~\cite{shivaknew}. Extending this construction to
+uncertain systems requires uncertainty descriptions compatible with both the
+PIE representation and controller synthesis.
+
+Integral quadratic constraints (IQCs) provide a framework for describing
+uncertainty and nonlinear input--output behavior~\cite{megretski1997system}.
+Their dissipation interpretation connects these descriptions to storage
+inequalities~\cite{willems1972dissipative1,6915700}.
+PI multipliers have been used for robust ODE--PDE
+analysis~\cite{9303892}, and hard IQCs with infinite-dimensional channels
+admit sufficient PIE-based KYP tests~\cite{10156335}.
+More recently, an IQC-based PIE framework has addressed structured robustness,
+performance, and observer-gain
+synthesis~\cite{lenssen2025muanalysissynthesisframeworkpartial}.
+These results motivate a corresponding treatment of robust feedback
+controller synthesis.
+
+IQC duality also has established finite-dimensional synthesis applications.
+Dual constraints enable robust disturbance-feedforward
+design~\cite{kose2009robust}, while dual filters and storage transformations
+support convex estimator and feedforward synthesis for gridded LPV
+systems~\cite{venkataraman}.
+Convexity depends on the plant and controller
+structure~\cite{scherer2009robust}.
+For more general dynamic multipliers, synthesis methods commonly alternate
+between controller design and multiplier
+analysis~\cite{veenman2014iqcsynthesis,wang2016robustiqc}.
+Dynamic-IQC feedback constructions also exist for uncertain systems with
+state delay~\cite{7353149}. These distinctions are relevant when comparing a
+convex synthesis condition with a joint controller--multiplier optimization.
+
+The passage between frequency-domain multipliers and finite-horizon
+inequalities requires particular care. Factorizations preserving graph and
+inverse-graph conditions are studied through doubly-hard
+factorizations~\cite{carrasco2018equivalence}; finite-horizon IQCs with terminal
+costs provide a complementary connection to
+dissipativity~\cite{scherer2018dynamicdissipation}.
+Additional storage associated with the multiplier can also reduce
+conservatism~\cite{magicalhiddenenergy,hu}.
+These results distinguish admissible finite-horizon certificates from
+frequency-domain factorization identities alone.
+
+This paper studies robust state-feedback synthesis for uncertain systems
+admitting a PIE representation through duality of dynamically filtered IQC
+conditions. The construction addresses the placement of the reconstruction
+operator in the synthesis inequality and the recovery of controllers from
+dual operator variables. The synthesis problem is considered for fixed
+admissible filter data, with explicit causal inverse and realization
+assumptions. Static factors lead to state feedback, while dynamic factors
+introduce controller states driven by specified available signals. The
+uncertainty classes and measurement assumptions are stated separately for
+these two realizations.

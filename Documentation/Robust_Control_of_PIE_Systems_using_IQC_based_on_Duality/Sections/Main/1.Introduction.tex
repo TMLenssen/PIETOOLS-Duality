@@ -1,7 +1,34 @@
-
 % !TEX root = ../../Extensions of IQC Duality to Partial Integral Equations.tex
-This paper uses PN PI operators inspired by the works \cite{venkataraman, hu,
-magicalhiddenenergy}. Then it IQC extends the results from \cite{10156335,
-9303892, lenssen2025muanalysissynthesisframeworkpartial}. \cite{kose2009robust}
-also covers robust control using dual iqc
+The broader system-theoretic foundations include the semigroup treatments of
+Curtain and Pritchard~\cite{curtain1978infinite} and Curtain and
+Zwart~\cite{curtain1995introduction}, and the well-posed linear systems
+framework of Staffans~\cite{staffans2005wellposed}.
+Earlier infinite-dimensional robust control includes stabilization by
+finite-dimensional controllers~\cite{curtain1986robust} and state-space
+$H_\infty$ synthesis for distributed-parameter systems~\cite{vankeulen1993hinfinity}.
 
+Related PDE methods include backstepping~\cite{krstic2008boundary},
+robust Lyapunov-based control~\cite{fridman2012sampled}, and semidefinite
+stability analysis~\cite{valmorbida2016pdesdp}. PIE representations provide
+an operator framework for PDE analysis~\cite{peet2021pierepresentation,shivakumar2024GDPE},
+with duality enabling nominal state-feedback synthesis~\cite{shivaknew}.
+
+IQCs describe uncertainty~\cite{megretski1997system} and connect to storage
+inequalities through dissipativity~\cite{willems1972dissipative1,6915700}.
+PIE-based developments cover robust ODE--PDE analysis~\cite{9303892},
+infinite-dimensional hard IQCs~\cite{10156335}, and structured robustness,
+performance, and observer synthesis~\cite{lenssen2025muanalysissynthesisframeworkpartial}.
+
+Dual IQCs support robust feedforward design~\cite{kose2009robust} and LPV
+estimator and feedforward synthesis~\cite{venkataraman}. Convex synthesis
+depends on the system structure~\cite{scherer2009robust}; general dynamic
+multiplier methods use alternating design and analysis~\cite{veenman2014iqcsynthesis,wang2016robustiqc}.
+Dynamic-IQC feedback also addresses uncertain systems with state delay~\cite{7353149}.
+
+For finite-horizon certificates, relevant connections include doubly-hard
+factorizations~\cite{carrasco2018equivalence}, IQCs with terminal
+costs~\cite{scherer2018dynamicdissipation}, and multiplier storage that reduces
+conservatism~\cite{magicalhiddenenergy,hu}.
+
+
+\cite{TOOLHALLY2026103558}

@@ -1,0 +1,87 @@
+% Exact analytic plant coefficients. No controller is substituted.
+% The uncertainty loop is closed; u remains the boundary-control input.
+
+Let $s\in[0,1]$ and let $\delta$ be a constant real parameter, with
+$|\delta|\leq\alpha$ (the example uses $\alpha=0.5$).
+The uncertain plant, with control input $u$ and disturbance $w_{\mathrm p}$,
+is exactly
+\begin{align*}
+ \partial_t v_1(t,s)
+ &=\frac15\,\partial_s^2v_1(t,s)
+   +\left(-2+\frac{\pi^2}{20}
+              +\frac{\delta(1+\delta)}{1+\delta^2}\right)v_1(t,s)
+   -3v_2(t,s)
+   +s\,\frac{1-\delta^2}{1+\delta^2}\,w_{\mathrm p}(t),\\
+ \partial_t v_2(t,s)
+ &=\frac15\,\partial_s^2v_2(t,s)
+   +v_1(t,s)+\left(1+\frac{\pi^2}{20}\right)v_2(t,s).
+\end{align*}
+The boundary actuator satisfies
+\begin{align*}
+ v_1(t,0)&=0,&v_2(t,0)&=0,\\
+ \partial_s v_1(t,1)&=x_{\mathrm b}(t),&
+ \partial_s v_2(t,1)&=0,&
+ \dot x_{\mathrm b}(t)&=u(t).
+\end{align*}
+The performance outputs are
+\begin{align*}
+ z_{\mathrm p}(t)
+ &=\frac{3(1+2\delta^2)}{1+\delta^2}
+      \int_0^1s\,v_1(t,s)\,ds
+   +\frac{\delta(1-\delta)}{1+\delta^2}\,w_{\mathrm p}(t),\\
+ z_u(t)&=\frac1{10}u(t).
+\end{align*}
+No feedback law has been substituted: $u$ remains an independent input.
+
+These coefficients follow analytically from the two uncertainty equations
+\begin{align*}
+ w_{\Delta,1}
+ &=\delta\bigl(\partial_s v_1+w_{\Delta,1}-2w_{\Delta,2}\bigr),\\
+ w_{\Delta,2}
+ &=\delta\bigl(w_{\Delta,1}-w_{\Delta,2}+w_{\mathrm p}\bigr).
+\end{align*}
+Equivalently,
+\[
+ \begin{bmatrix}1-\delta&2\delta\\-\delta&1+\delta\end{bmatrix}
+ \begin{bmatrix}w_{\Delta,1}\\w_{\Delta,2}\end{bmatrix}
+ =
+ \begin{bmatrix}\delta\,\partial_s v_1\\\delta\,w_{\mathrm p}\end{bmatrix}.
+\]
+The determinant is $1+\delta^2$, so for every real $\delta$,
+\begin{align*}
+ w_{\Delta,1}
+ &=\frac{\delta(1+\delta)}{1+\delta^2}\,\partial_s v_1
+    -\frac{2\delta^2}{1+\delta^2}\,w_{\mathrm p},\\
+ w_{\Delta,2}
+ &=\frac{\delta^2}{1+\delta^2}\,\partial_s v_1
+    +\frac{\delta(1-\delta)}{1+\delta^2}\,w_{\mathrm p}.
+\end{align*}
+The first state equation contains
+$\int_0^s w_{\Delta,1}(t,\theta)\,d\theta$.
+Since $v_1(t,0)=0$ and $\delta$ is spatially constant, this term equals
+\[
+ \frac{\delta(1+\delta)}{1+\delta^2}\,v_1(t,s)
+ -\frac{2s\delta^2}{1+\delta^2}\,w_{\mathrm p}(t).
+\]
+Substitution into the state equation, together with
+\[
+ z_{\mathrm p}(t)
+ =3\int_0^1s\left(v_1(t,s)
+       +\int_0^s w_{\Delta,2}(t,\theta)\,d\theta\right)\,ds,
+\]
+gives the plant coefficients stated above. No additional integration of
+$w_\Delta$ is needed inside the differentiated $z_\Delta$ equations.
+
+The nominal plant is obtained by setting $\delta=0$:
+\begin{align*}
+ \partial_t v_1
+ &=\frac15\,\partial_s^2v_1
+   +\left(-2+\frac{\pi^2}{20}\right)v_1-3v_2+s\,w_{\mathrm p},\\
+ \partial_t v_2
+ &=\frac15\,\partial_s^2v_2+v_1
+   +\left(1+\frac{\pi^2}{20}\right)v_2,\\
+ z_{\mathrm p}(t)&=3\int_0^1s\,v_1(t,s)\,ds,\qquad
+ z_u(t)=\frac1{10}u(t),
+\end{align*}
+with the same boundary conditions and boundary-actuator equation.
+

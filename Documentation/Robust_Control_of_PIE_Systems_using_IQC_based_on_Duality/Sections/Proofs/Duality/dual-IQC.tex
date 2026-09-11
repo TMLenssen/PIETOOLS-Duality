@@ -1,6 +1,6 @@
 % !TEX root = ../../../Extensions of IQC Duality to Partial Integral Equations.tex
 \subsection{Proof of Theorem~\ref{thm:dual-iqc}}\label{proof:dual-iqc}
-$1)\implies2)$ Assume there exists a $0<\rho<1$ such that
+$1)\implies2)$ Assume there exists a $\rho<1$ such that
 $\|p_T G_0\tilde w\|_{\mbf{L}}\leq\rho\|p_T \tilde w\|_{\mbf{L}}$
 for all $\tilde{w}\in \mbf{L}$ and $T\geq0$. We need to show that
 $\mcl I\leq-\epsilon\|p_Tw\|_{\mbf{L}}^2$ for some $\epsilon>0$. First since $\Gamma$ is causally boundedly invertible,
@@ -15,7 +15,7 @@ $\|p_Tw\|_{\mbf{L}}=\|p_T\Gamma^{-1}p_T\Gamma w\|_{\mbf{L}}
 \leq\|\Gamma^{-1}\|_{\mcl{L}(\mbf{L})}\|p_T\Gamma w\|_{\mbf{L}}$. Thus, $\epsilon=\frac{(1-\rho^2)}{\|\Gamma^{-1}\|_{\mcl{L}(\mbf{L})}^2}>0$.
 
 $2)\implies1)$ Assume that there exists a $\epsilon > 0$ such that $\mcl I\leq-\epsilon\|p_Tw\|_{\mbf{L}}^2$ for every $w$, and every $T\geq0$. 
-We need to establish there exists a $0<\rho<1$ such that
+We need to establish there exists a $\rho<1$ such that
 $\|p_T G_0\tilde w\|_{\mbf{L}}\leq\rho\|p_T \tilde w\|_{\mbf{L}}$
 for all $\tilde{w}\in \mbf{L}$ and $T\geq0$. For arbitrary $\tilde w$, 
 set $w=\Gamma^{-1}\tilde w$. Then
@@ -31,7 +31,7 @@ $\|p_T\tilde w\|_{\mbf{L}}\leq
     \leq\left(1-\frac{\epsilon}{\|\Gamma\|_{\mcl{L}(\mbf{L})}^2}\right)
     \|p_T\tilde w\|_{\mbf{L}}^2.
 \]
-Choose $0<\rho<1$ such that $1-\epsilon/\|\Gamma\|^2\leq\rho^2<1$, 
+Choose $\rho<1$ such that $1-\epsilon/\|\Gamma\|^2\leq\rho^2<1$, 
 then $\|p_TG_0\tilde w\|_{\mbf{L}}\leq\rho\|p_T\tilde w\|_{\mbf{L}}$
 for every $\tilde w$ and $T\geq0$.
 
@@ -122,7 +122,7 @@ and hence
     =\bmat{G_0^\top\\I}\underline\Gamma\underline w.
 \]
 By Theorem~\ref{thm:dual-l2-gain}, $G_0$ and $G_0^\top$ have the
-same induced $L_2$-gain. Hence, for any $\rho>0$,
+same induced $L_2$-gain. Hence, for any $\rho$,
 \[
 \begin{aligned}
 &\|p_TG_0\tilde w\|_{\mbf L}

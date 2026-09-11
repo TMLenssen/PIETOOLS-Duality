@@ -1,136 +1,103 @@
 % !TEX root = ../../../Extensions of IQC Duality to Partial Integral Equations.tex
-\subsection{Proof of Theorem~\ref{thm:state-feedback}}\label{proof:state-feedback}
-Since $\mcl P\succ0$, define $\mcl K_P$ and $\mcl K_\Psi$ by
+\subsection{Proof of Corollary~\ref{thm:state-feedback}}\label{proof:state-feedback}
+Since $\mcl P\succ0$, define $\mcl K_P$ and $\mcl K_\Theta$ by
 \[
 \mcl Z^*
 =
-\bmat{\mcl K_P&\mcl K_\Psi}\mcl P.
+\bmat{\mcl K_P&\mcl K_\Theta}\mcl P.
 \]
-Set
+The feedback-dependent rows of the dual component block give
 \begin{equation*}
 \begin{aligned}
 \underline{\mcl A}
 &:=
 \underline{\mcl A}_0
 +
-\bmat{\mcl K_P^*\\\mcl K_\Psi^*}
+\bmat{\mcl K_P^*\\\mcl K_\Theta^*}
 \bmat{\mcl B_u^*&0},
 &
 \underline{\mcl B}
 &:=
 \underline{\mcl B}_0
 +
-\bmat{\mcl K_P^*\\\mcl K_\Psi^*}
+\bmat{\mcl K_P^*\\\mcl K_\Theta^*}
 \mcl D_{zu}^* .
 \end{aligned}
 \end{equation*}
 Then \eqref{eq:controller-kyp} is the dual KYP inequality for
-\begin{equation*}
-\mbf D(\Psi)
-\bmat{P_K^\top\\I}\underline w
-:=
-\left\{
-\bmat{
-\underline{\mcl T}\dot{\underline{\mbf{x}}}(t)\\
-\underline v(t)
-}
-=
-\bmat{
-\underline{\mcl A}&\underline{\mcl B}\\
-\underline{\mcl C}&\underline{\mcl D}
-}
-\bmat{
-\underline{\mbf{x}}(t)\\
-\underline w(t)
-}
-\right.,
-\qquad
-P_K:=K\star P,
-\qquad
-\underline{\mbf{x}}
-:=
-\bmat{\underline{\mbf{x}}_P\\\underline{\mbf{x}}_\Psi}.
-\end{equation*}
-For
-\[
-V(\underline{\mbf{x}})
-:=
-\ip{\underline{\mcl T}\underline{\mbf{x}}}
-{\mcl P\underline{\mcl T}\underline{\mbf{x}}}
-\geq0,
-\]
-the standard storage argument gives, for zero initial conditions,
-\begin{equation*}
-\ip{p_T\mbf D(\Psi)\bmat{P_K^\top\\I}\underline w}
-{p_T\mcl M_{\underline{\mcl V}}
-\mbf D(\Psi)\bmat{P_K^\top\\I}\underline w}_{\mbf L_{[a,b]}}
-\leq
--\underline\epsilon
-\|p_T\underline w\|_{\mbf L_{[a,b]}}^2.
-\end{equation*}
-
-Define
-\[
-\Theta:=\mcl M_{\mcl U}\Psi.
-\]
-Using
-\[
-\underline{\mcl V}
-=
-\mbf D(\mcl U)^*
-J_{\mbf n_w,\mbf n_z}
-\mbf D(\mcl U),
-\qquad
-\mbf D(\Theta)
-=
-\mcl M_{\mbf D(\mcl U)}\mbf D(\Psi),
-\]
-the preceding inequality becomes
-\begin{equation}\label{eq:sf-dual-iqc}
-\ip{p_T\mbf D(\Theta)\bmat{P_K^\top\\I}\underline w}
-{p_TJ_{\mbf n_w,\mbf n_z}
-\mbf D(\Theta)\bmat{P_K^\top\\I}\underline w}_{\mbf L_{[a,b]}}
-\leq
--\underline\epsilon
-\|p_T\underline w\|_{\mbf L_{[a,b]}}^2.
-\end{equation}
-
-By Lemma~\ref{lem:potapov-ginzburg-equivalence}, there exist invertible
-coordinate operators $\mcl M_{\Gamma_K}$ and
-$\mcl M_{\underline\Gamma_K}$ such that
+the closed-loop filtered system
+$\mbf D(\Theta)\bmat{(K\star P)^\top\\I}$. From the last row of the
+primal component block, its
+PI congruence transformation and inverse are
 \begin{equation*}
 \begin{aligned}
-\Theta\bmat{P_K\\I}w
-&=
-\bmat{P_K\star(\Theta^\dagger R)\\I}
-\mcl M_{\Gamma_K}w,\\
-\mbf D(\Theta)\bmat{P_K^\top\\I}\underline w
-&=
-\bmat{P_K^\top\star\bigl(R(\Theta^\dagger)^\top\bigr)\\I}
-\mcl M_{\underline\Gamma_K}\underline w,
+\mcl M_\Gamma
+&:=\bmat{
+I&0&0\\
+0&I&0\\
+\mcl D_{21}(\mcl C_P+\mcl D_{zu}\mcl K_P)
+&\mcl C_2+\mcl D_{21}\mcl D_{zu}\mcl K_\Theta
+&\mcl D_{21}\mcl D_P+\mcl D_{22}
+},\\
+\mcl M_{\Gamma^{-1}}
+&:=\bmat{
+I&0&0\\
+0&I&0\\
+-\Lambda\mcl D_{21}(\mcl C_P+\mcl D_{zu}\mcl K_P)
+&-\Lambda(\mcl C_2+\mcl D_{21}\mcl D_{zu}\mcl K_\Theta)
+&\Lambda
+}.
 \end{aligned}
 \end{equation*}
-where
+Equivalently, the primal filtered-input row is
 \begin{equation*}
-\mbf D(\Theta)^\dagger R
-=
-R(\Theta^\dagger)^\top,
-\qquad
-P_K^\top\star\bigl(R(\Theta^\dagger)^\top\bigr)
-=
-\left(P_K\star(\Theta^\dagger R)\right)^\top.
+\bmat{\mbf x_P\\\mbf x_\Theta\\\tilde w}
+=\mcl M_\Gamma
+\bmat{\mbf x_P\\\mbf x_\Theta\\w}.
 \end{equation*}
-Thus \eqref{eq:sf-dual-iqc} is the dual feasibility condition associated
-with the primal filtered system. Theorem~\ref{thm:primal-dual-iqc-feasibility}
-therefore gives some $\epsilon>0$ such that
+The last row of the dual component block gives the differently structured
+dual map. By the primal--dual invertibility equivalence in
+Theorem~\ref{thm:dual-iqc},
 \begin{equation*}
-\ip{p_T\Theta\bmat{P_K\\I}w}
-{p_TJ_{\mbf n_z,\mbf n_w}
-\Theta\bmat{P_K\\I}w}_{\mbf L_{[a,b]}}
-\leq
--\epsilon\|p_Tw\|_{\mbf L_{[a,b]}}^2.
+\underline\Lambda
+:=\bigl(\underline{\mcl D}_{21}\mcl D_P^*
++\underline{\mcl D}_{22}\bigr)^{-1}\in\Pi_4,
 \end{equation*}
-Since $(\Theta,J_{\mbf n_z,\mbf n_w})$
-is the primal hard-IQC factorization, Theorem~\ref{thm:robust-stability-performance}
-gives robust stability and robust performance of
-$K\star P\star\Delta$.
+and
+\begin{equation*}\
+\mcl M_{\underline\Gamma}
+:=\bmat{
+I&0&0\\
+0&I&0\\
+\underline{\mcl D}_{21}\mcl B_P^*
+&\underline{\mcl C}_2
+&\underline{\mcl D}_{21}\mcl D_P^*+\underline{\mcl D}_{22}
+},\quad
+\mcl M_{\underline\Gamma^{-1}}
+:=\bmat{
+I&0&0\\
+0&I&0\\
+-\underline\Lambda\underline{\mcl D}_{21}\mcl B_P^*
+&-\underline\Lambda\underline{\mcl C}_2
+&\underline\Lambda
+}.
+\end{equation*}
+That row acts as
+\begin{equation*}
+\bmat{\underline{\mbf x}_P\\\underline{\mbf x}_\Theta\\
+\tilde{\underline w}}
+=\mcl M_{\underline\Gamma}
+\bmat{\underline{\mbf x}_P\\\underline{\mbf x}_\Theta\\\underline w}.
+\end{equation*}
+Unlike $\mcl M_\Gamma$, the dual map has no explicit controller-gain blocks;
+the gains enter the dual state and input operators above. The analysis map
+is recovered by setting
+$\mcl K_P=\mcl K_\Theta=0$. These PI matrices act on the augmented
+state--input coordinates and induce the causal maps $\Gamma$ and
+$\underline\Gamma$ used in Theorem~\ref{thm:dual-iqc}; they are not those
+input--output maps themselves. All four coordinate maps lie in $\Pi_4$.
+Hence the dual KYP
+inequality gives statement~3 of Theorem~\ref{thm:dual-iqc}, which is
+equivalent to the strict primal hard IQC in statement~2. Therefore
+Theorem~\ref{thm:robust-stability-performance} proves robust stability and
+robust performance of $K\star P\star\Delta$.

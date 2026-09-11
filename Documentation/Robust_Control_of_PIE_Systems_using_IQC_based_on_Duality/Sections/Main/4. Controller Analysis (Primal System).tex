@@ -1,2 +1,60 @@
 % !TEX root = ../../Extensions of IQC Duality to Partial Integral Equations.tex
 \primalcontrollerfigure
+
+The controller synthesis problem is to find $K$ and an admissible IQC
+certificate that establish robust stability and performance of the
+closed-loop interconnection. The primal component block in
+\eqref{eq:primal-system-components} shows why the primal analysis condition
+does not directly yield a convex synthesis condition. The controller gains
+$\mcl K_{\mathrm p}$ and $\mcl K_\Theta$ enter both the state dynamics
+and the filtered outputs. When these gains are decision operators, the
+storage inequality contains products of the storage operator $\mcl P$
+and the controller gains.
+
+For ODE systems, a congruence transformation with $\mcl P^{-1}$,
+combined with a change of variables for the controller gain multiplied by
+$\mcl P^{-1}$, removes this bilinearity from the
+dynamics~\cite{zhou1996robust}. For the primal
+PIE realization, however, the storage operator is preceded by the adjoint
+of the reconstruction operator. Consequently, the same congruence leaves
+the factor
+\[
+    \mcl P^{-1}
+    \bmat{\mcl T_{\mathrm P}^*&0\\0&\mcl T^*}
+    \mcl P.
+\]
+For ODEs the middle factor is the identity, and the storage operators
+cancel. For PIEs these operators do not generally commute, so this
+cancellation is unavailable and the transformed inequality remains
+nonconvex. Thus, although the congruence is well-defined for coercive
+$\mcl P$, it cannot in general be used to obtain a convex synthesis
+condition as in the ODE case. Applying an inverse of the reconstruction
+operator does not generally resolve this issue either, since this inverse
+need not be bounded on the underlying $L_2$ space. These structural issues
+motivate the use of PIE duality for state-feedback
+synthesis~\cite{shivaknew}.
+
+A second obstacle arises when the controller $K$ and the multiplier
+weight $\mcl V$ are synthesized simultaneously. In the primal IQC
+condition, $\mcl V$ weights the quadratic expression in the filtered
+closed-loop signals. Since these signals depend on $K$, this expression
+couples the controller gains and the multiplier weight nonconvexly.
+The controller-dependent output rows in
+\eqref{eq:primal-system-components} display this dependence explicitly;
+using the $J$-spectral factor $\Theta$ fixes the weight to
+$J_{\mbf n_z,\mbf n_w}$, but does not remove the first obstacle.
+Joint synthesis of $K$ and $\mcl V$ is therefore generally nonconvex
+in the original primal variables, even for ODE systems, where the
+reconstruction operators are identities. Obtaining convex synthesis
+conditions requires additional structure or a suitable
+reformulation~\cite{scherer2009robust,7353149}.
+For general dynamic multipliers, established synthesis methods alternate
+between controller design and multiplier
+analysis~\cite{veenman2014iqcsynthesis,wang2016robustiqc}.
+
+These obstacles motivate the dual formulation developed next. By changing
+the placement of the controller in the component realization, it enables
+the alternative change of variables used for controller synthesis.
+
+\noindent\textit{[Placeholder: Specify the class of systems and the
+assumptions under which the proposed synthesis method applies.]}

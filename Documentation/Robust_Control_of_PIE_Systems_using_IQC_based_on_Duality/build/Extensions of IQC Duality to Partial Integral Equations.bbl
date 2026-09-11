@@ -1,11 +1,42 @@
 \begin{thebibliography}{10}
 
+\bibitem{carrasco2018equivalence}
+Joaquin Carrasco and Peter Seiler.
+\newblock Conditions for the equivalence between {IQC} and graph separation
+  stability results.
+\newblock {\em International Journal of Control}, 2018.
+\newblock Published online in 2018.
+
+\bibitem{curtain1986robust}
+Ruth~F. Curtain and Keith Glover.
+\newblock Robust stabilization of infinite dimensional systems by finite
+  dimensional controllers.
+\newblock {\em Systems \& Control Letters}, 7(1):41--47, 1986.
+
+\bibitem{curtain1978infinite}
+Ruth~F. Curtain and Anthony~J. Pritchard, editors.
+\newblock {\em Infinite Dimensional Linear Systems Theory}, volume~8 of {\em
+  Lecture Notes in Control and Information Sciences}.
+\newblock Springer-Verlag, Berlin, Heidelberg, 1978.
+
+\bibitem{curtain1995introduction}
+Ruth~F. Curtain and Hans Zwart.
+\newblock {\em An Introduction to Infinite-Dimensional Linear Systems Theory},
+  volume~21 of {\em Texts in Applied Mathematics}.
+\newblock Springer-Verlag, New York, 1995.
+
 \bibitem{9303892}
 A.~Das, S.~Shivakumar, M.~Peet, and S.~Weiland.
 \newblock {Robust Analysis of Uncertain ODE-PDE Systems Using PI Multipliers,
   PIEs and LPIs}.
 \newblock In {\em 2020 59th IEEE Conference on Decision and Control (CDC)},
   pages 634--639, 2020.
+
+\bibitem{fridman2012sampled}
+Emilia Fridman and Anatoly Blighovsky.
+\newblock Robust sampled-data control of a class of semilinear parabolic
+  systems.
+\newblock {\em Automatica}, 48(5):826--836, 2012.
 
 \bibitem{hu}
 Bin Hu, Márcio~J. Lacerda, and Peter Seiler.
@@ -21,10 +52,56 @@ I.~K{\"o}se and C.~Scherer.
 \newblock {\em International Journal of Robust and Nonlinear Control},
   19(11):1224--1247, 2009.
 
+\bibitem{krstic2008boundary}
+Miroslav Krsti{\'c} and Andrey Smyshlyaev.
+\newblock {\em Boundary Control of {PDE}s: A Course on Backstepping Designs},
+  volume~16 of {\em Advances in Design and Control}.
+\newblock Society for Industrial and Applied Mathematics, 2008.
+
 \bibitem{lenssen2025muanalysissynthesisframeworkpartial}
 Thijs Lenssen, Aleksandr Talitckii, Matthew Peet, and Amritam Das.
 \newblock {A $\mu$-Analysis and Synthesis Framework for Partial Integral
   Equations using IQCs}, 2025.
+
+\bibitem{megretski1997system}
+A.~Megretski and A.~Rantzer.
+\newblock {System analysis via integral quadratic constraints}.
+\newblock {\em IEEE Transactions on Automatic Control}, 42(6):819--830, 1997.
+
+\bibitem{MEINSMA1995243}
+Gjerrit Meinsma.
+\newblock J-spectral factorization and equalizing vectors.
+\newblock {\em Systems \& Control Letters}, 25(4):243--249, 1995.
+
+\bibitem{nevadoHolgado2010betaOscillations}
+Alejo~J. Nevado~Holgado, John~R. Terry, and Rafal Bogacz.
+\newblock {Conditions for the Generation of Beta Oscillations in the
+  Subthalamic Nucleus--Globus Pallidus Network}.
+\newblock {\em The Journal of Neuroscience}, 30(37):12340--12352, 2010.
+
+\bibitem{peet2020representationnetworkssystemsdelay}
+M.~Peet.
+\newblock {Representation of Networks and Systems with Delay DDEs, DDFs,
+  ODE-PDEs and PIEs}, 2020.
+
+\bibitem{peet2021pierepresentation}
+Matthew~M. Peet.
+\newblock A partial integral equation ({PIE}) representation of coupled linear
+  {PDE}s and scalable stability analysis using {LMI}s.
+\newblock {\em Automatica}, 125:109473, 2021.
+
+\bibitem{petcu2004control}
+Madalina Petcu and Roger Temam.
+\newblock {Control for the Sine-Gordon Equation}.
+\newblock {\em ESAIM: Control, Optimisation and Calculus of Variations},
+  10(4):553--573, 2004.
+
+\bibitem{Pfifer2015}
+Harald Pfifer and Peter Seiler.
+\newblock Robustness analysis of linear parameter varying systems using
+  integral quadratic constraints.
+\newblock {\em International Journal of Robust and Nonlinear Control},
+  25(15):2843--2864, 2015.
 
 \bibitem{magicalhiddenenergy}
 Harald Pfifer and Peter Seiler.
@@ -38,11 +115,26 @@ R.~M. Redheffer.
 \newblock On a certain linear fractional transformation.
 \newblock {\em Journal of Mathematics and Physics}, 39(1-4):269--286, 1960.
 
-\bibitem{shivaknew}
-M.~Peet S.~Shivakumar, A.~Das.
-\newblock {Dual Representations and $H_\infty$-Optimal Control of Partial
-  Differential Equations}.
-\newblock {\em IEEE}, Volume(Issue):Start--End, 2026.
+\bibitem{scherer2009robust}
+C.~Scherer.
+\newblock {Robust controller synthesis is convex for systems without control
+  channel uncertainties}.
+\newblock In P.~Van~den Hof, C.~Scherer, and P.~Heuberger, editors, {\em Model
+  Based Control: Bridging Rigorous Theory and Advanced Technology}. Springer,
+  New York, 2009.
+
+\bibitem{scherer2008robustness}
+C.~Scherer and I.~K{\"o}se.
+\newblock {Robustness with dynamic integral quadratic constraints: an exact
+  state-space characterization of nominal stability with applications to robust
+  estimation}.
+\newblock {\em Automatica}, 44(7):1666--1675, 2008.
+
+\bibitem{scherer2018dynamicdissipation}
+Carsten~W. Scherer and Joost Veenman.
+\newblock Stability analysis by dynamic dissipation inequalities: On merging
+  frequency-domain techniques with time-domain conditions.
+\newblock {\em Systems \& Control Letters}, 121:7--15, 2018.
 
 \bibitem{6915700}
 Peter Seiler.
@@ -63,11 +155,64 @@ S.~Shivakumar, A.~Das, S.~Weiland, and M.~Peet.
   Input–Output Systems}.
 \newblock {\em IEEE Transactions on Automatic Control}, 70(5):3240--3255, 2025.
 
+\bibitem{shivaknew}
+Sachin Shivakumar, Amritam Das, and Matthew Peet.
+\newblock Dual representations and {$H_\infty$}-optimal control of partial
+  differential equations.
+\newblock {\em IEEE Transactions on Automatic Control}, 71(8):4956--4971, 2026.
+
+\bibitem{pietools2025manual}
+Sachin Shivakumar, Declan Jagt, Danilo Braghini, Amritam Das, Yulia Peet, and
+  Matthew Peet.
+\newblock {PIETOOLS 2025}: User manual, 2026.
+\newblock Version 2, revised 15 March 2026; first submitted in 2025.
+
+\bibitem{staffans2005wellposed}
+Olof Staffans.
+\newblock {\em Well-Posed Linear Systems}, volume 103 of {\em Encyclopedia of
+  Mathematics and its Applications}.
+\newblock Cambridge University Press, 2005.
+
 \bibitem{10156335}
 A.~Talitckii, M.~Peet, and P.~Seiler.
 \newblock {Integral Quadratic Constraints with Infinite-Dimensional Channels}.
 \newblock In {\em 2023 American Control Conference (ACC)}, pages 1576--1583,
   2023.
+
+\bibitem{TOOLHALLY2026103558}
+Samarth Toolhally, Joeri Roelofs, Siep Weiland, and Amritam Das.
+\newblock A digital twin of evaporative thermo-fluidic process in the fixation
+  unit of dod inkjet printers.
+\newblock {\em Mechatronics}, 118:103558, 2026.
+
+\bibitem{turner2022zamesfalbmultipliersdontpanic}
+Matthew~C. Turner.
+\newblock Zames-falb multipliers: don't panic, 2022.
+
+\bibitem{valmorbida2016pdesdp}
+Giorgio Valmorbida, Mohamadreza Ahmadi, and Antonis Papachristodoulou.
+\newblock Stability analysis for a class of partial differential equations via
+  semidefinite programming.
+\newblock {\em IEEE Transactions on Automatic Control}, 61(6):1649--1654, 2016.
+
+\bibitem{vankeulen1993hinfinity}
+Bert van Keulen.
+\newblock {\em {$H_\infty$}-Control for Distributed Parameter Systems: A
+  State-Space Approach}.
+\newblock Systems \& Control: Foundations \& Applications. Birkh{\"a}user,
+  Boston, 1993.
+
+\bibitem{veenman2016robust}
+J.~Veenman, C.~Scherer, and H.~K{\"o}ro{\u{g}}lu.
+\newblock {Robust stability and performance analysis based on integral
+  quadratic constraints}.
+\newblock {\em European Journal of Control}, 31:1--32, 2016.
+
+\bibitem{veenman2014iqcsynthesis}
+Joost Veenman and Carsten~W. Scherer.
+\newblock {IQC}-synthesis with general dynamic multipliers.
+\newblock {\em International Journal of Robust and Nonlinear Control},
+  24(17):3027--3056, 2014.
 
 \bibitem{venkataraman}
 Raghu Venkataraman and Peter Seiler.
@@ -76,11 +221,29 @@ Raghu Venkataraman and Peter Seiler.
 \newblock {\em International Journal of Robust and Nonlinear Control},
   28(3):953--975, 2018.
 
+\bibitem{wang2016robustiqc}
+Shu Wang, Harald Pfifer, and Peter Seiler.
+\newblock Robust synthesis for linear parameter varying systems using integral
+  quadratic constraints.
+\newblock {\em Automatica}, 68:111--118, 2016.
+
+\bibitem{willems1972dissipative1}
+Jan~C. Willems.
+\newblock Dissipative dynamical systems---{Part I}: General theory.
+\newblock {\em Archive for Rational Mechanics and Analysis}, 45(5):321--351,
+  1972.
+
 \bibitem{7353149}
 Chengzhi Yuan and Fen Wu.
 \newblock Dynamic iqc-based control of uncertain lft systems with time-varying
   state delay.
 \newblock {\em IEEE Transactions on Cybernetics}, 46(12):3320--3329, 2016.
+
+\bibitem{zames1968stability}
+G.~Zames and P.~Falb.
+\newblock {Stability conditions for systems with monotone and slope-restricted
+  nonlinearities}.
+\newblock {\em SIAM Journal on Control}, 6(1):89--109, 1968.
 
 \bibitem{zhou1996robust}
 Kemin Zhou, John~Comstock Doyle, Keith Glover, et~al.

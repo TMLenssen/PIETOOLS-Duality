@@ -4,18 +4,19 @@
 % This function executes the dual-IQC state-feedback synthesis LPI in
 % equation (controller-kyp) of the paper.
 %
+%
 % INPUT:
 % prog     - initialized PIETOOLS program containing any multiplier
 %            decision variables, constraints, and objective
-% settings - an lpisettings() structure
+% settings - an lpisettings() structure;
 % P        - generalized-plant box with PI operators as fields
 % Theta    - filter container; Theta.dual is the dual-filter box
 % Vbar     - dual multiplier, as a numeric/dpvar matrix or opvar/dopvar
 %
 % OUTPUT:
 % K    - controller satisfying K = Z'*P^(-1)
-% Z    - controller variable satisfying Z = P*K'
-% P    - storage operator proving the dual IQC inequality
+% Z    - standard: Z=P*K'; 
+% P    - standard storage P;
 % prog - solved PIETOOLS LPI program
 % kypBound - optimized scalar KYP relaxation/margin
 %
@@ -197,7 +198,7 @@ Imat = blkdiag(eppos*eye(Pdec.dim(1,:)),eppos2*eye(Pdec.dim(2,:)));
 
 Pdec = Pdec+mat2opvar(Imat,Pdec.dim(:,2),vars,dom);
 
-% Z = P*[Kp';KTheta'] maps the controller output space into the augmented
+% Standard Z=P*K'. Z maps the controller output space into the augmented
 % dual state space.
 [prog,Zdec] = lpivar(prog,[Tdual.dim(:,1),BuT.dim(:,1)],ddZ);
 
@@ -274,32 +275,29 @@ end
 % Solve the LPI program.
 prog = quiet_lpisolve(prog,sos_opts);
 
-maxRecoveryNumerr = 1;
-if isfield(settings,'maxNumerr') && ~isempty(settings.maxNumerr)
-    maxRecoveryNumerr = settings.maxNumerr;
-end
-feasratioTolerance = 0.3;
-if isfield(settings,'feasratioTolerance') && ~isempty(settings.feasratioTolerance)
-    feasratioTolerance = settings.feasratioTolerance;
-end
-canRecover = has_acceptable_solution(prog,maxRecoveryNumerr,feasratioTolerance);
-if true%canRecover
-    % For separable P, inv_opvar uses the analytic 4-PI inverse.
-    P = lpigetsol(prog,Pdec);
-    Z = lpigetsol(prog,Zdec);
-    K = Z'*inv_opvar(P,0);
-    controllerCleanTol = 1e-6;
-    if isfield(settings,'controllerCleanTol') ...
-            && ~isempty(settings.controllerCleanTol)
-        controllerCleanTol = settings.controllerCleanTol;
-    end
-    K = clean_opvar(K,controllerCleanTol);
-else
-    K = [];
-    Z = [];
-    P = [];
-end
 
+
+% Extract any returned candidate; solver diagnostics remain in prog.solinfo.
+if ~has_solution(prog)
+    K=[]; Z=[]; P=[];
+    return;
+end
+% Separable storage uses the 4-PI inverse formula; a nonconstant R0 inverse
+% is polynomially approximated by PIETOOLS. Reanalyze the recovered K.
+P = lpigetsol(prog,Pdec);
+Z = lpigetsol(prog,Zdec);
+% Optional inspection of the solved LPI without numerical inversion.
+if isfield(settings,'recoverController') && ~settings.recoverController
+    K = [];
+    return
+end
+K = Z'*inv_opvar(P,0);
+controllerCleanTol = 1e-6;
+if isfield(settings,'controllerCleanTol') ...
+        && ~isempty(settings.controllerCleanTol)
+    controllerCleanTol = settings.controllerCleanTol;
+end
+K = clean_opvar(K,controllerCleanTol);
 end
 
 function prog = quiet_lpisolve(prog,sos_opts)
@@ -308,14 +306,23 @@ prog.solinfo.residual = program_residual(prog);
 end
 
 function residual = program_residual(prog)
-% Store the same affine-equation residual printed by SOSTOOLS.
+% SOSTOOLS prints this value but does not retain it in solinfo.
 Atf = [];
 bf = [];
 for k = 1:prog.expr.num
     Atf = [Atf,prog.expr.At{k}]; %#ok<AGROW>
     bf = [bf;prog.expr.b{k}]; %#ok<AGROW>
 end
-residual = norm(Atf.'*prog.solinfo.RRx-bf);
+if ~has_solution(prog) || size(Atf,1)~=numel(prog.solinfo.RRx)
+    residual = NaN;
+else
+    residual = norm(Atf.'*prog.solinfo.RRx(:)-bf);
+end
+end
+
+function tf = has_solution(prog)
+tf = isfield(prog,'solinfo') && isfield(prog.solinfo,'RRx') ...
+    && ~isempty(prog.solinfo.RRx);
 end
 
 function tf = has_member(container,name)
@@ -324,26 +331,6 @@ if isstruct(container)
 else
     tf = isprop(container,name);
 end
-end
-
-function tf = has_acceptable_solution(prog,maxNumerr,feasratioTolerance)
-tf = false;
-if ~isfield(prog,'solinfo') || ~isfield(prog.solinfo,'info')
-    return
-end
-info = prog.solinfo.info;
-required = {'feasratio','pinf','dinf','numerr'};
-if ~all(isfield(info,required))
-    return
-end
-ratio = double(info.feasratio);
-pinf = double(info.pinf);
-dinf = double(info.dinf);
-numerr = double(info.numerr);
-tf = isfinite(ratio) && abs(ratio-1) <= feasratioTolerance ...
-    && isfinite(pinf) && pinf == 0 ...
-    && isfinite(dinf) && dinf == 0 ...
-    && isfinite(numerr) && numerr <= maxNumerr;
 end
 
 function missing = missing_members(container,required)

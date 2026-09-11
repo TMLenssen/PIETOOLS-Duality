@@ -9,13 +9,13 @@
 % INPUT:
 % prog     - initialized PIETOOLS program containing any multiplier
 %            decision variables and constraints
-% settings - an lpisettings() structure
+% settings - an lpisettings() structure;
 % G        - assembled graph with fields
 %            vars,dom,T,A,B1,C1,C2,D11,D21
 % V        - primal or dual multiplier as numeric/dpvar or opvar/dopvar
 %
 % OUTPUT:
-% P        - storage operator proving the IQC inequality
+% P        - standard: P;
 % prog     - solved PIETOOLS LPI program
 % kypBound - signed-mode decision variable; empty in normal mode
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -125,8 +125,8 @@ if strcmp(kypSlackMode,'signed')
 end
 
 Iw = mat2opvar(eye(sum(B.dim(:,2))),B.dim(:,2),vars,dom);
-K11 = T'*Pdec*A+(T'*Pdec*A)';
-K12 = T'*Pdec*B;
+    K11 = T'*Pdec*A+(T'*Pdec*A)';
+    K12 = T'*Pdec*B;
 CD = block_hcat(C,D,vars,dom);
 KYP = block_2x2(K11,K12,K12',epsIQC*Iw,vars,dom) ...
       +CD'*V*CD;
@@ -143,12 +143,32 @@ else
     else
         De = De1;
     end
+    % getdeg reports [min_s,min_theta,max_s,max_theta] for each kernel.
+    % Controller recovery and output costs can introduce spatial powers
+    % beyond the requested slack basis. Add the missing integral-kernel
+    % support without inflating the entire two-variable basis.
+    requiredDegrees=getdeg(KYP);
+    kernelDegree=max(max(requiredDegrees(5:6,3:4)));
+    % Separate degree maxima do not detect missing mixed powers such as
+    % s^9*theta^9, so include the complete separable kernel basis.
+    if kernelDegree>0
+        kernelOptions=struct('sep',1,'exclude',[1,1,0,0]);
+        [prog,DeKernel]=poslpivar(prog,KYP.dim, ...
+            {0,[0,kernelDegree,kernelDegree],[0,kernelDegree,kernelDegree]}, ...
+            kernelOptions);
+        De=De+DeKernel;
+    end
+    prog.iqc.slackKernelDegree=kernelDegree;
     prog = lpi_eq(prog,De+KYP,'symmetric');
 end
 
 % Solve the LPI program and extract the storage operator.
 prog = quiet_lpisolve(prog,sos_opts);
-P = lpigetsol(prog,Pdec);
+if has_solution(prog)
+    P = lpigetsol(prog,Pdec);
+    else
+    P = [];
+end
 
 end
 
@@ -165,7 +185,16 @@ for k = 1:prog.expr.num
     Atf = [Atf,prog.expr.At{k}]; %#ok<AGROW>
     bf = [bf;prog.expr.b{k}]; %#ok<AGROW>
 end
-residual = norm(Atf.'*prog.solinfo.RRx-bf);
+if ~has_solution(prog) || size(Atf,1)~=numel(prog.solinfo.RRx)
+    residual = NaN;
+else
+    residual = norm(Atf.'*prog.solinfo.RRx(:)-bf);
+end
+end
+
+function tf = has_solution(prog)
+tf = isfield(prog,'solinfo') && isfield(prog.solinfo,'RRx') ...
+    && ~isempty(prog.solinfo.RRx);
 end
 
 function G = block_vcat(G1,G2,vars,dom)

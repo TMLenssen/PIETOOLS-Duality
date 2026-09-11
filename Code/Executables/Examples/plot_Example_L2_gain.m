@@ -1,13 +1,16 @@
-function files = plot_Example_L2_gain(exampleIdx, simulationDataFile, paperFigureDir)
+function files = plot_Example_L2_gain( ...
+    exampleIdx,simulationDataFile,paperFigureDir,plotOptions)
 %PLOT_EXAMPLE_L2_GAIN Regenerate Example_i L2-gain figures without synthesis.
 %
 %   files = plot_Example_L2_gain(exampleIdx)
 %   files = plot_Example_L2_gain(exampleIdx, simulationDataFile)
 %   files = plot_Example_L2_gain(exampleIdx, simulationDataFile, paperFigureDir)
+%   files = plot_Example_L2_gain(..., plotOptions)
 arguments
     exampleIdx (1,1) {mustBeInteger,mustBePositive}
     simulationDataFile = []
     paperFigureDir = []
+    plotOptions = struct
 end
 % Directory containing this plotting function.
 plotRoot = fileparts(mfilename('fullpath'));
@@ -31,6 +34,13 @@ end
 saved = load(simulationDataFile, 'plotData');
 data = saved.plotData;
 settings = plot_settings(exampleIdx);
+optionNames = fieldnames(plotOptions);
+for k = 1:numel(optionNames)
+    settings.(optionNames{k}) = plotOptions.(optionNames{k});
+end
+if isfield(data,'plotOpenLoop')
+    settings.plotOpenLoop = data.plotOpenLoop;
+end
 files = generate_pde_simulation_figures(paperFigureDir, ...
     data.s, data.t, data.zOpen, data.zClosed, data.inputSignal, ...
     data.boundarySignal, settings);
@@ -39,7 +49,8 @@ end
 
 function settings = plot_settings(exampleIdx)
 settings.filePrefix = sprintf('example%d', exampleIdx);
-settings.showPreview = false;
+settings.showPreview = true;
+settings.previewFigureName = sprintf('Example %d PDE simulation',exampleIdx);
 settings.axisLabels = {'$t$', '$s$', '$x(t,s)$'};
 settings.panelTitles = { ...
     '(a) Open-loop response', ...
@@ -48,6 +59,16 @@ settings.panelTitles = { ...
 settings.amplitudeYLabel = '$\max_{s\in[0,1]}|x(t,s)|$';
 settings.signalLegend = {'$w_p(t)$', '$x_b(t)$'};
 settings.signalTitle = 'Disturbance and boundary state';
-settings.surfaceTimeSamples = 1024;
-settings.surfaceSpaceSamples = 200;
+settings.surfaceTimeSamples = 2048;
+settings.surfaceSpaceSamples = 1024;
+settings.showZeroSurfaceLevel = true;
+settings.colormap = mplmap('RdYlBu_r',256);
+settings.tMajorTickSpacing = 5;
+settings.sMajorTickSpacing = 0.25;
+% settings.zMajorTickSpacing = 0.5;
+settings.tMinorTicksBetweenMajor = 9;
+settings.sMinorTicksBetweenMajor = 4;
+settings.zMinorTicksBetweenMajor = 9;
+settings.view = [45 45];
+% settings.resolution = 2400;
 end

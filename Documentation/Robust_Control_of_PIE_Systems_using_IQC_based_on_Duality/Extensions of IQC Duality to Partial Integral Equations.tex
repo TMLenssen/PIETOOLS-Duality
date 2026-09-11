@@ -1,4 +1,4 @@
-\documentclass[journal,10pt,doublecolumn,twoside, a4paper]{IEEEtran}
+\documentclass[journal,10pt,twocolumn,twoside, a4paper]{IEEEtran}
 % The preceding line is only needed to identify funding in the first footnote.
 % If that is unneeded, please comment it out.
 \usepackage{cite}
@@ -14,6 +14,7 @@
 \usepackage{arydshln}
 \usepackage{algorithm}
 \usepackage{algpseudocode} 
+\usepackage{calc}
 \usepackage{tikz}
 
 \usetikzlibrary{arrows.meta}
@@ -44,10 +45,10 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 \newtheorem{class}{Class}
 
 \begin{document}
-\title{Robust Controller Synthesis}
+\title{Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations}
 
 % \thanks{Corresponding author: t.m.lenssen@student.tue.nl}}%
-\author{Thijs Lenssen and Amritam Das% <-this % stops a space
+\author{Thijs Lenssen% <-this % stops a space
 % \thanks{This research was supported by the European Space Agency (grant
 % number: 4000145530), The MathWorks Inc, and in part by the National Science
 % Foundation (Grant NSF CCF-2323532). Opinions, findings, conclusions or
@@ -89,8 +90,12 @@ PDEs, Robust Control, LMIs;
 \section{Numerical Examples}
 \subfile{Sections/Main/7. Numerical Examples}
 
+\section{Connection to finite-dimensional dynamic multipliers}
+\label{sec:finite-dimensional-dynamic-multipliers}
+\subfile{Sections/Main/8. Connection to finite dimensional dynamic multipliers.tex}
+
 \section{Conclusion}\label{sec:conclusion}
-\subfile{Sections/Main/8. Conclusion}
+\subfile{Sections/Main/9. Conclusion}
 % \section*{Acknowledgment}
 
 % The preferred spelling of the word ``acknowledgment'' in America is without 
@@ -104,9 +109,8 @@ PDEs, Robust Control, LMIs;
 \onecolumn
 \appendices
 \renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
-\section{Mathematical Proofs}
+\section{Proofs}
 \subfile{Sections/Proofs/I. IQC.tex}
-% \subfile{Sections/I. Proofs by Section.tex}
 \subfile{Sections/Proofs/II. Duality.tex}
 \subfile{Sections/Proofs/Multipliers/multiplier_proof.tex}
 

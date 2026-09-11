@@ -1,41 +1,67 @@
 % !TEX root = ../../Extensions of IQC Duality to Partial Integral Equations.tex
 We will consider examples from \cite{shivaknew}
-but add uncertainty. Moreover, an additional example is considered namely
-the problem of oscillations in the Subthalamic Nucleus.
+but add uncertainty.
 
-\begin{example}[Reaction-Diffusion Equation]
+\begin{example}[Reaction-Diffusion Equation]\label{ex:reaction-diffusion}
 Consider boundary control of an unstable uncertain reaction-diffusion equation:
 \begin{align*}
-    &\dot{\mbf{v}}(t,s) = \partial_s^2\mbf{v}(t,s) + 5\mbf{v}(t,s) +  \frac{8}{5}w_{\Delta}(t,s) + s(1-s)w_p(t), \\
-    &\mbf{v}(t,0) =0, \quad \partial_s\mbf{v}(t,1) = x(t), \quad \dot{x}(t) = u(t),\\
-    &z_\Delta(t,s) = \mbf{v}(t,s), \quad z_p(t) = \bmat{x(t) \\ \int_0^1 \mbf{v}(t,s)ds}, 
+    &\dot{\mbf{v}}(t,s) = \mbf{v}_{ss}(t,s) + 5\mbf{v}(t,s) +  10w_{\Delta_1}(t,s) + sw_{\mathrm{p}}(t), \\
+    &\mbf{v}(t,0) =0, \quad \mbf{v}_s(t,1) = x(t), \quad \dot{x}(t) = u(t),\\
+    &z_{\Delta_1}(t,s) = \mbf{v}(t,s), \quad
+    (\Delta_1z_{\Delta_1})(t,s)=\delta z_{\Delta_1}(t,s),\\
+    &w_{\Delta_1}=\Delta_1z_{\Delta_1}, \quad |\delta|<1, \quad
+    z_p(t) = \bmat{x(t) \\ \int_0^1 \mbf{v}(t,s)ds}.
 \end{align*}
-The PIE realization of P has state $\mbf{x}(t) = \partial_s^2\mbf{v}(t)$, $(\Delta z_\Delta) = \delta z_\Delta$
-with $|\delta| < 1$ and PI operators,
+The PIE realization of this primal representation has state
+$\mbf{x}(t) =\bmat{x(t) & \mbf{v}_{ss}(t)}^\top$.
+Define the spatial integration operator $\mcl J\in\Pi_3$ by
+$(\mcl Jf)(t,s):=\int_0^s f(t,\theta)\,d\theta$, and introduce the filtered
+uncertainty channel
 \begin{align*}
-    &\mcl{T}_\mathrm{P} = \PIop{1}{0}{s}{\{0,-\theta,-s\}}, \, \mcl{A}_\mathrm{P}=\PIop{0}{0}{5s}{\{1,-5\theta,-5s\}}\\
-    &\mcl B_\mathrm{P} = \PIop{0}{\bmat{0&0}}{0.1}{\left\{\bmat{\frac45&\frac45},\bmat{0&0},\bmat{0&0}\right\}}\\
-    &\mcl B_\mathrm{u} = \PIop{1}{\emptyset}{0}{\{\emptyset\}}\\
-    &\mcl{C}_\mathrm{P}=\PIop{\bmat{1\\\frac12}}{\bmat{0\\\frac12s^2-s}}{\bmat{0\\s}}{\left\{\bmat{0\\1}, \bmat{0\\-\theta}, \bmat{0\\-s}\right\}}\\
+    &\dot{\mbf v}(t,s)=\mbf v_{ss}(t,s)+5\mbf v(t,s)
+      +10(\mcl Jw_{\Delta_2})(t,s)+sw_{\mathrm p}(t),\\
+    &\mbf v(t,0)=0,\quad \mbf v_s(t,1)=x(t),\quad
+      \dot x(t)=u(t),\\
+    &z_{\Delta_2}(t,s)=\mbf v_s(t,s),\quad
+      (\Delta_2z_{\Delta_2})(t,s)=\delta z_{\Delta_2}(t,s),\\
+    &w_{\Delta_2}=\Delta_2z_{\Delta_2},\quad |\delta|<1,\quad
+      z_{\mathrm p}(t)=\bmat{x(t)\\\int_0^1\mbf v(t,s)\,ds}.
 \end{align*}
-For this example we used $\underline{\Delta} = \Delta^* =\Delta$ instead of relying on factorization. $\underline{\Delta}=\Delta^*=\Delta$ implies that
-the same multiplier structure can be used on the primal and dual side. \cite{10156335} gives the following primal mutliplier structure 
-$\mcl{V}_\Delta\{\mcl{Q}_\Delta,\mcl{S}_\Delta, -\mcl{Q}_\Delta\}$,
-with $\mcl{Q}_\Delta^*=\mcl{Q}_\Delta\succeq 0\in\Pi_4$ and 
-$\mcl{S}_\Delta^*=-\mcl{S}_\Delta\in\Pi_4$ with $\Psi_\Delta = I$
-as $\Delta$ is assumed to be unmeasurable. The dual operators associated with the uncertainty have identical properties.
-Then define the primal $\mcl{V}_p\{I_2, 0, -\gamma^2\}$ and dual 
-$\underline{V}_p\{1, 0, -\underline{\gamma}^2I_2\}$, i.e. we are looking
-for the induced $L_2$-gain on the primal and dual side. Synthesizing a state 
-feedback controller corresponding to Theorem~\ref{thm:state-feedback} yields,
+Note that $sw_{\mathrm{p}}(t) = (\mcl{J}w_{\mathrm{p}})(t,s)$. This filtering produces an equivalent plant
+because the same scalar $\delta$ acts at every spatial location and $\mbf v(t,0)=0$:
+\begin{equation*}
+(\mcl Jw_{\Delta_2})(t,s)
+=\int_0^s\delta\,\mbf v_\theta(t,\theta)\,d\theta
+=\delta\mbf v(t,s)=w_{\Delta_1}(t,s).
+\end{equation*}
+The lifting does not change the uncertainty class,
+$\Delta_2=\delta I$ is still a repeated real parametric uncertainty, with the
+same scalar $\delta$. In particular,
+$\underline{\Delta}_2 = \Delta_2^*=\Delta_2$, so the same multiplier structure can be used on the
+primal and dual sides. Following~\cite{10156335}, we parameterize the primal
+multiplier as
+\begin{equation*}
+\mcl V_\Delta\{\mcl Q_\Delta,\mcl S_\Delta,-\mcl Q_\Delta\},
+\end{equation*}
+where $\mcl Q_\Delta^*=\mcl Q_\Delta\succeq0$ and
+$\mcl S_\Delta^*=-\mcl S_\Delta$, with
+$\mcl Q_\Delta,\mcl S_\Delta\in\Pi_4$ and $\Psi_\Delta=I$. The corresponding
+dual multiplier is parameterized analogously.
+
+For the induced $L_2$-gain from $w_{\mathrm p}$ to $z_{\mathrm p}$, define the
+primal performance multiplier $\mcl V_{\mathrm p}\{I_2,0,-\gamma^2\}$ and the
+dual performance multiplier
+$\underline{\mcl V}_{\mathrm p}\{1,0,-\underline\gamma^2I_2\}$. Moreover, the control gain is also bounded $\|\mcl{K}\|_{\mcl{L}(\mbf{L})} \leq 10^4$
+as an LPI constraint. Synthesis using this repeated-parametric IQC and Theorem~\ref{thm:state-feedback} yields
 \begin{align*}
-    u(t) = &-247.26x(t) + \int_0^1 K(s)\partial_s^2\mbf{v}(t,s)ds,\\
-    K(s) = &1.93s^{10} - 20.76s^9 + 81.61s^8 - 165.38s^7 + 191.14s^6 \\
-        &-94.18s^5 + 0.20s^4 - 102.86s^3 - 14.63s^2 + 335.30s \\
-        &- 0.004   
+    u(t) = &-247.26x(t) + \int_0^1 K(s)\mbf{v}_{ss}(t,s)ds,\\
+    K(s) = &1.93s^{10} - 20.76s^9 + 81.61s^8 - 165.38s^7 \\
+        &+191.14s^6 -94.18s^5 + 0.20s^4 - 102.86s^3 \\
+        &-14.63s^2 + 335.30s - 0.004
 \end{align*}
-Synthesis yielded a gain of $0.14242$, analysis yielded 
-$\gamma=0.13972$ and $\underline{\gamma}=0.13979$.
+Synthesis yielded a gain of $0.798$, while primal and dual analysis yielded
+$\gamma=0.743$ and $\underline{\gamma}=0.748$, respectively, for the
+closed-loop interconnection $K\star P\star\Delta$.
 \end{example}
 
 \subsection{Sector and Slope restricted uncertainty}
@@ -50,13 +76,12 @@ with $\alpha,\beta\in\R$. Then $\Delta$ satisfies the dual Hard IQC defined by $
 and
 \begin{equation}\label{eqn:dual-sec-mult}
     \underline{\mcl{V}}_\Delta = \bmat{\beta & -1\\ -\alpha & 1}^*
-    \bmat{0 & \underline{\mcl{S}}\\ \underline{\mcl{S}} & 0}\bmat{\beta & -1\\ -\alpha & 1}
+    \bmat{0 & \underline{\mcl{S}}_\Delta\\ \underline{\mcl{S}}_\Delta & 0}\bmat{\beta & -1\\ -\alpha & 1}
 \end{equation}
-for and $\underline{\mcl{S}}\in\Pi_3$ with
-\begin{equation*}
-    (\underline{\mcl{S}}\mbf{x})(s,t) := \underline{S}_0(s)\mbf{x}(s,t)
-\end{equation*}
-with $\underline{S}_0(s)> 0$
+for and $\underline{\mcl{S}}_\Delta\in\Pi_3$ with
+\begin{equation}\label{eqn:dual-sec-par}
+    (\underline{\mcl{S}}_\Delta\mbf{x})(s,t) := \underline{S}_0(s)\mbf{x}(s,t), \quad \underline{S}_0(s)> 0.
+\end{equation}
 \end{lemma}
 \begin{proof}
     See Appendix~\ref{proof:sec-bound}.
@@ -64,96 +89,54 @@ with $\underline{S}_0(s)> 0$
 
 
 
+Optimal and robust boundary control of the sine--Gordon equation has also
+been studied on finite horizons~\cite{petcu2004control}.
 \begin{example}[Sine--Gordon Wave Equation]\label{ex:sine-gordon}
 Consider boundary control of the sine--Gordon equation shifted about the
-unstable equilibrium $v=\pi$:
+unstable equilibrium. Using the spatial integration operator $\mcl J$
+introduced in
+Example~\ref{ex:reaction-diffusion}, the system supplied to the dual graph
+construction and the controller-synthesis LPI is
 \begin{align*}
-    &\partial_t^2\mbf{v}(t,s) = \partial_s^2\mbf{v}(t,s) -3\sin(\mbf{v}(t,s))-2\partial_t\mbf{v}(t,s)+sw_\mathrm{p}(t),\\
-    &\mbf{v}(t,0)=\pi,\, \partial_s\mbf{v}(t,1)=x(t),\, \dot{x}(t)=u(t),\\
-    &z_p = \bmat{x(t) \\ \int_0^1\mbf{v}(t,s)ds}.
+    &\ddot{v}(t,s) ={v}_{ss}(t,s) -2\dot{v}(t,s)\\
+    &\qquad +3(\mcl{J} w_{\Delta_2})(t,s) + sw_\mathrm{p}(t),\\
+    &{v}(t,0)=0,\, {v}_s(t,1)=x(t),\, \dot{x}(t)=u(t),\\
+    &z_{\Delta_2}(t,s)={v}_s(t,s),\\
+    &({\Delta_2} z_{\Delta_2})(t,s) = \cos(\int_0^s z_{\Delta_2}(t,\theta)d\theta)z_{\Delta_2}(t,s),\\
+    &w_{\Delta_2} = {\Delta_2} z_{\Delta_2}, \, z_p(t) = {\int_0^1{v}(t,s)ds}.
 \end{align*}
-Let $\mbf{z}(t,s)=\mbf{v}(t,s)-\pi$. Then $\sin(\mbf{v})=-\sin(\mbf{z})$ and
-the shifted dynamics used for the primal formulation are
-\begin{align*}
-    &\partial_t^2\mbf{z}(t,s)
-    =\partial_s^2\mbf{z}(t,s)-2\partial_t\mbf{z}(t,s)
-    +3w_\Delta(t,s)+sw_\mathrm{p}(t),\\
-    &\mbf{z}(t,0)=0,\, \partial_s\mbf{z}(t,1)=x(t),\,
-    \dot{x}(t)=u(t),\\
-    &z_\Delta(t,s)=\mbf{z}(t,s),\,
-    (\Delta z_\Delta)(t,s)=\sin(z_\Delta(t,s)),\\
-    &w_\Delta=\Delta z_\Delta,\,
-    z_p(t) = \bmat{x(t) \\ \int_0^1\mbf{z}(t,s)ds}.
-\end{align*}
-Define the spatial operator $\mcl{J}\in\Pi_3$ with $(\mcl{J}f)(t,s) = \int_0^s f(t,\theta)d\theta$. The system supplied to the dual graph construction and to the controller
-synthesis LPI is
-\begin{align*}
-    &\partial_t^2\mbf{z}(t,s)    =\partial_s^2\mbf{z}(t,s)  -2\partial_t\mbf{z}(t,s) +3(\mcl{J} w_\Delta)(t,s) + sw_\mathrm{p}(t),\\
-    &\mbf{z}(t,0)=0,\, \partial_s\mbf{z}(t,1)=x(t),\, \dot{x}(t)=u(t),\, z_\Delta(t,s)=\partial_s\mbf{z}(t,s),\\
-    &(\Delta z_\Delta)(t,s) = \cos(\int_0^s z_\Delta(t,\theta)d\theta)z_\Delta(t,s),\\
-    &w_\Delta = \Delta z_\Delta, \, z_p(t) = \bmat{x(t) \\ \int_0^1\mbf{z}(t,s)ds}.
-\end{align*}
-Note that $s w_\mathrm{p}(t) = (\mcl{J}w_\mathrm{p})(t,s)$. This LFR is exact because
+Note that $s w_\mathrm{p}(t) = (\mcl{J}w_\mathrm{p})(t,s)$. The filtered
+uncertainty output exactly recovers the sine nonlinearity because
 \begin{equation*}
-    \mcl{J} w_\Delta =\mcl{J}\!\left(\cos(\mbf{z})\partial_s\mbf{z}\right)=\sin(\mbf{z})-\sin(\mbf{z}(t,0))=\sin(\mbf{z}).
+    \mcl{J} w_{\Delta_2} =\mcl{J}\!\left(\cos({v}){v}_s\right)=\sin({v})-\sin({v}(t,0))=\sin({v}).
 \end{equation*}
 Furthermore,
 \begin{equation*}
-    - z_\Delta^2   \leq  z_\Delta w_\Delta \leq  z_\Delta^2,
+    - z_{\Delta_2}^2   \leq  z_{\Delta_2} w_{\Delta_2} \leq  z_{\Delta_2}^2,
 \end{equation*}
-so $\underline\Delta$ satisfies the dual sector IQC on $[-1,1]$.
+so $\Delta_2$ lies in the sector $[-1,1]$. Lemma~\ref{lem:sec-bound}
+therefore applies with $\alpha=-1$ and $\beta=1$. We use the corresponding
+dual sector multiplier $\underline{\mcl V}_\Delta \{0,\underline{\mcl{S}}_\Delta, 0\}$ from
+\eqref{eqn:dual-sec-mult}, with $\underline{\mcl S}_\Delta$ parameterized as
+in~\eqref{eqn:dual-sec-par}. To bound the induced $L_2$-gain from $w_{\mathrm p}$ to $z_{\mathrm p}$, 
+we choose the dual performance multiplier
+$\underline{\mcl V}_{\mathrm p}=\{1,0,-\underline\gamma^2\}$ and identify
+the primal and dual gain bounds through $\gamma=\underline\gamma$. We also
+impose $\|\mcl K\|_{\mcl L(\mbf L)}\leq10^4$ in the LPI formulation to limit
+the gain of the controller. Solving~\eqref{eq:controller-kyp} yields the
+certified upper bound $\gamma=0.45$ on the induced $L_2$-gain from
+$w_{\mathrm p}$ to $z_{\mathrm p}$ of the closed-loop interconnection
+$K \star P \star \Delta$. The optimized state-feedback controller is
+\begin{equation*}
+    u(t) = -15.46x(t) + \int_0^1Q_1(s)2{v}_{ss}(t,s) + Q_2(s)\dot{v}(t,s)ds
+\end{equation*}
+where
+\begin{align*}
+    Q_1(s) =\, &200.61s^{12} - 1537.17s^{11} + 5033.27s^{10} - 9096.06s^9 \\
+    &+ 9933.67s^8 - 6788.31s^7 + 2916.66s^6 - 700.58s^5\\
+    &- 82.97s^4 + 161.05s^3 - 40.98s^2 + 3.72s - 7.6113\\
+    Q_2(s) =\, &203.29s^{12} - 1309.04s^{11} + 3721.08s^{10} - 5890.06s^9 \\
+    &+ 5519.18s^8 - 3072.06s^7 + 942.76s^6 + 1.51s^5\\
+    &- 274.86s^4 + 166.68s^3 - 21.49s^2 + 11.76s - 0.07
+\end{align*}
 \end{example}
-
-% \subsection{Connection to finite dimensional dynamic multipliers}
-% \label{sec:finite-dimensional-dynamic-multipliers}
-
-% Consider the delayed firing-rate model in Eq.~(5) of
-% \cite{nevadoHolgado2010betaOscillations}. Let $\widehat{x}_1$ and
-% $\widehat{x}_2$ denote the physical firing rates of the subthalamic nucleus
-% (STN) and globus pallidus pars externa (GPe). Its activation functions are
-% \begin{equation}\label{eq:stn-gpe-uncentered-sigmoid}
-% F_i(q)=\frac{M_i}{1+\exp(-4q/M_i)(M_i-B_i)/B_i},
-% \qquad i\in\{S,G\},
-% \end{equation}
-% so $F_i(0)=B_i$. Define the sigmoid midpoint and its centered form as
-% \begin{equation}\label{eq:stn-gpe-centered-sigmoid}
-% \begin{aligned}
-% c_i&:=\frac{M_i}{4}\log\!\left(\frac{M_i-B_i}{B_i}\right),\\
-% \sigma_i(q)&:=\frac{M_i}{1+\exp(-4q/M_i)}-\frac{M_i}{2}
-%              =\frac{M_i}{2}\tanh\!\left(\frac{2q}{M_i}\right).
-% \end{aligned}
-% \end{equation}
-% Then $F_i(q)=\sigma_i(q-c_i)+M_i/2$. With the centered states
-% \begin{equation*}
-% x_1:=\widehat{x}_1-\frac{M_S}{2},
-% \qquad
-% x_2:=\widehat{x}_2-\frac{M_G}{2},
-% \end{equation*}
-% and offsets
-% \begin{equation*}
-% \begin{aligned}
-% b_S&:=w_{CS}\mathrm{Ctx}-\frac{w_{GS}M_G}{2}-c_S,\\
-% b_G&:=\frac{w_{SG}M_S}{2}-\frac{w_{GG}M_G}{2}
-%       -w_{XG}\mathrm{Str}-c_G.
-% \end{aligned}
-% \end{equation*}
-% Equation~(5) is exactly equivalent to the centered model
-% \begin{equation}\label{eq:stn-gpe-centered}
-% \begin{aligned}
-% z_S(t)&:=-w_{GS}x_2(t-\tau_{GS})+b_S,\\
-% z_G(t)&:=w_{SG}x_1(t-\tau_{SG})
-%           -w_{GG}x_2(t-\tau_{GG})+b_G,\\
-% \tau_S\dot{x}_1(t)
-%       &=\sigma_S(z_S(t))-x_1(t)+I_{\mathrm{stim}}(t),\\
-% \tau_G\dot{x}_2(t)
-%       &=\sigma_G(z_G(t))-x_2(t).
-% \end{aligned}
-% \end{equation}
-% where $I_{\mathrm{stim}}=I_e\mathrm{Stim}$ in the notation of
-% \cite{nevadoHolgado2010betaOscillations}. Here $\tau_{ij}$ and $w_{ij}$ denote
-% the corresponding transmission delays and synaptic weights.
-% Thus $\sigma_i(0)=0$, $\sigma_i$ is odd, and
-% $0<\sigma_i'(q)\leq1$. No approximation or linearization has been made:
-% the physical firing rates are recovered as
-% $\widehat{x}_1=x_1+M_S/2$ and $\widehat{x}_2=x_2+M_G/2$. Therefore the
-% centering changes only the coordinates, not the physical dynamics.

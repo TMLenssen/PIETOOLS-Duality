@@ -1,0 +1,52 @@
+% Fragment using the macros and notation of the main manuscript.
+% Proof-of-concept benchmark; see README.md for numerical results.
+\begin{example}[Coupled heat equations with repeated real uncertainty]
+We extend the interconnection in~\cite[Sec.~8.1]{veenman2016robust}
+to two coupled heat equations.
+Let $s\in[0,1]$, $\kappa=0.2$, and
+\begin{align*}
+ A_0&=\bmat{-2&-3\\1&1}+\frac{\kappa\pi^2}{4}I_2,
+ &B_\Delta&=\bmat{1&0\\0&0},&B_{\mathrm p}&=\bmat{1\\0},\\
+ C_\Delta&=\bmat{1&0\\0&0},
+ &D_{\Delta\Delta}&=\bmat{1&-2\\1&-1},
+ &D_{\Delta\mathrm p}&=\bmat{0\\1},\\
+ C_{\mathrm p}&=\bmat{1&0},
+ &D_{\mathrm p\Delta}&=\bmat{0&1}.
+\end{align*}
+Using $(\mcl Jf)(t,s)=\int_0^s f(t,\theta)\,d\theta$, consider
+\begin{align*}
+ \dot{\mbf v}(t,s)&=\kappa\mbf v_{ss}(t,s)+A_0\mbf v(t,s)
+       +B_\Delta(\mcl Jw_\Delta)(t,s)+sB_{\mathrm p}w_{\mathrm p}(t),\\
+ \mbf v(t,0)&=0,\qquad \mbf v_s(t,1)=0,\\
+ z_\Delta(t,s)&=C_\Delta\mbf v_s(t,s)
+       +D_{\Delta\Delta}w_\Delta(t,s)+D_{\Delta\mathrm p}w_{\mathrm p}(t),\\
+ w_\Delta(t,s)&=\delta z_\Delta(t,s),\qquad |\delta|\leq\alpha,\\
+ z_{\mathrm p}(t)&=3\int_0^1s\bigl(C_{\mathrm p}\mbf v(t,s)
+       +D_{\mathrm p\Delta}(\mcl Jw_\Delta)(t,s)\bigr)\,ds.
+\end{align*}
+The same constant real parameter $\delta$ acts in both channels and at
+every spatial location. The PIE state is $\mbf x=\mbf v_{ss}$, with
+\[
+ (\mcl T\mbf x)(s)=-\int_0^s\theta\mbf x(\theta)\,d\theta
+                       -s\int_s^1\mbf x(\theta)\,d\theta.
+\]
+For a temporal basis of order $\nu$ with pole $\rho<0$, lift its
+state-space matrices to the $R_0$ parameters of PI operators. Use this
+same basis on the $z_\Delta$ and $w_\Delta$ channels. The uncertainty
+radius enters only the static multiplier:
+\[
+ \mcl V_\Delta\{\alpha^2\mcl Q_\Delta,
+                    \alpha\mcl S_\Delta,-\mcl Q_\Delta\},\qquad
+ \mcl Q_\Delta^*=\mcl Q_\Delta\succeq0,\quad
+ \mcl S_\Delta^*=-\mcl S_\Delta.
+\]
+Since $\underline\Delta=\Delta^*=\Delta$, the same family is admissible
+on the dual side, with underlined multiplier variables. For the gain from
+$w_{\mathrm p}$ to $z_{\mathrm p}$, use
+$\mcl V_{\mathrm p}\{1,0,-\gamma^2\}$ or
+$\underline{\mcl V}_{\mathrm p}\{1,0,-\underline\gamma^2\}$.
+At fixed $\alpha$, $\nu$, and $\rho$, minimize the squared gain directly.
+The restriction $\mcl Q_\Delta\succeq0$ gives a hard IQC directly;
+it is a sufficient subclass of the frequency-domain multiplier search
+used in~\cite[Fig.~7]{veenman2016robust}.
+\end{example}

@@ -164,6 +164,8 @@ INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\algorithmicx\algpse
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\algorithmicx\algpseudocode.sty
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\algorithmicx\algorithmicx.sty
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\algorithmicx\algorithmicx.sty
+INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
+INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\tools\calc.sty
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\pgf\frontendlayer\tikz.sty
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\pgf\frontendlayer\tikz.sty
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\pgf\basiclayer\pgf.sty
@@ -315,10 +317,6 @@ INPUT .\Sections\Main\1.Introduction.tex
 INPUT Sections\Main\1.Introduction.tex
 INPUT .\Sections\Main\1.Introduction.tex
 INPUT Sections\Main\1.Introduction.tex
-INPUT .\Sections\Main\2.Preliminaries.tex
-INPUT Sections\Main\2.Preliminaries.tex
-INPUT .\Sections\Main\2.Preliminaries.tex
-INPUT Sections\Main\2.Preliminaries.tex
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\amsfonts\cmextra\cmex7.tfm
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\amsfonts\umsa.fd
@@ -342,6 +340,10 @@ INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\jknappen\ursfs.fd
 INPUT C:\Users\thijs\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs10.tfm
 INPUT C:\Users\thijs\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs7.tfm
 INPUT C:\Users\thijs\AppData\Local\MiKTeX\fonts\tfm\public\rsfs\rsfs5.tfm
+INPUT .\Sections\Main\2.Preliminaries.tex
+INPUT Sections\Main\2.Preliminaries.tex
+INPUT .\Sections\Main\2.Preliminaries.tex
+INPUT Sections\Main\2.Preliminaries.tex
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx10.tfm
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx7.tfm
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\public\cm\cmbx5.tfm
@@ -363,13 +365,11 @@ INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmr8r.
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmr7t.vf
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmri7t.vf
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmri8r.tfm
-INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmb7t.vf
-INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmb8r.tfm
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmr7t.vf
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\courier\pcrr7t.vf
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\courier\pcrr8r.tfm
-INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmbi7t.vf
-INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmbi8r.tfm
+INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmb7t.vf
+INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmb8r.tfm
 INPUT .\Sections\Main\3. IQC Theory.tex
 INPUT Sections\Main\3. IQC Theory.tex
 INPUT .\Sections\Main\3. IQC Theory.tex
@@ -408,14 +408,20 @@ INPUT .\Sections\Main\6. Convex Controller Synthesis (Dual System).tex
 INPUT Sections\Main\6. Convex Controller Synthesis (Dual System).tex
 INPUT .\Sections\Main\6. Convex Controller Synthesis (Dual System).tex
 INPUT Sections\Main\6. Convex Controller Synthesis (Dual System).tex
+INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\vf\adobe\times\ptmbi7t.vf
+INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\fonts\tfm\adobe\times\ptmbi8r.tfm
 INPUT .\Sections\Main\7. Numerical Examples.tex
 INPUT Sections\Main\7. Numerical Examples.tex
 INPUT .\Sections\Main\7. Numerical Examples.tex
 INPUT Sections\Main\7. Numerical Examples.tex
-INPUT .\Sections\Main\8. Conclusion.tex
-INPUT Sections\Main\8. Conclusion.tex
-INPUT .\Sections\Main\8. Conclusion.tex
-INPUT Sections\Main\8. Conclusion.tex
+INPUT .\Sections\Main\8. Connection to finite dimensional dynamic multipliers.tex
+INPUT Sections\Main\8. Connection to finite dimensional dynamic multipliers.tex
+INPUT .\Sections\Main\8. Connection to finite dimensional dynamic multipliers.tex
+INPUT Sections\Main\8. Connection to finite dimensional dynamic multipliers.tex
+INPUT .\Sections\Main\9. Conclusion.tex
+INPUT Sections\Main\9. Conclusion.tex
+INPUT .\Sections\Main\9. Conclusion.tex
+INPUT Sections\Main\9. Conclusion.tex
 INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl
 INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl
 INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl

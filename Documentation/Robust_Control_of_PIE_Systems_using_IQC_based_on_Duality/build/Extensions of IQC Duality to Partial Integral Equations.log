@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.10)  2 SEP 2026 18:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.10)  10 SEP 2026 19:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -398,10 +398,22 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip61
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
+) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/tools\calc.sty
+Package: calc 2025/03/01 v4.3b Infix arithmetic (KKT,FJ)
+\calc@Acount=\count334
+\calc@Bcount=\count335
+\calc@Adimen=\dimen195
+\calc@Bdimen=\dimen196
+\calc@Askip=\skip62
+\calc@Bskip=\skip63
+LaTeX Info: Redefining \setlength on input line 86.
+LaTeX Info: Redefining \addtolength on input line 87.
+\calc@Ccount=\count336
+\calc@Cskip=\skip64
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/pgf/frontendlayer\tikz.sty (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/pgf/basiclayer\pgf.sty (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfrcs.sty (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-common.tex
 \pgfutil@everybye=\toks34
-\pgfutil@tempdima=\dimen195
-\pgfutil@tempdimb=\dimen196
+\pgfutil@tempdima=\dimen197
+\pgfutil@tempdimb=\dimen198
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfutil-latex.def
 \pgfutil@abb=\box60
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfrcs.code.tex (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf\pgf.revision.tex)
@@ -416,26 +428,26 @@ Package: pgfsys 2025-08-29 v3.1.11a (3.1.11a)
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeyslibraryfiltered.code.tex
 \pgfkeys@tmptoks=\toks37
 ))
-\pgf@x=\dimen197
-\pgf@y=\dimen198
-\pgf@xa=\dimen199
-\pgf@ya=\dimen256
-\pgf@xb=\dimen257
-\pgf@yb=\dimen258
-\pgf@xc=\dimen259
-\pgf@yc=\dimen260
-\pgf@xd=\dimen261
-\pgf@yd=\dimen262
+\pgf@x=\dimen199
+\pgf@y=\dimen256
+\pgf@xa=\dimen257
+\pgf@ya=\dimen258
+\pgf@xb=\dimen259
+\pgf@yb=\dimen260
+\pgf@xc=\dimen261
+\pgf@yc=\dimen262
+\pgf@xd=\dimen263
+\pgf@yd=\dimen264
 \w@pgf@writea=\write3
 \r@pgf@reada=\read2
-\c@pgf@counta=\count334
-\c@pgf@countb=\count335
-\c@pgf@countc=\count336
-\c@pgf@countd=\count337
+\c@pgf@counta=\count337
+\c@pgf@countb=\count338
+\c@pgf@countc=\count339
+\c@pgf@countd=\count340
 \t@pgf@toka=\toks38
 \t@pgf@tokb=\toks39
 \t@pgf@tokc=\toks40
-\pgf@sys@id@count=\count338
+\pgf@sys@id@count=\count341
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgf.cfg
 File: pgf.cfg 2025-08-29 v3.1.11a (3.1.11a)
 )
@@ -446,59 +458,59 @@ File: pgfsys-pdftex.def 2025-08-29 v3.1.11a (3.1.11a)
 File: pgfsys-common-pdf.def 2025-08-29 v3.1.11a (3.1.11a)
 ))) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsyssoftpath.code.tex
 File: pgfsyssoftpath.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfsyssoftpath@smallbuffer@items=\count339
-\pgfsyssoftpath@bigbuffer@items=\count340
+\pgfsyssoftpath@smallbuffer@items=\count342
+\pgfsyssoftpath@bigbuffer@items=\count343
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/systemlayer\pgfsysprotocol.code.tex
 File: pgfsysprotocol.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 )) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcore.code.tex
 Package: pgfcore 2025-08-29 v3.1.11a (3.1.11a)
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathutil.code.tex) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathparser.code.tex
-\pgfmath@dimen=\dimen263
-\pgfmath@count=\count341
+\pgfmath@dimen=\dimen265
+\pgfmath@count=\count344
 \pgfmath@box=\box61
 \pgfmath@toks=\toks41
 \pgfmath@stack@operand=\toks42
 \pgfmath@stack@operation=\toks43
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.code.tex) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.basic.code.tex) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.trigonometric.code.tex) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.random.code.tex) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.comparison.code.tex) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.base.code.tex) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.round.code.tex) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.misc.code.tex) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfunctions.integerarithmetics.code.tex) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathcalc.code.tex) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count342
+\c@pgfmathroundto@lastzeros=\count345
 )) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfint.code.tex) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepoints.code.tex
 File: pgfcorepoints.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@picminx=\dimen264
-\pgf@picmaxx=\dimen265
-\pgf@picminy=\dimen266
-\pgf@picmaxy=\dimen267
-\pgf@pathminx=\dimen268
-\pgf@pathmaxx=\dimen269
-\pgf@pathminy=\dimen270
-\pgf@pathmaxy=\dimen271
-\pgf@xx=\dimen272
-\pgf@xy=\dimen273
-\pgf@yx=\dimen274
-\pgf@yy=\dimen275
-\pgf@zx=\dimen276
-\pgf@zy=\dimen277
+\pgf@picminx=\dimen266
+\pgf@picmaxx=\dimen267
+\pgf@picminy=\dimen268
+\pgf@picmaxy=\dimen269
+\pgf@pathminx=\dimen270
+\pgf@pathmaxx=\dimen271
+\pgf@pathminy=\dimen272
+\pgf@pathmaxy=\dimen273
+\pgf@xx=\dimen274
+\pgf@xy=\dimen275
+\pgf@yx=\dimen276
+\pgf@yy=\dimen277
+\pgf@zx=\dimen278
+\pgf@zy=\dimen279
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathconstruct.code.tex
 File: pgfcorepathconstruct.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@path@lastx=\dimen278
-\pgf@path@lasty=\dimen279
+\pgf@path@lastx=\dimen280
+\pgf@path@lasty=\dimen281
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorepathusage.code.tex
 File: pgfcorepathusage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@shorten@end@additional=\dimen280
-\pgf@shorten@start@additional=\dimen281
+\pgf@shorten@end@additional=\dimen282
+\pgf@shorten@start@additional=\dimen283
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorescopes.code.tex
 File: pgfcorescopes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfpic=\box62
 \pgf@hbox=\box63
 \pgf@layerbox@main=\box64
-\pgf@picture@serial@count=\count343
+\pgf@picture@serial@count=\count346
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoregraphicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgflinewidth=\dimen282
+\pgflinewidth=\dimen284
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoretransformations.code.tex
 File: pgfcoretransformations.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@pt@x=\dimen283
-\pgf@pt@y=\dimen284
-\pgf@pt@temp=\dimen285
+\pgf@pt@x=\dimen285
+\pgf@pt@y=\dimen286
+\pgf@pt@temp=\dimen287
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorequick.code.tex
 File: pgfcorequick.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreobjects.code.tex
@@ -507,12 +519,12 @@ File: pgfcoreobjects.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 File: pgfcorepathprocessing.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcorearrows.code.tex
 File: pgfcorearrows.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfarrowsep=\dimen286
+\pgfarrowsep=\dimen288
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreshade.code.tex
 File: pgfcoreshade.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@max=\dimen287
-\pgf@sys@shading@range@num=\count344
-\pgf@shadingcount=\count345
+\pgf@max=\dimen289
+\pgf@sys@shading@range@num=\count347
+\pgf@shadingcount=\count348
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreimage.code.tex
 File: pgfcoreimage.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/basiclayer\pgfcoreexternal.code.tex
@@ -533,54 +545,54 @@ File: pgfmoduleshapes.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 File: pgfmoduleplot.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-0-65.sty
 Package: pgfcomp-version-0-65 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@nodesepstart=\dimen288
-\pgf@nodesepend=\dimen289
+\pgf@nodesepstart=\dimen290
+\pgf@nodesepend=\dimen291
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/pgf/compatibility\pgfcomp-version-1-18.sty
 Package: pgfcomp-version-1-18 2025-08-29 v3.1.11a (3.1.11a)
 )) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgffor.sty (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/pgf/utilities\pgfkeys.sty (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgfkeys.code.tex)) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/pgf/math\pgfmath.sty (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/math\pgfmath.code.tex)) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/utilities\pgffor.code.tex
 Package: pgffor 2025-08-29 v3.1.11a (3.1.11a)
-\pgffor@iter=\dimen290
-\pgffor@skip=\dimen291
+\pgffor@iter=\dimen292
+\pgffor@skip=\dimen293
 \pgffor@stack=\toks44
 \pgffor@toks=\toks45
 )) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz\tikz.code.tex
 Package: tikz 2025-08-29 v3.1.11a (3.1.11a)
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryplothandlers.code.tex
 File: pgflibraryplothandlers.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgf@plot@mark@count=\count346
-\pgfplotmarksize=\dimen292
+\pgf@plot@mark@count=\count349
+\pgfplotmarksize=\dimen294
 )
-\tikz@lastx=\dimen293
-\tikz@lasty=\dimen294
-\tikz@lastxsaved=\dimen295
-\tikz@lastysaved=\dimen296
-\tikz@lastmovetox=\dimen297
-\tikz@lastmovetoy=\dimen298
-\tikzleveldistance=\dimen299
-\tikzsiblingdistance=\dimen300
+\tikz@lastx=\dimen295
+\tikz@lasty=\dimen296
+\tikz@lastxsaved=\dimen297
+\tikz@lastysaved=\dimen298
+\tikz@lastmovetox=\dimen299
+\tikz@lastmovetoy=\dimen300
+\tikzleveldistance=\dimen301
+\tikzsiblingdistance=\dimen302
 \tikz@figbox=\box67
 \tikz@figbox@bg=\box68
 \tikz@tempbox=\box69
 \tikz@tempbox@bg=\box70
-\tikztreelevel=\count347
-\tikznumberofchildren=\count348
-\tikznumberofcurrentchild=\count349
-\tikz@fig@count=\count350
+\tikztreelevel=\count350
+\tikznumberofchildren=\count351
+\tikznumberofcurrentchild=\count352
+\tikz@fig@count=\count353
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmodulematrix.code.tex
 File: pgfmodulematrix.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfmatrixcurrentrow=\count351
-\pgfmatrixcurrentcolumn=\count352
-\pgf@matrix@numberofcolumns=\count353
+\pgfmatrixcurrentrow=\count354
+\pgfmatrixcurrentcolumn=\count355
+\pgf@matrix@numberofcolumns=\count356
 )
-\tikz@expandcount=\count354
+\tikz@expandcount=\count357
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarytopaths.code.tex
 File: tikzlibrarytopaths.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 ))) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
 File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
-\pgfarrowinset=\dimen301
-\pgfarrowlength=\dimen302
-\pgfarrowwidth=\dimen303
-\pgfarrowlinewidth=\dimen304
+\pgfarrowinset=\dimen303
+\pgfarrowlength=\dimen304
+\pgfarrowwidth=\dimen305
+\pgfarrowlinewidth=\dimen306
 ) (Figures/primal_dual_controller_interconnections.tex) (shortcuts.tex) (Figures/primal_dual_system_components.tex (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcolorbox.sty
 Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
@@ -597,74 +609,65 @@ Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 \tcb@upperbox=\box72
 \tcb@lowerbox=\box73
 \tcb@phantombox=\box74
-\c@tcbbreakpart=\count355
-\c@tcblayer=\count356
-\c@tcolorbox@number=\count357
+\c@tcbbreakpart=\count358
+\c@tcblayer=\count359
+\c@tcolorbox@number=\count360
 \l__tcobox_tmpa_box=\box75
-\l__tcobox_tmpa_dim=\dimen305
+\l__tcobox_tmpa_dim=\dimen307
 \tcb@temp=\box76
 \tcb@temp=\box77
 \tcb@temp=\box78
 \tcb@temp=\box79
 ))
-\c@definition=\count358
-\c@lemma=\count359
-\c@theorem=\count360
-\c@example=\count361
-\c@corollary=\count362
-\c@assumption=\count363
-\c@sublemma=\count364
-\c@remark=\count365
-\c@class=\count366
-
-
-LaTeX Warning: Unused global option(s):
-    [doublecolumn].
-
-(c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux
-
-LaTeX Warning: Label `' multiply defined.
-
-)
+\c@definition=\count361
+\c@lemma=\count362
+\c@theorem=\count363
+\c@example=\count364
+\c@corollary=\count365
+\c@assumption=\count366
+\c@sublemma=\count367
+\c@remark=\count368
+\c@class=\count369
+ (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux)
 \openout1 = `"Extensions of IQC Duality to Partial Integral Equations.aux"'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 46.
-LaTeX Font Info:    ... okay on input line 46.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 47.
+LaTeX Font Info:    ... okay on input line 47.
 
 -- Lines per column: 58 (exact).
-Package hyperref Info: Link coloring OFF on input line 46.
+Package hyperref Info: Link coloring OFF on input line 47.
 (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out) (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.out)
 \@outlinefile=\write4
 \openout4 = `"Extensions of IQC Duality to Partial Integral Equations.out"'.
 
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count367
-\scratchdimen=\dimen306
+\scratchcounter=\count370
+\scratchdimen=\dimen308
 \scratchbox=\box80
-\nofMPsegments=\count368
-\nofMParguments=\count369
+\nofMPsegments=\count371
+\nofMParguments=\count372
 \everyMPshowfont=\toks48
-\MPscratchCnt=\count370
-\MPscratchDim=\dimen307
-\MPnumerator=\count371
-\makeMPintoPDFobject=\count372
+\MPscratchCnt=\count373
+\MPscratchDim=\dimen309
+\MPnumerator=\count374
+\makeMPintoPDFobject=\count375
 \everyMPtoPDFconversion=\toks49
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -672,105 +675,97 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 64.
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 65.
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Underfull \hbox (badness 4001) in paragraph at lines 64--64
+Underfull \hbox (badness 4001) in paragraph at lines 65--65
 \OT1/ptm/m/n/8 hoven Uni-ver-sity of Tech-nol-ogy, The Nether-lands. Email ad-dresses:
  []
 
-(Sections/Main/1.Introduction.tex) (Sections/Main/2.Preliminaries.tex
-LaTeX Font Info:    Trying to load font information for U+msa on input line 3.
+(Sections/Main/1.Introduction.tex
+LaTeX Font Info:    Trying to load font information for U+msa on input line 8.
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 3.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 8.
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Trying to load font information for U+rsfs on input line 3.
+LaTeX Font Info:    Trying to load font information for U+rsfs on input line 8.
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/jknappen\ursfs.fd
 File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
-)
-Overfull \hbox (24.74973pt too wide) detected at line 108
-[]
- []
-
-[1{C:/Users/thijs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
+)) (Sections/Main/2.Preliminaries.tex [1{C:/Users/thijs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 131--137
+Underfull \hbox (badness 10000) in paragraph at lines 134--140
 [][]\OT1/ptm/b/n/10 Definition 4 \OT1/ptm/m/n/10 (PIE Sys-tem)\OT1/ptm/b/n/10 . []\OT1/ptm/m/it/10 Given the PIE sys-tem
  []
 
 
-Underfull \hbox (badness 2285) in paragraph at lines 131--137
+Underfull \hbox (badness 2285) in paragraph at lines 134--140
 \OML/cmm/m/it/10 G\OMS/cmsy/m/n/10 fT\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 A\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 B\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 C\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 Dg$ \OT1/ptm/m/it/10 with PI op-er-a-tors $\OMS/cmsy/m/n/10 T\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 A\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 B\OML/cmm/m/it/10 ; \OMS/cmsy/m/n/10 C\OML/cmm/m/it/10 ;$ \OT1/ptm/m/it/10 and $\OMS/cmsy/m/n/10 D$
  []
 
+) (Sections/Main/3. IQC Theory.tex [2] [3]) (Sections/Main/4. Controller Analysis (Primal System).tex) (Sections/Main/5. Duality.tex (Figures/potapov_ginzburg_commutative_diagram.tex) [4]
+Underfull \hbox (badness 4467) in paragraph at lines 142--145
+[][]\OT1/ptm/b/n/10 Theorem 3. []\OT1/ptm/m/it/10 Let $\OML/cmm/m/it/10 P$ \OT1/ptm/m/it/10 be as in Def-i-ni-tion []7[] and let
+ []
 
-Underfull \hbox (badness 1902) in paragraph at lines 162--166
-[]\OT1/ptm/m/it/10 The ho-mo-ge-neous part $\OML/cmm/m/it/10 @[]\OT1/cmr/m/n/10 (\OMS/cmsy/m/n/10 T\OT1/cmr/bx/n/10 x\OT1/cmr/m/n/10 )(\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 A\OT1/cmr/bx/n/10 x\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 )$\OT1/ptm/m/it/10 , with
+[5]) (Sections/Main/6. Convex Controller Synthesis (Dual System).tex [6]) (Sections/Main/7. Numerical Examples.tex [7]) (Sections/Main/8. Connection to finite dimensional dynamic multipliers.tex
+Underfull \hbox (badness 5175) in paragraph at lines 28--32
+[]$\OT1/cmr/m/n/10 ^^E$ \OT1/ptm/m/it/10 ad-mits a $\OML/cmm/m/it/10 J[]$\OT1/ptm/m/it/10 -spectral fac-tor-iza-tion $\OT1/cmr/m/n/10 ^^E =
  []
 
 
-Overfull \hbox (1.31978pt too wide) detected at line 181
-\OMS/cmsy/m/n/10 k\OML/cmm/m/it/10 p[]z\OMS/cmsy/m/n/10 k[] ^^T \OML/cmm/m/it/10 ^^M\OMS/cmsy/m/n/10 k\OML/cmm/m/it/10 p[]w\OMS/cmsy/m/n/10 k[]\OML/cmm/m/it/10 ;  \OMS/cmsy/m/n/10 8 \OML/cmm/m/it/10 T \OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 0\OML/cmm/m/it/10 ;  \OMS/cmsy/m/n/10 8 \OML/cmm/m/it/10 w \OMS/cmsy/m/n/10 2 \OT1/cmr/bx/n/10 L[]\OML/cmm/m/it/10 :
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 51.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\beta' on input line 51.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 51.
+
+[8]
+\philhswidth=\skip65
+ [9] [10]) (Sections/Main/9. Conclusion.tex) (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl [11]
+Underfull \hbox (badness 10000) in paragraph at lines 193--197
+[]\OT1/ptm/m/n/8 Giorgio Val-mor-bida, Mo-hamadreza Ah-madi, and An-to-nis
  []
 
-) (Sections/Main/3. IQC Theory.tex [2]) (Sections/Main/4. Controller Analysis (Primal System).tex) [3] (Sections/Main/5. Duality.tex (Figures/potapov_ginzburg_commutative_diagram.tex) [4]) (Sections/Main/6. Convex Controller Synthesis (Dual System).tex [5]) (Sections/Main/7. Numerical Examples.tex
-Overfull \hbox (6.63249pt too wide) detected at line 20
-[]
+
+Underfull \hbox (badness 1509) in paragraph at lines 193--197
+\OT1/ptm/m/n/8 equa-tions via semidef-i-nite pro-gram-ming.  \OT1/ptm/m/it/8 IEEE Trans-ac-tions on
  []
 
+) [12
 
-Overfull \hbox (1.6111pt too wide) detected at line 36
-[]
- []
+] (Sections/Proofs/I. IQC.tex) (Sections/Proofs/II. Duality.tex (Sections/Proofs/Duality/dual-IQC.tex [13
 
-[6]
-Overfull \hbox (7.69395pt too wide) detected at line 95
-[]
- []
-
-) (Sections/Main/8. Conclusion.tex) (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.bbl) [7] (Sections/Proofs/I. IQC.tex) (Sections/Proofs/II. Duality.tex (Sections/Proofs/Duality/dual-IQC.tex [8
-
-]) (Sections/Proofs/Duality/dual-KYP.tex [9]) (Sections/Proofs/Duality/dynamic_state_feedback.tex
-
-LaTeX Warning: Reference `lem:potapov-ginzburg-equivalence' on page 10 undefined on input line 98.
-
-
-LaTeX Warning: Reference `thm:primal-dual-iqc-feasibility' on page 10 undefined on input line 124.
-
-)) (Sections/Proofs/Multipliers/multiplier_proof.tex [10]) [11] (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux)
+]) (Sections/Proofs/Duality/dual-KYP.tex) (Sections/Proofs/Duality/dynamic_state_feedback.tex [14])) (Sections/Proofs/Multipliers/multiplier_proof.tex [15]) [16] (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `"Extensions of IQC Duality to Partial Integral Equations".out' has not changed.
-(rerunfilecheck)             Checksum: 2E93700272373DED89DAE53FFC0E4E48;4651.
+(rerunfilecheck)             Checksum: AF012AED597804AE0A8CE0FA7DFBEABF;6572.
  ) 
 Here is how much of TeX's memory you used:
- 25759 strings out of 467871
- 508474 string characters out of 5418376
- 965093 words of memory out of 5000000
- 54038 multiletter control sequences out of 15000+600000
+ 25957 strings out of 467871
+ 512681 string characters out of 5418376
+ 964311 words of memory out of 5000000
+ 54172 multiletter control sequences out of 15000+600000
  671209 words of font info for 132 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,23n,94p,705b,1053s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,23n,94p,728b,1064s stack positions out of 10000i,1000n,20000p,200000b,200000s
 <C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmbi8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on "c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.pdf" (11 pages, 440428 bytes).
+Output written on "c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\Extensions of IQC Duality to Partial Integral Equations.pdf" (16 pages, 503928 bytes).
 PDF statistics:
- 454 PDF objects out of 1000 (max. 8388607)
- 101 named destinations out of 1000 (max. 500000)
- 221 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 644 PDF objects out of 1000 (max. 8388607)
+ 159 named destinations out of 1000 (max. 500000)
+ 285 words of extra memory for PDF output out of 10000 (max. 10000000)
 

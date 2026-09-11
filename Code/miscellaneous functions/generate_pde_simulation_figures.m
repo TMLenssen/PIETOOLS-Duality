@@ -11,8 +11,11 @@ end
 % rendering defaults remain in default_surface_plot_settings.
 simulationDefaults.filePrefix = 'simulation';
 simulationDefaults.showPreview = true;
+simulationDefaults.saveImages = true;
 simulationDefaults.plotOpenLoop = true;
+simulationDefaults.openLoopTransform = 'none';
 simulationDefaults.previewFigureName = 'PDE simulation';
+simulationDefaults.previewFigureSize = [8 8];
 simulationDefaults.previewSurfaceTitles = ...
     {'Open-loop state','Closed-loop state'};
 simulationDefaults.figureSize = [7 3.5];
@@ -45,110 +48,150 @@ settings = default_surface_plot_settings(settings);
 if ~isscalar(settings.plotOpenLoop)
     error('settings.plotOpenLoop must be a scalar logical value.');
 end
+if ~isscalar(settings.showPreview) || ~isscalar(settings.saveImages)
+    error('settings.showPreview and settings.saveImages must be scalar values.');
+end
 settings.plotOpenLoop = logical(settings.plotOpenLoop);
+settings.showPreview = logical(settings.showPreview);
+settings.saveImages = logical(settings.saveImages);
+settings.openLoopTransform = validatestring( ...
+    settings.openLoopTransform,{'none','signedlog'});
 [s,t,zOpen,zClosed,inputSignal,controlSignal] = normalize_inputs( ...
     s,t,zOpen,zClosed,inputSignal,controlSignal,settings.plotOpenLoop);
 
-if ~isfolder(outDir)
+if settings.saveImages && ~isfolder(outDir)
     mkdir(outDir);
 end
-files.state = fullfile(outDir,[settings.filePrefix,'_state.pdf']);
-files.amplitude = fullfile(outDir,[settings.filePrefix,'_amplitude.pdf']);
-files.effort = fullfile(outDir,[settings.filePrefix,'_effort.pdf']);
+files.state = '';
+files.amplitude = '';
+files.effort = '';
 files.preview = gobjects(0);
+
+if settings.saveImages
+    files.state = fullfile(outDir,[settings.filePrefix,'_state.pdf']);
+    files.amplitude = fullfile(outDir,[settings.filePrefix,'_amplitude.pdf']);
+    files.effort = fullfile(outDir,[settings.filePrefix,'_effort.pdf']);
+end
 
 ampClosed = max(abs(zClosed),[],2);
 if settings.plotOpenLoop
     ampOpen = max(abs(zOpen),[],2);
+    zOpenPlot = transform_open_loop(zOpen,settings.openLoopTransform);
 else
     ampOpen = [];
+    zOpenPlot = [];
 end
 
 if settings.showPreview
-    files.preview = write_preview_figure(s,t,zOpen,zClosed,inputSignal, ...
+    files.preview = write_preview_figure(s,t,zOpenPlot,zClosed,inputSignal, ...
         controlSignal,ampOpen,ampClosed,settings);
 end
 
-surfaceIdx = sample_indices(numel(t),settings.surfaceTimeSamples);
-if settings.plotOpenLoop
-    zOpenSurface = zOpen(surfaceIdx,:);
-else
-    zOpenSurface = [];
+if settings.saveImages
+    surfaceIdx = sample_indices(numel(t),settings.surfaceTimeSamples);
+    if settings.plotOpenLoop
+        zOpenSurface = zOpenPlot(surfaceIdx,:);
+    else
+        zOpenSurface = [];
+    end
+    write_state_figure(files.state,s,t(surfaceIdx),zOpenSurface, ...
+        zClosed(surfaceIdx,:),settings);
+    write_amplitude_figure(files.amplitude,t,ampOpen,ampClosed,settings);
+    write_effort_figure(files.effort,t,inputSignal,controlSignal,settings);
 end
-write_state_figure(files.state,s,t(surfaceIdx),zOpenSurface, ...
-    zClosed(surfaceIdx,:),settings);
-write_amplitude_figure(files.amplitude,t,ampOpen,ampClosed,settings);
-write_effort_figure(files.effort,t,inputSignal,controlSignal,settings);
 end
 
 function fig = write_preview_figure(s,t,zOpen,zClosed,inputSignal, ...
     controlSignal,ampOpen,ampClosed,settings)
 fig = figure('Name',settings.previewFigureName, ...
-    'Color',settings.figureBackground);
+    'Color',settings.figureBackground,'Units','inches', ...
+    'Position',[1 1 settings.previewFigureSize]);
 timeIdx = sample_indices(numel(t),settings.surfaceTimeSamples);
 spaceIdx = sample_indices(numel(s),settings.surfaceSpaceSamples);
+layout = tiledlayout(fig,3,2,'Padding','compact','TileSpacing','compact');
 
 if ~settings.plotOpenLoop
-    subplot(1,3,1);
+    axSurface = nexttile(layout,1,[2 2]);
+    axAmplitude = nexttile(layout,5);
+    axEffort = nexttile(layout,6);
+
     surfaceSettings = panel_surface_settings( ...
         settings,settings.previewSurfaceTitles{2},'closed');
-    plot_pde_surface(gca,s(spaceIdx),t(timeIdx), ...
+    plot_pde_surface(axSurface,s(spaceIdx),t(timeIdx), ...
         zClosed(timeIdx,spaceIdx),surfaceSettings);
+    axis(axSurface,'square');
 
-    subplot(1,3,2);
-    plot(t,ampClosed,'LineWidth',1.4);
-    grid on;
-    xlabel(settings.axisLabels{1},'Interpreter',settings.interpreter);
-    ylabel(settings.amplitudeYLabel,'Interpreter',settings.interpreter);
-    title(settings.amplitudeTitle,'Interpreter',settings.interpreter);
-    format_paper_axes(gca,settings);
+    plot(axAmplitude,t,ampClosed,'LineWidth',1.4);
+    grid(axAmplitude,'on');
+    xlabel(axAmplitude,settings.axisLabels{1}, ...
+        'Interpreter',settings.interpreter);
+    ylabel(axAmplitude,settings.amplitudeYLabel, ...
+        'Interpreter',settings.interpreter);
+    title(axAmplitude,settings.amplitudeTitle, ...
+        'Interpreter',settings.interpreter);
+    format_paper_axes(axAmplitude,settings);
+    axis(axAmplitude,'square');
 
-    subplot(1,3,3);
-    plot(t,inputSignal,'LineWidth',1.3); hold on;
-    plot(t,controlSignal,'LineWidth',1.3);
-    grid on;
-    xlabel(settings.axisLabels{1},'Interpreter',settings.interpreter);
-    ylabel(settings.signalYLabel,'Interpreter',settings.interpreter);
-    legend(settings.signalLegend,'Interpreter',settings.interpreter, ...
+    plot(axEffort,t,inputSignal,'LineWidth',1.3);
+    hold(axEffort,'on');
+    plot(axEffort,t,controlSignal,'LineWidth',1.3);
+    grid(axEffort,'on');
+    xlabel(axEffort,settings.axisLabels{1}, ...
+        'Interpreter',settings.interpreter);
+    ylabel(axEffort,settings.signalYLabel, ...
+        'Interpreter',settings.interpreter);
+    legend(axEffort,settings.signalLegend,'Interpreter',settings.interpreter, ...
         'Location','best');
-    title(settings.signalTitle,'Interpreter',settings.interpreter);
-    format_paper_axes(gca,settings);
+    title(axEffort,settings.signalTitle,'Interpreter',settings.interpreter);
+    format_paper_axes(axEffort,settings);
+    axis(axEffort,'square');
     return
 end
 
-subplot(2,2,1);
+axOpen = nexttile(layout,1,[2 1]);
+axClosed = nexttile(layout,2,[2 1]);
+axAmplitude = nexttile(layout,5);
+axEffort = nexttile(layout,6);
+
 surfaceSettings = panel_surface_settings( ...
     settings,settings.previewSurfaceTitles{1},'open');
-plot_pde_surface(gca,s(spaceIdx),t(timeIdx), ...
+plot_pde_surface(axOpen,s(spaceIdx),t(timeIdx), ...
     zOpen(timeIdx,spaceIdx),surfaceSettings);
+axis(axOpen,'square');
 
-subplot(2,2,2);
 surfaceSettings = panel_surface_settings( ...
     settings,settings.previewSurfaceTitles{2},'closed');
-plot_pde_surface(gca,s(spaceIdx),t(timeIdx), ...
+plot_pde_surface(axClosed,s(spaceIdx),t(timeIdx), ...
     zClosed(timeIdx,spaceIdx),surfaceSettings);
+axis(axClosed,'square');
 
-subplot(2,2,3);
-plot(t,ampOpen,'LineWidth',1.4); hold on;
-plot(t,ampClosed,'LineWidth',1.4);
-grid on;
-xlabel(settings.axisLabels{1},'Interpreter',settings.interpreter);
-ylabel(settings.amplitudeYLabel,'Interpreter',settings.interpreter);
-legend(settings.amplitudeLegend,'Interpreter',settings.interpreter, ...
+plot(axAmplitude,t,ampOpen,'LineWidth',1.4);
+hold(axAmplitude,'on');
+plot(axAmplitude,t,ampClosed,'LineWidth',1.4);
+grid(axAmplitude,'on');
+xlabel(axAmplitude,settings.axisLabels{1}, ...
+    'Interpreter',settings.interpreter);
+ylabel(axAmplitude,settings.amplitudeYLabel, ...
+    'Interpreter',settings.interpreter);
+legend(axAmplitude,settings.amplitudeLegend,'Interpreter',settings.interpreter, ...
     'Location','best');
-title(settings.amplitudeTitle,'Interpreter',settings.interpreter);
-format_paper_axes(gca,settings);
+title(axAmplitude,settings.amplitudeTitle,'Interpreter',settings.interpreter);
+format_paper_axes(axAmplitude,settings);
+axis(axAmplitude,'square');
 
-subplot(2,2,4);
-plot(t,inputSignal,'LineWidth',1.3); hold on;
-plot(t,controlSignal,'LineWidth',1.3);
-grid on;
-xlabel(settings.axisLabels{1},'Interpreter',settings.interpreter);
-ylabel(settings.signalYLabel,'Interpreter',settings.interpreter);
-legend(settings.signalLegend,'Interpreter',settings.interpreter, ...
+plot(axEffort,t,inputSignal,'LineWidth',1.3);
+hold(axEffort,'on');
+plot(axEffort,t,controlSignal,'LineWidth',1.3);
+grid(axEffort,'on');
+xlabel(axEffort,settings.axisLabels{1}, ...
+    'Interpreter',settings.interpreter);
+ylabel(axEffort,settings.signalYLabel, ...
+    'Interpreter',settings.interpreter);
+legend(axEffort,settings.signalLegend,'Interpreter',settings.interpreter, ...
     'Location','best');
-title(settings.signalTitle,'Interpreter',settings.interpreter);
-format_paper_axes(gca,settings);
+title(axEffort,settings.signalTitle,'Interpreter',settings.interpreter);
+format_paper_axes(axEffort,settings);
+axis(axEffort,'square');
 end
 
 function write_amplitude_figure(fileName,t,ampOpen,ampClosed,settings)
@@ -230,6 +273,11 @@ function surfaceSettings = panel_surface_settings(settings,panelTitle,panel)
 % Map paired-figure z-tick overrides onto the generic surface settings.
 surfaceSettings = settings;
 surfaceSettings.surfaceTitle = panelTitle;
+if strcmpi(panel,'open') && strcmp(settings.openLoopTransform,'signedlog')
+    surfaceSettings.surfaceTitle = [panelTitle,' (signed-log scale)'];
+    surfaceSettings.axisLabels{3} = ...
+        '$\operatorname{sgn}(x)\log_{10}(1+|x|)$';
+end
 suffixes = {'ZTickValues','ZMajorTickSpacing','ZMajorTickOrigin', ...
     'ZMinorTickValues','ZMinorTicksBetweenMajor'};
 sharedNames = {'zTickValues','zMajorTickSpacing','zMajorTickOrigin', ...
@@ -239,6 +287,15 @@ for k = 1:numel(suffixes)
     if ~isempty(settings.(specificName))
         surfaceSettings.(sharedNames{k}) = settings.(specificName);
     end
+end
+end
+
+function zPlot = transform_open_loop(zOpen,transform)
+switch transform
+    case 'none'
+        zPlot = zOpen;
+    case 'signedlog'
+        zPlot = sign(zOpen).*log10(1+abs(zOpen));
 end
 end
 
