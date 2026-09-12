@@ -1,5 +1,4 @@
-function files = plot_Example_L2_gain( ...
-    exampleIdx,simulationDataFile,paperFigureDir,plotOptions)
+function files = plot_Example_L2_gain(exampleIdx,simulationDataFile,paperFigureDir,plotOptions)
 %PLOT_EXAMPLE_L2_GAIN Regenerate Example_i L2-gain figures without synthesis.
 %
 %   files = plot_Example_L2_gain(exampleIdx)
@@ -62,7 +61,7 @@ settings.signalTitle = 'Disturbance and boundary state';
 settings.surfaceTimeSamples = 2048;
 settings.surfaceSpaceSamples = 1024;
 settings.showZeroSurfaceLevel = true;
-settings.colormap = mplmap('RdYlBu_r',256);
+settings.colormap = mplmap('magma',256);
 settings.tMajorTickSpacing = 5;
 settings.sMajorTickSpacing = 0.25;
 % settings.zMajorTickSpacing = 0.5;

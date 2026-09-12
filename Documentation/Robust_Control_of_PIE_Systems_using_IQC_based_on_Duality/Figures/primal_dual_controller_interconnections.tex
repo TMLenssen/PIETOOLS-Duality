@@ -46,7 +46,7 @@
     every node/.style={font=\normalsize}
 ]
     \node[controller schematic uncertainty] (DeltaP) at (0,0.94) {$\Delta$};
-    \node[controller schematic block] (PlantP) at (0,0) {$P$};
+    \node[controller schematic block] (PlantP) at (0,0) {$G$};
     \node[controller schematic block] (FilterP) at (1.90,1.32) {$\Theta$};
     \node[controller schematic controller] (ControllerP) at (0,-0.96) {$K$};
 
@@ -89,7 +89,7 @@
         (PZLegBot |- PlantPControl) -- (PlantPControl);
     \draw[controller schematic signal] (PlantPState)
         -- (PWLegBot |- PlantPState)
-        -- node[controller schematic label, right] {$y_P$}
+        -- node[controller schematic label, right] {$y_{\mrm{G}}$}
         (PWLegBot |- ControllerPInTop) -- (ControllerPInTop);
     \draw[controller schematic signal] (FilterP.south)
         -- node[controller schematic label, right] {$y_\Theta$} (1.90,-1.09)
@@ -104,7 +104,7 @@
 ]
     \node[controller schematic uncertainty] (DeltaD) at (0,0.94)
         {$\underline{\Delta}$};
-    \node[controller schematic block] (PlantD) at (0,0) {$P^\top$};
+    \node[controller schematic block] (PlantD) at (0,0) {$G^\top$};
     \node[controller schematic block] (FilterD) at (-1.90,1.32)
         {$\mbf{D}(\Theta)$};
     \node[controller schematic controller] (ControllerD) at (0,-0.96)
@@ -149,10 +149,10 @@
         (DWLegBot |- ControllerD.east) -- (ControllerD.east);
     \draw[controller schematic signal] (ControllerDOutTop)
         -- (DZLegBot |- ControllerDOutTop)
-        -- node[controller schematic label, left] {$\underline u_P$}
+        -- node[controller schematic label, left] {$\underline u_{\mrm{G}}$}
         (DZLegBot |- PlantDExtraIn) -- (PlantDExtraIn);
     \draw[controller schematic signal] (ControllerDOutBot) -- (-1.90,-1.09)
-        -- node[controller schematic label, left] {$\underline u_\Psi$}
+        -- node[controller schematic label, left] {$\underline u_\Theta$}
         (FilterD.south);
 \end{tikzpicture}%
 }

@@ -4,7 +4,7 @@
 Suppose that the dual IQC
 \begin{equation*}
      \ip{p_T\bmat{P_\Delta^\top\underline{w}_\Delta \\ \underline{w}_\Delta}}
-{p_T \mcl{M}_{\underline{V}_\Delta}\bmat{P^\top\underline{w}_\Delta \\ \underline{w}_\Delta}}_{\mbf L_{[a, b]}}
+{p_T \mcl{M}_{\underline{\mcl V}_\Delta}\bmat{P^\top\underline{w}_\Delta \\ \underline{w}_\Delta}}_{L_{[a,b]}}
 \end{equation*}
 is parametized according to \eqref{eqn:dual-sec-mult}. We need to show that $\Delta$ satisfies the primal IQC.
 First, observe the dual IQC can be factorized as
@@ -38,12 +38,12 @@ We omit $\frac{1}{(\beta - \alpha)}>0$ therefore,
 For completion we use the proof in \cite{10156335}
 Then, for all $s\in[a,b]$ and $t>0$, we have that
 \begin{equation*}
-    (\beta z_\Delta(s,t)-\phi(z_\Delta(s,t)))
-    (\phi(z_\Delta(s,t))-\alpha z_\Delta(s,t))\geq0,
+    (\beta z_\Delta(t,s)-\phi(z_\Delta(t,s)))
+    (\phi(z_\Delta(t,s))-\alpha z_\Delta(t,s))\geq0,
 \end{equation*}
 and hence
 \begin{equation*}
-    (\beta z_\Delta(s,t)-\phi(z_\Delta(s,t)))\underline S^{-1}_0(s)
-    (\phi(z_\Delta(s,t))-\alpha z_\Delta(s,t))\geq0.
+    (\beta z_\Delta(t,s)-\phi(z_\Delta(t,s)))\underline S^{-1}_0(s)
+    (\phi(z_\Delta(t,s))-\alpha z_\Delta(t,s))\geq0.
 \end{equation*}
 Therefore, $\Delta$ satisfies the IQC defined by $\underline\Psi_\Delta=I$ and \eqref{eqn:dual-sec-mult}.

@@ -1,4 +1,4 @@
-function f=plot_veenman_fig7(result,yLimits)
+function f=plot_veenman_fig7(result,yLimits,figureHeight)
 % Figure 7 layout from Veenman, Scherer and Koroglu (2016).
 % Plot saved bounds only: no optimization, interpolation or gap filling.
 % Optional yLimits=[lower upper] gives identical vertical limits across runs.
@@ -31,6 +31,11 @@ if nargin<2 || isempty(yLimits)
 end
 assert(isnumeric(yLimits) && numel(yLimits)==2 && all(isfinite(yLimits)) ...
     && yLimits(1)>0 && yLimits(2)>yLimits(1),'Use positive increasing yLimits.');
+if nargin<3 || isempty(figureHeight)
+    figureHeight=min(3.25,1.45+.45*numel(orders));
+end
+assert(isscalar(figureHeight) && isfinite(figureHeight) && figureHeight>1.25, ...
+    'figureHeight must be a finite scalar greater than 1.25 inches.');
 
 % One panel per requested degree, preserving the supplied order. Keep the
 % paper's panel proportions as the number of panels changes.
@@ -38,9 +43,9 @@ panelWidths=1.15*ones(size(orders)); panelWidths(orders==0)=.165;
 leftMargin=1.05; rightMargin=.20; gap=.80;
 figureWidth=leftMargin+sum(panelWidths)+gap*(numel(orders)-1)+rightMargin;
 f=figure('Visible','off','Color','w','Units','inches',...
-    'Position',[1,1,figureWidth,9.4],'Renderer','painters');
+    'Position',[1,1,figureWidth,figureHeight],'Renderer','painters');
 left=leftMargin+[0,cumsum(panelWidths(1:end-1)+gap)];
-bottom=.99; height=8.13;
+bottom=.95; height=figureHeight-1.25;
 xLimits=[min([1e-3,abs(rho)]),max([1e3,abs(rho)])];
 [poleMagnitude,poleOrder]=sort(abs(rho),'descend');
 isDual=~isfield(result,'side') || strcmp(result.side,'dual');
@@ -74,8 +79,13 @@ for k=1:numel(orders)
                 % Reference lines identify alpha | minimum over sampled poles.
                 plot(ax,xLimits,[best,best],':','Color',[.45,.45,.45],...
                     'LineWidth',.55,'HandleVisibility','off');
-                plot(ax,poleMagnitude,bounds(i,poleOrder,k),'r-',...
-                    'LineWidth',.8);
+                if numel(poleMagnitude)==1
+                    plot(ax,poleMagnitude,bounds(i,poleOrder,k),'ro', ...
+                        'LineWidth',.8,'MarkerSize',4,'MarkerFaceColor','r');
+                else
+                    plot(ax,poleMagnitude,bounds(i,poleOrder,k),'r-', ...
+                        'LineWidth',.8);
+                end
             end
         end
     visible=isfinite(minima(:,k)) & minima(:,k)>=yLimits(1) ...
@@ -95,12 +105,15 @@ for k=1:numel(orders)
         ylabel(ax,label,'Interpreter','latex','FontSize',10);
     end
 end
-if any(orders>0)
-annotation(f,'textbox',[leftMargin/figureWidth,.018,...
-    (figureWidth-leftMargin-rightMargin)/figureWidth,.045],...
-    'String','pole location $\rho$','Interpreter','latex',...
-    'FontName','Times New Roman','FontSize',10,'HorizontalAlignment','center',...
-    'EdgeColor','none');
+nonZeroCols=find(orders>0);
+if ~isempty(nonZeroCols)
+    spanLeft=left(nonZeroCols(1));
+    spanRight=left(nonZeroCols(end))+panelWidths(nonZeroCols(end));
+    annotation(f,'textbox',[spanLeft/figureWidth,.018, ...
+        (spanRight-spanLeft)/figureWidth,.08], ...
+        'String','pole location $\rho$','Interpreter','latex', ...
+        'FontName','Times New Roman','FontSize',10, ...
+        'HorizontalAlignment','center','EdgeColor','none');
 end
 end
 

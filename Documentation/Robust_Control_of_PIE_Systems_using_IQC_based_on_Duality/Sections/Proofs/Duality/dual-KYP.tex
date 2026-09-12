@@ -7,31 +7,31 @@ The last row of the primal component block gives the PI coordinate map
 &:=\bmat{
 I&0&0\\
 0&I&0\\
-\mcl D_{21}\mcl C_P&\mcl C_2
-&\mcl D_{21}\mcl D_P+\mcl D_{22}
+\mcl D_{21}\mcl C_{\mrm{G}}&\mcl C_2
+&\mcl D_{21}\mcl D_{\mrm{G}}+\mcl D_{22}
 },
 &
 \mcl M_{\Gamma^{-1}}
 &:=\bmat{
 I&0&0\\
 0&I&0\\
--\Lambda\mcl D_{21}\mcl C_P&-\Lambda\mcl C_2&\Lambda
+-\mcl{\Lambda}\mcl D_{21}\mcl C_{\mrm{G}}&-\mcl{\Lambda}\mcl C_2&\mcl{\Lambda}
 }.
 \end{aligned}
 \end{equation*}
 Both maps belong to $\Pi_4$, and direct block multiplication verifies that
 they are inverses. In particular,
 \begin{equation*}
-\bmat{\mbf x_P\\\mbf x_\Theta\\\tilde w}
+\bmat{\mbf x_{\mrm{G}}\\\mbf x_\Theta\\\tilde w}
 =\mcl M_\Gamma
-\bmat{\mbf x_P\\\mbf x_\Theta\\w},
+\bmat{\mbf x_{\mrm{G}}\\\mbf x_\Theta\\w},
 \qquad
-\bmat{\mbf x_P\\\mbf x_\Theta\\w}
+\bmat{\mbf x_{\mrm{G}}\\\mbf x_\Theta\\w}
 =\mcl M_{\Gamma^{-1}}
-\bmat{\mbf x_P\\\mbf x_\Theta\\\tilde w}.
+\bmat{\mbf x_{\mrm{G}}\\\mbf x_\Theta\\\tilde w}.
 \end{equation*}
 Thus $\mcl M_\Gamma$ is the PI congruence on the augmented
-state--input coordinates; the causal map $\Gamma:w\mapsto\tilde w$ in
+state--input coordinates. The causal map $\Gamma:w\mapsto\tilde w$ in
 Theorem~\ref{thm:dual-iqc} is its induced input--output map. The construction
 in the proof of
 Theorem~\ref{thm:dual-iqc} shows that the corresponding coordinate map from

@@ -1,6 +1,4 @@
 % !TEX root = ../../Extensions of IQC Duality to Partial Integral Equations.tex
-\dualcontrollerfigure
-
 Theorem~\ref{thm:dual-KYP} provides a robust-performance certificate for PIE
 systems in terms of the dual IQC. For analysis, this merely reformulates the
 primal certificate, since primal--dual equivalence preserves feasibility. The
@@ -9,26 +7,39 @@ synthesis. Both controller constructions below use the same synthesis LPI,
 obtained by applying \eqref{eq:dual-kyp} to the corresponding closed-loop
 PIE. The choice of dual uncertainty filter changes only the realization of the
 controller recovered from this LPI. Related applications of IQC duality
-include robust estimation~\cite{scherer2008robustness} and disturbance-feedforward
-controller synthesis~\cite{kose2009robust,venkataraman}.
+include the robust-estimation result of Scherer and
+K\"ose~\cite{scherer2008robustness}, and the disturbance-feedforward synthesis
+results of K\"ose and Scherer~\cite{kose2009robust} and Venkataraman and
+Seiler~\cite{venkataraman}.
+
+\dualcontrollerfigure
 
 \subsection{Primal and Dual Systems}
-Let $P$, with zero initial condition $\mbf{x}(0)=0$, have input $w$,
+Let $G$, with zero initial condition $\mbf{x}(0)=0$, have input $w$,
 control input $u$, and output $z$. Its primal and dual PIE state-space
 realizations are summarized in the corresponding system-component boxes.
-If $\Theta\neq I$, assume that $z,w$ are measurable.
+If $\Theta\neq I$, assume that the signals entering its dynamic part are
+available.
 
 \subsection{State Feedback LPI}
+
+We now state the main synthesis condition. On the dual realization, the change
+of variables represented by $\mcl Z$ makes the controller-dependent terms
+affine in the decision operators. Feasibility therefore returns both a
+robust-performance certificate and the gains of the primal controller.
 
 
 
 
 \begin{corollary}\label{thm:state-feedback}
-    Let the realization of $P$ satisfy Definition~\ref{def:uncertain-interconnection}.
+    Let $G$ be the controlled PIE plant defined in
+    Eq.~\eqref{eq:primal-system-components}, and let
+    $P_K:=K\star G$ denote the generalized plant obtained after closing the
+    controller loop.
     Let $\Delta\in\mbf{\Delta}$ and suppose a primal hard IQC has the hard
-    $(\Theta,J_{\mbf n_z,\mbf n_w})$ factorization. Assume that
+    $(\Theta,J_{\mbf n_{\mrm{z}},\mbf n_{\mrm{w}}})$ factorization. Assume that
     \begin{itemize}
-        \item The interconnection $P\star\Delta$ is well-posed for all $\Delta\in\mbf{\Delta}$.
+        \item The interconnection $P_K\star\Delta$ is well-posed for all $\Delta\in\mbf{\Delta}$.
         \item The IQC in Definition~\ref{def:uncertainty-iqc} is satisfied for all $\Delta\in\mbf{\Delta}$.
     \end{itemize}
      Moreover there exist, $\mcl{Z},\mcl{P}\in\Pi_4$ with $\mcl{P} = \mcl{P}^* \succ 0$, such that the following statement holds
@@ -37,25 +48,25 @@ If $\Theta\neq I$, assume that $z,w$ are measurable.
             \bmat{
                 \underline{\mcl T}^*\mcl P\underline{\mcl A}_0
                 +
-                \underline{\mcl T}^*\mcl Z\bmat{\mcl B_u^*&0}
+                \underline{\mcl T}^*\mcl Z\bmat{\mcl B_{\mrm{u}}^*&0}
                 +(*)
                 &
                 \underline{\mcl T}^*\mcl P\underline{\mcl B}_0
                 +
-                \underline{\mcl T}^*\mcl Z\mcl D_{zu}^*
+                \underline{\mcl T}^*\mcl Z\mcl D_{\mrm{zu}}^*
                 \\
                 (*)&
                 \underline\epsilon I
             }\\
                 +\bmat{\underline{\mcl C}^*\\\underline{\mcl D}^*}
-                J_{\mbf n_w,\mbf n_z}
+                J_{\mbf n_{\mrm{w}},\mbf n_{\mrm{z}}}
                 \bmat{\underline{\mcl C}&\underline{\mcl D}}
                 \preceq0.
         \end{gathered}
 \end{equation}
 where
 \begin{equation}\label{eq:feedback-system}
-\mbf{D}(\Theta)\bmat{P^\top\\I}\underline{w}
+\mbf{D}(\Theta)\bmat{0\star G^\top\\I}\underline{w}
 :=
 \left\{
 \bmat{
@@ -75,39 +86,50 @@ where
 \end{equation}
 and recover the controller gains from
 \[
-\bmat{\mcl K_P&\mcl K_\Theta}=\mcl Z^*\mcl P^{-1}.
+\bmat{\mcl K_{\mrm{G}}&\mcl K_\Theta}=\mcl Z^*\mcl P^{-1}.
 \]
-Assume that $\mcl D_{21}\mcl D_P+\mcl D_{22}$ is invertible, with
+Assume that $\mcl D_{21}\mcl D_{\mrm{G}}+\mcl D_{22}$ is invertible, with
 \[
-\Lambda:=(\mcl D_{21}\mcl D_P+\mcl D_{22})^{-1}\in\Pi_4
+(\mcl D_{21}\mcl D_{\mrm{G}}+\mcl D_{22})^{-1}\in\Pi_4
 \]
-Then the interconnection $K\star P\star \Delta$ with $\mbf{x}(0)=0$ is robustly stable and robust performance is achieved.
+Then the interconnection $P_K\star\Delta$ with $\mbf{x}(0)=0$ is robustly stable and robust performance is achieved.
 \end{corollary}
+\begin{proof}
+    See \ref{proof:state-feedback}.
+\end{proof}
+
+The operator $\mcl P$ certifies the dual closed loop, while $\mcl Z$ contains
+the transformed controller gains. The recovery formula maps these decision
+operators back to the controller acting on the primal plant and filter states.
+The invertibility assumption ensures that the resulting algebraic
+interconnection is well-posed.
 
 
 \subsection{\texorpdfstring{$\underline{\Psi}_\Delta = I$}
 {Dual-filter identity} controller realization}
 
 When $\Psi_\Delta=I$ and $\underline{\Psi}_\Delta=I$, no multiplier state is
-required in the controller. For a state-feedback operator $\mcl{K}_P$, set
-$u(t)=\mcl{K}_{P}\mbf{x}_P(t)$. The resulting closed-loop PIE
-$\mcl{K}\star\mcl{P}$ is
+required in the controller. For a state-feedback operator $\mcl{K}_{\mrm{G}}$, set
+$u(t)=\mcl{K}_{\mrm{G}}\mbf{x}_{\mrm{G}}(t)$. The resulting closed-loop PIE
+$K\star G$ is
 \begin{equation*}
-\bmat{\partial_t(\mcl{T}_P\mbf{x}_P)(t)\\z(t)}
+\bmat{\partial_t(\mcl{T}_{\mrm{G}}\mbf{x}_{\mrm{G}})(t)\\z(t)}
 =
 \bmat{
-\mcl{A}_P+\mcl{B}_u\mcl{K}_P&\mcl{B}_P\\
-\mcl{C}_P+\mcl D_{zu}\mcl{K}_P&\mcl{D}_P
+\mcl{A}_{\mrm{G}}+\mcl{B}_{\mrm{u}}\mcl{K}_{\mrm{G}}&\mcl{B}_{\mrm{G}}\\
+\mcl{C}_{\mrm{G}}+\mcl D_{\mrm{zu}}\mcl{K}_{\mrm{G}}&\mcl{D}_{\mrm{G}}
 }
-\bmat{\mbf{x}_P(t)\\w(t)}.
+\bmat{\mbf{x}_{\mrm{G}}(t)\\w(t)}.
 \end{equation*}
+Thus the identity-filter case requires no additional controller state. The
+controller is memoryless in time and acts directly on the measured PIE state.
 
 \subsection{Dynamic-filter controller realization}
 
 Dynamic-IQC feedback constructions with additional controller memory have
 also been studied for uncertain systems with state delay~\cite{7353149}.
 Here, assume that the uncertainty $\Delta$ is known and
-that $z_\Delta$, $w_\Delta=\Delta z_\Delta$, and $w_{\mathrm p}$ are available
+that $z_\Delta$, $w_\Delta=\Delta z_\Delta$, and $w_{\mrm{p}}$ are available
 to the controller. For $\underline{\Psi}_\Delta\neq I$, find the realization of $\Psi_\Delta = \mbf{D}(\underline{\Psi}_\Delta)$,
 \begin{equation*}
 \bmat{
@@ -118,8 +140,8 @@ y(t)
 =
 \bmat{
 \mcl A_{{\Psi}_\Delta}
-&\mcl B_{{\Psi}_\Delta}^{z}
-&\mcl B_{{\Psi}_\Delta}^{w}\\
+&\mcl B_{{\Psi}_\Delta}^{\mrm{z}}
+&\mcl B_{{\Psi}_\Delta}^{\mrm{w}}\\
 I&0&0
 }
 \bmat{
@@ -143,9 +165,9 @@ u(t)
 \bmat{
 \mcl A_{{\Psi}_\Delta}
 &0
-&\mcl B_{{\Psi}_\Delta}^{z}
-&\mcl B_{{\Psi}_\Delta}^{w}\\
-\mcl K_\Psi&\mcl K_P & 0 & 0
+&\mcl B_{{\Psi}_\Delta}^{\mrm{z}}
+&\mcl B_{{\Psi}_\Delta}^{\mrm{w}}\\
+\mcl K_\Psi&\mcl K_{\mrm{G}} & 0 & 0
 }
 \bmat{
 \mbf{x}_{{\Psi}_\Delta}(t)\\
@@ -155,6 +177,8 @@ w_\Delta(t)
 }.
 \end{aligned}
 \end{equation*}
-Hence $\mbf{x}_{{\Psi}_\Delta}$ is the controller state,
-$\mbf{x}$, and relevant, $z_\Delta$, and $w_\Delta$ are its external inputs, and $u$ is its
-output.
+Hence $\mbf{x}_{{\Psi}_\Delta}$ is the controller state. The plant state
+$\mbf{x}$ and the signals that enter the dynamic part of the filter are
+external controller inputs, while $u$ is its output. This
+realization makes explicit the signal-availability assumption stated in
+Section~\ref{sec:primal-controller-analysis}.

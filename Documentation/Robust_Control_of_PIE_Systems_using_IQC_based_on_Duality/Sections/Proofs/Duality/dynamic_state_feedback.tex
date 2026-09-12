@@ -1,10 +1,10 @@
 % !TEX root = ../../../Extensions of IQC Duality to Partial Integral Equations.tex
 \subsection{Proof of Corollary~\ref{thm:state-feedback}}\label{proof:state-feedback}
-Since $\mcl P\succ0$, define $\mcl K_P$ and $\mcl K_\Theta$ by
+Since $\mcl P\succ0$, define $\mcl K_{\mrm{G}}$ and $\mcl K_\Theta$ by
 \[
 \mcl Z^*
 =
-\bmat{\mcl K_P&\mcl K_\Theta}\mcl P.
+\bmat{\mcl K_{\mrm{G}}&\mcl K_\Theta}\mcl P.
 \]
 The feedback-dependent rows of the dual component block give
 \begin{equation*}
@@ -13,20 +13,20 @@ The feedback-dependent rows of the dual component block give
 &:=
 \underline{\mcl A}_0
 +
-\bmat{\mcl K_P^*\\\mcl K_\Theta^*}
-\bmat{\mcl B_u^*&0},
+\bmat{\mcl K_{\mrm{G}}^*\\\mcl K_\Theta^*}
+\bmat{\mcl B_{\mrm{u}}^*&0},
 &
 \underline{\mcl B}
 &:=
 \underline{\mcl B}_0
 +
-\bmat{\mcl K_P^*\\\mcl K_\Theta^*}
-\mcl D_{zu}^* .
+\bmat{\mcl K_{\mrm{G}}^*\\\mcl K_\Theta^*}
+\mcl D_{\mrm{zu}}^* .
 \end{aligned}
 \end{equation*}
 Then \eqref{eq:controller-kyp} is the dual KYP inequality for
 the closed-loop filtered system
-$\mbf D(\Theta)\bmat{(K\star P)^\top\\I}$. From the last row of the
+$\mbf D(\Theta)\bmat{(K\star G)^\top\\I}$. From the last row of the
 primal component block, its
 PI congruence transformation and inverse are
 \begin{equation*}
@@ -35,32 +35,32 @@ PI congruence transformation and inverse are
 &:=\bmat{
 I&0&0\\
 0&I&0\\
-\mcl D_{21}(\mcl C_P+\mcl D_{zu}\mcl K_P)
-&\mcl C_2+\mcl D_{21}\mcl D_{zu}\mcl K_\Theta
-&\mcl D_{21}\mcl D_P+\mcl D_{22}
+\mcl D_{21}(\mcl C_{\mrm{G}}+\mcl D_{\mrm{zu}}\mcl K_{\mrm{G}})
+&\mcl C_2+\mcl D_{21}\mcl D_{\mrm{zu}}\mcl K_\Theta
+&\mcl D_{21}\mcl D_{\mrm{G}}+\mcl D_{22}
 },\\
 \mcl M_{\Gamma^{-1}}
 &:=\bmat{
 I&0&0\\
 0&I&0\\
--\Lambda\mcl D_{21}(\mcl C_P+\mcl D_{zu}\mcl K_P)
-&-\Lambda(\mcl C_2+\mcl D_{21}\mcl D_{zu}\mcl K_\Theta)
-&\Lambda
+-\mcl{\Lambda}\mcl D_{21}(\mcl C_{\mrm{G}}+\mcl D_{\mrm{zu}}\mcl K_{\mrm{G}})
+&-\mcl{\Lambda}(\mcl C_2+\mcl D_{21}\mcl D_{\mrm{zu}}\mcl K_\Theta)
+&\mcl{\Lambda}
 }.
 \end{aligned}
 \end{equation*}
 Equivalently, the primal filtered-input row is
 \begin{equation*}
-\bmat{\mbf x_P\\\mbf x_\Theta\\\tilde w}
+\bmat{\mbf x_{\mrm{G}}\\\mbf x_\Theta\\\tilde w}
 =\mcl M_\Gamma
-\bmat{\mbf x_P\\\mbf x_\Theta\\w}.
+\bmat{\mbf x_{\mrm{G}}\\\mbf x_\Theta\\w}.
 \end{equation*}
 The last row of the dual component block gives the differently structured
 dual map. By the primal--dual invertibility equivalence in
 Theorem~\ref{thm:dual-iqc},
 \begin{equation*}
-\underline\Lambda
-:=\bigl(\underline{\mcl D}_{21}\mcl D_P^*
+\underline{\mcl{\Lambda}}
+:=\bigl(\underline{\mcl D}_{21}\mcl D_{\mrm{G}}^*
 +\underline{\mcl D}_{22}\bigr)^{-1}\in\Pi_4,
 \end{equation*}
 and
@@ -69,35 +69,35 @@ and
 :=\bmat{
 I&0&0\\
 0&I&0\\
-\underline{\mcl D}_{21}\mcl B_P^*
+\underline{\mcl D}_{21}\mcl B_{\mrm{G}}^*
 &\underline{\mcl C}_2
-&\underline{\mcl D}_{21}\mcl D_P^*+\underline{\mcl D}_{22}
+&\underline{\mcl D}_{21}\mcl D_{\mrm{G}}^*+\underline{\mcl D}_{22}
 },\quad
 \mcl M_{\underline\Gamma^{-1}}
 :=\bmat{
 I&0&0\\
 0&I&0\\
--\underline\Lambda\underline{\mcl D}_{21}\mcl B_P^*
-&-\underline\Lambda\underline{\mcl C}_2
-&\underline\Lambda
+-\underline{\mcl{\Lambda}}\underline{\mcl D}_{21}\mcl B_{\mrm{G}}^*
+&-\underline{\mcl{\Lambda}}\underline{\mcl C}_2
+&\underline{\mcl{\Lambda}}
 }.
 \end{equation*}
 That row acts as
 \begin{equation*}
-\bmat{\underline{\mbf x}_P\\\underline{\mbf x}_\Theta\\
+\bmat{\underline{\mbf x}_{\mrm{G}}\\\underline{\mbf x}_\Theta\\
 \tilde{\underline w}}
 =\mcl M_{\underline\Gamma}
-\bmat{\underline{\mbf x}_P\\\underline{\mbf x}_\Theta\\\underline w}.
+\bmat{\underline{\mbf x}_{\mrm{G}}\\\underline{\mbf x}_\Theta\\\underline w}.
 \end{equation*}
-Unlike $\mcl M_\Gamma$, the dual map has no explicit controller-gain blocks;
-the gains enter the dual state and input operators above. The analysis map
+Unlike $\mcl M_\Gamma$, the dual map has no explicit controller-gain blocks.
+The gains enter the dual state and input operators above. The analysis map
 is recovered by setting
-$\mcl K_P=\mcl K_\Theta=0$. These PI matrices act on the augmented
+$\mcl K_{\mrm{G}}=\mcl K_\Theta=0$. These PI matrices act on the augmented
 state--input coordinates and induce the causal maps $\Gamma$ and
-$\underline\Gamma$ used in Theorem~\ref{thm:dual-iqc}; they are not those
+$\underline\Gamma$ used in Theorem~\ref{thm:dual-iqc}. They are not those
 input--output maps themselves. All four coordinate maps lie in $\Pi_4$.
 Hence the dual KYP
 inequality gives statement~3 of Theorem~\ref{thm:dual-iqc}, which is
 equivalent to the strict primal hard IQC in statement~2. Therefore
 Theorem~\ref{thm:robust-stability-performance} proves robust stability and
-robust performance of $K\star P\star\Delta$.
+robust performance of $P_K\star\Delta$.

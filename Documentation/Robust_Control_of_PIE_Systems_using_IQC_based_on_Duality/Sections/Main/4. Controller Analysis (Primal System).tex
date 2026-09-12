@@ -1,60 +1,118 @@
-% !TEX root = ../../Extensions of IQC Duality to Partial Integral Equations.tex
+% !TEX root = ../../root.tex
+A recent state-space framework based on Partial Integral Equations (PIEs)
+provides a unified formulation of stabilization and
+$H_\infty$-optimal state-feedback controller synthesis for PDEs
+\cite{shivaknew}. This framework addresses the nominal setting, corresponding
+to $\Delta=0$. Building on this result, we develop a unified framework for
+optimal state-feedback control of uncertain or nonlinear PIEs subject to a
+prescribed quadratic performance requirement. As established in the previous
+section, IQCs are used to characterize the uncertainty and reduce conservatism
+in the resulting robust-stability certificates. Let $G$ denote the open-loop
+PIE plant to which the controller is connected. Its realization is given in
+Eq.~\eqref{eq:primal-system-components}. For a controller $K$, define the
+closed-controller generalized plant as $P_K:=K\star G$.
+
+Our objective is to construct a state-feedback controller $K$ such that
+$P_K\star\Delta$ is robustly stable and satisfies the prescribed performance
+IQC for every $\Delta\in\mbf\Delta$. We consider the controller
+interconnection shown in Fig.~\ref{fig:primal-controller-interconnection}, with
+\begin{equation}\label{eq:primal-controller}
+    u
+    = \mcl K_{\mrm G}\mbf x_{\mrm G}
+    + \mcl K_{\Theta}\mbf x_{\Theta}.
+\end{equation}
+The auxiliary filter $\Theta$ and its associated state $\mbf x_{\Theta}$ are
+constructed below. For dynamic IQCs, causal implementation of the
+state-feedback law requires that the signals $w$ and $z$ driving the dynamic
+part of $\Theta$ be available to the controller, so that $\mbf x_{\Theta}$ can
+be computed in real time.
+
 \primalcontrollerfigure
 
-The controller synthesis problem is to find $K$ and an admissible IQC
-certificate that establish robust stability and performance of the
-closed-loop interconnection. The primal component block in
-\eqref{eq:primal-system-components} shows why the primal analysis condition
-does not directly yield a convex synthesis condition. The controller gains
-$\mcl K_{\mathrm p}$ and $\mcl K_\Theta$ enter both the state dynamics
-and the filtered outputs. When these gains are decision operators, the
-storage inequality contains products of the storage operator $\mcl P$
-and the controller gains.
+\subsection{Inputs at the boundary}
 
-For ODE systems, a congruence transformation with $\mcl P^{-1}$,
-combined with a change of variables for the controller gain multiplied by
-$\mcl P^{-1}$, removes this bilinearity from the
-dynamics~\cite{zhou1996robust}. For the primal
-PIE realization, however, the storage operator is preceded by the adjoint
-of the reconstruction operator. Consequently, the same congruence leaves
-the factor
+We also admit boundary control and disturbance inputs through the treatment
+introduced by Shivakumar et al.~\cite[Sec.~III-B]{shivaknew}. The following
+construction and heat-equation example are adapted directly from that work.
+Let $x(t,s)=\partial_s^2v(t,s)$ and impose the boundary conditions
+$v(t,0)=u_1(t)$ and $\partial_sv(t,0)=u_2(t)$. The distributed state is
+reconstructed as
+\begin{equation}\label{eq:boundary-input-reconstruction}
+v(t,s)=u_1(t)+su_2(t)
++\int_0^s(s-\eta)x(t,\eta)\,\mrm d\eta.
+\end{equation}
+For the heat equation $\partial_tv=\partial_s^2v$, this gives
+\begin{equation}\label{eq:boundary-input-pie}
+\partial_t\!\int_0^s(s-\eta)x(t,\eta)\,\mrm d\eta
+=x(t,s)-\dot u_1(t)-s\dot u_2(t).
+\end{equation}
+Thus a boundary signal enters the PIE through its time derivative. Retaining
+this derivative while measuring the gain from the undifferentiated signal in
+$L_2$ would require additional temporal regularity. Following
+\cite{shivaknew}, for a generic boundary signal $w_{\mrm b}$ we therefore set
+$\hat w_{\mrm b}=\dot w_{\mrm b}$ and regard $\hat w_{\mrm b}$ as the PIE
+input.
+
+If $w_{\mrm b}$ is required by the controller or an IQC filter, it is
+recovered through
+\begin{equation}\label{eq:boundary-input-integrator}
+\dot w_{\mrm b}(t)=\hat w_{\mrm b}(t),
+\qquad
+w_{\mrm b}(t)=w_{\mrm b}(0)
++\int_0^t\hat w_{\mrm b}(\tau)\,\mrm d\tau.
+\end{equation}
+We assume that $w_{\mrm b}(0)$ is known and that $w_{\mrm b}$ is available
+wherever it is used. For the zero-state performance problem,
+$w_{\mrm b}(0)=0$, consistently with the initial boundary value of the PDE.
+The integrator state is included in the augmented plant realization. Hence the
+system class includes distributed inputs and boundary control or disturbance
+inputs for which this augmentation produces a well-posed PIE realization.
+Direct uncertainty through a boundary condition is outside this class unless
+it can also be represented by a well-posed PIE uncertainty channel satisfying
+the assumed hard IQC.
+
+\subsection{Primal analysis and synthesis obstruction}
+
+To distinguish analysis from synthesis, fix the IQC filter $\Psi$ and write an
+augmented realization before closing the controller as
+\begin{equation}\label{eq:primal-filtered-open-loop}
+\bmat{\mcl T\dot{\mbf x}\\\tilde v}
+=
+\bmat{\mcl A&\mcl B_{\mrm u}&\mcl B\\
+       \mcl C&\mcl D_{\mrm{zu}}&\mcl D}
+\bmat{\mbf x\\u\\w}.
+\end{equation}
+With $u=\mcl K\mbf x$, where
+$\mcl K=\bmat{\mcl K_{\mrm P}&\mcl K_\Theta}$, the filtered graph
+$\Psi\bmat{K\star G\\I}$ has the PIE realization
 \[
-    \mcl P^{-1}
-    \bmat{\mcl T_{\mathrm P}^*&0\\0&\mcl T^*}
-    \mcl P.
+\{\mcl T,\mcl A+\mcl B_{\mrm u}\mcl K,\mcl B,
+\mcl C+\mcl D_{\mrm{zu}}\mcl K,\mcl D\}.
 \]
-For ODEs the middle factor is the identity, and the storage operators
-cancel. For PIEs these operators do not generally commute, so this
-cancellation is unavailable and the transformed inequality remains
-nonconvex. Thus, although the congruence is well-defined for coercive
-$\mcl P$, it cannot in general be used to obtain a convex synthesis
-condition as in the ODE case. Applying an inverse of the reconstruction
-operator does not generally resolve this issue either, since this inverse
-need not be bounded on the underlying $L_2$ space. These structural issues
-motivate the use of PIE duality for state-feedback
-synthesis~\cite{shivaknew}.
-
-A second obstacle arises when the controller $K$ and the multiplier
-weight $\mcl V$ are synthesized simultaneously. In the primal IQC
-condition, $\mcl V$ weights the quadratic expression in the filtered
-closed-loop signals. Since these signals depend on $K$, this expression
-couples the controller gains and the multiplier weight nonconvexly.
-The controller-dependent output rows in
-\eqref{eq:primal-system-components} display this dependence explicitly;
-using the $J$-spectral factor $\Theta$ fixes the weight to
-$J_{\mbf n_z,\mbf n_w}$, but does not remove the first obstacle.
-Joint synthesis of $K$ and $\mcl V$ is therefore generally nonconvex
-in the original primal variables, even for ODE systems, where the
-reconstruction operators are identities. Obtaining convex synthesis
-conditions requires additional structure or a suitable
-reformulation~\cite{scherer2009robust,7353149}.
-For general dynamic multipliers, established synthesis methods alternate
-between controller design and multiplier
-analysis~\cite{veenman2014iqcsynthesis,wang2016robustiqc}.
-
-These obstacles motivate the dual formulation developed next. By changing
-the placement of the controller in the component realization, it enables
-the alternative change of variables used for controller synthesis.
-
-\noindent\textit{[Placeholder: Specify the class of systems and the
-assumptions under which the proposed synthesis method applies.]}
+A sufficient condition for robust stability and performance is the existence
+of a PI operator $\mcl P=\mcl P^*\succeq0$ and $\epsilon>0$ satisfying
+\begin{equation}\label{eq:primal-controller-analysis}
+\begin{gathered}
+\bmat{\mcl T^*\mcl P(\mcl A+\mcl B_{\mrm u}\mcl K)
++(\mcl A+\mcl B_{\mrm u}\mcl K)^*\mcl P\mcl T
+&\mcl T^*\mcl P\mcl B\\
+\mcl B^*\mcl P\mcl T&\epsilon I}\\
++\bmat{(\mcl C+\mcl D_{\mrm{zu}}\mcl K)^*\\\mcl D^*}
+\mcl V
+\bmat{(\mcl C+\mcl D_{\mrm{zu}}\mcl K)&\mcl D}
+\preceq0.
+\end{gathered}
+\end{equation}
+For analysis, $\mcl K$ is fixed and
+\eqref{eq:primal-controller-analysis} is affine in the certificate operators
+$\mcl P$ and $\mcl V$. For synthesis, these operators and $\mcl K$ must be
+determined simultaneously. This introduces products between $\mcl P$ and
+$\mcl K$, and between $\mcl K$ and $\mcl V$.
+For a non-descriptor ODE, the storage and controller coupling can be removed
+with $\mcl Q=\mcl P^{-1}$ and $\mcl Z=\mcl K\mcl Q$. The reconstruction
+operator $\mcl T$ prevents the same cancellation for a general PIE. The
+multiplier coupling must likewise be resolved by additional structure. Thus
+the primal formulation provides a convex test for a fixed controller, but not
+a convex synthesis condition. The following sections construct a dual
+equivalent of the filtered interconnection from which $K$ can be synthesized
+convexly.

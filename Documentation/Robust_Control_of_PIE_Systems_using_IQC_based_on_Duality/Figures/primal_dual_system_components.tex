@@ -78,18 +78,18 @@
 \fullwidthsystemcomponents{}{% 
 % \setlength{\arraycolsep}{2pt}%
 \begin{align*}
-&P:= \left\{
-\bmat{\mcl T_\mathrm{P}\dot{\mbf{x}}_\mathrm{P}(t)\\z(t)\\y_\mathrm{P}(t)}
+&G:= \left\{
+\bmat{\mcl T_{\mrm{G}}\dot{\mbf{x}}_{\mrm{G}}(t)\\z(t)\\y_{\mrm{G}}(t)}
 =
 \bmat{
-\mcl A_\mathrm{P}&\mcl B_\mathrm{P}&\mcl B_\mathrm{u}\\
-\mcl C_\mathrm{P}&\mcl D_\mathrm{P}&\mcl D_\mathrm{zu}\\
+\mcl A_{\mrm{G}}&\mcl B_{\mrm{G}}&\mcl B_{\mrm{u}}\\
+\mcl C_{\mrm{G}}&\mcl D_{\mrm{G}}&\mcl D_{\mrm{zu}}\\
 I & 0 & 0
 }
-\bmat{\mbf{x}_\mathrm{P}(t)\\w(t)\\u(t)}\right.
+\bmat{\mbf{x}_{\mrm{G}}(t)\\w(t)\\u(t)}\right.
 \; K := \left\{
-u(t) = \bmat{\mcl{K}_\mathrm{p} & \mcl{K}_\Theta}
-\bmat{\mbf{x}_p(t) \\ \mbf{x}_\Theta(t)}\right.
+u(t) = \bmat{\mcl{K}_{\mrm{G}} & \mcl{K}_\Theta}
+\bmat{\mbf{x}_{\mrm{G}}(t) \\ \mbf{x}_\Theta(t)}\right.
 \end{align*}
 \begin{equation*}
     \Theta:=\left\{
@@ -101,30 +101,30 @@ u(t) = \bmat{\mcl{K}_\mathrm{p} & \mcl{K}_\Theta}
 }{%
 % \setlength{\arraycolsep}{2pt}%
 \begin{align}
-&\Theta\bmat{K\star P \\ I} := \left\{
+&\Theta\bmat{K\star G \\ I} := \left\{
 \bmat{
-\mcl T_\mathrm{P}\dot{\mbf{x}}_\mathrm{P}(t)\\
+\mcl T_{\mrm{G}}\dot{\mbf{x}}_{\mrm{G}}(t)\\
 \mcl T\dot{\mbf{x}}_\Theta(t)\\
 \tilde{z}(t)\\
 \tilde{w}(t)
 }
 =
 \bmat{
-\mcl A_\mathrm{P}+\mcl B_\mathrm{u}\mcl K_\mathrm{p}
-&\mcl B_\mathrm{u}\mcl K_\Theta
-&\mcl B_\mathrm{P}\\
-\mcl B_1(\mcl C_\mathrm{P}+\mcl D_\mathrm{zu}\mcl K_\mathrm{p})
-&\mcl A+\mcl B_1\mcl D_\mathrm{zu}\mcl K_\Theta
-&\mcl B_1\mcl D_\mathrm{P}+\mcl B_2\\
-\mcl D_{11}(\mcl C_\mathrm{P}+\mcl D_\mathrm{zu}\mcl K_\mathrm{p})
-&\mcl C_1+\mcl D_{11}\mcl D_\mathrm{zu}\mcl K_\Theta
-&\mcl D_{11}\mcl D_\mathrm{P}+\mcl D_{12}\\
-\mcl D_{21}(\mcl C_\mathrm{P}+\mcl D_\mathrm{zu}\mcl K_\mathrm{p})
-&\mcl C_2+\mcl D_{21}\mcl D_\mathrm{zu}\mcl K_\Theta
-&\mcl D_{21}\mcl D_\mathrm{P}+\mcl D_{22}
+\mcl A_{\mrm{G}}+\mcl B_{\mrm{u}}\mcl K_{\mrm{G}}
+&\mcl B_{\mrm{u}}\mcl K_\Theta
+&\mcl B_{\mrm{G}}\\
+\mcl B_1(\mcl C_{\mrm{G}}+\mcl D_{\mrm{zu}}\mcl K_{\mrm{G}})
+&\mcl A+\mcl B_1\mcl D_{\mrm{zu}}\mcl K_\Theta
+&\mcl B_1\mcl D_{\mrm{G}}+\mcl B_2\\
+\mcl D_{11}(\mcl C_{\mrm{G}}+\mcl D_{\mrm{zu}}\mcl K_{\mrm{G}})
+&\mcl C_1+\mcl D_{11}\mcl D_{\mrm{zu}}\mcl K_\Theta
+&\mcl D_{11}\mcl D_{\mrm{G}}+\mcl D_{12}\\
+\mcl D_{21}(\mcl C_{\mrm{G}}+\mcl D_{\mrm{zu}}\mcl K_{\mrm{G}})
+&\mcl C_2+\mcl D_{21}\mcl D_{\mrm{zu}}\mcl K_\Theta
+&\mcl D_{21}\mcl D_{\mrm{G}}+\mcl D_{22}
 }
 \bmat{
-\mbf{x}_\mathrm{P}(t)\\
+\mbf{x}_{\mrm{G}}(t)\\
 \mbf{x}_\Theta(t)\\
 w(t)
 }\right.
@@ -138,21 +138,21 @@ w(t)
 \fullwidthsystemcomponents{}{% 
 % \setlength{\arraycolsep}{2pt}%
 \begin{align*}
-&P^\top := \left\{
-\bmat{\mcl T^*_P\dot{\underline{\mbf{x}}}_P(t)\\
+&G^\top := \left\{
+\bmat{\mcl T^*_{\mrm{G}}\dot{\underline{\mbf{x}}}_{\mrm{G}}(t)\\
 \underline{z}(t)\\\underline{y}(t)}
 =
 \bmat{
-\mcl A_P^*&\mcl C_P^* & I\\
-\mcl B_P^*&\mcl D^*_P & 0\\
-\mcl B_u^*&\mcl D^*_{zu}& 0
+\mcl A_{\mrm{G}}^*&\mcl C_{\mrm{G}}^* & I\\
+\mcl B_{\mrm{G}}^*&\mcl D^*_{\mrm{G}} & 0\\
+\mcl B_{\mrm{u}}^*&\mcl D^*_{\mrm{zu}}& 0
 }
-\bmat{\underline{\mbf{x}}_P(t)\\
-\underline{w}(t)\\\underline{u}_P(t)}\right.
+\bmat{\underline{\mbf{x}}_{\mrm{G}}(t)\\
+\underline{w}(t)\\\underline{u}_{\mrm{G}}(t)}\right.
 \; K^\top := \left\{
-\bmat{\underline u_P(t)\\\underline u_\Theta(t)}
+\bmat{\underline u_{\mrm{G}}(t)\\\underline u_\Theta(t)}
 =
-\bmat{\mcl K_\mathrm{p}^*\\\mcl K_\Theta^*}
+\bmat{\mcl K_{\mrm{G}}^*\\\mcl K_\Theta^*}
 \underline y(t)\right.
 \end{align*}
 \begin{equation*}
@@ -181,35 +181,35 @@ w(t)
 }{%
 % \setlength{\arraycolsep}{2pt}%
 \begin{align}
-&\mbf D(\Theta)\bmat{(K\star P)^\top\\I} := \left\{
+&\mbf D(\Theta)\bmat{(K\star G)^\top\\I} := \left\{
 \bmat{
-\mcl T_P^*\dot{\underline{\mbf{x}}}_P(t)\\
+\mcl T_{\mrm{G}}^*\dot{\underline{\mbf{x}}}_{\mrm{G}}(t)\\
 \mcl T^*\dot{\underline{\mbf{x}}}_\Theta(t)\\
 \tilde{\underline z}(t)\\
 \tilde{\underline w}(t)
 }
 =
 \bmat{
-\mcl A_P^*+\mcl K_\mathrm{p}^*\mcl B_\mathrm{u}^*
+\mcl A_{\mrm{G}}^*+\mcl K_{\mrm{G}}^*\mcl B_{\mrm{u}}^*
 &0
-&\mcl C_P^*+\mcl K_\mathrm{p}^*\mcl D_\mathrm{zu}^*\\
-\underline{\mcl B}_1\mcl B_P^*
- +\mcl K_\Theta^*\mcl B_\mathrm{u}^*
+&\mcl C_{\mrm{G}}^*+\mcl K_{\mrm{G}}^*\mcl D_{\mrm{zu}}^*\\
+\underline{\mcl B}_1\mcl B_{\mrm{G}}^*
+ +\mcl K_\Theta^*\mcl B_{\mrm{u}}^*
 &\underline{\mcl A}
-&\underline{\mcl B}_1\mcl D_P^*
+&\underline{\mcl B}_1\mcl D_{\mrm{G}}^*
  +\underline{\mcl B}_2
- +\mcl K_\Theta^*\mcl D_\mathrm{zu}^*\\
-\underline{\mcl D}_{11}\mcl B_P^*
+ +\mcl K_\Theta^*\mcl D_{\mrm{zu}}^*\\
+\underline{\mcl D}_{11}\mcl B_{\mrm{G}}^*
 &\underline{\mcl C}_1
-&\underline{\mcl D}_{11}\mcl D_P^*
+&\underline{\mcl D}_{11}\mcl D_{\mrm{G}}^*
  +\underline{\mcl D}_{12}\\
-\underline{\mcl D}_{21}\mcl B_P^*
+\underline{\mcl D}_{21}\mcl B_{\mrm{G}}^*
 &\underline{\mcl C}_2
-&\underline{\mcl D}_{21}\mcl D_P^*
+&\underline{\mcl D}_{21}\mcl D_{\mrm{G}}^*
  +\underline{\mcl D}_{22}
 }
 \bmat{
-\underline{\mbf{x}}_P(t)\\
+\underline{\mbf{x}}_{\mrm{G}}(t)\\
 \underline{\mbf{x}}_\Theta(t)\\
 \underline w(t)
 }\right.

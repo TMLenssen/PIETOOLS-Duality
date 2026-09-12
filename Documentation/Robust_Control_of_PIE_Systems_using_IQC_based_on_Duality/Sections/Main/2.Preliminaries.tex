@@ -11,103 +11,69 @@ L_2^{n_2}[a,b]$, where $\mathbf{n} = \bmat{n_1 \\ n_2}$, with inner product
 simply write $\ip{\cdot}{\cdot} := \ip{\cdot}{\cdot}_{\R L_2}$. Since the only
 spatial domain considered here is $[a,b]$, we typically omit the domain and
 write $L_2^n$ or $\R L_2^{\mathbf{n}}$, further omitting dimensions when clear
-from context. For a normed space $X$ and Banach space $Y$, $\mcl L(X,Y)$ denotes
-the Banach space of bounded linear operators from $X$ to $Y$ with induced norm
+from context. We omit dimensions when clear from context.
+For suitably differentiable spatial states, $\dot{\mbf x}:=\partial_t\mbf x$.
+We denote the induced norm for
+bounded linear operators on $\RL$ by
 \[
-\|\mcl P\|_{\mcl L(X,Y)} = \sup_{\|\mbf{x}\| = 1} \|\mcl P \mathbf{x}\|_Y,
-\] and $\mcl L(X) := \mcl L(X,X)$. Our notational convention is to write
-functions in {bold} (e.g., $\mathbf{x}$, indicating $\mathbf{x} \in \RL$)
-and operators in calligraphic font (e.g., $\mcl P \in \mcl L(\RL)$).
-For a Hilbert space $X$ and operator $\mcl A \in \mcl L(X)$, the adjoint $\mcl
+\|\mcl P\|
+:=\sup_{0\neq\mbf x\in\RL^{\mbf n}}
+\frac{\|\mcl P\mbf x\|_{\RL}}{\|\mbf x\|_{\RL}}.
+\]
+Our notational convention is to write
+spatial states and profiles in bold (e.g., $\mbf{x}\in\RL$).
+For an operator $\mcl A$, the adjoint $\mcl
  A^*$ is defined by
 \[
-\ip{\mathbf{x}}{\mcl A \mathbf{y}}_X = \ip{\mcl A^* \mathbf{x}}{\mathbf{y}}_X,
-\quad \forall\, \mathbf{x},\mathbf{y} \in X.
+\ip{\mathbf{x}}{\mcl A \mathbf{y}}_{\RL} = \ip{\mcl A^* \mathbf{x}}{\mathbf{y}}_{\RL},
+\quad \forall\, \mathbf{x},\mathbf{y} \in \RL.
 \]
-The space $L_2^n[0,\infty)$ denotes $\R^n$-valued square-integrable signals
-defined on the temporal domain $[0,\infty)$, so that $x(t) \in \R^n$. Similarly,
-$\RL^n[0,\infty)$ denotes $\RL$-valued square-integrable temporal signals. For
-suitably differentiable $\mathbf{x} \in \RL^n[0,\infty)$, we write
-$\mathbf{\dot{x}} := \frac{\partial \mathbf{x}}{\partial t}$. For a Hilbert
-space $\mathbf{H}$, we denote by $\mathbf{L}_{\mathbf{H}}$ the space of
-square-integrable functions $u : [0,\infty) \to \mathbf{H}$ with inner product
-\[
-\ip{\mathbf{u}}{\mathbf{v}}_{\mathbf{L}_{\mathbf{H}}}
-= \int_0^\infty \ip{\mathbf{u}(t)}{\mathbf{v}(t)}_{\mathbf{H}}\, dt.
-\] We define the extended space $\mathbf{L}_{\mathrm{e},\mathbf{H}}$ to consist of
-functions $u : [0,\infty) \to \mathbf{H}$ such that
-\[
-\int_0^T \|\mathbf{u}(t)\|_{\mathbf{H}}^2\, dt < \infty
-\quad \forall\, T \ge 0.
-\] We use $\mathbf{L}_{\mathrm{e},[a,b]}$ and $\mathbf{L}_{[a,b]}$ to denote
-$\mathbf{L}_{\mathrm{e},\mathbf{H}}$ and $\mathbf{L}_{\mathbf{H}}$ with $\mathbf{H} = \R
-L_2[a,b]$. For any Hilbert space $\mathbf{H}$, the truncation operator $p_T :
-\mathbf{L}_{\mathrm{e},\mathbf{H}} \to \mathbf{L}_{\mathrm{e},\mathbf{H}}$ is defined for
-$\mathbf{y} \in \mathbf{L}_{\mathrm{e},\mathbf{H}}$ by
-\begin{equation*}
-(p_T \mathbf{y})(t) =
-\begin{cases}
-\mathbf{y}(t), & 0 \le t \le T, \\
-0,             & \text{otherwise}.
-\end{cases}
-\end{equation*}
-such that $(p_T \mbf{y})(t) \in \mbf{L}_\mathbf{H}$ for all $T \ge 0$.
-\begin{definition}
-Let $\mathbf{H}$ and $\mathbf{G}$ be Hilbert spaces. For all $T\geq0$, an
-operator $G : \mathbf{L}_{\mathbf{H}} \to \mathbf{L}_{\mathbf{G}}$ is:
+Define the signal space
+\begin{align*}
+L_{[a,b]}^{\mbf n}:=\{&\mbf u:[0,\infty)\to\RL^{\mbf n}[a,b] \mid\\&\quad\|\mbf u\|_{L_{[a,b]}}^2:=\int_0^{\infty}\|\mbf u(t)\|_{\RL}^2\,dt<\infty\}, 
+\end{align*}
+with inner product $\ip{\mbf u}{\mbf v}_{L_{[a,b]}}:=\int_0^{\infty}\ip{\mbf u(t)}{\mbf v(t)}_{\RL}\,dt$. 
+For any $\mbf y:[0,\infty)\to\RL^{\mbf n}[a,b]$,
+define the truncation operator $(p_T\mbf y)(t):=\mbf y(t)$ 
+for $0\leq t\leq T$ and $(p_T\mbf y)(t):=0$ for $t>T$,
+the corresponding extended signal space is therefore,
+\begin{align*}
+L_{\mrm{e},[a,b]}^{\mbf n}:=\{\mbf v \mid p_T\mbf v\in L_{[a,b]}^{\mbf n} \;\forall T>0\}.
+\end{align*}
+Moreover, for $\tau \in \R$ define the shift operator $(s_\tau u)(t):=u(t-\tau)$. An 
+operator $G:L_{\mrm{e},[a,b]}^{\mbf n}\to
+L_{\mrm{e},[a,b]}^{\mbf m}$ is called
 \begin{itemize}
-\item \emph{Causal} if $p_T G = p_T G p_T$.
-\item \emph{Bounded on $\mathbf{L}_{\mathbf{H}}$} if $\|G
-\mathbf{v}\|_{\mathbf{L}_{\mathbf{G}}} \le C
-\|\mathbf{v}\|_{\mathbf{L}_{\mathbf{H}}}$ for some $C \ge 0$ and all $\mathbf{v}
-\in \mathbf{L}_{\mathbf{H}}$.
-\item \emph{Bounded on $\mathbf{L}_{\mathrm{e},\mathbf{H}}$} if $\|p_T G
-\mathbf{v}\|_{\mathbf{L}_{\mathbf{G}}} \le C
-\|p_T\mathbf{v}\|_{\mathbf{L}_{\mathbf{H}}}$ for some $C \ge 0$ and all
-$\mathbf{v} \in \mathbf{L}_{\mathrm{e},\mathbf{H}}$.
-% \item \textbf{Incrementally $\mathbf{L}_{\mathrm{e},\mathbf{H}}$-bounded} if for some
-% $C \geq 0$,
-% \[
-% \|p_T (G \mathbf{v} - G \mathbf{u})\|_{\mathbf{L}_{\mathbf{G}}}
-% \le C \|p_T (\mathbf{v} - \mathbf{u})\|_{\mathbf{L}_{\mathbf{H}}}
-% \]
-% for all $\mathbf{v}, \mathbf{u} \in \mathbf{L}_{\mathrm{e},\mathbf{H}}$.
+\item \emph{Causal}, if $p_TG=p_TGp_T$ for all $T>0$.
+\item \emph{Anticausal}, if $(I-p_T)G(I-p_T)=(I-p_T)G$ for all $T>0$.
+\item \emph{Memoryless}, if $G$ is simultaneously causal and anticausal.
+\item \emph{Time-Invariant}, if $s_\tau G = G s_\tau$ for all $\tau\in\R$.
+\item \emph{Bounded on $L_{[a,b]}$}, if $\|G\|\leq C$ for some $C\geq0$.
+\item \emph{Bounded on $L_{\mrm{e},[a,b]}$}, if
+$\|p_TG\|\leq C$ for some $C\geq0$ and all $T>0$.
 \end{itemize}
-\end{definition}
-Finally, we will note some operations. For a given $\mcl K \in \mcl L(\RL^\mbf{n}, \RL^\mbf{m})$, we define
-the operator $\mcl M_{\mcl K} : \mathbf{L}_{\mathrm{e},[a,b]}^\mbf{n} \to
-\mathbf{L}_{\mathrm{e},[a,b]}^\mbf{m}$ to compactly represent a multiplication operator.
-For $\mathbf{u} = \bmat{u_1 & \cdots & u_N}^\top$ with $\mathbf{u} \in \RL$, its
-action at time $t$ is given by the block structure of $\mcl K_{ij}$:
-\begin{equation*}
-(\mcl M_{\mcl K} \mathbf{u})(t)
-:= \bmat{
-\mcl K_{11} & \cdots & \mcl K_{1n} \\
-\vdots      & \ddots & \vdots      \\
-\mcl K_{m1} & \cdots & \mcl K_{mn}
-}
-\bmat{\mbf{u}_1 \\ \vdots \\ \mbf{u}_n}(t).
-\end{equation*}
+For a bounded linear operator
+$\mcl K:\RL^{\mbf n}\to\RL^{\mbf m}$, define the multiplication operator
+$\mcl M_{\mcl K}:L_{\mrm{e},[a,b]}^{\mbf n}
+\to L_{\mrm{e},[a,b]}^{\mbf m}$ by
+\[
+(\mcl M_{\mcl K}u)(t):=\mcl K u(t).
+\]
 
 \subsection{Partial Integral Equations (PIEs)}
-Partial Integral operators, also known as PI operators, are a class of bounded
-linear integral operators that are defined jointly on a vector space and Hilbert
+Partial Integral operators, also known as PI operators, are integral operators
+defined jointly on a vector space and Hilbert
 space~\cite{peet2021pierepresentation,shivakumar2024GDPE}.
 \begin{definition}
-We say $\mcl P \in {\Pi}_4^{\mbf{m}\times\mbf{n}} \subset \mcl L(\RL^\mbf{n},
-\RL^\mbf{m})$, denoted by
+We say an operator $\mcl P:\RL^{\mbf n}[a,b]\to\RL^{\mbf m}[a,b]$
+belongs to ${\Pi}_4^{\mbf{m}\times\mbf{n}}$, denoted by
 $\PIop{P}{Q_1}{Q_2}{\{R_0,R_1,R_2\}}$, if there exist a matrix $P$ and matrix polynomials $Q_1, Q_2,
 R_0, R_1$, and $R_2$ (of compatible dimension) such that,
 \begin{gather*}
-\Bigg[\Bigg(\PIop{P}{Q_1}{Q_2}{\{R_0,R_1,R_2\}}\Bigg)\! \!
-\bmat{x \\ \mbf{x}}\Bigg](s)\\
-:=\! \bmat{Px\!
-+\!\int\limits_a^b\!Q_1(s)\mbf x(s)ds\\Q_2(s)x\!+\!\mcl R \mbf x(s)},\\
-\begin{aligned}
-(\mcl R \mbf x)(s) &= R_0(s)\mbf x(s) +
-\int\limits_a^s\!\!\!R_1(s,\theta)\mbf x(\theta)d\theta\!
-\\&\quad+\!\int\limits_s^b\!\!\!R_2(s,\theta)\mbf x(\theta) d\theta.
-\end{aligned}
+\Bigg[\Bigg(\PIop{P}{Q_1}{Q_2}{\{R\}}\Bigg)\! \!
+\bmat{x \\ \mbf{x}}\Bigg](s):=\! \bmat{Px\!
++\!\int\limits_a^b\!Q_1(s)\mbf x(s)ds\\Q_2(s)x\!+\!\mcl R \mbf x(s)},\\ 
+(\mcl R \mbf x)(s)\!\! =\!\! R_0(s)\mbf x(s)\! +\! \int\limits_a^s\!\!\!R_1(s,\theta)\mbf x(\theta)d\theta\! +\!\int\limits_s^b\!\!\!R_2(s,\theta)\mbf x(\theta) d\theta.
 \end{gather*}
 \end{definition}
 The vector space of PI operators, given compatible dimensions, are closed under
@@ -117,34 +83,34 @@ composition algebra \cite{shivakumar2024GDPE}.
 \begin{definition}(LPIs)
 \label{def:lpi-operator}
 For given PI operators $\{\mcl E_{i,j}, \mcl{F}_{i,j}, \mcl{G}_i\}$ and a convex
-linear functional $\mcl L(\cdot)$, a linear PI inequality is a convex
+linear functional $\ell(\cdot)$, a linear PI inequality is a convex
 optimization of the following form
 \begin{align*}
-& \min\limits_{P_i, Q_{1i}, Q_{2i}, R_{0i}, R_{1i}, R_{2i}}  \mcl L(\{P_i,
+& \min\limits_{P_i, Q_{1i}, Q_{2i}, R_{0i}, R_{1i}, R_{2i}}  \ell(\{P_i,
 Q_{1i}, Q_{2i}, R_{0i}, R_{1i}, R_{2i}\})\notag \\
-& \mathrm{s. t. }\ \sum\limits_{j = 1}^K \mcl E_{ij}^*\prod \begin{bmatrix}
+& \mrm{s. t. }\ \sum\limits_{j = 1}^K \mcl E_{ij}^*\prod \begin{bmatrix}
 P_i    & Q_{1i}  \\
 Q_{2i} & \{R_i\} \\
 \end{bmatrix}\mcl F_{ij} +\mcl G_i \succeq 0
 \end{align*}
 \end{definition}
 Only LMIs are required to solve an optimization problem involving LPIs.
-These definitions are based on \cite{shivaknew}
-\begin{definition}[PIE System]\label{def:pie-system}
+We next describe PIE systems and their stability properties,
+following~\cite{shivaknew}.
 Given the PIE system $G\{\mcl{T}, \mcl{A}, \mcl{B}, \mcl{C}, \mcl{D}\}$
 with PI operators $\mcl{T}, \mcl{A}, \mcl{B}, \mcl{C},$ and $\mcl{D}$ of
 compatible dimensions,
-and signals $w(t)\in \RL^{\mbf{n}_w}[a,b]$, we say
-$\mbf{x}(t)\in\RL[a,b]^{\mbf{n}_x}$ and $z(t)\in \RL^{\mbf{n}_z}[a,b]$
+and signals $w(t)\in \RL^{\mbf{n}_{\mrm{w}}}[a,b]$, we say
+$\mbf{x}(t)\in\RL^{\mbf{n}_{\mrm{x}}}[a,b]$ and $z(t)\in \RL^{\mbf{n}_{\mrm{z}}}[a,b]$
 satisfy the PIE with initial condition $\mbf{x}_0$ if
 \begin{equation*}
 \bmat{\partial_t(\mcl{T}\mbf{x})(t)\\ z(t)} = \bmat{\mcl{A} & \mcl{B} \\
 \mcl{C} & \mcl{D}}\bmat{\mbf{x}(t) \\ w(t)}
 \end{equation*}
 for all $t\geq0$ and $\mcl{T}\mbf{x}(0) = \mcl{T}\mbf{x}_0$. Additionally, for
-signals $\underline{w}(t)\in\RL[a,b]^{\mbf{n}_z}$
-of compatible dimensions, we say $\underline{\mbf{x}}(t)\in\RL[a,b]^{\mbf{n}_x}$
-and $\underline{z}(t)\in L_2[a,b]^{\mbf{n}_w}$
+signals $\underline{w}(t)\in\RL^{\mbf{n}_{\mrm{z}}}[a,b]$
+of compatible dimensions, we say $\underline{\mbf{x}}(t)\in\RL^{\mbf{n}_{\mrm{x}}}[a,b]$
+and $\underline{z}(t)\in\RL^{\mbf{n}_{\mrm{w}}}[a,b]$
 satisfy the dual PIE, $G^\top$, with initial condition $\underline{\mbf{x}}_0$ if
 \begin{equation*}
 \bmat{\mcl{T}^*\underline{\dot{\mbf{x}}}(t)\\ \underline{z}(t)}
@@ -155,68 +121,42 @@ satisfy the dual PIE, $G^\top$, with initial condition $\underline{\mbf{x}}_0$ i
 \end{equation*}
 for all $t\geq0$ and $\mcl{T}^*\underline{\mbf{x}}(0) =
 \mcl{T}^*\underline{\mbf{x}}_0$.
-\end{definition}
-
-\begin{definition}[Bounded Internally Stable PIE]\label{def:pie-rhinf}
-Given a PIE system $G$. We say $G$ is input-output stable if for any $z, w \in \mbf L_{e, [a, b]}$ satisfying $z = G w$ with $x_0 = 0$, we have
+For these systems, we consider input--output and exponential stability. A notational convenction
+is using underlining anything related to the dual system.
+Given a PIE system $G$, we say $G$ is input-output stable if for any $z, w \in L_{\mrm{e},[a,b]}$ satisfying $z = G w$ with $\mbf{x}_0=0$, we have
 \[
-\|p_T z\|_{\mbf{L}_{[a,b]}}
+\|p_T z\|_{L_{[a,b]}}
 \leq
-\gamma\|p_T w\|_{\mbf{L}_{[a,b]}},
+\gamma\|p_T w\|_{L_{[a,b]}},
 \quad
 \forall\,T\geq0,\quad
-\forall\,w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}.
+\forall\,w\in L_{\mrm{e},[a,b]}^{\mbf{n}_{\mrm{w}}}.
 \]
-% Let $G$ be a PIE system as in Definition~\ref{def:pie-system}. We say $G$ is internally
-% stable and bounded with decay rate
-% $\alpha>0$, $M>0$, and $L_2$-gain $\gamma>0$ if
-% \begin{itemize}
-% \item The homogeneous part \(\partial_t(\mcl{T}\mbf{x})(t)=\mcl{A}\mbf{x}(t)\),
-% with \(\mcl{T}\mbf{x}(0)=\mcl{T}\mbf{x}_0\)
-% is exponentially stable such that, for every admissible initial condition
-% $\mbf{x}_0 \in \RL$
-% \[
-% \|\mcl{T}\mbf{x}(t)\|_{\mbf{L}_{[a,b]}}
-% \leq
-% M\|\mcl{T}\mbf{x}_0\|_{\mbf{L}_{[a,b]}}e^{-\alpha t},
-% \quad \forall\,t\geq0.
-% \]
-% \item With zero initial condition $\mbf{x}(0)=0$, then for
-% any input $w$ and output $z$,
-% \[
-% \|p_T z\|_{\mbf{L}_{[a,b]}}
-% \leq
-% \gamma\|p_T w\|_{\mbf{L}_{[a,b]}},
-% \quad
-% \forall\,T\geq0,\quad
-% \forall\,w\in\mbf{L}_{\mathrm{e},[a,b]}^{\mbf{n}_w}.
-% \]
-% \end{itemize}
-% Then $G\in\Hinf^{\mbf{n}_{z}\times\mbf{n}_{w}}$. Clearly, $RH_\infty\subset\Hinf$
-% \cite{zhou1996robust}.
-% Also $G^\top\in\Hinf$ with the same decay rate, $\mbf{L}_{[a,b]}$-gain, and $M$
-% \cite{shivaknew}.
-\end{definition}
-
-\begin{definition}[Redheffer Star Product]\label{def:lft}
-For compatible causal systems or operators $G$ and $H$, write
-\[
-\bmat{y_1\\y_2}=G\bmat{u_1\\u_2}.
-\]
-The Redheffer star products~\cite{https://doi.org/10.1002/sapm1960391269}
+Given a PIE system $G$, we say that the homogeneous part of $G$
+is \emph{exponentially stable} with decay rate $\alpha>0$ if there exists
+some $M>0$ such that for any $\mbf{x}_0\in\RL$,
+if $\mcl{T}\mbf{x}(0) = \mcl{T}\mbf{x}_0$ and $\mcl{T}\dot{\mbf{x}}(t)
+=\mcl{A}\mbf{x}(t)$, then
+\[\|\mcl{T}\mbf{x}(t)\|_{\RL} \leq M\|\mbf{x}_0\|_{\RL} e^{-\alpha t} \quad\forall\, t\geq 0.\]
+To describe feedback interconnections, we use the following notation.
+For compatible causal $G$ and $H$, the Redheffer star
+products~\cite{https://doi.org/10.1002/sapm1960391269}
 denote the feedback maps
 \[
-\begin{aligned}
-G\star H &: u_2\mapsto y_2, \qquad u_1=Hy_1,\\
-H\star G &: u_1\mapsto y_1, \qquad u_2=Hy_2,
-\end{aligned}
+\bmat{y_1\\y_2}=G\bmat{u_1\\u_2},\quad \begin{aligned}
+&G\star H:u_2\mapsto y_2\\ &H\star G:u_1\mapsto y_1
+\end{aligned}, \quad \begin{aligned}
+&u_1=Hy_1\\ &u_2=Hy_2
+\end{aligned},
 \]
 provided the respective interconnections are well-posed.
-Here, $P\star\Delta$ closes the uncertainty loop and $K\star P$ closes
-the controller loop.
-\end{definition}
+Here, $P\star\Delta$ closes the uncertainty loop for the generalized plant
+$P$, while $K\star G$ closes the controller loop for the controlled plant
+$G$.
+
 \subsection{PIETOOLS}
-PIETOOLS is a MATLAB toolbox used for declaration, manipulation and solving LPIs
-\cite{9147712}. Its operator syntax, PDE-to-PIE conversion, and optimization
-workflows are documented in the user manual~\cite{pietools2025manual}; see also the
+PIETOOLS is a MATLAB toolbox developed by Shivakumar, Das, and
+Peet~\cite{9147712} for declaring, manipulating, and solving LPIs. Its operator
+syntax, PDE-to-PIE conversion, and optimization workflows are documented by
+Shivakumar et al. in the user manual~\cite{pietools2025manual}. See also the
 \href{https://control.asu.edu/pietools/pietools}{PIETOOLS homepage}.

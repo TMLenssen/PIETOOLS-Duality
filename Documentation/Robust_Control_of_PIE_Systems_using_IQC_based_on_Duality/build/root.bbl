@@ -1,0 +1,333 @@
+\begin{thebibliography}{10}
+\expandafter\ifx\csname url\endcsname\relax
+  \def\url#1{\texttt{#1}}\fi
+\expandafter\ifx\csname urlprefix\endcsname\relax\def\urlprefix{URL }\fi
+\expandafter\ifx\csname href\endcsname\relax
+  \def\href#1#2{#2} \def\path#1{#1}\fi
+
+\bibitem{TOOLHALLY2026103558}
+S.~Toolhally, J.~Roelofs, S.~Weiland, A.~Das,
+  \href{https://www.sciencedirect.com/science/article/pii/S0957415826001066}{A
+  digital twin of evaporative thermo-fluidic process in the fixation unit of
+  dod inkjet printers}, Mechatronics 118 (2026) 103558.
+\newblock \href
+  {https://doi.org/https://doi.org/10.1016/j.mechatronics.2026.103558}
+  {\path{doi:https://doi.org/10.1016/j.mechatronics.2026.103558}}.
+\newline\urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0957415826001066}
+
+\bibitem{curtain1978infinite}
+R.~F. Curtain, A.~J. Pritchard (Eds.),
+  \href{https://link.springer.com/book/10.1007/BFb0006761}{Infinite Dimensional
+  Linear Systems Theory}, Vol.~8 of Lecture Notes in Control and Information
+  Sciences, Springer-Verlag, Berlin, Heidelberg, 1978.
+\newblock \href {https://doi.org/10.1007/BFb0006761}
+  {\path{doi:10.1007/BFb0006761}}.
+\newline\urlprefix\url{https://link.springer.com/book/10.1007/BFb0006761}
+
+\bibitem{curtain1995introduction}
+R.~F. Curtain, H.~Zwart,
+  \href{https://link.springer.com/book/10.1007/978-1-4612-4224-6}{An
+  Introduction to Infinite-Dimensional Linear Systems Theory}, Vol.~21 of Texts
+  in Applied Mathematics, Springer-Verlag, New York, 1995.
+\newblock \href {https://doi.org/10.1007/978-1-4612-4224-6}
+  {\path{doi:10.1007/978-1-4612-4224-6}}.
+\newline\urlprefix\url{https://link.springer.com/book/10.1007/978-1-4612-4224-6}
+
+\bibitem{staffans2005wellposed}
+O.~Staffans, \href{https://doi.org/10.1017/CBO9780511543197}{Well-Posed Linear
+  Systems}, Vol. 103 of Encyclopedia of Mathematics and its Applications,
+  Cambridge University Press, 2005.
+\newblock \href {https://doi.org/10.1017/CBO9780511543197}
+  {\path{doi:10.1017/CBO9780511543197}}.
+\newline\urlprefix\url{https://doi.org/10.1017/CBO9780511543197}
+
+\bibitem{curtain1986robust}
+R.~F. Curtain, K.~Glover,
+  \href{https://www.sciencedirect.com/science/article/pii/0167691186901003}{Robust
+  stabilization of infinite dimensional systems by finite dimensional
+  controllers}, Systems \& Control Letters 7~(1) (1986) 41--47.
+\newblock \href {https://doi.org/10.1016/0167-6911(86)90100-3}
+  {\path{doi:10.1016/0167-6911(86)90100-3}}.
+\newline\urlprefix\url{https://www.sciencedirect.com/science/article/pii/0167691186901003}
+
+\bibitem{vankeulen1993hinfinity}
+B.~van Keulen,
+  \href{https://link.springer.com/book/10.1007/978-1-4612-0347-6}{{$H_\infty$}-Control
+  for Distributed Parameter Systems: A State-Space Approach}, Systems \&
+  Control: Foundations \& Applications, Birkh{\"a}user, Boston, 1993.
+\newblock \href {https://doi.org/10.1007/978-1-4612-0347-6}
+  {\path{doi:10.1007/978-1-4612-0347-6}}.
+\newline\urlprefix\url{https://link.springer.com/book/10.1007/978-1-4612-0347-6}
+
+\bibitem{krstic2008boundary}
+M.~Krsti{\'c}, A.~Smyshlyaev,
+  \href{https://epubs.siam.org/doi/book/10.1137/1.9780898718607}{Boundary
+  Control of {PDE}s: A Course on Backstepping Designs}, Vol.~16 of Advances in
+  Design and Control, Society for Industrial and Applied Mathematics, 2008.
+\newblock \href {https://doi.org/10.1137/1.9780898718607}
+  {\path{doi:10.1137/1.9780898718607}}.
+\newline\urlprefix\url{https://epubs.siam.org/doi/book/10.1137/1.9780898718607}
+
+\bibitem{fridman2012sampled}
+E.~Fridman, A.~Blighovsky,
+  \href{https://cris.tau.ac.il/en/publications/robust-sampled-data-control-of-a-class-of-semilinear-parabolic-sy/}{Robust
+  sampled-data control of a class of semilinear parabolic systems}, Automatica
+  48~(5) (2012) 826--836.
+\newblock \href {https://doi.org/10.1016/j.automatica.2012.02.006}
+  {\path{doi:10.1016/j.automatica.2012.02.006}}.
+\newline\urlprefix\url{https://cris.tau.ac.il/en/publications/robust-sampled-data-control-of-a-class-of-semilinear-parabolic-sy/}
+
+\bibitem{valmorbida2016pdesdp}
+G.~Valmorbida, M.~Ahmadi, A.~Papachristodoulou,
+  \href{https://ora.ox.ac.uk/objects/uuid%3A3418aab4-0c9c-4fc6-a366-777efe63945e}{Stability
+  analysis for a class of partial differential equations via semidefinite
+  programming}, IEEE Transactions on Automatic Control 61~(6) (2016)
+  1649--1654.
+\newblock \href {https://doi.org/10.1109/TAC.2015.2479135}
+  {\path{doi:10.1109/TAC.2015.2479135}}.
+\newline\urlprefix\url{https://ora.ox.ac.uk/objects/uuid%3A3418aab4-0c9c-4fc6-a366-777efe63945e}
+
+\bibitem{peet2021pierepresentation}
+M.~M. Peet, \href{https://par.nsf.gov/servlets/purl/10285388}{A partial
+  integral equation ({PIE}) representation of coupled linear {PDE}s and
+  scalable stability analysis using {LMI}s}, Automatica 125 (2021) 109473.
+\newblock \href {https://doi.org/10.1016/j.automatica.2020.109473}
+  {\path{doi:10.1016/j.automatica.2020.109473}}.
+\newline\urlprefix\url{https://par.nsf.gov/servlets/purl/10285388}
+
+\bibitem{shivakumar2024GDPE}
+S.~Shivakumar, A.~Das, S.~Weiland, M.~Peet, {Extension of the Partial Integral
+  Equation Representation to GPDE Input–Output Systems}, IEEE Transactions on
+  Automatic Control 70~(5) (2025) 3240--3255.
+\newblock \href {https://doi.org/10.1109/TAC.2024.3505954}
+  {\path{doi:10.1109/TAC.2024.3505954}}.
+
+\bibitem{shivaknew}
+S.~Shivakumar, A.~Das, M.~Peet, \href{https://arxiv.org/abs/2208.13104v4}{Dual
+  representations and {$H_\infty$}-optimal control of partial differential
+  equations}, IEEE Transactions on Automatic Control 71~(8) (2026) 4956--4971.
+\newblock \href {https://doi.org/10.1109/TAC.2026.3666695}
+  {\path{doi:10.1109/TAC.2026.3666695}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2208.13104v4}
+
+\bibitem{megretski1997system}
+A.~Megretski, A.~Rantzer, {System analysis via integral quadratic constraints},
+  IEEE Transactions on Automatic Control 42~(6) (1997) 819--830.
+
+\bibitem{willems1972dissipative1}
+J.~C. Willems, \href{https://doi.org/10.1007/BF00276493}{Dissipative dynamical
+  systems---{Part I}: General theory}, Archive for Rational Mechanics and
+  Analysis 45~(5) (1972) 321--351.
+\newblock \href {https://doi.org/10.1007/BF00276493}
+  {\path{doi:10.1007/BF00276493}}.
+\newline\urlprefix\url{https://doi.org/10.1007/BF00276493}
+
+\bibitem{6915700}
+P.~Seiler, Stability analysis with dissipation inequalities and integral
+  quadratic constraints, IEEE Transactions on Automatic Control 60~(6) (2015)
+  1704--1709.
+\newblock \href {https://doi.org/10.1109/TAC.2014.2361004}
+  {\path{doi:10.1109/TAC.2014.2361004}}.
+
+\bibitem{9303892}
+A.~Das, S.~Shivakumar, M.~Peet, S.~Weiland, {Robust Analysis of Uncertain
+  ODE-PDE Systems Using PI Multipliers, PIEs and LPIs}, in: 2020 59th IEEE
+  Conference on Decision and Control (CDC), 2020, pp. 634--639.
+\newblock \href {https://doi.org/10.1109/CDC42340.2020.9303892}
+  {\path{doi:10.1109/CDC42340.2020.9303892}}.
+
+\bibitem{10156335}
+A.~Talitckii, M.~Peet, P.~Seiler, {Integral Quadratic Constraints with
+  Infinite-Dimensional Channels}, in: 2023 American Control Conference (ACC),
+  2023, pp. 1576--1583.
+\newblock \href {https://doi.org/10.23919/ACC55779.2023.10156335}
+  {\path{doi:10.23919/ACC55779.2023.10156335}}.
+
+\bibitem{lenssen2025muanalysissynthesisframeworkpartial}
+T.~Lenssen, A.~Talitckii, M.~Peet, A.~Das,
+  \href{https://arxiv.org/abs/2511.14896}{{A $\mu$-Analysis and Synthesis
+  Framework for Partial Integral Equations using IQCs}} (2025).
+\newblock \href {http://arxiv.org/abs/2511.14896} {\path{arXiv:2511.14896}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2511.14896}
+
+\bibitem{kose2009robust}
+I.~K{\"o}se, C.~Scherer, {Robust $L_2$-gain feedforward control of uncertain
+  systems using dynamic {IQC}s}, International Journal of Robust and Nonlinear
+  Control 19~(11) (2009) 1224--1247.
+
+\bibitem{venkataraman}
+R.~Venkataraman, P.~Seiler,
+  \href{https://onlinelibrary.wiley.com/doi/abs/10.1002/rnc.3913}{{Convex LPV
+  synthesis of estimators and feedforwards using duality and integral quadratic
+  constraints}}, International Journal of Robust and Nonlinear Control 28~(3)
+  (2018) 953--975.
+\newblock \href
+  {http://arxiv.org/abs/https://onlinelibrary.wiley.com/doi/pdf/10.1002/rnc.3913}
+  {\path{arXiv:https://onlinelibrary.wiley.com/doi/pdf/10.1002/rnc.3913}},
+  \href {https://doi.org/https://doi.org/10.1002/rnc.3913}
+  {\path{doi:https://doi.org/10.1002/rnc.3913}}.
+\newline\urlprefix\url{https://onlinelibrary.wiley.com/doi/abs/10.1002/rnc.3913}
+
+\bibitem{scherer2009robust}
+C.~Scherer, {Robust controller synthesis is convex for systems without control
+  channel uncertainties}, in: P.~Van~den Hof, C.~Scherer, P.~Heuberger (Eds.),
+  Model Based Control: Bridging Rigorous Theory and Advanced Technology,
+  Springer, New York, 2009.
+
+\bibitem{veenman2014iqcsynthesis}
+J.~Veenman, C.~W. Scherer,
+  \href{https://onlinelibrary.wiley.com/doi/10.1002/rnc.3042}{{IQC}-synthesis
+  with general dynamic multipliers}, International Journal of Robust and
+  Nonlinear Control 24~(17) (2014) 3027--3056.
+\newblock \href {https://doi.org/10.1002/rnc.3042}
+  {\path{doi:10.1002/rnc.3042}}.
+\newline\urlprefix\url{https://onlinelibrary.wiley.com/doi/10.1002/rnc.3042}
+
+\bibitem{wang2016robustiqc}
+S.~Wang, H.~Pfifer, P.~Seiler,
+  \href{https://www.sciencedirect.com/science/article/pii/S0005109816000546}{Robust
+  synthesis for linear parameter varying systems using integral quadratic
+  constraints}, Automatica 68 (2016) 111--118.
+\newblock \href {https://doi.org/10.1016/j.automatica.2016.01.053}
+  {\path{doi:10.1016/j.automatica.2016.01.053}}.
+\newline\urlprefix\url{https://www.sciencedirect.com/science/article/pii/S0005109816000546}
+
+\bibitem{7353149}
+C.~Yuan, F.~Wu, Dynamic iqc-based control of uncertain lft systems with
+  time-varying state delay, IEEE Transactions on Cybernetics 46~(12) (2016)
+  3320--3329.
+\newblock \href {https://doi.org/10.1109/TCYB.2015.2503741}
+  {\path{doi:10.1109/TCYB.2015.2503741}}.
+
+\bibitem{carrasco2018equivalence}
+J.~Carrasco, P.~Seiler, \href{https://arxiv.org/abs/1704.04816}{Conditions for
+  the equivalence between {IQC} and graph separation stability results},
+  International Journal of ControlPublished online in 2018 (2018).
+\newblock \href {https://doi.org/10.1080/00207179.2018.1465205}
+  {\path{doi:10.1080/00207179.2018.1465205}}.
+\newline\urlprefix\url{https://arxiv.org/abs/1704.04816}
+
+\bibitem{scherer2018dynamicdissipation}
+C.~W. Scherer, J.~Veenman, \href{https://arxiv.org/abs/1803.05804}{Stability
+  analysis by dynamic dissipation inequalities: On merging frequency-domain
+  techniques with time-domain conditions}, Systems \& Control Letters 121
+  (2018) 7--15.
+\newblock \href {https://doi.org/10.1016/j.sysconle.2018.08.005}
+  {\path{doi:10.1016/j.sysconle.2018.08.005}}.
+\newline\urlprefix\url{https://arxiv.org/abs/1803.05804}
+
+\bibitem{magicalhiddenenergy}
+H.~Pfifer, P.~Seiler,
+  \href{https://onlinelibrary.wiley.com/doi/abs/10.1002/rnc.3521}{{Less
+  conservative robustness analysis of linear parameter varying systems using
+  integral quadratic constraints}}, International Journal of Robust and
+  Nonlinear Control 26~(16) (2016) 3580--3594.
+\newblock \href
+  {http://arxiv.org/abs/https://onlinelibrary.wiley.com/doi/pdf/10.1002/rnc.3521}
+  {\path{arXiv:https://onlinelibrary.wiley.com/doi/pdf/10.1002/rnc.3521}},
+  \href {https://doi.org/https://doi.org/10.1002/rnc.3521}
+  {\path{doi:https://doi.org/10.1002/rnc.3521}}.
+\newline\urlprefix\url{https://onlinelibrary.wiley.com/doi/abs/10.1002/rnc.3521}
+
+\bibitem{hu}
+B.~Hu, M.~J. Lacerda, P.~Seiler,
+  \href{https://onlinelibrary.wiley.com/doi/abs/10.1002/rnc.3646}{Robustness
+  analysis of uncertain discrete-time systems with dissipation inequalities and
+  integral quadratic constraints}, International Journal of Robust and
+  Nonlinear Control 27~(11) (2017) 1940--1962.
+\newblock \href
+  {http://arxiv.org/abs/https://onlinelibrary.wiley.com/doi/pdf/10.1002/rnc.3646}
+  {\path{arXiv:https://onlinelibrary.wiley.com/doi/pdf/10.1002/rnc.3646}},
+  \href {https://doi.org/https://doi.org/10.1002/rnc.3646}
+  {\path{doi:https://doi.org/10.1002/rnc.3646}}.
+\newline\urlprefix\url{https://onlinelibrary.wiley.com/doi/abs/10.1002/rnc.3646}
+
+\bibitem{https://doi.org/10.1002/sapm1960391269}
+R.~M. Redheffer,
+  \href{https://onlinelibrary.wiley.com/doi/abs/10.1002/sapm1960391269}{On a
+  certain linear fractional transformation}, Journal of Mathematics and Physics
+  39~(1-4) (1960) 269--286.
+\newblock \href
+  {http://arxiv.org/abs/https://onlinelibrary.wiley.com/doi/pdf/10.1002/sapm1960391269}
+  {\path{arXiv:https://onlinelibrary.wiley.com/doi/pdf/10.1002/sapm1960391269}},
+  \href {https://doi.org/https://doi.org/10.1002/sapm1960391269}
+  {\path{doi:https://doi.org/10.1002/sapm1960391269}}.
+\newline\urlprefix\url{https://onlinelibrary.wiley.com/doi/abs/10.1002/sapm1960391269}
+
+\bibitem{9147712}
+S.~Shivakumar, A.~Das, M.~Peet, {PIETOOLS: A Matlab Toolbox for Manipulation
+  and Optimization of Partial Integral Operators}, in: 2020 American Control
+  Conference (ACC), 2020, pp. 2667--2672.
+\newblock \href {https://doi.org/10.23919/ACC45564.2020.9147712}
+  {\path{doi:10.23919/ACC45564.2020.9147712}}.
+
+\bibitem{pietools2025manual}
+S.~Shivakumar, D.~Jagt, D.~Braghini, A.~Das, Y.~Peet, M.~Peet,
+  \href{https://arxiv.org/abs/2501.17854v2}{{PIETOOLS 2025}: User manual},
+  version 2, revised 15 March 2026; first submitted in 2025 (2026).
+\newblock \href {http://arxiv.org/abs/2501.17854} {\path{arXiv:2501.17854}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2501.17854v2}
+
+\bibitem{veenman2016robust}
+J.~Veenman, C.~Scherer, H.~K{\"o}ro{\u{g}}lu, {Robust stability and performance
+  analysis based on integral quadratic constraints}, European Journal of
+  Control 31 (2016) 1--32.
+
+\bibitem{scherer2008robustness}
+C.~Scherer, I.~K{\"o}se, {Robustness with dynamic integral quadratic
+  constraints: an exact state-space characterization of nominal stability with
+  applications to robust estimation}, Automatica 44~(7) (2008) 1666--1675.
+
+\bibitem{petcu2004control}
+M.~Petcu, R.~Temam, {Control for the Sine-Gordon Equation}, ESAIM: Control,
+  Optimisation and Calculus of Variations 10~(4) (2004) 553--573.
+\newblock \href {https://doi.org/10.1051/cocv:2004020}
+  {\path{doi:10.1051/cocv:2004020}}.
+
+\bibitem{Pfifer2015}
+H.~Pfifer, P.~Seiler,
+  \href{https://onlinelibrary.wiley.com/doi/abs/10.1002/rnc.3240}{Robustness
+  analysis of linear parameter varying systems using integral quadratic
+  constraints}, International Journal of Robust and Nonlinear Control 25~(15)
+  (2015) 2843--2864.
+\newblock \href
+  {http://arxiv.org/abs/https://onlinelibrary.wiley.com/doi/pdf/10.1002/rnc.3240}
+  {\path{arXiv:https://onlinelibrary.wiley.com/doi/pdf/10.1002/rnc.3240}},
+  \href {https://doi.org/https://doi.org/10.1002/rnc.3240}
+  {\path{doi:https://doi.org/10.1002/rnc.3240}}.
+\newline\urlprefix\url{https://onlinelibrary.wiley.com/doi/abs/10.1002/rnc.3240}
+
+\bibitem{MEINSMA1995243}
+G.~Meinsma,
+  \href{https://www.sciencedirect.com/science/article/pii/0167691194000779}{J-spectral
+  factorization and equalizing vectors}, Systems \& Control Letters 25~(4)
+  (1995) 243--249.
+\newblock \href {https://doi.org/https://doi.org/10.1016/0167-6911(94)00077-9}
+  {\path{doi:https://doi.org/10.1016/0167-6911(94)00077-9}}.
+\newline\urlprefix\url{https://www.sciencedirect.com/science/article/pii/0167691194000779}
+
+\bibitem{nevadoHolgado2010betaOscillations}
+A.~J. Nevado~Holgado, J.~R. Terry, R.~Bogacz, {Conditions for the Generation of
+  Beta Oscillations in the Subthalamic Nucleus--Globus Pallidus Network}, The
+  Journal of Neuroscience 30~(37) (2010) 12340--12352.
+\newblock \href {https://doi.org/10.1523/JNEUROSCI.0817-10.2010}
+  {\path{doi:10.1523/JNEUROSCI.0817-10.2010}}.
+
+\bibitem{peet2020representationnetworkssystemsdelay}
+M.~Peet, \href{https://arxiv.org/abs/1910.03881}{{Representation of Networks
+  and Systems with Delay DDEs, DDFs, ODE-PDEs and PIEs}} (2020).
+\newblock \href {http://arxiv.org/abs/1910.03881} {\path{arXiv:1910.03881}}.
+\newline\urlprefix\url{https://arxiv.org/abs/1910.03881}
+
+\bibitem{zames1968stability}
+G.~Zames, P.~Falb, {Stability conditions for systems with monotone and
+  slope-restricted nonlinearities}, SIAM Journal on Control 6~(1) (1968)
+  89--109.
+
+\bibitem{turner2022zamesfalbmultipliersdontpanic}
+M.~C. Turner, \href{https://arxiv.org/abs/2106.15913}{Zames-falb multipliers:
+  don't panic} (2022).
+\newblock \href {http://arxiv.org/abs/2106.15913} {\path{arXiv:2106.15913}}.
+\newline\urlprefix\url{https://arxiv.org/abs/2106.15913}
+
+\end{thebibliography}

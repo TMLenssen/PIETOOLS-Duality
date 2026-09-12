@@ -3,9 +3,9 @@
 \begin{example}[Coupled heat equations with repeated real uncertainty]
 We extend the interconnection in~\cite[Sec.~8.1]{veenman2016robust}
 to two coupled heat equations.
-Let $s\in[0,1]$, $\kappa=0.2$, and
+Let $s\in[0,1]$ and
 \begin{align*}
- A_0&=\bmat{-2&-3\\1&1}+\frac{\kappa\pi^2}{4}I_2,
+ A&=\bmat{-2&-3\\1&1},
  &B_\Delta&=\bmat{1&0\\0&0},&B_{\mathrm p}&=\bmat{1\\0},\\
  C_\Delta&=\bmat{1&0\\0&0},
  &D_{\Delta\Delta}&=\bmat{1&-2\\1&-1},
@@ -15,7 +15,7 @@ Let $s\in[0,1]$, $\kappa=0.2$, and
 \end{align*}
 Using $(\mcl Jf)(t,s)=\int_0^s f(t,\theta)\,d\theta$, consider
 \begin{align*}
- \dot{\mbf v}(t,s)&=\kappa\mbf v_{ss}(t,s)+A_0\mbf v(t,s)
+ \dot{\mbf v}(t,s)&=\mbf v_{ss}(t,s)+A\mbf v(t,s)
        +B_\Delta(\mcl Jw_\Delta)(t,s)+sB_{\mathrm p}w_{\mathrm p}(t),\\
  \mbf v(t,0)&=0,\qquad \mbf v_s(t,1)=0,\\
  z_\Delta(t,s)&=C_\Delta\mbf v_s(t,s)

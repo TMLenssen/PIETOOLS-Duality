@@ -12,7 +12,7 @@ runPoleSweep=true;               % Same single-point / sweep switch as Example 6
 alpha=.5;                         % Repeated real uncertainty: |delta|<=alpha
 nu=1;                             % Temporal basis order, as in Example 6
 rho=-1;                           % Negative temporal pole
-settings=lpisettings('heavy');% Modify heavy settings n1 = 2, n2 = 2, n3 = 2
+settings=lpisettings('heavy');  % Modify heavy settings n1 = 2, n2 = 2, n3 = 2
 settings.sos_opts.solver='mosek';
 settings.sos_opts.simplify=true;
 settings.ddM=3;
