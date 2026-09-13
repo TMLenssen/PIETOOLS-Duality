@@ -33,13 +33,11 @@ robust-performance certificate and the gains of the primal controller.
 
 \begin{corollary}\label{thm:state-feedback}
     Let $G$ be the controlled PIE plant defined in
-    Eq.~\eqref{eq:primal-system-components}, and let
-    $P_K:=K\star G$ denote the generalized plant obtained after closing the
-    controller loop.
-    Let $\Delta\in\mbf{\Delta}$ and suppose a primal hard IQC has the hard
+    Eq.~\eqref{eq:primal-system-components}.
+    Let $\Delta\in\mbf{\Delta}$ and exist a primal (hard) IQC $(\Psi,\mcl{V})$ that has the hard
     $(\Theta,J_{\mbf n_{\mrm{z}},\mbf n_{\mrm{w}}})$ factorization. Assume that
     \begin{itemize}
-        \item The interconnection $P_K\star\Delta$ is well-posed for all $\Delta\in\mbf{\Delta}$.
+        \item The interconnection $K\star P\star\Delta$ is well-posed for all $\Delta\in\mbf{\Delta}$.
         \item The IQC in Definition~\ref{def:uncertainty-iqc} is satisfied for all $\Delta\in\mbf{\Delta}$.
     \end{itemize}
      Moreover there exist, $\mcl{Z},\mcl{P}\in\Pi_4$ with $\mcl{P} = \mcl{P}^* \succ 0$, such that the following statement holds
@@ -92,7 +90,7 @@ Assume that $\mcl D_{21}\mcl D_{\mrm{G}}+\mcl D_{22}$ is invertible, with
 \[
 (\mcl D_{21}\mcl D_{\mrm{G}}+\mcl D_{22})^{-1}\in\Pi_4
 \]
-Then the interconnection $P_K\star\Delta$ with $\mbf{x}(0)=0$ is robustly stable and robust performance is achieved.
+Then the interconnection $K\star P\star\Delta$ with $\mbf{x}(0)=0$ is robustly stable and robust performance is achieved.
 \end{corollary}
 \begin{proof}
     See \ref{proof:state-feedback}.

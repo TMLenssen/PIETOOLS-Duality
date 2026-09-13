@@ -1,0 +1,53 @@
+Toolbox "mpt:3.2.1:all" added to the Matlab path.
+Toolbox "mptdoc:3.0.4:all" added to the Matlab path.
+Toolbox "cddmex:1.0.1:pcwin64" added to the Matlab path.
+Toolbox "fourier:1.0:pcwin64" added to the Matlab path.
+Toolbox "glpkmex:1.0:pcwin64" added to the Matlab path.
+Toolbox "hysdel:2.0.6:pcwin64" added to the Matlab path.
+Toolbox "lcp:1.0.3:pcwin64" added to the Matlab path.
+Toolbox "sedumi:1.3:pcwin64" added to the Matlab path.
+Toolbox "yalmip:R20230609:all" added to the Matlab path.
+Worker 1 started: primal alpha=0.03, nu=0, rho=-1
+Stopping worker process tree PID 18356.
+WORKER_CLEANUP_TEST_PASSED
+[Warning:
+"C:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\build\example6_parallel\compat"
+not found in path.] 
+[> In rmpath (line 78)
+In validate_real_pilot (line 8)
+In run (line 112)] 
+
+  ∂ₜ x(t,s) = ∂²ₛ x(t,s) + C₁₂ * x(t,s) + C₁₃ * w₁(t,s) + C₁₄(s) * w₂(t);
+
+  z₁(t,s) = C₂₁ * ∂ₛ x(t,s) + C₂₂ * w₁(t,s) + C₂₃ * w₂(t);
+  z₂(t) = ₀∫¹[C₃₁ * x(t,s)]ds + ₀∫¹[C₃₂(s) * w₁(t,s)]ds;
+
+  0 = x(t,0);
+  0 = ∂ₛ x(t,1);
+
+ Call "PDE.C{i,k}" to see the value of coefficients Cᵢₖ as in the displayed equations.
+
+
+ --- Reordering the state components to allow for representation as PIE ---
+
+ --- Converting the PDE to an equivalent PIE --- 
+
+The following fundamental state components have been introduced:
+   x(t,s)    <--  (∂/∂s)²  x(t,s)
+
+The exogenous inputs have been reindexed as:
+   w₁(t)      <--   w₂(t)
+   w₂(t,s)   <--   w₁(t,s)
+
+The regulated outputs have been reindexed as:
+   z₁(t)      <--   z₂(t)
+   z₂(t,s)   <--   z₁(t,s)
+
+ --- Conversion to PIE was successful --- 
+Worker 1 started: primal alpha=0.03, nu=0, rho=-1000
+Worker 2 started: dual alpha=0.03, nu=0, rho=-1000
+
+dual gain bound: 0.811696325; accepted=1
+
+primal gain bound: 0.811696181; accepted=1
+REAL_PARALLEL_PILOT_PASSED: primal=0.811696181 dual=0.811696325

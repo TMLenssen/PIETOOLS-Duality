@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex build/root"] 1789237756.38536 "build/root.aux" "build/root.bbl" "build/root" 1789241921.40966 0
+["bibtex build/root"] 1789237756.38536 "build/root.aux" "build/root.bbl" "build/root" 1789289574.30299 0
   "./references.bib" 1789056177 33847 892dacb9fa6cc9c76b125b91f6ec97b3 ""
   "C:/Users/thijs/AppData/Local/Programs/MiKTeX/bibtex/bst/elsarticle/elsarticle-num.bst" 1768130249 29462 dde4ec39bf78fded04ea32048bba0a74 ""
-  "build/root.aux" 1789241918 18992 b7fa731c2d2c7e51d7843acb22e1b676 "pdflatex"
+  "build/root.aux" 1789289571 18992 b7fa731c2d2c7e51d7843acb22e1b676 "pdflatex"
   (generated)
   "build/root.bbl"
   "build/root.blg"
   (rewritten before read)
-["pdflatex"] 1789241911.13344 "c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality/root.tex" "build/root.pdf" "root" 1789241921.41072 0
+["pdflatex"] 1789289564.53813 "c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality/root.tex" "build/root.pdf" "root" 1789289574.30443 0
   "C:/Users/thijs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1789135318 478181 de08c06b20a5a3cc4a1870f4e4a01a5a ""
   "C:/Users/thijs/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1789134494 11548 bcd49ab3446af63bde70329ee008cc90 ""
   "C:/Users/thijs/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1775832057 688 37338d6ab346c2f1466b29e195316aa4 ""
@@ -240,8 +240,8 @@
   "Sections/Main/2.Preliminaries.tex" 1789237523 7819 2927b067516f119622212df1be3a78c0 ""
   "Sections/Main/3. IQC Theory.tex" 1789225853 10969 6b37e3ead69f473cdcd476966290fbb8 ""
   "Sections/Main/4. Controller Analysis (Primal System).tex" 1789241606 5696 fa7ba9b3377f3519e2a5b6b927caf0cf ""
-  "Sections/Main/5. Duality.tex" 1789237143 9870 0d883245527cde67d790ca9903682a52 ""
-  "Sections/Main/6. Convex Controller Synthesis (Dual System).tex" 1789241909 6847 9d51328cb42ad1693a8d9d91b7a9845d ""
+  "Sections/Main/5. Duality.tex" 1789289238 9868 ee4968bbf67454c9b20ef5397b38b145 ""
+  "Sections/Main/6. Convex Controller Synthesis (Dual System).tex" 1789289562 6772 04012421e83c7954b310ada5f3536c8b ""
   "Sections/Main/7. Numerical Examples.tex" 1789237526 10326 adb07c77b4f45a0a24051c2ec2445ea0 ""
   "Sections/Main/8. Connection to finite dimensional dynamic multipliers.tex" 1789167641 21723 4c6c520f6dd33bc5e00ac1d1cb9c3c37 ""
   "Sections/Main/9. Conclusion.tex" 1789171979 0 d41d8cd98f00b204e9800998ecf8427e ""
@@ -251,10 +251,10 @@
   "Sections/Proofs/I. IQC.tex" 1789127878 1899 e066558820115607527c743a6df8f4af ""
   "Sections/Proofs/II. Duality.tex" 1789127878 226 598435eb705fe78a5402a911df3f7f01 ""
   "Sections/Proofs/Multipliers/multiplier_proof.tex" 1789127878 2386 ea5eee02adee645d7a84acef0d0e5621 ""
-  "build/root.aux" 1789241918 18992 b7fa731c2d2c7e51d7843acb22e1b676 "pdflatex"
+  "build/root.aux" 1789289571 18992 b7fa731c2d2c7e51d7843acb22e1b676 "pdflatex"
   "build/root.bbl" 1789237757 16865 1777c7f7977308fb9115c7d92eb12c0f "bibtex build/root"
-  "build/root.out" 1789241918 7838 240149bffa9fdd08b855cf433531c5bf "pdflatex"
-  "build/root.spl" 1789241918 51 1c31cf29b3c9b96f0cefc8a173109f69 "pdflatex"
+  "build/root.out" 1789289571 7838 240149bffa9fdd08b855cf433531c5bf "pdflatex"
+  "build/root.spl" 1789289571 51 1c31cf29b3c9b96f0cefc8a173109f69 "pdflatex"
   "c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality/root.tex" 1789171967 3776 3efc4b44ac07beeee39f43ecde35574e ""
   "root.tex" 1789171967 3776 3efc4b44ac07beeee39f43ecde35574e ""
   "shortcuts.tex" 1789128471 636 96555a9c2ab1d4e6104d8e43ad2ffd59 ""
