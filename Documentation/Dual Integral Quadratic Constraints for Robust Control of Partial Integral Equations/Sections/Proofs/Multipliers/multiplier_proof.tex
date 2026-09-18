@@ -1,0 +1,49 @@
+
+\subsection{Proof of Lemma~\ref{lem:sec-bound}}
+\label{proof:sec-bound}
+Suppose that the dual IQC
+\begin{equation*}
+     \ip{p_T\bmat{P_\Delta^\top\underline{w}_\Delta \\ \underline{w}_\Delta}}
+{p_T \mcl{M}_{\underline{\mcl V}_\Delta}\bmat{P^\top\underline{w}_\Delta \\ \underline{w}_\Delta}}_{L_{[a,b]}}
+\end{equation*}
+is parametized according to \eqref{eqn:dual-sec-mult}. We need to show that $\Delta$ satisfies the primal IQC.
+First, observe the dual IQC can be factorized as
+\begin{equation}\label{eqn:dual-sec-fact}
+    \underline{\mcl{V}}_\Delta = \frac{1}{2}\bmat{\beta & -1\\ -\alpha & 1}^*
+    \bmat{\mcl S & I \\ \mcl S & -I}^*\bmat{I & 0 \\ 0 & -I}\underbrace{\bmat{\mcl S & I \\ \mcl S & -I}}_{\underline{\Theta}_1}\underbrace{\bmat{\beta & -1\\ -\alpha & 1}}_{\underline{\Theta}_2}
+\end{equation}
+Them, we use the multiplicative and involutive property of the dual operation such that $\mbf{D}(\Theta_1\Theta_2)=\mbf D(\Theta_1)\mbf D(\Theta_2)$
+for any two invertible $\Theta_1$ and $\Theta_2$  and $\mbf{D}(\mbf{D}(\Theta))=\Theta$ to recover the primal IQC.
+Since $\underline{S}_0> 0$, $\underline{\mcl{S}}$ is closed under inversion with ${\underline{S}_0}^{-1}> 0$. 
+Applying these properties to the two factors of $\underline{\Theta}$ in \eqref{eqn:dual-sec-fact} gives
+\begin{align*}
+\Theta = \mbf D(\underline{\Theta})
+&=\mbf D(
+\frac{1}{\sqrt{2}}
+\bmat{I&\underline{\mcl S}\\I&-\underline{\mcl S}}
+)
+\mbf D(
+\bmat{\beta&-1\\-\alpha &1}
+)\\
+&=\frac{1}{\sqrt{2}(\beta-\alpha)}
+\bmat{-\underline{\mcl S}^{-1}&-I\\-\underline{\mcl S}^{-1}&I}
+\bmat{\beta &-1\\-\alpha&1}.
+\end{align*}
+We omit $\frac{1}{(\beta - \alpha)}>0$ therefore,
+\begin{align*}
+{\mcl V}_\Delta = \bmat{\beta&-1\\-\alpha &1}^*
+\bmat{0&\underline{\mcl S}^{-1}\\\underline{\mcl S}^{-1}&0}
+\bmat{\beta &-1\\-\alpha &1}
+\end{align*}
+For completion we use the proof in \cite{10156335}
+Then, for all $s\in[a,b]$ and $t>0$, we have that
+\begin{equation*}
+    (\beta z_\Delta(t,s)-\phi(z_\Delta(t,s)))
+    (\phi(z_\Delta(t,s))-\alpha z_\Delta(t,s))\geq0,
+\end{equation*}
+and hence
+\begin{equation*}
+    (\beta z_\Delta(t,s)-\phi(z_\Delta(t,s)))\underline S^{-1}_0(s)
+    (\phi(z_\Delta(t,s))-\alpha z_\Delta(t,s))\geq0.
+\end{equation*}
+Therefore, $\Delta$ satisfies the IQC defined by $\underline\Psi_\Delta=I$ and \eqref{eqn:dual-sec-mult}.

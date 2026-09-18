@@ -1,0 +1,53 @@
+The IQC certificate of Section~\ref{sec:iqc-theory} becomes a controller
+analysis condition once the state-feedback law is fixed. We examine the
+primal control scheme shown in
+Figure~\ref{fig:primal-controller-interconnection}, which corresponds to the
+primal component block in Figure~\ref{fig:primal-system-components}. Starting
+from this interconnection, we derive its filtered closed-loop realization and
+identify the operator products that prevent a direct convex synthesis
+formulation.
+\primalcontrollerfigure
+\noindent To distinguish analysis from synthesis, fix the IQC filter $\Psi$ and write an
+augmented realization before closing the controller as
+\begin{equation}\label{eq:primal-filtered-open-loop}
+\bmat{\mcl T\dot{\mbf x}(t)\\\tilde v(t)}
+=
+\bmat{\mcl A&\mcl B&\mcl B_{\mrm u}\\
+       \mcl C&\mcl D&\mcl D_{\mrm{zu}}}
+\bmat{\mbf x(t)\\w(t)\\u(t)}.
+\end{equation}
+Under the signal-availability condition
+in~(\ref{ass:signal-availability}), let $u(t)=\mcl K\mbf x(t)$, where
+$\mcl K=\bmat{\mcl K_{\mrm P}&\mcl K_\Theta}$, the filtered graph
+$\Psi\bmat{K\star G\\I}$ has the PIE realization
+\[
+\{\mcl T,\mcl A+\mcl B_{\mrm u}\mcl K,\mcl B,
+\mcl C+\mcl D_{\mrm{zu}}\mcl K,\mcl D\}.
+\]
+A sufficient condition for robust stability and performance, \cite{lenssen2025muanalysissynthesisframeworkpartial},
+is the existence of a PI operator $\mcl P=\mcl P^*\succeq0$ and $\epsilon>0$ satisfying
+\begin{equation}\label{eq:primal-controller-analysis}
+\begin{gathered}
+\bmat{\mcl T^*\mcl P(\mcl A+\mcl B_{\mrm u}\mcl K)
++(\mcl A+\mcl B_{\mrm u}\mcl K)^*\mcl P\mcl T
+&\mcl T^*\mcl P\mcl B\\
+\mcl B^*\mcl P\mcl T&\epsilon I}\\
++\bmat{(\mcl C+\mcl D_{\mrm{zu}}\mcl K)^*\\\mcl D^*}
+\mcl V
+\bmat{(\mcl C+\mcl D_{\mrm{zu}}\mcl K)&\mcl D}
+\preceq0.
+\end{gathered}
+\end{equation}
+For analysis, $\mcl K$ is fixed and
+\eqref{eq:primal-controller-analysis} is affine in the certificate operators
+$\mcl P$ and $\mcl V$. For synthesis, these operators and $\mcl K$ must be
+determined simultaneously. This introduces bilinearities between $\mcl P$ and
+$\mcl K$, and between $\mcl K$ and $\mcl V$.
+For a non-descriptor ODE, the storage and controller coupling can be removed
+with $\mcl Q=\mcl P^{-1}$ and $\mcl Z=\mcl K\mcl Q$. The operator $\mcl T$ prevents 
+the same cancellation for a general PIE. The
+multiplier bilinearity must likewise be resolved by additional structure. Thus
+the primal formulation provides a convex test for a fixed controller, but not
+a convex synthesis condition. The following sections construct a dual
+equivalent of the filtered interconnection from which $K$ can be synthesized
+convexly without imposing any restrictions on $\mcl{P}$ and minimal restrictions on $\mcl{V}$.

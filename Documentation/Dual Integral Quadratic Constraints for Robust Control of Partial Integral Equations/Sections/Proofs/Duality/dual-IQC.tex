@@ -1,0 +1,164 @@
+
+\subsection{Proof of Theorem~\ref{thm:dual-iqc}}\label{proof:dual-iqc}
+$1)\implies2)$ Assume there exists a $\rho<1$ such that
+$\|p_T G_0\tilde w\|_{L_{[a,b]}}\leq\rho\|p_T \tilde w\|_{L_{[a,b]}}$
+for all $\tilde{w}\in L_{[a,b]}$ and $T\geq0$. We need to show that
+$\mcl I\leq-\epsilon\|p_Tw\|_{L_{[a,b]}}^2$ for some $\epsilon>0$. First since $\Gamma:=\Theta_{21}P+\Theta_{22}$ is causally boundedly invertible,
+$\Theta\bmat{P\\I}w=\bmat{G_0\\I}\Gamma w$, and hence
+$\mcl I=\|p_TG_0\Gamma  w\|_{L_{[a,b]}}^2-\|p_T\Gamma  w\|_{L_{[a,b]}}^2$. By statement 1 and causality of $G_0$,
+\[
+    \mcl I\leq-(1-\rho^2)\|p_T\Gamma w\|_{L_{[a,b]}}^2
+    \leq-\frac{1-\rho^2}{\|\Gamma^{-1}\|^2}\|p_Tw\|_{L_{[a,b]}}^2,
+\]
+where the second inequality follows from
+$\|p_Tw\|_{L_{[a,b]}}=\|p_T\Gamma^{-1}p_T\Gamma w\|_{L_{[a,b]}}
+\leq\|\Gamma^{-1}\|\|p_T\Gamma w\|_{L_{[a,b]}}$. Thus, $\epsilon=\frac{(1-\rho^2)}{\|\Gamma^{-1}\|^2}>0$.
+
+$2)\implies1)$ Assume that there exists a $\epsilon > 0$ such that $\mcl I\leq-\epsilon\|p_Tw\|_{L_{[a,b]}}^2$ for every $w$, and every $T\geq0$. 
+We need to establish there exists a $\rho<1$ such that
+$\|p_T G_0\tilde w\|_{L_{[a,b]}}\leq\rho\|p_T \tilde w\|_{L_{[a,b]}}$
+for all $\tilde{w}\in L_{[a,b]}$ and $T\geq0$. For arbitrary $\tilde w$, 
+set $w=\Gamma^{-1}\tilde w$. Then
+\[
+    \|p_TG_0\tilde w\|_{L_{[a,b]}}^2-\|p_T\tilde w\|_{L_{[a,b]}}^2
+    \leq-\epsilon\|p_T\Gamma^{-1}\tilde w\|_{L_{[a,b]}}^2.
+\]
+Since $\Gamma$ is bounded and causal,
+$\|p_T\tilde w\|_{L_{[a,b]}}\leq
+\|\Gamma\|\|p_T\Gamma^{-1}\tilde w\|_{L_{[a,b]}}$. Therefore,
+\[
+    \|p_TG_0\tilde w\|_{L_{[a,b]}}^2
+    \leq\left(1-\frac{\epsilon}{\|\Gamma\|^2}\right)
+    \|p_T\tilde w\|_{L_{[a,b]}}^2.
+\]
+Choose $\rho<1$ such that $1-\epsilon/\|\Gamma\|^2\leq\rho^2<1$, 
+then $\|p_TG_0\tilde w\|_{L_{[a,b]}}\leq\rho\|p_T\tilde w\|_{L_{[a,b]}}$
+for every $\tilde w$ and $T\geq0$.
+
+$1)\iff3)$ We show that there exists a causally boundedly invertible
+$\underline\Gamma$ such that
+\[
+    \mbf D(\Theta)\bmat{P^\top\\I}\underline w
+    =\bmat{G_0^\top\\I}\underline\Gamma\underline w.
+\]
+then we can apply the previous arguments to show $1)\iff 3)$. Define
+\[
+    S:=\Theta_{11}-\Theta_{12}\Theta_{22}^{-1}\Theta_{21}.
+\]
+Since $\Theta$ and $\Theta_{22}$ are boundedly invertible, so is $S$ by Schur complement.
+Block inversion of $\mbf D(\Theta)$ gives
+\[
+    \mbf D(\Theta)_{21}
+    =(S^\top)^{-1}\Theta_{21}^\top(\Theta_{22}^\top)^{-1},
+    \qquad
+    \mbf D(\Theta)_{22}=(S^\top)^{-1}.
+\]
+Therefore, define
+\[
+    \underline\Gamma
+    :=\mbf D(\Theta)_{21}P^\top+\mbf D(\Theta)_{22}
+    =(S^\top)^{-1}
+      \bigl(I+P\Theta_{22}^{-1}\Theta_{21}\bigr)^\top.
+\]
+Now $\Gamma=\Theta_{22}(I+\Theta_{22}^{-1}\Theta_{21}P)$.
+Thus, invertibility of $\Gamma$ and the push-through rule imply that
+$I+P\Theta_{22}^{-1}\Theta_{21}$, and hence $\underline\Gamma$, is
+causally boundedly invertible. Normalizing the upper block gives
+\[
+    \mbf D(\Theta)\bmat{P^\top\\I}\underline w
+    =\bmat{\underline G_0\\I}\underline\Gamma\underline w,
+    \qquad
+    \underline G_0:=(\Theta_{22}^\top)^{-1}
+    (P^\top\underline\Gamma^{-1}+\Theta_{12}^\top).
+\]
+Using
+\[
+    \underline\Gamma^{-\top}
+    =S(I+P\Theta_{22}^{-1}\Theta_{21})^{-1},
+    \qquad
+    (I+P\Theta_{22}^{-1}\Theta_{21})^{-1}P\Theta_{22}^{-1}
+    =P\Gamma^{-1},
+\]
+where the second identity is the push-through rule, yields
+\begin{align*}
+    \underline G_0
+    &=(\Theta_{22}^\top)^{-1}
+      (P^\top\underline\Gamma^{-1}+\Theta_{12}^\top) \\
+    &=\left(
+        \underline\Gamma^{-\top}P\Theta_{22}^{-1}
+        +\Theta_{12}\Theta_{22}^{-1}
+      \right)^\top \\
+    &=\left[
+        S(I+P\Theta_{22}^{-1}\Theta_{21})^{-1}
+        P\Theta_{22}^{-1}
+        +\Theta_{12}\Theta_{22}^{-1}
+      \right]^\top \\
+    &=\left[
+        SP\Gamma^{-1}+\Theta_{12}\Theta_{22}^{-1}
+      \right]^\top \\
+    &=\left[
+        \left(SP+\Theta_{12}\Theta_{22}^{-1}\Gamma\right)
+        \Gamma^{-1}
+      \right]^\top.
+\end{align*}
+We now show that the first part reduces to
+\begin{align*}
+    SP+\Theta_{12}\Theta_{22}^{-1}\Gamma
+    &=\Theta_{11}P
+      -\Theta_{12}\Theta_{22}^{-1}\Theta_{21}P \\
+    &\quad+\Theta_{12}\Theta_{22}^{-1}\Theta_{21}P
+      +\Theta_{12} \\
+    &=\Theta_{11}P+\Theta_{12}.
+\end{align*}
+Consequently,
+\[
+    \underline G_0
+    =\left[(\Theta_{11}P+\Theta_{12})\Gamma^{-1}\right]^\top
+    =G_0^\top,
+\]
+and hence
+\[
+    \mbf D(\Theta)\bmat{P^\top\\I}\underline w
+    =\bmat{G_0^\top\\I}\underline\Gamma\underline w.
+\]
+By Theorem~\ref{thm:dual-l2-gain}, $G_0$ and $G_0^\top$ have the
+same induced $L_2$-gain. Hence, for any $\rho$,
+\[
+\begin{aligned}
+&\|p_TG_0\tilde w\|_{L_{[a,b]}}
+ \leq\rho\|p_T\tilde w\|_{L_{[a,b]}}
+ \quad\text{for all $\tilde w$ and $T\geq0$}\\
+&\qquad\Longleftrightarrow\qquad
+\|p_TG_0^\top\underline{\tilde w}\|_{L_{[a,b]}}
+ \leq\rho\|p_T\underline{\tilde w}\|_{L_{[a,b]}}
+ \quad\text{for all $\underline{\tilde w}$ and $T\geq0$}.
+\end{aligned}
+\] Since
+$\underline\Gamma$ is causally boundedly invertible, the same arguments used
+for $1)\implies2)$ and $2)\implies1)$, with
+$G_0$, $\Gamma$, $w$, and $\mcl I$ replaced by
+$G_0^\top$, $\underline\Gamma$, $\underline w$, and
+$\underline{\mcl I}$, respectively, establish $1)\iff3)$.
+
+\paragraph{Realization of $G_0$.}
+Let $\mbf x$ collect the plant, filter, and any controller states, so that the
+controller is already included in the primal operators. Partition the filtered realization as
+\[
+\bmat{\mcl T\dot{\mbf x}\\\tilde z\\\tilde w}
+=
+\bmat{\mcl A&\mcl B\\\mcl C_{\mrm{z}}&\mcl D_{\mrm{z}}\\
+\mcl C_{\mrm{w}}&\mcl D_{\mrm{w}}}
+\bmat{\mbf x\\w}.
+\]
+If $\mcl D_{\mrm{w}}$ is invertible, eliminating $w$ gives the realization
+\begin{equation}\label{eq:G0-primal-realization}
+G_0\sim
+\left\{
+\mcl T,
+\mcl A-\mcl B\mcl D_{\mrm{w}}^{-1}\mcl C_{\mrm{w}},
+\mcl B\mcl D_{\mrm{w}}^{-1},
+\mcl C_{\mrm{z}}-\mcl D_{\mrm{z}}\mcl D_{\mrm{w}}^{-1}\mcl C_{\mrm{w}},
+\mcl D_{\mrm{z}}\mcl D_{\mrm{w}}^{-1}
+\right\},
+\end{equation}
+with input $\tilde w$ and output $\tilde z$.

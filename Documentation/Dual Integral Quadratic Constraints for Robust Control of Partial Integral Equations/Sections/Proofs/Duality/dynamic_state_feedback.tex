@@ -1,0 +1,77 @@
+
+\subsection{Proof of Corollary~\ref{thm:state-feedback}}\label{proof:state-feedback}
+\begingroup
+\setlength{\abovedisplayskip}{4pt plus 1pt minus 1pt}
+\setlength{\belowdisplayskip}{4pt plus 1pt minus 1pt}
+\setlength{\abovedisplayshortskip}{2pt plus 1pt}
+\setlength{\belowdisplayshortskip}{4pt plus 1pt minus 1pt}
+Write $\mcl K=\bmat{\mcl K_{\mrm G}&\mcl K_\Theta}$, so that
+$\mcl Z^*=\mcl K\mcl P$. From \eqref{eq:dual-system-components},
+\begin{equation*}
+\begin{aligned}
+\underline{\mcl A}
+&:=
+\underline{\mcl A}_0
++
+\mcl K^*
+\bmat{\mcl B_{\mrm{u}}^*&0},
+&
+\underline{\mcl B}
+&:=
+\underline{\mcl B}_0
++
+\mcl K^*
+\mcl D_{\mrm{zu}}^* .
+\end{aligned}
+\end{equation*}
+Substitution makes \eqref{eq:controller-kyp} the closed-loop dual KYP
+inequality. Set
+$\Lambda:=\mcl D_{21}\mcl D_{\mrm G}+\mcl D_{22}$.
+From \eqref{eq:primal-system-components}, define
+\begin{equation*}
+\begin{aligned}
+(\mcl M_\Gamma\bmat{\mbf x_{\mrm G}\\\mbf x_\Theta\\w})(t)
+&:=\bmat{
+I&0&0\\
+0&I&0\\
+\mcl D_{21}(\mcl C_{\mrm G}+\mcl D_{\mrm{zu}}\mcl K_{\mrm G})
+&\mcl C_2+\mcl D_{21}\mcl D_{\mrm{zu}}\mcl K_\Theta&\Lambda
+}\bmat{\mbf x_{\mrm G}(t)\\\mbf x_\Theta(t)\\w(t)},\\
+(\mcl M_{\Gamma^{-1}}\bmat{\mbf x_{\mrm G}\\\mbf x_\Theta\\\tilde w})(t)
+&:=\bmat{
+I&0&0\\
+0&I&0\\
+-\Lambda^{-1}\mcl D_{21}(\mcl C_{\mrm G}+\mcl D_{\mrm{zu}}\mcl K_{\mrm G})
+&-\Lambda^{-1}(\mcl C_2+\mcl D_{21}\mcl D_{\mrm{zu}}\mcl K_\Theta)
+&\Lambda^{-1}
+}\bmat{\mbf x_{\mrm G}(t)\\\mbf x_\Theta(t)\\\tilde w(t)}.
+\end{aligned}
+\end{equation*}
+For \eqref{eq:dual-system-components}, set
+$\underline\Lambda:=\underline{\mcl D}_{21}\mcl D_{\mrm G}^*
++\underline{\mcl D}_{22}$. Equation~\eqref{eq:dual-feedthrough-inverse}
+gives $\underline\Lambda^{-1}\in\Pi_4$, so we may define
+\begin{equation*}
+(\mcl M_{\underline\Gamma}
+\bmat{\underline{\mbf x}_{\mrm G}\\\underline{\mbf x}_\Theta\\\underline w})(t)
+:=\bmat{
+I&0&0\\
+0&I&0\\
+\underline{\mcl D}_{21}\mcl B_{\mrm G}^*&\underline{\mcl C}_2&\underline\Lambda
+}\bmat{\underline{\mbf x}_{\mrm G}(t)\\\underline{\mbf x}_\Theta(t)\\\underline w(t)},\qquad
+(\mcl M_{\underline\Gamma^{-1}}
+\bmat{\underline{\mbf x}_{\mrm G}\\\underline{\mbf x}_\Theta\\\tilde{\underline w}})(t)
+:=\bmat{
+I&0&0\\
+0&I&0\\
+-\underline\Lambda^{-1}\underline{\mcl D}_{21}\mcl B_{\mrm G}^*
+&-\underline\Lambda^{-1}\underline{\mcl C}_2&\underline\Lambda^{-1}
+}\bmat{\underline{\mbf x}_{\mrm G}(t)\\\underline{\mbf x}_\Theta(t)\\\tilde{\underline w}(t)}.
+\end{equation*}
+These PI maps induce $\Gamma$ and $\underline\Gamma$ in
+Theorem~\ref{thm:dual-iqc} with $P=K\star G$.
+Integrating the dual LPI from zero initial state with a nonnegative
+Lyapunov function gives $\underline{\mcl{I}}\leq -\epsilon$.
+Theorem~\ref{thm:dual-iqc} yields \eqref{eq:robust-condition}.
+The conclusion follows from Theorem~\ref{thm:robust-stability-performance}.
+\par\endgroup

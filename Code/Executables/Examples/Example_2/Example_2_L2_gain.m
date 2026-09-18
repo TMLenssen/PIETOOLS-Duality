@@ -29,11 +29,11 @@ b = 1;
 lambda = 5;
 
 runSimulation = true;
-plotSettings.showPreview = true;
-plotSettings.saveImages = true; % Set true to export the PDF figures.
+plotSettings.showPreview = false;
+plotSettings.saveImages = false; % Set true to export the PDF figures.
 simulationFinalTime = 35;
 paperFigureDir = fullfile(fileparts(codeRoot),'Documentation', ...
-    'Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality','Figures');
+    'Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations','Figures');
 simulationDataFile = fullfile(fileparts(mfilename('fullpath')), ...
     'Example_2_L2_simulation.mat');
 
@@ -63,7 +63,7 @@ end
 % J-filtered LFR for dual analysis.
 analysisSettings = lpisettings('veryheavy');
 analysisSettings.sos_opts.solver = 'mosek';
-analysisSettings.ddM = 2;
+analysisSettings.ddM = 10;
 analysisSettings.multiplierUpper = 1e4;
 analysisSettings.inverseFloor = 1e-8;
 analysisSettings.kypSlackMode = 'normal';

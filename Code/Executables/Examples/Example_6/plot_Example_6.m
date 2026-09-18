@@ -1,11 +1,14 @@
-function files=plot_Example_6(primal,dual,yLimits,figureHeight)
+function files=plot_Example_6(primal,dual,yLimits,figureHeight,differenceYLimits)
 % Plot primal, dual, and primal-minus-dual versions of Figure 7.
 % Saved bounds are plotted without running an optimization or filling gaps.
+% differenceYLimits may be a positive scalar L (giving [-L,L]) or an
+% explicit increasing [ymin,ymax] pair. Empty selects a symmetric range.
 here=fileparts(mfilename('fullpath'));
 if nargin<1 || isempty(primal), primal=load_side(here,'primal'); end
 if nargin<2 || isempty(dual), dual=load_side(here,'dual'); end
 if nargin<3, yLimits=[]; end
 if nargin<4 || isempty(figureHeight), figureHeight=5; end
+if nargin<5, differenceYLimits=[]; end
 assert(isscalar(figureHeight) && isfinite(figureHeight) && figureHeight>1.25, ...
     'figureHeight must be a finite scalar greater than 1.25 inches.');
 assert_matching_grids(primal,dual);
@@ -24,7 +27,7 @@ addpath(fileparts(here));
 pathCleanup=onCleanup(@()path(previousPath)); %#ok<NASGU>
 codeRoot=fileparts(fileparts(fileparts(here)));
 paperFigureDir=fullfile(fileparts(codeRoot),'Documentation', ...
-    'Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality','Figures');
+    'Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations','Figures');
 assert(isfolder(paperFigureDir),'The manuscript Figures directory was not found.');
 
 files=struct;
@@ -32,7 +35,7 @@ f=plot_veenman_fig7(primal,yLimits,figureHeight);
 files.primal=export_panel(f,paperFigureDir,'example1_primal');
 f=plot_veenman_fig7(dual,yLimits,figureHeight);
 files.dual=export_panel(f,paperFigureDir,'example1_dual');
-f=plot_difference(primal,dual,figureHeight);
+f=plot_difference(primal,dual,figureHeight,differenceYLimits);
 files.difference=export_panel(f,paperFigureDir,'example1_difference');
 end
 
@@ -62,12 +65,12 @@ function paths=export_panel(f,folder,stem)
 assert(~isempty(f) && isgraphics(f),'No figure was produced for %s.',stem);
 cleanup=onCleanup(@()close(f)); %#ok<NASGU>
 paths.pdf=fullfile(folder,[stem '.pdf']);
-position=get(f,'Position');
-exportgraphics(f,paths.pdf,'ContentType','vector','Padding','figure', ...
-    'Width',position(3),'Height',position(4),'Units','inches', ...
-    'PreserveAspectRatio','off');
+% Width, Height, Units, Padding, and PreserveAspectRatio are not accepted
+% by exportgraphics in MATLAB R2023a. The figure Position already specifies
+% the intended dimensions, so use the broadly supported vector-PDF call.
+exportgraphics(f,paths.pdf,'ContentType','vector');
 end
-function f=plot_difference(primal,dual,figureHeight)
+function f=plot_difference(primal,dual,figureHeight,differenceYLimits)
 % One side-by-side column per nu, with contiguous alpha strips in each.
 alpha=primal.alpha(:);
 rho=primal.rho(:).';
@@ -76,15 +79,43 @@ difference=primal.gamma-dual.gamma;
 difference(~isfinite(primal.gamma) | ~isfinite(dual.gamma))=NaN;
 assert(any(isfinite(difference(:))), ...
     'No matched finite primal and dual bounds were found.');
-maxDifference=max(abs(difference(isfinite(difference))));
+% Mark the sampled pole at which all alpha curves are collectively closest
+% to zero.  Using the worst absolute difference across alpha gives one
+% shared reference line per dynamic filter order.
+zeroCrossingPole=nan(size(orders));
+for k=1:numel(orders)
+    if orders(k)==0
+        continue
+    end
+    orderDifference=abs(difference(:,:,k));
+    worstDifference=max(orderDifference,[],1,'omitnan');
+    worstDifference(all(~isfinite(orderDifference),1))=Inf;
+    [minimumDifference,rhoIndex]=min(worstDifference);
+    if isfinite(minimumDifference)
+        zeroCrossingPole(k)=abs(rho(rhoIndex))
+    end
+end
 % Use raw difference values, i.e., a fixed shared exponent of 10^0.
 differenceScale=1;
-if maxDifference==0
-    tickLimit=1;
+if isempty(differenceYLimits)
+    maxDifference=max(abs(difference(isfinite(difference))));
+    if maxDifference==0
+        differenceLimit=1;
+    else
+        differenceLimit=ceil(10*1.08*maxDifference)/10;
+    end
+    differenceYLimits=[-differenceLimit,differenceLimit];
+elseif isnumeric(differenceYLimits) && isreal(differenceYLimits) ...
+        && isscalar(differenceYLimits) && isfinite(differenceYLimits) ...
+        && differenceYLimits>0
+    differenceYLimits=[-differenceYLimits,differenceYLimits];
 else
-    tickLimit=ceil(10*maxDifference)/10;
+    assert(isnumeric(differenceYLimits) && isreal(differenceYLimits) ...
+        && numel(differenceYLimits)==2 && all(isfinite(differenceYLimits)) ...
+        && differenceYLimits(1)<differenceYLimits(2), ...
+        'differenceYLimits must be a positive scalar or increasing [ymin,ymax] pair.');
+    differenceYLimits=differenceYLimits(:).';
 end
-differenceHalfRange=1.08*tickLimit;
 scaledDifference=difference/differenceScale;
 panelWidths=1.15*ones(size(orders));
 panelWidths(orders==0)=.165;
@@ -105,7 +136,7 @@ for k=1:numel(orders)
             'Position',[left(k),bottom+(i-1)*stripHeight, ...
             panelWidths(k),stripHeight]);
         hold(ax,'on');
-        set(ax,'YLim',[-differenceHalfRange,differenceHalfRange], ...
+        set(ax,'YLim',differenceYLimits, ...
             'YTick',0, ...
             'YTickLabel',{sprintf('$%.2f\\,|\\,0$',alpha(i))}, ...
             'Box','off','FontName','Times New Roman','FontSize',8, ...
@@ -118,17 +149,13 @@ for k=1:numel(orders)
             set(ax,'XLim',[0,1],'XTick',[],'XMinorTick','off');
         else
             set(ax,'XScale','log','XDir','reverse','XLim',xLimits, ...
-                'XTick',10.^(-3:3),'XMinorTick','on');
-            if i==1
-                set(ax,'XTickLabel',{'$-0.001$','$-0.01$','$-0.1$','$-1$', ...
-                    '$-10$','$-100$','$-1000$'},'XTickLabelRotation',60);
-            else
-                set(ax,'XTickLabel',[]);
-            end
+                'XTick',[],'XMinorTick','off');
         end
-        if i>1
-            ax.XAxis.Visible='off';
-        end
+        % if order>0 && isfinite(zeroCrossingPole(k))
+        %     xline(ax,zeroCrossingPole(k),'--','Color',[.35,.35,.35], ...
+        %         'LineWidth',.55,'HandleVisibility','off');
+        % end
+        ax.XAxis.Visible='off';
         values=squeeze(scaledDifference(i,:,k));
         if any(isfinite(values))
             if order==0
@@ -146,11 +173,21 @@ for k=1:numel(orders)
         end
     end
     % Restore the complete outer frame without restoring internal axes.
-    axes('Parent',f,'Units','inches', ...
+    frameAxis=axes('Parent',f,'Units','inches', ...
         'Position',[left(k),bottom,panelWidths(k),height], ...
-        'Color','none','Box','on','XTick',[],'YTick',[], ...
+        'Color','none','Box','on','YTick',[], ...
         'XColor','k','YColor','k','LineWidth',.9, ...
+        'FontName','Times New Roman','FontSize',8,'TickDir','in', ...
+        'TickLabelInterpreter','latex','Layer','top', ...
         'HitTest','off','PickableParts','none');
+    if order==0
+        set(frameAxis,'XLim',[0,1],'XTick',[],'XMinorTick','off');
+    else
+        set(frameAxis,'XScale','log','XDir','reverse','XLim',xLimits, ...
+            'XTick',10.^(-3:3),'XMinorTick','on', ...
+            'XTickLabel',{'$-0.001$','$-0.01$','$-0.1$','$-1$', ...
+                '$-10$','$-100$','$-1000$'},'XTickLabelRotation',60);
+    end
     % Separate adjacent alpha strips by a plain line matching the frame.
     for dividerIndex=1:numel(alpha)-1
         dividerY=(bottom+dividerIndex*stripHeight)/figureHeight;
@@ -163,17 +200,15 @@ labelAxis=axes('Parent',f,'Units','inches', ...
     'Position',[0,bottom,leftMargin-.05,height],'Visible','off', ...
     'XLim',[0,1],'YLim',[0,1]);
 text(labelAxis,0.5,0.5, ...
-    sprintf('$\\alpha\\,|\\,\\gamma-\\underline{\\gamma}\\in[-%.2f,%.2f]$', ...
-        tickLimit,tickLimit), ...
+    sprintf('$\\alpha\\,|\\,\\gamma-\\underline{\\gamma}\\in[%.3g,%.3g]$', ...
+        differenceYLimits(1),differenceYLimits(2)), ...
     'Interpreter','latex','FontSize',10,'FontName','Times New Roman', ...
     'HorizontalAlignment','center','VerticalAlignment','middle', ...
     'Rotation',90);
 nonZeroCols=find(orders>0);
-if ~isempty(nonZeroCols)
-    spanLeft=left(nonZeroCols(1));
-    spanRight=left(nonZeroCols(end))+panelWidths(nonZeroCols(end));
-    annotation(f,'textbox',[spanLeft/figureWidth,.018, ...
-        (spanRight-spanLeft)/figureWidth,.08], ...
+for k=nonZeroCols
+    annotation(f,'textbox',[left(k)/figureWidth,.018, ...
+        panelWidths(k)/figureWidth,.08], ...
         'String','pole location $\rho$','Interpreter','latex', ...
         'FontName','Times New Roman','FontSize',10, ...
         'HorizontalAlignment','center','EdgeColor','none');

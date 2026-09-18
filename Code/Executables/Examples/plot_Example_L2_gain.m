@@ -5,6 +5,8 @@ function files = plot_Example_L2_gain(exampleIdx,simulationDataFile,paperFigureD
 %   files = plot_Example_L2_gain(exampleIdx, simulationDataFile)
 %   files = plot_Example_L2_gain(exampleIdx, simulationDataFile, paperFigureDir)
 %   files = plot_Example_L2_gain(..., plotOptions)
+%   plot_Example_L2_gain(2,[],[],struct('paperFiguresOnly',true))
+%   renders the state and effort panels for paper Figures 7 and 8.
 arguments
     exampleIdx (1,1) {mustBeInteger,mustBePositive}
     simulationDataFile = []
@@ -23,7 +25,7 @@ if isempty(simulationDataFile)
 end
 if isempty(paperFigureDir)
     paperFigureDir = fullfile(fileparts(codeRoot), 'Documentation', ...
-        'Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality', ...
+        'Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations', ...
         'Figures');
 end
 if ~isfile(simulationDataFile)
@@ -33,12 +35,21 @@ end
 saved = load(simulationDataFile, 'plotData');
 data = saved.plotData;
 settings = plot_settings(exampleIdx);
+if isfield(plotOptions,'paperFiguresOnly') && plotOptions.paperFiguresOnly
+    settings.fontSize = 12;
+    settings.titleFontSize = 12;
+end
 optionNames = fieldnames(plotOptions);
 for k = 1:numel(optionNames)
     settings.(optionNames{k}) = plotOptions.(optionNames{k});
 end
 if isfield(data,'plotOpenLoop')
     settings.plotOpenLoop = data.plotOpenLoop;
+end
+if isfield(settings,'paperFiguresOnly') && settings.paperFiguresOnly
+    assert(ismember(exampleIdx,[2 3]),'Paper figure styling is for examples 2 and 3.');
+    files = plot_Example_nonlinear_figures(data,settings,exampleIdx,paperFigureDir);
+    return
 end
 files = generate_pde_simulation_figures(paperFigureDir, ...
     data.s, data.t, data.zOpen, data.zClosed, data.inputSignal, ...
@@ -62,6 +73,9 @@ settings.surfaceTimeSamples = 2048;
 settings.surfaceSpaceSamples = 1024;
 settings.showZeroSurfaceLevel = true;
 settings.colormap = mplmap('magma',256);
+if exampleIdx == 2
+    settings.colormap = mplmap('rdylbu_r',256);
+end
 settings.tMajorTickSpacing = 5;
 settings.sMajorTickSpacing = 0.25;
 % settings.zMajorTickSpacing = 0.5;

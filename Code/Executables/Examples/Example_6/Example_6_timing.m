@@ -15,7 +15,7 @@ addpath(genpath('C:/Program Files/Mosek/11.0/toolbox/r2019b'));
 addpath(genpath(codeRoot));
 rmpath(fullfile(here,'compat'));
 
-settings=lpisettings('veryheavy');
+settings=lpisettings('heavy');              %Modify heavy settings such that n1=3, n2=n3=2
 settings.sos_opts.solver='mosek';
 settings.sos_opts.simplify=true;
 settings.ddM=3;
@@ -33,15 +33,14 @@ w_Delta=pde_var('input',2,s,[a,b]);
 z_Delta=pde_var('output',2,s,[a,b]);
 w_p=pde_var('input',1);
 z_p=pde_var('output',1);
-A=[-2,-3;1,1];
+A=[-2,-3;1,1]+(pi^2/4)*eye(2);
 B_Delta=[1,0;0,0]; B_p=[1;0]; C_Delta=[1,0;0,0];
 D_DeltaDelta=[1,-2;1,-1]; D_Deltap=[0;1];
 C_p=[1,0]; D_pDelta=[0,1];
 
 PDE=[diff(v,t)==diff(v,s,2)+A*v+B_Delta*w_Delta+s*B_p*w_p;
      z_Delta==C_Delta*diff(v,s)+D_DeltaDelta*w_Delta+D_Deltap*w_p;
-     z_p==3*int(s*C_p*v,s,[a,b]) ...
-          +1.5*int((1-s^2)*D_pDelta*w_Delta,s,[a,b]);
+     z_p==int(C_p*v,s,[a,b]) +int((1-s^2)*D_pDelta*w_Delta,s,[a,b]);
      subs(v,s,a)==0;
      subs(diff(v,s),s,b)==0];
 P=convert(PDE);

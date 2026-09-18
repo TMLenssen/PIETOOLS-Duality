@@ -1,0 +1,223 @@
+% !TEX root = ../root.tex
+\usepackage{xparse,tcolorbox,float}
+
+\newtcolorbox{systembox}[1]{
+  width=\linewidth,
+  colback=white,
+  colframe=black,
+  boxrule=.4pt,
+  arc=0pt,
+  boxsep=0pt,
+  left=8pt,right=8pt,top=8pt,bottom=8pt,
+  before upper={%
+    \if\relax\detokenize{#1}\relax\else\textbf{#1}\par\smallskip\fi
+    \setlength{\abovedisplayskip}{2pt}%
+    \setlength{\belowdisplayskip}{2pt}%
+    \setlength{\arraycolsep}{4pt}%
+    \setlength{\jot}{1pt}%
+  }
+}
+
+\newcommand{\controllerdiagramcaption}[2]{%
+  \refstepcounter{figure}\label{#2}%
+  \smallskip
+  {\footnotesize Figure~\thefigure.\enspace #1\par}%
+}
+
+\NewDocumentCommand{\systemcomponents}{m m m +m +m +m}{%
+  \begin{figure*}[!t]
+    \centering
+    \begin{minipage}[t]{.74\textwidth}
+      \vspace{0pt}
+      \begin{systembox}{#1}
+        \centering
+        #4\par
+        #5
+      \end{systembox}
+    \end{minipage}\hfill
+    \begin{minipage}[t]{.25\textwidth}
+      \vspace{0pt}
+      \centering
+      #6\par
+      \controllerdiagramcaption{#2}{#3}
+    \end{minipage}
+  \end{figure*}
+}
+
+\NewDocumentCommand{\fullwidthsystemcomponents}{m +m +m m m}{%
+  \begin{figure*}[!t]
+    \centering
+    \begin{systembox}{#1}
+      \centering
+      #2\par
+      #3
+    \end{systembox}
+    \caption{#4}
+    \if\relax\detokenize{#5}\relax\else\label{#5}\fi
+  \end{figure*}
+}
+
+\newcommand{\primalcontrollerfigure}{%
+  \begin{figure}[H]
+    \centering
+    \primalcontrollerschematic
+    \caption{Primal controller interconnection.}
+    \label{fig:primal-controller-interconnection}
+  \end{figure}
+}
+
+\newcommand{\dualcontrollerfigure}{%
+  \begin{figure}[H]
+    \centering
+    \dualcontrollerschematic
+    \caption{Dual controller interconnection.}
+    \label{fig:dual-controller-interconnection}
+  \end{figure}
+}
+\NewDocumentCommand{\primalsystemcomponents}{}{% 
+\fullwidthsystemcomponents{}{% 
+% \setlength{\arraycolsep}{2pt}%
+\begin{align*}
+&G:= \left\{
+\bmat{\mcl T_{\mrm{G}}\dot{\mbf{x}}_{\mrm{G}}(t)\\z(t)\\y_{\mrm{G}}(t)}
+=
+\bmat{
+\mcl A_{\mrm{G}}&\mcl B_{\mrm{G}}&\mcl B_{\mrm{u}}\\
+\mcl C_{\mrm{G}}&\mcl D_{\mrm{G}}&\mcl D_{\mrm{zu}}\\
+I & 0 & 0
+}
+\bmat{\mbf{x}_{\mrm{G}}(t)\\w(t)\\u(t)}\right.
+\; K := \left\{
+u(t) = \bmat{\mcl{K}_{\mrm{G}} & \mcl{K}_\Theta}
+\bmat{\mbf{x}_{\mrm{G}}(t) \\ \mbf{x}_\Theta(t)}\right.
+\end{align*}
+\begin{equation*}
+    \Theta:=\left\{
+\bmat{\mcl T\dot{\mbf{x}}_\Theta(t)\\\tilde v(t)\\y_\Theta(t)}
+=
+\bmat{\mcl A&\mcl B\\\mcl C&\mcl D\\I&0}
+\bmat{\mbf{x}_\Theta(t)\\v(t)}\right. \, \text{ with } v(t) = \bmat{z(t)\\w(t)},
+\end{equation*} 
+}{%
+% \setlength{\arraycolsep}{2pt}%
+\begin{align}
+&\Theta\bmat{K\star G \\ I} := \left\{
+\bmat{
+\mcl T_{\mrm{G}}\dot{\mbf{x}}_{\mrm{G}}(t)\\
+\mcl T\dot{\mbf{x}}_\Theta(t)\\
+\tilde{z}(t)\\
+\tilde{w}(t)
+}
+=
+\bmat{
+\mcl A_{\mrm{G}}+\mcl B_{\mrm{u}}\mcl K_{\mrm{G}}
+&\mcl B_{\mrm{u}}\mcl K_\Theta
+&\mcl B_{\mrm{G}}\\
+\mcl B_1(\mcl C_{\mrm{G}}+\mcl D_{\mrm{zu}}\mcl K_{\mrm{G}})
+&\mcl A+\mcl B_1\mcl D_{\mrm{zu}}\mcl K_\Theta
+&\mcl B_1\mcl D_{\mrm{G}}+\mcl B_2\\
+\mcl D_{11}(\mcl C_{\mrm{G}}+\mcl D_{\mrm{zu}}\mcl K_{\mrm{G}})
+&\mcl C_1+\mcl D_{11}\mcl D_{\mrm{zu}}\mcl K_\Theta
+&\mcl D_{11}\mcl D_{\mrm{G}}+\mcl D_{12}\\
+\mcl D_{21}(\mcl C_{\mrm{G}}+\mcl D_{\mrm{zu}}\mcl K_{\mrm{G}})
+&\mcl C_2+\mcl D_{21}\mcl D_{\mrm{zu}}\mcl K_\Theta
+&\mcl D_{21}\mcl D_{\mrm{G}}+\mcl D_{22}
+}
+\bmat{
+\mbf{x}_{\mrm{G}}(t)\\
+\mbf{x}_\Theta(t)\\
+w(t)
+}\right.
+\label{eq:primal-system-components}
+\end{align}
+}%
+{Primal components, $G$ denotes the nominal part of the plant, $K$ denotes the state feedback controller, 
+$\Theta$ denotes the J-spectral factor of the IQC. $\Theta\bmat{K\star P\\I}$ denotes the primal interconnection.}{fig:primal-system-components}}
+
+
+\NewDocumentCommand{\dualsystemcomponents}{}{% 
+\fullwidthsystemcomponents{}{% 
+% \setlength{\arraycolsep}{2pt}%
+\begin{align*}
+&G^\top := \left\{
+\bmat{\mcl T^*_{\mrm{G}}\dot{\underline{\mbf{x}}}_{\mrm{G}}(t)\\
+\underline{z}(t)\\\underline{y}(t)}
+=
+\bmat{
+\mcl A_{\mrm{G}}^*&\mcl C_{\mrm{G}}^* & I\\
+\mcl B_{\mrm{G}}^*&\mcl D^*_{\mrm{G}} & 0\\
+\mcl B_{\mrm{u}}^*&\mcl D^*_{\mrm{zu}}& 0
+}
+\bmat{\underline{\mbf{x}}_{\mrm{G}}(t)\\
+\underline{w}(t)\\\underline{u}_{\mrm{G}}(t)}\right.
+\; K^\top := \left\{
+\bmat{\underline u_{\mrm{G}}(t)\\\underline u_\Theta(t)}
+=
+\bmat{\mcl K_{\mrm{G}}^*\\\mcl K_\Theta^*}
+\underline y(t)\right.
+\end{align*}
+\begin{equation*}
+    \mbf D(\Theta):=\left\{
+\bmat{\mcl T^*\dot{\underline{\mbf{x}}}_\Theta(t)\\
+\tilde{\underline v}(t)}
+=
+\bmat{
+\underline{\mcl A}&\underline{\mcl B}&I\\
+\underline{\mcl C}&\underline{\mcl D}&0
+}
+\bmat{
+\underline{\mbf{x}}_\Theta(t)\\
+\underline v(t)\\
+\underline u_\Theta(t)
+} = \bmat{
+\mcl A^*-\mcl C^*\hat J\mbf D(\mcl D)\hat J^* \mcl B^*,&\mcl C^* \hat J \mbf D(\mcl D)&I\\
+-\mbf D(\mcl D)\hat J^* \mcl B^*&\mbf D(\mcl D)&0
+}
+\bmat{
+\underline{\mbf{x}}_\Theta(t)\\
+\underline v(t)\\
+\underline u_\Theta(t)
+}\right. \,  \text{ with } \underline{v}(t) = \bmat{\underline{z}(t)\\ \underline{w}(t)},
+\end{equation*}
+}{%
+% \setlength{\arraycolsep}{2pt}%
+\begin{align}
+&\mbf D(\Theta)\bmat{(K\star G)^\top\\I} := \left\{
+\bmat{
+\mcl T_{\mrm{G}}^*\dot{\underline{\mbf{x}}}_{\mrm{G}}(t)\\
+\mcl T^*\dot{\underline{\mbf{x}}}_\Theta(t)\\
+\tilde{\underline z}(t)\\
+\tilde{\underline w}(t)
+}
+=
+\bmat{
+\mcl A_{\mrm{G}}^*+\mcl K_{\mrm{G}}^*\mcl B_{\mrm{u}}^*
+&0
+&\mcl C_{\mrm{G}}^*+\mcl K_{\mrm{G}}^*\mcl D_{\mrm{zu}}^*\\
+\underline{\mcl B}_1\mcl B_{\mrm{G}}^*
+ +\mcl K_\Theta^*\mcl B_{\mrm{u}}^*
+&\underline{\mcl A}
+&\underline{\mcl B}_1\mcl D_{\mrm{G}}^*
+ +\underline{\mcl B}_2
+ +\mcl K_\Theta^*\mcl D_{\mrm{zu}}^*\\
+\underline{\mcl D}_{11}\mcl B_{\mrm{G}}^*
+&\underline{\mcl C}_1
+&\underline{\mcl D}_{11}\mcl D_{\mrm{G}}^*
+ +\underline{\mcl D}_{12}\\
+\underline{\mcl D}_{21}\mcl B_{\mrm{G}}^*
+&\underline{\mcl C}_2
+&\underline{\mcl D}_{21}\mcl D_{\mrm{G}}^*
+ +\underline{\mcl D}_{22}
+}
+\bmat{
+\underline{\mbf{x}}_{\mrm{G}}(t)\\
+\underline{\mbf{x}}_\Theta(t)\\
+\underline w(t)
+}\right.
+\label{eq:dual-system-components}
+\end{align}
+}% closes #3
+{Dual components, realized using primal operators. $G^\top$ denotes the dual of $G$, $K^\top$ denotes the dual of $K$, 
+$\mbf{D}(\Theta)$ denotes the dual of $\Theta$. $\mbf{D}(\Theta)\bmat{(K\star G)^\top \\ I}$ denotes the dual interconnection.
+Here $\mbf{D}(\Theta)\bmat{0\star G\\I}$ denotes the dual interconnection with $\mcl{K}=0$.}{}
+}% closes \dualsystemcomponents

@@ -1,0 +1,138 @@
+
+Theorem~\ref{thm:dual-KYP} provides a robust-performance certificate for PIE
+systems in terms of the dual IQC. For analysis, this merely reformulates the
+primal certificate, since primal--dual equivalence preserves feasibility. The
+benefit of the dual formulation therefore appears in controller
+synthesis. Both controller constructions below use the same synthesis LPI,
+obtained by applying \eqref{eq:dual-kyp} to the corresponding closed-loop
+PIE. The choice of dual uncertainty filter changes only the realization of the
+controller recovered from this LPI. Related applications of IQC duality
+include the robust-estimation and feedforward result of Scherer and
+K\"ose~\cite{scherer2008robustness,kose2009robust}, and convex LPV synthesis of
+estimators and feedforwards~\cite{venkataraman}.
+
+\dualcontrollerfigure
+
+\subsection{Interpretation of the Dual System}
+Figure~\ref{fig:dual-controller-interconnection} is the dual representation
+of the primal closed loop in
+Figure~\ref{fig:primal-controller-interconnection}. Duality maps
+$w\mapsto z$ to $\underline w\mapsto\underline z$, turns the state-feedback
+controller $K$ into the dual feedback operator $K^\top$, which feeds
+$\underline y$ into the dual plant and filter, and replaces $\Theta$ by its
+dual $\mbf D(\Theta)$. The block $\underline\Delta$ is only a
+formal dual of the uncertainty and need not be realized. Both representations
+use the zero initial condition in~(\ref{ass:initial-conditions}). If $\Theta$
+is dynamic, controller recovery also uses~(\ref{ass:signal-availability}).
+
+\subsection{State Feedback LPI}
+We now state the main synthesis condition.
+\begin{corollary}\label{thm:state-feedback}
+    Let $K\star G$ be as in Definition~\ref{def:uncertain-interconnection}, and let
+$(\Theta,J_{\mbf n_{\mrm z},\mbf n_{\mrm w}})$ be a hard
+$J$-spectral factorization. Assume that both $K\star G$ and $\Theta$ admit
+PIE realizations depicted in \eqref{eq:dual-system-components}. Let $\Delta \in \mbf{\Delta}$ such that, 
+    \begin{itemize}
+        \item The interconnection $K\star P\star\Delta$ is well-posed for all
+        $\Delta\in\mbf{\Delta}$.
+        \item The IQC in Definition~\ref{def:uncertainty-iqc} is satisfied for all $\Delta\in\mbf{\Delta}$.
+        \item Let $\mcl D$, $\mcl{D}_\mrm{G}$ denote the feedthrough of $\Theta$ and $G$ in \eqref{eq:primal-system-components} respectively, such that $(\mcl{D}_{21}\mcl{D}_\mrm{G} + \mcl{D}_{22})^{-1}\in\Pi_4$.
+    
+    \end{itemize}
+     Moreover there exist, $\mcl{Z},\mcl{P}\in\Pi_4$ with $\mcl{P} = \mcl{P}^* \succ 0$, such that the following statement holds
+    \begin{equation}\label{eq:controller-kyp}
+        \begin{gathered}
+            \bmat{
+                \underline{\mcl T}^*\mcl P\underline{\mcl A}_0
+                +
+                \underline{\mcl T}^*\mcl Z\bmat{\mcl B_{\mrm{u}}^*&0}
+                +(*)
+                &
+                \underline{\mcl T}^*\mcl P\underline{\mcl B}_0
+                +
+                \underline{\mcl T}^*\mcl Z\mcl D_{\mrm{zu}}^*
+                \\
+                (*)&
+                \underline\epsilon I
+            }\\
+                +\bmat{\underline{\mcl C}^*\\\underline{\mcl D}^*}
+                J_{\mbf{n}_w, \mbf{n}_z}
+                \bmat{\underline{\mcl C}&\underline{\mcl D}}
+                \preceq0.
+        \end{gathered}
+\end{equation}
+where
+\begin{equation}\label{eq:feedback-system}
+\mbf{D}(\Theta)\bmat{0\star G^\top\\I}\underline{w}
+:=
+\left\{
+\bmat{
+\underline{\mcl T}\dot{\underline{\mbf{\xi}}}(t)\\
+{\underline{v}}(t)
+}
+=
+\bmat{
+\underline{\mcl A}_0 & \underline{\mcl B}_0\\
+\underline{\mcl C} & \underline{\mcl D}
+}
+\bmat{
+\underline{\mbf{\xi}}(t)\\
+\underline{w}(t)
+}
+\right.
+\end{equation}
+Let $\mcl K=\mcl Z^*\mcl P^{-1}$, then
+the interconnection $K\star P\star\Delta$ with $\mbf{x}(0)=0$, as
+in~(\ref{ass:initial-conditions}), is robustly stable and robust
+performance is achieved.
+\end{corollary}
+\begin{proof}
+    See \ref{proof:state-feedback}.
+\end{proof}
+The next subsections recover the controller using the reconstruction method
+in~\cite[Sec.~VII]{shivaknew}, which analytically computes
+$\mcl K=\mcl Z^*\mcl P^{-1}$ when $\mcl P\succ0$ is separable.
+
+\subsection{Memoryless $\Theta$ controller realization}
+
+When $\Theta$ is memoryless, no multiplier state is
+required in the controller. For a state-feedback operator $\mcl{K}_{\mrm{G}}$, set
+$u(t)=\mcl{K}_{\mrm{G}}\mbf{x}_{\mrm{G}}(t)$. The resulting closed-loop PIE
+$K\star G$ is
+\begin{equation*}
+\bmat{\partial_t(\mcl{T}_{\mrm{G}}\mbf{x}_{\mrm{G}})(t)\\z(t)}
+=
+\bmat{
+\mcl{A}_{\mrm{G}}+\mcl{B}_{\mrm{u}}\mcl{K}_{\mrm{G}}&\mcl{B}_{\mrm{G}}\\
+\mcl{C}_{\mrm{G}}+\mcl D_{\mrm{zu}}\mcl{K}_{\mrm{G}}&\mcl{D}_{\mrm{G}}
+}
+\bmat{\mbf{x}_{\mrm{G}}(t)\\w(t)}.
+\end{equation*}
+The controller is memoryless in time and acts directly on the measured or estimated
+PIE state.
+
+\subsection{Dynamic $\Theta$ controller realization}
+
+Dynamic-IQC feedback constructions with additional controller memory have
+also been studied for uncertain systems with state delay~\cite{7353149}.
+Under~(\ref{ass:signal-availability}), the uncertainty $\Delta$ is known
+and $z_\Delta$, $w_\Delta=\Delta z_\Delta$, and $w_{\mrm{p}}$ are available
+to the controller. Define the augmented state
+\[
+\mbf x(t):=\bmat{\mbf x_{\mrm G}(t)\\\mbf x_\Theta(t)}.
+\]
+Let $\Theta=\mbf D(\underline\Theta)$. The recovered dynamic (nonlinear) controller is
+\begin{equation}\label{eq:dynamic-controller-realization}
+K:=\left\{
+\begin{aligned}
+\mcl T_\Theta\dot{\mbf x}_\Theta(t)
+&=\mcl A_\Theta\mbf x_\Theta(t)
+  +\mcl B_\Theta^{\mrm z}z(t)
+  +\mcl B_\Theta^{\mrm w}w(t),\\
+u(t)&=\bmat{\mcl K_{\mrm G}&\mcl K_\Theta}\mbf x(t).
+\end{aligned}
+\right.
+\end{equation}
+The numerical examples in the next section apply these memoryless and dynamic
+controller constructions and compare the resulting primal and dual
+certificates.

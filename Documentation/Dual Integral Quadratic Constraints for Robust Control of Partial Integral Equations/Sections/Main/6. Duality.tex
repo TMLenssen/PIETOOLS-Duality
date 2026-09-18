@@ -1,0 +1,186 @@
+We consider a generalized plant $P$ with a PIE state-space realization.
+The nominal PIE duality results of Shivakumar et al.~\cite{shivaknew}
+provide the starting point for convex state-feedback synthesis.
+For dynamically filtered IQCs, two further ingredients are relevant,
+hard factorizations connecting IQC theory to
+dissipativity theory~\cite{9781263,6915700,scherer2018dynamicdissipation}, and the dual system representations
+developed for LPV estimation and feedforward
+synthesis~\cite{kose2009robust,venkataraman}.
+This section develops the corresponding dual-filter construction for PIE
+systems using the induced $L_2$-gain PIE duality result.
+
+\subsection{Nominal PIE induced $L_2$-norm duality}\label{sec:dynamic-filtering-duality-1}
+We begin by restating the main theorem from \cite{shivaknew}. In \cite{shivaknew}, 
+the theorem is formulated for the case where $\mcl{D}$ is a matrix and the 
+induced $L_2$ norm is bounded over an infinite time horizon. Generalizing this result 
+to the case where $\mcl{D}$ is a PI operator and considering the bounded truncated 
+induced $L_{[a,b]}$ norm does not alter the proof.
+
+
+\begin{theorem}[Dual $L_2$-gain
+{\cite[Thm.~9]{shivaknew}}]\label{thm:dual-l2-gain}
+For a PIE system with corresponding PI operators $P\{\mcl{T}, \mcl{A}, \mcl{B},
+\mcl{C}, \mcl{D}\}$, the following statements are equivalent.
+\begin{enumerate}
+\item For any $w\in L_{\mrm{e},[a,b]}^{\mbf{n}_{\mrm{w}}}$, and
+$\mbf{x}(0)=0$, $P$
+satisfies $\|p_T {z}\| \leq \gamma \|p_T {w}\|$ for all $T>0$.
+\item For any $\underline{w}\in L_{\mrm{e},[a,b]}^{\mbf{n}_{\mrm{z}}}$, and
+$\underline{\mbf{x}}(0)=0$, $P^\top$ satisfies $\|p_T \underline{z}\| \leq
+\gamma \|p_T \underline{w}\|$ for all $T>0$.
+\end{enumerate}
+\end{theorem}
+For a bounded, time-invariant, memoryless linear uncertainty
+$\Delta$, suppose the feedback interconnection $P\star\Delta$ is well-posed,
+in accordance with~(\ref{ass:well-posedness}).
+Closing the loop $w=\Delta z$ gives
+\[
+\mcl T\dot{\mbf x}
+=\bigl(\mcl A+\mcl B\Delta(I-\mcl D\Delta)^{-1}\mcl C\bigr)\mbf x.
+\]
+Taking adjoints and using the push-through identity yields
+\begin{equation*}
+(\mcl{T})^*=\mcl{T}^*, \quad\begin{aligned}
+&\bigl(\mcl A+\mcl B\Delta(I-\mcl D\Delta)^{-1}\mcl C\bigr)^*\\
+&\quad=\mcl A^*+\mcl C^*\Delta^*(I-\mcl D^*\Delta^*)^{-1}\mcl B^*.
+\end{aligned}
+\end{equation*}
+This is exactly the state operator of $P^\top\star\Delta^*$. Thus, \cite[Thm.~6]{shivaknew} establishes
+equivalence of weak convergence for the primal and dual states. 
+Exponential stability is likewise equivalent
+by \cite[Cor.~8]{shivaknew}. For the constant repeated real uncertainty
+$\Delta=\delta I$ in Section~\ref{ex:coupled-heat},
+$\Delta^*=\Delta$, so the same uncertainty structure appears in both interconnections, provided
+the performance IQC $(\Psi_\mrm{p}, \mcl{V}_\mrm{p})$ admits a J-spectral factorization.
+\subsection{Duality under dynamic filtering}
+For a general uncertainty $\Delta$, this construction is
+less trivial. It is therefore more convenient to develop duality
+through the IQC description, whose filters and multiplier weights are
+linear operators, rather than through $\Delta$ itself.
+The inertia argument of~\cite{kose2009robust} assumes linear uncertainty.
+Venkataraman and Seiler~\cite{venkataraman} accommodate nonlinear
+uncertainties through dual IQCs and $J$-spectral factorizations of strict
+Positive--Negative (PN) IQCs. We adopt the same strategy.
+We first reformulate the IQC condition as a strict small-gain requirement 
+on an associated system \(G_0\) with respect to the 
+\(L_{e,[a,b]}\) norm, then apply Thm.\ref{thm:dual-l2-gain},
+and finally reconstruct the dual system. 
+In their framework, this relationship is established through congruence 
+transformations of the analysis LMIs~\cite[Sec.~2-3]{venkataraman}. Our approach relies 
+on PIE induced $L_{e,[a,b]}$-gain duality result. Let us define a hard J-spectral factorization.
+\begin{definition}[$J$-Spectral Factorization and Dual Filter] 
+\label{def:dynamic-filters}\label{def:factorization}
+For a given IQC defined by $(\Psi,{\mcl V})$, we say that  a causal linear bounded operator $\Theta$ and $J_{\mbf n_{\mrm{z}},\mbf n_{\mrm{w}}}:=\bmat{ I_{\mbf n_{\mrm{z}}} & 0 \\ 0& -I_{\mbf n_{\mrm{w}}} }$
+(the pair $(\Theta,J_{\mbf n_{\mrm{z}},\mbf n_{\mrm{w}}})$) is a $J$-spectral factorization of $(\Psi,{\mcl V})$ if, 
+\begin{equation*}
+\ip{\Psi\bmat{z\\w}}
+{\mcl M_{\mcl V}\Psi\bmat{z\\w}}_{L_{[a,b]}}>0
+\end{equation*}
+can be factorized as
+\begin{equation*}
+\ip{p_T\Theta\bmat{z\\w}}
+{p_TJ_{\mbf n_{\mrm{z}},\mbf n_{\mrm{w}}}\Theta\bmat{z\\w}}_{L_{[a,b]}}>0 \quad \forall T>0,
+\end{equation*}
+Such that $\Theta,\Theta_{22}$ are causally boundedly invertible. Following the 
+dual-filter construction in~\cite{venkataraman}, we use $\mbf D(\Theta)$ to 
+denote the dual filter associated with $\Theta$ of the form
+\begin{equation*}
+\mbf{D}(\Theta)
+:=
+\left(\hat{J}^*\Theta^\top\hat{J}\right)^{-1},
+\end{equation*}
+where $\hat{J}:=\bmat{0_{\mbf n_{\mrm{z}}\times\mbf n_{\mrm{w}}}&I_{\mbf n_{\mrm{z}}}\\-I_{\mbf n_{\mrm{w}}}&0_{\mbf n_{\mrm{w}}\times\mbf n_{\mrm{z}}}}$.
+\end{definition}
+
+\begin{remark}[Hard factorization requirement]
+For finite-dimensional channels, the hard-factorization requirement covers a
+broad class of multipliers~\cite{9781263,6915700,scherer2018dynamicdissipation}. In particular, strict PN
+multipliers, even when introduced through soft frequency-domain IQCs, admit a
+hard $J$-spectral factorization~\cite[Thm.~4]{6915700}. Strict PN is also
+preserved by the primal--dual transformation~\cite{venkataraman}.
+For infinite-dimensional channels,
+however, hardness of a proposed $J$-spectral factorization must be established
+explicitly. Callegari et al.~\cite{callegari} propose IQC lifting, which could
+extend finite-dimensional rational $J$-spectral factorizations to multipliers
+acting on infinite-dimensional channels.
+\end{remark}
+For further brevity, define the primal quadratic form
+\[\mcl{I} := \ip{p_T \Theta\bmat{Pw \\ w}}
+{p_T J_{\mbf{n}_{\mrm{z}}, \mbf{n}_{\mrm{w}}}\Theta\bmat{Pw \\ w}}_{L_{[a,b]}} .\]
+The corresponding dual form is evaluated on the graph of $P^\top$ using the
+dual filter $\mbf D(\Theta)$ and the $J_{\mbf{n}_w, \mbf{n}_z}$ operator,
+\[\underline{\mcl{I}} := \ip{p_T \mbf{D}(\Theta)\bmat{P^\top\underline{w} \\ \underline{w}}}
+{p_T J_{\mbf{n}_{\mrm{w}}, \mbf{n}_{\mrm{z}}}\mbf{D}(\Theta)\bmat{P^\top\underline{w} \\ \underline{w}}}_{L_{[a,b]}} .\]
+The following theorem is our \emph{main result} and establishes the system relations in Figure~\ref{fig:potapov-ginzburg-commutative-diagram} 
+\begin{theorem}[Primal--dual IQC equivalence]\label{thm:dual-iqc}
+Let $P$ be as in Definition~\ref{def:uncertain-interconnection}, and let
+$(\Theta,J_{\mbf n_{\mrm z},\mbf n_{\mrm w}})$ be a hard
+$J$-spectral factorization. Assume that both $P$ and $\Theta$ admit
+PIE realizations.    Finally, assume $(\Theta_{21}P +\Theta_{22})$ has a bounded causal inverse. 
+    Define 
+    \begin{equation*}
+        G_0 = (\Theta_{11}P +\Theta_{12})(\Theta_{21}P+\Theta_{22})^{-1}
+    \end{equation*} 
+    then the following statements are equivalent,
+    \begin{enumerate}
+        \item There exists some $\rho<1$ such that $\|p_T G_0 \tilde{w}\|^2_{L_{[a,b]}}\leq\rho\|p_T \tilde{w}\|^2_{L_{[a,b]}}$ for every $\tilde{w}$ and $T\geq 0 $.
+        \item There exists some $\epsilon > 0$ such that $\mcl{I}\leq - \epsilon \|p_T w\|_{L_{[a,b]}}^2$ for every $w$ and $T\geq0$.
+        \item There exists some $\underline{\epsilon}>0$ such that $\underline{\mcl{I}} \leq - \underline{\epsilon}\|p_T\underline{w}\|_{L_{[a,b]}}^2$ for every $\underline w$ and $T\geq0$.
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    See \ref{proof:dual-iqc}.
+\end{proof}
+\subsection{Dual robust-performance certificate}
+
+Theorem~\ref{thm:dual-iqc} establishes equivalence of the strict primal and dual IQC
+inequalities through a small-gain requirement on $G_0$. Either side of the
+filtered graph may therefore be used to construct the same performance
+certificate. The resulting
+KYP condition permits the robust-performance certificate to be imposed on
+either the primal or dual realization. 
+\begin{corollary}\label{thm:dual-KYP}
+   Let $P$ be as in Definition~\ref{def:uncertain-interconnection}, and let
+$(\Theta,J_{\mbf n_{\mrm z},\mbf n_{\mrm w}})$ be a hard
+$J$-spectral factorization. Assume that both $P$ and $\Theta$ admit
+PIE realizations. Let $\Delta \in \mbf{\Delta}$ such that, 
+    \begin{itemize}
+        \item The interconnection $P\star\Delta$ is well-posed for all
+        $\Delta\in\mbf{\Delta}$.
+        \item The IQC in Definition~\ref{def:uncertainty-iqc} is satisfied for all $\Delta\in\mbf{\Delta}$.
+        \item Let $\mcl D$, $\mcl{D}_\mrm{P}$ denote the feedthrough of $\Theta$ and $P$ respectively, such that $(\mcl{D}_{21}\mcl{D}_\mrm{P} + \mcl{D}_{22})^{-1}\in\Pi_4$.
+    \end{itemize}
+    Suppose that \emph{either} of the two statements hold for some $\mcl{P} = \mcl{P}^* \succeq 0 \in \Pi_4$.
+    \begin{itemize}
+        \item \begin{minipage}[c]{\linewidth}
+        \begin{equation*}
+            \bmat{\mcl T^*\mcl P\mcl A + (*) & \mcl T^*\mcl P\mcl B\\
+            \mcl B^*\mcl P\mcl T & \epsilon I} + \bmat{\mcl C^* \\ \mcl D^*}J_{\mbf{n}_z, \mbf{n}_w}\bmat{\mcl C & \mcl D} \preceq 0
+        \end{equation*}
+        \end{minipage}
+        \item \begin{minipage}[c]{\linewidth}
+        \begin{equation}\label{eq:dual-kyp}
+            \bmat{\underline{\mcl T}^*\mcl P\underline{\mcl A} + (*)& \underline{\mcl T}^*\mcl P\underline{\mcl B}\\
+            \underline{\mcl B}^*\mcl P\underline{\mcl T} & \underline{\epsilon} I} + \bmat{\underline{\mcl C}^* \\ \underline{\mcl D}^*}J_{\mbf{n}_w, \mbf{n}_z}\bmat{\underline{\mcl C} & \underline{\mcl D}} \preceq 0
+        \end{equation}
+        \end{minipage}
+    \end{itemize}
+    where, for any input $w\in L_{\mrm{e},[a,b]}$ or
+    $\underline w\in L_{\mrm{e},[a,b]}$, the corresponding output
+    $z$ or $\underline z$ satisfies the primal or dual realization,
+    \begin{equation*}
+        \Theta\bmat{P\\I}w := \left\{ \bmat{\mcl T \dot{\mbf{x}}(t) \\ v(t)} = \bmat{\mcl A & \mcl B\\
+        \mcl C & \mcl D}\bmat{\mbf{x}(t) \\ w(t)}\right.
+    \end{equation*}
+    or
+    \begin{equation}\label{eq:dual-system}
+        \mbf{D}(\Theta)\bmat{P^\top\\I}\underline{w} := \left\{ \bmat{\underline{\mcl T} \dot{\underline{\mbf{x}}}(t) \\ {\underline{v}}(t)} = \bmat{\underline{\mcl A} & \underline{\mcl B}\\
+        \underline{\mcl C} & \underline{\mcl D}}\bmat{\underline{\mbf{x}}(t) \\ \underline{w}(t)}\right.
+    \end{equation}
+    Then the interconnection $P\star\Delta$ with $\mbf{x}(0) = 0$, as
+    in~(\ref{ass:initial-conditions}), is robustly performing.
+\end{corollary}
+\begin{proof}
+    See \ref{proof:dual-KYP}
+\end{proof}
+The next section applies duality to recover convex state-feedback synthesis.

@@ -1,0 +1,155 @@
+Partial Differential Equations (PDEs) provide fundamental models of
+physical phenomena evolving in space and time. Seminal examples include
+Fourier's theory of heat conduction~\cite{fourier1822chaleur},
+d'Alembert's wave equation for vibrating strings~\cite{dalembert1747vibration},
+and Stokes' equations for viscous fluid motion~\cite{stokes1880friction}.
+These models form a basis for understanding thermal, mechanical, and
+fluid processes across science and engineering.
+Controlling these processes requires stability and performance guarantees
+that account for uncertain parameters, changing operating conditions, and
+nonlinear effects.
+Establishing these guarantees is challenging because both the dynamics
+and the uncertain or nonlinear interactions may be distributed over space.
+
+A systematic treatment of these distributed dynamics begins with
+infinite-dimensional systems theory, which provides foundations for
+studying PDE solutions, input--output maps, and well-posed feedback
+interconnections~\cite{curtain1978infinite,curtain1995introduction,staffans2005wellposed}.
+Lasiecka and Triggiani~\cite{lasiecka2000parabolic} developed continuous
+and approximation theories for optimal control of abstract parabolic
+systems.
+Developments in robust stabilization and $H_\infty$
+control~\cite{curtain1986robust,vankeulen1993hinfinity} are complemented by
+backstepping and Lyapunov-based
+designs~\cite{krstic2008boundary,fridman2012sampled}, and semidefinite
+methods for PDE stability analysis~\cite{valmorbida2016pdesdp}.
+A complementary computational route uses established robust-control tools
+for Ordinary Differential Equations (ODEs), including frequency-domain
+methods, Riccati equations, and Linear Matrix Inequalities
+(LMIs)~\cite{Francis1987Course,doyle1989statespace,boyd1994lmi,zhou1996robust,packard1993complex}.
+These tools apply to PDEs through spatial discretization, modal
+truncation, or lumped-parameter approximation. Although convergence and
+performance guarantees are available under suitable
+conditions~\cite{morris2001hinfinityapproximation}, neglected modes can
+affect the closed loop through spillover~\cite{balas1978modal}. This
+motivates computational methods that retain the distributed dynamics
+when constructing control certificates.
+
+To retain distributed dynamics while exploiting such computational tools,
+the Partial Integral Equation (PIE)
+representation~\cite{peet2021pierepresentation,shivakumar2024GDPE}
+generalizes ODE state-space models to coupled finite-dimensional and distributed
+states. For supported PDE classes, it exactly incorporates the dynamics
+and boundary conditions into bounded Partial Integral (PI) operators.
+Their algebra is closed under addition, composition, and adjoints,
+enabling extensions of matrix-based ODE methods. Linear Partial Integral
+inequalities (LPIs) generalize LMIs, and
+PIETOOLS~\cite{9147712,pietools2025manual} converts parameterized LPI
+conditions into semidefinite programs while retaining the PIE plant
+representation. An industrial application is the PIE based observer design for
+the digital twin
+of an inkjet printer's thermo-fluidic fixation process developed and
+validated by Toolhally et al.~\cite{TOOLHALLY2026103558}.
+Recently, Shivakumar et al.~\cite{shivaknew} established PIE duality and
+convex LPI conditions for nominal $H_\infty$-optimal state-feedback
+synthesis. This motivates extending PIE duality to uncertainty and
+nonlinearities described by structural information beyond unstructured
+small-gain conditions.
+
+This approach builds on Lur'e and Postnikov's absolute-stability
+problem~\cite{lure1944stability}, Popov's frequency-domain
+criterion~\cite{popov1961absolute}, and Zames's input--output stability
+theory~\cite{zames1966input}.
+Zames--Falb multipliers~\cite{zames1968stability} exploit monotonicity and
+slope restrictions.
+Megretski and Rantzer~\cite{megretski1997system} established the modern
+Integral Quadratic Constraint (IQC) framework, unifying such descriptions
+for analysis of linear systems interconnected with uncertain or nonlinear
+components. Within the PIE framework, hard IQCs
+provide robust stability and performance tests for coupled ODE--PDE
+systems, including infinite-dimensional uncertainty
+channels~\cite{9303892,10156335,callegari}. Subsequent results connect PIE IQCs to
+structured singular-value bounds and robust observer with known uncertainty
+synthesis~\cite{lenssen2025muanalysissynthesisframeworkpartial}.
+We develop a dual IQC representation for these analysis certificates and
+apply it to convex state-feedback synthesis.
+
+We express them in the
+language of Willems's dissipation theory~\cite{willems1972dissipative1}.
+For finite-dimensional linear systems, the famous Kalman--Yakubovich--Popov
+(KYP) lemma~\cite{rantzer1996kyp} connects frequency-domain inequalities
+to quadratic dissipation inequalities expressed as LMIs.
+Hard factorizations connect IQCs to dissipativity by expressing them as
+integral inequalities valid over every finite time horizon. This allows
+IQC analysis to be formulated through dissipation inequalities.
+Goh~\cite{577607} linked IQC to generalized sectors,
+dissipativity and $J$-spectral factorization.
+For rational IQC multipliers, existence conditions for $J$-spectral
+factors are given by the canonical factorization theorem of
+Bart, Gohberg, and Kaashoek~\cite{Bart1979MinimalFactorization} and by
+Meinsma's characterization using equalizing vectors~\cite{MEINSMA1995243}.
+Seiler~\cite{6915700} used the latter to establish existence for strict
+positive--negative multipliers and showed that these factorizations yield
+hard IQCs and dissipation inequalities with nonnegative storage,
+related developments include doubly-hard
+factorizations and terminal-cost
+IQCs~\cite{carrasco2018equivalence,scherer2018dynamicdissipation}.
+For fixed filters and controllers, these certificates yield convex
+analysis conditions.
+
+Designing the state-feedback gain introduces a synthesis obstacle already
+visible for ODEs. For a fixed IQC filter, consider the augmented dynamics
+\[
+    \dot x=Ax+Bw+B_\mrm{u}u,\qquad
+    v=Cx+Dw+D_\mrm{zu}u,
+\]
+where $v$ enters the IQC. Under state feedback $u=Kx$, a sufficient
+dissipation condition is
+\[
+\begin{gathered}
+    \begin{bmatrix}
+        \bigl(P(A+B_\mrm{u}K)\bigr) +  \bigl(P(A+B_\mrm{u}K)\bigr)^\top& PB\\
+        B^\top P & \epsilon I
+    \end{bmatrix}\\
+    {}+
+    \begin{bmatrix}
+        (C+D_\mrm{zu}K)^\top\\ D^\top
+    \end{bmatrix}
+    V
+    \begin{bmatrix}
+        C+D_\mrm{zu}K & D
+    \end{bmatrix}
+    \preceq0,
+\end{gathered}
+\]
+where $P=P^\top\succeq0$ is the storage matrix, $V=V^\top$ is the
+multiplier weight, and $\epsilon>0$.
+For fixed $K$, this is an LMI. Optimizing $K$ couples it to both $P$ and
+$V$ through $PB_\mrm{u}K$ and $VD_\mrm{zu}K$.
+The standard ODE invertible congruence transformation removes the first coupling but
+generally leaves the second. Existing methods use additional structure
+or iterative design~\cite{7353149}, dual IQCs also permit convex
+estimator and feedforward synthesis~\cite{kose2009robust,venkataraman} through the 
+elimination lemma \cite{Meijer_2024}.
+
+Our main result is a dual IQC construction through $J$-spectral
+factorization, combined with PIE duality. The construction supports
+infinite-dimensional channels and memoryless or dynamic filters.
+As an application, we derive a convex LPI condition for robust
+state-feedback synthesis with explicit controller recovery. The resulting
+controller guarantees stability and the prescribed quadratic performance
+for all uncertainties satisfying the IQC.
+
+The paper is organized as follows.
+Sections~\ref{sec:preliminaries},\ref{sec:problem-definition} introduce the
+preliminaries, problem definition and standing assumptions. Section~\ref{sec:iqc-theory}
+establishes robust stability and performance through the IQC framework.
+Section~\ref{sec:primal-controller-analysis} examines the primal
+analysis condition, and
+Sections~\ref{sec:duality}--\ref{sec:dual-controller-synthesis}
+develop duality and convex controller synthesis.
+Sections~\ref{sec:numerical-examples}
+and~\ref{sec:finite-dimensional-multipliers} present numerical examples
+and connections to finite-dimensional dynamic multipliers.
+Section~\ref{sec:conclusion} concludes the paper, proofs are collected
+in the appendix.

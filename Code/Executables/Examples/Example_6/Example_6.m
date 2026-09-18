@@ -8,17 +8,17 @@ addpath(genpath(codeRoot));
 rmpath(fullfile(exampleDir,'compat')); % Enable the sparse fix only during a solve.
 
 %% Settings
-settings=lpisettings('heavy');
+settings=lpisettings('heavy');    % Modify heavy settings n1=3, n2=2=n3
 settings.sos_opts.solver='mosek';
 settings.sos_opts.simplify=true;
 settings.ddM=3;
 settings.kypSlackMode='normal';
 settings.options1.sep=0;
 settings.options12.sep=0;
-numWorkers=2;                   % Maximum simultaneous MATLAB solve processes.
-resumeSweep=true;                % Resume compatible checkpoints after interruption.
-runPoleSweep=true;               % Set true to reproduce all three Fig. 7 panels
-sides={'primal','dual'};          % Both sides are needed for their subtraction
+numWorkers=6;                     % Maximum simultaneous MATLAB solve processes.
+resumeSweep=true;                 % Resume compatible checkpoints after interruption.
+runPoleSweep=true;                % Set true to reproduce all three Fig. 7 panels
+sides={'primal', 'dual'};          % Both sides are needed for their subtraction
 assert(isequal(sort(sides),{'dual','primal'}), ...
     'sides must contain exactly ''primal'' and ''dual''.');
 alpha=0.5;                        % Uncertainty radius: |delta|<=alpha
@@ -47,14 +47,15 @@ C_p=[1,0]; D_pDelta=[0,1];
 
 % The state equation initially uses a pointwise w_Delta input.
 % The performance integral already incorporates J:
-% 3 int_0^1 s D_pDelta Jw_Delta ds = 1.5 int_0^1 (1-s^2)D_pDelta w_Delta ds.
+% int_0^1 D_pDelta Jw_Delta ds = 0.5 int_0^1 (1-s)D_pDelta w_Delta ds.
 PDE=[diff(v,t)==diff(v,s,2)+A*v+B_Delta*w_Delta+s*B_p*w_p;
      z_Delta==C_Delta*diff(v,s)+D_DeltaDelta*w_Delta+D_Deltap*w_p;
-     z_p==int(C_p*v,s,[a,b])+int((1-s^2)*D_pDelta*w_Delta,s,[a,b]);
+     z_p==int(C_p*v,s,[a,b])+0.5*int((1-s)*D_pDelta*w_Delta,s,[a,b]);
      subs(v,s,a)==0;
      subs(diff(v,s),s,b)==0];
 display_PDE(PDE);
 P=convert(PDE);
+P.D11
 
 % Replace B_Delta*w_Delta by B_Delta*J*w_Delta, as in Example 2.
 inputDirection=P.B1.R.R0;
@@ -71,9 +72,9 @@ if ~runPoleSweep
         sides,alpha,nu,rho,numWorkers);
     plot_Example_6(Pilot.primal,Pilot.dual);
 else
-    alphaGrid=[.03,.27,.46,.60,.71,.80,.89,.96];
-    rhoGrid=-logspace(3,-3,1);
-    nuGrid=0;
+    alphaGrid=[.03,.27,.46,.71,.80,.89,.96];
+    rhoGrid=-logspace(3,-3,50);
+    nuGrid=0:1;
     configuration=struct('plant',P,'settings',settings,'alpha',alphaGrid, ...
         'rho',rhoGrid,'nu',nuGrid);
     Comparison=struct;
@@ -107,5 +108,5 @@ else
     end
     Example_6_save_checkpoint(fullfile(exampleDir,'Example_6_Fig7_comparison.mat'), ...
         'Comparison',Comparison);
-    plot_Example_6(Comparison.primal,Comparison.dual);
+    plot_Example_6(Comparison.primal,Comparison.dual,[0.7,25], 5, [-0.5,0.5]);
 end

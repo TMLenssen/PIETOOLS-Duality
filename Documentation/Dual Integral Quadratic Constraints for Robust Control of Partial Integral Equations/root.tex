@@ -1,0 +1,135 @@
+\documentclass[final,5p,twocolumn]{elsarticle}
+
+\usepackage[OT1]{fontenc}
+\biboptions{numbers,sort&compress}
+\usepackage{amsmath,amssymb,amsfonts,amsthm}
+\usepackage{mathrsfs}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{xparse}
+\usepackage{subfiles}
+\usepackage{arydshln}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{calc}
+\usepackage{tikz}
+\usepackage[expansion=false]{microtype}
+\usepackage{xurl}
+
+\usetikzlibrary{arrows.meta}
+\input{Figures/primal_dual_controller_interconnections}
+
+\renewcommand{\qedsymbol}{$\blacksquare$}
+
+\input{shortcuts}
+\input{Figures/primal_dual_system_components}
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Prevent indentation immediately after theorem-like environments
+\makeatletter
+\patchcmd{\@endtheorem}{\@endpefalse}{\@endpetrue}{}{}
+\makeatother
+
+\newtheorem{definition}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{theorem}{Theorem}
+\newtheorem{example}{Example}
+\newtheorem{corollary}{Corollary}
+\newtheorem*{assumption}{Standing assumptions}
+\newtheorem{sublemma}{Sublemma}
+\newtheorem{remark}{Remark}
+\newtheorem{class}{Class}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations}
+
+\author{Thijs Lenssen}
+\address{Control Systems Group, Eindhoven University of Technology, The Netherlands}
+\ead{t.m.lenssen@student.tue.nl, thijs.lenssen14@gmail.com}
+
+\fntext[fn1]{\textit{AI use statement.} Generative AI was used as a productivity
+aid in the preparation of this thesis, with all content critically reviewed
+and verified by the author.}
+
+\begin{abstract}
+Partial Differential Equations (PDEs) model spatially distributed systems
+whose control must account for uncertainty and nonlinearities. Partial
+Integral Equations (PIEs) provide an operator representation supporting
+convex nominal $H_\infty$ state-feedback synthesis. We extend this approach
+to robust control using Integral Quadratic Constraints (IQCs). Synthesis
+introduces bilinear couplings between the controller, storage, and
+multiplier operators. Combining induced $L_2$-gain duality with hard $J$-spectral
+factorization, we establish a dual IQC representation. For an admissible factorization, 
+this yields a convex Linear PI Inequality (LPI) that permits 
+explicit recovery of a controller with guaranteed closed-loop robustness. The method
+accommodates infinite-dimensional uncertainty channels and dynamic filters.
+\end{abstract}
+
+\begin{keyword}
+PDEs \sep Robust Control \sep LMIs \sep IQCs \sep PIEs
+\end{keyword}
+
+\end{frontmatter}
+
+\section{Introduction}
+\subfile{Sections/Main/1. Introduction}
+
+\section{Notation \& Preliminaries}\label{sec:preliminaries}
+\subfile{Sections/Main/2. Preliminaries}
+
+\section{Problem Definition}\label{sec:problem-definition}
+\subfile{Sections/Main/3. Problem Definition.tex}
+
+\section{Infinite Dimensional IQC Theory}\label{sec:iqc-theory}
+\subfile{Sections/Main/4. IQC Theory.tex}
+
+\section{Controller Analysis (Primal System)}\label{sec:primal-controller-analysis}
+\subfile{Sections/Main/5. Controller Analysis (Primal System)}
+\input{Figures/potapov_ginzburg_commutative_diagram}
+\section{Duality}\label{sec:duality}\label{sec:dynamic-filtering-duality}
+
+\subfile{Sections/Main/6. Duality}
+\dualsystemcomponents
+\section{Convex Controller Synthesis (Dual System)}\label{sec:dual-controller-synthesis}
+\subfile{Sections/Main/7. Convex Controller Synthesis (Dual System).tex}
+
+\section{Numerical Examples}\label{sec:numerical-examples}
+\subfile{Sections/Main/8. Numerical Examples}
+
+\section{Connection to finite-dimensional dynamic multipliers}\label{sec:finite-dimensional-multipliers}
+\label{sec:finite-dimensional-dynamic-multipliers}
+\subfile{Sections/Main/9. Connection to finite dimensional dynamic multipliers.tex}
+
+\section{Conclusion}\label{sec:conclusion}
+\subfile{Sections/Main/10. Conclusion}
+
+% \section*{Acknowledgment}
+% The preferred spelling of the word ``acknowledgment'' in America is without
+% an ``e'' after the ``g''. Avoid the stilted expression ``one of us (R. B.
+% G.) thanks $\ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put sponsor
+% acknowledgments in the unnumbered footnote on the first page.
+
+\bibliographystyle{elsarticle-num}
+\bibliography{references}
+
+% Use the full page width for the appendix proofs and realization matrices.
+\onecolumn
+\appendix
+\renewcommand{\thesubsection}{\thesection.\arabic{subsection}}
+\section{Proofs}
+\subfile{Sections/Proofs/I. IQC.tex}
+\subfile{Sections/Proofs/II. Duality.tex}
+\subfile{Sections/Proofs/Multipliers/multiplier_proof.tex}
+
+\vspace{12pt}
+
+\end{document}

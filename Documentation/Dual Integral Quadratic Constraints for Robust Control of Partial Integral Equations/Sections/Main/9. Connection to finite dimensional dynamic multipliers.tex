@@ -1,0 +1,292 @@
+We relate the duality framework to finite-dimensional IQC multipliers and
+apply the resulting synthesis conditions to a delayed neural population
+model.
+
+\subsection{Positive--negative multipliers}
+
+Let $\R H_\infty$ denote the proper real-rational transfer matrices with
+no poles in the closed right half-plane. For
+$\Psi\in\R H_\infty^{(n_{\tilde z}+n_{\tilde w})\times(n_z+n_w)}$,
+define the para-Hermitian adjoint by
+\begin{equation*}
+ \Psi^\sim(i\omega)=\Psi(-i\omega)^\top
+ \in\mathbb C^{(n_z+n_w)\times(n_{\tilde z}+n_{\tilde w})}.
+\end{equation*}
+Given a constant symmetric matrix
+$V\in\R^{(n_{\tilde z}+n_{\tilde w})\times(n_{\tilde z}+n_{\tilde w})}$,
+partition $\Pi=\Psi^\sim V\Psi$ according to the input dimensions
+$n_z$ and $n_w$, so that \(
+ \Pi(i\omega)\in\mathbb C^{(n_z+n_w)\times(n_z+n_w)},\\
+\)
+We say that $\Pi$ is strict positive--negative (PN)
+if there exists $\epsilon>0$ such that
+\begin{equation*}
+ \begin{gathered}
+ \Pi(i\omega)=
+ \bmat{\Pi_{11}(i\omega)&\Pi_{12}(i\omega)\\
+       \Pi_{12}(i\omega)^*&\Pi_{22}(i\omega)},\\
+ \Pi_{11}(i\omega)\succeq\epsilon I_{n_z},\qquad
+ \Pi_{22}(i\omega)\preceq-\epsilon I_{n_w}
+ \end{gathered}
+\end{equation*}
+for all $\omega\in\R\cup\{\infty\}$. By~\cite[Thm.~4]{6915700}, a
+strict PN multiplier admits a square $J$-spectral factor
+\begin{equation*}
+\Pi=\Theta^\sim J\Theta,
+ \qquad J=\operatorname{diag}(I_{n_z},-I_{n_w}),
+\end{equation*}
+with $J\in\R^{(n_z+n_w)\times(n_z+n_w)}$ and
+$\Theta,\Theta^{-1}\in\R H_\infty^{(n_z+n_w)\times(n_z+n_w)}$.
+Moreover, this $J$-spectral factorization satisfies
+$\Theta_{22}^{-1}\in\R H_\infty^{n_w\times n_w}$. Thus the invertibility requirements in
+Definition~\ref{def:factorization} hold, and the dual filter is
+$\mbf D(\Theta)\in\R H_\infty^{(n_w+n_z)\times(n_w+n_z)}$,
+with block order $(w,z)$. The Riccati construction in~\cite[App.~B]{Pfifer2015}
+uses the factorization results of~\cite{MEINSMA1995243} and provides a computational
+method to find factorizations. Related
+finite-horizon formulations ~\cite{carrasco2018equivalence,scherer2018dynamicdissipation}.
+
+\subsection{Robust stabilization of the STN--GPe network}
+We consider the delayed firing-rate model
+of~\cite[Eq.~(5)]{nevadoHolgado2010betaOscillations} with $K_d =1$, i.e. the diseased case.
+Let $\mrm{STN}$ and
+$\mrm{GP}$ denote the firing rates of the subthalamic nucleus (STN) and
+globus pallidus pars externa (GPe), respectively, and set
+$\tilde u(t):=I_{\mrm{e}}\mrm{Stim}(t)$. The plant is
+\begin{equation}
+      \begin{aligned}
+      \tau_{\mrm{S}} \dot{\mrm{STN}}(t)
+          ={}&F_{\mrm{S}}\!\bigl(-w_{\mrm{GS}}\mrm{GP}
+              (t-\tau_{\mrm{GS}})\\
+             &\qquad\quad +w_{\mrm{CS}}\mrm{Ctx}\bigr)
+              -\mrm{STN}(t)+\tilde u(t),\\
+      \tau_{\mrm{G}} \dot{\mrm{GP}}(t)
+          ={}&F_{\mrm{G}}\!\bigl(w_{\mrm{SG}}\mrm{STN}
+              (t-\tau_{\mrm{SG}})\\
+             &\qquad\quad-w_{\mrm{GG}}\mrm{GP}(t-\tau_{\mrm{GG}})\\
+             &\qquad\quad-w_{\mrm{XG}}\mrm{Str}\bigr)-\mrm{GP}(t).
+      \end{aligned}
+\end{equation}
+The activation functions $F_i\colon\R\to\R$ are
+\begin{equation}\label{eq:stn-gpe-uncentered-sigmoid}
+F_i(q)=\frac{M_i}{1+\exp(-4q/M_i)(M_i-B_i)/B_i},
+\qquad i\in\{\mrm{S},\mrm{G}\},
+\end{equation}
+with $F_i(0)=B_i$. Define the sigmoid midpoint and centered activation
+$\sigma_i\colon\R\to\R$ by
+\begin{equation}\label{eq:stn-gpe-centered-sigmoid}
+\begin{aligned}
+c_i&:=\frac{M_i}{4}\ln\!\left(\frac{M_i-B_i}{B_i}\right),\\
+\sigma_i(q)&:=\frac{M_i}{1+\exp(-4q/M_i)}-\frac{M_i}{2}=\frac{M_i}{2}\tanh\!\left(\frac{2q}{M_i}\right).
+\end{aligned}
+\end{equation}
+Then $F_i(q)=\sigma_i(q-c_i)+M_i/2$. With the centered states
+\begin{equation*}
+\tilde{x}_{\mrm{S}}:=\mrm{STN}-\frac{M_{\mrm{S}}}{2},
+\qquad
+\tilde{x}_{\mrm{G}}:=\mrm{GP}-\frac{M_{\mrm{G}}}{2},
+\end{equation*}
+and offsets
+\begin{equation*}
+\begin{aligned}
+b_{\mrm{S}}&:=w_{\mrm{CS}}\mrm{Ctx}-\frac{w_{\mrm{GS}}M_{\mrm{G}}}{2}-c_{\mrm{S}},\\
+b_{\mrm{G}}&:=\frac{w_{\mrm{SG}}M_{\mrm{S}}}{2}-\frac{w_{\mrm{GG}}M_{\mrm{G}}}{2}
+      -w_{\mrm{XG}}\mrm{Str}-c_{\mrm{G}},
+\end{aligned}
+\end{equation*}
+the plant becomes
+\begin{equation}\label{eq:stn-gpe-centered}
+\begin{aligned}
+\tilde{z}_{\mrm{S}}(t)&:=-w_{\mrm{GS}}\tilde{x}_{\mrm{G}}(t-\tau_{\mrm{GS}})+b_{\mrm{S}},\\
+\tilde{z}_{\mrm{G}}(t)&:=w_{\mrm{SG}}\tilde{x}_{\mrm{S}}(t-\tau_{\mrm{SG}})
+          -w_{\mrm{GG}}\tilde{x}_{\mrm{G}}(t-\tau_{\mrm{GG}})+b_{\mrm{G}},\\
+\tau_{\mrm{S}}\dot{\tilde{x}}_{\mrm{S}}(t)
+      &=\sigma_{\mrm{S}}(\tilde{z}_{\mrm{S}}(t))
+        -\tilde{x}_{\mrm{S}}(t)+\tilde{u}(t),\\
+\tau_{\mrm{G}}\dot{\tilde{x}}_{\mrm{G}}(t)
+      &=\sigma_{\mrm{G}}(\tilde{z}_{\mrm{G}}(t))
+        -\tilde{x}_{\mrm{G}}(t).
+\end{aligned}
+\end{equation}
+where $\sigma_i(0)=0$. Here $\tau_{ij}$ and $w_{ij}$ denote the transmission
+delay and synaptic weight from population $i$ to population $j$, while
+$\tau_{\mrm{S}}$ and $\tau_{\mrm{G}}$ are the population time constants.
+Let $(\tilde x_{\mrm{S}}^\star,\tilde x_{\mrm{G}}^\star)$ be an equilibrium
+satisfying
+\begin{align*}
+      \tilde z_{\mrm{S}}^\star&:=-w_{\mrm{GS}}\tilde x_{\mrm{G}}^\star+b_{\mrm{S}},\\
+      \tilde z_{\mrm{G}}^\star&:=w_{\mrm{SG}}\tilde x_{\mrm{S}}^\star
+          -w_{\mrm{GG}}\tilde x_{\mrm{G}}^\star+b_{\mrm{G}},\\
+      \tilde x_{\mrm{S}}^\star
+          &=\sigma_{\mrm{S}}(\tilde z_{\mrm{S}}^\star)+\tilde u^\star,\\
+      \tilde x_{\mrm{G}}^\star
+          &=\sigma_{\mrm{G}}(\tilde z_{\mrm{G}}^\star).
+\end{align*}
+For $i\in\{\mrm{S},\mrm{G}\}$, introduce the deviation variables
+\begin{equation*}
+x_i(t):=\tilde{x}_i(t)-\tilde x_i^\star,
+\quad
+z_i(t):=\tilde{z}_i(t)-\tilde z_i^\star,
+\quad
+u(t):=\tilde{u}(t)-\tilde u^\star,
+\end{equation*}
+and define the shifted nonlinearities $\delta_i\colon\R\to\R$ by
+\begin{equation*}
+\delta_i(v):=\sigma_i(\tilde z_i^\star+v)-\sigma_i(\tilde z_i^\star).
+\end{equation*}
+Following~\cite{peet2020representationnetworkssystemsdelay}, introduce
+the delayed states $\phi_{ij}(t,s):=x_i(t-\tau_{ij}s)$ for
+$(i,j)\in\mcl I_{\mrm{D}}$ and $s\in[0,1]$, where
+$\mcl I_{\mrm{D}}:=\{(\mrm{G},\mrm{S}),(\mrm{S},\mrm{G}),(\mrm{G},\mrm{G})\}$.
+The shifted plant has the equivalent ODE--PDE representation
+\begin{equation}\label{eq:stn-gpe_ode-pde}
+\begin{aligned}
+z_{\mrm{S}}(t)
+    &:= -w_{\mrm{GS}}\phi_{\mrm{GS}}(t,1),\\
+z_{\mrm{G}}(t)
+    &:= w_{\mrm{SG}}\phi_{\mrm{SG}}(t,1)
+        -w_{\mrm{GG}}\phi_{\mrm{GG}}(t,1),\\
+\tau_{\mrm{S}}\dot{x}_{\mrm{S}}(t)
+    &= \delta_{\mrm{S}}(z_{\mrm{S}}(t))-x_{\mrm{S}}(t)+u(t),\\
+\tau_{\mrm{G}}\dot{x}_{\mrm{G}}(t)
+    &= \delta_{\mrm{G}}(z_{\mrm{G}}(t))-x_{\mrm{G}}(t),\\
+\dot{\phi}_{ij}(t,s)
+    &= -\frac{1}{\tau_{ij}}\phi_{ij,s}(t,s),\\
+\phi_{ij}(t,0)
+    &= x_i(t),\qquad (i,j)\in\mcl I_{\mrm{D}}.
+\end{aligned}
+\end{equation}
+The equilibrium is now at the origin, and the shift affects only the
+nonlinearities $\delta_i$. We synthesize feedback through $u$ to robustly
+stabilize this equilibrium.
+
+\subsection{Robust stability}
+
+The diagonal uncertainty acting on two-dimensional signals is
+$\Delta=\operatorname{diag}(\delta_{\mrm S},\delta_{\mrm G})$. It is memoryless,
+monotone, and zero at the origin. We compare a static sector IQC with a
+three-pole diagonal Zames--Falb IQC~\cite{zames1968stability,
+turner2022zamesfalbmultipliersdontpanic}. For each channel, let
+$M_i,H_i\in\R H_\infty^{1\times1}$ satisfy $M_i=1-H_i$
+with
+\begin{equation*}
+ H_i(i\omega)=\sum_{k=1}^3\frac{\kappa_{ik}}{i\omega+a_{ik}},
+ \qquad a_{ik}>0,\quad\kappa_{ik}\geq0.
+\end{equation*}
+The nonnegative impulse response $h_i$ satisfies
+$\|h_i\|_{L_1}=\sum_k\kappa_{ik}/a_{ik}<1$, so the multiplier is valid for
+monotone slope-restricted nonlinearities without requiring oddness. We
+choose the poles from the two population time constants and the recurrent
+GPe delay, and normalize the residues to give $\|h_i\|_{L_1}=13/15$.
+
+For each candidate bound $0<\alpha\leq1$, the channel multiplier
+$\Pi_{i,0}(i\omega)\in\mathbb C^{2\times2}$ before regularization is
+\begin{equation*}
+ \Pi_{i,0}(i\omega)=
+ \bmat{0&\alpha M_i(i\omega)^*\\
+       \alpha M_i(i\omega)&-2\operatorname{Re}M_i(i\omega)}.
+\end{equation*}
+Taking $M_i=1$ gives the static sector multiplier. Since the upper-left
+entry is zero, $\Pi_{i,0}$ is not strict PN. Both uncertainty classes
+satisfy $|\delta_i(v)|\leq\alpha|v|\leq|v|$ and hence the norm IQC with
+weight $\operatorname{diag}(1,-1)\in\R^{2\times2}$. We therefore define
+$\Pi_{i,\varepsilon}(i\omega)\in\mathbb C^{2\times2}$ by
+\begin{equation*}
+ \Pi_{i,\varepsilon}=\Pi_{i,0}
+       +\varepsilon\operatorname{diag}(1,-1),\qquad\varepsilon>0.
+\end{equation*}
+The resulting multiplier remains a valid IQC and satisfies
+\begin{equation*}
+ \begin{aligned}
+ {[\Pi_{i,\varepsilon}]}_{11}&=\varepsilon>0,\\
+ [\Pi_{i,\varepsilon}(i\omega)]_{22}
+ &=-2\operatorname{Re}M_i(i\omega)-\varepsilon\\
+ &\leq-2(1-\|h_i\|_{L_1})-\varepsilon<0.
+ \end{aligned}
+\end{equation*}
+uniformly for $\omega\in\R\cup\{\infty\}$. Thus the two-channel multiplier
+is strict PN and admits the hard $J$-spectral factor used in the dual-filter
+construction. The static sector case follows with $h_i=0$.
+
+\subsubsection{Admissible trajectories}
+
+The sector and Zames--Falb searches yield the certified bounds
+\begin{equation*}
+ \alpha_{\mrm{sec}}^\star=0.492,\qquad
+ \alpha_{\mrm{ZF}}^\star=0.562.
+\end{equation*}
+For $i\in\{\mrm S,\mrm G\}$, the sector condition on an interval
+$\mcl I_i$ containing zero is
+\begin{equation*}
+ 0\leq\frac{\delta_i(v)}{v}\leq\alpha_{\mrm{sec}}^\star,
+ \qquad v\in\mcl I_i\setminus\{0\}.
+\end{equation*}
+The Zames--Falb multiplier uses the slope condition
+\begin{equation*}
+ 0\leq\frac{\delta_i(v)-\delta_i(w)}{v-w}\leq\alpha_{\mrm{ZF}}^\star,
+ \qquad v,w\in\mcl I_i,\quad v\neq w.
+\end{equation*}
+Since the shifted sigmoids are smooth, the latter is equivalent to
+$0\leq\delta_i'(v)\leq\alpha_{\mrm{ZF}}^\star$ on $\mcl I_i$.
+For each constraint, the maximal interval containing zero determines the
+admissible input trajectories shown in
+Figure~\ref{fig:stn-gpe-admissible-trajectories}.
+
+\begin{figure}[H]
+ \centering
+ \includegraphics[width=\columnwidth]{Figures/stn_gpe_admissible_trajectories.pdf}
+ \caption{Sector quotients (blue) and differential slopes (orange) for the
+ shifted STN and GPe nonlinearities. Dashed horizontal lines indicate
+ $\alpha_{\mrm{sec}}^\star=0.492$ and $\alpha_{\mrm{ZF}}^\star=0.562$.
+ Blue shading denotes the sector-admissible interval; green shading
+ denotes its intersection with the slope-admissible interval. Both
+ intervals contain zero and extend to negative infinity. The additional
+ x-axis ticks at the shaded boundaries mark the admissible upper limits.}
+ \label{fig:stn-gpe-admissible-trajectories}
+\end{figure}
+
+The stability certificate applies while both nonlinear inputs remain in
+their admissible intervals. Invariance along the closed-loop trajectories
+must be established separately.
+
+\subsubsection{Closed-loop simulation}
+
+Figure~\ref{fig:stn-gpe-sector-trajectories} shows the nonlinear response
+with the controller synthesized using only the static sector IQC and the
+robust-stability condition, at the certified value
+$\alpha_{\mrm{sim}}=0.4609375$. The initial history is
+$(x_{\mrm S},x_{\mrm G})=(0,0)$ over the delay interval. To perturb the
+$P$--$\Delta$ interconnection, we add a pulse at the nonlinearity output,
+$w=\Delta(z)+d$, where
+\begin{equation*}
+ d(t)=\begin{cases}
+ \bmat{5\\-5}\sin^2\!\left(\dfrac{\pi(t-0.10)}{0.04}\right),
+      &0.10\leq t\leq0.14,\\
+ 0, &\text{otherwise}.
+ \end{cases}
+\end{equation*}
+The disturbance is included only in the simulation; no disturbance-gain
+objective is used in synthesis. The horizontal lines mark the sector
+limits $z_i^{\max}$, defined by the first positive crossing of
+$\delta_i(z_i)/z_i=\alpha_{\mrm{sim}}$, giving
+$z_{\mrm S}^{\max}=105.9$ and $z_{\mrm G}^{\max}=184.0$.
+The simulated inputs remain below these limits and the states return to
+equilibrium after the pulse. Since $u=I_{\mrm e}\mrm{Stim}$ is added to the
+firing-rate dynamics, it is an effective rate input, measured in spikes per
+second rather than electrical current. The peak control effort is
+$\max_t|u(t)|=9.37\,\mathrm{spikes/s}$. Converting this value to amperes
+requires a separate calibration of $I_{\mrm e}$.
+
+\begin{figure}[t]
+ \centering
+ \includegraphics[width=\columnwidth]{Figures/stn_gpe_sector_trajectories.pdf}
+ \caption{Nonlinear STN--GPe simulation with the sector-IQC
+ robust-stability controller: population-state deviations (top), nonlinear
+ inputs and their sector-admissible upper limits (middle), and control
+ effort and the injected disturbance (bottom). Dashed gray curves show the
+ open-loop response to the same disturbance. The disturbance panel shows
+ $d_{\mrm S}$ (blue) and $d_{\mrm G}$ (dashed orange).
+ The control effort uses the input
+ normalization of~\eqref{eq:stn-gpe_ode-pde}.}
+ \label{fig:stn-gpe-sector-trajectories}
+\end{figure}

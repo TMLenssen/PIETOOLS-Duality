@@ -56,15 +56,14 @@ fprintf('Candidate gamma=%g',   result.candidateGamma);
 end
 
 function F=lifted_basis(nu,rho,vars,dom)
-% R0 lift of [1,(-rho)/(s-rho),...,((-rho)/(s-rho))^nu].
-% Output scaling is an invertible congruence of Veenman's basis (12a).
+% R0 lift of [1,1/(s-rho),...,1/(s-rho)^nu].
 assert(nu>=0 && nu==floor(nu) && rho<0);
 n=2*nu; m=2*(nu+1);
 if nu==0
     A=zeros(0); B=zeros(0,2); C=zeros(2,0); D=eye(2);
 else
     A=kron(rho*eye(nu)-rho*diag(ones(nu-1,1),-1),eye(2));
-    B=kron(-rho*[1;zeros(nu-1,1)],eye(2));
+    B=kron([1;zeros(nu-1,1)],eye(2));
     C=kron([zeros(1,nu);eye(nu)],eye(2));
     D=kron([1;zeros(nu,1)],eye(2));
 end
