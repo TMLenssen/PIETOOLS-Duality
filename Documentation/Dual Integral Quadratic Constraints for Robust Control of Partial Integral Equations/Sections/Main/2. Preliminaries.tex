@@ -10,8 +10,7 @@ L_2^{n_2}[a,b]$, where $\mathbf{n} = \bmat{n_1 \\ n_2}$, with inner product
 \end{equation*} When clear from context, we occasionally omit the subscript and
 simply write $\ip{\cdot}{\cdot} := \ip{\cdot}{\cdot}_{\R L_2}$. Since the only
 spatial domain considered here is $[a,b]$, we typically omit the domain and
-write $L_2^n$ or $\R L_2^{\mathbf{n}}$, further omitting dimensions when clear
-from context. We omit dimensions when clear from context.
+write $L_2^n$ or $\R L_2^{\mathbf{n}}$. We omit dimensions when clear from context.
 For suitably differentiable spatial states, $\dot{\mbf x}:=\partial_t\mbf x$.
 We denote the induced norm for
 bounded linear operators on $\RL$ by
@@ -75,6 +74,7 @@ R_0, R_1$, and $R_2$ (of compatible dimension) such that,
 +\!\int\limits_a^b\!Q_1(s)\mbf x(s)ds\\Q_2(s)x\!+\!\mcl R \mbf x(s)},\\ 
 (\mcl R \mbf x)(s)\!\! =\!\! R_0(s)\mbf x(s)\! +\! \int\limits_a^s\!\!\!R_1(s,\theta)\mbf x(\theta)d\theta\! +\!\int\limits_s^b\!\!\!R_2(s,\theta)\mbf x(\theta) d\theta.
 \end{gather*}
+where $\mcl{R}\in\Pi_3$.
 \end{definition}
 The vector space of PI operators, given compatible dimensions, are closed under
 composition, addition, adjoint and concatenation -- implying that ${\Pi}_4$ is a
@@ -165,10 +165,6 @@ then $p_T(y_1 - \hat{y}_1) = 0$ and
 $p_T(u_1 - \hat{u}_1) = 0$, for all
 $T \geq 0$.
 \end{itemize}
-Here, $P\star\Delta$ closes the uncertainty loop for the generalized plant
-$P$, while $K\star G$ closes the controller loop for the controlled plant
-$G$.
-
 \subsection{PIETOOLS}
 PIETOOLS is a MATLAB toolbox developed by Shivakumar, Das, and
 Peet~\cite{9147712} for declaring, manipulating, and solving LPIs. Its operator

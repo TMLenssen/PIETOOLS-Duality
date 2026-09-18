@@ -36,11 +36,18 @@ empirical and realization- and uncertainty-dependent.
  \includegraphics[height=.52\textwidth]{Figures/example1_primal.pdf}\hfill
  \includegraphics[height=.52\textwidth]{Figures/example1_dual.pdf}\hfill
  \includegraphics[height=.52\textwidth]{Figures/example1_difference.pdf}
- \caption{Reproduction of the \cite[Fig.~7]{veenman2016robust} sweep for the coupled heat
- equations: primal analysis(left), dual analysis (center), and the
- difference between primal and dual $\gamma-\underline{\gamma}$ (right).
- Since $\Theta$ need not be $\mbf{D}(\underline{\Theta})$ primal and dual optimization
- problems need not have the same optimal value.}
+ \caption{Reproduction of the sweep in \cite[Fig.~7]{veenman2016robust} for the coupled heat equations:
+  primal analysis (left), dual analysis (center), and the difference $\gamma-\underline{\gamma}$ 
+  between the primal and dual bounds (right). The figure highlights two main observations. First, 
+  even when using a lifted finite-dimensional filter for the dynamic IQC, the choice $\nu=1$ yields 
+  substantially smaller values of $\gamma$ than the static case $\nu=0$. Second, the dual analysis 
+  produces lower values of $\gamma$ than the primal analysis. This indicates that, for the chosen IQC 
+  parameterization, the dual formulation yields less conservative bounds and allows the small-gain 
+  bound on $G_0$ to be pushed closer to $\rho=1$. This difference is possible because the problem is 
+  formulated such that $\Theta$ need not coincide with $\mbf{D}(\Theta)$, so the primal and dual 
+  analyses need not yield identical bounds under the same lifted finite-dimensional filter 
+  parameterization, which may be better suited to the dual system than to the primal system.
+}
 \label{fig:coupled-heat-primal-dual}
 \end{figure*}%
 We begin with the finite-dimensional ODE benchmark
@@ -145,7 +152,7 @@ sharply with filter order.
 We therefore perform the full pole sweep in
 Figure~\ref{fig:coupled-heat-primal-dual} only for $\nu=1$, with $\nu=0$
 included as the static baseline. The figure shows the optimized gains and
-their pointwise difference.
+their difference.
 
 
 \begin{table}[t]
@@ -309,8 +316,7 @@ Figure~\ref{fig:sector-pde-effort} shows the corresponding control effort.
  \includegraphics[width=.495\columnwidth]{Figures/example2_effort.pdf}\hfill
  \includegraphics[width=.495\columnwidth]{Figures/example3_effort.pdf}
  \caption{Disturbance and control effort for the reaction--diffusion
- equation (left) and damped wave equation (right). The dashed gray curve
- is $w_{\mrm p}(t)$.}
+ equation (left) and damped wave equation (right).}
  \label{fig:sector-pde-effort}
 \end{figure}
 

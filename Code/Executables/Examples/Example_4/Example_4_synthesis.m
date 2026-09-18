@@ -48,8 +48,8 @@ tau.tauGG = 4e-3;
 %% Two-channel sector and Zames--Falb multiplier settings
 % Pole rates follow population relaxation and recurrent-delay time scales.
 % Normalized synaptic strengths define a heuristic multiplier shape.
-lambdaSector = 1;
-lambdaZF = 0;
+lambdaSector = 0;
+lambdaZF = 1;
 epsilonIQC = 1e-8;
 poleScale = [1,1];              % Independent [S,G] time-scale factors
 kernelNorm = 10/15;             % Sum(kappa./a), independent of pole rates

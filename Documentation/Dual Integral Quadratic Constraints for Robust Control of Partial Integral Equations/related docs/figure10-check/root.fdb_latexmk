@@ -1,13 +1,13 @@
 # Fdb version 4
-["bibtex build/root"] 1789751825.76825 "build/root.aux" "build/root.bbl" "build/root" 1789754230.33763 0
+["bibtex related docs/figure10-check/root"] 1789754163.88625 "related docs/figure10-check/root.aux" "related docs/figure10-check/root.bbl" "related docs/figure10-check/root" 1789754182.12408 0
   "./references.bib" 1789729567 42635 29662f0e7e31076a5f7653d24f4feff0 ""
   "C:/Users/thijs/AppData/Local/Programs/MiKTeX/bibtex/bst/elsarticle/elsarticle-num.bst" 1768130249 29462 dde4ec39bf78fded04ea32048bba0a74 ""
-  "build/root.aux" 1789754227 25585 812ecdfb738e1fba12ad643be3ccca11 "pdflatex"
+  "related docs/figure10-check/root.aux" 1789754177 25585 812ecdfb738e1fba12ad643be3ccca11 "pdflatex"
   (generated)
-  "build/root.bbl"
-  "build/root.blg"
+  "related docs/figure10-check/root.bbl"
+  "related docs/figure10-check/root.blg"
   (rewritten before read)
-["pdflatex"] 1789754220.26882 "c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations/root.tex" "build/root.pdf" "root" 1789754230.33898 0
+["pdflatex"] 1789754165.42718 "root.tex" "related docs/figure10-check/root.pdf" "root" 1789754182.12681 0
   "C:/Users/thijs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1789135318 478181 de08c06b20a5a3cc4a1870f4e4a01a5a ""
   "C:/Users/thijs/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcrm1000.pk" 1789134494 11548 bcd49ab3446af63bde70329ee008cc90 ""
   "C:/Users/thijs/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1775832057 688 37338d6ab346c2f1466b29e195316aa4 ""
@@ -244,24 +244,23 @@
   "Sections/Main/6. Duality.tex" 1789745102 11034 bae7b4f850996093b6d6797cab0ef132 ""
   "Sections/Main/7. Convex Controller Synthesis (Dual System).tex" 1789729567 5993 fbec7216dc68c3a72c711390bc9b357d ""
   "Sections/Main/8. Numerical Examples.tex" 1789743848 14625 eaaf909d7d859c028b6e441d251a408b ""
-  "Sections/Main/9. Connection to finite dimensional dynamic multipliers.tex" 1789754218 13897 f3ceea5e06f59fe1b9ef0969065de2a3 ""
+  "Sections/Main/9. Connection to finite dimensional dynamic multipliers.tex" 1789754087 13897 f3ceea5e06f59fe1b9ef0969065de2a3 ""
   "Sections/Proofs/Duality/dual-IQC.tex" 1789729567 6160 68652a7378e00678f3ae5aba7d5add01 ""
   "Sections/Proofs/Duality/dual-KYP.tex" 1789745870 1845 692d0c7cf09494a6386828e2c65b013f ""
   "Sections/Proofs/Duality/dynamic_state_feedback.tex" 1789745920 2922 db88d1d610fc27bc850aa920f9634bc3 ""
   "Sections/Proofs/I. IQC.tex" 1789729567 1871 0a0dbf98e783a04d340ed5b337f6f194 ""
   "Sections/Proofs/II. Duality.tex" 1789729567 152 0427cd7f00885a9e6ae68a2264cb3a62 ""
   "Sections/Proofs/Multipliers/multiplier_proof.tex" 1789729567 2374 6338a60cffb186cc9418405f2467587d ""
-  "build/root.aux" 1789754227 25585 812ecdfb738e1fba12ad643be3ccca11 "pdflatex"
-  "build/root.bbl" 1789751826 20977 7f2d705beffbd675d52e9e4c93a04fe5 "bibtex build/root"
-  "build/root.out" 1789754227 7122 92e53777d28c88423ca612fab22ddebe "pdflatex"
-  "build/root.spl" 1789754227 51 1c31cf29b3c9b96f0cefc8a173109f69 "pdflatex"
-  "c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations/root.tex" 1789729567 4909 00d099de51a3fb3bddc210b2dd55c133 ""
+  "related docs/figure10-check/root.aux" 1789754177 25585 812ecdfb738e1fba12ad643be3ccca11 "pdflatex"
+  "related docs/figure10-check/root.bbl" 1789754165 20977 7f2d705beffbd675d52e9e4c93a04fe5 "bibtex related docs/figure10-check/root"
+  "related docs/figure10-check/root.out" 1789754177 7122 92e53777d28c88423ca612fab22ddebe "pdflatex"
+  "related docs/figure10-check/root.spl" 1789754177 51 1c31cf29b3c9b96f0cefc8a173109f69 "pdflatex"
   "root.tex" 1789729567 4909 00d099de51a3fb3bddc210b2dd55c133 ""
   "shortcuts.tex" 1789729567 585 8a6bb2ae085d174e9ab084faa3746ffd ""
   (generated)
-  "build/root.aux"
-  "build/root.log"
-  "build/root.out"
-  "build/root.pdf"
-  "build/root.spl"
+  "related docs/figure10-check/root.aux"
+  "related docs/figure10-check/root.log"
+  "related docs/figure10-check/root.out"
+  "related docs/figure10-check/root.pdf"
+  "related docs/figure10-check/root.spl"
   (rewritten before read)

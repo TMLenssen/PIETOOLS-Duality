@@ -1,0 +1,28 @@
+Toolbox "mpt:3.2.1:all" added to the Matlab path.
+Toolbox "mptdoc:3.0.4:all" added to the Matlab path.
+Toolbox "cddmex:1.0.1:pcwin64" added to the Matlab path.
+Toolbox "fourier:1.0:pcwin64" added to the Matlab path.
+Toolbox "glpkmex:1.0:pcwin64" added to the Matlab path.
+Toolbox "hysdel:2.0.6:pcwin64" added to the Matlab path.
+Toolbox "lcp:1.0.3:pcwin64" added to the Matlab path.
+Toolbox "sedumi:1.3:pcwin64" added to the Matlab path.
+Toolbox "yalmip:R20230609:all" added to the Matlab path.
+simOpen: integrating equilibrium initial condition, N=24
+simOpen: integrating equilibrium initial condition, N=32
+simOpen spatial refinement errors: 2.01e-09 1.52e-09 1.81e-08 1.28e-07 0
+Open-loop PIE/original DDE relative errors: 4.75e-09 4.62e-09
+simOpen original/shifted relative errors: 4.63e-09 5.96e-09 5.78e-09 6.72e-09 0
+simOpen N=24/32 relative errors: 2.01e-09 1.52e-09 1.81e-08 1.28e-07 0
+simClosed: integrating equilibrium initial condition, N=24
+simClosed: integrating equilibrium initial condition, N=32
+simClosed spatial refinement errors: 1.32e-07 4e-08 5.02e-07 2.34e-06 5.2e-07
+simClosed original/shifted relative errors: 1.9e-09 2.28e-09 4.52e-09 3.92e-09 2.28e-09
+simClosed N=24/32 relative errors: 1.32e-07 4e-08 5.02e-07 2.34e-06 5.2e-07
+Entire closed-loop trajectory inside sector intervals: 1
+Original equilibrium rates: 20.44251554 21.83661841
+Deviation sector margins: 83.57405786 173.4004458
+Actual certified alpha: 0.4921875
+Sector upper limits [S,G]: 133.836329 63.3108356
+Closed-loop maxima z [S,G]: 50.2622713 -110.08961
+Final closed-loop states [S,G]: 20.4425155 21.8366184
+Peak paper control effort: 19.1470824

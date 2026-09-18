@@ -58,6 +58,7 @@ function sim = PIE_sim_nl(PIE,wd,tspan,x0,opts)
 %   sim.inputCoeff     full B1 input coefficient history in PIESIM order
 %   sim.outputCoeff    full C1/D11 output coefficient history in PIESIM order
 %   sim.Dop            PIESIM discretization data
+%   sim.PIE            original, unscaled input realization (safe to reuse)
 %
 % Quick plotting examples:
 %   surf(sim.splot,sim.t,sim.zPlot,'EdgeColor','none'); view(2);
@@ -72,6 +73,7 @@ if ~isa(wd,'function_handle')
 end
 opts = simulation_options(opts);
 
+originalPIE = PIE;
 statePIE = PIE;
 if isfield(opts,'statePIE') && ~isempty(opts.statePIE)
     statePIE = opts.statePIE;
@@ -126,7 +128,7 @@ if psize.nr0>=2
 end
 sim.splot = opts.splot(:);
 sim.s = sim.splot;
-sim.PIE = PIE;
+sim.PIE = originalPIE;
 sim.Dop = Dop;
 end
 

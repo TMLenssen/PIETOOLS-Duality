@@ -7,35 +7,36 @@
 \setlength{\belowdisplayshortskip}{4pt plus 1pt minus 1pt}
 For $K=0$ in \eqref{eq:primal-system-components}, set
 $\Lambda:=\mcl D_{21}\mcl D_{\mrm G}+\mcl D_{22}$ and define
-\begin{equation*}
+\begin{align*}
 (\mcl M_\Gamma\bmat{\mbf{x}_\mrm{G}\\\mbf{x}_\Theta\\w})(t)
-=\bmat{
+&=\bmat{
 I&0&0\\
 0&I&0\\
 \mcl D_{21}\mcl C_{\mrm{G}}&\mcl C_2
 &\Lambda
-}\bmat{\mbf{x}_\mrm{G}(t)\\\mbf{x}_\Theta(t)\\w(t)}
+}\bmat{\mbf{x}_\mrm{G}(t)\\\mbf{x}_\Theta(t)\\w(t)},\\
 (\mcl M_{\Gamma^{-1}}\bmat{\mbf{x}_\mrm{G}\\\mbf{x}_\Theta\\\tilde{w}})(t)
-:=\bmat{
+&:=\bmat{
 I&0&0\\
 0&I&0\\
 -\Lambda^{-1}\mcl D_{21}\mcl C_{\mrm{G}}&-\Lambda^{-1}\mcl C_2&\Lambda^{-1}
 }\bmat{\mbf{x}_\mrm{G}(t)\\\mbf{x}_\Theta(t)\\\tilde{w}(t)},
-\end{equation*}
+\end{align*}
 with $\Gamma,\Gamma^{-1}\in\Pi_4$. They induce $\Gamma:w\mapsto\tilde w$ in Theorem~\ref{thm:dual-iqc}
 with $P=0\star G$, the dual map follows from
 \eqref{eq:dual-system-components}.
 Set $\underline\Lambda:=\underline{\mcl D}_{21}\mcl D_{\mrm G}^*
-+\underline{\mcl D}_{22}$ block inversion
-shows that $\underline\Lambda$ is boundedly invertible, with
++\underline{\mcl D}_{22}$ as in~\ref{proof:dual-iqc} define $\mcl{S} = \mcl{D}_{11} - \mcl{D}_{12}\mcl{D}_{22}^{-1}\mcl{D}_{21}$,
+its inverse is then given by
 \begin{equation}\label{eq:dual-feedthrough-inverse}
+\begin{aligned}
 \underline\Lambda^{-1}
-=\left[\mcl D_{11}
- -(\mcl D_{11}\mcl D_{\mrm G}+\mcl D_{12})
- \Lambda^{-1}\mcl D_{21}\right]^*\in\Pi_4.
+&=\left[(\mcl D_{11}-\mcl D_{12}\mcl D_{22}^{-1}\mcl D_{21})
+ (I+\mcl D_{\mrm G}\mcl D_{22}^{-1}\mcl D_{21})^{-1}\right]^*\in\Pi_4.
+\end{aligned}
 \end{equation}
-Integrating either LPI from zero initial state with a nonnegative Lyapunov function
-gives $\mcl{I}\leq -\epsilon$ or $\underline{\mcl{I}}\leq -\epsilon$. Theorem~\ref{thm:dual-iqc} and the assumed factorization
-yield \eqref{eq:robust-condition} in either case.
+Integrating either LPI from $0$ to $T$ with $\mbf{x}(0)=0$ and $V(\mbf{x})>0$ 
+gives $\mcl{I}\leq -\epsilon$ or $\underline{\mcl{I}}\leq -\epsilon$. Theorem~\ref{thm:dual-iqc}
+yields \eqref{eq:robust-condition} in either case.
 The conclusion follows from Theorem~\ref{thm:robust-stability-performance}.
 \par\endgroup

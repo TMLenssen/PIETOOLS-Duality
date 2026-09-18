@@ -64,7 +64,7 @@ Having established the class of uncertain systems and their well-posedness, we
 now develop a framework to guarantee robust stability and performance for the
 class of systems defined in Definition~\ref{def:uncertain-interconnection}.
 
-\primalsystemcomponents
+
 
 \subsection{Robust stability and performance}
 Veenman, Scherer, and K\"oro\u{g}lu~\cite{veenman2016robust} describe both
@@ -81,10 +81,10 @@ This involves removal of the performance channels in
 introducing auxiliary signals $z_0$ and $w_0$.
 \begin{definition}
 The interconnection
-\begin{align*}
+\begin{align}\label{eqn:rob-stab-interconnect}
 z_\Delta = P_\Delta w_\Delta + z_0, \quad
 w_\Delta = \Delta z_\Delta + w_0,
-\end{align*}
+\end{align}
 with $z_0, w_0 \in L_{\mrm{e},[a,b]}$, is said to be
 \emph{robustly stable} if
 \begin{enumerate}
@@ -213,3 +213,4 @@ Inequalities (LPIs), which are used in assessing the robust performance of a
 system. We next specialize this certificate to the controlled primal
 realization and expose bilinearities in the LPI that distinguish convex analysis from
 convex controller synthesis.
+\primalsystemcomponents
