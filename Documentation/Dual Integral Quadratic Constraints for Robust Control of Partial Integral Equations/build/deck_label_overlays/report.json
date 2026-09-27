@@ -1,0 +1,98 @@
+{
+  "source": "C:\\Users\\thijs\\Desktop\\Graduation_Project_TML\\Presentation\\Dual Integral Quadratic Contstraints for Robust Control of Partial Integral Equations.pptx",
+  "source_sha256": "b8ff0adab3a2a52385a5ccde865a37d268d451a32c184989a95033cf2f9b9463",
+  "output": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\build\\deck_label_overlays\\Dual Integral Quadratic Contstraints for Robust Control of Partial Integral Equations.pptx",
+  "changes": [
+    {
+      "slide": 1,
+      "image": "image3.png",
+      "labels": 38
+    },
+    {
+      "slide": 3,
+      "image": "image8.jpg",
+      "labels": 4
+    },
+    {
+      "slide": 3,
+      "image": "image9.png",
+      "labels": 4
+    },
+    {
+      "slide": 4,
+      "image": "image11.png",
+      "labels": 31
+    },
+    {
+      "slide": 4,
+      "image": "image12.png",
+      "labels": 12
+    },
+    {
+      "slide": 5,
+      "image": "image8.jpg",
+      "labels": 4
+    },
+    {
+      "slide": 6,
+      "image": "image8.jpg",
+      "labels": 4
+    },
+    {
+      "slide": 7,
+      "image": "image16.png",
+      "labels": 8
+    },
+    {
+      "slide": 8,
+      "image": "image18.png",
+      "labels": 16
+    },
+    {
+      "slide": 9,
+      "image": "image20.png",
+      "labels": 11
+    },
+    {
+      "slide": 10,
+      "image": "image22.png",
+      "labels": 21
+    },
+    {
+      "slide": 11,
+      "image": "image24.png",
+      "labels": 9
+    },
+    {
+      "slide": 12,
+      "image": "image25.png",
+      "labels": 25
+    },
+    {
+      "slide": 12,
+      "image": "image26.png",
+      "labels": 40
+    },
+    {
+      "slide": 13,
+      "image": "image27.png",
+      "labels": 24
+    },
+    {
+      "slide": 13,
+      "image": "image28.png",
+      "labels": 26
+    },
+    {
+      "slide": 17,
+      "image": "image24.png",
+      "labels": 9
+    }
+  ],
+  "total_labels": 286,
+  "cart_motion_overlays": 7,
+  "simulation_slide_part": 39,
+  "simulation_slide_position": 25,
+  "simulation_native_labels": 51,
+  "video_resolution": "3840x2160"
+}

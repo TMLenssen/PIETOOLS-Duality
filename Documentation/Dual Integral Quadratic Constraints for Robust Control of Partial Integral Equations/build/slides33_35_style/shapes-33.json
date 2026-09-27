@@ -1,0 +1,146 @@
+﻿[
+    {
+        "id":  3,
+        "name":  "Footer Placeholder 2",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  4,
+        "name":  "Slide Number Placeholder 3",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "33"
+    },
+    {
+        "id":  250,
+        "name":  "Controller interconnection",
+        "left":  42,
+        "top":  147,
+        "width":  271,
+        "height":  178.3,
+        "text":  ""
+    },
+    {
+        "id":  301,
+        "name":  "Slide title",
+        "left":  36,
+        "top":  25,
+        "width":  648,
+        "height":  42,
+        "text":  "The controller gives a zero residual"
+    },
+    {
+        "id":  302,
+        "name":  "Subtitle",
+        "left":  36,
+        "top":  70,
+        "width":  648,
+        "height":  22,
+        "text":  "Encode the exact feedback law as a constraint on the filtered signals."
+    },
+    {
+        "id":  303,
+        "name":  "Plant equation",
+        "left":  43,
+        "top":  101,
+        "width":  294,
+        "height":  24,
+        "text":  "𝑇 𝑥 =𝐴𝑥+ 𝐵 u 𝑢"
+    },
+    {
+        "id":  304,
+        "name":  "Measured state",
+        "left":  43,
+        "top":  126,
+        "width":  240,
+        "height":  20,
+        "text":  "𝑦=𝑥"
+    },
+    {
+        "id":  305,
+        "name":  "Stage1 heading",
+        "left":  354,
+        "top":  101,
+        "width":  330,
+        "height":  20,
+        "text":  "1  Encode the controller"
+    },
+    {
+        "id":  306,
+        "name":  "Stage1 filter",
+        "left":  365,
+        "top":  126,
+        "width":  306,
+        "height":  48,
+        "text":  "Θ=  𝐼 0 −𝐾 𝐼  "
+    },
+    {
+        "id":  307,
+        "name":  "Stage2 heading",
+        "left":  354,
+        "top":  185,
+        "width":  330,
+        "height":  20,
+        "text":  "2  Impose the feedback law"
+    },
+    {
+        "id":  308,
+        "name":  "Stage2 output",
+        "left":  365,
+        "top":  208,
+        "width":  310,
+        "height":  23,
+        "text":  " 𝑦 =𝑦=𝑥"
+    },
+    {
+        "id":  309,
+        "name":  "Stage2 residual",
+        "left":  365,
+        "top":  237,
+        "width":  310,
+        "height":  26,
+        "text":  "𝑢=𝐾𝑦  ⇒   𝑢 =𝑢−𝐾𝑦=0"
+    },
+    {
+        "id":  310,
+        "name":  "Stage3 heading",
+        "left":  354,
+        "top":  278,
+        "width":  330,
+        "height":  20,
+        "text":  "3  Recover the closed loop"
+    },
+    {
+        "id":  311,
+        "name":  "Stage3 dynamics",
+        "left":  365,
+        "top":  302,
+        "width":  310,
+        "height":  25,
+        "text":  "𝑇 𝑥 = 𝐴+ 𝐵 u 𝐾 𝑥"
+    },
+    {
+        "id":  312,
+        "name":  "Stage3 takeaway background",
+        "left":  36,
+        "top":  337,
+        "width":  648,
+        "height":  35,
+        "text":  ""
+    },
+    {
+        "id":  313,
+        "name":  "Stage3 takeaway",
+        "left":  48,
+        "top":  343,
+        "width":  624,
+        "height":  23,
+        "text":  "The residual vanishes because the controller enforces u = Ky."
+    }
+]

@@ -22,9 +22,12 @@ I&0&0\\
 -\Lambda^{-1}\mcl D_{21}\mcl C_{\mrm{G}}&-\Lambda^{-1}\mcl C_2&\Lambda^{-1}
 }\bmat{\mbf{x}_\mrm{G}(t)\\\mbf{x}_\Theta(t)\\\tilde{w}(t)},
 \end{align*}
-with $\Gamma,\Gamma^{-1}\in\Pi_4$. They induce $\Gamma:w\mapsto\tilde w$ in Theorem~\ref{thm:dual-iqc}
-with $P=0\star G$, the dual map follows from
-\eqref{eq:dual-system-components}.
+with $\mcl M_\Gamma,\mcl M_{\Gamma^{-1}}\in\Pi_4$ and
+$\mcl M_{\Gamma^{-1}}=\mcl M_\Gamma^{-1}$. These are coordinate
+transformations of the states and input. Along system trajectories, they
+induce $\Gamma:=\Theta_{21}P+\Theta_{22}:w\mapsto\tilde w$ with $P=0\star G$.
+The dual construction follows from \eqref{eq:dual-system-components}.
+Boundedness of $\Gamma^{-1}$ is established below.
 Set $\underline\Lambda:=\underline{\mcl D}_{21}\mcl D_{\mrm G}^*
 +\underline{\mcl D}_{22}$ as in~\ref{proof:dual-iqc} define $\mcl{S} = \mcl{D}_{11} - \mcl{D}_{12}\mcl{D}_{22}^{-1}\mcl{D}_{21}$,
 its inverse is then given by
@@ -35,8 +38,32 @@ its inverse is then given by
  (I+\mcl D_{\mrm G}\mcl D_{22}^{-1}\mcl D_{21})^{-1}\right]^*\in\Pi_4.
 \end{aligned}
 \end{equation}
-Integrating either LPI from $0$ to $T$ with $\mbf{x}(0)=0$ and $V(\mbf{x})>0$ 
-gives $\mcl{I}\leq -\epsilon$ or $\underline{\mcl{I}}\leq -\epsilon$. Theorem~\ref{thm:dual-iqc}
-yields \eqref{eq:robust-condition} in either case.
-The conclusion follows from Theorem~\ref{thm:robust-stability-performance}.
+Suppose first that the primal LPI holds with $\epsilon>0$. Define the
+nonnegative storage $V(t):=\ip{\mcl T\mbf x(t)}{\mcl P\mcl T\mbf x(t)}$.
+Integrating the LPI from $0$ to $T$, using $\mbf x(0)=0$, gives
+\begin{equation}\label{eq:primal-storage-inverse-bound}
+V(T)+\mcl I
+=V(T)+\|p_TG_0\Gamma w\|_{L_{[a,b]}}^2
+-\|p_T\Gamma w\|_{L_{[a,b]}}^2
+\leq-\epsilon\|p_Tw\|_{L_{[a,b]}}^2.
+\end{equation}
+Since $V(T)\geq0$, it follows that
+$\epsilon\|p_Tw\|_{L_{[a,b]}}^2\leq\|p_T\Gamma w\|_{L_{[a,b]}}^2$.
+For arbitrary $\tilde w$, the causal inverse realization supplies
+$w=\Gamma^{-1}\tilde w$ on each finite time interval. Hence
+\[
+\|p_T\Gamma^{-1}\tilde w\|_{L_{[a,b]}}
+\leq\frac{1}{\sqrt\epsilon}\|p_T\tilde w\|_{L_{[a,b]}}
+\qquad\forall T\geq0.
+\]
+Thus $\Gamma^{-1}$ is bounded, with $\|\Gamma^{-1}\|\leq1/\sqrt\epsilon$,
+and $\mcl I\leq-\epsilon\|p_Tw\|_{L_{[a,b]}}^2$.
+Applying the same argument on the dual side yields
+$\underline\Gamma^{-1}$ bounded, with
+$\|\underline\Gamma^{-1}\|\leq1/\sqrt{\underline \epsilon}$ and
+$\underline{\mcl I}\leq-\underline\epsilon\|p_T\underline w\|_{L_{[a,b]}}^2$.
+Thus, by Theorem~\ref{thm:dual-iqc}, we also find
+$\mcl I\leq-\epsilon\|p_Tw\|_{L_{[a,b]}}^2$ for some $\epsilon>0$,
+and by Theorem~\ref{thm:robust-stability-performance} we find that robust
+stability and robust performance are guaranteed.
 \par\endgroup

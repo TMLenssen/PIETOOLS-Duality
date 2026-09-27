@@ -1,0 +1,848 @@
+[
+  {
+    "slide": 19,
+    "part": "ppt/slides/slide19.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "5",
+        "Footer Placeholder 4"
+      ],
+      [
+        "6",
+        "Slide Number Placeholder 5"
+      ],
+      [
+        "54",
+        "Original neural schematic"
+      ],
+      [
+        "69",
+        "Original TUe logo"
+      ],
+      [
+        "3",
+        "Title 1"
+      ],
+      [
+        "11008",
+        "Original model equations"
+      ],
+      [
+        "11010",
+        "Moving nonlinearity S"
+      ],
+      [
+        "11012",
+        "Moving nonlinearity G"
+      ],
+      [
+        "11018",
+        "Moving nominal dynamics"
+      ],
+      [
+        "11024",
+        "Delta block"
+      ],
+      [
+        "11030",
+        "P block"
+      ],
+      [
+        "11042",
+        "LFR signal connections"
+      ],
+      [
+        "11048",
+        "Controller K"
+      ],
+      [
+        "11054",
+        "Controller connections"
+      ],
+      [
+        "11065",
+        "Equivalent original schematic"
+      ],
+      [
+        "11078",
+        "Equivalence symbol"
+      ],
+      [
+        "11079",
+        "Equivalent schematic heading"
+      ],
+      [
+        "11080",
+        "LFR heading"
+      ],
+      [
+        "11081",
+        "Stage 1 caption"
+      ],
+      [
+        "11082",
+        "Stage 2 caption"
+      ],
+      [
+        "11083",
+        "Stage 3 caption"
+      ],
+      [
+        "11084",
+        "Stage 4 caption"
+      ],
+      [
+        "2",
+        "Controller K block"
+      ],
+      [
+        "4",
+        "Editable paper diagram"
+      ]
+    ]
+  },
+  {
+    "slide": 20,
+    "part": "ppt/slides/slide20.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "2",
+        "Title 1"
+      ],
+      [
+        "3",
+        "Content Placeholder 2"
+      ],
+      [
+        "4",
+        "Footer Placeholder 3"
+      ],
+      [
+        "5",
+        "Slide Number Placeholder 4"
+      ],
+      [
+        "11",
+        "Rectangle: Rounded Corners 10"
+      ],
+      [
+        "13",
+        "Rectangle: Rounded Corners 12"
+      ],
+      [
+        "14",
+        "Arrow: Left-Right 13"
+      ],
+      [
+        "15",
+        "TextBox 14"
+      ],
+      [
+        "24",
+        "Original TUe logo"
+      ]
+    ]
+  },
+  {
+    "slide": 42,
+    "part": "ppt/slides/slide42.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "2",
+        "Title 1"
+      ],
+      [
+        "3",
+        "Footer Placeholder 2"
+      ],
+      [
+        "4",
+        "Slide Number Placeholder 3"
+      ],
+      [
+        "7",
+        "TextBox 6"
+      ]
+    ]
+  },
+  {
+    "slide": 43,
+    "part": "ppt/slides/slide43.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "15001",
+        "Closing title"
+      ],
+      [
+        "15002",
+        "Application ASML wafer stages"
+      ],
+      [
+        "15003",
+        "Model class ASML wafer stages"
+      ],
+      [
+        "15004",
+        "Application STN\u2013GPe network"
+      ],
+      [
+        "15005",
+        "Model class STN\u2013GPe network"
+      ],
+      [
+        "15006",
+        "Application Canon production printers"
+      ],
+      [
+        "15007",
+        "Model class Canon production printers"
+      ],
+      [
+        "15008",
+        "ASML to common framework"
+      ],
+      [
+        "15009",
+        "STN-GPe to common framework"
+      ],
+      [
+        "15010",
+        "Canon to common framework"
+      ],
+      [
+        "15011",
+        "Shared framework"
+      ],
+      [
+        "15012",
+        "Framework title"
+      ],
+      [
+        "15013",
+        "Framework capability"
+      ],
+      [
+        "15014",
+        "Closing takeaway"
+      ],
+      [
+        "15015",
+        "Footer"
+      ],
+      [
+        "15016",
+        "Slide number"
+      ],
+      [
+        "14001",
+        "ASML wafer stage"
+      ],
+      [
+        "14002",
+        "Canon production printer"
+      ],
+      [
+        "14003",
+        "STN-GPe example schematic"
+      ],
+      [
+        "14015",
+        "Original TUe logo"
+      ]
+    ]
+  },
+  {
+    "slide": 44,
+    "part": "ppt/slides/slide44.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "2",
+        "Title 1"
+      ],
+      [
+        "3",
+        "Footer Placeholder 2"
+      ],
+      [
+        "4",
+        "Slide Number Placeholder 3"
+      ],
+      [
+        "5",
+        "Chart Placeholder 4"
+      ],
+      [
+        "6",
+        "Original TUe logo"
+      ]
+    ]
+  },
+  {
+    "slide": 45,
+    "part": "ppt/slides/slide45.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "101",
+        "Slide title"
+      ],
+      [
+        "102",
+        "Heat in paper"
+      ],
+      [
+        "103",
+        "Heat in paper title"
+      ],
+      [
+        "104",
+        "Moisture in paper"
+      ],
+      [
+        "105",
+        "Moisture in paper title"
+      ],
+      [
+        "106",
+        "Heat to moisture coupling"
+      ],
+      [
+        "107",
+        "Moisture to heat coupling"
+      ],
+      [
+        "108",
+        "Left boundary"
+      ],
+      [
+        "109",
+        "Right boundary"
+      ],
+      [
+        "110",
+        "Original dimension line"
+      ],
+      [
+        "111",
+        "End tick"
+      ],
+      [
+        "112",
+        "End tick"
+      ],
+      [
+        "113",
+        "Spatial coordinate"
+      ],
+      [
+        "114",
+        "Spatial coordinate"
+      ],
+      [
+        "115",
+        "Spatial coordinate"
+      ],
+      [
+        "116",
+        "State label 1"
+      ],
+      [
+        "117",
+        "State label 2"
+      ],
+      [
+        "119",
+        "Footer"
+      ],
+      [
+        "120",
+        "Slide number"
+      ]
+    ]
+  },
+  {
+    "slide": 46,
+    "part": "ppt/slides/slide46.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "101",
+        "Slide title"
+      ],
+      [
+        "102",
+        "Heat in paper"
+      ],
+      [
+        "103",
+        "Heat in paper title"
+      ],
+      [
+        "104",
+        "Moisture in paper"
+      ],
+      [
+        "105",
+        "Moisture in paper title"
+      ],
+      [
+        "106",
+        "Heat to moisture coupling"
+      ],
+      [
+        "107",
+        "Moisture to heat coupling"
+      ],
+      [
+        "108",
+        "Left boundary"
+      ],
+      [
+        "109",
+        "Right boundary"
+      ],
+      [
+        "110",
+        "Original dimension line"
+      ],
+      [
+        "111",
+        "End tick"
+      ],
+      [
+        "112",
+        "End tick"
+      ],
+      [
+        "113",
+        "Spatial coordinate"
+      ],
+      [
+        "114",
+        "Spatial coordinate"
+      ],
+      [
+        "115",
+        "Spatial coordinate"
+      ],
+      [
+        "116",
+        "State label 1"
+      ],
+      [
+        "117",
+        "State label 2"
+      ],
+      [
+        "122",
+        "Heat equation"
+      ],
+      [
+        "123",
+        "Moisture equation"
+      ],
+      [
+        "124",
+        "Performance output equation"
+      ],
+      [
+        "119",
+        "Footer"
+      ],
+      [
+        "120",
+        "Slide number"
+      ]
+    ]
+  },
+  {
+    "slide": 47,
+    "part": "ppt/slides/slide47.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "101",
+        "Slide title"
+      ],
+      [
+        "102",
+        "Heat in paper"
+      ],
+      [
+        "103",
+        "Heat in paper title"
+      ],
+      [
+        "104",
+        "Moisture in paper"
+      ],
+      [
+        "105",
+        "Moisture in paper title"
+      ],
+      [
+        "106",
+        "Heat to moisture coupling"
+      ],
+      [
+        "107",
+        "Moisture to heat coupling"
+      ],
+      [
+        "108",
+        "Left boundary"
+      ],
+      [
+        "109",
+        "Right boundary"
+      ],
+      [
+        "110",
+        "Original dimension line"
+      ],
+      [
+        "111",
+        "End tick"
+      ],
+      [
+        "112",
+        "End tick"
+      ],
+      [
+        "113",
+        "Spatial coordinate"
+      ],
+      [
+        "114",
+        "Spatial coordinate"
+      ],
+      [
+        "115",
+        "Spatial coordinate"
+      ],
+      [
+        "116",
+        "State label 1"
+      ],
+      [
+        "117",
+        "State label 2"
+      ],
+      [
+        "118",
+        "Admissible uncertainty"
+      ],
+      [
+        "123",
+        "Heat equation"
+      ],
+      [
+        "124",
+        "Moisture equation"
+      ],
+      [
+        "125",
+        "Performance output equation"
+      ],
+      [
+        "120",
+        "Footer"
+      ],
+      [
+        "121",
+        "Slide number"
+      ],
+      [
+        "2",
+        "Rectangle 1"
+      ]
+    ]
+  },
+  {
+    "slide": 48,
+    "part": "ppt/slides/slide48.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "101",
+        "Slide title"
+      ],
+      [
+        "102",
+        "Heat in paper"
+      ],
+      [
+        "103",
+        "Heat in paper title"
+      ],
+      [
+        "104",
+        "Moisture in paper"
+      ],
+      [
+        "105",
+        "Moisture in paper title"
+      ],
+      [
+        "106",
+        "Heat to moisture coupling"
+      ],
+      [
+        "107",
+        "Moisture to heat coupling"
+      ],
+      [
+        "108",
+        "Left boundary"
+      ],
+      [
+        "109",
+        "Right boundary"
+      ],
+      [
+        "110",
+        "Original dimension line"
+      ],
+      [
+        "111",
+        "End tick"
+      ],
+      [
+        "112",
+        "End tick"
+      ],
+      [
+        "113",
+        "Spatial coordinate"
+      ],
+      [
+        "114",
+        "Spatial coordinate"
+      ],
+      [
+        "115",
+        "Spatial coordinate"
+      ],
+      [
+        "116",
+        "State label 1"
+      ],
+      [
+        "117",
+        "State label 2"
+      ],
+      [
+        "118",
+        "Admissible uncertainty"
+      ],
+      [
+        "124",
+        "Heat equation"
+      ],
+      [
+        "125",
+        "Moisture equation"
+      ],
+      [
+        "126",
+        "Performance output equation"
+      ],
+      [
+        "121",
+        "Footer"
+      ],
+      [
+        "122",
+        "Slide number"
+      ],
+      [
+        "2",
+        "Rectangle 1"
+      ],
+      [
+        "4",
+        "Rectangle 3"
+      ]
+    ]
+  },
+  {
+    "slide": 49,
+    "part": "ppt/slides/slide49.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "101",
+        "Slide title"
+      ],
+      [
+        "2",
+        "Baked figure with larger labels"
+      ],
+      [
+        "123",
+        "Footer"
+      ],
+      [
+        "124",
+        "Slide number"
+      ],
+      [
+        "3",
+        "Baked figure with larger labels"
+      ],
+      [
+        "26",
+        "TextBox 25"
+      ],
+      [
+        "24",
+        "TextBox 23"
+      ]
+    ]
+  },
+  {
+    "slide": 50,
+    "part": "ppt/slides/slide50.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "101",
+        "Slide title"
+      ],
+      [
+        "2",
+        "Baked figure with larger labels"
+      ],
+      [
+        "123",
+        "Footer"
+      ],
+      [
+        "124",
+        "Slide number"
+      ],
+      [
+        "3",
+        "Baked figure with larger labels"
+      ],
+      [
+        "27",
+        "TextBox 26"
+      ]
+    ]
+  },
+  {
+    "slide": 51,
+    "part": "ppt/slides/slide51.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "101",
+        "Slide title"
+      ],
+      [
+        "2",
+        "Baked figure with larger labels"
+      ],
+      [
+        "123",
+        "Footer"
+      ],
+      [
+        "124",
+        "Slide number"
+      ],
+      [
+        "3",
+        "Baked figure with larger labels"
+      ],
+      [
+        "25",
+        "TextBox 24"
+      ]
+    ]
+  },
+  {
+    "slide": 52,
+    "part": "ppt/slides/slide52.xml",
+    "shapes": [
+      [
+        "1",
+        ""
+      ],
+      [
+        "101",
+        "Slide title"
+      ],
+      [
+        "2",
+        "Baked figure with larger labels"
+      ],
+      [
+        "123",
+        "Footer"
+      ],
+      [
+        "124",
+        "Slide number"
+      ],
+      [
+        "3",
+        "Baked figure with larger labels"
+      ],
+      [
+        "25",
+        "TextBox 24"
+      ],
+      [
+        "28",
+        "TextBox 27"
+      ],
+      [
+        "24",
+        "TextBox 23"
+      ]
+    ]
+  }
+]

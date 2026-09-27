@@ -1,0 +1,1098 @@
+<p:grpSp>
+	<p:nvGrpSpPr>
+		<p:cNvPr id="4" name="Editable paper diagram">
+			<a:extLst>
+				<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+					<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{BEEA59A6-286F-A2D2-D96E-07B7D80854DA}"/>
+				</a:ext>
+			</a:extLst>
+		</p:cNvPr>
+		<p:cNvGrpSpPr/>
+		<p:nvPr/>
+	</p:nvGrpSpPr>
+	<p:grpSpPr>
+		<a:xfrm>
+			<a:off x="5428687" y="1581912"/>
+			<a:ext cx="3138932" cy="2405888"/>
+			<a:chOff x="1995932" y="1819148"/>
+			<a:chExt cx="3138932" cy="2405888"/>
+		</a:xfrm>
+	</p:grpSpPr>
+	<p:sp>
+		<p:nvSpPr>
+			<p:cNvPr id="7" name="Plant to uncertainty">
+				<a:extLst>
+					<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+						<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{75E77E77-078F-9DA5-9B1B-BB09E9B0BC21}"/>
+					</a:ext>
+				</a:extLst>
+			</p:cNvPr>
+			<p:cNvSpPr/>
+			<p:nvPr/>
+		</p:nvSpPr>
+		<p:spPr>
+			<a:xfrm>
+				<a:off x="2490724" y="2088388"/>
+				<a:ext cx="796036" cy="908812"/>
+			</a:xfrm>
+			<a:custGeom>
+				<a:avLst/>
+				<a:gdLst/>
+				<a:ahLst/>
+				<a:cxnLst/>
+				<a:rect l="0" t="0" r="r" b="b"/>
+				<a:pathLst>
+					<a:path w="796036" h="908812" fill="none">
+						<a:moveTo>
+							<a:pt x="595376" y="896112"/>
+						</a:moveTo>
+						<a:lnTo>
+							<a:pt x="12700" y="896112"/>
+						</a:lnTo>
+						<a:lnTo>
+							<a:pt x="12700" y="12700"/>
+						</a:lnTo>
+						<a:lnTo>
+							<a:pt x="783336" y="12700"/>
+						</a:lnTo>
+					</a:path>
+				</a:pathLst>
+			</a:custGeom>
+			<a:noFill/>
+			<a:ln w="12531">
+				<a:solidFill>
+					<a:srgbClr val="252529"/>
+				</a:solidFill>
+				<a:round/>
+				<a:tailEnd type="triangle" w="sm" len="sm"/>
+			</a:ln>
+		</p:spPr>
+		<p:txBody>
+			<a:bodyPr/>
+			<a:lstStyle/>
+			<a:p>
+				<a:endParaRPr lang="en-NL"/>
+			</a:p>
+		</p:txBody>
+	</p:sp>
+	<p:sp>
+		<p:nvSpPr>
+			<p:cNvPr id="8" name="Uncertainty to plant">
+				<a:extLst>
+					<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+						<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{82FA5E3E-5FFB-0B2F-A300-184078EBD91F}"/>
+					</a:ext>
+				</a:extLst>
+			</p:cNvPr>
+			<p:cNvSpPr/>
+			<p:nvPr/>
+		</p:nvSpPr>
+		<p:spPr>
+			<a:xfrm>
+				<a:off x="3825240" y="2088388"/>
+				<a:ext cx="796036" cy="908812"/>
+			</a:xfrm>
+			<a:custGeom>
+				<a:avLst/>
+				<a:gdLst/>
+				<a:ahLst/>
+				<a:cxnLst/>
+				<a:rect l="0" t="0" r="r" b="b"/>
+				<a:pathLst>
+					<a:path w="796036" h="908812" fill="none">
+						<a:moveTo>
+							<a:pt x="12700" y="12700"/>
+						</a:moveTo>
+						<a:lnTo>
+							<a:pt x="783336" y="12700"/>
+						</a:lnTo>
+						<a:lnTo>
+							<a:pt x="783336" y="896112"/>
+						</a:lnTo>
+						<a:lnTo>
+							<a:pt x="200660" y="896112"/>
+						</a:lnTo>
+					</a:path>
+				</a:pathLst>
+			</a:custGeom>
+			<a:noFill/>
+			<a:ln w="12531">
+				<a:solidFill>
+					<a:srgbClr val="252529"/>
+				</a:solidFill>
+				<a:round/>
+				<a:tailEnd type="triangle" w="sm" len="sm"/>
+			</a:ln>
+		</p:spPr>
+		<p:txBody>
+			<a:bodyPr/>
+			<a:lstStyle/>
+			<a:p>
+				<a:endParaRPr lang="en-NL"/>
+			</a:p>
+		</p:txBody>
+	</p:sp>
+	<p:sp>
+		<p:nvSpPr>
+			<p:cNvPr id="15" name="Controller plant channel">
+				<a:extLst>
+					<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+						<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{26408853-A798-988B-B56D-FDDCE02D5F74}"/>
+					</a:ext>
+				</a:extLst>
+			</p:cNvPr>
+			<p:cNvSpPr/>
+			<p:nvPr/>
+		</p:nvSpPr>
+		<p:spPr>
+			<a:xfrm>
+				<a:off x="2490724" y="3206750"/>
+				<a:ext cx="739648" cy="692658"/>
+			</a:xfrm>
+			<a:custGeom>
+				<a:avLst/>
+				<a:gdLst/>
+				<a:ahLst/>
+				<a:cxnLst/>
+				<a:rect l="0" t="0" r="r" b="b"/>
+				<a:pathLst>
+					<a:path w="739648" h="692658" fill="none">
+						<a:moveTo>
+							<a:pt x="726948" y="679958"/>
+						</a:moveTo>
+						<a:lnTo>
+							<a:pt x="12700" y="679958"/>
+						</a:lnTo>
+						<a:lnTo>
+							<a:pt x="12700" y="12700"/>
+						</a:lnTo>
+						<a:lnTo>
+							<a:pt x="595376" y="12700"/>
+						</a:lnTo>
+					</a:path>
+				</a:pathLst>
+			</a:custGeom>
+			<a:noFill/>
+			<a:ln w="12531">
+				<a:solidFill>
+					<a:srgbClr val="252529"/>
+				</a:solidFill>
+				<a:round/>
+				<a:tailEnd type="triangle" w="sm" len="sm"/>
+			</a:ln>
+		</p:spPr>
+		<p:txBody>
+			<a:bodyPr/>
+			<a:lstStyle/>
+			<a:p>
+				<a:endParaRPr lang="en-NL"/>
+			</a:p>
+		</p:txBody>
+	</p:sp>
+	<p:sp>
+		<p:nvSpPr>
+			<p:cNvPr id="16" name="Plant controller channel">
+				<a:extLst>
+					<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+						<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{679699AE-FE8C-6DF3-0F45-E52EFA442C91}"/>
+					</a:ext>
+				</a:extLst>
+			</p:cNvPr>
+			<p:cNvSpPr/>
+			<p:nvPr/>
+		</p:nvSpPr>
+		<p:spPr>
+			<a:xfrm>
+				<a:off x="3881628" y="3206750"/>
+				<a:ext cx="739648" cy="570484"/>
+			</a:xfrm>
+			<a:custGeom>
+				<a:avLst/>
+				<a:gdLst/>
+				<a:ahLst/>
+				<a:cxnLst/>
+				<a:rect l="0" t="0" r="r" b="b"/>
+				<a:pathLst>
+					<a:path w="739648" h="570484" fill="none">
+						<a:moveTo>
+							<a:pt x="144272" y="12700"/>
+						</a:moveTo>
+						<a:lnTo>
+							<a:pt x="726948" y="12700"/>
+						</a:lnTo>
+						<a:lnTo>
+							<a:pt x="726948" y="557784"/>
+						</a:lnTo>
+						<a:lnTo>
+							<a:pt x="12700" y="557784"/>
+						</a:lnTo>
+					</a:path>
+				</a:pathLst>
+			</a:custGeom>
+			<a:noFill/>
+			<a:ln w="12531">
+				<a:solidFill>
+					<a:srgbClr val="252529"/>
+				</a:solidFill>
+				<a:round/>
+				<a:tailEnd type="triangle" w="sm" len="sm"/>
+			</a:ln>
+		</p:spPr>
+		<p:txBody>
+			<a:bodyPr/>
+			<a:lstStyle/>
+			<a:p>
+				<a:endParaRPr lang="en-NL"/>
+			</a:p>
+		</p:txBody>
+	</p:sp>
+	<p:sp>
+		<p:nvSpPr>
+			<p:cNvPr id="18" name="Controller">
+				<a:extLst>
+					<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+						<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{C8D5914E-CC79-200D-B2FE-342E053AF653}"/>
+					</a:ext>
+				</a:extLst>
+			</p:cNvPr>
+			<p:cNvSpPr/>
+			<p:nvPr/>
+		</p:nvSpPr>
+		<p:spPr>
+			<a:xfrm>
+				<a:off x="3217672" y="3548380"/>
+				<a:ext cx="676656" cy="676656"/>
+			</a:xfrm>
+			<a:prstGeom prst="roundRect">
+				<a:avLst>
+					<a:gd name="adj" fmla="val 5000"/>
+				</a:avLst>
+			</a:prstGeom>
+			<a:solidFill>
+				<a:srgbClr val="FFFFFF"/>
+			</a:solidFill>
+			<a:ln w="10795">
+				<a:solidFill>
+					<a:srgbClr val="252529"/>
+				</a:solidFill>
+			</a:ln>
+		</p:spPr>
+		<p:txBody>
+			<a:bodyPr/>
+			<a:lstStyle/>
+			<a:p>
+				<a:endParaRPr lang="en-NL"/>
+			</a:p>
+		</p:txBody>
+	</p:sp>
+	<mc:AlternateContent xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+		<mc:Choice Requires="a14">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="19" name="Controller label">
+						<a:extLst>
+							<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+								<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{385B3502-38A7-70F8-F51B-07D7CC51914C}"/>
+							</a:ext>
+						</a:extLst>
+					</p:cNvPr>
+					<p:cNvSpPr/>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="3217672" y="3640010"/>
+						<a:ext cx="676656" cy="493395"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:noFill/>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr wrap="none" lIns="0" tIns="0" rIns="0" bIns="0" anchor="ctr">
+						<a:noAutofit/>
+					</a:bodyPr>
+					<a:lstStyle/>
+					<a:p>
+						<a:pPr algn="ctr">
+							<a:buNone/>
+						</a:pPr>
+						<a14:m>
+							<m:oMathPara xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math">
+								<m:oMathParaPr>
+									<m:jc m:val="center"/>
+								</m:oMathParaPr>
+								<m:oMath>
+									<m:r>
+										<a:rPr sz="2590">
+											<a:solidFill>
+												<a:srgbClr val="252529"/>
+											</a:solidFill>
+											<a:latin typeface="Cambria Math"/>
+										</a:rPr>
+										<m:t>𝐾</m:t>
+									</m:r>
+								</m:oMath>
+							</m:oMathPara>
+						</a14:m>
+						<a:endParaRPr sz="2590" dirty="0"/>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Choice>
+		<mc:Fallback xmlns="">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="113" name="Controller label"/>
+					<p:cNvSpPr>
+						<a:spLocks noRot="1" noChangeAspect="1" noMove="1" noResize="1" noEditPoints="1" noAdjustHandles="1" noChangeArrowheads="1" noChangeShapeType="1" noTextEdit="1"/>
+					</p:cNvSpPr>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="3217672" y="3640010"/>
+						<a:ext cx="676656" cy="493395"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:blipFill>
+						<a:blip r:embed="rId9"/>
+						<a:stretch>
+							<a:fillRect/>
+						</a:stretch>
+					</a:blipFill>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr/>
+					<a:lstStyle/>
+					<a:p>
+						<a:r>
+							<a:rPr lang="en-NL">
+								<a:noFill/>
+							</a:rPr>
+							<a:t> </a:t>
+						</a:r>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Fallback>
+	</mc:AlternateContent>
+	<mc:AlternateContent xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+		<mc:Choice Requires="a14">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="20" name="Controller external channel">
+						<a:extLst>
+							<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+								<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{FDFBF418-F1F6-4BD3-44B7-A7BD2D9CDEEC}"/>
+							</a:ext>
+						</a:extLst>
+					</p:cNvPr>
+					<p:cNvSpPr/>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="1995932" y="3376866"/>
+						<a:ext cx="563880" cy="380619"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:noFill/>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr wrap="none" lIns="0" tIns="0" rIns="0" bIns="0" anchor="ctr">
+						<a:noAutofit/>
+					</a:bodyPr>
+					<a:lstStyle/>
+					<a:p>
+						<a:pPr algn="ctr">
+							<a:buNone/>
+						</a:pPr>
+						<a14:m>
+							<m:oMathPara xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math">
+								<m:oMathParaPr>
+									<m:jc m:val="center"/>
+								</m:oMathParaPr>
+								<m:oMath>
+									<m:r>
+										<a:rPr sz="1998">
+											<a:solidFill>
+												<a:srgbClr val="252529"/>
+											</a:solidFill>
+											<a:latin typeface="Cambria Math"/>
+										</a:rPr>
+										<m:t>𝑢</m:t>
+									</m:r>
+								</m:oMath>
+							</m:oMathPara>
+						</a14:m>
+						<a:endParaRPr sz="1998"/>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Choice>
+		<mc:Fallback xmlns="">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="114" name="Controller external channel"/>
+					<p:cNvSpPr>
+						<a:spLocks noRot="1" noChangeAspect="1" noMove="1" noResize="1" noEditPoints="1" noAdjustHandles="1" noChangeArrowheads="1" noChangeShapeType="1" noTextEdit="1"/>
+					</p:cNvSpPr>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="1995932" y="3376866"/>
+						<a:ext cx="563880" cy="380619"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:blipFill>
+						<a:blip r:embed="rId10"/>
+						<a:stretch>
+							<a:fillRect/>
+						</a:stretch>
+					</a:blipFill>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr/>
+					<a:lstStyle/>
+					<a:p>
+						<a:r>
+							<a:rPr lang="en-NL">
+								<a:noFill/>
+							</a:rPr>
+							<a:t> </a:t>
+						</a:r>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Fallback>
+	</mc:AlternateContent>
+	<mc:AlternateContent xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+		<mc:Choice xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main" Requires="a14">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="21" name="Plant measured channel">
+						<a:extLst>
+							<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+								<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{9B4CAA96-1885-8716-8697-BD75754695A5}"/>
+							</a:ext>
+						</a:extLst>
+					</p:cNvPr>
+					<p:cNvSpPr/>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="4570984" y="3301682"/>
+						<a:ext cx="563880" cy="380619"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:noFill/>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr wrap="none" lIns="0" tIns="0" rIns="0" bIns="0" anchor="ctr">
+						<a:noAutofit/>
+					</a:bodyPr>
+					<a:lstStyle/>
+					<a:p>
+						<a:pPr algn="ctr">
+							<a:buNone/>
+						</a:pPr>
+						<a14:m>
+							<m:oMathPara xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math">
+								<m:oMathParaPr>
+									<m:jc m:val="center"/>
+								</m:oMathParaPr>
+								<m:oMath>
+									<m:sSub>
+										<m:sSubPr>
+											<m:ctrlPr>
+												<a:rPr sz="1998">
+													<a:solidFill>
+														<a:srgbClr val="252529"/>
+													</a:solidFill>
+													<a:latin typeface="Cambria Math"/>
+												</a:rPr>
+											</m:ctrlPr>
+										</m:sSubPr>
+										<m:e>
+											<m:r>
+												<a:rPr sz="1998">
+													<a:solidFill>
+														<a:srgbClr val="252529"/>
+													</a:solidFill>
+													<a:latin typeface="Cambria Math"/>
+												</a:rPr>
+												<m:t>𝑦</m:t>
+											</m:r>
+										</m:e>
+										<m:sub/>
+									</m:sSub>
+								</m:oMath>
+							</m:oMathPara>
+						</a14:m>
+						<a:endParaRPr sz="1998" dirty="0"/>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Choice>
+		<mc:Fallback>
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="21" name="Plant measured channel">
+						<a:extLst>
+							<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+								<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{9B4CAA96-1885-8716-8697-BD75754695A5}"/>
+							</a:ext>
+						</a:extLst>
+					</p:cNvPr>
+					<p:cNvSpPr>
+						<a:spLocks noRot="1" noChangeAspect="1" noMove="1" noResize="1" noEditPoints="1" noAdjustHandles="1" noChangeArrowheads="1" noChangeShapeType="1" noTextEdit="1"/>
+					</p:cNvSpPr>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="4570984" y="3301682"/>
+						<a:ext cx="563880" cy="380619"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:blipFill>
+						<a:blip r:embed="rId11"/>
+						<a:stretch>
+							<a:fillRect b="-11290"/>
+						</a:stretch>
+					</a:blipFill>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr/>
+					<a:lstStyle/>
+					<a:p>
+						<a:r>
+							<a:rPr lang="en-NL">
+								<a:noFill/>
+							</a:rPr>
+							<a:t> </a:t>
+						</a:r>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Fallback>
+	</mc:AlternateContent>
+	<mc:AlternateContent xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+		<mc:Choice Requires="a14">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="23" name="Uncertainty output channel">
+						<a:extLst>
+							<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+								<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{7DE2E6B0-5BD7-A6B4-3B44-342E1549CF64}"/>
+							</a:ext>
+						</a:extLst>
+					</p:cNvPr>
+					<p:cNvSpPr/>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="2005330" y="2361883"/>
+						<a:ext cx="563880" cy="380619"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:noFill/>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr wrap="none" lIns="0" tIns="0" rIns="0" bIns="0" anchor="ctr">
+						<a:noAutofit/>
+					</a:bodyPr>
+					<a:lstStyle/>
+					<a:p>
+						<a:pPr algn="ctr">
+							<a:buNone/>
+						</a:pPr>
+						<a14:m>
+							<m:oMathPara xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math">
+								<m:oMathParaPr>
+									<m:jc m:val="center"/>
+								</m:oMathParaPr>
+								<m:oMath>
+									<m:r>
+										<a:rPr sz="1998">
+											<a:solidFill>
+												<a:srgbClr val="252529"/>
+											</a:solidFill>
+											<a:latin typeface="Cambria Math"/>
+										</a:rPr>
+										<m:t>𝑧</m:t>
+									</m:r>
+								</m:oMath>
+							</m:oMathPara>
+						</a14:m>
+						<a:endParaRPr sz="1998"/>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Choice>
+		<mc:Fallback xmlns="">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="117" name="Uncertainty output channel"/>
+					<p:cNvSpPr>
+						<a:spLocks noRot="1" noChangeAspect="1" noMove="1" noResize="1" noEditPoints="1" noAdjustHandles="1" noChangeArrowheads="1" noChangeShapeType="1" noTextEdit="1"/>
+					</p:cNvSpPr>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="2005330" y="2361883"/>
+						<a:ext cx="563880" cy="380619"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:blipFill>
+						<a:blip r:embed="rId12"/>
+						<a:stretch>
+							<a:fillRect/>
+						</a:stretch>
+					</a:blipFill>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr/>
+					<a:lstStyle/>
+					<a:p>
+						<a:r>
+							<a:rPr lang="en-NL">
+								<a:noFill/>
+							</a:rPr>
+							<a:t> </a:t>
+						</a:r>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Fallback>
+	</mc:AlternateContent>
+	<mc:AlternateContent xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+		<mc:Choice Requires="a14">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="24" name="Uncertainty input channel">
+						<a:extLst>
+							<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+								<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{7F569528-C65B-F04D-8344-C6B19656FEBF}"/>
+							</a:ext>
+						</a:extLst>
+					</p:cNvPr>
+					<p:cNvSpPr/>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="4542790" y="2361883"/>
+						<a:ext cx="563880" cy="380619"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:noFill/>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr wrap="none" lIns="0" tIns="0" rIns="0" bIns="0" anchor="ctr">
+						<a:noAutofit/>
+					</a:bodyPr>
+					<a:lstStyle/>
+					<a:p>
+						<a:pPr algn="ctr">
+							<a:buNone/>
+						</a:pPr>
+						<a14:m>
+							<m:oMathPara xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math">
+								<m:oMathParaPr>
+									<m:jc m:val="center"/>
+								</m:oMathParaPr>
+								<m:oMath>
+									<m:r>
+										<a:rPr sz="1998">
+											<a:solidFill>
+												<a:srgbClr val="252529"/>
+											</a:solidFill>
+											<a:latin typeface="Cambria Math"/>
+										</a:rPr>
+										<m:t>𝑤</m:t>
+									</m:r>
+								</m:oMath>
+							</m:oMathPara>
+						</a14:m>
+						<a:endParaRPr sz="1998"/>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Choice>
+		<mc:Fallback xmlns="">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="118" name="Uncertainty input channel"/>
+					<p:cNvSpPr>
+						<a:spLocks noRot="1" noChangeAspect="1" noMove="1" noResize="1" noEditPoints="1" noAdjustHandles="1" noChangeArrowheads="1" noChangeShapeType="1" noTextEdit="1"/>
+					</p:cNvSpPr>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="4542790" y="2361883"/>
+						<a:ext cx="563880" cy="380619"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:blipFill>
+						<a:blip r:embed="rId13"/>
+						<a:stretch>
+							<a:fillRect/>
+						</a:stretch>
+					</a:blipFill>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr/>
+					<a:lstStyle/>
+					<a:p>
+						<a:r>
+							<a:rPr lang="en-NL">
+								<a:noFill/>
+							</a:rPr>
+							<a:t> </a:t>
+						</a:r>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Fallback>
+	</mc:AlternateContent>
+	<p:sp>
+		<p:nvSpPr>
+			<p:cNvPr id="25" name="Uncertainty">
+				<a:extLst>
+					<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+						<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{F898F14C-3FBE-E78D-D539-F51FBE2FAEB0}"/>
+					</a:ext>
+				</a:extLst>
+			</p:cNvPr>
+			<p:cNvSpPr/>
+			<p:nvPr/>
+		</p:nvSpPr>
+		<p:spPr>
+			<a:xfrm>
+				<a:off x="3274060" y="1819148"/>
+				<a:ext cx="563880" cy="563880"/>
+			</a:xfrm>
+			<a:prstGeom prst="roundRect">
+				<a:avLst>
+					<a:gd name="adj" fmla="val 5000"/>
+				</a:avLst>
+			</a:prstGeom>
+			<a:solidFill>
+				<a:srgbClr val="FFFFFF"/>
+			</a:solidFill>
+			<a:ln w="10795">
+				<a:solidFill>
+					<a:srgbClr val="000000"/>
+				</a:solidFill>
+				<a:prstDash val="solid"/>
+			</a:ln>
+		</p:spPr>
+		<p:txBody>
+			<a:bodyPr/>
+			<a:lstStyle/>
+			<a:p>
+				<a:endParaRPr lang="en-NL"/>
+			</a:p>
+		</p:txBody>
+	</p:sp>
+	<mc:AlternateContent xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+		<mc:Choice Requires="a14">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="26" name="Uncertainty label">
+						<a:extLst>
+							<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+								<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{C86D2D6F-B0BD-0F5E-58AF-CE8ABC59A6E6}"/>
+							</a:ext>
+						</a:extLst>
+					</p:cNvPr>
+					<p:cNvSpPr/>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="3274060" y="1854390"/>
+						<a:ext cx="563880" cy="493395"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:noFill/>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr wrap="none" lIns="0" tIns="0" rIns="0" bIns="0" anchor="ctr">
+						<a:noAutofit/>
+					</a:bodyPr>
+					<a:lstStyle/>
+					<a:p>
+						<a:pPr algn="ctr">
+							<a:buNone/>
+						</a:pPr>
+						<a14:m>
+							<m:oMathPara xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math">
+								<m:oMathParaPr>
+									<m:jc m:val="center"/>
+								</m:oMathParaPr>
+								<m:oMath>
+									<m:r>
+										<m:rPr>
+											<m:sty m:val="p"/>
+										</m:rPr>
+										<a:rPr lang="el-GR" sz="2590" smtClean="0">
+											<a:solidFill>
+												<a:schemeClr val="tx1"/>
+											</a:solidFill>
+											<a:latin typeface="Cambria Math"/>
+										</a:rPr>
+										<m:t>Δ</m:t>
+									</m:r>
+								</m:oMath>
+							</m:oMathPara>
+						</a14:m>
+						<a:endParaRPr sz="2590" dirty="0"/>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Choice>
+		<mc:Fallback xmlns="">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="120" name="Uncertainty label"/>
+					<p:cNvSpPr>
+						<a:spLocks noRot="1" noChangeAspect="1" noMove="1" noResize="1" noEditPoints="1" noAdjustHandles="1" noChangeArrowheads="1" noChangeShapeType="1" noTextEdit="1"/>
+					</p:cNvSpPr>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="3274060" y="1854390"/>
+						<a:ext cx="563880" cy="493395"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:blipFill>
+						<a:blip r:embed="rId14"/>
+						<a:stretch>
+							<a:fillRect/>
+						</a:stretch>
+					</a:blipFill>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr/>
+					<a:lstStyle/>
+					<a:p>
+						<a:r>
+							<a:rPr lang="en-NL">
+								<a:noFill/>
+							</a:rPr>
+							<a:t> </a:t>
+						</a:r>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Fallback>
+	</mc:AlternateContent>
+	<p:sp>
+		<p:nvSpPr>
+			<p:cNvPr id="27" name="Plant">
+				<a:extLst>
+					<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+						<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{EE52FAAF-F0AA-9AC4-5AE7-4C32123B36AE}"/>
+					</a:ext>
+				</a:extLst>
+			</p:cNvPr>
+			<p:cNvSpPr/>
+			<p:nvPr/>
+		</p:nvSpPr>
+		<p:spPr>
+			<a:xfrm>
+				<a:off x="3086100" y="2514600"/>
+				<a:ext cx="939800" cy="939800"/>
+			</a:xfrm>
+			<a:prstGeom prst="roundRect">
+				<a:avLst>
+					<a:gd name="adj" fmla="val 5000"/>
+				</a:avLst>
+			</a:prstGeom>
+			<a:solidFill>
+				<a:srgbClr val="FFFFFF"/>
+			</a:solidFill>
+			<a:ln w="10795">
+				<a:solidFill>
+					<a:srgbClr val="252529"/>
+				</a:solidFill>
+			</a:ln>
+		</p:spPr>
+		<p:txBody>
+			<a:bodyPr/>
+			<a:lstStyle/>
+			<a:p>
+				<a:endParaRPr lang="en-NL"/>
+			</a:p>
+		</p:txBody>
+	</p:sp>
+	<mc:AlternateContent xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:a14="http://schemas.microsoft.com/office/drawing/2010/main">
+		<mc:Choice Requires="a14">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="28" name="Plant label">
+						<a:extLst>
+							<a:ext uri="{FF2B5EF4-FFF2-40B4-BE49-F238E27FC236}">
+								<a16:creationId xmlns:a16="http://schemas.microsoft.com/office/drawing/2014/main" id="{E9017BEF-531A-2E73-BFDF-F4B1A9C8A3EC}"/>
+							</a:ext>
+						</a:extLst>
+					</p:cNvPr>
+					<p:cNvSpPr/>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="3086100" y="2737802"/>
+						<a:ext cx="939800" cy="493395"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:noFill/>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr wrap="none" lIns="0" tIns="0" rIns="0" bIns="0" anchor="ctr">
+						<a:noAutofit/>
+					</a:bodyPr>
+					<a:lstStyle/>
+					<a:p>
+						<a:pPr algn="ctr">
+							<a:buNone/>
+						</a:pPr>
+						<a14:m>
+							<m:oMathPara xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math">
+								<m:oMathParaPr>
+									<m:jc m:val="center"/>
+								</m:oMathParaPr>
+								<m:oMath>
+									<m:r>
+										<a:rPr sz="2590">
+											<a:solidFill>
+												<a:srgbClr val="252529"/>
+											</a:solidFill>
+											<a:latin typeface="Cambria Math"/>
+										</a:rPr>
+										<m:t>𝐺</m:t>
+									</m:r>
+								</m:oMath>
+							</m:oMathPara>
+						</a14:m>
+						<a:endParaRPr sz="2590" dirty="0"/>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Choice>
+		<mc:Fallback xmlns="">
+			<p:sp>
+				<p:nvSpPr>
+					<p:cNvPr id="122" name="Plant label"/>
+					<p:cNvSpPr>
+						<a:spLocks noRot="1" noChangeAspect="1" noMove="1" noResize="1" noEditPoints="1" noAdjustHandles="1" noChangeArrowheads="1" noChangeShapeType="1" noTextEdit="1"/>
+					</p:cNvSpPr>
+					<p:nvPr/>
+				</p:nvSpPr>
+				<p:spPr>
+					<a:xfrm>
+						<a:off x="3086100" y="2737802"/>
+						<a:ext cx="939800" cy="493395"/>
+					</a:xfrm>
+					<a:prstGeom prst="rect">
+						<a:avLst/>
+					</a:prstGeom>
+					<a:blipFill>
+						<a:blip r:embed="rId15"/>
+						<a:stretch>
+							<a:fillRect/>
+						</a:stretch>
+					</a:blipFill>
+					<a:ln>
+						<a:noFill/>
+					</a:ln>
+				</p:spPr>
+				<p:txBody>
+					<a:bodyPr/>
+					<a:lstStyle/>
+					<a:p>
+						<a:r>
+							<a:rPr lang="en-NL">
+								<a:noFill/>
+							</a:rPr>
+							<a:t> </a:t>
+						</a:r>
+					</a:p>
+				</p:txBody>
+			</p:sp>
+		</mc:Fallback>
+	</mc:AlternateContent>
+</p:grpSp>

@@ -48,8 +48,8 @@ tau.tauGG = 4e-3;
 %% Two-channel sector and Zames--Falb multiplier settings
 % Pole rates follow population relaxation and recurrent-delay time scales.
 % Normalized synaptic strengths define a heuristic multiplier shape.
-lambdaSector = 0;
-lambdaZF = 1;
+lambdaSector = 1;
+lambdaZF = 0;
 epsilonIQC = 1e-8;
 poleScale = [1,1];              % Independent [S,G] time-scale factors
 kernelNorm = 10/15;             % Sum(kappa./a), independent of pole rates
@@ -70,7 +70,7 @@ ThetaDelta = struct([]);
 bisectionHistory = struct([]);
 while betaBarUpper-betaBarLower>betaBarTolerance
     betaBarTrial = 0.5*(betaBarLower+betaBarUpper);
-    betaBarChannels = betaBarTrial*[1,1];
+    betaBarChannels = betaBarTrial*[1,1]+[0,0.1];
     ThetaDeltaTrial = factor_uncertainty_multiplier(betaBarChannels, ...
         aS,kappaS,aG,kappaG,lambdaSector,lambdaZF,epsilonIQC);
     trial = synthesize_disease_level(Kd,controlLocation, ...

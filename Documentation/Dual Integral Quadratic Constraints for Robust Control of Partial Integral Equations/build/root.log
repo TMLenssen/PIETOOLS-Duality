@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.10)  18 SEP 2026 19:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.10)  25 SEP 2026 11:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -630,7 +630,18 @@ File: pgflibraryarrows.meta.code.tex 2025-08-29 v3.1.11a (3.1.11a)
 \pgfarrowlength=\dimen309
 \pgfarrowwidth=\dimen310
 \pgfarrowlinewidth=\dimen311
-) (Figures/primal_dual_controller_interconnections.tex) (shortcuts.tex) (Figures/primal_dual_system_components.tex (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcolorbox.sty
+) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
+\pgfdecoratedcompleteddistance=\dimen312
+\pgfdecoratedremainingdistance=\dimen313
+\pgfdecoratedinputsegmentcompleteddistance=\dimen314
+\pgfdecoratedinputsegmentremainingdistance=\dimen315
+\pgf@decorate@distancetomove=\dimen316
+\pgf@decorate@repeatstate=\count369
+\pgfdecorationsegmentamplitude=\dimen317
+\pgfdecorationsegmentlength=\dimen318
+)
+\tikz@lib@dec@box=\box77
+) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries/decorations\pgflibrarydecorations.pathreplacing.code.tex)) (Figures/Diagrams/primal_dual_controller_interconnections.tex) (shortcuts.tex) (Figures/Diagrams/primal_dual_system_components.tex (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/tcolorbox\tcolorbox.sty
 Package: tcolorbox 2025/11/28 version 6.9.0 text color boxes
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/tools\verbatim.sty
 Package: verbatim 2024-01-22 v1.5x LaTeX2e package for verbatim enhancements
@@ -642,28 +653,28 @@ Package: environ 2014/05/04 v0.3 A new way to define environments
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/trimspaces\trimspaces.sty
 Package: trimspaces 2009/09/17 v1.1 Trim spaces around a token list
 ))
-\tcb@titlebox=\box77
-\tcb@upperbox=\box78
-\tcb@lowerbox=\box79
-\tcb@phantombox=\box80
-\c@tcbbreakpart=\count369
-\c@tcblayer=\count370
-\c@tcolorbox@number=\count371
-\l__tcobox_tmpa_box=\box81
-\l__tcobox_tmpa_dim=\dimen312
-\tcb@temp=\box82
+\tcb@titlebox=\box78
+\tcb@upperbox=\box79
+\tcb@lowerbox=\box80
+\tcb@phantombox=\box81
+\c@tcbbreakpart=\count370
+\c@tcblayer=\count371
+\c@tcolorbox@number=\count372
+\l__tcobox_tmpa_box=\box82
+\l__tcobox_tmpa_dim=\dimen319
 \tcb@temp=\box83
 \tcb@temp=\box84
 \tcb@temp=\box85
+\tcb@temp=\box86
 ))
-\c@definition=\count372
-\c@lemma=\count373
-\c@theorem=\count374
-\c@example=\count375
-\c@corollary=\count376
-\c@sublemma=\count377
-\c@remark=\count378
-\c@class=\count379
+\c@definition=\count373
+\c@lemma=\count374
+\c@theorem=\count375
+\c@example=\count376
+\c@corollary=\count377
+\c@sublemma=\count378
+\c@remark=\count379
+\c@class=\count380
  (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\build\root.aux)
 \openout1 = `root.aux'.
 
@@ -687,16 +698,16 @@ LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 49.
 LaTeX Font Info:    ... okay on input line 49.
  (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count380
-\scratchdimen=\dimen313
-\scratchbox=\box86
-\nofMPsegments=\count381
-\nofMParguments=\count382
+\scratchcounter=\count381
+\scratchdimen=\dimen320
+\scratchbox=\box87
+\nofMPsegments=\count382
+\nofMParguments=\count383
 \everyMPshowfont=\toks53
-\MPscratchCnt=\count383
-\MPscratchDim=\dimen314
-\MPnumerator=\count384
-\makeMPintoPDFobject=\count385
+\MPscratchCnt=\count384
+\MPscratchDim=\dimen321
+\MPnumerator=\count385
+\makeMPintoPDFobject=\count386
 \everyMPtoPDFconversion=\toks54
 ) (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -780,12 +791,49 @@ File: ursfs.fd 1998/03/24 rsfs font definition file (jk)
 ) (Sections/Main/1. Introduction.tex
 Underfull \vbox (badness 1038) has occurred while \output is active []
 
- [1{C:/Users/thijs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
 
 
-]) (Sections/Main/2. Preliminaries.tex [2]
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\<let>-command' on input line 75.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\comma' on input line 75.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\<def>-command' on input line 75.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\@fnmark' on input line 75.
+
+[1{C:/Users/thijs/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}
+
+
+]
+Underfull \hbox (badness 2837) in paragraph at lines 76--98
+[]\OT1/cmr/m/n/10 We ex-press these cer-tifi-cates in the lan-guage of
+ []
+
+) (Sections/Main/2. Preliminaries.tex [2]
 Underfull \hbox (badness 10000) in paragraph at lines 67--71
 [][]\OT1/cmr/bx/n/10 Definition 1. []\OT1/cmr/m/it/10 We say an op-er-a-tor $\OMS/cmsy/m/n/10 P \OT1/cmr/m/n/10 :
+ []
+
+
+Underfull \hbox (badness 3407) in paragraph at lines 67--71
+\U/msb/m/n/10 R\OML/cmm/m/it/10 L[]\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 a; b\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 ! \U/msb/m/n/10 R\OML/cmm/m/it/10 L[]\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 a; b\OT1/cmr/m/n/10 ]$ \OT1/cmr/m/it/10 be-longs to $\OT1/cmr/m/n/10 ^^E[]$\OT1/cmr/m/it/10 , de-noted
+ []
+
+
+Underfull \hbox (badness 3780) in paragraph at lines 67--71
+\OT1/cmr/m/it/10 by $\OT1/cmr/m/n/10 ^^E  []$\OT1/cmr/m/it/10 , if there ex-ist a ma-trix
+ []
+
+
+Underfull \hbox (badness 5832) in paragraph at lines 67--71
+\OML/cmm/m/it/10 P$ \OT1/cmr/m/it/10 and bounded mea-sur-able matrix-valued func-tions
  []
 
 
@@ -803,12 +851,17 @@ Underfull \hbox (badness 1565) in paragraph at lines 83--88
 \OT1/cmr/m/it/10 lin-ear PI in-equal-ity is a con-vex op-ti-miza-tion of the
  []
 
-) (Sections/Main/3. Problem Definition.tex [3]) (Sections/Main/4. IQC Theory.tex [4]) (Sections/Main/5. Controller Analysis (Primal System).tex [5]
-Underfull \hbox (badness 2245) in paragraph at lines 18--23
-\OT1/cmr/m/n/10 Under the signal-availability con-di-tion in ([]A.4[]), let
+[3]) (Sections/Main/3. Problem Definition.tex) (Sections/Main/4. IQC Theory.tex
+Underfull \hbox (badness 4582) in paragraph at lines 17--38
+[][]\OT1/cmr/bx/n/10 Definition 3 \OT1/cmr/m/n/10 (Gen-er-al-ized Plant)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/it/10 Sup-pose $\OML/cmm/m/it/10 P[] \OT1/cmr/m/n/10 :
  []
 
-) (Figures/potapov_ginzburg_commutative_diagram.tex) (Sections/Main/6. Duality.tex
+[4]) (Sections/Main/5. Controller Analysis (Primal System).tex [5]
+Underfull \hbox (badness 2245) in paragraph at lines 18--23
+\OT1/cmr/m/n/10 Under the signal-availability con-di-tion in ([]A.3[]), let
+ []
+
+) (Figures/Diagrams/potapov_ginzburg_commutative_diagram.tex) (Sections/Main/6. Duality.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 12.
@@ -821,12 +874,12 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 12.
 
-[6] [7])
-Overfull \hbox (3.3514pt too wide) detected at line 101
+[6] [7]
+Overfull \hbox (3.3514pt too wide) detected at line 163
 \OT1/cmr/bx/n/10 D\OT1/cmr/m/n/10 (^^B) := []  [][](\OML/cmm/m/it/10 t\OT1/cmr/m/n/10 ) = [] \OML/cmm/m/it/10 ;
  []
 
-(Sections/Main/7. Convex Controller Synthesis (Dual System).tex [8]
+) (Sections/Main/7. Convex Controller Synthesis (Dual System).tex [8]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 96.
@@ -851,7 +904,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 114.
 
-) (Sections/Main/8. Numerical Examples.tex
+[9]) (Sections/Main/8. Numerical Examples.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 6.
@@ -860,70 +913,70 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 6.
 
-
-Underfull \hbox (badness 1038) in paragraph at lines 18--29
-\OT1/cmr/m/n/10 Define the spa-tial in-te-gra-tion op-er-a-tor $\OMS/cmsy/m/n/10 J 2 \OT1/cmr/m/n/10 ^^E[]$ by
- []
-
-<Figures/example1_primal.pdf, id=435, 210.7875pt x 331.2375pt>
-File: Figures/example1_primal.pdf Graphic file (type pdf)
-<use Figures/example1_primal.pdf>
-Package pdftex.def Info: Figures/example1_primal.pdf  used on input line 36.
+<Figures/Examples/Example1/example1_primal.pdf, id=442, 210.7875pt x 331.2375pt>
+File: Figures/Examples/Example1/example1_primal.pdf Graphic file (type pdf)
+<use Figures/Examples/Example1/example1_primal.pdf>
+Package pdftex.def Info: Figures/Examples/Example1/example1_primal.pdf  used on input line 36.
 (pdftex.def)             Requested size: 172.74394pt x 271.44223pt.
-<Figures/example1_dual.pdf, id=436, 210.7875pt x 331.2375pt>
-File: Figures/example1_dual.pdf Graphic file (type pdf)
-<use Figures/example1_dual.pdf>
-Package pdftex.def Info: Figures/example1_dual.pdf  used on input line 37.
+<Figures/Examples/Example1/example1_dual.pdf, id=443, 210.7875pt x 331.2375pt>
+File: Figures/Examples/Example1/example1_dual.pdf Graphic file (type pdf)
+<use Figures/Examples/Example1/example1_dual.pdf>
+Package pdftex.def Info: Figures/Examples/Example1/example1_dual.pdf  used on input line 37.
 (pdftex.def)             Requested size: 172.74394pt x 271.44223pt.
-<Figures/example1_difference.pdf, id=437, 204.765pt x 331.2375pt>
-File: Figures/example1_difference.pdf Graphic file (type pdf)
-<use Figures/example1_difference.pdf>
-Package pdftex.def Info: Figures/example1_difference.pdf  used on input line 38.
+<Figures/Examples/Example1/example1_difference.pdf, id=444, 204.765pt x 331.2375pt>
+File: Figures/Examples/Example1/example1_difference.pdf Graphic file (type pdf)
+<use Figures/Examples/Example1/example1_difference.pdf>
+Package pdftex.def Info: Figures/Examples/Example1/example1_difference.pdf  used on input line 38.
 (pdftex.def)             Requested size: 167.80838pt x 271.44223pt.
-[9]
-Overfull \hbox (3.76175pt too wide) detected at line 71
+
+Overfull \hbox (3.76175pt too wide) detected at line 78
 []
  []
 
 
-Underfull \vbox (badness 1635) has occurred while \output is active []
-
-
-Overfull \hbox (12.90126pt too wide) detected at line 110
+Overfull \hbox (3.09882pt too wide) detected at line 89
 []
  []
 
 
-Overfull \hbox (6.98732pt too wide) detected at line 131
+Overfull \hbox (12.90126pt too wide) detected at line 117
 []
  []
 
-[10 <./Figures/example1_primal.pdf> <./Figures/example1_dual.pdf> <./Figures/example1_difference.pdf>]
-Underfull \hbox (badness 2393) in paragraph at lines 204--205
+
+Underfull \vbox (badness 2088) has occurred while \output is active []
+
+ [10] [11 <./Figures/Examples/Example1/example1_primal.pdf> <./Figures/Examples/Example1/example1_dual.pdf> <./Figures/Examples/Example1/example1_difference.pdf>]
+Underfull \hbox (badness 2393) in paragraph at lines 211--212
 [][]\OT1/cmr/bx/n/10 Lemma 1 \OT1/cmr/m/n/10 (Dual sec-tor-bound IQC)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/it/10 Sup-pose that
  []
 
-<Figures/example2_state.pdf, id=623, 505.89pt x 259.97125pt>
-File: Figures/example2_state.pdf Graphic file (type pdf)
-<use Figures/example2_state.pdf>
-Package pdftex.def Info: Figures/example2_state.pdf  used on input line 307.
+
+Underfull \hbox (badness 1789) in paragraph at lines 262--327
+\OT1/cmr/m/n/10 listed in Ta-ble []2[]. Fig-ure []7[] com-pares their open-
+ []
+
+<Figures/Examples/Example2/example2_state.pdf, id=635, 505.89pt x 259.97125pt>
+File: Figures/Examples/Example2/example2_state.pdf Graphic file (type pdf)
+<use Figures/Examples/Example2/example2_state.pdf>
+Package pdftex.def Info: Figures/Examples/Example2/example2_state.pdf  used on input line 330.
 (pdftex.def)             Requested size: 258.38745pt x 132.78589pt.
-<Figures/example3_state.pdf, id=624, 505.89pt x 259.97125pt>
-File: Figures/example3_state.pdf Graphic file (type pdf)
-<use Figures/example3_state.pdf>
-Package pdftex.def Info: Figures/example3_state.pdf  used on input line 308.
+<Figures/Examples/Example3/example3_state.pdf, id=636, 505.89pt x 259.97125pt>
+File: Figures/Examples/Example3/example3_state.pdf Graphic file (type pdf)
+<use Figures/Examples/Example3/example3_state.pdf>
+Package pdftex.def Info: Figures/Examples/Example3/example3_state.pdf  used on input line 331.
 (pdftex.def)             Requested size: 258.38745pt x 132.78589pt.
-<Figures/example2_effort.pdf, id=625, 243.91125pt x 263.98625pt>
-File: Figures/example2_effort.pdf Graphic file (type pdf)
-<use Figures/example2_effort.pdf>
-Package pdftex.def Info: Figures/example2_effort.pdf  used on input line 316.
+<Figures/Examples/Example2/example2_effort.pdf, id=637, 243.91125pt x 263.98625pt>
+File: Figures/Examples/Example2/example2_effort.pdf Graphic file (type pdf)
+<use Figures/Examples/Example2/example2_effort.pdf>
+Package pdftex.def Info: Figures/Examples/Example2/example2_effort.pdf  used on input line 340.
 (pdftex.def)             Requested size: 124.73877pt x 135.00581pt.
-<Figures/example3_effort.pdf, id=626, 243.91125pt x 263.98625pt>
-File: Figures/example3_effort.pdf Graphic file (type pdf)
-<use Figures/example3_effort.pdf>
-Package pdftex.def Info: Figures/example3_effort.pdf  used on input line 317.
+<Figures/Examples/Example3/example3_effort.pdf, id=638, 243.91125pt x 263.98625pt>
+File: Figures/Examples/Example3/example3_effort.pdf Graphic file (type pdf)
+<use Figures/Examples/Example3/example3_effort.pdf>
+Package pdftex.def Info: Figures/Examples/Example3/example3_effort.pdf  used on input line 341.
 (pdftex.def)             Requested size: 124.73877pt x 135.00581pt.
-) (Sections/Main/9. Connection to finite dimensional dynamic multipliers.tex [11]
+) (Sections/Main/9. Connection to finite dimensional dynamic multipliers.tex [12]
 Underfull \hbox (badness 10000) in paragraph at lines 14--23
 \OT1/cmr/m/n/10 Given a con-stant sym-met-ric ma-trix $\OML/cmm/m/it/10 V \OMS/cmsy/m/n/10 2
  []
@@ -939,34 +992,45 @@ Underfull \hbox (badness 2600) in paragraph at lines 14--23
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 37--47
+Underfull \hbox (badness 10000) in paragraph at lines 37--50
 \OT1/cmr/m/n/10 with $\OML/cmm/m/it/10 J \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 R[]$ \OT1/cmr/m/n/10 and $^^B\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 ^^B[] \OMS/cmsy/m/n/10 2
  []
 
-[12 <./Figures/example2_state.pdf> <./Figures/example3_state.pdf> <./Figures/example2_effort.pdf> <./Figures/example3_effort.pdf>] [13]
-<Figures/stn_gpe_admissible_trajectories.pdf, id=2371, 505.89pt x 249.93375pt>
-File: Figures/stn_gpe_admissible_trajectories.pdf Graphic file (type pdf)
-<use Figures/stn_gpe_admissible_trajectories.pdf>
-Package pdftex.def Info: Figures/stn_gpe_admissible_trajectories.pdf  used on input line 243.
-(pdftex.def)             Requested size: 252.0pt x 124.5013pt.
-<Figures/stn_gpe_sector_trajectories.pdf, id=2374, 505.89pt x 477.785pt>
-File: Figures/stn_gpe_sector_trajectories.pdf Graphic file (type pdf)
-<use Figures/stn_gpe_sector_trajectories.pdf>
-Package pdftex.def Info: Figures/stn_gpe_sector_trajectories.pdf  used on input line 288.
-(pdftex.def)             Requested size: 252.0pt x 238.00247pt.
-) (Sections/Main/10. Conclusion.tex [14 <./Figures/stn_gpe_admissible_trajectories.pdf> <./Figures/stn_gpe_sector_trajectories.pdf>]) (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\build\root.bbl [15]
+
+Underfull \hbox (badness 1960) in paragraph at lines 37--50
+\OT1/cmr/m/n/10 ^^B\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 ^^B[] \OMS/cmsy/m/n/10 2 \U/msb/m/n/10 R\OML/cmm/m/it/10 H[]$ \OT1/cmr/m/n/10 and hard-ness, but noth-ing about
+ []
+
+[13 <./Figures/Examples/Example2/example2_state.pdf> <./Figures/Examples/Example3/example3_state.pdf> <./Figures/Examples/Example2/example2_effort.pdf> <./Figures/Examples/Example3/example3_effort.pdf>] [14]
+
+pdfTeX warning: pdflatex (file ./Figures/STN_GPe/stn_gpe_admissible_trajectories.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Figures/STN_GPe/stn_gpe_admissible_trajectories.pdf, id=2386, 505.89pt x 248.93pt>
+File: Figures/STN_GPe/stn_gpe_admissible_trajectories.pdf Graphic file (type pdf)
+<use Figures/STN_GPe/stn_gpe_admissible_trajectories.pdf>
+Package pdftex.def Info: Figures/STN_GPe/stn_gpe_admissible_trajectories.pdf  used on input line 282.
+(pdftex.def)             Requested size: 252.0pt x 124.00128pt.
+
+
+pdfTeX warning: pdflatex (file ./Figures/STN_GPe/stn_gpe_sector_trajectories.pdf): PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
+<Figures/STN_GPe/stn_gpe_sector_trajectories.pdf, id=2390, 505.89pt x 476.78125pt>
+File: Figures/STN_GPe/stn_gpe_sector_trajectories.pdf Graphic file (type pdf)
+<use Figures/STN_GPe/stn_gpe_sector_trajectories.pdf>
+Package pdftex.def Info: Figures/STN_GPe/stn_gpe_sector_trajectories.pdf  used on input line 320.
+(pdftex.def)             Requested size: 252.0pt x 237.50247pt.
+) (Sections/Main/10. Conclusion.tex)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [15 <./Figures/STN_GPe/stn_gpe_admissible_trajectories.pdf> <./Figures/STN_GPe/stn_gpe_sector_trajectories.pdf>] (c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\build\root.bbl [16]
 Underfull \hbox (badness 2828) in paragraph at lines 141--148
 []\OT1/cmr/m/n/10 K. A. Mor-ris, []$\OML/cmm/m/it/10 H[]$\OT1/cmr/m/n/10 -output feed-back of infinite-
  []
 
-[16]
+[17]
 Underfull \hbox (badness 2644) in paragraph at lines 266--270
 []\OT1/cmr/m/n/10 A. Rantzer, On the Kalman--Yakubovich--Popov
  []
 
-[17]) [18
-
-] (Sections/Proofs/I. IQC.tex
+) [18] (Sections/Proofs/I. IQC.tex
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `\begingroup' on input line 2.
@@ -1003,20 +1067,20 @@ LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
  ***********
 Package rerunfilecheck Info: File `root.out' has not changed.
-(rerunfilecheck)             Checksum: 92E53777D28C88423CA612FAB22DDEBE;7122.
+(rerunfilecheck)             Checksum: 766118DE16F74788EEB80BE60B880317;7206.
  ) 
 Here is how much of TeX's memory you used:
- 28996 strings out of 467871
- 562711 string characters out of 5418376
- 1052240 words of memory out of 5000000
- 57141 multiletter control sequences out of 15000+600000
+ 29468 strings out of 467871
+ 580147 string characters out of 5418376
+ 1057268 words of memory out of 5000000
+ 57589 multiletter control sequences out of 15000+600000
  639340 words of font info for 85 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 84i,24n,94p,1354b,981s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 84i,23n,94p,1407b,979s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\thijs\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx8.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cmextra/cmex8.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti8.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmtt8.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm7.pfb>
-Output written on "c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\build\root.pdf" (22 pages, 4306986 bytes).
+Output written on "c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\build\root.pdf" (22 pages, 4496852 bytes).
 PDF statistics:
- 2880 PDF objects out of 2984 (max. 8388607)
- 179 named destinations out of 1000 (max. 500000)
+ 2829 PDF objects out of 2984 (max. 8388607)
+ 183 named destinations out of 1000 (max. 500000)
  9562 words of extra memory for PDF output out of 10000 (max. 10000000)
 

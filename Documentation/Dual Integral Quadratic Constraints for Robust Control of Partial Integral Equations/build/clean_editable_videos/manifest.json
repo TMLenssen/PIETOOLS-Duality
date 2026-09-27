@@ -1,0 +1,51 @@
+[
+  {
+    "slide": 4,
+    "name": "Simulation - delta",
+    "media": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\build\\clean_editable_videos\\delta.mp4",
+    "editable_labels": 23
+  },
+  {
+    "slide": 13,
+    "name": "Simulation - healthy",
+    "media": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\build\\clean_editable_videos\\healthy.mp4",
+    "editable_labels": 23
+  },
+  {
+    "slide": 14,
+    "name": "Simulation - parkinsonian",
+    "media": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\build\\clean_editable_videos\\parkinsonian.mp4",
+    "editable_labels": 21
+  },
+  {
+    "slide": 15,
+    "name": "Simulation - controlled",
+    "media": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\build\\clean_editable_videos\\controlled.mp4",
+    "editable_labels": 32
+  },
+  {
+    "slide": 2,
+    "name": "cart_rigid",
+    "media": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\build\\deck_label_overlays\\cart_rigid_clean.mp4"
+  },
+  {
+    "slide": 2,
+    "name": "cart_flexible",
+    "media": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\build\\deck_label_overlays\\cart_flexible_clean.mp4"
+  },
+  {
+    "slide": 27,
+    "name": "Sector simulation \u2014 clean 4K video",
+    "media": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\build\\deck_label_overlays\\sector_clean.mp4"
+  },
+  {
+    "slide": 28,
+    "name": "Zames-Falb integral video",
+    "media": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\build\\clean_editable_videos\\slope-integral.mp4"
+  },
+  {
+    "slide": 29,
+    "name": "Zames-Falb rate video",
+    "media": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\build\\clean_editable_videos\\slope-rate.mp4"
+  }
+]

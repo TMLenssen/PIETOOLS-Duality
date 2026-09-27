@@ -1,0 +1,50 @@
+{
+  "source_sha256": {
+    "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\Figures\\STN_GPe\\stn_healthy_stimulation.csv": "ca4c1aa9458e6e525dd74bee15327abd519d6424f7361c8ddc88f447a5232e1b",
+    "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\Figures\\STN_GPe\\stn_parkinsonian_stimulation.csv": "f814b5fdf7bed743a8f1f4e0b1e9ba549ed4c941bcab1175a6d9d66357b4a8f0",
+    "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Code\\Executables\\Examples\\stn_gpe_sector_simulation.mat": "87522e607a24a60579fd2e9a0ae8618e749d128d22d4ba7dd315cbdb2b269477",
+    "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Code\\Executables\\Examples\\stn_gpe_sector_controller.mat": "99a6fdf6589014cb7df0902b8f264b4ba150be936507a60ffb8115e69fb550d8"
+  },
+  "controller_alpha": 0.4921875,
+  "equilibrium": [
+    20.442515541480976,
+    21.836618407412114
+  ],
+  "pulse_interval_s": [
+    0.1,
+    0.14
+  ],
+  "pulse_amplitude": [
+    10,
+    -10
+  ],
+  "controlled_peak_deviation": 3.3190736726695,
+  "controlled_final": [
+    2.03958304471207e-13,
+    -7.340323904671e-13
+  ],
+  "settles_below_one_percent_at_s": 0.1455,
+  "uncontrolled_tail_peak_to_peak": [
+    63.6300160144226,
+    105.3906693100694
+  ],
+  "peak_control": 19.1470824239184,
+  "spatial_refinement": {
+    "simOpen": [
+      2.2608962838580646e-08,
+      3.204096859332706e-08,
+      3.245691843791092e-08,
+      1.2828309385682354e-07
+    ],
+    "simClosed": [
+      1.3182564126586194e-07,
+      3.957875376382002e-08,
+      4.99289739722234e-07,
+      2.3417889352050505e-06,
+      3.5873637285743776e-07
+    ]
+  },
+  "animation_mapping": "edge(s,t)=w*x_source(t-s*tau); displacement=18*tanh(edge/100)*sin(pi*s)",
+  "delay_endpoint_checks": "passed",
+  "seconds_of_simulation_per_second_of_video": 0.025
+}

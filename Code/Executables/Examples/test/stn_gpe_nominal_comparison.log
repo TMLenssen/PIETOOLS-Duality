@@ -1,0 +1,195 @@
+
+Nominal stability synthesis: Delta=0
+Size: 76556   1471
+ 
+
+MOSEK Version 11.0.28 (Build date: 2025-8-25 13:05:23)
+Copyright (c) MOSEK ApS, Denmark WWW: mosek.com
+Platform: Windows/64-X86
+
+Problem
+  Name                   :                 
+  Objective sense        : minimize        
+  Type                   : CONIC (conic optimization problem)
+  Constraints            : 1471            
+  Affine conic cons.     : 0               
+  Disjunctive cons.      : 0               
+  Cones                  : 0               
+  Scalar variables       : 23              
+  Matrix variables       : 3 (scalarized: 38486)
+  Integer variables      : 0               
+
+Optimizer started.
+Presolve started.
+Linear dependency checker started.
+Linear dependency checker terminated.
+Eliminator started.
+Freed constraints in eliminator : 0
+Eliminator terminated.
+Eliminator - tries                  : 1                 time                   : 0.00            
+Lin. dep.  - tries                  : 1                 time                   : 0.00            
+Lin. dep.  - primal attempts        : 1                 successes              : 1               
+Lin. dep.  - dual attempts          : 0                 successes              : 0               
+Lin. dep.  - primal deps.           : 0                 dual deps.             : 0               
+Presolve terminated. Time: 0.00    
+Optimizer  - threads                : 4               
+Optimizer  - solved problem         : the primal      
+Optimizer  - Constraints            : 1471            
+Optimizer  - Cones                  : 1               
+Optimizer  - Scalar variables       : 24                conic                  : 24              
+Optimizer  - Semi-definite variables: 3                 scalarized             : 38486           
+Factor     - setup time             : 0.26            
+Factor     - dense det. time        : 0.10              GP order time          : 0.00            
+Factor     - nonzeros before factor : 1.08e+06          after factor           : 1.08e+06        
+Factor     - dense dim.             : 0                 flops                  : 3.42e+09        
+Factor     - GP saved nzs           : 1728              GP saved flops         : 6.60e+05        
+ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
+0   1.7e+00  1.0e+00  1.0e+00  0.00e+00   0.000000000e+00   0.000000000e+00   1.0e+00  0.39  
+1   3.2e-01  1.9e-01  8.3e-02  1.22e+00   0.000000000e+00   8.678251278e-03   1.9e-01  0.85  
+2   6.5e-02  3.9e-02  7.5e-03  1.04e+00   0.000000000e+00   1.602078423e-03   3.9e-02  1.28  
+3   1.2e-02  7.3e-03  5.9e-04  1.00e+00   0.000000000e+00   -3.269324467e-04  7.3e-03  1.66  
+4   9.5e-04  5.7e-04  1.3e-05  9.99e-01   0.000000000e+00   -3.640206605e-05  5.7e-04  2.03  
+5   3.9e-05  2.3e-05  1.0e-07  1.00e+00   0.000000000e+00   -1.505499263e-06  2.3e-05  2.43  
+6   1.9e-06  1.1e-06  1.1e-09  1.00e+00   0.000000000e+00   -7.300670102e-08  1.1e-06  2.80  
+7   1.1e-08  6.3e-09  4.7e-13  1.00e+00   0.000000000e+00   -3.958138240e-10  6.3e-09  3.18  
+Optimizer terminated. Time: 3.18    
+
+
+Interior-point solution summary
+  Problem status  : PRIMAL_AND_DUAL_FEASIBLE
+  Solution status : OPTIMAL
+  Primal.  obj: 0.0000000000e+00    nrm: 4e+00    Viol.  con: 3e-06    var: 0e+00    barvar: 0e+00  
+  Dual.    obj: -3.9581382395e-10   nrm: 6e+00    Viol.  con: 0e+00    var: 4e-10    barvar: 6e-09  
+Optimizer summary
+  Optimizer                 -                        time: 3.18    
+    Interior-point          - iterations : 7         time: 3.18    
+    Simplex                 - iterations : 0         time: 0.00    
+    Mixed integer           - relaxations: 0         time: 0.00    
+
+ 
+Residual norm: 7.5213e-06
+ 
+       cpusec: 3.1802
+         iter: 7
+    feasratio: 0.9999
+         dinf: 0
+         pinf: 0
+       numerr: 0
+
+Nominal synthesis relative residual: 3.11e-06
+Nominal finite-state gain (code units):
+  1×2 polynomial array with properties:
+
+    coefficient: [0.0313 0]
+         degmat: [1×0 double]
+        varname: {}
+         matdim: [1 2]
+
+Simulating nominal controller on full nonlinear system, N=24
+Simulating nominal controller on full nonlinear system, N=32
+Nominal nonlinear spatial relative errors: 3.52e-05 1.41e-05 0.000835 6.75e-05 6e-05
+Delta=0 closed-loop spectral abscissae: -28.1557 -28.1557
+
+Nominal stability synthesis: Delta=0
+Size: 76556   1471
+ 
+
+MOSEK Version 11.0.28 (Build date: 2025-8-25 13:05:23)
+Copyright (c) MOSEK ApS, Denmark WWW: mosek.com
+Platform: Windows/64-X86
+
+Problem
+  Name                   :                 
+  Objective sense        : minimize        
+  Type                   : CONIC (conic optimization problem)
+  Constraints            : 1471            
+  Affine conic cons.     : 0               
+  Disjunctive cons.      : 0               
+  Cones                  : 0               
+  Scalar variables       : 23              
+  Matrix variables       : 3 (scalarized: 38486)
+  Integer variables      : 0               
+
+Optimizer started.
+Presolve started.
+Linear dependency checker started.
+Linear dependency checker terminated.
+Eliminator started.
+Freed constraints in eliminator : 0
+Eliminator terminated.
+Eliminator - tries                  : 1                 time                   : 0.00            
+Lin. dep.  - tries                  : 1                 time                   : 0.00            
+Lin. dep.  - primal attempts        : 1                 successes              : 1               
+Lin. dep.  - dual attempts          : 0                 successes              : 0               
+Lin. dep.  - primal deps.           : 0                 dual deps.             : 0               
+Presolve terminated. Time: 0.00    
+Optimizer  - threads                : 4               
+Optimizer  - solved problem         : the primal      
+Optimizer  - Constraints            : 1471            
+Optimizer  - Cones                  : 1               
+Optimizer  - Scalar variables       : 24                conic                  : 24              
+Optimizer  - Semi-definite variables: 3                 scalarized             : 38486           
+Factor     - setup time             : 0.26            
+Factor     - dense det. time        : 0.11              GP order time          : 0.00            
+Factor     - nonzeros before factor : 1.08e+06          after factor           : 1.08e+06        
+Factor     - dense dim.             : 0                 flops                  : 3.42e+09        
+Factor     - GP saved nzs           : 1728              GP saved flops         : 6.60e+05        
+ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
+0   1.7e+00  1.0e+00  1.0e+00  0.00e+00   0.000000000e+00   0.000000000e+00   1.0e+00  0.33  
+1   3.2e-01  1.9e-01  8.3e-02  1.22e+00   0.000000000e+00   8.678251278e-03   1.9e-01  0.70  
+2   6.5e-02  3.9e-02  7.5e-03  1.04e+00   0.000000000e+00   1.602078423e-03   3.9e-02  1.05  
+3   1.2e-02  7.3e-03  5.9e-04  1.00e+00   0.000000000e+00   -3.269324467e-04  7.3e-03  1.58  
+4   9.5e-04  5.7e-04  1.3e-05  9.99e-01   0.000000000e+00   -3.640206605e-05  5.7e-04  1.89  
+5   3.9e-05  2.3e-05  1.0e-07  1.00e+00   0.000000000e+00   -1.505499263e-06  2.3e-05  2.30  
+6   1.9e-06  1.1e-06  1.1e-09  1.00e+00   0.000000000e+00   -7.300670102e-08  1.1e-06  2.68  
+7   1.1e-08  6.3e-09  4.7e-13  1.00e+00   0.000000000e+00   -3.958138240e-10  6.3e-09  2.99  
+Optimizer terminated. Time: 2.99    
+
+
+Interior-point solution summary
+  Problem status  : PRIMAL_AND_DUAL_FEASIBLE
+  Solution status : OPTIMAL
+  Primal.  obj: 0.0000000000e+00    nrm: 4e+00    Viol.  con: 3e-06    var: 0e+00    barvar: 0e+00  
+  Dual.    obj: -3.9581382395e-10   nrm: 6e+00    Viol.  con: 0e+00    var: 4e-10    barvar: 6e-09  
+Optimizer summary
+  Optimizer                 -                        time: 2.99    
+    Interior-point          - iterations : 7         time: 2.99    
+    Simplex                 - iterations : 0         time: 0.00    
+    Mixed integer           - relaxations: 0         time: 0.00    
+
+ 
+Residual norm: 7.5213e-06
+ 
+       cpusec: 2.9910
+         iter: 7
+    feasratio: 0.9999
+         dinf: 0
+         pinf: 0
+       numerr: 0
+
+Nominal synthesis relative residual: 3.11e-06
+Nominal finite-state gain (code units):
+  1×2 polynomial array with properties:
+
+    coefficient: [0.0313 0]
+         degmat: [1×0 double]
+        varname: {}
+         matdim: [1 2]
+
+Simulating nominal controller on full nonlinear system, N=24
+Simulating nominal controller on full nonlinear system, N=32
+Nominal nonlinear spatial relative errors: 3.52e-05 1.41e-05 0.000835 6.75e-05 6e-05
+Delta=0 closed-loop spectral abscissae: -28.1557 -28.1557
+Actual certified alpha: 0.4921875
+Sector upper limits [S,G]: 119.088146 201.850931
+Closed-loop maxima z [S,G]: 35.5140885 28.4504854
+Final closed-loop states [S,G]: 2.03958304e-13 -7.3403239e-13
+Peak paper control effort: 19.1470824
+          Controller          PeakAbsXS    PeakAbsXG    PeakAbsU    FinalStateNorm    MaxZS     MaxZG 
+    ______________________    _________    _________    ________    ______________    ______    ______
+
+    {'Open loop'         }      45.013      93.724            0           81.052      124.83    438.24
+    {'Sector controller' }     0.64903      3.3191       19.147       7.6184e-13      35.514     28.45
+    {'Nominal controller'}      736.24      322.78       899.53           109.06      179.82     12199
+
+Comparison exported to C:\Users\thijs\Desktop\PIETOOLS-Duality\Code\Executables\Examples\test

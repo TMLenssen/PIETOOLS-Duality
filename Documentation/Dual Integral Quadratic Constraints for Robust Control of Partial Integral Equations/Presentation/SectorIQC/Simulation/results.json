@@ -1,0 +1,13 @@
+{
+  "alpha": 0.2,
+  "beta": 1.2,
+  "duration": 12,
+  "spatial_points": 161,
+  "time_points": 1441,
+  "minimum_pointwise_supply": 0.0,
+  "final_integral": 1.575194910088644,
+  "minimum_integral_increment": 9.363932671796298e-11,
+  "quadratic_form_max_error": 1.1102230246251565e-15,
+  "time_grid_refinement_difference": 1.4250767434997869e-06,
+  "interpretation": "Simulation illustrates the hard IQC for this memoryless operator; sector membership holds analytically for all scalar inputs. No plant or PDE dynamics are simulated."
+}

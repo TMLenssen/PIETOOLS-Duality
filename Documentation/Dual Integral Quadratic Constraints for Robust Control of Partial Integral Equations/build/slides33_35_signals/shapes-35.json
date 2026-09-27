@@ -1,0 +1,191 @@
+﻿[
+    {
+        "id":  2,
+        "name":  "Title 1",
+        "left":  36,
+        "top":  30,
+        "width":  648,
+        "height":  40,
+        "text":  "The dual filter"
+    },
+    {
+        "id":  3,
+        "name":  "Footer Placeholder 2",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  4,
+        "name":  "Slide Number Placeholder 3",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "35"
+    },
+    {
+        "id":  5,
+        "name":  "Editable paper diagram",
+        "left":  36,
+        "top":  103.00386,
+        "width":  247.16,
+        "height":  145.28,
+        "text":  ""
+    },
+    {
+        "id":  34,
+        "name":  "z filtered output",
+        "left":  289.139374,
+        "top":  270.918823,
+        "width":  47.88,
+        "height":  2,
+        "text":  ""
+    },
+    {
+        "id":  35,
+        "name":  "Filtered z",
+        "left":  338.041962,
+        "top":  255.525909,
+        "width":  33.3,
+        "height":  29.97,
+        "text":  "  y  "
+    },
+    {
+        "id":  36,
+        "name":  "w filtered output",
+        "left":  289.139374,
+        "top":  300.518829,
+        "width":  47.88,
+        "height":  2,
+        "text":  ""
+    },
+    {
+        "id":  37,
+        "name":  "Filtered w",
+        "left":  337.8694,
+        "top":  287.2903,
+        "width":  33.3,
+        "height":  29.97,
+        "text":  "  u  "
+    },
+    {
+        "id":  52,
+        "name":  "Dynamic filter",
+        "left":  216.139374,
+        "top":  249.718826,
+        "width":  74,
+        "height":  74,
+        "text":  ""
+    },
+    {
+        "id":  55,
+        "name":  "Connector: Elbow 54",
+        "left":  194.84,
+        "top":  220.64386,
+        "width":  22.29937,
+        "height":  52.27496,
+        "text":  ""
+    },
+    {
+        "id":  61,
+        "name":  "Connector: Elbow 60",
+        "left":  97.73591,
+        "top":  220.64386,
+        "width":  119.403465,
+        "height":  81.87496,
+        "text":  ""
+    },
+    {
+        "id":  200,
+        "name":  "Signal tap 200",
+        "left":  194.44,
+        "top":  220.243851,
+        "width":  2.8,
+        "height":  2.8,
+        "text":  ""
+    },
+    {
+        "id":  201,
+        "name":  "Signal tap 201",
+        "left":  97.33591,
+        "top":  220.243851,
+        "width":  2.8,
+        "height":  2.8,
+        "text":  ""
+    },
+    {
+        "id":  301,
+        "name":  "Dual filter diagram label",
+        "left":  224,
+        "top":  266,
+        "width":  65,
+        "height":  35,
+        "text":  "𝐃 Θ "
+    },
+    {
+        "id":  302,
+        "name":  "Stage1 introduction",
+        "left":  384,
+        "top":  83,
+        "width":  298,
+        "height":  22,
+        "text":  "Use the dual filter"
+    },
+    {
+        "id":  303,
+        "name":  "Stage1 definition",
+        "left":  383,
+        "top":  109,
+        "width":  307,
+        "height":  38,
+        "text":  "𝐃 Θ :=    𝐽  ∗  Θ ⊤  𝐽   −1 "
+    },
+    {
+        "id":  304,
+        "name":  "Stage1 exchange",
+        "left":  383,
+        "top":  151,
+        "width":  307,
+        "height":  39,
+        "text":  " 𝐽 =  0 𝐼 −𝐼 0  "
+    },
+    {
+        "id":  305,
+        "name":  "Stage2 controller filter",
+        "left":  383,
+        "top":  204,
+        "width":  307,
+        "height":  43,
+        "text":  "𝐃 Θ =  𝐼 0 − 𝐾 ∗  𝐼  "
+    },
+    {
+        "id":  306,
+        "name":  "Stage3 substitution",
+        "left":  384,
+        "top":  257,
+        "width":  298,
+        "height":  21,
+        "text":  "Filling in"
+    },
+    {
+        "id":  307,
+        "name":  "Stage3 dual system",
+        "left":  383,
+        "top":  280,
+        "width":  308,
+        "height":  64,
+        "text":  "   𝑇 ∗   𝑥  =  𝐴 ∗ + 𝐾 ∗   𝐵 u  ∗   𝑥    𝑦  =  𝐵 u  ∗  𝑥    𝑢  = 𝑢 − 𝐾 ∗  𝑦 =0  "
+    },
+    {
+        "id":  308,
+        "name":  "Stage3 conclusion",
+        "left":  36,
+        "top":  354,
+        "width":  648,
+        "height":  22,
+        "text":  "The dual filter restores the zero residual."
+    }
+]

@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage[paperwidth=240mm,paperheight=29mm,margin=0mm]{geometry}
+\usepackage{amsmath,amssymb}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\begin{document}
+\fontsize{12}{16}\selectfont
+\vspace*{1mm}
+\[
+  M\ddot q(t)=F(t)
+\]
+\vspace{-4mm}
+\[
+  F(t)=M\bigl[\omega_c(t)^2\bigl(r(t)-q(t)\bigr)
+                       -2\omega_c(t)\dot q(t)\bigr]
+\]
+\newpage
+\fontsize{10}{12}\selectfont
+\vspace*{-3mm}
+\setlength{\jot}{2pt}
+\[
+\begin{gathered}
+  \rho A\bigl[w_{tt}(t,s)+\ddot q(t)\bigr]
+    +EI\,w_{ssss}(t,s)+\eta\,w_{tssss}(t,s)=0,
+    \qquad 0<s<L,\\
+  w(t,0)=w_s(t,0)=0,\qquad
+  EI\,w_{ss}(t,L)+\eta\,w_{tss}(t,L)=0,\\
+  EI\,w_{sss}(t,L)+\eta\,w_{tsss}(t,L)=0,\\
+  \ddot q(t)+2\omega_c(t)\dot q(t)
+    +\omega_c(t)^2\bigl[q(t)-r(t)\bigr]=0.
+\end{gathered}
+\]
+\end{document}

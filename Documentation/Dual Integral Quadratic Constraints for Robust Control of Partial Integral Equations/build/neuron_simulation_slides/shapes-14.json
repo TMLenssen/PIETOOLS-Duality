@@ -1,0 +1,65 @@
+﻿[
+    {
+        "id":  5,
+        "name":  "Footer Placeholder 4",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  6,
+        "name":  "Slide Number Placeholder 5",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "14"
+    },
+    {
+        "id":  68,
+        "name":  "TextBox 67",
+        "left":  36,
+        "top":  352,
+        "width":  420,
+        "height":  20,
+        "text":  "[2] Firing rate models"
+    },
+    {
+        "id":  78,
+        "name":  "Baked figure with larger labels",
+        "left":  390.75,
+        "top":  114.374962,
+        "width":  299.625031,
+        "height":  143.25,
+        "text":  ""
+    },
+    {
+        "id":  80,
+        "name":  "Baked figure with larger labels",
+        "left":  34.5,
+        "top":  93.75,
+        "width":  327.374969,
+        "height":  140.625046,
+        "text":  ""
+    },
+    {
+        "id":  81,
+        "name":  "Original TUe logo",
+        "left":  666,
+        "top":  379,
+        "width":  36,
+        "height":  20,
+        "text":  ""
+    },
+    {
+        "id":  2,
+        "name":  "Title 1",
+        "left":  36,
+        "top":  27,
+        "width":  648,
+        "height":  40,
+        "text":  "Beta-oscilations"
+    }
+]

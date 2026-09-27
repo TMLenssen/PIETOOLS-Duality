@@ -1,0 +1,358 @@
+[
+  {
+    "path": "build\\deck_label_overlays\\image3.png",
+    "uses": [
+      {
+        "slide": 1,
+        "name": "Original title response figure",
+        "id": "10"
+      }
+    ],
+    "target": "ppt/media/image3.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image2.png",
+    "uses": [
+      {
+        "slide": 1,
+        "name": "Original university logo",
+        "id": "11"
+      }
+    ],
+    "target": "ppt/media/image2.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image4.png",
+    "uses": [
+      {
+        "slide": 2,
+        "name": "cart_rigid",
+        "id": "20"
+      }
+    ],
+    "target": "ppt/media/image4.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image5.png",
+    "uses": [
+      {
+        "slide": 2,
+        "name": "cart_flexible",
+        "id": "21"
+      }
+    ],
+    "target": "ppt/media/image5.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image1.png",
+    "uses": [
+      {
+        "slide": 2,
+        "name": "Original TUe logo",
+        "id": "22"
+      },
+      {
+        "slide": 3,
+        "name": "Original TUe logo",
+        "id": "32"
+      },
+      {
+        "slide": 4,
+        "name": "Original TUe logo",
+        "id": "23"
+      },
+      {
+        "slide": 5,
+        "name": "Original TUe logo",
+        "id": "9"
+      },
+      {
+        "slide": 6,
+        "name": "Original TUe logo",
+        "id": "9"
+      },
+      {
+        "slide": 7,
+        "name": "Original TUe logo",
+        "id": "69"
+      },
+      {
+        "slide": 8,
+        "name": "Original TUe logo",
+        "id": "69"
+      },
+      {
+        "slide": 9,
+        "name": "Original TUe logo",
+        "id": "69"
+      },
+      {
+        "slide": 10,
+        "name": "Original TUe logo",
+        "id": "82"
+      },
+      {
+        "slide": 11,
+        "name": "Original TUe logo",
+        "id": "69"
+      },
+      {
+        "slide": 12,
+        "name": "Original TUe logo",
+        "id": "77"
+      },
+      {
+        "slide": 13,
+        "name": "Original TUe logo",
+        "id": "81"
+      },
+      {
+        "slide": 14,
+        "name": "Original TUe logo",
+        "id": "8"
+      },
+      {
+        "slide": 15,
+        "name": "Original TUe logo",
+        "id": "8"
+      },
+      {
+        "slide": 16,
+        "name": "Original TUe logo",
+        "id": "8"
+      },
+      {
+        "slide": 17,
+        "name": "Original TUe logo",
+        "id": "69"
+      },
+      {
+        "slide": 18,
+        "name": "Original TUe logo",
+        "id": "24"
+      },
+      {
+        "slide": 19,
+        "name": "Original TUe logo",
+        "id": "24"
+      },
+      {
+        "slide": 20,
+        "name": "Original TUe logo",
+        "id": "24"
+      },
+      {
+        "slide": 21,
+        "name": "Original TUe logo",
+        "id": "24"
+      },
+      {
+        "slide": 22,
+        "name": "Original TUe logo",
+        "id": "24"
+      },
+      {
+        "slide": 23,
+        "name": "Original TUe logo",
+        "id": "24"
+      },
+      {
+        "slide": 30,
+        "name": "Original TUe logo",
+        "id": "6"
+      }
+    ],
+    "target": "ppt/media/image1.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image6.jpeg",
+    "uses": [
+      {
+        "slide": 3,
+        "name": "Picture 6",
+        "id": "7"
+      }
+    ],
+    "target": "ppt/media/image6.jpeg"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image7.jpg",
+    "uses": [
+      {
+        "slide": 3,
+        "name": "Picture 18",
+        "id": "19"
+      }
+    ],
+    "target": "ppt/media/image7.jpg"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image8.jpg",
+    "uses": [
+      {
+        "slide": 3,
+        "name": "Picture 23",
+        "id": "24"
+      },
+      {
+        "slide": 5,
+        "name": "Picture 7",
+        "id": "8"
+      },
+      {
+        "slide": 6,
+        "name": "Picture 7",
+        "id": "8"
+      }
+    ],
+    "target": "ppt/media/image8.jpg"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image9.png",
+    "uses": [
+      {
+        "slide": 3,
+        "name": "Picture 28",
+        "id": "29"
+      }
+    ],
+    "target": "ppt/media/image9.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image10.gif",
+    "uses": [
+      {
+        "slide": 3,
+        "name": "Picture 2",
+        "id": "3"
+      }
+    ],
+    "target": "ppt/media/image10.gif"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image11.png",
+    "uses": [
+      {
+        "slide": 4,
+        "name": "Picture 17",
+        "id": "18"
+      }
+    ],
+    "target": "ppt/media/image11.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image12.png",
+    "uses": [
+      {
+        "slide": 4,
+        "name": "Picture 6",
+        "id": "7"
+      }
+    ],
+    "target": "ppt/media/image12.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image16.png",
+    "uses": [
+      {
+        "slide": 7,
+        "name": "Picture 55",
+        "id": "56"
+      }
+    ],
+    "target": "ppt/media/image16.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image18.png",
+    "uses": [
+      {
+        "slide": 8,
+        "name": "Picture 61",
+        "id": "62"
+      }
+    ],
+    "target": "ppt/media/image18.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image20.png",
+    "uses": [
+      {
+        "slide": 9,
+        "name": "Picture 59",
+        "id": "60"
+      }
+    ],
+    "target": "ppt/media/image20.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image22.png",
+    "uses": [
+      {
+        "slide": 10,
+        "name": "Picture 57",
+        "id": "58"
+      }
+    ],
+    "target": "ppt/media/image22.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image24.png",
+    "uses": [
+      {
+        "slide": 11,
+        "name": "Picture 53",
+        "id": "54"
+      },
+      {
+        "slide": 17,
+        "name": "Picture 53",
+        "id": "54"
+      }
+    ],
+    "target": "ppt/media/image24.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image25.png",
+    "uses": [
+      {
+        "slide": 12,
+        "name": "Picture 69",
+        "id": "70"
+      }
+    ],
+    "target": "ppt/media/image25.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image26.png",
+    "uses": [
+      {
+        "slide": 12,
+        "name": "Picture 75",
+        "id": "76"
+      }
+    ],
+    "target": "ppt/media/image26.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image27.png",
+    "uses": [
+      {
+        "slide": 13,
+        "name": "Picture 77",
+        "id": "78"
+      }
+    ],
+    "target": "ppt/media/image27.png"
+  },
+  {
+    "path": "build\\deck_label_overlays\\image28.png",
+    "uses": [
+      {
+        "slide": 13,
+        "name": "Picture 79",
+        "id": "80"
+      }
+    ],
+    "target": "ppt/media/image28.png"
+  }
+]

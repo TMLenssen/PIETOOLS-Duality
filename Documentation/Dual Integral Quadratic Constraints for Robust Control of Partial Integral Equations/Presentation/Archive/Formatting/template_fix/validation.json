@@ -1,0 +1,34 @@
+{
+  "source_sha256": "e889165af00c879d550c107e23fac36dc152d1b85b0343f313d77d319ca8d51a",
+  "slides": 24,
+  "layouts": [
+    "Clean White - Title",
+    "Clean White - Section",
+    "Clean White - Title with figure",
+    "Clean White - Title and Content",
+    "Clean White - Comparison",
+    "Clean White - Text and Picture",
+    "Clean White - Wide Text and Picture",
+    "Clean White - Figure and Caption",
+    "Clean White - Three Panels",
+    "Clean White - Picture and Text",
+    "Clean White - Picture and Wide Text",
+    "Clean White - Title Only",
+    "Clean White - Blank",
+    "Clean White - Large Picture",
+    "Clean White - Two Columns",
+    "Clean White - Table and Notes",
+    "Clean White - Chart"
+  ],
+  "title_logo_source_pixels": [
+    2368,
+    757
+  ],
+  "title_logo_points": [
+    125,
+    39.95988175675676
+  ],
+  "deck": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\presentation_formatting\\template_fix\\Dual Integral Quadratic Contstraints for Robust Control of Partial Integral Equations.pptx",
+  "template": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\presentation_formatting\\template_fix\\TUe - Clean White.potx",
+  "checks": "XML, ZIP CRC, every internal relationship, unchanged slide text/timelines/media/embedded objects/notes; 21 slide XML parts byte-identical"
+}

@@ -1,0 +1,38 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STN–GPe sector simulation</title>
+<style>
+body{font:16px Arial,sans-serif;color:#333;background:white;max-width:1440px;margin:0 auto;padding:12px;box-sizing:border-box}canvas{display:block;width:100%;height:auto}nav{display:flex;gap:16px;align-items:center;padding:8px 4%;opacity:0;transition:opacity .15s}body:hover nav,nav:focus-within{opacity:1}button{border:1px solid #ccc;background:white;color:#333;font:inherit;padding:7px 15px;border-radius:3px;cursor:pointer}input{accent-color:#666;flex:1;min-width:80px}output{min-width:75px;font-variant-numeric:tabular-nums}@media(hover:none){nav{opacity:1}}
+</style>
+<canvas id="plot" width="3840" height="2160" aria-label="STN nonlinearity, GPe nonlinearity, response and supply function"></canvas>
+<nav aria-label="Playback controls"><button id="play">Play</button><button id="restart">Restart</button><input id="time" aria-label="Time in milliseconds" type="range" min="0" max="400" step="0.2" value="0"><output id="clock">0.0 ms</output></nav>
+<script>/*SIMULATION_DATA*/</script>
+<script>
+'use strict';
+const D=window.STN_DATA,c=document.getElementById('plot'),ctx=c.getContext('2d'),$=id=>document.getElementById(id);
+const ink='#333333',grey='#666666',green='#147c60',colors=['#174a80','#e6373e'];
+ctx.setTransform(3840/1440,0,0,2160/810,0,0);
+const boxes=[[100,85,650,330],[800,85,1350,330],[100,480,650,725],[800,480,1350,725]];
+const total=D.integral.map(v=>v[0]+v[1]);
+let time=0,playing=false,previous=null;
+function text(s,x,y,n=20,color=ink,align='left',math=false,bold=false){return;ctx.font=(bold?'bold ':'')+n+'px '+(math?'"Cambria Math",Cambria,serif':'Arial');ctx.fillStyle=color;ctx.textAlign=align;ctx.fillText(s,x,y)}
+function line(points,color,width=1,fill=false){ctx.beginPath();points.forEach((p,i)=>i?ctx.lineTo(...p):ctx.moveTo(...p));if(fill){ctx.closePath();ctx.fillStyle=color;ctx.fill()}else{ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke()}}
+function point(p,color,size=5){ctx.beginPath();ctx.arc(...p,size,0,2*Math.PI);ctx.fillStyle=color;ctx.fill()}
+function activation(v,k){return D.M[k]/2*(Math.tanh(2*(D.zStar[k]+v)/D.M[k])-Math.tanh(2*D.zStar[k]/D.M[k]))}
+function axes(box,xlim,ylim,xticks,yticks,title,xlabel,ylabel){let[l,top,r,b]=box,p=(a,v)=>[l+(a-xlim[0])/(xlim[1]-xlim[0])*(r-l),b-(v-ylim[0])/(ylim[1]-ylim[0])*(b-top)];text(title,(l+r)/2,top-22,25,ink,'center',false,true);line([[l,top],[l,b],[r,b]],ink);for(let v of xticks){let x=p(v,ylim[0])[0];line([[x,b],[x,b+6]],ink);text(String(v),x,b+28,18,ink,'center')}for(let v of yticks){let y=p(xlim[0],v)[1];line([[l-6,y],[l,y]],ink);text(String(v),l-13,y+6,18,ink,'right')}text(xlabel,(l+r)/2,b+64,23,ink,'center',true);ctx.save();ctx.translate(l-68,(top+b)/2);ctx.rotate(-Math.PI/2);text(ylabel,0,0,22,ink,'center',true);ctx.restore();return p}
+function draw(){ctx.clearRect(0,0,c.width,c.height);const idx=Math.min(D.t.length-1,Math.round(time/.0002));
+for(let k=0;k<2;k++){let lim=[1150,700][k],beta=D.beta[k],p=axes(boxes[k],[-lim,lim],[-lim,lim],[-lim,0,lim],[-lim,0,lim],['STN nonlinearity','GPe nonlinearity'][k],'zᵢ(t)','wᵢ(t)');
+for(let sign of [-1,1])line([p(0,0),p(sign*lim,0),p(sign*lim,sign*lim*beta)],'#f0f3f5',0,true);
+line([p(-lim,0),p(lim,0)],'#a0a0a0');line([p(0,-lim),p(0,lim)],'#d0d0d0');line([p(-lim,-lim*beta),p(lim,lim*beta)],'#777777');
+let curve=[];for(let j=0;j<=500;j++){let v=-lim+2*lim*j/500;curve.push(p(v,activation(v,k)))}line(curve,colors[k],2.5);
+let z=D.z[idx][k],w=D.w[idx][k];line([p(z,beta*z),p(z,w)],'#777777',3);line([p(z,w),p(z,0)],green,3);point(p(z,w),colors[k]);
+}
+let p=axes(boxes[2],[0,.4],[-20,100],[0,.05,.1,.15,.2,.25,.3,.35,.4],[-20,0,20,40,60,80,100],'Response','t (s)','spikes/s');
+ctx.setLineDash([2,4]);line([p(0,0),p(.4,0)],grey);ctx.setLineDash([]);
+for(let k=0;k<2;k++){let pts=[];for(let j=0;j<=idx;j++)pts.push(p(D.t[j],D.x[j][k]));if(pts.length>1)line(pts,colors[k],2);let yy=495+k*24;line([[110,yy],[135,yy]],colors[k],2);text(['xₛ (STN)','xɢ (GPe)'][k],160,yy+6,18,ink,'left',true)}
+p=axes(boxes[3],[0,.4],[0,3200],[0,.1,.2,.3,.4],[0,1000,2000,3000],'Supply function','T (s)','∫₀ᵀ σ(t) dt');
+for(let k=0;k<2;k++){let pts=[];for(let j=0;j<=idx;j++)pts.push(p(D.t[j],D.integral[j][k]));if(pts.length>1)line(pts,colors[k],2.5);point(p(D.t[idx],D.integral[idx][k]),colors[k],4);let yy=495+k*24;line([[810,yy],[835,yy]],colors[k],2);text(['STN','GPe'][k],850,yy+6,20)}
+$('clock').value=(time*1000).toFixed(1)+' ms';$('time').value=time*1000;
+}
+function frame(now){if(playing&&previous!==null){time=Math.min(.4,time+(now-previous)/1000*.4/12);if(time>=.4){playing=false;$('play').textContent='Play'}draw()}previous=now;requestAnimationFrame(frame)}
+$('play').onclick=()=>{if(time>=.4)time=0;playing=!playing;previous=null;$('play').textContent=playing?'Pause':'Play';draw()};$('restart').onclick=()=>{time=0;playing=false;$('play').textContent='Play';draw()};$('time').oninput=e=>{time=+e.target.value/1000;playing=false;$('play').textContent='Play';draw()};draw();requestAnimationFrame(frame);
+</script></html>

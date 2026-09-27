@@ -37,13 +37,16 @@ strict PN multiplier admits a square $J$-spectral factor
 \end{equation*}
 with $J\in\R^{(n_z+n_w)\times(n_z+n_w)}$ and
 $\Theta,\Theta^{-1}\in\R H_\infty^{(n_z+n_w)\times(n_z+n_w)}$.
-Moreover, this $J$-spectral factorization satisfies
-$\Theta_{22}^{-1}\in\R H_\infty^{n_w\times n_w}$. Thus the invertibility requirements in
-Definition~\ref{def:factorization} hold, and the dual filter is
+Note that~\cite[Thm.~4]{6915700} asserts $\Theta,\Theta^{-1}\in\R H_\infty$
+and hardness, but nothing about the $(2,2)$ block. What the construction
+below does deliver is nonsingularity,
+$\Theta_{22}^\sim\Theta_{22}\succeq\epsilon I$ on $i\R\cup\{\infty\}$.
+Accordingly, $\Theta_{22}^{-1}\in\R H_\infty^{n_w\times n_w}$ is imposed
+as the second condition of Definition~\ref{def:factorization}, and the dual filter is
 $\mbf D(\Theta)\in\R H_\infty^{(n_w+n_z)\times(n_w+n_z)}$. The Riccati construction 
 in~\cite[App.~B]{Pfifer2015} uses the factorization results of~\cite{MEINSMA1995243}
 and provides a computational method to find factorizations. Related
-finite-horizon formulations ~\cite{carrasco2018equivalence,scherer2018dynamicdissipation}.
+finite-horizon formulations are given in~\cite{carrasco2018equivalence,scherer2018dynamicdissipation}.
 
 \subsection{Robust stabilization of the STN--GPe network}
 We consider the delayed firing-rate model
@@ -66,6 +69,43 @@ with $ u(t)$. The plant is
              &\qquad\quad-w_{\mrm{XG}}\mrm{Str}\bigr)-\mrm{GP}(t).
       \end{aligned}
 \end{equation}
+\begin{table}[H]
+ \centering
+ \caption{STN--GPe model parameters for the diseased case ($K_d=1$),
+ from~\cite[Tables~1 and~3]{nevadoHolgado2010betaOscillations}.
+ The transmission delays denoted by $\Delta t_{ij}$ in the source
+ are written as $\tau_{ij}$ here.}
+ \label{tab:stn-gpe-diseased-parameters}
+ \small
+ \begin{tabular}{@{}lrl@{}}
+  \toprule
+  Parameter & Value & Unit \\
+  \midrule
+  $K_d$ & $1$ & -- \\
+  \midrule
+  $w_{\mrm{SG}}$ & $20.0$ & -- \\
+  $w_{\mrm{GS}}$ & $10.7$ & -- \\
+  $w_{\mrm{GG}}$ & $12.3$ & -- \\
+  $w_{\mrm{CS}}$ & $9.2$ & -- \\
+  $w_{\mrm{XG}}$ & $139.4$ & -- \\
+  \midrule
+  $\tau_{\mrm{S}}$ & $6$ & ms \\
+  $\tau_{\mrm{G}}$ & $14$ & ms \\
+  $\tau_{\mrm{SG}}$ & $6$ & ms \\
+  $\tau_{\mrm{GS}}$ & $6$ & ms \\
+  $\tau_{\mrm{GG}}$ & $4$ & ms \\
+  \midrule
+  $\mrm{Ctx}$ & $27$ & spikes/s \\
+  $\mrm{Str}$ & $2$ & spikes/s \\
+  $M_{\mrm{S}}$ & $300$ & spikes/s \\
+  $M_{\mrm{G}}$ & $400$ & spikes/s \\
+  $B_{\mrm{S}}$ & $17$ & spikes/s \\
+  $B_{\mrm{G}}$ & $75$ & spikes/s \\
+  \bottomrule
+ \end{tabular}
+\end{table}
+The parameter values for the diseased case are
+listed in Table~\ref{tab:stn-gpe-diseased-parameters}.
 The activation functions $F_i\colon\R\to\R$ are
 \begin{equation}\label{eq:stn-gpe-uncentered-sigmoid}
 F_i(q)=\frac{M_i}{1+\exp(-4q/M_i)(M_i-B_i)/B_i},
@@ -167,14 +207,13 @@ turner2022zamesfalbmultipliersdontpanic}. For each channel, let
 $M,H\in\R H_\infty$ satisfy $M=1-H$
 with
 \begin{equation*}
- H(\omega)=\sum_{k=1}^3\frac{\kappa_{k}}{i\omega+a_{k}},
+ H(i\omega)=\sum_{k=1}^3\frac{\kappa_{k}}{i\omega+a_{k}},
  \qquad a_{k}>0,\quad\kappa_{k}\geq0.
 \end{equation*}
-The nonnegative impulse response $h_i$ satisfies
+The nonnegative impulse response $h$ satisfies
 $\|h\|_{L_1}=\sum_k\kappa_{k}/a_{k}<1$, so the multiplier is valid for
 monotone slope-restricted nonlinearities without requiring oddness. We
-choose the same coefficients for both channels, using the population time
-constants $\tau_{\mrm S}= \tau_\mrm{GS} = \tau_\mrm{SG}=6\,\mathrm{ms}$ and
+use $\tau_{\mrm S}= \tau_\mrm{GS} = \tau_\mrm{SG}=6\,\mathrm{ms}$ and
 $\tau_{\mrm G}=14\,\mathrm{ms}$ and the recurrent GPe delay
 $\tau_{\mrm{GG}}=4\,\mathrm{ms}$. Specifically,
 \begin{equation*}
@@ -182,8 +221,8 @@ $\tau_{\mrm{GG}}=4\,\mathrm{ms}$. Specifically,
  =\left(\frac{1}{\tau_{\mrm G}},\frac{1}{\tau_{\mrm S}},
           \frac{1}{\tau_{\mrm{GG}}}\right)
 \end{equation*}
-Thus the multiplier poles are $-a_{k}$. We weigh the three modes by the corresponding synaptic
-strengths related to $K_d=1$ are $w_\mrm{GS} = 10.7$, $w_\mrm{SG}=20.0$, and $w_\mrm{GG}=12.3$,
+Thus the multiplier poles are $-a_{k}$. The three modes are weighted by the corresponding synaptic
+strengths, which at $K_d=1$ are $w_\mrm{GS} = 10.7$, $w_\mrm{SG}=20.0$ and $w_\mrm{GG}=12.3$.
 \begin{equation*}
  \begin{aligned}
  (r_1,r_2,r_3)&:=
@@ -212,17 +251,19 @@ weight $\bmat{\epsilon & 0 \\ 0 & -\epsilon}$ for some $\epsilon >0$
 \end{equation*}
 the resulting multiplier remains a valid IQC and satisfies the strict PN requirement. 
 Thus the multiplier and admits the hard $J$-spectral factor used in the dual-filter
-construction. The static sector case follows with from Lemma~\ref{lem:sec-bound}.
+construction. The static sector case follows from Lemma~\ref{lem:sec-bound}.
 
 \subsubsection{Admissible trajectories}
-Performing bisection searches where we apply the same sector and slope restrictions
-on $\delta_\mrm{S},\delta_\mrm{G}$ yield the certified bounds
+In this section we perform controller synthesis, as in
+Corollary~\ref{thm:state-feedback}, to find for which trajectories the system
+remains robustly stable. Bisection searches applying the same sector and slope
+restrictions on $\delta_\mrm{S}$ and $\delta_\mrm{G}$ yield the certified bounds
 \begin{equation*}
  \alpha_{\mrm{sec}}^\star=0.492,\qquad
  \alpha_{\mrm{ZF}}^\star=0.562.
 \end{equation*}
 For $i\in\{\mrm S,\mrm G\}$, the sector condition on an interval
-$ I_i$ containing zero is
+$ I_i$ is
 \begin{equation*}
  0\leq\frac{\delta_i(v)}{v}\leq\alpha_{\mrm{sec}}^\star,
  \qquad v\in I_{\mrm{sec},i}\setminus\{0\}.
@@ -232,15 +273,13 @@ The Zames--Falb multiplier uses the slope condition
  0\leq\frac{\delta_i(v)-\delta_i(w)}{v-w}\leq\alpha_{\mrm{ZF}}^\star,
  \qquad v,w\in I_{\mrm{slope},i},\quad v\neq w.
 \end{equation*}
-Since the shifted sigmoids are smooth, the latter is equivalent to
-$0\leq\delta_i'(v)\leq\alpha_{\mrm{ZF}}^\star$ on $ I_i$.
 For each constraint, the maximal interval containing zero determines the
 admissible trajectories $z_\mrm{S},z_\mrm{G}$ corresponding to the $K_d=1$ equilibrium is shown in
 Figure~\ref{fig:stn-gpe-admissible-trajectories}.
 
 \begin{figure}[H]
  \centering
- \includegraphics[width=\columnwidth]{Figures/stn_gpe_admissible_trajectories.pdf}
+ \includegraphics[width=\columnwidth]{Figures/STN_GPe/stn_gpe_admissible_trajectories.pdf}
  \caption{Sector bounds (blue) and slope bounds (orange) for the shifted STN and GPe nonlinearities. 
  The dashed horizontal lines indicate the maximum certified values $\alpha_{\mrm{sec}}^\star=0.492$ 
  and $\alpha_{\mrm{ZF}}^\star=0.562$ obtained using the sector and Zames--Falb multipliers, 
@@ -260,11 +299,10 @@ Figure~\ref{fig:stn-gpe-sector-trajectories} shows the shifted nonlinear respons
 with the controller synthesized using only the static sector IQC and the
 robust-stability condition, at the certified value
 $\alpha_{\mrm{sec}}^\star=0.492$. The initial condition is
-$x_{\mrm S}(0)=x_{\mrm G}(0)=0$, with zero delay states, corresponding to
-the original equilibrium.
+$x_{\mrm S}(0)=x_{\mrm G}(0)=0$.
 To perturb the
 $K\star P\star\Delta$ interconnection, we add a pulse in interconnection~\eqref{eqn:rob-stab-interconnect},
-$w_\Delta(t)=\Delta(z_\Delta)+d$, where
+$w_\Delta=\Delta z_\Delta+d$, where
 \begin{equation*}
  d(t)=\begin{cases}
  \bmat{10\\-10}\sin^2\!\left(\dfrac{\pi(t-0.10)}{0.04}\right),
@@ -274,23 +312,17 @@ $w_\Delta(t)=\Delta(z_\Delta)+d$, where
 \end{equation*}
 The horizontal lines mark the sector
 limits $z_i^{\max}$, defined by the first positive crossing of
-$\delta_i(z_i)/z_i=0.4921875$.
-The simulated closed-loop inputs remain below these limits, and the state
-deviations return to zero after the disturbance.
-Since $u=I_{\mrm e}\mrm{Stim}$ is added to the
-firing-rate dynamics, it is an effective rate input, measured in spikes per
-second rather than electrical current. The peak control effort is
-$\max_t|u(t)|=19.15\,\mathrm{spikes/s}$. Converting this value to amperes
-requires a separate calibration of $I_{\mrm e}$.
+$\delta_i(z_i)/z_i=0.492$ as depicted in
+Figure~\ref{fig:stn-gpe-admissible-trajectories}.
 
 \begin{figure}[t]
  \centering
- \includegraphics[width=\columnwidth]{Figures/stn_gpe_sector_trajectories.pdf}
+ \includegraphics[width=\columnwidth]{Figures/STN_GPe/stn_gpe_sector_trajectories.pdf}
  \caption{Shifted nonlinear STN--GPe simulation with the controller synthesized using the sector IQC.
   The top panels show the firing-rate deviations of the STN and GPe populations. The middle panels show the
   shifted nonlinearity inputs, $z_{\mrm S}(t)$ and $z_{\mrm G}(t)$, together with their sector-admissible
   upper limits, $z_{\mrm S}^{\max}=119.09$ and $z_{\mrm G}^{\max}=201.85$. Both inputs remain within
-  the certified robust-stability region throughout the simulation. The bottom panels show the control 
+  the certified closed-loop robust-stability region throughout the simulation. The bottom panels show the control
   effort and the injected disturbance, respectively. The disturbance (bottom right) consists of 
   $d_{\mrm S}(t)$ (blue) and $d_{\mrm G}(t)$ (dashed orange).
 }

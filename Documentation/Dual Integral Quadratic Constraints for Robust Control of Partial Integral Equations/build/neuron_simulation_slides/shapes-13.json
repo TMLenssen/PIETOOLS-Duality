@@ -1,0 +1,65 @@
+﻿[
+    {
+        "id":  5,
+        "name":  "Footer Placeholder 4",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  6,
+        "name":  "Slide Number Placeholder 5",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "13"
+    },
+    {
+        "id":  68,
+        "name":  "TextBox 67",
+        "left":  36,
+        "top":  352,
+        "width":  420,
+        "height":  20,
+        "text":  "[2] Firing rate models"
+    },
+    {
+        "id":  70,
+        "name":  "Baked figure with larger labels",
+        "left":  34.5,
+        "top":  93.75,
+        "width":  327.374969,
+        "height":  140.625046,
+        "text":  ""
+    },
+    {
+        "id":  76,
+        "name":  "Baked figure with larger labels",
+        "left":  389.25,
+        "top":  96,
+        "width":  311.25,
+        "height":  181.5,
+        "text":  ""
+    },
+    {
+        "id":  77,
+        "name":  "Original TUe logo",
+        "left":  666,
+        "top":  379,
+        "width":  36,
+        "height":  20,
+        "text":  ""
+    },
+    {
+        "id":  2,
+        "name":  "Title 1",
+        "left":  36,
+        "top":  27,
+        "width":  648,
+        "height":  40,
+        "text":  "Brain Stimulation"
+    }
+]

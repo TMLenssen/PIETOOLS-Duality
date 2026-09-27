@@ -1,0 +1,17 @@
+[
+    {
+        "Part":  "/ppt/slideLayouts/slideLayout11.xml",
+        "Path":  "/p:sldLayout[1]",
+        "Description":  "The attribute \u0027type\u0027 has invalid value \u0027txObj\u0027. The Enumeration constraint failed."
+    },
+    {
+        "Part":  "/ppt/slideLayouts/slideLayout10.xml",
+        "Path":  "/p:sldLayout[1]",
+        "Description":  "The attribute \u0027type\u0027 has invalid value \u0027txObj\u0027. The Enumeration constraint failed."
+    },
+    {
+        "Part":  "/ppt/slideLayouts/slideLayout9.xml",
+        "Path":  "/p:sldLayout[1]",
+        "Description":  "The attribute \u0027type\u0027 has invalid value \u0027threeObj\u0027. The Enumeration constraint failed."
+    }
+]

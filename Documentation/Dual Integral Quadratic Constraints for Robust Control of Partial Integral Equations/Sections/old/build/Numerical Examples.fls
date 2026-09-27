@@ -1,7 +1,7 @@
-PWD c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\Sections\old
+PWD c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\Sections\old
 INPUT C:\Users\thijs\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\Sections\old\Numerical Examples.tex
-OUTPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality\Sections\old\build\Numerical Examples.log
+INPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\Sections\old\Numerical Examples.tex
+OUTPUT c:\Users\thijs\Desktop\PIETOOLS-Duality\Documentation\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\Sections\old\build\Numerical Examples.log
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\ieeetran\IEEEtran.cls
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\ieeetran\IEEEtran.cls
 INPUT C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex\latex\psnfss\ot1ptm.fd

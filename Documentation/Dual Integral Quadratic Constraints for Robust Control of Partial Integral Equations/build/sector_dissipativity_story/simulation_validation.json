@@ -1,0 +1,16 @@
+{
+  "beta": 0.7344121335837432,
+  "zStar": -196.16933347833915,
+  "duration": 12,
+  "frames": 288,
+  "gap_signs_verified": true,
+  "weighted_supply_identity_verified": true,
+  "original_integral_final": [
+    1371.1570597750208,
+    1613.4809681550787
+  ],
+  "unit_scaling_supply_integral_final": [
+    5484.628239100083,
+    6453.923872620315
+  ]
+}

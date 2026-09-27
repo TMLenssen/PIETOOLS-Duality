@@ -1,0 +1,398 @@
+\documentclass[tikz,border=6pt,multi=diagram]{standalone}
+\usepackage{fontspec}
+\usepackage{amsmath,amssymb,bm}
+\IfFontExistsTF{Aptos}{\setmainfont{Aptos}\setsansfont{Aptos}}{\setmainfont{Arial}\setsansfont{Arial}}
+\newcommand{\sansface}{\sffamily}
+\newcommand{\monoface}{\sffamily}
+\newcommand{\bmat}[1]{\begin{bmatrix}#1\end{bmatrix}}
+\newcommand{\mbf}[1]{\bm{#1}}
+\definecolor{paper}{HTML}{FFFFFF}
+\definecolor{paperSoft}{HTML}{F3F4F5}
+\definecolor{ink}{HTML}{252529}
+\definecolor{inkMute}{HTML}{747B82}
+\definecolor{scarlet}{HTML}{C81919}
+\colorlet{scarletDeep}{scarlet}
+\colorlet{inkGhost}{ink!12!paper}
+\usetikzlibrary{calc,positioning,backgrounds,shapes.geometric,arrows.meta,shapes,arrows,fit,decorations.pathreplacing}
+\newenvironment{diagram}{\color{ink}\sffamily}{}
+\input{lfr_macros.tex}
+\begin{document}
+\begin{diagram}
+\lfrdiagram[scale=1.5,
+                  plant label={$H(R_0,C_0)$},
+                  uncertainty label={\scalebox{0.58}{$\bmat{\textcolor{scarlet}{\delta_1} & \\ & \textcolor{scarlet}{\delta_2}}$}},
+                  plant width=1.0cm,
+                  plant height=1.0cm,
+                  uncertainty width=0.7cm,
+                  uncertainty height=0.7cm,
+                  vertical gap=1.04,
+                  loop width=0.5,
+                  show input=false,
+                  show output=false,
+                  w label={$w_\Delta$},
+                  z label={$z_\Delta$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.5,
+                  plant label={$H$},
+                  uncertainty label={$\Delta$},
+                  plant width=1.0cm,
+                  plant height=1.0cm,
+                  uncertainty width=0.7cm,
+                  uncertainty height=0.7cm,
+                  vertical gap=1.04,
+                  loop width=0.5,
+                  show input=false,
+                  show output=false,
+                  w label={$w_\Delta$},
+                  z label={$z_\Delta$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.5,
+                  plant label={$H_e$},
+                  uncertainty label={$\Delta$},
+                  plant width=1.0cm,
+                  plant height=1.0cm,
+                  uncertainty width=0.7cm,
+                  uncertainty height=0.7cm,
+                  vertical gap=1.04,
+                  loop width=0.5,
+                  input label={$w_p$},
+                  output label={$z_p$},
+                  show input=true,
+                  show output=true,
+                  w label={$w_\Delta$},
+                  z label={$z_\Delta$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.5,
+                    plant label={$H_{{e}}$},
+                    uncertainty label={$\Delta$},
+                    upper uncertainty label={},
+                    plant width=1.0cm,
+                    plant height=1.0cm,
+                    uncertainty width=0.7cm,
+                    uncertainty height=0.7cm,
+                    upper uncertainty width=0.7cm,
+                    upper uncertainty height=0.7cm,
+                    vertical gap=1.04,
+                    upper vertical gap=0.82,
+                    loop width=0.34,
+                    upper loop width=1,
+                    show input=true,
+                    show output=true,
+                    input label={$w_p$},
+                    output label={$z_p$},
+                    show upper uncertainty=false,
+                    w label={$w_\Delta$},
+                    z label={$z_\Delta$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.25,
+                plant label={ODE},
+                uncertainty label={$\Delta$},
+                plant width=1.0cm,
+                plant height=1.0cm,
+                uncertainty width=0.7cm,
+                uncertainty height=0.7cm,
+                vertical gap=1.04,
+                loop width=0.38,
+                show input=false,
+                show output=false,
+                w label={$w_\Delta$},
+                z label={$z_\Delta$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.25,
+                plant label={ODE},
+                uncertainty label={$\Delta$},
+                upper uncertainty label={},
+                plant width=1.0cm,
+                plant height=1.0cm,
+                uncertainty width=0.7cm,
+                uncertainty height=0.7cm,
+                upper uncertainty width=0.7cm,
+                upper uncertainty height=0.7cm,
+                vertical gap=1.04,
+                upper vertical gap=0.78,
+                loop width=0.38,
+                upper loop width=1,
+                show input=true,
+                show output=true,
+                input label={$w_p$},
+                output label={$z_p$},
+                show upper uncertainty=false,
+                w label={$w_\Delta$},
+                z label={$z_\Delta$},
+                upper w label={$w_p$},
+                upper z label={$z_p$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.22,
+                plant label={PDE},
+                uncertainty label={$\Delta$},
+                plant width=1.2cm,
+                plant height=1.2cm,
+                uncertainty width=0.8cm,
+                uncertainty height=0.8cm,
+                vertical gap=1.1,
+                upper vertical gap=0.82,
+                loop width=0.30,
+                upper loop width=0.66,
+                show input=false,
+                show output=false,
+                w label={$w_\Delta$},
+                z label={$z_\Delta$},]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.25,
+                plant label={PDE},
+                uncertainty label={$\Delta$},
+                upper uncertainty label={},
+                plant width=1.0cm,
+                plant height=1.0cm,
+                uncertainty width=0.7cm,
+                uncertainty height=0.7cm,
+                upper uncertainty width=0.7cm,
+                upper uncertainty height=0.7cm,
+                vertical gap=1.04,
+                upper vertical gap=0.78,
+                loop width=0.38,
+                upper loop width=1,
+                show input=true,
+                show output=true,
+                input label={$w_p$},
+                output label={$z_p$},
+                show upper uncertainty=false,
+                w label={$w_\Delta$},
+                z label={$z_\Delta$},
+                upper w label={$w_p$},
+                upper z label={$z_p$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.25,
+                plant label={PDE},
+                uncertainty label={$\Delta$},
+                upper uncertainty label={},
+                plant width=1.0cm,
+                plant height=1.0cm,
+                uncertainty width=0.7cm,
+                uncertainty height=0.7cm,
+                upper uncertainty width=0.7cm,
+                upper uncertainty height=0.7cm,
+                vertical gap=1.04,
+                upper vertical gap=0.78,
+                loop width=0.38,
+                upper loop width=1,
+                show input=true,
+                show output=true,
+                input label={$w_p$},
+                output label={$z_p$},
+                show upper uncertainty=false,
+                w label={$w_\Delta$},
+                z label={$z_\Delta$},
+                upper w label={$w_p$},
+                upper z label={$z_p$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.25,
+                plant label={$H_{\{PIE\}}$},
+                uncertainty label={$\Delta$},
+                upper uncertainty label={},
+                plant width=1.0cm,
+                plant height=1.0cm,
+                uncertainty width=0.7cm,
+                uncertainty height=0.7cm,
+                upper uncertainty width=0.7cm,
+                upper uncertainty height=0.7cm,
+                vertical gap=1.04,
+                upper vertical gap=0.78,
+                loop width=0.38,
+                upper loop width=1,
+                show input=true,
+                show output=true,
+                input label={$w_p$},
+                output label={$z_p$},
+                show upper uncertainty=false,
+                w label={$w_\Delta$},
+                z label={$z_\Delta$},
+                upper w label={$w_p$},
+                upper z label={$z_p$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.45,
+            plant label={$H$},
+            uncertainty label={$\Delta$},
+            upper uncertainty label={},
+            plant width=1.0cm,
+            plant height=1.0cm,
+            uncertainty width=0.7cm,
+            uncertainty height=0.7cm,
+            upper uncertainty width=0.7cm,
+            upper uncertainty height=0.7cm,
+            vertical gap=1.04,
+            upper vertical gap=0.82,
+            loop width=0.34,
+            upper loop width=1,
+            show input=true,
+            show output=true,
+            input label={$w_p$},
+            output label={$z_p$},
+            show upper uncertainty=false,
+            w label={$w_\Delta$},
+            z label={$z_\Delta$},
+            upper w label={$w_p$},
+            upper z label={$z_p$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.45,
+            plant label={$H$},
+            uncertainty label={$\Delta$},
+            upper uncertainty label={},
+            plant width=1.0cm,
+            plant height=1.0cm,
+            uncertainty width=0.7cm,
+            uncertainty height=0.7cm,
+            upper uncertainty width=0.7cm,
+            upper uncertainty height=0.7cm,
+            vertical gap=1.04,
+            upper vertical gap=0.82,
+            loop width=0.34,
+            upper loop width=1,
+            show input=true,
+            show output=true,
+            input label={$w_p$},
+            output label={$z_p$},
+            show upper uncertainty=false,
+            w label={$w_\Delta$},
+            z label={$z_\Delta$},
+            upper w label={$w_p$},
+            upper z label={$z_p$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.15,
+            plant label={},
+            uncertainty label={$\Delta$},
+            plant width=1cm,
+            plant height=1cm,
+            uncertainty width=0.6cm,
+            uncertainty height=0.6cm,
+            loop width=0.38,
+            show plant=false,
+            closed loop=false,
+            show input=false,
+            show output=false,
+            show w=false,
+            show z=false,
+            show disconnect box=false,
+            show delta w=true,
+            show delta z=true,
+            delta w label={$\Delta z_\Delta$},
+            delta z label={$z_\Delta$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.15,
+            plant label={${H}$},
+            uncertainty label={$\Delta$},
+            upper uncertainty label={$\Delta$},
+            plant width=1cm,
+            plant height=1cm,
+            uncertainty width=0.6cm,
+            uncertainty height=0.6cm,
+            upper uncertainty width=0.6cm,
+            upper uncertainty height=0.6cm,
+            vertical gap=1.02,
+            upper vertical gap=0.82,
+            loop width=0.30,
+            upper loop width=1,
+            show input=false,
+            show output=false,
+            show upper uncertainty=false,
+            w label={$w_\Delta$},
+            z label={$z_\Delta$},
+            upper w label={$w_{\Delta}$},
+            upper z label={$z_{\Delta}$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.15,
+            plant label={${H}$},
+            uncertainty label={$\Delta$},
+            plant width=1cm,
+            plant height=1cm,
+            uncertainty width=0.6cm,
+            uncertainty height=0.6cm,
+            vertical gap=1.02,
+            loop width=0.30,
+            show input=true,
+            show output=true,
+            input label={$w_p$},
+            output label={$z_p$},
+            w label={$w_\Delta$},
+            z label={$z_\Delta$}]
+\end{diagram}
+
+\begin{diagram}
+\lfrdiagram[scale=1.15,
+            plant label={${H}$},
+            uncertainty label={$\Delta$},
+            upper uncertainty label={},
+            plant width=1cm,
+            plant height=1cm,
+            uncertainty width=0.6cm,
+            uncertainty height=0.6cm,
+            upper uncertainty width=0.6cm,
+            upper uncertainty height=0.6cm,
+            vertical gap=1.02,
+            upper vertical gap=0.82,
+            loop width=0.30,
+            upper loop width=1,
+            show input=true,
+            show output=true,
+            input label={$w_p$},
+            output label={$z_p$},
+            show upper uncertainty=false,
+            w label={$w_\Delta$},
+            z label={$z_\Delta$},
+            upper w label={$w_p$},
+            upper z label={$z_p$}]
+\end{diagram}
+
+\begin{diagram}
+\observerdiagram[plant label = $H$,
+scale=1.3,
+plant uncertainty label={$\Delta$},
+observer uncertainty label={$\Delta$},
+show observer=false,
+show input=true,
+show output=true,
+w label={$w_p$},
+z label={$z$},
+show performance uncertainty=false,
+show error output=false]
+\end{diagram}
+
+\begin{diagram}
+\observerdiagram[plant label = $H$,
+scale=1.3,
+plant uncertainty label={$\Delta$},
+observer uncertainty label={$\Delta$},
+show performance uncertainty=false,
+w label={$w_p$},
+z label={$z$},
+show error output=true]
+\end{diagram}
+\end{document}

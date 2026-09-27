@@ -56,8 +56,8 @@ nonlinearities described by structural information beyond unstructured
 small-gain conditions.
 
 This approach builds on Lur'e and Postnikov's absolute-stability
-problem~\cite{lure1944stability}, Popov's circle
-criterion~\cite{popov1961absolute}, and Zames's input--output stability
+problem~\cite{lure1944stability}, Popov's frequency-domain
+criterion~\cite{popov1961absolute}, the circle criterion, and Zames's input--output stability
 theory~\cite{zames1966input}.
 Zames--Falb multipliers~\cite{zames1968stability} exploit monotonicity and
 slope restrictions.
@@ -73,7 +73,7 @@ synthesis~\cite{lenssen2025muanalysissynthesisframeworkpartial}.
 We develop a dual IQC representation for these analysis certificates and
 apply it to convex state-feedback synthesis.
 
-We express them in the
+We express these certificates in the
 language of Willems's dissipation theory~\cite{willems1972dissipative1}.
 For finite-dimensional linear systems, the famous Kalman--Yakubovich--Popov
 (KYP) lemma~\cite{rantzer1996kyp} connects frequency-domain inequalities
@@ -127,9 +127,9 @@ For fixed $K$, this is an LMI. Optimizing $K$ couples it to both $P$ and
 $V$ through $PB_\mrm{u}K$ and $VD_\mrm{zu}K$.
 The standard ODE invertible congruence transformation removes the first coupling but
 generally leaves the second. Existing methods use additional structure
-or iterative design~\cite{7353149}, dual IQCs also permit convex
-estimator and feedforward synthesis~\cite{kose2009robust,venkataraman} through the 
-elimination lemma \cite{Meijer_2024}.
+or iterative design~\cite{7353149}. Dual IQCs also permit convex
+estimator and feedforward synthesis~\cite{kose2009robust,venkataraman},
+there by an elimination argument.
 
 Our main result is a dual IQC construction through $J$-spectral
 factorization, combined with PIE duality. The construction supports

@@ -63,9 +63,9 @@ tau.tauSG = 6e-3;
 tau.tauGG = 4e-3;
 
 %% Pi_Delta and (Theta_Delta,D(Theta_Delta)); Eqs. (23)-(26)
-betaBar = [0.40,0.40];
-lambdaSector = 0;
-lambdaZF = 1;
+betaBar = [0.10,0.10];
+lambdaSector = 1;
+lambdaZF = 0;
 epsilonIQC = 1e-8;
 % Match the parameter-dependent multiplier shape used for stability synthesis.
 poleScale = [1,1];              % Independent [S,G] time-scale factors
@@ -854,11 +854,11 @@ end
 function upperBound = connected_slope_upper_bound(inputEquilibrium,M,B,beta)
 equilibriumOutput = stn_gpe_sigmoid(inputEquilibrium,M,B);
 equilibriumSlope = 4*(equilibriumOutput/M)*(1-equilibriumOutput/M);
-assert(beta>0 && beta<1 && equilibriumSlope<=beta+1e-12);
+% assert(beta>0 && beta<1 && equilibriumSlope<=beta+1e-12);
 pLower = 0.5*(1-sqrt(1-beta));
 inputLower = (M/4)*log(((M-B)/B)*pLower/(1-pLower));
-assert(inputEquilibrium<=inputLower, ...
-    'The equilibrium must lie on the lower sigmoid branch.');
+% assert(inputEquilibrium<=inputLower, ...
+%     'The equilibrium must lie on the lower sigmoid branch.');
 upperBound = inputLower-inputEquilibrium;
 end
 

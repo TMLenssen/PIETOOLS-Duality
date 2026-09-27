@@ -1,0 +1,47 @@
+﻿[
+    {
+        "id":  101,
+        "name":  "Slide title",
+        "left":  36,
+        "top":  30.25,
+        "width":  648,
+        "height":  37.5,
+        "text":  "Let’s analyse!"
+    },
+    {
+        "id":  2,
+        "name":  "Baked figure with larger labels",
+        "left":  570.374939,
+        "top":  26.62504,
+        "width":  138.374954,
+        "height":  43.87496,
+        "text":  ""
+    },
+    {
+        "id":  123,
+        "name":  "Footer",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  124,
+        "name":  "Slide number",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "29"
+    },
+    {
+        "id":  82,
+        "name":  "Baked figure with larger labels",
+        "left":  554.25,
+        "top":  92.62504,
+        "width":  154.874954,
+        "height":  97.12504,
+        "text":  ""
+    }
+]

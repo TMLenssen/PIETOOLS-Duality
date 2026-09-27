@@ -1,0 +1,47 @@
+{
+  "model": "Parkinsonian GPe\u2013STN delayed network from the manuscript and stn_parkinsonian_stimulation.m",
+  "duration_s": 0.4,
+  "dt_s": 1e-05,
+  "sector_lower": [
+    0,
+    0
+  ],
+  "sector_upper": [
+    0.7344121335837432,
+    0.7048314668921489
+  ],
+  "sector_tangency": [
+    281.66788314129474,
+    406.9372963710829
+  ],
+  "equilibrium": [
+    20.442515541481004,
+    21.836618407412388
+  ],
+  "shifted_inputs": [
+    -196.16933347833915,
+    -285.17380246089505
+  ],
+  "weights": {
+    "wSG": 20,
+    "wGS": 10.7,
+    "wGG": 12.3,
+    "wCS": 9.2,
+    "wXG": 139.4
+  },
+  "refinement_error": 0.002697548892555801,
+  "existing_MATLAB_trajectory_error": 4.888534022029489e-12,
+  "minimum_supply": [
+    -0.0,
+    1.8471315967546724e-06
+  ],
+  "integral_final": [
+    1371.1570597750208,
+    1613.4809681550787
+  ],
+  "integral_refinement_error": [
+    4.889006959274411e-06,
+    1.553460674585949e-05
+  ],
+  "description": "w_i(t)=delta_i(z_i(t)) is the activation output, not the firing-rate deviation x_i(t). q_i=w_i(beta_i*z_i-w_i)>=0. beta_i are tight global sector bounds, not slope bounds. The manuscript value 0.492 is only locally applicable. Delta dissipativity does not imply feedback stability."
+}

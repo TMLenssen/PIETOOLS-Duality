@@ -340,26 +340,6 @@ R.~Venkataraman, P.~Seiler,
   {\path{doi:https://doi.org/10.1002/rnc.3913}}.
 \newline\urlprefix\url{https://onlinelibrary.wiley.com/doi/abs/10.1002/rnc.3913}
 
-\bibitem{Meijer_2024}
-T.~J. Meijer, T.~Holicki, S.~v.~d. Eijnden, C.~W. Scherer, W.~M. Heemels,
-  \href{http://dx.doi.org/10.1109/TAC.2024.3371374}{The non-strict projection
-  lemma}, IEEE Transactions on Automatic Control 69~(8) (2024) 5584–5590.
-\newblock \href {https://doi.org/10.1109/tac.2024.3371374}
-  {\path{doi:10.1109/tac.2024.3371374}}.
-\newline\urlprefix\url{http://dx.doi.org/10.1109/TAC.2024.3371374}
-
-\bibitem{https://doi.org/10.1002/sapm1960391269}
-R.~M. Redheffer,
-  \href{https://onlinelibrary.wiley.com/doi/abs/10.1002/sapm1960391269}{On a
-  certain linear fractional transformation}, Journal of Mathematics and Physics
-  39~(1-4) (1960) 269--286.
-\newblock \href
-  {http://arxiv.org/abs/https://onlinelibrary.wiley.com/doi/pdf/10.1002/sapm1960391269}
-  {\path{arXiv:https://onlinelibrary.wiley.com/doi/pdf/10.1002/sapm1960391269}},
-  \href {https://doi.org/https://doi.org/10.1002/sapm1960391269}
-  {\path{doi:https://doi.org/10.1002/sapm1960391269}}.
-\newline\urlprefix\url{https://onlinelibrary.wiley.com/doi/abs/10.1002/sapm1960391269}
-
 \bibitem{veenman2016robust}
 J.~Veenman, C.~Scherer, H.~K{\"o}ro{\u{g}}lu, {Robust stability and performance
   analysis based on integral quadratic constraints}, European Journal of

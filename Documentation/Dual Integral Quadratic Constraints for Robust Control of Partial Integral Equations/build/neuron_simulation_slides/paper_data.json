@@ -1,0 +1,38 @@
+{
+  "source": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Code\\Executables\\Examples\\stn_gpe_sector_simulation.mat",
+  "controllerFile": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Code\\Executables\\Examples\\stn_gpe_sector_controller.mat",
+  "alpha": 0.4921875,
+  "equilibrium": [
+    20.442515541480976,
+    21.836618407412114
+  ],
+  "validation": {
+    "simOpen": [
+      2.2608962838580646E-8,
+      3.2040968593327063E-8,
+      3.2456918437910923E-8,
+      1.2828309385682354E-7
+    ],
+    "simClosed": [
+      1.3182564126586194E-7,
+      3.9578753763820018E-8,
+      4.99289739722234E-7,
+      2.3417889352050505E-6,
+      3.5873637285743776E-7
+    ]
+  },
+  "pulseInterval": [
+    0.1,
+    0.14
+  ],
+  "pulseAmplitude": [
+    10,
+    -10
+  ],
+  "initialHistory": [
+    0,
+    0
+  ],
+  "controlScaleToPaper": 27.6,
+  "coordinates": "equilibrium deviations"
+}

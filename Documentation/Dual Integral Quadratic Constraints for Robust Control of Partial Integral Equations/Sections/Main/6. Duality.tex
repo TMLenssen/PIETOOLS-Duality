@@ -14,7 +14,7 @@ We begin by restating the main theorem from \cite{shivaknew}. In \cite{shivaknew
 the theorem is formulated for the case where $\mcl{D}$ is a matrix and the 
 induced $L_2$ norm is bounded over an infinite time horizon. Generalizing this result 
 to the case where $\mcl{D}$ is a PI operator and considering the bounded truncated 
-induced $L_{[a,b]}$ norm does not alter the proof.
+induced $L_{[a,b]}$ norm does not alter the argument.
 
 
 \begin{theorem}[Dual $L_2$-gain
@@ -46,7 +46,10 @@ Taking adjoints and using the push-through identity yields
 \end{aligned}
 \end{equation*}
 This is exactly the state operator of $P^\top\star\Delta^*$. Thus, \cite[Thm.~6]{shivaknew} establishes
-equivalence of weak convergence for the primal and dual states. 
+equivalence of weak convergence for the primal and dual states, where weak
+convergence is convergence of $\mcl T\mbf x(t)$ to zero in the weak topology
+of $\RL$, that is $\ip{\mcl T\mbf x(t)}{\mbf y}_{\RL}\to0$ for every
+$\mbf y\in\RL$.
 Exponential stability is likewise equivalent
 by \cite[Cor.~8]{shivaknew}. For the constant repeated real uncertainty
 $\Delta=\delta I$ in Section~\ref{ex:coupled-heat},
@@ -63,25 +66,32 @@ uncertainties through dual IQCs and $J$-spectral factorizations of strict
 Positive--Negative (PN) IQCs. We adopt the same strategy.
 We first reformulate the IQC condition as a strict small-gain requirement 
 on an associated system \(G_0\) with respect to the 
-\(L_{e,[a,b]}\) norm, then apply Thm.\ref{thm:dual-l2-gain},
+truncated \(L_{[a,b]}\) norm, the extended space itself carrying no norm,
+then apply Thm.\ref{thm:dual-l2-gain},
 and finally reconstruct the dual system. 
 In their framework, this relationship is established through congruence 
 transformations of the analysis LMIs~\cite[Sec.~2-3]{venkataraman}. Our approach relies 
-on the induced $L_{e,[a,b]}$-gain duality result. Let us define a hard J-spectral factorization.
+on the induced truncated $L_{[a,b]}$-gain duality result. Let us define a hard J-spectral factorization.
 \begin{definition}[$J$-Spectral Factorization and Dual Filter] 
 \label{def:dynamic-filters}\label{def:factorization}
-For a given IQC defined by $(\Psi,{\mcl V})$, we say that  a causal linear bounded operator $\Theta$ and $J_{\mbf n_{\mrm{z}},\mbf n_{\mrm{w}}}:=\bmat{ I_{\mbf n_{\mrm{z}}} & 0 \\ 0& -I_{\mbf n_{\mrm{w}}} }$
-(the pair $(\Theta,J_{\mbf n_{\mrm{z}},\mbf n_{\mrm{w}}})$) is a $J$-spectral factorization of $(\Psi,{\mcl V})$ if, 
-\begin{equation*}
-\ip{\Psi\bmat{z\\w}}
-{\mcl M_{\mcl V}\Psi\bmat{z\\w}}_{L_{[a,b]}}>0
-\end{equation*}
-can be factorized as
-\begin{equation*}
-\ip{p_T\Theta\bmat{z\\w}}
-{p_TJ_{\mbf n_{\mrm{z}},\mbf n_{\mrm{w}}}\Theta\bmat{z\\w}}_{L_{[a,b]}}>0 \quad \forall T>0,
-\end{equation*}
-Such that $\Theta,\Theta_{22}$ are causally boundedly invertible. Following the 
+For a given IQC defined by $(\Psi,{\mcl V})$ and a set $\mbf\Delta'$ of
+causal bounded operators, we say that a causal linear bounded operator
+$\Theta$ and $J_{\mbf n_{\mrm{z}},\mbf n_{\mrm{w}}}:=\bmat{I_{\mbf n_{\mrm{z}}}&0\\0&-I_{\mbf n_{\mrm{w}}}}$
+(the pair $(\Theta,J_{\mbf n_{\mrm{z}},\mbf n_{\mrm{w}}})$) is a hard
+$J$-spectral factorization of $(\Psi,{\mcl V})$ relative to $\mbf\Delta'$ if,
+\begin{itemize}
+\item $\Theta^*\mcl M_{J_{\mbf n_{\mrm z},\mbf n_{\mrm w}}}\Theta
+=\Psi^*\mcl M_{\mcl V}\Psi$,
+\item $\Theta$ and $\Theta_{22}$ are causally boundedly invertible,
+\item the factorization is hard relative to $\mbf\Delta'$: for every
+$\Delta'\in\mbf\Delta'$, every $z\in L_{\mrm e,[a,b]}$ and every $T\geq0$,
+\[
+\ip{p_T\Theta\bmat{z\\\Delta'z}}
+{p_T\mcl M_{J_{\mbf n_{\mrm z},\mbf n_{\mrm w}}}\Theta\bmat{z\\\Delta'z}}_{L_{[a,b]}}
+\geq0.
+\]
+\end{itemize}
+Following the
 dual-filter construction in~\cite{venkataraman}, we use $\mbf D(\Theta)$ to 
 denote the dual filter associated with $\Theta$ of the form
 \begin{equation*}
@@ -89,7 +99,22 @@ denote the dual filter associated with $\Theta$ of the form
 :=
 \left(\hat{J}^*\Theta^\top\hat{J}\right)^{-1},
 \end{equation*}
-where $\hat{J}:=\bmat{0_{\mbf n_{\mrm{z}}\times\mbf n_{\mrm{w}}}&I_{\mbf n_{\mrm{z}}}\\-I_{\mbf n_{\mrm{w}}}&0_{\mbf n_{\mrm{w}}\times\mbf n_{\mrm{z}}}}$.
+where $\hat{J}=\hat{J}_{\mbf n_{\mrm z},\mbf n_{\mrm w}}:=\bmat{0_{\mbf n_{\mrm{z}}\times\mbf n_{\mrm{w}}}&I_{\mbf n_{\mrm{z}}}\\-I_{\mbf n_{\mrm{w}}}&0_{\mbf n_{\mrm{w}}\times\mbf n_{\mrm{z}}}}$.
+Write $\hat J_1:=\hat J_{\mbf n_{\mrm z},\mbf n_{\mrm w}}$ and
+$\hat J_2:=\hat J_{\mbf n_{\mrm w},\mbf n_{\mrm z}}$. The dual filter
+operation has the following properties,
+\begin{enumerate}
+\item Multiplicativity, $\mbf D(\Theta_1\Theta_2)=\mbf D(\Theta_1)\mbf D(\Theta_2)$
+for invertible $\Theta_1,\Theta_2$ of compatible dimension. Indeed
+$\hat J\hat J^*=I$, so
+$\hat J^*(\Theta_1\Theta_2)^\top\hat J
+=\hat J^*\Theta_2^\top\hat J\hat J^*\Theta_1^\top\hat J$,
+and inverting reverses the order again.
+\item Involutivity, $\mbf D(\mbf D(\Theta))=\Theta$, from
+$\hat J_1\hat J_2=-I$ and $(\Theta^\top)^\top=\Theta$.
+\item Scaling, $\mbf D(c\Theta)=c^{-1}\mbf D(\Theta)$ for a nonzero scalar
+$c$, since $\mbf D$ inverts its argument.
+\end{enumerate}
 \end{definition}
 
 \begin{remark}[Hard factorization requirement]
@@ -106,11 +131,11 @@ acting on infinite-dimensional channels.
 \end{remark}
 For further brevity, define the primal quadratic form
 \[\mcl{I} := \ip{p_T \Theta\bmat{Pw \\ w}}
-{p_T J_{\mbf{n}_{\mrm{z}}, \mbf{n}_{\mrm{w}}}\Theta\bmat{Pw \\ w}}_{L_{[a,b]}} .\]
+{p_T \mcl M_{J_{\mbf{n}_{\mrm{z}}, \mbf{n}_{\mrm{w}}}}\Theta\bmat{Pw \\ w}}_{L_{[a,b]}} .\]
 The corresponding dual form is evaluated on the graph of $P^\top$ using the
 dual filter $\mbf D(\Theta)$ and the $J_{\mbf{n}_w, \mbf{n}_z}$ operator,
 \[\underline{\mcl{I}} := \ip{p_T \mbf{D}(\Theta)\bmat{P^\top\underline{w} \\ \underline{w}}}
-{p_T J_{\mbf{n}_{\mrm{w}}, \mbf{n}_{\mrm{z}}}\mbf{D}(\Theta)\bmat{P^\top\underline{w} \\ \underline{w}}}_{L_{[a,b]}} .\]
+{p_T \mcl M_{J_{\mbf{n}_{\mrm{w}}, \mbf{n}_{\mrm{z}}}}\mbf{D}(\Theta)\bmat{P^\top\underline{w} \\ \underline{w}}}_{L_{[a,b]}} .\]
 The following theorem is our \emph{main result} and establishes the system relations in Figure~\ref{fig:potapov-ginzburg-commutative-diagram} 
 \begin{theorem}[Primal--dual IQC equivalence]\label{thm:dual-iqc}
 Let $P$ be as in Definition~\ref{def:uncertain-interconnection}, and let
@@ -123,7 +148,7 @@ PIE realizations.    Finally, assume $(\Theta_{21}P +\Theta_{22})$ has a bounded
     \end{equation*} 
     then the following statements are equivalent,
     \begin{enumerate}
-        \item There exists some $\rho<1$ such that $\|p_T G_0 \tilde{w}\|^2_{L_{[a,b]}}\leq\rho\|p_T \tilde{w}\|^2_{L_{[a,b]}}$ for every $\tilde{w}$ and $T\geq 0 $.
+        \item There exists some $\rho<1$ such that $\|p_T G_0 \tilde{w}\|_{L_{[a,b]}}\leq\rho\|p_T \tilde{w}\|_{L_{[a,b]}}$ for every $\tilde{w}$ and $T\geq 0 $.
         \item There exists some $\epsilon > 0$ such that $\mcl{I}\leq - \epsilon \|p_T w\|_{L_{[a,b]}}^2$ for every $w$ and $T\geq0$.
         \item There exists some $\underline{\epsilon}>0$ such that $\underline{\mcl{I}} \leq - \underline{\epsilon}\|p_T\underline{w}\|_{L_{[a,b]}}^2$ for every $\underline w$ and $T\geq0$.
     \end{enumerate}
@@ -131,7 +156,11 @@ PIE realizations.    Finally, assume $(\Theta_{21}P +\Theta_{22})$ has a bounded
 \begin{proof}
     See \ref{proof:dual-iqc}.
 \end{proof}
+The proof of Theorem~\ref{thm:dual-iqc} is operator-theoretic. It uses
+boundedness, causality, adjoints and the algebra of Section~\ref{sec:preliminaries}.
+
 \subsection{Dual robust-performance certificate}
+\dualsystemcomponents
 
 Theorem~\ref{thm:dual-iqc} establishes equivalence of the strict primal and dual IQC
 inequalities through a small-gain requirement on $G_0$. Either side of the
@@ -143,14 +172,15 @@ either the primal or dual realization.
    Let $P$ be as in Definition~\ref{def:uncertain-interconnection}, and let
 $(\Theta,J_{\mbf n_{\mrm z},\mbf n_{\mrm w}})$ be a hard
 $J$-spectral factorization. Assume that both $P$ and $\Theta$ admit
-PIE realizations. Let $\Delta \in \mbf{\Delta}$ such that, 
+bounded PIE realizations. Let $\Delta \in \mbf{\Delta}$ such that,
     \begin{itemize}
         \item The interconnection $P\star\Delta$ is well-posed for all
         $\Delta\in\mbf{\Delta}$.
         \item The IQC in Definition~\ref{def:uncertainty-iqc} is satisfied for all $\Delta\in\mbf{\Delta}$.
         \item Let $\mcl D$, $\mcl{D}_\mrm{P}$ denote the feedthrough of $\Theta$ and $P$ respectively, such that $(\mcl{D}_{21}\mcl{D}_\mrm{P} + \mcl{D}_{22})^{-1}\in\Pi_4$.
     \end{itemize}
-    Suppose that \emph{either} of the two statements hold for some $\mcl{P} = \mcl{P}^* \succeq 0 \in \Pi_4$.
+    Suppose that \emph{either} of the two statements hold for some $\mcl{P} = \mcl{P}^* \succeq 0 \in \Pi_4$
+    and a positive margin $\epsilon$ or $\underline\epsilon$, respectively.
     \begin{itemize}
         \item \begin{minipage}[c]{\linewidth}
         \begin{equation*}

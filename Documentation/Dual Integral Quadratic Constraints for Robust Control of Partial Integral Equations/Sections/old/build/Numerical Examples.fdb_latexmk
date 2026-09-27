@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1789056409.24038 "c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality/Sections/old/Numerical Examples.tex" "build/Numerical Examples.pdf" "Numerical Examples" 1789056410.27524 2
+["pdflatex"] 1790242467.92263 "c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations/Sections/old/Numerical Examples.tex" "build/Numerical Examples.pdf" "Numerical Examples" 1790242468.71159 2
   "C:/Users/thijs/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1775831959 13333487 67f9f610ed9594df8600efebf1b67193 ""
   "C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/times/ptmb7t.tfm" 1136768654 2172 fd0c924230362ff848a33632ed45dc23 ""
   "C:/Users/thijs/AppData/Local/Programs/MiKTeX/fonts/tfm/adobe/times/ptmbi7t.tfm" 1136768654 2228 e564491c42a4540b5ebb710a75ff306c ""
@@ -42,10 +42,10 @@
   "C:/Users/thijs/AppData/Local/Programs/MiKTeX/tex/latex/refcount/refcount.sty" 1576433952 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/thijs/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1751104012 9684 a33a14b82ce60d6e77cb9be689d79ee6 ""
   "C:/Users/thijs/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
-  "Numerical Examples.tex" 1789056405 8422 36ef28d6439b3bdb949202cb5f87c203 ""
-  "build/Numerical Examples.aux" 1789056401 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
+  "Numerical Examples.tex" 1789729567 8616 36ef28d6439b3bdb949202cb5f87c203 ""
+  "build/Numerical Examples.aux" 1790242459 32 3985256e7290058c681f74d7a3565a19 "pdflatex"
   "build/shortcuts.tex" 0 -1 0 ""
-  "c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality/Sections/old/Numerical Examples.tex" 1789056405 8422 36ef28d6439b3bdb949202cb5f87c203 ""
+  "c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations/Sections/old/Numerical Examples.tex" 1789729567 8616 36ef28d6439b3bdb949202cb5f87c203 ""
   "shortcuts.tex" 0 -1 0 ""
   (generated)
   "build/Numerical Examples.aux"

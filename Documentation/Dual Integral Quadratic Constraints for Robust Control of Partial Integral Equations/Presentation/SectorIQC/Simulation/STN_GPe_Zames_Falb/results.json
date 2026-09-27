@@ -1,0 +1,41 @@
+{
+  "alpha": 1.0,
+  "poles": [
+    -71.42857142857143,
+    -166.66666666666666,
+    -250.0
+  ],
+  "residues": [
+    11.84939091915836,
+    51.67958656330749,
+    47.67441860465116
+  ],
+  "filter_L1_norm": 0.6666666666666666,
+  "filter_initial_state": "zero",
+  "supply": "q_i(t)=2*w_i(t)*[alpha*z_i(t)-w_i(t)-H(alpha*z_i-w_i)(t)]",
+  "normalization": "Matches the unregularized Pi_ZF matrix in manuscript Section 9.",
+  "duration_s": 0.4,
+  "timestep_s": 1e-05,
+  "minimum_supply": [
+    -2830.986368297108,
+    -2471.47486915887
+  ],
+  "minimum_integral": [
+    -0.0,
+    0.0
+  ],
+  "final_integral": [
+    2031.194901171165,
+    5149.969413595803
+  ],
+  "refinement_max_error": [
+    0.00047490829729213146,
+    0.0019025838628294878
+  ],
+  "trajectory_max_slope": [
+    0.8040253386837186,
+    0.9999999985460555
+  ],
+  "source_trajectory": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\Presentation\\SectorIQC\\Simulation\\STN_GPe\\stn_gpe_sector_data.npz",
+  "qualification": "Same exact nonlinearities and plant response as sector simulation. The paper synthesis slope .562 is local and invalid for this trajectory. Global slope 1 is used with the identical paper filter. No epsilon regularization is included. This illustrates a hard IQC, not closed-loop stability."
+}

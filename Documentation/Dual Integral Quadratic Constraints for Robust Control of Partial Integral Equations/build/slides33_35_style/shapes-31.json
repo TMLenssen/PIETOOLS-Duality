@@ -1,0 +1,92 @@
+﻿[
+    {
+        "id":  101,
+        "name":  "Slide title",
+        "left":  36,
+        "top":  30.25,
+        "width":  648,
+        "height":  37.5,
+        "text":  "Analysis"
+    },
+    {
+        "id":  2,
+        "name":  "Baked figure with larger labels",
+        "left":  570.374939,
+        "top":  26.62504,
+        "width":  138.374954,
+        "height":  43.87496,
+        "text":  ""
+    },
+    {
+        "id":  123,
+        "name":  "Footer",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  124,
+        "name":  "Slide number",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "29"
+    },
+    {
+        "id":  82,
+        "name":  "Baked figure with larger labels",
+        "left":  77.25,
+        "top":  116.25,
+        "width":  343.874969,
+        "height":  211.5,
+        "text":  ""
+    },
+    {
+        "id":  84,
+        "name":  "Content Placeholder 2",
+        "left":  475.0586,
+        "top":  97.2148056,
+        "width":  224,
+        "height":  262,
+        "text":  "Replace ∆ with some scaling\rCost function "
+    },
+    {
+        "id":  3,
+        "name":  "TextBox 2",
+        "left":  127.019608,
+        "top":  68.84559,
+        "width":  210.440231,
+        "height":  23.6285038,
+        "text":  "Final representation the system"
+    },
+    {
+        "id":  4,
+        "name":  "Rectangle 3",
+        "left":  72.1735458,
+        "top":  93.56969,
+        "width":  368.887177,
+        "height":  255.5,
+        "text":  ""
+    },
+    {
+        "id":  6,
+        "name":  "Rectangle 5",
+        "left":  552,
+        "top":  2.23645663,
+        "width":  165.911331,
+        "height":  81.1136246,
+        "text":  ""
+    },
+    {
+        "id":  11,
+        "name":  "Freeform 10",
+        "left":  370.5,
+        "top":  22.0254326,
+        "width":  155.5,
+        "height":  56.4745674,
+        "text":  ""
+    }
+]

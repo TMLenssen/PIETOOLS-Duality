@@ -1,0 +1,1534 @@
+﻿[
+    {
+        "Index":  1,
+        "Shapes":  [
+                       {
+                           "Id":  6,
+                           "Name":  "Titel 5",
+                           "Type":  14,
+                           "Left":  -7.874016E-05,
+                           "Top":  229.531418,
+                           "Width":  719.999939,
+                           "Height":  62.3622055,
+                           "Text":  "Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations "
+                       },
+                       {
+                           "Id":  7,
+                           "Name":  "Ondertitel 6",
+                           "Type":  14,
+                           "Left":  -7.874016E-05,
+                           "Top":  292.015045,
+                           "Width":  719.999939,
+                           "Height":  22.677166,
+                           "Text":  "An engineering overview"
+                       },
+                       {
+                           "Id":  8,
+                           "Name":  "Tijdelijke aanduiding voor tekst 7",
+                           "Type":  14,
+                           "Left":  0,
+                           "Top":  314.25,
+                           "Width":  719.999939,
+                           "Height":  45.37504,
+                           "Text":  "T.M. Lenssen – supervisor: Amritam Das"
+                       },
+                       {
+                           "Id":  9,
+                           "Name":  "Tijdelijke aanduiding voor tekst 8",
+                           "Type":  14,
+                           "Left":  -0.524960637,
+                           "Top":  359.624969,
+                           "Width":  578.524963,
+                           "Height":  45.37504,
+                           "Text":  "CS – System \u0026 Control / 30-09-2026"
+                       }
+                   ],
+        "Effects":  [
+
+                    ]
+    },
+    {
+        "Index":  2,
+        "Shapes":  [
+                       {
+                           "Id":  2,
+                           "Name":  "Title 1",
+                           "Type":  14,
+                           "Left":  45.526062,
+                           "Top":  46.3554344,
+                           "Width":  283.125031,
+                           "Height":  57.6565361,
+                           "Text":  "Rigid body representation\u000bOrdinary Differential Equation (ODE)"
+                       },
+                       {
+                           "Id":  5,
+                           "Name":  "Footer Placeholder 4",
+                           "Type":  14,
+                           "Left":  87.75008,
+                           "Top":  359.716522,
+                           "Width":  554.499939,
+                           "Height":  45.354332,
+                           "Text":  "Msc Defence T.M. Lenssen"
+                       },
+                       {
+                           "Id":  6,
+                           "Name":  "Slide Number Placeholder 5",
+                           "Type":  14,
+                           "Left":  0.000157480317,
+                           "Top":  359.716522,
+                           "Width":  87.74992,
+                           "Height":  45.06189,
+                           "Text":  "2"
+                       },
+                       {
+                           "Id":  7,
+                           "Name":  "Text Placeholder 6",
+                           "Type":  14,
+                           "Left":  371.25,
+                           "Top":  46.2047234,
+                           "Width":  283.812531,
+                           "Height":  57.6565361,
+                           "Text":  "Flexible body representation\rPartial Differential Equation (PDE)"
+                       },
+                       {
+                           "Id":  20,
+                           "Name":  "cart_rigid",
+                           "Type":  16,
+                           "Left":  59.5,
+                           "Top":  137.75,
+                           "Width":  283.375031,
+                           "Height":  159.375046,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  21,
+                           "Name":  "cart_flexible",
+                           "Type":  16,
+                           "Left":  371.875031,
+                           "Top":  137.75,
+                           "Width":  283.25,
+                           "Height":  159.375046,
+                           "Text":  ""
+                       }
+                   ],
+        "Effects":  [
+                        {
+                            "ShapeId":  20,
+                            "ShapeName":  "cart_rigid",
+                            "EffectType":  83,
+                            "Exit":  0,
+                            "Trigger":  1,
+                            "Duration":  10,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  21,
+                            "ShapeName":  "cart_flexible",
+                            "EffectType":  83,
+                            "Exit":  0,
+                            "Trigger":  1,
+                            "Duration":  10,
+                            "Delay":  0
+                        }
+                    ]
+    },
+    {
+        "Index":  3,
+        "Shapes":  [
+                       {
+                           "Id":  4,
+                           "Name":  "Footer Placeholder 3",
+                           "Type":  14,
+                           "Left":  87.75008,
+                           "Top":  359.716522,
+                           "Width":  554.499939,
+                           "Height":  45.354332,
+                           "Text":  "Msc Defence T.M. Lenssen"
+                       },
+                       {
+                           "Id":  5,
+                           "Name":  "Slide Number Placeholder 4",
+                           "Type":  14,
+                           "Left":  0.000157480317,
+                           "Top":  359.716522,
+                           "Width":  87.74992,
+                           "Height":  45.06189,
+                           "Text":  "3"
+                       },
+                       {
+                           "Id":  7,
+                           "Name":  "Picture 6",
+                           "Type":  13,
+                           "Left":  6.25354338,
+                           "Top":  57.5674,
+                           "Width":  241.222992,
+                           "Height":  135.518433,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  16,
+                           "Name":  "TextBox 15",
+                           "Type":  17,
+                           "Left":  6.25354338,
+                           "Top":  19.1183472,
+                           "Width":  241.222992,
+                           "Height":  29.08126,
+                           "Text":  "ASML wafer stage"
+                       },
+                       {
+                           "Id":  18,
+                           "Name":  "TextBox 17",
+                           "Type":  17,
+                           "Left":  244.3885,
+                           "Top":  19.1183472,
+                           "Width":  241.222992,
+                           "Height":  29.08126,
+                           "Text":  "Canon Production Printing"
+                       },
+                       {
+                           "Id":  19,
+                           "Name":  "Picture 18",
+                           "Type":  13,
+                           "Left":  252.507874,
+                           "Top":  59.9840164,
+                           "Width":  241.222992,
+                           "Height":  135.813538,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  23,
+                           "Name":  "TextBox 22",
+                           "Type":  17,
+                           "Left":  485.6115,
+                           "Top":  19.1183472,
+                           "Width":  241.222992,
+                           "Height":  29.08126,
+                           "Text":  "Parkinsons Disease"
+                       },
+                       {
+                           "Id":  24,
+                           "Name":  "Picture 23",
+                           "Type":  13,
+                           "Left":  498.7622,
+                           "Top":  60.6533852,
+                           "Width":  214.984253,
+                           "Height":  214.984253,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  25,
+                           "Name":  "TextBox 24",
+                           "Type":  17,
+                           "Left":  272.675446,
+                           "Top":  282.306549,
+                           "Width":  208.097565,
+                           "Height":  23.6285038,
+                           "Text":  "Diffusion-Reaction Equations (PDE)"
+                       },
+                       {
+                           "Id":  26,
+                           "Name":  "TextBox 25",
+                           "Type":  17,
+                           "Left":  522.1322,
+                           "Top":  282.234344,
+                           "Width":  171.210861,
+                           "Height":  39.9866943,
+                           "Text":  "Differential Delay Equations \r(DDE -\u003e PDE)"
+                       },
+                       {
+                           "Id":  27,
+                           "Name":  "TextBox 26",
+                           "Type":  17,
+                           "Left":  43.87512,
+                           "Top":  282.234344,
+                           "Width":  173.629211,
+                           "Height":  23.6285038,
+                           "Text":  "Wave/beam equations (PDE)"
+                       },
+                       {
+                           "Id":  29,
+                           "Name":  "Picture 28",
+                           "Type":  13,
+                           "Left":  252.507874,
+                           "Top":  192.996613,
+                           "Width":  241.222992,
+                           "Height":  80.59291,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  31,
+                           "Name":  "Picture 30",
+                           "Type":  13,
+                           "Left":  498.7622,
+                           "Top":  62.9147263,
+                           "Width":  228.759766,
+                           "Height":  170.378342,
+                           "Text":  ""
+                       }
+                   ],
+        "Effects":  [
+                        {
+                            "ShapeId":  18,
+                            "ShapeName":  "TextBox 17",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  19,
+                            "ShapeName":  "Picture 18",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  16,
+                            "ShapeName":  "TextBox 15",
+                            "EffectType":  62,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  Infinity,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  7,
+                            "ShapeName":  "Picture 6",
+                            "EffectType":  62,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  Infinity,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  27,
+                            "ShapeName":  "TextBox 26",
+                            "EffectType":  62,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  Infinity,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  29,
+                            "ShapeName":  "Picture 28",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  25,
+                            "ShapeName":  "TextBox 24",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  24,
+                            "ShapeName":  "Picture 23",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  23,
+                            "ShapeName":  "TextBox 22",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  26,
+                            "ShapeName":  "TextBox 25",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  18,
+                            "ShapeName":  "TextBox 17",
+                            "EffectType":  62,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  Infinity,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  19,
+                            "ShapeName":  "Picture 18",
+                            "EffectType":  62,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  Infinity,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  29,
+                            "ShapeName":  "Picture 28",
+                            "EffectType":  62,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  Infinity,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  25,
+                            "ShapeName":  "TextBox 24",
+                            "EffectType":  62,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  Infinity,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  31,
+                            "ShapeName":  "Picture 30",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        }
+                    ]
+    },
+    {
+        "Index":  4,
+        "Shapes":  [
+                       {
+                           "Id":  2,
+                           "Name":  "Title 1",
+                           "Type":  14,
+                           "Left":  59.5275574,
+                           "Top":  46.2047234,
+                           "Width":  283.464569,
+                           "Height":  57.6565361,
+                           "Text":  "Partial Integral Equations"
+                       },
+                       {
+                           "Id":  3,
+                           "Name":  "Content Placeholder 2",
+                           "Type":  14,
+                           "Left":  59.5,
+                           "Top":  81.3176346,
+                           "Width":  283.375031,
+                           "Height":  251.682434,
+                           "Text":  "Equivalent dynamics\rBuilt in boundary conditions\rBounded operators\rMatrix-like algebra\rLMI-like computations\rController synthesis for linear systems….."
+                       },
+                       {
+                           "Id":  4,
+                           "Name":  "Footer Placeholder 3",
+                           "Type":  14,
+                           "Left":  87.75008,
+                           "Top":  359.716522,
+                           "Width":  554.499939,
+                           "Height":  45.354332,
+                           "Text":  "Msc Defence T.M. Lenssen"
+                       },
+                       {
+                           "Id":  5,
+                           "Name":  "Slide Number Placeholder 4",
+                           "Type":  14,
+                           "Left":  0.000157480317,
+                           "Top":  359.716522,
+                           "Width":  87.74992,
+                           "Height":  45.06189,
+                           "Text":  "4"
+                       },
+                       {
+                           "Id":  11,
+                           "Name":  "Rounded Rectangle 10",
+                           "Type":  1,
+                           "Left":  342.875031,
+                           "Top":  46.2047234,
+                           "Width":  120.75,
+                           "Height":  79.04536,
+                           "Text":  "ODE-PDE"
+                       },
+                       {
+                           "Id":  13,
+                           "Name":  "Rounded Rectangle 12",
+                           "Type":  1,
+                           "Left":  556.625061,
+                           "Top":  46.2047234,
+                           "Width":  120.75,
+                           "Height":  79.04536,
+                           "Text":  "PIE"
+                       },
+                       {
+                           "Id":  14,
+                           "Name":  "Left-Right Arrow 13",
+                           "Type":  1,
+                           "Left":  486,
+                           "Top":  75.6189,
+                           "Width":  48,
+                           "Height":  20.2170086,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  15,
+                           "Name":  "TextBox 14",
+                           "Type":  17,
+                           "Left":  477.793549,
+                           "Top":  109.497719,
+                           "Width":  64.41291,
+                           "Height":  31.5047245,
+                           "Text":  "Exact!"
+                       },
+                       {
+                           "Id":  17,
+                           "Name":  "TextBox 16",
+                           "Type":  17,
+                           "Left":  348.1775,
+                           "Top":  140.835831,
+                           "Width":  98.47236,
+                           "Height":  49.5946465,
+                           "Text":  " 𝑇  𝑡,𝑠 =𝑇 𝑡,𝑠 \r𝑇 𝑡,0 = 𝑤 1  𝑡 \r 𝑇 𝑠  𝑡,0 = 𝑤 2 (𝑡) "
+                       },
+                       {
+                           "Id":  18,
+                           "Name":  "TextBox 17",
+                           "Type":  17,
+                           "Left":  556.374939,
+                           "Top":  140.54039,
+                           "Width":  153.75,
+                           "Height":  74.6873245,
+                           "Text":  " 𝑢  𝑡,𝑠 = 𝑤 1  𝑡 +𝑠 𝑤 2  𝑡 + 0 𝑠  𝑠−𝜉  𝑢 𝜉𝜉  𝑡,𝜉 𝑑𝜉 "
+                       },
+                       {
+                           "Id":  21,
+                           "Name":  "TextBox 20",
+                           "Type":  17,
+                           "Left":  208.000076,
+                           "Top":  231.70874,
+                           "Width":  348.624969,
+                           "Height":  141.145035,
+                           "Text":  "𝒯  𝐱  𝑓  𝑡 =𝒜 𝐱 𝑓  𝑡 +ℬ𝑤 𝑡 \r𝑧 𝑡 =𝒞 𝐱 𝑓  𝑡 +𝒟𝑤 𝑡 \r𝒯,𝒜,....∈ Π 4 \r"
+                       },
+                       {
+                           "Id":  22,
+                           "Name":  "TextBox 21",
+                           "Type":  17,
+                           "Left":  -197.454254,
+                           "Top":  265.7348,
+                           "Width":  1149.15869,
+                           "Height":  48.98882,
+                           "Text":  "𝒜+ℬ∈ Π 4 , 𝒜ℬ∈ Π 4 ,  𝒜 ∗ ∈ Π 4 ,   𝒜 ℬ  ∈ Π 4 \r"
+                       },
+                       {
+                           "Id":  23,
+                           "Name":  "TextBox 22",
+                           "Type":  17,
+                           "Left":  224.736069,
+                           "Top":  238.70166,
+                           "Width":  345.355042,
+                           "Height":  75.6617355,
+                           "Text":  "Exponential stability  of PDE\r∃𝒫≻0,  𝒯 ∗ 𝒫𝒜+ 𝒜 ∗ 𝒫𝒯⪯−𝛼 𝒯 ∗ 𝒫𝒯\r  "
+                       }
+                   ],
+        "Effects":  [
+                        {
+                            "ShapeId":  3,
+                            "ShapeName":  "Content Placeholder 2",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  11,
+                            "ShapeName":  "Rounded Rectangle 10",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  13,
+                            "ShapeName":  "Rounded Rectangle 12",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  14,
+                            "ShapeName":  "Left-Right Arrow 13",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  15,
+                            "ShapeName":  "TextBox 14",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  3,
+                            "ShapeName":  "Content Placeholder 2",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  3,
+                            "ShapeName":  "Content Placeholder 2",
+                            "EffectType":  62,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  Infinity,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  18,
+                            "ShapeName":  "TextBox 17",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  17,
+                            "ShapeName":  "TextBox 16",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  3,
+                            "ShapeName":  "Content Placeholder 2",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  18,
+                            "ShapeName":  "TextBox 17",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  17,
+                            "ShapeName":  "TextBox 16",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  3,
+                            "ShapeName":  "Content Placeholder 2",
+                            "EffectType":  62,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  Infinity,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  21,
+                            "ShapeName":  "TextBox 20",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  3,
+                            "ShapeName":  "Content Placeholder 2",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  22,
+                            "ShapeName":  "TextBox 21",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  21,
+                            "ShapeName":  "TextBox 20",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  3,
+                            "ShapeName":  "Content Placeholder 2",
+                            "EffectType":  62,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  Infinity,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  3,
+                            "ShapeName":  "Content Placeholder 2",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  23,
+                            "ShapeName":  "TextBox 22",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  22,
+                            "ShapeName":  "TextBox 21",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  3,
+                            "ShapeName":  "Content Placeholder 2",
+                            "EffectType":  62,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  Infinity,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  3,
+                            "ShapeName":  "Content Placeholder 2",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  23,
+                            "ShapeName":  "TextBox 22",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  3,
+                            "ShapeName":  "Content Placeholder 2",
+                            "EffectType":  62,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  Infinity,
+                            "Delay":  0
+                        }
+                    ]
+    },
+    {
+        "Index":  5,
+        "Shapes":  [
+                       {
+                           "Id":  5,
+                           "Name":  "Footer Placeholder 4",
+                           "Type":  14,
+                           "Left":  87.75008,
+                           "Top":  359.716522,
+                           "Width":  554.499939,
+                           "Height":  45.354332,
+                           "Text":  "Msc Defence T.M. Lenssen"
+                       },
+                       {
+                           "Id":  6,
+                           "Name":  "Slide Number Placeholder 5",
+                           "Type":  14,
+                           "Left":  0.000157480317,
+                           "Top":  359.716522,
+                           "Width":  87.74992,
+                           "Height":  45.06189,
+                           "Text":  "5"
+                       },
+                       {
+                           "Id":  14,
+                           "Name":  "TextBox 13",
+                           "Type":  17,
+                           "Left":  135.415436,
+                           "Top":  123.271729,
+                           "Width":  449.169067,
+                           "Height":  36.50811,
+                           "Text":  " heat 𝑡  𝑡,𝑠 =0.01  heat 𝑠𝑠  𝑡,𝑠 +   0.25 1+𝛿   heat generation −  0.2  cooling  heat 𝑡,𝑠 +𝑢 𝑡 "
+                       },
+                       {
+                           "Id":  18,
+                           "Name":  "Picture 17",
+                           "Type":  13,
+                           "Left":  87.75008,
+                           "Top":  166.862045,
+                           "Width":  310.850067,
+                           "Height":  185.772278,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  20,
+                           "Name":  "Picture 19",
+                           "Type":  13,
+                           "Left":  28.33559,
+                           "Top":  0,
+                           "Width":  709.896362,
+                           "Height":  134.8893,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  22,
+                           "Name":  "TextBox 21",
+                           "Type":  17,
+                           "Left":  414.211731,
+                           "Top":  233.405991,
+                           "Width":  285.458832,
+                           "Height":  23.6285038,
+                           "Text":  "\tSolved during internship"
+                       }
+                   ],
+        "Effects":  [
+
+                    ]
+    },
+    {
+        "Index":  6,
+        "Shapes":  [
+                       {
+                           "Id":  5,
+                           "Name":  "Footer Placeholder 4",
+                           "Type":  14,
+                           "Left":  87.75008,
+                           "Top":  359.716522,
+                           "Width":  554.499939,
+                           "Height":  45.354332,
+                           "Text":  "Msc Defence T.M. Lenssen"
+                       },
+                       {
+                           "Id":  6,
+                           "Name":  "Slide Number Placeholder 5",
+                           "Type":  14,
+                           "Left":  0.000157480317,
+                           "Top":  359.716522,
+                           "Width":  87.74992,
+                           "Height":  45.06189,
+                           "Text":  "6"
+                       },
+                       {
+                           "Id":  8,
+                           "Name":  "Picture 7",
+                           "Type":  13,
+                           "Left":  185,
+                           "Top":  -0.283464581,
+                           "Width":  360,
+                           "Height":  360,
+                           "Text":  ""
+                       }
+                   ],
+        "Effects":  [
+
+                    ]
+    },
+    {
+        "Index":  7,
+        "Shapes":  [
+                       {
+                           "Id":  5,
+                           "Name":  "Footer Placeholder 4",
+                           "Type":  14,
+                           "Left":  87.75008,
+                           "Top":  359.716522,
+                           "Width":  554.499939,
+                           "Height":  45.354332,
+                           "Text":  "Msc Defence T.M. Lenssen"
+                       },
+                       {
+                           "Id":  6,
+                           "Name":  "Slide Number Placeholder 5",
+                           "Type":  14,
+                           "Left":  0.000157480317,
+                           "Top":  359.716522,
+                           "Width":  87.74992,
+                           "Height":  45.06189,
+                           "Text":  "7"
+                       },
+                       {
+                           "Id":  8,
+                           "Name":  "Picture 7",
+                           "Type":  13,
+                           "Left":  0,
+                           "Top":  0,
+                           "Width":  719.9998,
+                           "Height":  404.34433,
+                           "Text":  ""
+                       }
+                   ],
+        "Effects":  [
+
+                    ]
+    },
+    {
+        "Index":  8,
+        "Shapes":  [
+                       {
+                           "Id":  5,
+                           "Name":  "Footer Placeholder 4",
+                           "Type":  14,
+                           "Left":  87.75008,
+                           "Top":  359.716522,
+                           "Width":  554.499939,
+                           "Height":  45.354332,
+                           "Text":  "Msc Defence T.M. Lenssen"
+                       },
+                       {
+                           "Id":  6,
+                           "Name":  "Slide Number Placeholder 5",
+                           "Type":  14,
+                           "Left":  0.000157480317,
+                           "Top":  359.716522,
+                           "Width":  87.74992,
+                           "Height":  45.06189,
+                           "Text":  "8"
+                       },
+                       {
+                           "Id":  13,
+                           "Name":  "Picture 12",
+                           "Type":  13,
+                           "Left":  215.490555,
+                           "Top":  0,
+                           "Width":  261.403625,
+                           "Height":  325.4104,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  14,
+                           "Name":  "TextBox 13",
+                           "Type":  17,
+                           "Left":  215.490555,
+                           "Top":  325.4104,
+                           "Width":  248.245911,
+                           "Height":  23.6285038,
+                           "Text":  "[1] beta oscillatory activity in basal ganglia"
+                       },
+                       {
+                           "Id":  15,
+                           "Name":  "Rectangle 14",
+                           "Type":  1,
+                           "Left":  274.447083,
+                           "Top":  148.235275,
+                           "Width":  154.164566,
+                           "Height":  89.7883453,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  17,
+                           "Name":  "Rectangle 16",
+                           "Type":  1,
+                           "Left":  215.490555,
+                           "Top":  238.023621,
+                           "Width":  107.2389,
+                           "Height":  87.38677,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  18,
+                           "Name":  "Multiply 17",
+                           "Type":  1,
+                           "Left":  328.6588,
+                           "Top":  177.035278,
+                           "Width":  31.34118,
+                           "Height":  32.1882668,
+                           "Text":  ""
+                       }
+                   ],
+        "Effects":  [
+                        {
+                            "ShapeId":  15,
+                            "ShapeName":  "Rectangle 14",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  18,
+                            "ShapeName":  "Multiply 17",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  17,
+                            "ShapeName":  "Rectangle 16",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        }
+                    ]
+    },
+    {
+        "Index":  9,
+        "Shapes":  [
+                       {
+                           "Id":  5,
+                           "Name":  "Footer Placeholder 4",
+                           "Type":  14,
+                           "Left":  87.75008,
+                           "Top":  359.716522,
+                           "Width":  554.499939,
+                           "Height":  45.354332,
+                           "Text":  "Msc Defence T.M. Lenssen"
+                       },
+                       {
+                           "Id":  6,
+                           "Name":  "Slide Number Placeholder 5",
+                           "Type":  14,
+                           "Left":  0.000157480317,
+                           "Top":  359.716522,
+                           "Width":  87.74992,
+                           "Height":  45.06189,
+                           "Text":  "9"
+                       },
+                       {
+                           "Id":  38,
+                           "Name":  "TextBox 37",
+                           "Type":  17,
+                           "Left":  -0.3048819,
+                           "Top":  217.6845,
+                           "Width":  455.26828,
+                           "Height":  63.46882,
+                           "Text":  "  𝑧 S  𝑡 \u0026=− 𝑥 G  𝑡− 𝜏 GS  ,  𝑧 G  𝑡 \u0026= 𝑥 S  𝑡− 𝜏 SG  − 𝑥 G  𝑡− 𝜏 GG  ,   "
+                       },
+                       {
+                           "Id":  40,
+                           "Name":  "TextBox 39",
+                           "Type":  17,
+                           "Left":  -0.304960638,
+                           "Top":  217.6845,
+                           "Width":  455.26828,
+                           "Height":  63.46882,
+                           "Text":  "  𝑧 S  𝑡 \u0026=− 𝑥 G  𝑡− 𝜏 GS  ,  𝑧 G  𝑡 \u0026= 𝑥 S  𝑡− 𝜏 SG  − 𝑥 G  𝑡− 𝜏 GG  ,   "
+                       },
+                       {
+                           "Id":  42,
+                           "Name":  "TextBox 41",
+                           "Type":  17,
+                           "Left":  22.9141731,
+                           "Top":  217.823471,
+                           "Width":  455.26828,
+                           "Height":  63.46882,
+                           "Text":  "  𝑧 S  𝑡 \u0026=− 𝑤 GS  𝑥 G  𝑡− 𝜏 GS  ,  𝑧 G  𝑡 \u0026= 𝑤 SG  𝑥 S  𝑡− 𝜏 SG  − 𝑤 GG  𝑥 G  𝑡− 𝜏 GG  ,   "
+                       },
+                       {
+                           "Id":  44,
+                           "Name":  "TextBox 43",
+                           "Type":  17,
+                           "Left":  15.43,
+                           "Top":  217.961411,
+                           "Width":  455.26828,
+                           "Height":  74.17236,
+                           "Text":  "  𝑧 S  𝑡 \u0026=− 𝑤 GS  𝑥 G  𝑡− 𝜏 GS  ,  𝑧 G  𝑡 \u0026= 𝑤 SG  𝑥 S  𝑡− 𝜏 SG  − 𝑤 GG  𝑥 G  𝑡− 𝜏 GG  ,  𝜏 S   𝑥  S  𝑡 \u0026= 𝛿 S   𝑧 S  𝑡  − 𝑥 S  𝑡 ,  𝜏 G   𝑥  G  𝑡 \u0026= 𝛿 G   𝑧 G  𝑡  − 𝑥 G  𝑡 . "
+                       },
+                       {
+                           "Id":  46,
+                           "Name":  "TextBox 45",
+                           "Type":  17,
+                           "Left":  15.43,
+                           "Top":  217.668976,
+                           "Width":  455.26828,
+                           "Height":  74.17236,
+                           "Text":  "  𝑧 S  𝑡 \u0026=− 𝑤 GS  𝑥 G  𝑡− 𝜏 GS  ,  𝑧 G  𝑡 \u0026= 𝑤 SG  𝑥 S  𝑡− 𝜏 SG  − 𝑤 GG  𝑥 G  𝑡− 𝜏 GG  ,  𝜏 S   𝑥  S  𝑡 \u0026= 𝛿 S   𝑧 S  𝑡  − 𝑥 S  𝑡 +𝑢 𝑡 ,  𝜏 G   𝑥  G  𝑡 \u0026= 𝛿 G   𝑧 G  𝑡  − 𝑥 G  𝑡 . "
+                       },
+                       {
+                           "Id":  54,
+                           "Name":  "Picture 53",
+                           "Type":  13,
+                           "Left":  -0.3051181,
+                           "Top":  0,
+                           "Width":  431.2656,
+                           "Height":  215.632828,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  56,
+                           "Name":  "Picture 55",
+                           "Type":  13,
+                           "Left":  -0.330314964,
+                           "Top":  0.1319685,
+                           "Width":  431.2656,
+                           "Height":  215.632828,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  58,
+                           "Name":  "Picture 57",
+                           "Type":  13,
+                           "Left":  0,
+                           "Top":  0.5724409,
+                           "Width":  431.2656,
+                           "Height":  215.632828,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  60,
+                           "Name":  "Picture 59",
+                           "Type":  13,
+                           "Left":  -0.3555118,
+                           "Top":  0.517322838,
+                           "Width":  431.2656,
+                           "Height":  215.632828,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  62,
+                           "Name":  "Picture 61",
+                           "Type":  13,
+                           "Left":  0.254566938,
+                           "Top":  0.5448819,
+                           "Width":  431.2656,
+                           "Height":  215.632828,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  68,
+                           "Name":  "TextBox 67",
+                           "Type":  17,
+                           "Left":  0,
+                           "Top":  335.7956,
+                           "Width":  136.045746,
+                           "Height":  23.6285038,
+                           "Text":  "[2] Firing rate models"
+                       },
+                       {
+                           "Id":  70,
+                           "Name":  "Picture 69",
+                           "Type":  13,
+                           "Left":  -0.0253543314,
+                           "Top":  0.833858252,
+                           "Width":  431.265747,
+                           "Height":  215.632919,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  76,
+                           "Name":  "Picture 75",
+                           "Type":  13,
+                           "Left":  377.4978,
+                           "Top":  161.897949,
+                           "Width":  323.49173,
+                           "Height":  197.526138,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  78,
+                           "Name":  "Picture 77",
+                           "Type":  13,
+                           "Left":  378.45,
+                           "Top":  191.4352,
+                           "Width":  326.119934,
+                           "Height":  156.174561,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  80,
+                           "Name":  "Picture 79",
+                           "Type":  13,
+                           "Left":  0.139763772,
+                           "Top":  0.124881893,
+                           "Width":  430.960724,
+                           "Height":  215.4804,
+                           "Text":  ""
+                       },
+                       {
+                           "Id":  81,
+                           "Name":  "TextBox 80",
+                           "Type":  17,
+                           "Left":  47.428978,
+                           "Top":  301.857941,
+                           "Width":  335.797546,
+                           "Height":  23.6285038,
+                           "Text":  "Model contains delays and nonlinear activation funtions!"
+                       }
+                   ],
+        "Effects":  [
+                        {
+                            "ShapeId":  56,
+                            "ShapeName":  "Picture 55",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  38,
+                            "ShapeName":  "TextBox 37",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  62,
+                            "ShapeName":  "Picture 61",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  40,
+                            "ShapeName":  "TextBox 39",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  62,
+                            "ShapeName":  "Picture 61",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  60,
+                            "ShapeName":  "Picture 59",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  40,
+                            "ShapeName":  "TextBox 39",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  42,
+                            "ShapeName":  "TextBox 41",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  60,
+                            "ShapeName":  "Picture 59",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  58,
+                            "ShapeName":  "Picture 57",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  42,
+                            "ShapeName":  "TextBox 41",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  44,
+                            "ShapeName":  "TextBox 43",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  81,
+                            "ShapeName":  "TextBox 80",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  58,
+                            "ShapeName":  "Picture 57",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  81,
+                            "ShapeName":  "TextBox 80",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  54,
+                            "ShapeName":  "Picture 53",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  44,
+                            "ShapeName":  "TextBox 43",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  46,
+                            "ShapeName":  "TextBox 45",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  46,
+                            "ShapeName":  "TextBox 45",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  54,
+                            "ShapeName":  "Picture 53",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  70,
+                            "ShapeName":  "Picture 69",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  76,
+                            "ShapeName":  "Picture 75",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  70,
+                            "ShapeName":  "Picture 69",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  1,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  76,
+                            "ShapeName":  "Picture 75",
+                            "EffectType":  1,
+                            "Exit":  -1,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  78,
+                            "ShapeName":  "Picture 77",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        },
+                        {
+                            "ShapeId":  80,
+                            "ShapeName":  "Picture 79",
+                            "EffectType":  1,
+                            "Exit":  0,
+                            "Trigger":  2,
+                            "Duration":  0.001,
+                            "Delay":  0
+                        }
+                    ]
+    },
+    {
+        "Index":  10,
+        "Shapes":  [
+                       {
+                           "Id":  2,
+                           "Name":  "Title 1",
+                           "Type":  14,
+                           "Left":  59.5,
+                           "Top":  46.2047234,
+                           "Width":  595.5556,
+                           "Height":  40.6566124,
+                           "Text":  "References"
+                       },
+                       {
+                           "Id":  3,
+                           "Name":  "Footer Placeholder 2",
+                           "Type":  14,
+                           "Left":  87.75008,
+                           "Top":  359.716522,
+                           "Width":  554.499939,
+                           "Height":  45.354332,
+                           "Text":  "Msc Defence T.M. Lenssen"
+                       },
+                       {
+                           "Id":  4,
+                           "Name":  "Slide Number Placeholder 3",
+                           "Type":  14,
+                           "Left":  0.000157480317,
+                           "Top":  359.716522,
+                           "Width":  87.74992,
+                           "Height":  45.06189,
+                           "Text":  "10"
+                       },
+                       {
+                           "Id":  5,
+                           "Name":  "Chart Placeholder 4",
+                           "Type":  14,
+                           "Left":  59.5,
+                           "Top":  85,
+                           "Width":  595.25,
+                           "Height":  248,
+                           "Text":  "[1] B.De la Crompe, M.Deffains, A.Leblois, N.Mallet, “Reevaluating the role of the STN-Gpe network in generating beta synchronized oscillatory activity in parkinsonism.”\r[2]A.J. Nevado Holgade, J.R.Terry,R.Bogacz, “Conditions for the Generation of Beta Oscillations in the Subthalamic Nucleus-Globus Pallidus Network”"
+                       }
+                   ],
+        "Effects":  [
+
+                    ]
+    },
+    {
+        "Index":  11,
+        "Shapes":  [
+                       {
+                           "Id":  4,
+                           "Name":  "Footer Placeholder 3",
+                           "Type":  14,
+                           "Left":  87.75008,
+                           "Top":  359.716522,
+                           "Width":  554.499939,
+                           "Height":  45.354332,
+                           "Text":  "Msc Defence T.M. Lenssen"
+                       },
+                       {
+                           "Id":  5,
+                           "Name":  "Slide Number Placeholder 4",
+                           "Type":  14,
+                           "Left":  0.000157480317,
+                           "Top":  359.716522,
+                           "Width":  87.74992,
+                           "Height":  45.06189,
+                           "Text":  "11"
+                       },
+                       {
+                           "Id":  6,
+                           "Name":  "TextBox 5",
+                           "Type":  17,
+                           "Left":  77.71496,
+                           "Top":  64.37653,
+                           "Width":  564.570068,
+                           "Height":  23.6285038,
+                           "Text":  "Goal: Can we find a single tool to analyse and control a large class of Partial Integral Equations(PIE)?"
+                       },
+                       {
+                           "Id":  7,
+                           "Name":  "TextBox 6",
+                           "Type":  17,
+                           "Left":  219.388275,
+                           "Top":  112.658821,
+                           "Width":  214.625671,
+                           "Height":  56.34496,
+                           "Text":  "Analysis capabilities\rDuality argument\rConvex state feedback synthesis"
+                       }
+                   ],
+        "Effects":  [
+
+                    ]
+    }
+]

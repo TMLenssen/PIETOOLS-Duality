@@ -1,0 +1,88 @@
+[
+  {
+    "slide": 2,
+    "part": "ppt/slides/slide2.xml",
+    "shape_id": "20",
+    "name": "cart_rigid",
+    "media": "ppt/media/media1.mp4",
+    "poster": "existing-slide2-shape20-first.png",
+    "final_slide": 2,
+    "embedded_poster": "ppt/media/neurosim_firstframe_1.png"
+  },
+  {
+    "slide": 2,
+    "part": "ppt/slides/slide2.xml",
+    "shape_id": "21",
+    "name": "cart_flexible",
+    "media": "ppt/media/media2.mp4",
+    "poster": "existing-slide2-shape21-first.png",
+    "final_slide": 2,
+    "embedded_poster": "ppt/media/neurosim_firstframe_2.png"
+  },
+  {
+    "slide": 26,
+    "part": "ppt/slides/slide26.xml",
+    "shape_id": "20",
+    "name": "Sector simulation \u2014 clean 4K video",
+    "media": "ppt/media/media3.mp4",
+    "poster": "existing-slide26-shape20-first.png",
+    "final_slide": 27,
+    "embedded_poster": "ppt/media/neurosim_firstframe_3.png"
+  },
+  {
+    "slide": 27,
+    "part": "ppt/slides/slide27.xml",
+    "shape_id": "20",
+    "name": "Zames-Falb integral video",
+    "media": "ppt/media/media4.mp4",
+    "poster": "existing-slide27-shape20-first.png",
+    "final_slide": 28,
+    "embedded_poster": "ppt/media/neurosim_firstframe_4.png"
+  },
+  {
+    "slide": 28,
+    "part": "ppt/slides/slide28.xml",
+    "shape_id": "20",
+    "name": "Zames-Falb rate video",
+    "media": "ppt/media/media5.mp4",
+    "poster": "existing-slide28-shape20-first.png",
+    "final_slide": 29,
+    "embedded_poster": "ppt/media/neurosim_firstframe_5.png"
+  },
+  {
+    "slide": 4,
+    "part": "ppt/slides/slide4.xml",
+    "shape_id": "4",
+    "name": "delta",
+    "poster": "delta-decoded-first.png",
+    "final_slide": 4,
+    "embedded_poster": "ppt/media/neurosim_firstframe_6.png"
+  },
+  {
+    "slide": 13,
+    "part": "ppt/slides/slide13.xml",
+    "shape_id": "3",
+    "name": "healthy",
+    "poster": "healthy-decoded-first.png",
+    "final_slide": 13,
+    "embedded_poster": "ppt/media/neurosim_firstframe_7.png"
+  },
+  {
+    "slide": 14,
+    "part": "ppt/slides/slide14.xml",
+    "shape_id": "3",
+    "name": "parkinsonian",
+    "poster": "parkinsonian-decoded-first.png",
+    "final_slide": 14,
+    "embedded_poster": "ppt/media/neurosim_firstframe_8.png"
+  },
+  {
+    "slide": 15,
+    "part": "ppt/slides/slide50.xml",
+    "shape_id": "3",
+    "name": "controlled",
+    "poster": "controlled-decoded-first.png",
+    "final_slide": 15,
+    "embedded_poster": "ppt/media/neurosim_firstframe_9.png"
+  }
+]

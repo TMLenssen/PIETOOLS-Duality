@@ -1,0 +1,1735 @@
+{
+  "source": "C:\\Users\\thijs\\Desktop\\Graduation_Project_TML\\Presentation\\Dual Integral Quadratic Contstraints for Robust Control of Partial Integral Equations.pptx",
+  "source_sha256": "980495ceefcf4dd3febdd035e2f63ee97dfa1659354dcee5e32cebe680874e76",
+  "output": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\build\\larger_labels\\Dual Integral Quadratic Contstraints for Robust Control of Partial Integral Equations.pptx",
+  "changes": [
+    {
+      "slide": 1,
+      "name": "Editable label (a) Open-loop response",
+      "before": 7.24,
+      "after": 8.54
+    },
+    {
+      "slide": 1,
+      "name": "Editable label (b) Closed-loop response",
+      "before": 7.24,
+      "after": 8.54
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 0",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 5",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 10",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 15",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label t = 20",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 25",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 30",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 35",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 0",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 0.25",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label s = 0.5",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 0.75",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label (1,0)",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 2",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label -2",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 0",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 5",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 10",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 15",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label t = 20",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 25",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 30",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 35",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 0",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 0.25",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label s = 0.5",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 0.75",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label (1,0)",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 2",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label -2",
+      "before": 5.9,
+      "after": 7.3
+    },
+    {
+      "slide": 1,
+      "name": "Editable label -2",
+      "before": 6.7,
+      "after": 7.91
+    },
+    {
+      "slide": 1,
+      "name": "Editable label x(t,s) = 0",
+      "before": 6.7,
+      "after": 7.91
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 2",
+      "before": 6.7,
+      "after": 7.91
+    },
+    {
+      "slide": 1,
+      "name": "Editable label -2",
+      "before": 6.7,
+      "after": 7.91
+    },
+    {
+      "slide": 1,
+      "name": "Editable label x(t,s) = 0",
+      "before": 6.7,
+      "after": 7.91
+    },
+    {
+      "slide": 1,
+      "name": "Editable label 2",
+      "before": 6.7,
+      "after": 7.91
+    },
+    {
+      "slide": 3,
+      "name": "Editable label FRONTAL LOBE",
+      "before": 4.32,
+      "after": 7.5
+    },
+    {
+      "slide": 3,
+      "name": "Editable label BASAL GANGLIA",
+      "before": 4.32,
+      "after": 7.5
+    },
+    {
+      "slide": 3,
+      "name": "Editable label THALAMUS",
+      "before": 4.32,
+      "after": 7.5
+    },
+    {
+      "slide": 3,
+      "name": "Editable label Drying air",
+      "before": 3.48,
+      "after": 7.5
+    },
+    {
+      "slide": 3,
+      "name": "Editable label Evaporation",
+      "before": 3.36,
+      "after": 7.5
+    },
+    {
+      "slide": 3,
+      "name": "Editable label Heat",
+      "before": 2.88,
+      "after": 7.5
+    },
+    {
+      "slide": 3,
+      "name": "Editable label Moisture",
+      "before": 2.88,
+      "after": 7.5
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 0",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 10",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 20",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 30",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 40",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 50",
+      "before": 3.3,
+      "after": 6.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label Average temperature",
+      "before": 3.85,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 60",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 70",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 80",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 90",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 100",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 0",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 5",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 10",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 15",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 20",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 25",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label 30",
+      "before": 3.3,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Editable label t",
+      "before": 3.85,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Reaction uncertainty",
+      "before": 3.57,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Reaction uncertainty",
+      "before": 3.57,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Reaction uncertainty",
+      "before": 3.57,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Reaction uncertainty",
+      "before": 3.57,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Reaction uncertainty",
+      "before": 3.57,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Reaction uncertainty",
+      "before": 3.57,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Reaction uncertainty",
+      "before": 3.57,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Reaction uncertainty",
+      "before": 3.57,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Reaction uncertainty",
+      "before": 3.57,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Reaction uncertainty",
+      "before": 3.57,
+      "after": 7.0
+    },
+    {
+      "slide": 4,
+      "name": "Reaction uncertainty",
+      "before": 3.57,
+      "after": 7.0
+    },
+    {
+      "slide": 5,
+      "name": "Editable label FRONTAL LOBE",
+      "before": 7.88,
+      "after": 9.3
+    },
+    {
+      "slide": 5,
+      "name": "Editable label BASAL GANGLIA",
+      "before": 7.88,
+      "after": 9.3
+    },
+    {
+      "slide": 5,
+      "name": "Editable label THALAMUS",
+      "before": 7.88,
+      "after": 9.3
+    },
+    {
+      "slide": 7,
+      "name": "Editable label Proto",
+      "before": 11.92,
+      "after": 14.07
+    },
+    {
+      "slide": 7,
+      "name": "Editable label STN",
+      "before": 11.92,
+      "after": 14.07
+    },
+    {
+      "slide": 7,
+      "name": "Editable label X",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 7,
+      "name": "Editable label X",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 7,
+      "name": "Editable label X",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 8,
+      "name": "Editable label Proto",
+      "before": 11.92,
+      "after": 14.07
+    },
+    {
+      "slide": 8,
+      "name": "Editable label STN",
+      "before": 11.92,
+      "after": 14.07
+    },
+    {
+      "slide": 8,
+      "name": "Editable label \u03c4",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 8,
+      "name": "Editable label SG",
+      "before": 6.62,
+      "after": 8.5
+    },
+    {
+      "slide": 8,
+      "name": "Editable label  = 6 ms",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 8,
+      "name": "Editable label \u03c4",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 8,
+      "name": "Editable label GS",
+      "before": 6.62,
+      "after": 8.5
+    },
+    {
+      "slide": 8,
+      "name": "Editable label  = 6 ms",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 8,
+      "name": "Editable label \u03c4",
+      "before": 8.28,
+      "after": 9.77
+    },
+    {
+      "slide": 8,
+      "name": "Editable label GG",
+      "before": 5.8,
+      "after": 8.5
+    },
+    {
+      "slide": 8,
+      "name": "Editable label = 4 ms",
+      "before": 8.28,
+      "after": 9.77
+    },
+    {
+      "slide": 8,
+      "name": "Editable label \u03c4",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 8,
+      "name": "Editable label ij",
+      "before": 6.62,
+      "after": 8.5
+    },
+    {
+      "slide": 9,
+      "name": "Editable label Proto",
+      "before": 11.92,
+      "after": 14.07
+    },
+    {
+      "slide": 9,
+      "name": "Editable label STN",
+      "before": 11.92,
+      "after": 14.07
+    },
+    {
+      "slide": 9,
+      "name": "Editable label SG",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 9,
+      "name": "Editable label GS",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 9,
+      "name": "Editable label GG",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 10,
+      "name": "Editable label Proto",
+      "before": 11.42,
+      "after": 13.48
+    },
+    {
+      "slide": 10,
+      "name": "Editable label STN",
+      "before": 11.42,
+      "after": 13.48
+    },
+    {
+      "slide": 10,
+      "name": "Editable label z",
+      "before": 9.51,
+      "after": 11.22
+    },
+    {
+      "slide": 10,
+      "name": "Editable label G",
+      "before": 6.34,
+      "after": 8.5
+    },
+    {
+      "slide": 10,
+      "name": "Editable label \u03b4",
+      "before": 9.51,
+      "after": 11.22
+    },
+    {
+      "slide": 10,
+      "name": "Editable label G",
+      "before": 6.34,
+      "after": 8.5
+    },
+    {
+      "slide": 10,
+      "name": "Editable label (",
+      "before": 9.51,
+      "after": 11.22
+    },
+    {
+      "slide": 10,
+      "name": "Editable label z",
+      "before": 9.51,
+      "after": 11.22
+    },
+    {
+      "slide": 10,
+      "name": "Editable label G",
+      "before": 6.34,
+      "after": 8.5
+    },
+    {
+      "slide": 10,
+      "name": "Editable label )",
+      "before": 9.51,
+      "after": 11.22
+    },
+    {
+      "slide": 10,
+      "name": "Editable label z",
+      "before": 9.51,
+      "after": 11.22
+    },
+    {
+      "slide": 10,
+      "name": "Editable label S",
+      "before": 6.34,
+      "after": 8.5
+    },
+    {
+      "slide": 10,
+      "name": "Editable label \u03b4",
+      "before": 9.51,
+      "after": 11.22
+    },
+    {
+      "slide": 10,
+      "name": "Editable label S",
+      "before": 6.34,
+      "after": 8.5
+    },
+    {
+      "slide": 10,
+      "name": "Editable label (",
+      "before": 9.51,
+      "after": 11.22
+    },
+    {
+      "slide": 10,
+      "name": "Editable label z",
+      "before": 9.51,
+      "after": 11.22
+    },
+    {
+      "slide": 10,
+      "name": "Editable label S",
+      "before": 6.34,
+      "after": 8.5
+    },
+    {
+      "slide": 10,
+      "name": "Editable label )",
+      "before": 9.51,
+      "after": 11.22
+    },
+    {
+      "slide": 11,
+      "name": "Editable label Proto",
+      "before": 11.92,
+      "after": 14.07
+    },
+    {
+      "slide": 11,
+      "name": "Editable label STN",
+      "before": 11.92,
+      "after": 14.07
+    },
+    {
+      "slide": 11,
+      "name": "Editable label u",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 11,
+      "name": "Editable label (",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 11,
+      "name": "Editable label t",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 11,
+      "name": "Editable label )",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 12,
+      "name": "Editable label Proto",
+      "before": 9.48,
+      "after": 11.19
+    },
+    {
+      "slide": 12,
+      "name": "Editable label STN",
+      "before": 9.48,
+      "after": 11.19
+    },
+    {
+      "slide": 12,
+      "name": "Editable label Healthy",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label w",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label SG",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 12,
+      "name": "Editable label  = 19",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label .",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label w",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label GS",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 12,
+      "name": "Editable label  = 1",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label .",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 12",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label w",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label GG",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 6",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label .",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 60",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 12,
+      "name": "Editable label u",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 12,
+      "name": "Editable label (",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 12,
+      "name": "Editable label t",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 12,
+      "name": "Editable label )",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.05",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.1",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.15",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.2",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.25",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.3",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.35",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.4",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label spikes/s",
+      "before": 5.44,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 600",
+      "before": 5.08,
+      "after": 7.94
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 200",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 400",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 800",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 1000",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label t",
+      "before": 5.44,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.05",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.1",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.15",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.2",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.25",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.3",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.35",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0.4",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label spikes/s",
+      "before": 5.44,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 40",
+      "before": 5.08,
+      "after": 7.94
+    },
+    {
+      "slide": 12,
+      "name": "Editable label -20",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 0",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 20",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 60",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 80",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label 100",
+      "before": 5.08,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label x",
+      "before": 4.53,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label S",
+      "before": 3.63,
+      "after": 6.81
+    },
+    {
+      "slide": 12,
+      "name": "Editable label  (STN)",
+      "before": 4.53,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label x",
+      "before": 4.53,
+      "after": 8.5
+    },
+    {
+      "slide": 12,
+      "name": "Editable label G",
+      "before": 3.63,
+      "after": 6.81
+    },
+    {
+      "slide": 12,
+      "name": "Editable label  (GPe / Proto)",
+      "before": 4.53,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label t",
+      "before": 6.08,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 0",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 0.05",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 0.1",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 0.15",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 0.2",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 0.25",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 0.3",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 0.35",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 0.4",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label spikes/s",
+      "before": 6.08,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 40",
+      "before": 5.67,
+      "after": 7.93
+    },
+    {
+      "slide": 13,
+      "name": "Editable label -20",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 0",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 20",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 60",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 80",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 100",
+      "before": 5.67,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label x",
+      "before": 5.07,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label S",
+      "before": 4.05,
+      "after": 6.79
+    },
+    {
+      "slide": 13,
+      "name": "Editable label  (STN)",
+      "before": 5.07,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label x",
+      "before": 5.07,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label G",
+      "before": 4.05,
+      "after": 6.79
+    },
+    {
+      "slide": 13,
+      "name": "Editable label  (GPe / Proto)",
+      "before": 5.07,
+      "after": 8.5
+    },
+    {
+      "slide": 13,
+      "name": "Editable label Proto",
+      "before": 9.48,
+      "after": 11.19
+    },
+    {
+      "slide": 13,
+      "name": "Editable label STN",
+      "before": 9.48,
+      "after": 11.19
+    },
+    {
+      "slide": 13,
+      "name": "Editable label Suffering from",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label Parkinson\u2019s",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label w",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label SG",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 13,
+      "name": "Editable label  = 20",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label .",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 0",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label w",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label GS",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 13,
+      "name": "Editable label  = 10",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label .",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 7",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label w",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label GG",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 12",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label .",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label 3",
+      "before": 11.37,
+      "after": 13.42
+    },
+    {
+      "slide": 13,
+      "name": "Editable label u",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 13,
+      "name": "Editable label (",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 13,
+      "name": "Editable label t",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 13,
+      "name": "Editable label )",
+      "before": 7.9,
+      "after": 9.32
+    },
+    {
+      "slide": 17,
+      "name": "Editable label Proto",
+      "before": 11.92,
+      "after": 14.07
+    },
+    {
+      "slide": 17,
+      "name": "Editable label STN",
+      "before": 11.92,
+      "after": 14.07
+    },
+    {
+      "slide": 17,
+      "name": "Editable label u",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 17,
+      "name": "Editable label (",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 17,
+      "name": "Editable label t",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 17,
+      "name": "Editable label )",
+      "before": 9.93,
+      "after": 11.72
+    },
+    {
+      "slide": 25,
+      "name": "Editable label -1150",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 1150",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label -1150",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 1150",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Horizontal axis STN nonlinearity",
+      "before": 10.0,
+      "after": 11.8
+    },
+    {
+      "slide": 25,
+      "name": "Vertical axis STN nonlinearity",
+      "before": 10.0,
+      "after": 11.8
+    },
+    {
+      "slide": 25,
+      "name": "Editable label -700",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 700",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label -700",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 700",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Horizontal axis GPe nonlinearity",
+      "before": 10.0,
+      "after": 11.8
+    },
+    {
+      "slide": 25,
+      "name": "Vertical axis GPe nonlinearity",
+      "before": 10.0,
+      "after": 11.8
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0.05",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0.1",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0.15",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0.2",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0.25",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0.3",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0.35",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0.4",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label -20",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 20",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 40",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 60",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 80",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 100",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Horizontal axis Response",
+      "before": 10.0,
+      "after": 11.8
+    },
+    {
+      "slide": 25,
+      "name": "Vertical axis Response",
+      "before": 10.0,
+      "after": 11.8
+    },
+    {
+      "slide": 25,
+      "name": "Response legend S",
+      "before": 6.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Response legend G",
+      "before": 6.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0.1",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0.2",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0.3",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0.4",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 0",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 1000",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 2000",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Editable label 3000",
+      "before": 7.0,
+      "after": 8.5
+    },
+    {
+      "slide": 25,
+      "name": "Horizontal axis Supply function",
+      "before": 10.0,
+      "after": 11.8
+    },
+    {
+      "slide": 25,
+      "name": "Vertical axis Supply function",
+      "before": 10.0,
+      "after": 11.8
+    }
+  ]
+}

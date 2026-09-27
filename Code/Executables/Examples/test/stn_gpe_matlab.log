@@ -1,0 +1,129 @@
+Toolbox "mpt:3.2.1:all" added to the Matlab path.
+Toolbox "mptdoc:3.0.4:all" added to the Matlab path.
+Toolbox "cddmex:1.0.1:pcwin64" added to the Matlab path.
+Toolbox "fourier:1.0:pcwin64" added to the Matlab path.
+Toolbox "glpkmex:1.0:pcwin64" added to the Matlab path.
+Toolbox "hysdel:2.0.6:pcwin64" added to the Matlab path.
+Toolbox "lcp:1.0.3:pcwin64" added to the Matlab path.
+Toolbox "sedumi:1.3:pcwin64" added to the Matlab path.
+Toolbox "yalmip:R20230609:all" added to the Matlab path.
+
+Nominal stability synthesis: Delta=0
+Size: 76556   1471
+ 
+
+MOSEK Version 11.0.28 (Build date: 2025-8-25 13:05:23)
+Copyright (c) MOSEK ApS, Denmark WWW: mosek.com
+Platform: Windows/64-X86
+
+Problem
+  Name                   :                 
+  Objective sense        : minimize        
+  Type                   : CONIC (conic optimization problem)
+  Constraints            : 1471            
+  Affine conic cons.     : 0               
+  Disjunctive cons.      : 0               
+  Cones                  : 0               
+  Scalar variables       : 23              
+  Matrix variables       : 3 (scalarized: 38486)
+  Integer variables      : 0               
+
+Optimizer started.
+Presolve started.
+Linear dependency checker started.
+Linear dependency checker terminated.
+Eliminator started.
+Freed constraints in eliminator : 0
+Eliminator terminated.
+Eliminator - tries                  : 1                 time                   : 0.00            
+Lin. dep.  - tries                  : 1                 time                   : 0.00            
+Lin. dep.  - primal attempts        : 1                 successes              : 1               
+Lin. dep.  - dual attempts          : 0                 successes              : 0               
+Lin. dep.  - primal deps.           : 0                 dual deps.             : 0               
+Presolve terminated. Time: 0.00    
+Optimizer  - threads                : 4               
+Optimizer  - solved problem         : the primal      
+Optimizer  - Constraints            : 1471            
+Optimizer  - Cones                  : 1               
+Optimizer  - Scalar variables       : 24                conic                  : 24              
+Optimizer  - Semi-definite variables: 3                 scalarized             : 38486           
+Factor     - setup time             : 0.26            
+Factor     - dense det. time        : 0.11              GP order time          : 0.00            
+Factor     - nonzeros before factor : 1.08e+06          after factor           : 1.08e+06        
+Factor     - dense dim.             : 0                 flops                  : 3.42e+09        
+Factor     - GP saved nzs           : 1728              GP saved flops         : 6.60e+05        
+ITE PFEAS    DFEAS    GFEAS    PRSTATUS   POBJ              DOBJ              MU       TIME  
+0   1.7e+00  1.0e+00  1.0e+00  0.00e+00   0.000000000e+00   0.000000000e+00   1.0e+00  0.33  
+1   3.2e-01  1.9e-01  8.3e-02  1.22e+00   0.000000000e+00   8.678251278e-03   1.9e-01  0.70  
+2   6.5e-02  3.9e-02  7.5e-03  1.04e+00   0.000000000e+00   1.602078423e-03   3.9e-02  1.05  
+3   1.2e-02  7.3e-03  5.9e-04  1.00e+00   0.000000000e+00   -3.269324467e-04  7.3e-03  1.58  
+4   9.5e-04  5.7e-04  1.3e-05  9.99e-01   0.000000000e+00   -3.640206605e-05  5.7e-04  1.89  
+5   3.9e-05  2.3e-05  1.0e-07  1.00e+00   0.000000000e+00   -1.505499263e-06  2.3e-05  2.30  
+6   1.9e-06  1.1e-06  1.1e-09  1.00e+00   0.000000000e+00   -7.300670102e-08  1.1e-06  2.68  
+7   1.1e-08  6.3e-09  4.7e-13  1.00e+00   0.000000000e+00   -3.958138240e-10  6.3e-09  2.99  
+Optimizer terminated. Time: 2.99    
+
+
+Interior-point solution summary
+  Problem status  : PRIMAL_AND_DUAL_FEASIBLE
+  Solution status : OPTIMAL
+  Primal.  obj: 0.0000000000e+00    nrm: 4e+00    Viol.  con: 3e-06    var: 0e+00    barvar: 0e+00  
+  Dual.    obj: -3.9581382395e-10   nrm: 6e+00    Viol.  con: 0e+00    var: 4e-10    barvar: 6e-09  
+Optimizer summary
+  Optimizer                 -                        time: 2.99    
+    Interior-point          - iterations : 7         time: 2.99    
+    Simplex                 - iterations : 0         time: 0.00    
+    Mixed integer           - relaxations: 0         time: 0.00    
+
+ 
+Residual norm: 7.5213e-06
+ 
+       cpusec: 2.9910
+         iter: 7
+    feasratio: 0.9999
+         dinf: 0
+         pinf: 0
+       numerr: 0
+
+Nominal synthesis relative residual: 3.11e-06
+Nominal finite-state gain (code units):
+  1×2 polynomial array with properties:
+
+    coefficient: [0.0313 0]
+         degmat: [1×0 double]
+        varname: {}
+         matdim: [1 2]
+
+Simulating nominal controller on full nonlinear system, N=24
+Simulating nominal controller on full nonlinear system, N=32
+Nominal nonlinear spatial relative errors: 3.52e-05 1.41e-05 0.000835 6.75e-05 6e-05
+Delta=0 closed-loop spectral abscissae: -28.1557 -28.1557
+Actual certified alpha: 0.4921875
+Sector upper limits [S,G]: 119.088146 201.850931
+Closed-loop maxima z [S,G]: 35.5140885 28.4504854
+Final closed-loop states [S,G]: 2.03958304e-13 -7.3403239e-13
+Peak paper control effort: 19.1470824
+          Controller          PeakAbsXS    PeakAbsXG    PeakAbsU    FinalStateNorm    MaxZS     MaxZG 
+    ______________________    _________    _________    ________    ______________    ______    ______
+
+    {'Open loop'         }      45.013      93.724            0           81.052      124.83    438.24
+    {'Sector controller' }     0.64903      3.3191       19.147       7.6184e-13      35.514     28.45
+    {'Nominal controller'}      736.24      322.78       899.53           109.06      179.82     12199
+
+Comparison exported to C:\Users\thijs\Desktop\PIETOOLS-Duality\Code\Executables\Examples\test
+
+ans = 
+
+  struct with fields:
+
+                  baseline: [1×1 struct]
+                provenance: [1×1 struct]
+            baselineSource: 'C:\Users\thijs\Desktop\PIETOOLS-Duality\Code\Executables\Examples\stn_gpe_sector_simulation.mat'
+                   nominal: [1×1 struct]
+                simNominal: [1×1 struct]
+                validation: [1×1 struct]
+               designDelta: 0
+    simulationNonlinearity: 'full shifted sigmoid'
+                   created: '19-Sep-2026 00:19:59'
+                sourceText: 'function Comparison = compare_stn_gpe_nominal(mode)←↵% Figure 10 plus Delta=0 nominal feedback acting on the nonlinear STN--GPe.←↵% Run compare_stn_gpe_nominal, or compare_stn_gpe_nominal('plot') to replot.←↵% All generated files stay beside this function; paper files are untouched.←↵if nargin==0, mode='run'; end←↵assert(ismember(mode,{'run','plot'}),'Use run or plot.');←↵testRoot=fileparts(mfilename('fullpath'));←↵examplesRoot=fileparts(testRoot);←↵codeRoot=fileparts(fileparts(examplesRoot));←↵addpath(genpath('C:\Program Files\MATLAB\PIETOOLS\PIETOOLS'));←↵addpath(genpath('C:\Program Files\Mosek\11.0\toolbox\r2019b'));←↵addpath(genpath(codeRoot));←↵cacheFile=fullfile(testRoot,'stn_gpe_nominal_comparison.mat');←↵if strcmp(mode,'plot')←↵    data=load(cacheFile,'Comparison'); Comparison=data.Comparison;←↵else←↵    diaryFile=fullfile(testRoot,'stn_gpe_nominal_comparison.log');←↵    diary(diaryFile); cleanupDiary=onCleanup(@() diary('off')); %#ok<NASGU>←↵    sourceFile=fullfile(examplesRoot,'stn_gpe_sector_simulation.mat');←↵    data=load(sourceFile,'Results','provenance');←↵    R=data.Results; provenance=data.provenance;←↵    assert(provenance.lambdaSector==1 && provenance.lambdaZF==0);←↵    assert(strcmp(provenance.coordinates,'equilibrium deviations'));←↵    assert(all(provenance.initialHistory==0));←↵    assert(isequal(size(R.K.P),[1,2]));←↵    nominal=synthesize_nominal(R.synthesis.P);←↵    % Keep the exact Figure 10 baseline arrays; only simulate the new law.←↵    [simNominal,validation]=simulate_nominal(R,provenance,nominal.K);←↵    Comparison=struct('baseline',R,'provenance',provenance, ...←↵        'baselineSource',sourceFile,'nominal',nominal, ...←↵        'simNominal',simNominal,'validation',validation, ...←↵        'designDelta',0,'simulationNonlinearity','full shifted sigmoid', ...←↵        'created',char(datetime('now')));←↵    Comparison.sourceText=fileread([mfilename('fullpath') '.m']);←↵    assert(isequaln(Comparison.baseline.simOpen,data.Results.simOpen));←↵    assert(isequaln(Comparison.baseline.simClosed,data.Results.simClosed));←↵    save(cacheFile,'Comparison','-v7.3');←↵end←↵plot_trajectories(Comparison.baseline,Comparison.provenance,testRoot, ...←↵    Comparison.simNominal);←↵write_summary(Comparison,testRoot);←↵fprintf('Comparison exported to %s\n',testRoot);←↵end←↵←↵function result=synthesize_nominal(P)←↵% Delta=0 means w_Delta=0, so the nominal dynamics are T*x_dot=A*x+B2*u.←↵% Apply exactly the stability-only dual synthesis LPI used by the sector←↵% example, with the same storage/controller degrees and solver settings.←↵% Zero the disconnected nonlinearity ports and retain a decoupled negative←↵% identity block to use the existing executive without empty port blocks.←↵% The resulting state inequality is T*X*A'+T*Z*B2' + adjoint <= 0.←↵P0=P;←↵P0.B1=zerosPI(P.B1.dim(:,1),P.B1.dim(:,2),P.vars,P.dom);←↵P0.C1=zerosPI(P.C1.dim(:,1),P.C1.dim(:,2),P.vars,P.dom);←↵P0.D11=zerosPI(P.D11.dim(:,1),P.D11.dim(:,2),P.vars,P.dom);←↵P0.D12=zerosPI(P.D12.dim(:,1),P.D12.dim(:,2),P.vars,P.dom);←↵F=id_filter(P.B1.dim(:,2),P.C1.dim(:,1),P.vars,P.dom);←↵settings=lpisettings('veryheavy');←↵settings.sos_opts.solver='mosek';←↵settings.multiplierUpper=1e8;←↵settings.inverseFloor=1e-8;←↵settings.kypMarginUpper=100;←↵settings.kypSlackMode='normal';←↵settings.controllerCleanTol=1e-10;←↵settings.options1.sep=1;←↵settings.options12.sep=1;←↵prog=lpiprogram(P.vars(:,1),P.vars(:,2),P.dom);←↵V=diag([0,0,-1,-1]);←↵fprintf('\nNominal stability synthesis: Delta=0\n');←↵started=tic;←↵[K,Z,X,prog]=PIETOOLS_IQC_controller_synthesis(prog,settings,P0,F,V);←↵info=prog.solinfo.info;←↵residual=double(prog.solinfo.residual);←↵relativeResidual=residual/(1+norm(vertcat(prog.expr.b{:})));←↵feasible=info.pinf==0 && info.dinf==0 && info.numerr<=1 ...←↵    && isfinite(info.feasratio) && abs(info.feasratio-1)<=0.4 ...←↵    && isfinite(relativeResidual) && relativeResidual<1e-5 && ~isempty(K);←↵assert(feasible,'Nominal synthesis failed its solver/residual checks.');←↵result=struct('K',K,'Z',Z,'storage',X,'settings',settings, ...←↵    'info',info,'residual',residual,'relativeResidual',relativeResidual, ...←↵    'feasible',feasible,'seconds',toc(started),'designDelta',0, ...←↵    'objective','stability feasibility (same as sector design)');←↵fprintf('Nominal synthesis relative residual: %.3g\n',relativeResidual);←↵disp('Nominal finite-state gain (code units):'); disp(K.P);←↵end←↵←↵function F=id_filter(d1,d2,vars,dom)←↵d0=[0;0];←↵F.T=zerosPI(d0,d0,vars,dom); F.A=F.T;←↵F.B1=zerosPI(d0,d1,vars,dom); F.B2=zerosPI(d0,d2,vars,dom);←↵F.C1=zerosPI(d1,d0,vars,dom); F.C2=zerosPI(d2,d0,vars,dom);←↵F.D11=eyePI(d1,vars,dom); F.D22=eyePI(d2,vars,dom);←↵F.D12=zerosPI(d1,d2,vars,dom); F.D21=zerosPI(d2,d1,vars,dom);←↵end←↵←↵function [sim,validation]=simulate_nominal(R,provenance,K)←↵p=R.parameters;←↵delta=@(z) [p.MS/2*(tanh(2*(p.tildeZSStar+z(1))/p.MS)-tanh(2*p.tildeZSStar/p.MS)); ...←↵    p.MG/2*(tanh(2*(p.tildeZGStar+z(2))/p.MG)-tanh(2*p.tildeZGStar/p.MG))];←↵G=unscaled_simulation_plant(R.synthesis.P,K,true);←↵x0.ode=provenance.initialHistory;←↵x0.pde={0,0,0};←↵opts.nwd0=2; opts.splot=linspace(0,1,151).';←↵opts.wp=@(t) provenance.disturbanceAmplitude* ...←↵    sin(pi*(t-0.10)/0.04)^2*(t>=0.10 && t<=0.14);←↵opts.ode=odeset('RelTol',1e-8,'AbsTol',1e-10,'MaxStep',2.5e-4);←↵for order=[24,32]←↵    opts.N=order;←↵    fprintf('Simulating nominal controller on full nonlinear system, N=%d\n',order);←↵    sim=PIE_sim_nl(G,delta,R.simClosed.t,x0,opts);←↵    primary=sim.Dop.Tcheb_2PDEstate*sim.x.';←↵    sim.xS=primary(1,:).'; sim.xG=primary(2,:).';←↵    sim.zDelta=sim.zFinite(:,1:2); sim.u=sim.outputFinite(:,3:end);←↵    signals=[sim.xS,sim.xG,sim.zDelta,provenance.controlScaleToPaper*sim.u];←↵    assert(all(isfinite(signals),'all'),'Nonfinite nominal trajectory.');←↵    % At Delta=0 the discretized closed-loop generator is Atotal itself.←↵    spectralAbscissa=max(real(eig(sim.Dop.Atotal)));←↵    assert(spectralAbscissa<0,'Recovered nominal controller is unstable at Delta=0.');←↵    validation.nominalSpectralAbscissa(order/8-2)=spectralAbscissa;←↵    if order==24←↵        coarse=signals;←↵    else←↵        validation.spatialRelativeError=max(abs(signals-coarse),[],1)./ ...←↵            max(1,max(abs(signals),[],1));←↵        assert(max(validation.spatialRelativeError)<1e-3, ...←↵            'Nominal nonlinear trajectory failed the N=24/32 convergence check.');←↵    end←↵end←↵assert(isequal(sim.t,R.simClosed.t),'Comparison time grids differ.');←↵assert(max(abs(sim.wp-R.simClosed.wp),[],'all')<1e-12, ...←↵    'Comparison disturbance differs from Figure 10.');←↵validation.orders=[24,32];←↵validation.baselineTrajectoriesUnchanged=true;←↵fprintf('Nominal nonlinear spatial relative errors:');←↵fprintf(' %.3g',validation.spatialRelativeError); fprintf('\n');←↵fprintf('Delta=0 closed-loop spectral abscissae:');←↵fprintf(' %.6g',validation.nominalSpectralAbscissa); fprintf('\n');←↵end←↵←↵function write_summary(C,testRoot)←↵R=C.baseline; sims={R.simOpen,R.simClosed,C.simNominal};←↵names={'Open loop';'Sector controller';'Nominal controller'};←↵peakXS=zeros(3,1); peakXG=peakXS; peakU=peakXS; finalNorm=peakXS;←↵maxZS=peakXS; maxZG=peakXS;←↵for k=1:3←↵    s=sims{k}; peakXS(k)=max(abs(s.xS)); peakXG(k)=max(abs(s.xG));←↵    if k>1, peakU(k)=C.provenance.controlScaleToPaper*max(abs(s.u)); end←↵    finalNorm(k)=hypot(s.xS(end),s.xG(end));←↵    maxZS(k)=max(s.zDelta(:,1)); maxZG(k)=max(s.zDelta(:,2));←↵end←↵summary=table(names,peakXS,peakXG,peakU,finalNorm,maxZS,maxZG, ...←↵    'VariableNames',{'Controller','PeakAbsXS','PeakAbsXG','PeakAbsU', ...←↵    'FinalStateNorm','MaxZS','MaxZG'});←↵writetable(summary,fullfile(testRoot,'stn_gpe_comparison_metrics.csv'));←↵disp(summary);←↵end←↵←↵function plot_trajectories(R,provenance,figureRoot,nominal)←↵closed = R.simClosed; open = R.simOpen;←↵alpha = R.synthesis.betaBar;←↵[limits,~] = stn_gpe_admissible_trajectories(alpha,R.Kd);←↵originalCoordinates = isfield(provenance,'coordinates') && ...←↵    strcmp(provenance.coordinates,'original firing rates and sigmoid inputs');←↵if originalCoordinates←↵    limits = limits+[R.parameters.uS0,R.parameters.uG0];←↵end←↵% The synthesis plant uses xS_dot = ... + 4600*u_code; the paper uses←↵% tauS*xS_dot = ... + u. Plot u_paper = tauS*4600*u_code.←↵u = provenance.controlScaleToPaper*closed.u;←↵assert(all(isfinite([closed.xS;closed.xG;closed.zDelta(:);u(:)])));←↵maxZ = max(closed.zDelta,[],1);←↵% assert(all(maxZ<=limits),'Simulated inputs exceed the sector intervals.');←↵% Keep the original styling, with readable text at single-column width.←↵blue = [0.08 0.40 0.72];←↵nominalColor = [0.55 0.20 0.65];←↵fig = new_figure([7.0 6.6]);←↵positions = [0.125 0.70 0.335 0.21;0.625 0.70 0.335 0.21; ...←↵             0.125 0.40 0.335 0.21;0.625 0.40 0.335 0.21; ...←↵             0.125 0.10 0.335 0.21;0.625 0.10 0.335 0.21];←↵closedSignals = {closed.xS,closed.xG,closed.zDelta(:,1),closed.zDelta(:,2),u,closed.wp(:,1)};←↵openSignals = {open.xS,open.xG,open.zDelta(:,1),open.zDelta(:,2),zeros(size(open.t)),open.wp(:,2)};←↵labels = {'$x_{\mathrm S}(t)\;[\mathrm{spikes/s}]$','$x_{\mathrm G}(t)\;[\mathrm{spikes/s}]$', ...←↵    '$z_{\mathrm S}(t)$','$z_{\mathrm G}(t)$', ...←↵    '$u(t)\;[\mathrm{spikes/s}]$','$d(t)\;[\mathrm{spikes/s}]$'};←↵if originalCoordinates←↵    labels(1:4) = {'$\mathrm{STN}(t)\;[\mathrm{spikes/s}]$', ...←↵        '$\mathrm{GP}(t)\;[\mathrm{spikes/s}]$','$q_{\mathrm S}(t)$','$q_{\mathrm G}(t)$'};←↵end←↵nominalSignals = {nominal.xS,nominal.xG,nominal.zDelta(:,1), ...←↵    nominal.zDelta(:,2),provenance.controlScaleToPaper*nominal.u};←↵for i=1:6←↵    ax = axes(fig,'Position',positions(i,:)); hold(ax,'on');←↵    if i<=4←↵        ho = plot(ax,open.t,openSignals{i},'--','Color',[0.53 0.56 0.60], ...←↵            'LineWidth',1.15);←↵    elseif i==6←↵        ho = plot(ax,open.t,openSignals{i},'--','Color',[0.85 0.32 0.13],'LineWidth',1.3);←↵    end←↵    hc = plot(ax,closed.t,closedSignals{i},'Color',blue,'LineWidth',1.…'
+

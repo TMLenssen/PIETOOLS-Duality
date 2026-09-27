@@ -1,0 +1,137 @@
+\documentclass{article}
+\usepackage[paperwidth=180mm,paperheight=90mm,margin=0mm]{geometry}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usetikzlibrary{arrows.meta}
+\pagestyle{empty}
+\definecolor{exc}{HTML}{174A80}
+\definecolor{inh}{HTML}{FF484D}
+\definecolor{pro}{HTML}{FF6266}
+\definecolor{stn}{HTML}{29CDEE}
+\definecolor{pdot}{HTML}{D91018}
+\definecolor{sdot}{HTML}{386FF5}
+% Fixed 180 x 90 mm canvas for every full diagram AND annotation layer.
+% Variant 0: base; 1: weights; 2: saturation; 3: delays; 4: electrode;
+% 5: pulses; 6: pulses plus summation; 7: healthy weights; 8: Parkinsonian weights.
+% Values: Nevado Holgado et al. (2010), Table 3. No cropping or scaling.
+\newcommand{\circuit}{%
+  \draw[exc,line width=2pt,-{Triangle[length=4mm,width=3.5mm]}]
+    (15,5.5) .. controls (15,8.4) and (4.5,8.4) .. (3.4,5.5);
+  \draw[inh,line width=2pt] (3.4,3.5)
+    .. controls (3.4,1.4) and (14.8,1.4) .. (14.8,3.25);
+  \fill[inh] (14.8,3.25) circle (.23);
+  \draw[inh,line width=1.3pt] (2.5,4.95)
+    .. controls (1.3,5.4) and (1.3,3.95) .. (2.3,4.05);
+  \draw[inh,line width=2pt] (2.3,3.85)--(2.3,4.3);
+  \fill[pro] (3.4,4.5) circle (1);
+  \fill[stn] (15,4.5) circle (1);
+  \foreach \a in {15,45,...,345}{
+    \fill[pdot] (3.4,4.5) ++(\a:.77) circle (.12);
+    \fill[sdot] (15,4.5) ++(\a:.77) circle (.13);
+  }
+  \node[font=\sffamily\Large] at (3.4,4.5) {Proto};
+  \node[font=\sffamily\Large] at (15,4.5) {STN};
+  \node[exc,font=\Huge] at (2.8,5.65) {$+$};
+  \node[inh,font=\Huge] at (15.65,3.25) {$-$};
+  \node[inh,font=\Huge] at (1.95,3.65) {$-$};
+}
+\newcommand{\clockicon}[3]{%
+  \draw[#3,line width=1pt] (#1,#2) circle (.23);
+  \draw[#3,line width=1pt] (#1,#2) ++(0,.16)--(#1,#2)--++(.13,0);
+}
+\newcommand{\pulse}[3]{%
+  \begin{scope}[shift={(#1,#2)}]
+    \draw[#3,line width=1.1pt] (0,0)--(.18,0)--(.24,.45)--(.30,0)
+      --(.60,0)--(.66,.45)--(.72,0)--(1.02,0)--(1.08,.45)--(1.14,0)--(1.35,0);
+  \end{scope}
+}
+\newcommand{\electrode}{%
+  \draw[gray!70!black,line width=1.1pt] (15.63,5.8)
+    .. controls (16.05,7.8) and (16,8.1) .. (16.8,8.1);
+  \node[anchor=west] at (16.8,8.1) {$u(t)$};
+  \begin{scope}[shift={(15.55,5.2)},rotate=-15]
+    \filldraw[fill=gray!40,draw=gray!80,rounded corners=1.5pt]
+      (-.11,0) rectangle (.11,1.1);
+    \fill[yellow!70!orange] (-.11,.12) rectangle (.11,.23);
+    \fill[yellow!70!orange] (-.11,.34) rectangle (.11,.45);
+  \end{scope}
+}
+\newcommand{\annotations}[1]{%
+  \ifnum#1>6
+    \ifnum#1=7
+      \def\wsg{19.0}\def\wgs{1.12}\def\wgg{6.60}
+      \node[font=\sffamily\LARGE\bfseries] at (9.2,4.5) {Healthy};
+    \else
+      \def\wsg{20.0}\def\wgs{10.7}\def\wgg{12.3}
+      \node[align=center,font=\sffamily\LARGE\bfseries] at (9.2,4.5)
+        {Suffering from\\Parkinson's};
+    \fi
+    \node[exc,font=\LARGE\boldmath] at (9.5,8.25) {$w_{\mathrm{SG}}=\wsg$};
+    \node[inh,font=\LARGE\boldmath] at (9.1,1.3) {$w_{\mathrm{GS}}=\wgs$};
+    \node[inh,align=center,font=\LARGE\boldmath] at (.8,4.6)
+      {$w_{\mathrm{GG}}$\\$\wgg$};
+    \electrode
+  \fi
+  \ifnum#1=1
+    \node[exc,font=\LARGE\boldmath] at (9.5,8.25) {$w_{\mathrm{SG}}$};
+    \node[inh,font=\LARGE\boldmath] at (9.1,1.3) {$w_{\mathrm{GS}}$};
+    \node[inh,align=center,font=\LARGE\boldmath] at (.8,4.6)
+      {$w_{\mathrm{GG}}$};
+  \fi
+  \ifnum#1=2
+    \foreach \xx/\col/\idx in {6.0/inh/G,12.2/exc/S}{
+      \begin{scope}[shift={(\xx,4.5)}]
+        \draw[gray,thin,->] (-1.15,0)--(1.25,0) node[below] {$z_{\mathrm{\idx}}$};
+        \draw[gray,thin,->] (0,-.65)--(0,1.03);
+        \draw[\col,line width=1.2pt,domain=-1.1:1.1,samples=65]
+          plot (\x,{.66*(tanh(3*\x-.3)-tanh(-.3))});
+        \node[\col] at (0,1.3) {$\delta_{\mathrm{\idx}}(z_{\mathrm{\idx}})$};
+      \end{scope}
+    }
+    \draw[gray,densely dotted] (4.45,4.85)--(4.8,5.05);
+    \draw[gray,densely dotted] (13.5,5.05)--(13.95,4.85);
+  \fi
+  \ifnum#1=3
+    \clockicon{8.1}{8.25}{exc}
+    \node[exc] at (9.9,8.25) {$\tau_{\mathrm{SG}}=6\,\mathrm{ms}$};
+    \clockicon{7.7}{1.3}{inh}
+    \node[inh] at (9.5,1.3) {$\tau_{\mathrm{GS}}=6\,\mathrm{ms}$};
+    \clockicon{.8}{5.25}{inh}
+    \node[inh,align=center,font=\normalsize] at (.8,4.6)
+      {$\tau_{\mathrm{GG}}$\\$=4\,\mathrm{ms}$};
+    \pulse{7.9}{4.7}{gray}
+    \pulse{9.0}{3.85}{exc}
+    \draw[gray,densely dotted] (8.14,5.3)--(8.14,5.75);
+    \draw[gray,densely dotted] (9.24,4.4)--(9.24,5.75);
+    \draw[gray,<->] (8.14,5.65)--node[above] {$\tau_{ij}$}(9.24,5.65);
+  \fi
+  \ifnum#1=4
+    \electrode
+  \fi
+  \ifnum#1>4\ifnum#1<7
+    \pulse{8.5}{8.1}{exc}
+    \pulse{8.5}{2.5}{inh}
+    \pulse{.95}{2.65}{inh}
+  \fi\fi
+  \ifnum#1=6
+    \node[exc] at (8.15,8.28) {$\displaystyle\sum$};
+    \node[inh] at (8.15,2.68) {$\displaystyle\sum$};
+    \node[inh] at (.6,2.83) {$\displaystyle\sum$};
+  \fi
+}
+\begin{document}
+% Full variants first, followed by annotation-only pages with identical origin.
+\foreach \mode in {0,1}{%
+  \foreach \variant in {0,...,8}{%
+    \null
+    \begin{tikzpicture}[remember picture,overlay,line cap=round,line join=round,
+                        every node/.style={font=\large}]
+      \begin{scope}[shift={(current page.south west)}]
+        \ifnum\mode=0 \circuit \fi
+        \annotations{\variant}
+      \end{scope}
+    \end{tikzpicture}
+    \newpage
+  }
+}
+\end{document}

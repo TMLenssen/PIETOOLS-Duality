@@ -1,0 +1,20 @@
+[
+  {
+    "slide": 17,
+    "figure": 2,
+    "name": "Primal controller interconnection",
+    "asset": "17-paper-figure-2"
+  },
+  {
+    "slide": 18,
+    "figure": 3,
+    "name": "Primal and dual dynamic filtering",
+    "asset": "18-paper-figure-3"
+  },
+  {
+    "slide": 19,
+    "figure": 5,
+    "name": "Dual controller interconnection",
+    "asset": "19-paper-figure-5"
+  }
+]

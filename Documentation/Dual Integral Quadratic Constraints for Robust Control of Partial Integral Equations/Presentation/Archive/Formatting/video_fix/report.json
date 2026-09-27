@@ -1,0 +1,38 @@
+{
+  "source": "C:\\Users\\thijs\\Desktop\\Graduation_Project_TML\\Presentation\\Dual Integral Quadratic Contstraints for Robust Control of Partial Integral Equations.pptx",
+  "source_sha256": "193c74d5c6eb314706fd8df08d9eaa7eebc7be48d5e3701711ab18f7ae6237d2",
+  "output": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\presentation_formatting\\video_fix\\Dual Integral Quadratic Contstraints for Robust Control of Partial Integral Equations.pptx",
+  "changed": [
+    "ppt/slides/slide2.xml",
+    "ppt/slideMasters/slideMaster1.xml",
+    "ppt/slideLayouts/slideLayout1.xml",
+    "ppt/slideLayouts/slideLayout2.xml",
+    "ppt/slideLayouts/slideLayout3.xml",
+    "ppt/slideLayouts/slideLayout4.xml",
+    "ppt/slideLayouts/slideLayout5.xml",
+    "ppt/slideLayouts/slideLayout6.xml",
+    "ppt/slideLayouts/slideLayout7.xml",
+    "ppt/slideLayouts/slideLayout8.xml",
+    "ppt/slideLayouts/slideLayout9.xml",
+    "ppt/slideLayouts/slideLayout10.xml",
+    "ppt/slideLayouts/slideLayout11.xml",
+    "ppt/slideLayouts/slideLayout12.xml",
+    "ppt/slideLayouts/slideLayout13.xml",
+    "ppt/slideLayouts/slideLayout14.xml",
+    "ppt/slideLayouts/slideLayout15.xml",
+    "ppt/slideLayouts/slideLayout16.xml",
+    "ppt/slideLayouts/slideLayout17.xml"
+  ],
+  "templates": [
+    {
+      "source": "C:\\Users\\thijs\\Desktop\\Graduation_Project_TML\\Presentation\\TUe - Clean White.potx",
+      "output": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\presentation_formatting\\video_fix\\TUe - Clean White.potx",
+      "sha256": "e38cae0d8f2a636697ab7e38f6d8a6a75396be06a660f9779d990c38353d18e3"
+    },
+    {
+      "source": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\presentation_formatting\\template_fix\\TUe - Clean White.potx",
+      "output": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\presentation_formatting\\video_fix\\TUe - Clean White - staging.potx",
+      "sha256": "e38cae0d8f2a636697ab7e38f6d8a6a75396be06a660f9779d990c38353d18e3"
+    }
+  ]
+}

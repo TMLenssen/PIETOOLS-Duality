@@ -1,0 +1,128 @@
+﻿[
+    {
+        "id":  3,
+        "name":  "Footer Placeholder 2",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  4,
+        "name":  "Slide Number Placeholder 3",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "35"
+    },
+    {
+        "id":  301,
+        "name":  "Slide title",
+        "left":  36,
+        "top":  25,
+        "width":  648,
+        "height":  42,
+        "text":  "Use the dual filter"
+    },
+    {
+        "id":  302,
+        "name":  "Subtitle",
+        "left":  36,
+        "top":  70,
+        "width":  648,
+        "height":  22,
+        "text":  "Transform the filter so that the dual plant retains a filtered-graph representation."
+    },
+    {
+        "id":  303,
+        "name":  "Stage1 definition label",
+        "left":  43,
+        "top":  105,
+        "width":  265,
+        "height":  22,
+        "text":  "1  TRANSFORM THE FILTER"
+    },
+    {
+        "id":  304,
+        "name":  "Stage1 definition",
+        "left":  44,
+        "top":  135,
+        "width":  365,
+        "height":  45,
+        "text":  "𝐃 Θ :=    𝐽  ∗  Θ ⊤  𝐽   −1 "
+    },
+    {
+        "id":  305,
+        "name":  "Stage1 exchange matrix",
+        "left":  452,
+        "top":  128,
+        "width":  215,
+        "height":  55,
+        "text":  " 𝐽 =  0 𝐼 −𝐼 0  "
+    },
+    {
+        "id":  306,
+        "name":  "Stage2 example label",
+        "left":  43,
+        "top":  204,
+        "width":  275,
+        "height":  20,
+        "text":  "2  FOR THIS CONTROLLER"
+    },
+    {
+        "id":  307,
+        "name":  "Stage2 concrete dual filter",
+        "left":  45,
+        "top":  233,
+        "width":  271,
+        "height":  47,
+        "text":  "𝐃 Θ =  𝐼 0 − 𝐾 ∗  𝐼  "
+    },
+    {
+        "id":  308,
+        "name":  "Stage2 dual residual",
+        "left":  349,
+        "top":  220,
+        "width":  335,
+        "height":  36,
+        "text":  "𝐃 Θ    𝑦   𝑢   =   𝑦   𝑢 − 𝐾 ∗  𝑦   "
+    },
+    {
+        "id":  309,
+        "name":  "Stage2 residual zero",
+        "left":  353,
+        "top":  267,
+        "width":  322,
+        "height":  26,
+        "text":  " 𝑢 = 𝐾 ∗  𝑦   ⇒    𝑢  =0"
+    },
+    {
+        "id":  310,
+        "name":  "Stage3 correct dual dynamics",
+        "left":  116,
+        "top":  300,
+        "width":  570,
+        "height":  29,
+        "text":  " 𝑇 ∗   𝑥  =  𝐴 ∗ + 𝐾 ∗   𝐵 u  ∗   𝑥 "
+    },
+    {
+        "id":  311,
+        "name":  "Stage3 takeaway background",
+        "left":  36,
+        "top":  337,
+        "width":  648,
+        "height":  35,
+        "text":  ""
+    },
+    {
+        "id":  312,
+        "name":  "Stage3 takeaway",
+        "left":  48,
+        "top":  343,
+        "width":  624,
+        "height":  23,
+        "text":  "The zero residual now recovers the correct dual closed loop."
+    }
+]

@@ -36,10 +36,10 @@ PIE realizations depicted in \eqref{eq:dual-system-components}. Let $\Delta \in 
         \item The interconnection $K\star P\star\Delta$ is well-posed for all
         $\Delta\in\mbf{\Delta}$.
         \item The IQC in Definition~\ref{def:uncertainty-iqc} is satisfied for all $\Delta\in\mbf{\Delta}$.
-        \item Let $\mcl D$, $\mcl{D}_\mrm{G}$ denote the feedthrough of $\Theta$ and $G$ in \eqref{eq:primal-system-components} respectively, such that $(\mcl{D}_{21}\mcl{D}_\mrm{G} + \mcl{D}_{22})^{-1}\in\Pi_4$.
+        \item Let $\mcl D$, $\mcl{D}_\mrm{G}$ denote the feedthrough of $\Theta$ and $G$, such that $(\mcl{D}_{21}\mcl{D}_\mrm{G} + \mcl{D}_{22})^{-1}\in\Pi_4$.
     
     \end{itemize}
-     Moreover there exist, $\mcl{Z},\mcl{P}\in\Pi_4$ with $\mcl{P} = \mcl{P}^* \succ 0$, such that the following statement holds
+     Moreover there exist $\underline\epsilon>0$ and $\mcl{Z},\mcl{P}\in\Pi_4$ with $\mcl{P} = \mcl{P}^* \succ 0$, such that the following statement holds
     \begin{equation}\label{eq:controller-kyp}
         \begin{gathered}
             \bmat{
@@ -115,20 +115,22 @@ PIE state.
 
 Dynamic-IQC feedback constructions with additional controller memory have
 also been studied for uncertain systems with state delay~\cite{7353149}.
-Under~(\ref{ass:signal-availability}), the uncertainty $\Delta$ is known
-and $z_\Delta$, $w_\Delta=\Delta z_\Delta$, and $w_{\mrm{p}}$ are available
-to the controller. Define the augmented state
+Under~(\ref{ass:signal-availability}), for each dynamically filtered uncertainty
+channel, $\Delta$ is assumed to be known, so that $z_\Delta$,
+$w_\Delta=\Delta z_\Delta$, and $w_{\mrm{p}}$ are available for filter-state
+reconstruction. Unknown uncertainty channels may be included simultaneously,
+provided they satisfy a memoryless hard IQC. Define the augmented state
 \[
 \mbf x(t):=\bmat{\mbf x_{\mrm G}(t)\\\mbf x_\Theta(t)}.
 \]
-Let $\Theta=\mbf D(\underline\Theta)$. The recovered dynamic (nonlinear) controller is
+The recovered dynamic (nonlinear) controller is
 \begin{equation}\label{eq:dynamic-controller-realization}
 K:=\left\{
 \begin{aligned}
-\mcl T_\Theta\dot{\mbf x}_\Theta(t)
-&=\mcl A_\Theta\mbf x_\Theta(t)
-  +\mcl B_\Theta^{\mrm z}z(t)
-  +\mcl B_\Theta^{\mrm w}w(t),\\
+\mcl T\dot{\mbf x}_\Theta(t)
+&=\mcl A\mbf x_\Theta(t)
+  +\mcl B^{\mrm z}z(t)
+  +\mcl B^{\mrm w}w(t),\\
 u(t)&=\bmat{\mcl K_{\mrm G}&\mcl K_\Theta}\mbf x(t).
 \end{aligned}
 \right.

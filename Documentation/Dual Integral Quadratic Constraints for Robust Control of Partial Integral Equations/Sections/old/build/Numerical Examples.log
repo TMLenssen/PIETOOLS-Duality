@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.10)  10 SEP 2026 18:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.28 (MiKTeX 25.12) (preloaded format=pdflatex 2026.4.10)  24 SEP 2026 11:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality/Sections/old/Numerical Examples.tex"
-(c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality/Sections/old/Numerical Examples.tex
+**"c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations/Sections/old/Numerical Examples.tex"
+(c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations/Sections/old/Numerical Examples.tex
 LaTeX2e <2025-11-01>
 L3 programming layer <2025-12-24>
 (C:\Users\thijs\AppData\Local\Programs\MiKTeX\tex/latex/ieeetran\IEEEtran.cls
@@ -306,7 +306,7 @@ Type X to quit or <RETURN> to proceed,
 or enter new name. (Default extension: tex)
 
 Enter file name: 
-c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality/Sections/old/Numerical Examples.tex:6: Emergency stop.
+c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations/Sections/old/Numerical Examples.tex:6: Emergency stop.
 <read *> 
          
 l.6 \input{shortcuts}
@@ -316,10 +316,10 @@ l.6 \input{shortcuts}
  
 Here is how much of TeX's memory you used:
  9509 strings out of 467871
- 147355 string characters out of 5418376
+ 147529 string characters out of 5418376
  549380 words of memory out of 5000000
  38342 multiletter control sequences out of 15000+600000
  648791 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,1n,79p,387b,159s stack positions out of 10000i,1000n,20000p,200000b,200000s
-c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Robust_Control_of_PIE_Systems_using_IQC_based_on_Duality/Sections/old/Numerical Examples.tex:6:  ==> Fatal error occurred, no output PDF file produced!
+ 75i,1n,79p,415b,159s stack positions out of 10000i,1000n,20000p,200000b,200000s
+c:/Users/thijs/Desktop/PIETOOLS-Duality/Documentation/Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations/Sections/old/Numerical Examples.tex:6:  ==> Fatal error occurred, no output PDF file produced!

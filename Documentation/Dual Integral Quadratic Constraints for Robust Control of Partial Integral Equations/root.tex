@@ -21,13 +21,13 @@
 \usepackage[expansion=false]{microtype}
 \usepackage{xurl}
 
-\usetikzlibrary{arrows.meta}
-\input{Figures/primal_dual_controller_interconnections}
+\usetikzlibrary{arrows.meta,decorations.pathreplacing}
+\input{Figures/Diagrams/primal_dual_controller_interconnections}
 
 \renewcommand{\qedsymbol}{$\blacksquare$}
 
 \input{shortcuts}
-\input{Figures/primal_dual_system_components}
+\input{Figures/Diagrams/primal_dual_system_components}
 \def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
 T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
@@ -52,7 +52,7 @@ T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
 
 \title{Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations}
 
-\author{Thijs Lenssen}
+\author{Thijs Lenssen\fnref{fn1}}
 \address{Control Systems Group, Eindhoven University of Technology, The Netherlands}
 \ead{t.m.lenssen@student.tue.nl, thijs.lenssen14@gmail.com}
 
@@ -70,12 +70,15 @@ introduces bilinear couplings between the controller, storage, and
 multiplier operators. Combining induced $L_2$-gain duality with hard $J$-spectral
 factorization, we establish a dual IQC representation. For an admissible factorization, 
 this yields a convex Linear PI Inequality (LPI) that permits 
-explicit recovery of a controller with guaranteed closed-loop robustness. The method
-accommodates infinite-dimensional uncertainty channels and dynamic filters.
+recovery of a controller, in closed form whenever the storage operator is coercive
+and separable, with guaranteed closed-loop robustness. For multiplier classes
+admitting a hard $J$-spectral factorization, including a spatially weighted sector
+class on infinite-dimensional channels, constructed here, the method accommodates
+infinite-dimensional uncertainty channels and dynamic filters.
 \end{abstract}
 
 \begin{keyword}
-PDEs \sep Robust Control \sep LMIs \sep IQCs \sep PIEs
+PDEs \sep Robust Control \sep LPIs \sep IQCs \sep PIEs
 \end{keyword}
 
 \end{frontmatter}
@@ -94,11 +97,10 @@ PDEs \sep Robust Control \sep LMIs \sep IQCs \sep PIEs
 
 \section{Controller Analysis (Primal System)}\label{sec:primal-controller-analysis}
 \subfile{Sections/Main/5. Controller Analysis (Primal System)}
-\input{Figures/potapov_ginzburg_commutative_diagram}
+\input{Figures/Diagrams/potapov_ginzburg_commutative_diagram}
 \section{Duality}\label{sec:duality}\label{sec:dynamic-filtering-duality}
 
 \subfile{Sections/Main/6. Duality}
-\dualsystemcomponents
 \section{Convex Controller Synthesis (Dual System)}\label{sec:dual-controller-synthesis}
 \subfile{Sections/Main/7. Convex Controller Synthesis (Dual System).tex}
 
@@ -112,11 +114,28 @@ PDEs \sep Robust Control \sep LMIs \sep IQCs \sep PIEs
 \section{Conclusion}\label{sec:conclusion}
 \subfile{Sections/Main/10. Conclusion}
 
-% \section*{Acknowledgment}
-% The preferred spelling of the word ``acknowledgment'' in America is without
-% an ``e'' after the ``g''. Avoid the stilted expression ``one of us (R. B.
-% G.) thanks $\ldots$''. Instead, try ``R. B. G. thanks$\ldots$''. Put sponsor
-% acknowledgments in the unnumbered footnote on the first page.
+\section*{Acknowledgment}
+I would first like to thank my fellow students Maurits, Kevin, Max, Olaf,
+Olaf, Marc, Matijs, and Kilian for all the good times we shared, from the
+pre-master's programme all the way through the master's. Their friendship
+and company off and on campus made these years both enjoyable and memorable.
+
+I would also like to thank the team of Prof. M. M. Peet for their valuable
+feedback and for taking the time to listen to and discuss the presentation
+I gave at the European Control Conference (ECC). In particular, I would
+like to thank Aleksandr Talitckii for the weekly meetings, and his guidance
+and patience throughout the project.
+
+I am very grateful to my friends for the many weekend nights that allowed
+me to take my mind off my studies for a while. Those moments provided a
+welcome balance to the long days of studying and working on this project.
+
+I would also like to thank my family for their continued encouragement,
+and support throughout my studies.
+
+Lastly, I would like to express my sincere gratitude to my supervisor,
+Amritam, for continuously challenging me to improve, pushing me to achieve
+more than I initially thought possible.
 
 \bibliographystyle{elsarticle-num}
 \bibliography{references}

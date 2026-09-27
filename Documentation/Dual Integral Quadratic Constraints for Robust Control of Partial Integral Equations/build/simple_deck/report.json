@@ -1,0 +1,54 @@
+{
+  "source": "C:\\Users\\thijs\\Desktop\\Graduation_Project_TML\\Presentation\\Dual Integral Quadratic Contstraints for Robust Control of Partial Integral Equations.pptx",
+  "source_sha256": "E3CBFACAD9798652B9ADA885467195845A2F26E9E28CBE620B646C05C9ACE36A",
+  "output": "C:\\Users\\thijs\\Desktop\\PIETOOLS-Duality\\Documentation\\Dual Integral Quadratic Constraints for Robust Control of Partial Integral Equations\\build\\simple_deck\\Dual Integral Quadratic Contstraints for Robust Control of Partial Integral Equations.pptx",
+  "groups_flattened": 32,
+  "videos": [
+    {
+      "slide": 2,
+      "name": "cart_rigid",
+      "width": 828,
+      "height": 468,
+      "frames": 300,
+      "fps": 30.0
+    },
+    {
+      "slide": 2,
+      "name": "cart_flexible",
+      "width": 956,
+      "height": 550,
+      "frames": 300,
+      "fps": 30.0
+    },
+    {
+      "slide": 26,
+      "name": "Sector simulation \u2014 clean 4K video",
+      "width": 1920,
+      "height": 1080,
+      "frames": 337,
+      "fps": 24.0
+    },
+    {
+      "slide": 27,
+      "name": "Zames-Falb integral video",
+      "width": 1920,
+      "height": 1080,
+      "frames": 337,
+      "fps": 24.0
+    },
+    {
+      "slide": 28,
+      "name": "Zames-Falb rate video",
+      "width": 1920,
+      "height": 1080,
+      "frames": 337,
+      "fps": 24.0
+    }
+  ],
+  "shapes_before": 1340,
+  "shapes_after": 337,
+  "notes_preserved": 74,
+  "unused_media_removed": 201,
+  "bytes_before": 8008050,
+  "bytes_after": 6084884
+}

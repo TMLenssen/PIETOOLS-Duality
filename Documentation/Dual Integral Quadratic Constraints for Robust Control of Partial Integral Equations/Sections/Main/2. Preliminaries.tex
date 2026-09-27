@@ -39,14 +39,14 @@ the corresponding extended signal space is therefore,
 \begin{align*}
 L_{\mrm{e},[a,b]}^{\mbf n}:=\{\mbf v \mid p_T\mbf v\in L_{[a,b]}^{\mbf n} \;\forall T>0\}.
 \end{align*}
-Moreover, for $\tau \in \R$ define the shift operator $(s_\tau u)(t):=u(t-\tau)$. An 
+Moreover, for $\tau\geq0$ define the shift operator $(s_\tau u)(t):=u(t-\tau)$. An
 operator $G:L_{\mrm{e},[a,b]}^{\mbf n}\to
 L_{\mrm{e},[a,b]}^{\mbf m}$ is called
 \begin{itemize}
 \item \emph{Causal}, if $p_TG=p_TGp_T$ for all $T>0$.
 \item \emph{Anticausal}, if $(I-p_T)G(I-p_T)=(I-p_T)G$ for all $T>0$.
 \item \emph{Memoryless}, if $G$ is simultaneously causal and anticausal.
-\item \emph{Time-Invariant}, if $s_\tau G = G s_\tau$ for all $\tau\in\R$.
+\item \emph{Time-Invariant}, if $s_\tau G = G s_\tau$ for all $\tau\geq0$.
 \item \emph{Bounded on $L_{[a,b]}$}, if $\|G\|\leq C$ for some $C\geq0$.
 \item \emph{Bounded on $L_{\mrm{e},[a,b]}$}, if
 $\|p_TG\|\leq C$ for some $C\geq0$ and all $T>0$.
@@ -66,7 +66,7 @@ space~\cite{peet2021pierepresentation,shivakumar2024GDPE}.
 \begin{definition}
 We say an operator $\mcl P:\RL^{\mbf n}[a,b]\to\RL^{\mbf m}[a,b]$
 belongs to ${\Pi}_4^{\mbf{m}\times\mbf{n}}$, denoted by
-$\PIop{P}{Q_1}{Q_2}{\{R_0,R_1,R_2\}}$, if there exist a matrix $P$ and matrix polynomials $Q_1, Q_2,
+$\PIop{P}{Q_1}{Q_2}{\{R_0,R_1,R_2\}}$, if there exist a matrix $P$ and bounded measurable matrix-valued functions $Q_1, Q_2,
 R_0, R_1$, and $R_2$ (of compatible dimension) such that,
 \begin{gather*}
 \Bigg[\Bigg(\PIop{P}{Q_1}{Q_2}{\{R\}}\Bigg)\! \!
@@ -76,9 +76,9 @@ R_0, R_1$, and $R_2$ (of compatible dimension) such that,
 \end{gather*}
 where $\mcl{R}\in\Pi_3$.
 \end{definition}
-The vector space of PI operators, given compatible dimensions, are closed under
+The vector space of PI operators, given compatible dimensions, is closed under
 composition, addition, adjoint and concatenation -- implying that ${\Pi}_4$ is a
-composition algebra \cite{shivakumar2024GDPE}.
+$*$-algebra \cite{shivakumar2024GDPE}.
 
 \begin{definition}(LPIs)
 \label{def:lpi-operator}
@@ -86,15 +86,14 @@ For given PI operators $\{\mcl E_{i,j}, \mcl{F}_{i,j}, \mcl{G}_i\}$ and a convex
 linear functional $\ell(\cdot)$, a linear PI inequality is a convex
 optimization of the following form
 \begin{align*}
-& \min\limits_{P_i, Q_{1i}, Q_{2i}, R_{0i}, R_{1i}, R_{2i}}  \ell(\{P_i,
-Q_{1i}, Q_{2i}, R_{0i}, R_{1i}, R_{2i}\})\notag \\
-& \mrm{s. t. }\ \sum\limits_{j = 1}^K \mcl E_{ij}^*\prod \begin{bmatrix}
-P_i    & Q_{1i}  \\
-Q_{2i} & \{R_i\} \\
-\end{bmatrix}\mcl F_{ij} +\mcl G_i \succeq 0
+& \min\limits_{\substack{\{P_{ij},Q_{1ij},Q_{2ij},\\R_{0ij},R_{1ij},R_{2ij}\}_{j=1}^K}}
+\ell\bigl(\{P_{ij},Q_{1ij},Q_{2ij},R_{0ij},R_{1ij},R_{2ij}\}\bigr) \\
+& \mrm{s. t. }\ \sum\limits_{j=1}^K \mcl E_{ij}^*
+\PIop{P_{ij}}{Q_{1ij}}{Q_{2ij}}{\{R_{ij}\}}\mcl F_{ij}
++\mcl G_i\succeq0.
 \end{align*}
 \end{definition}
-Only LMIs are required to solve an optimization problem involving LPIs.
+An LPI is solved by reducing it to an LMI, for which standard semidefinite programming applies.
 We next describe PIE systems and their stability properties,
 following~\cite{shivaknew}.
 Given the PIE system $G\{\mcl{T}, \mcl{A}, \mcl{B}, \mcl{C}, \mcl{D}\}$
@@ -120,10 +119,10 @@ satisfy the dual PIE, $G^\top$, with initial condition $\underline{\mbf{x}}_0$ i
 \bmat{\underline{\mbf{x}}(t)\\ \underline{w}(t)},
 \end{equation*}
 for all $t\geq0$ and $\mcl{T}^*\underline{\mbf{x}}(0) =
-\mcl{T}^*\underline{\mbf{x}}_0$. A notational convenction
-is using underlining anything related to the dual system.
+\mcl{T}^*\underline{\mbf{x}}_0$. A notational convention
+is to underline anything related to the dual system.
 For these systems, we consider input--output and exponential stability. 
-Given a PIE system $G$, we say $G$ is input-output stable if for any $z, w \in L_{\mrm{e},[a,b]}$ satisfying $z = G w$ with $\mbf{x}_0=0$, consistently with~(\ref{ass:initial-conditions}), we have
+Given a PIE system $G$, we say $G$ is input-output stable if for any $z, w \in L_{\mrm{e},[a,b]}$ satisfying $z = G w$ with $\mbf{x}_0=0$, we have
 \[
 \|p_T z\|_{L_{[a,b]}}
 \leq
@@ -140,8 +139,8 @@ if $\mcl{T}\mbf{x}(0) = \mcl{T}\mbf{x}_0$ and $\mcl{T}\dot{\mbf{x}}(t)
 \[\|\mcl{T}\mbf{x}(t)\|_{\RL} \leq M\|\mbf{x}_0\|_{\RL} e^{-\alpha t} \quad\forall\, t\geq 0.\]
 To describe feedback interconnections, we use the following notation.
 For compatible causal $G$ and $H$, the Redheffer star
-products~\cite{https://doi.org/10.1002/sapm1960391269}
-denote the feedback maps
+products denote the well-posed feedback interconnection obtained by
+eliminating internal signals, such that
 \[
 \bmat{y_1\\y_2}=G\bmat{u_1\\u_2},\quad \begin{aligned}
 &G\star H:u_2\mapsto y_2\\ &H\star G:u_1\mapsto y_1
@@ -160,11 +159,21 @@ $y_1 \in L_{\mrm{e}, [a,b]}$ and
 $u_1 \in  L_{\mrm{e}, [a,b]}$ such that $y_2$, $u_2$,
 $y_1$, $u_1$ satisfy the interconnection.
 \item \emph{Causality}, If $y_1$, $u_1$ and
-$\hat{y}_1$, $\hat{u}_1$ satisfy the interconnection,
+$\hat{y}_1$, $\hat{u}_1$ satisfy the interconnection for inputs
+$u_2$ and $\hat u_2$ with $p_Tu_2=p_T\hat u_2$,
 then $p_T(y_1 - \hat{y}_1) = 0$ and
 $p_T(u_1 - \hat{u}_1) = 0$, for all
 $T \geq 0$.
 \end{itemize}
+For dual PIE systems we can define the following operations
+\begin{gather*}
+(G_1G_2)^\top=G_2^\top G_1^\top,\qquad
+(G_1+G_2)^\top=G_1^\top+G_2^\top,\\
+(G^\top)_{ij}=(G_{ji})^\top,\qquad
+(G\star H)^\top=G^\top\star H^\top,
+\end{gather*}
+and $(G^{-1})^\top=(G^\top)^{-1}$ whenever the inverse exists.
+
 \subsection{PIETOOLS}
 PIETOOLS is a MATLAB toolbox developed by Shivakumar, Das, and
 Peet~\cite{9147712} for declaring, manipulating, and solving LPIs. Its operator

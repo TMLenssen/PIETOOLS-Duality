@@ -1,0 +1,25 @@
+{
+  "seed": 20260926,
+  "samples": [
+    0.33758671671166507,
+    0.32571568152925057,
+    0.10968583004383337,
+    0.29230976106534245,
+    0.4716121727853889,
+    -0.20559506230484959
+  ],
+  "dominant_growth_rates": [
+    0.03570063516702267,
+    0.03273287637141904,
+    -0.02127458649993523,
+    0.024381396255442014,
+    0.06920699918545366,
+    -0.100094809587106
+  ],
+  "critical_delta": 0.19478417604357445,
+  "modal_refinement_error": 3.7427817289881204e-08,
+  "heater_amplitude": 2,
+  "heater_off": 8,
+  "simulation_end": 30,
+  "description": "Uniform random samples fixed for reproducible video playback. One curve is shown at a time. Red after heater switch-off iff the exact PDE dominant eigenvalue is positive. u=2 on [0,8), zero thereafter. 200 odd Fourier modes; checked against 400."
+}

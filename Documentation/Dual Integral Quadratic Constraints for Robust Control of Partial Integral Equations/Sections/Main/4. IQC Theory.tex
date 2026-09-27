@@ -10,11 +10,11 @@ the theory developed in sections~\ref{sec:primal-controller-analysis},~\ref{sec:
 
 \subsection{Description of uncertain systems in a Hilbert-space}
 We consider operators that map external inputs to external outputs through a
-feedback interconnection between a linear (infinite dimensional) operators $P$
+feedback interconnection between linear (infinite dimensional) operators $P$
 and $\Delta$.
 This interconnection structure is formally defined as follows
 \begin{definition}[Generalized Plant]\label{def:uncertain-interconnection}
-Given operators
+Suppose
 $P_\Delta :
 L_{\mrm{e},[a,b]}^{\mbf{n}_{\mrm{w}_\Delta}}
 \to
@@ -27,11 +27,11 @@ $P_{\mrm{p}\Delta} :
 L_{\mrm{e},[a,b]}^{\mbf{n}_{\mrm{w}_\Delta}}
 \to
 L_{\mrm{e},[a,b]}^{\mbf{n}_{\mrm{z}_{\mrm{p}}}}$,
-$P_{\mrm{p}} :
+and $P_{\mrm{p}} :
 L_{\mrm{e},[a,b]}^{\mbf{n}_{\mrm{w}_{\mrm{p}}}}
 \to
 L_{\mrm{e},[a,b]}^{\mbf{n}_{\mrm{z}_{\mrm{p}}}}$,
-and $\Delta :
+are bounded operators and $\Delta :
 L_{\mrm{e},[a,b]}^{\mbf{n}_{\mrm{z}_\Delta}}
 \to
 L_{\mrm{e},[a,b]}^{\mbf{n}_{\mrm{w}_\Delta}}$, define
@@ -106,7 +106,7 @@ $\Delta:
 L_{\mrm{e},[a,b]}^{\mbf{n}_{\mrm{z}_\Delta}}
 \to
 L_{\mrm{e},[a,b]}^{\mbf{n}_{\mrm{w}_\Delta}}$
-is said to satisfy the hard IQC $(\Psi_\Delta, {\mcl V_\Delta})$ defined by the dynamic operator
+is said to satisfy the hard IQC $(\Psi_\Delta, {\mcl V_\Delta})$ defined by the causal, bounded dynamic operator
 $\Psi_\Delta:
 L^{\mbf{n}_{\mrm{z}_\Delta} + \mbf{n}_{\mrm{w}_\Delta}}_{\mrm{e}, [a,b]}
 \to
@@ -140,7 +140,8 @@ input--output maps are evaluated from the zero initial condition
 in~(\ref{ass:initial-conditions}).
 \begin{definition}
 \label{def:robust-performance}\emph{Robust performance} is achieved if the interconnection $P \star \Delta$
-is {robustly stable} and for performance IQC $(\Psi_{\mrm{p}}, {\mcl V_{\mrm{p}}})$ defined by $\Psi_{\mrm{p}}:
+is {robustly stable} and there exists $\epsilon>0$ such that, for performance IQC
+$(\Psi_{\mrm{p}}, {\mcl V_{\mrm{p}}})$ defined by the causal, bounded operator $\Psi_{\mrm{p}}:
 L^{\mbf{n}_{\mrm{z}_{\mrm{p}}} + \mbf{n}_{\mrm{w}_{\mrm{p}}}}_{\mrm{e}, [a,b]}
 \to
 L^{\mbf{n}_{\tilde{\mrm{z}}_{\mrm{p}}} + \mbf{n}_{\tilde{\mrm{w}}_{\mrm{p}}}}_{\mrm{e}, [a,b]}$ and
@@ -186,7 +187,7 @@ $\mcl{V}\{\mcl{Q}, \mcl{S}, \mcl{R}\}$.
 
 \begin{theorem}[Robust Stability and Performance]\label{thm:robust-stability-performance}
 Let $P$, $\mbf{\Delta}$ be given, and there exists $\Psi_\Delta$,
-${\mcl{V}_\Delta}$, such that,
+${\mcl{V}_\Delta}$, as in Definition~\ref{def:uncertainty-iqc}, such that,
 \begin{itemize}
 \item The interconnection $P\star\Delta$ is well--posed for all
 $\Delta\in\mbf{\Delta}$.
@@ -195,7 +196,8 @@ $\Delta\in\mbf{\Delta}$ satisfy the hard IQC defined by $\Psi_\Delta$ and $\mcl 
 \end{itemize}
 Then the interconnection $P \star \Delta$ is \emph{robustly stable} and
 \emph{robust performance} is achieved with respect to some $\Psi_{\mrm{p}}$ and
-${{\mcl{V}}_{\mrm{p}}} =\{\mcl Q_{\mrm{p}}, \mcl S_{\mrm{p}}, \mcl R_{\mrm{p}}\}$ if,
+${{\mcl{V}}_{\mrm{p}}} =\{\mcl Q_{\mrm{p}}, \mcl S_{\mrm{p}}, \mcl R_{\mrm{p}}\}$
+as in Definition~\ref{def:robust-performance}, if there exists $\epsilon>0$ such that,
 \begin{equation}\label{eq:robust-condition}
 \ip{p_T\Psi\bmat{Pw \\ w}}{p_T\mcl{M}_{\mcl V}\Psi\bmat{Pw \\ w}}_{L_{[a,b]}} 
 \leq

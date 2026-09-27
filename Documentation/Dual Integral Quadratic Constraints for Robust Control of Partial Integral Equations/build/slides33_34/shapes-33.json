@@ -1,0 +1,191 @@
+﻿[
+    {
+        "id":  2,
+        "name":  "Title 1",
+        "left":  36,
+        "top":  30,
+        "width":  648,
+        "height":  40,
+        "text":  "Alternative controller schematic"
+    },
+    {
+        "id":  3,
+        "name":  "Footer Placeholder 2",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  4,
+        "name":  "Slide Number Placeholder 3",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "33"
+    },
+    {
+        "id":  5,
+        "name":  "Editable paper diagram",
+        "left":  36,
+        "top":  103.00386,
+        "width":  247.16,
+        "height":  145.28,
+        "text":  ""
+    },
+    {
+        "id":  34,
+        "name":  "z filtered output",
+        "left":  289.139374,
+        "top":  270.918823,
+        "width":  47.88,
+        "height":  2,
+        "text":  ""
+    },
+    {
+        "id":  35,
+        "name":  "Filtered z",
+        "left":  337.8694,
+        "top":  256.933777,
+        "width":  33.3,
+        "height":  29.97,
+        "text":  " y "
+    },
+    {
+        "id":  36,
+        "name":  "w filtered output",
+        "left":  289.139374,
+        "top":  300.518829,
+        "width":  47.88,
+        "height":  2,
+        "text":  ""
+    },
+    {
+        "id":  37,
+        "name":  "Filtered w",
+        "left":  337.8694,
+        "top":  286.533783,
+        "width":  33.3,
+        "height":  29.97,
+        "text":  " u "
+    },
+    {
+        "id":  52,
+        "name":  "Dynamic filter",
+        "left":  216.139374,
+        "top":  249.718826,
+        "width":  74,
+        "height":  74,
+        "text":  ""
+    },
+    {
+        "id":  53,
+        "name":  "TextBox 52",
+        "left":  242.468826,
+        "top":  269.734253,
+        "width":  22.3411026,
+        "height":  31.383543,
+        "text":  "Θ"
+    },
+    {
+        "id":  55,
+        "name":  "Connector: Elbow 54",
+        "left":  194.84,
+        "top":  220.64386,
+        "width":  22.29937,
+        "height":  52.27496,
+        "text":  ""
+    },
+    {
+        "id":  61,
+        "name":  "Connector: Elbow 60",
+        "left":  97.73591,
+        "top":  220.64386,
+        "width":  119.403465,
+        "height":  81.87496,
+        "text":  ""
+    },
+    {
+        "id":  200,
+        "name":  "Signal tap 200",
+        "left":  194.44,
+        "top":  220.243851,
+        "width":  2.8,
+        "height":  2.8,
+        "text":  ""
+    },
+    {
+        "id":  201,
+        "name":  "Signal tap 201",
+        "left":  97.33591,
+        "top":  220.243851,
+        "width":  2.8,
+        "height":  2.8,
+        "text":  ""
+    },
+    {
+        "id":  6,
+        "name":  "TextBox 5",
+        "left":  371.169373,
+        "top":  87.7396851,
+        "width":  40.82992,
+        "height":  23.6285038,
+        "text":  "Take"
+    },
+    {
+        "id":  9,
+        "name":  "TextBox 8",
+        "left":  396.6306,
+        "top":  111.777641,
+        "width":  181.111572,
+        "height":  36.4929123,
+        "text":  "Θ:=    𝑦  𝑡   𝑢  𝑡   =  𝐼 0 −𝐾 𝐼    𝑦 𝑡  𝑢 𝑡    "
+    },
+    {
+        "id":  10,
+        "name":  "TextBox 9",
+        "left":  390.344818,
+        "top":  297.7411,
+        "width":  198.292755,
+        "height":  36.4929123,
+        "text":  "Θ  𝐺 𝐼  :=  𝑇 𝑥  𝑡 \u0026= 𝐴+ 𝐵 u 𝐾 𝑥 𝑡   𝑦  𝑡 \u0026=𝑥 𝑡   "
+    },
+    {
+        "id":  11,
+        "name":  "TextBox 10",
+        "left":  377.038574,
+        "top":  175.322433,
+        "width":  42.8140945,
+        "height":  23.6285038,
+        "text":  "Thus"
+    },
+    {
+        "id":  12,
+        "name":  "TextBox 11",
+        "left":  411.9993,
+        "top":  202.218826,
+        "width":  127.371811,
+        "height":  23.6285038,
+        "text":  " 𝑦  𝑡 =𝑦 𝑡 =𝑥 𝑡 "
+    },
+    {
+        "id":  13,
+        "name":  "TextBox 12",
+        "left":  411.9993,
+        "top":  230.723862,
+        "width":  161.431259,
+        "height":  23.6285038,
+        "text":  " 𝑢  𝑡 =𝑢 𝑡 −𝐾𝑥 𝑡 =0 "
+    },
+    {
+        "id":  16,
+        "name":  "TextBox 15",
+        "left":  377.0785,
+        "top":  261.581329,
+        "width":  62.92858,
+        "height":  23.6285038,
+        "text":  "Filling in"
+    }
+]

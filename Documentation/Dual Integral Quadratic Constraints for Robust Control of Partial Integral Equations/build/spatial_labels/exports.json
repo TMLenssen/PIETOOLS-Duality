@@ -1,0 +1,78 @@
+﻿[
+    {
+        "file":  "video-2-21-static.png",
+        "slide":  2,
+        "id":  21,
+        "box":  [
+                    -72,
+                    -72,
+                    864,
+                    549
+                ],
+        "kind":  "static"
+    },
+    {
+        "slide":  2,
+        "label":  10026,
+        "id":  21,
+        "box":  [
+                    -72,
+                    -72,
+                    864,
+                    549
+                ],
+        "kind":  "moving",
+        "file":  "video-2-21-moving-10026.png"
+    },
+    {
+        "slide":  2,
+        "label":  10027,
+        "id":  21,
+        "box":  [
+                    -72,
+                    -72,
+                    864,
+                    549
+                ],
+        "kind":  "moving",
+        "file":  "video-2-21-moving-10027.png"
+    },
+    {
+        "slide":  2,
+        "label":  10028,
+        "id":  21,
+        "box":  [
+                    -72,
+                    -72,
+                    864,
+                    549
+                ],
+        "kind":  "moving",
+        "file":  "video-2-21-moving-10028.png"
+    },
+    {
+        "slide":  2,
+        "label":  10029,
+        "id":  21,
+        "box":  [
+                    -72,
+                    -72,
+                    864,
+                    549
+                ],
+        "kind":  "moving",
+        "file":  "video-2-21-moving-10029.png"
+    },
+    {
+        "file":  "group-4-7.png",
+        "slide":  4,
+        "id":  7,
+        "box":  [
+                    -72,
+                    -72,
+                    864,
+                    549
+                ],
+        "kind":  "group"
+    }
+]

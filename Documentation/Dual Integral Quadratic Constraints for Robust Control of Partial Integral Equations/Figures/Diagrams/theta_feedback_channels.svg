@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="610" viewBox="0 0 1050 610">
+ <rect width="1050" height="610" fill="white"/>
+ <g fill="none" stroke="black" stroke-width="2.2">
+  <rect x="360" y="80" width="220" height="155"/>
+  <rect x="330" y="415" width="250" height="130"/>
+  <path d="M220 120H350 M330 480H120V195H350 M580 120H905V480H590 M580 195H740"/>
+  <path d="M459 123H450V192H459 M546 123H555V192H546"/>
+ </g>
+ <g fill="black">
+  <path d="M360 120l-13 -6v12z M360 195l-13 -6v12z M580 480l13 -6v12z M750 195l-13 -6v12z"/>
+ </g>
+ <g fill="black" font-family="Times New Roman,serif" font-size="32" font-style="italic">
+  <text x="383" y="170">Θ =</text>
+  <text x="470" y="151">I</text><text x="514" y="151">K</text>
+  <text x="470" y="183" font-style="normal">0</text><text x="518" y="183">I</text>
+  <text x="244" y="106">z(t) = 0</text>
+  <text x="170" y="179">w(t) = y(t)</text>
+  <text x="660" y="105">z̃(t) = u(t)</text>
+  <text x="770" y="206">w̃(t) = y(t)</text>
+  <text x="435" y="490" font-size="44">P</text>
+ </g>
+ <rect x="32" y="313" width="177" height="45" fill="white"/>
+ <text x="120" y="345" text-anchor="middle" font-family="Times New Roman,serif" font-size="32" font-style="italic">y(t) = x(t)</text>
+ <rect x="839" y="313" width="135" height="45" fill="white"/>
+ <text x="905" y="345" text-anchor="middle" font-family="Times New Roman,serif" font-size="32" font-style="italic">u(t)</text>
+</svg>

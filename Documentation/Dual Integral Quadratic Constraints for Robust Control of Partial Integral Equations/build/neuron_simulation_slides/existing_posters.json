@@ -1,0 +1,42 @@
+[
+  {
+    "slide": 2,
+    "part": "ppt/slides/slide2.xml",
+    "shape_id": "20",
+    "name": "cart_rigid",
+    "media": "ppt/media/media1.mp4",
+    "poster": "existing-slide2-shape20-first.png"
+  },
+  {
+    "slide": 2,
+    "part": "ppt/slides/slide2.xml",
+    "shape_id": "21",
+    "name": "cart_flexible",
+    "media": "ppt/media/media2.mp4",
+    "poster": "existing-slide2-shape21-first.png"
+  },
+  {
+    "slide": 26,
+    "part": "ppt/slides/slide26.xml",
+    "shape_id": "20",
+    "name": "Sector simulation \u2014 clean 4K video",
+    "media": "ppt/media/media3.mp4",
+    "poster": "existing-slide26-shape20-first.png"
+  },
+  {
+    "slide": 27,
+    "part": "ppt/slides/slide27.xml",
+    "shape_id": "20",
+    "name": "Zames-Falb integral video",
+    "media": "ppt/media/media4.mp4",
+    "poster": "existing-slide27-shape20-first.png"
+  },
+  {
+    "slide": 28,
+    "part": "ppt/slides/slide28.xml",
+    "shape_id": "20",
+    "name": "Zames-Falb rate video",
+    "media": "ppt/media/media5.mp4",
+    "poster": "existing-slide28-shape20-first.png"
+  }
+]

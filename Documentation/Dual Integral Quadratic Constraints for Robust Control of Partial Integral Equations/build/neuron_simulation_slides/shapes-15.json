@@ -1,0 +1,47 @@
+﻿[
+    {
+        "id":  4,
+        "name":  "Footer Placeholder 3",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  5,
+        "name":  "Slide Number Placeholder 4",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "15"
+    },
+    {
+        "id":  6,
+        "name":  "TextBox 5",
+        "left":  36,
+        "top":  48,
+        "width":  648,
+        "height":  115,
+        "text":  "Goal: Develop a unified framework to analyse and control a broad class of distributed systems."
+    },
+    {
+        "id":  7,
+        "name":  "TextBox 6",
+        "left":  36,
+        "top":  157.6696,
+        "width":  648,
+        "height":  145,
+        "text":  "Analysis capabilities\rConvex state feedback synthesis"
+    },
+    {
+        "id":  8,
+        "name":  "Original TUe logo",
+        "left":  666,
+        "top":  379,
+        "width":  36,
+        "height":  20,
+        "text":  ""
+    }
+]

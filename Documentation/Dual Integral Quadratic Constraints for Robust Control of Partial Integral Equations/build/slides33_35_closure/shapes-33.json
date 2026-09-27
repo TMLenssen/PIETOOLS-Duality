@@ -1,0 +1,209 @@
+﻿[
+    {
+        "id":  2,
+        "name":  "Title 1",
+        "left":  36,
+        "top":  30,
+        "width":  648,
+        "height":  40,
+        "text":  "Alternative controller schematic"
+    },
+    {
+        "id":  3,
+        "name":  "Footer Placeholder 2",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  4,
+        "name":  "Slide Number Placeholder 3",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "33"
+    },
+    {
+        "id":  5,
+        "name":  "Editable paper diagram",
+        "left":  36,
+        "top":  103.00386,
+        "width":  247.16,
+        "height":  145.28,
+        "text":  ""
+    },
+    {
+        "id":  34,
+        "name":  "z filtered output",
+        "left":  289.139374,
+        "top":  270.918823,
+        "width":  47.88,
+        "height":  2,
+        "text":  ""
+    },
+    {
+        "id":  35,
+        "name":  "Filtered z",
+        "left":  337.8694,
+        "top":  256.933777,
+        "width":  33.3,
+        "height":  29.97,
+        "text":  " y "
+    },
+    {
+        "id":  36,
+        "name":  "w filtered output",
+        "left":  289.139374,
+        "top":  300.518829,
+        "width":  47.88,
+        "height":  2,
+        "text":  ""
+    },
+    {
+        "id":  37,
+        "name":  "Filtered w",
+        "left":  337.8694,
+        "top":  286.533783,
+        "width":  33.3,
+        "height":  29.97,
+        "text":  " u "
+    },
+    {
+        "id":  52,
+        "name":  "Dynamic filter",
+        "left":  216.139374,
+        "top":  249.718826,
+        "width":  74,
+        "height":  74,
+        "text":  ""
+    },
+    {
+        "id":  53,
+        "name":  "TextBox 52",
+        "left":  242.468826,
+        "top":  269.734253,
+        "width":  22.3411026,
+        "height":  31.383543,
+        "text":  "Θ"
+    },
+    {
+        "id":  55,
+        "name":  "Connector: Elbow 54",
+        "left":  194.84,
+        "top":  220.64386,
+        "width":  22.29937,
+        "height":  52.27496,
+        "text":  ""
+    },
+    {
+        "id":  61,
+        "name":  "Connector: Elbow 60",
+        "left":  97.73591,
+        "top":  220.64386,
+        "width":  119.403465,
+        "height":  81.87496,
+        "text":  ""
+    },
+    {
+        "id":  200,
+        "name":  "Signal tap 200",
+        "left":  194.44,
+        "top":  220.243851,
+        "width":  2.8,
+        "height":  2.8,
+        "text":  ""
+    },
+    {
+        "id":  201,
+        "name":  "Signal tap 201",
+        "left":  97.33591,
+        "top":  220.243851,
+        "width":  2.8,
+        "height":  2.8,
+        "text":  ""
+    },
+    {
+        "id":  301,
+        "name":  "Plant label",
+        "left":  384,
+        "top":  84,
+        "width":  298,
+        "height":  22,
+        "text":  "Take the state-feedback system"
+    },
+    {
+        "id":  302,
+        "name":  "Plant",
+        "left":  391,
+        "top":  109,
+        "width":  293,
+        "height":  43,
+        "text":  "  𝑇 𝑥 =𝐴𝑥+ 𝐵 u 𝑢 𝑦=𝑥,   𝑢=𝐾𝑦  "
+    },
+    {
+        "id":  303,
+        "name":  "Stage1 filter signal system",
+        "left":  383,
+        "top":  158,
+        "width":  307,
+        "height":  60,
+        "text":  "Θ :=      𝑦   𝑢   =  𝐼 0 −𝐾 𝐼    𝑦 𝑢    "
+    },
+    {
+        "id":  304,
+        "name":  "Stage2 thus",
+        "left":  384,
+        "top":  220,
+        "width":  298,
+        "height":  21,
+        "text":  "Thus"
+    },
+    {
+        "id":  305,
+        "name":  "Stage2 outputs",
+        "left":  391,
+        "top":  243,
+        "width":  293,
+        "height":  44,
+        "text":  "   𝑦 =𝑦=𝑥  𝑢 =𝑢−𝐾𝑦=0  "
+    },
+    {
+        "id":  306,
+        "name":  "Stage3 substitution",
+        "left":  384,
+        "top":  296,
+        "width":  298,
+        "height":  21,
+        "text":  "Filling in"
+    },
+    {
+        "id":  307,
+        "name":  "Stage3 closed loop",
+        "left":  391,
+        "top":  318,
+        "width":  293,
+        "height":  26,
+        "text":  "𝑇 𝑥 = 𝐴+ 𝐵 u 𝐾 𝑥"
+    },
+    {
+        "id":  308,
+        "name":  "Stage3 conclusion",
+        "left":  36,
+        "top":  354,
+        "width":  648,
+        "height":  22,
+        "text":  "The controller enforces a zero residual."
+    },
+    {
+        "id":  6,
+        "name":  "Rectangle 5",
+        "left":  394.374176,
+        "top":  265.738739,
+        "width":  126.348427,
+        "height":  19.857481,
+        "text":  ""
+    }
+]

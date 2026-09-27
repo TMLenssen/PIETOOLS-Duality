@@ -1,0 +1,128 @@
+﻿[
+    {
+        "id":  3,
+        "name":  "Footer Placeholder 2",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  4,
+        "name":  "Slide Number Placeholder 3",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "34"
+    },
+    {
+        "id":  250,
+        "name":  "Controller interconnection",
+        "left":  42,
+        "top":  147,
+        "width":  271,
+        "height":  178.3,
+        "text":  ""
+    },
+    {
+        "id":  301,
+        "name":  "Slide title",
+        "left":  36,
+        "top":  25,
+        "width":  648,
+        "height":  42,
+        "text":  "Simply transposing is not enough"
+    },
+    {
+        "id":  302,
+        "name":  "Subtitle",
+        "left":  36,
+        "top":  70,
+        "width":  648,
+        "height":  22,
+        "text":  "A transpose must act on the complete interconnection, not just its blocks."
+    },
+    {
+        "id":  303,
+        "name":  "Naive diagram label",
+        "left":  43,
+        "top":  111,
+        "width":  283,
+        "height":  25,
+        "text":  "NAIVE FILTER REPLACEMENT"
+    },
+    {
+        "id":  304,
+        "name":  "Stage1 heading",
+        "left":  354,
+        "top":  101,
+        "width":  330,
+        "height":  20,
+        "text":  "1  Transpose the filter"
+    },
+    {
+        "id":  305,
+        "name":  "Stage1 transpose",
+        "left":  365,
+        "top":  127,
+        "width":  310,
+        "height":  48,
+        "text":  " Θ ⊤ =  𝐼 − 𝐾 ∗  0 𝐼  "
+    },
+    {
+        "id":  306,
+        "name":  "Stage2 heading",
+        "left":  354,
+        "top":  185,
+        "width":  330,
+        "height":  20,
+        "text":  "2  Transpose the complete map"
+    },
+    {
+        "id":  307,
+        "name":  "Stage2 original map",
+        "left":  365,
+        "top":  208,
+        "width":  310,
+        "height":  44,
+        "text":  "𝐹:=Θ  𝐺 𝐼  "
+    },
+    {
+        "id":  308,
+        "name":  "Stage2 reversed order",
+        "left":  365,
+        "top":  261,
+        "width":  310,
+        "height":  39,
+        "text":  " 𝐹 ⊤ =   𝐺 ⊤  𝐼   Θ ⊤ "
+    },
+    {
+        "id":  309,
+        "name":  "Stage2 order explanation",
+        "left":  365,
+        "top":  307,
+        "width":  310,
+        "height":  20,
+        "text":  "The order reverses; the column becomes a row."
+    },
+    {
+        "id":  310,
+        "name":  "Stage3 takeaway background",
+        "left":  36,
+        "top":  337,
+        "width":  648,
+        "height":  35,
+        "text":  ""
+    },
+    {
+        "id":  311,
+        "name":  "Stage3 takeaway",
+        "left":  48,
+        "top":  343,
+        "width":  624,
+        "height":  23,
+        "text":  "This is not the dual filtered interconnection."
+    }
+]

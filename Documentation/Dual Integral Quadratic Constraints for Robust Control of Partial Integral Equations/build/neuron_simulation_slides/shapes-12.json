@@ -1,0 +1,65 @@
+﻿[
+    {
+        "id":  5,
+        "name":  "Footer Placeholder 4",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  6,
+        "name":  "Slide Number Placeholder 5",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "12"
+    },
+    {
+        "id":  46,
+        "name":  "TextBox 45",
+        "left":  102,
+        "top":  229,
+        "width":  516,
+        "height":  102,
+        "text":  "  𝑧 S  𝑡 \u0026=− 𝑤 GS  𝑥 G  𝑡− 𝜏 GS  ,  𝑧 G  𝑡 \u0026= 𝑤 SG  𝑥 S  𝑡− 𝜏 SG  − 𝑤 GG  𝑥 G  𝑡− 𝜏 GG  ,  𝜏 S   𝑥  S  𝑡 \u0026= 𝛿 S   𝑧 S  𝑡  − 𝑥 S  𝑡 +𝑢 𝑡 ,  𝜏 G   𝑥  G  𝑡 \u0026= 𝛿 G   𝑧 G  𝑡  − 𝑥 G  𝑡 . "
+    },
+    {
+        "id":  54,
+        "name":  "Baked figure with larger labels",
+        "left":  184.125046,
+        "top":  35.62504,
+        "width":  377.625031,
+        "height":  151.874954,
+        "text":  ""
+    },
+    {
+        "id":  68,
+        "name":  "TextBox 67",
+        "left":  36,
+        "top":  352,
+        "width":  420,
+        "height":  20,
+        "text":  "[2] Firing rate models"
+    },
+    {
+        "id":  69,
+        "name":  "Original TUe logo",
+        "left":  666,
+        "top":  379,
+        "width":  36,
+        "height":  20,
+        "text":  ""
+    },
+    {
+        "id":  3,
+        "name":  "Title 1",
+        "left":  36,
+        "top":  27,
+        "width":  648,
+        "height":  40,
+        "text":  "Neural Mass Model"
+    }
+]

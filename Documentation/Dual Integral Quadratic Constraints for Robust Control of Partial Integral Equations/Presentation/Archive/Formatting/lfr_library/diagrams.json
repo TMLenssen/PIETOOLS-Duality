@@ -1,0 +1,194 @@
+[
+  {
+    "id": 1,
+    "macro": "lfrdiagram",
+    "line": 142,
+    "options": "scale=1.5,\n                  plant label={$H(R_0,C_0)$},\n                  uncertainty label={\\scalebox{0.58}{$\\bmat{\\textcolor{scarlet}{\\delta_1} & \\\\ & \\textcolor{scarlet}{\\delta_2}}$}},\n                  plant width=1.0cm,\n                  plant height=1.0cm,\n                  uncertainty width=0.7cm,\n                  uncertainty height=0.7cm,\n                  vertical gap=1.04,\n                  loop width=0.5,\n                  show input=false,\n                  show output=false,\n                  w label={$w_\\Delta$},\n                  z label={$z_\\Delta$}",
+    "name": "RC circuit - structured uncertainty",
+    "pdf_pages": [
+      4
+    ]
+  },
+  {
+    "id": 2,
+    "macro": "lfrdiagram",
+    "line": 160,
+    "options": "scale=1.5,\n                  plant label={$H$},\n                  uncertainty label={$\\Delta$},\n                  plant width=1.0cm,\n                  plant height=1.0cm,\n                  uncertainty width=0.7cm,\n                  uncertainty height=0.7cm,\n                  vertical gap=1.04,\n                  loop width=0.5,\n                  show input=false,\n                  show output=false,\n                  w label={$w_\\Delta$},\n                  z label={$z_\\Delta$}",
+    "name": "Closed-loop stability interconnection",
+    "pdf_pages": [
+      5
+    ]
+  },
+  {
+    "id": 3,
+    "macro": "lfrdiagram",
+    "line": 178,
+    "options": "scale=1.5,\n                  plant label={$H_e$},\n                  uncertainty label={$\\Delta$},\n                  plant width=1.0cm,\n                  plant height=1.0cm,\n                  uncertainty width=0.7cm,\n                  uncertainty height=0.7cm,\n                  vertical gap=1.04,\n                  loop width=0.5,\n                  input label={$w_p$},\n                  output label={$z_p$},\n                  show input=true,\n                  show output=true,\n                  w label={$w_\\Delta$},\n                  z label={$z_\\Delta$}",
+    "name": "Extended plant - performance channels",
+    "pdf_pages": [
+      6
+    ]
+  },
+  {
+    "id": 4,
+    "macro": "lfrdiagram",
+    "line": 222,
+    "options": "scale=1.5,\n                    plant label={$H_{{e}}$},\n                    uncertainty label={$\\Delta$},\n                    upper uncertainty label={},\n                    plant width=1.0cm,\n                    plant height=1.0cm,\n                    uncertainty width=0.7cm,\n                    uncertainty height=0.7cm,\n                    upper uncertainty width=0.7cm,\n                    upper uncertainty height=0.7cm,\n                    vertical gap=1.04,\n                    upper vertical gap=0.82,\n                    loop width=0.34,\n                    upper loop width=1,\n                    show input=true,\n                    show output=true,\n                    input label={$w_p$},\n                    output label={$z_p$},\n                    show upper uncertainty=false,\n                    w label={$w_\\Delta$},\n                    z label={$z_\\Delta$}",
+    "name": "Performance objective - compact loop",
+    "pdf_pages": [
+      7,
+      8,
+      9,
+      10
+    ]
+  },
+  {
+    "id": 5,
+    "macro": "lfrdiagram",
+    "line": 329,
+    "options": "scale=1.25,\n                plant label={ODE},\n                uncertainty label={$\\Delta$},\n                plant width=1.0cm,\n                plant height=1.0cm,\n                uncertainty width=0.7cm,\n                uncertainty height=0.7cm,\n                vertical gap=1.04,\n                loop width=0.38,\n                show input=false,\n                show output=false,\n                w label={$w_\\Delta$},\n                z label={$z_\\Delta$}",
+    "name": "ODE - stability",
+    "pdf_pages": [
+      13
+    ]
+  },
+  {
+    "id": 6,
+    "macro": "lfrdiagram",
+    "line": 347,
+    "options": "scale=1.25,\n                plant label={ODE},\n                uncertainty label={$\\Delta$},\n                upper uncertainty label={},\n                plant width=1.0cm,\n                plant height=1.0cm,\n                uncertainty width=0.7cm,\n                uncertainty height=0.7cm,\n                upper uncertainty width=0.7cm,\n                upper uncertainty height=0.7cm,\n                vertical gap=1.04,\n                upper vertical gap=0.78,\n                loop width=0.38,\n                upper loop width=1,\n                show input=true,\n                show output=true,\n                input label={$w_p$},\n                output label={$z_p$},\n                show upper uncertainty=false,\n                w label={$w_\\Delta$},\n                z label={$z_\\Delta$},\n                upper w label={$w_p$},\n                upper z label={$z_p$}",
+    "name": "ODE - performance",
+    "pdf_pages": [
+      14,
+      15
+    ]
+  },
+  {
+    "id": 7,
+    "macro": "lfrdiagram",
+    "line": 862,
+    "options": "scale=1.22,\n                plant label={PDE},\n                uncertainty label={$\\Delta$},\n                plant width=1.2cm,\n                plant height=1.2cm,\n                uncertainty width=0.8cm,\n                uncertainty height=0.8cm,\n                vertical gap=1.1,\n                upper vertical gap=0.82,\n                loop width=0.30,\n                upper loop width=0.66,\n                show input=false,\n                show output=false,\n                w label={$w_\\Delta$},\n                z label={$z_\\Delta$},",
+    "name": "PDE - stability",
+    "pdf_pages": [
+      41
+    ]
+  },
+  {
+    "id": 8,
+    "macro": "lfrdiagram",
+    "line": 918,
+    "options": "scale=1.25,\n                plant label={PDE},\n                uncertainty label={$\\Delta$},\n                upper uncertainty label={},\n                plant width=1.0cm,\n                plant height=1.0cm,\n                uncertainty width=0.7cm,\n                uncertainty height=0.7cm,\n                upper uncertainty width=0.7cm,\n                upper uncertainty height=0.7cm,\n                vertical gap=1.04,\n                upper vertical gap=0.78,\n                loop width=0.38,\n                upper loop width=1,\n                show input=true,\n                show output=true,\n                input label={$w_p$},\n                output label={$z_p$},\n                show upper uncertainty=false,\n                w label={$w_\\Delta$},\n                z label={$z_\\Delta$},\n                upper w label={$w_p$},\n                upper z label={$z_p$}",
+    "name": "PDE - performance",
+    "pdf_pages": [
+      43
+    ]
+  },
+  {
+    "id": 9,
+    "macro": "lfrdiagram",
+    "line": 951,
+    "options": "scale=1.25,\n                plant label={PDE},\n                uncertainty label={$\\Delta$},\n                upper uncertainty label={},\n                plant width=1.0cm,\n                plant height=1.0cm,\n                uncertainty width=0.7cm,\n                uncertainty height=0.7cm,\n                upper uncertainty width=0.7cm,\n                upper uncertainty height=0.7cm,\n                vertical gap=1.04,\n                upper vertical gap=0.78,\n                loop width=0.38,\n                upper loop width=1,\n                show input=true,\n                show output=true,\n                input label={$w_p$},\n                output label={$z_p$},\n                show upper uncertainty=false,\n                w label={$w_\\Delta$},\n                z label={$z_\\Delta$},\n                upper w label={$w_p$},\n                upper z label={$z_p$}",
+    "name": "PDE - conversion input",
+    "pdf_pages": [
+      44
+    ]
+  },
+  {
+    "id": 10,
+    "macro": "lfrdiagram",
+    "line": 983,
+    "options": "scale=1.25,\n                plant label={$H_{\\{PIE\\}}$},\n                uncertainty label={$\\Delta$},\n                upper uncertainty label={},\n                plant width=1.0cm,\n                plant height=1.0cm,\n                uncertainty width=0.7cm,\n                uncertainty height=0.7cm,\n                upper uncertainty width=0.7cm,\n                upper uncertainty height=0.7cm,\n                vertical gap=1.04,\n                upper vertical gap=0.78,\n                loop width=0.38,\n                upper loop width=1,\n                show input=true,\n                show output=true,\n                input label={$w_p$},\n                output label={$z_p$},\n                show upper uncertainty=false,\n                w label={$w_\\Delta$},\n                z label={$z_\\Delta$},\n                upper w label={$w_p$},\n                upper z label={$z_p$}",
+    "name": "PIE - conversion output",
+    "pdf_pages": [
+      44
+    ]
+  },
+  {
+    "id": 11,
+    "macro": "lfrdiagram",
+    "line": 1033,
+    "options": "scale=1.45,\n            plant label={$H$},\n            uncertainty label={$\\Delta$},\n            upper uncertainty label={},\n            plant width=1.0cm,\n            plant height=1.0cm,\n            uncertainty width=0.7cm,\n            uncertainty height=0.7cm,\n            upper uncertainty width=0.7cm,\n            upper uncertainty height=0.7cm,\n            vertical gap=1.04,\n            upper vertical gap=0.82,\n            loop width=0.34,\n            upper loop width=1,\n            show input=true,\n            show output=true,\n            input label={$w_p$},\n            output label={$z_p$},\n            show upper uncertainty=false,\n            w label={$w_\\Delta$},\n            z label={$z_\\Delta$},\n            upper w label={$w_p$},\n            upper z label={$z_p$}",
+    "name": "Admissible uncertainty - performance",
+    "pdf_pages": [
+      45,
+      46,
+      47
+    ]
+  },
+  {
+    "id": 12,
+    "macro": "lfrdiagram",
+    "line": 1117,
+    "options": "scale=1.45,\n            plant label={$H$},\n            uncertainty label={$\\Delta$},\n            upper uncertainty label={},\n            plant width=1.0cm,\n            plant height=1.0cm,\n            uncertainty width=0.7cm,\n            uncertainty height=0.7cm,\n            upper uncertainty width=0.7cm,\n            upper uncertainty height=0.7cm,\n            vertical gap=1.04,\n            upper vertical gap=0.82,\n            loop width=0.34,\n            upper loop width=1,\n            show input=true,\n            show output=true,\n            input label={$w_p$},\n            output label={$z_p$},\n            show upper uncertainty=false,\n            w label={$w_\\Delta$},\n            z label={$z_\\Delta$},\n            upper w label={$w_p$},\n            upper z label={$z_p$}",
+    "name": "Structured singular value - performance",
+    "pdf_pages": [
+      48,
+      49
+    ]
+  },
+  {
+    "id": 13,
+    "macro": "lfrdiagram",
+    "line": 1244,
+    "options": "scale=1.15,\n            plant label={},\n            uncertainty label={$\\Delta$},\n            plant width=1cm,\n            plant height=1cm,\n            uncertainty width=0.6cm,\n            uncertainty height=0.6cm,\n            loop width=0.38,\n            show plant=false,\n            closed loop=false,\n            show input=false,\n            show output=false,\n            show w=false,\n            show z=false,\n            show disconnect box=false,\n            show delta w=true,\n            show delta z=true,\n            delta w label={$\\Delta z_\\Delta$},\n            delta z label={$z_\\Delta$}",
+    "name": "Uncertainty input-output map",
+    "pdf_pages": [
+      50,
+      51,
+      52
+    ]
+  },
+  {
+    "id": 14,
+    "macro": "lfrdiagram",
+    "line": 1266,
+    "options": "scale=1.15,\n            plant label={${H}$},\n            uncertainty label={$\\Delta$},\n            upper uncertainty label={$\\Delta$},\n            plant width=1cm,\n            plant height=1cm,\n            uncertainty width=0.6cm,\n            uncertainty height=0.6cm,\n            upper uncertainty width=0.6cm,\n            upper uncertainty height=0.6cm,\n            vertical gap=1.02,\n            upper vertical gap=0.82,\n            loop width=0.30,\n            upper loop width=1,\n            show input=false,\n            show output=false,\n            show upper uncertainty=false,\n            w label={$w_\\Delta$},\n            z label={$z_\\Delta$},\n            upper w label={$w_{\\Delta}$},\n            upper z label={$z_{\\Delta}$}",
+    "name": "Dissipativity - stability loop",
+    "pdf_pages": [
+      53
+    ]
+  },
+  {
+    "id": 15,
+    "macro": "lfrdiagram",
+    "line": 1377,
+    "options": "scale=1.15,\n            plant label={${H}$},\n            uncertainty label={$\\Delta$},\n            plant width=1cm,\n            plant height=1cm,\n            uncertainty width=0.6cm,\n            uncertainty height=0.6cm,\n            vertical gap=1.02,\n            loop width=0.30,\n            show input=true,\n            show output=true,\n            input label={$w_p$},\n            output label={$z_p$},\n            w label={$w_\\Delta$},\n            z label={$z_\\Delta$}",
+    "name": "Dissipativity - performance loop",
+    "pdf_pages": [
+      54,
+      55
+    ]
+  },
+  {
+    "id": 16,
+    "macro": "lfrdiagram",
+    "line": 1395,
+    "options": "scale=1.15,\n            plant label={${H}$},\n            uncertainty label={$\\Delta$},\n            upper uncertainty label={},\n            plant width=1cm,\n            plant height=1cm,\n            uncertainty width=0.6cm,\n            uncertainty height=0.6cm,\n            upper uncertainty width=0.6cm,\n            upper uncertainty height=0.6cm,\n            vertical gap=1.02,\n            upper vertical gap=0.82,\n            loop width=0.30,\n            upper loop width=1,\n            show input=true,\n            show output=true,\n            input label={$w_p$},\n            output label={$z_p$},\n            show upper uncertainty=false,\n            w label={$w_\\Delta$},\n            z label={$z_\\Delta$},\n            upper w label={$w_p$},\n            upper z label={$z_p$}",
+    "name": "Dissipativity - performance certificate",
+    "pdf_pages": [
+      56,
+      57,
+      58
+    ]
+  },
+  {
+    "id": 17,
+    "macro": "observerdiagram",
+    "line": 1499,
+    "options": "plant label = $H$,\nscale=1.3,\nplant uncertainty label={$\\Delta$},\nobserver uncertainty label={$\\Delta$},\nshow observer=false,\nshow input=true,\nshow output=true,\nw label={$w_p$},\nz label={$z$},\nshow performance uncertainty=false,\nshow error output=false",
+    "name": "Plant with measured output",
+    "pdf_pages": [
+      61
+    ]
+  },
+  {
+    "id": 18,
+    "macro": "observerdiagram",
+    "line": 1549,
+    "options": "plant label = $H$,\nscale=1.3,\nplant uncertainty label={$\\Delta$},\nobserver uncertainty label={$\\Delta$},\nshow performance uncertainty=false,\nw label={$w_p$},\nz label={$z$},\nshow error output=true",
+    "name": "Luenberger observer interconnection",
+    "pdf_pages": [
+      62
+    ]
+  }
+]

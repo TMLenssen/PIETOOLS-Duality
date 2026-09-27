@@ -1,0 +1,191 @@
+﻿[
+    {
+        "id":  2,
+        "name":  "Title 1",
+        "left":  36,
+        "top":  30,
+        "width":  648,
+        "height":  40,
+        "text":  "Transposing the systems"
+    },
+    {
+        "id":  3,
+        "name":  "Footer Placeholder 2",
+        "left":  36,
+        "top":  384,
+        "width":  400,
+        "height":  12,
+        "text":  "Msc Defence T.M. Lenssen"
+    },
+    {
+        "id":  4,
+        "name":  "Slide Number Placeholder 3",
+        "left":  620,
+        "top":  384,
+        "width":  28,
+        "height":  12,
+        "text":  "34"
+    },
+    {
+        "id":  5,
+        "name":  "Editable paper diagram",
+        "left":  36,
+        "top":  103.00386,
+        "width":  247.16,
+        "height":  145.28,
+        "text":  ""
+    },
+    {
+        "id":  34,
+        "name":  "z filtered output",
+        "left":  289.139374,
+        "top":  270.918823,
+        "width":  47.88,
+        "height":  2,
+        "text":  ""
+    },
+    {
+        "id":  35,
+        "name":  "Filtered z",
+        "left":  338.041962,
+        "top":  255.525909,
+        "width":  33.3,
+        "height":  29.97,
+        "text":  "  y  "
+    },
+    {
+        "id":  36,
+        "name":  "w filtered output",
+        "left":  289.139374,
+        "top":  300.518829,
+        "width":  47.88,
+        "height":  2,
+        "text":  ""
+    },
+    {
+        "id":  37,
+        "name":  "Filtered w",
+        "left":  337.8694,
+        "top":  287.2903,
+        "width":  33.3,
+        "height":  29.97,
+        "text":  "  u  "
+    },
+    {
+        "id":  52,
+        "name":  "Dynamic filter",
+        "left":  216.139374,
+        "top":  249.718826,
+        "width":  74,
+        "height":  74,
+        "text":  ""
+    },
+    {
+        "id":  53,
+        "name":  "TextBox 52",
+        "left":  242.468826,
+        "top":  269.734253,
+        "width":  36.9322052,
+        "height":  31.383543,
+        "text":  " Θ ⊤ "
+    },
+    {
+        "id":  55,
+        "name":  "Connector: Elbow 54",
+        "left":  194.84,
+        "top":  220.64386,
+        "width":  22.29937,
+        "height":  52.27496,
+        "text":  ""
+    },
+    {
+        "id":  61,
+        "name":  "Connector: Elbow 60",
+        "left":  97.73591,
+        "top":  220.64386,
+        "width":  119.403465,
+        "height":  81.87496,
+        "text":  ""
+    },
+    {
+        "id":  200,
+        "name":  "Signal tap 200",
+        "left":  194.44,
+        "top":  220.243851,
+        "width":  2.8,
+        "height":  2.8,
+        "text":  ""
+    },
+    {
+        "id":  201,
+        "name":  "Signal tap 201",
+        "left":  97.33591,
+        "top":  220.243851,
+        "width":  2.8,
+        "height":  2.8,
+        "text":  ""
+    },
+    {
+        "id":  301,
+        "name":  "Dimension convention",
+        "left":  36,
+        "top":  81,
+        "width":  333,
+        "height":  17,
+        "text":  "For this illustration, state and input have equal dimension."
+    },
+    {
+        "id":  302,
+        "name":  "Stage1 transposed plant",
+        "left":  383,
+        "top":  88,
+        "width":  307,
+        "height":  57,
+        "text":  " 𝐺 ⊤ :    𝑇 ∗   𝑥  = 𝐴 ∗  𝑥 + 𝑢   𝑦 =  𝐵 u  ∗  𝑥   "
+    },
+    {
+        "id":  303,
+        "name":  "Stage1 transposed controller",
+        "left":  383,
+        "top":  154,
+        "width":  307,
+        "height":  25,
+        "text":  " 𝐾 ⊤ :  𝑢 = 𝐾 ∗  𝑦 "
+    },
+    {
+        "id":  304,
+        "name":  "Stage1 transposed filter",
+        "left":  383,
+        "top":  186,
+        "width":  307,
+        "height":  42,
+        "text":  " Θ ⊤ =  𝐼 − 𝐾 ∗  0 𝐼  "
+    },
+    {
+        "id":  305,
+        "name":  "Stage2 substitution",
+        "left":  384,
+        "top":  238,
+        "width":  298,
+        "height":  21,
+        "text":  "Filling in"
+    },
+    {
+        "id":  306,
+        "name":  "Stage2 resulting system",
+        "left":  383,
+        "top":  265,
+        "width":  308,
+        "height":  76,
+        "text":  "   𝑇 ∗   𝑥  =  𝐴 ∗ + 𝐾 ∗   𝐵 u  ∗   𝑥    𝑦  = 𝐼−   𝐾 ∗   2    𝐵 u  ∗  𝑥    𝑢  = 𝐾 ∗   𝐵 u  ∗  𝑥 ≠0  "
+    },
+    {
+        "id":  307,
+        "name":  "Stage3 conclusion",
+        "left":  36,
+        "top":  350,
+        "width":  648,
+        "height":  28,
+        "text":  "Not the dual filtered system: the residual is generally nonzero."
+    }
+]

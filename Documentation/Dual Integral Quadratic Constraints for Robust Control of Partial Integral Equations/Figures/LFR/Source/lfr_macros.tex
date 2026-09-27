@@ -1,0 +1,882 @@
+\newif\iftmllfrinput
+\newif\iftmllfroutput
+\newif\iftmllfrw
+\newif\iftmllfrz
+\newif\iftmllfrwellposed
+\newif\iftmllfrloopinputs
+\newif\iftmllfrclosedloop
+\newif\iftmllfrthrougharrows
+\newif\iftmllfrplant
+\newif\iftmllfrshowuncertainty
+\newif\iftmllfrpreblock
+\newif\iftmllfrpostblock
+\newif\iftmllfrdeltaw
+\newif\iftmllfrdeltaz
+\newif\iftmllfrdeltapreblock
+\newif\iftmllfrdeltapostblock
+\newif\iftmllfrdisconnectbox
+\newif\iftmllfrupperuncertainty
+\newif\iftmllfrupperconnected
+\newif\iftmllfrupperw
+\newif\iftmllfrupperz
+
+\pgfkeys{
+  /tml/lfr/.is family,
+  /tml/lfr,
+  scale/.store in=\tmllfrscale,
+  plant label/.store in=\tmllfrplantlabel,
+  uncertainty label/.store in=\tmllfruncertaintylabel,
+  plant width/.store in=\tmllfrplantwidth,
+  plant height/.store in=\tmllfrplantheight,
+  uncertainty width/.store in=\tmllfruncertaintywidth,
+  uncertainty height/.store in=\tmllfruncertaintyheight,
+  upper uncertainty label/.store in=\tmllfrupperuncertaintylabel,
+  upper uncertainty width/.store in=\tmllfrupperuncertaintywidth,
+  upper uncertainty height/.store in=\tmllfrupperuncertaintyheight,
+  upper vertical gap/.store in=\tmllfrupperverticalgap,
+  upper loop width/.store in=\tmllfrupperloopwidth,
+  upper loop yshift/.store in=\tmllfrupperloopyshift,
+  upper w label/.store in=\tmllfrupperwlabel,
+  upper z label/.store in=\tmllfrupperzlabel,
+  vertical gap/.store in=\tmllfrverticalgap,
+  loop width/.store in=\tmllfrloopwidth,
+  external length/.store in=\tmllfrexternallength,
+  input label/.store in=\tmllfrinputlabel,
+  output label/.store in=\tmllfroutputlabel,
+  w label/.store in=\tmllfrwlabel,
+  z label/.store in=\tmllfrzlabel,
+  delta w label/.store in=\tmllfrdeltawlabel,
+  delta z label/.store in=\tmllfrdeltazlabel,
+  wellposed label/.store in=\tmllfrwellposedlabel,
+  w0 label/.store in=\tmllfrwzerolabel,
+  z0 label/.store in=\tmllfrzzerolabel,
+  loop input length/.store in=\tmllfrloopinputlength,
+  pre label/.store in=\tmllfrprelabel,
+  post label/.store in=\tmllfrpostlabel,
+  pre width/.store in=\tmllfrprewidth,
+  pre height/.store in=\tmllfrpreheight,
+  post width/.store in=\tmllfrpostwidth,
+  post height/.store in=\tmllfrpostheight,
+  block gap/.store in=\tmllfrblockgap,
+  delta pre label/.store in=\tmllfrdeltaprelabel,
+  delta post label/.store in=\tmllfrdeltapostlabel,
+  delta pre width/.store in=\tmllfrdeltaprewidth,
+  delta pre height/.store in=\tmllfrdeltapreheight,
+  delta post width/.store in=\tmllfrdeltapostwidth,
+  delta post height/.store in=\tmllfrdeltapostheight,
+  delta block gap/.store in=\tmllfrdeltablockgap,
+  uncertainty fill/.store in=\tmllfruncertaintyfill,
+  uncertainty draw/.store in=\tmllfruncertaintydraw,
+  uncertainty text/.store in=\tmllfruncertaintytext,
+  disconnect label/.store in=\tmllfrdisconnectlabel,
+  show input/.is if=tmllfrinput,
+  show output/.is if=tmllfroutput,
+  show w/.is if=tmllfrw,
+  show z/.is if=tmllfrz,
+  show delta w/.is if=tmllfrdeltaw,
+  show delta z/.is if=tmllfrdeltaz,
+  show wellposed/.is if=tmllfrwellposed,
+  show loop inputs/.is if=tmllfrloopinputs,
+  closed loop/.is if=tmllfrclosedloop,
+  show through arrows/.is if=tmllfrthrougharrows,
+  show plant/.is if=tmllfrplant,
+  show uncertainty/.is if=tmllfrshowuncertainty,
+  show pre block/.is if=tmllfrpreblock,
+  show post block/.is if=tmllfrpostblock,
+  show delta pre block/.is if=tmllfrdeltapreblock,
+  show delta post block/.is if=tmllfrdeltapostblock,
+  show disconnect box/.is if=tmllfrdisconnectbox,
+  show upper uncertainty/.is if=tmllfrupperuncertainty,
+  connect upper uncertainty/.is if=tmllfrupperconnected,
+  show upper w/.is if=tmllfrupperw,
+  show upper z/.is if=tmllfrupperz
+}
+
+% Configurable lower-LFR sketch.
+% Example:
+% \lfrdiagram[
+%   plant label={$H$},
+%   uncertainty label={$\phi$},
+%   plant width=1.8cm,
+%   show wellposed=true,
+%   wellposed label={$d$}
+% ]
+\newcommand{\lfrdiagram}[1][]{%
+  \begingroup
+  \pgfkeys{/tml/lfr/.cd,
+    scale=0.9,
+    plant label={$H$},
+    uncertainty label={$\phi$},
+    plant width=0.8cm,
+    plant height=0.8cm,
+    uncertainty width=0.6cm,
+    uncertainty height=0.6cm,
+    upper uncertainty label={$\hat{\Delta}$},
+    upper uncertainty width=0.6cm,
+    upper uncertainty height=0.6cm,
+    upper vertical gap=0.72,
+    upper loop width=0.58,
+    upper loop yshift=-0.22cm,
+    upper w label={$w_\Delta$},
+    upper z label={$z_\Delta$},
+    vertical gap=0.9,
+    loop width=0.4,
+    external length=0.6,
+    input label={$e$},
+    output label={$y$},
+    w label={$w$},
+    z label={$z$},
+    delta w label={\tmllfrwlabel},
+    delta z label={\tmllfrzlabel},
+    wellposed label={$d$},
+    w0 label={$w_0$},
+    z0 label={$z_0$},
+    loop input length=0.46,
+    pre label={$D^{-1}$},
+    post label={$D$},
+    pre width=0.72cm,
+    pre height=0.58cm,
+    post width=0.72cm,
+    post height=0.58cm,
+    block gap=0.28cm,
+    delta pre label={$D^{-1}$},
+    delta post label={$D$},
+    delta pre width=0.72cm,
+    delta pre height=0.58cm,
+    delta post width=0.72cm,
+    delta post height=0.58cm,
+    delta block gap=0.28cm,
+    uncertainty fill=paperSoft,
+    uncertainty draw=ink,
+    uncertainty text=scarlet,
+    disconnect label={},
+    show input=true,
+    show output=true,
+    show w=true,
+    show z=true,
+    show delta w=true,
+    show delta z=true,
+    show wellposed=false,
+    show loop inputs=false,
+    closed loop=true,
+    show through arrows=true,
+    show plant=true,
+    show uncertainty=true,
+    show pre block=false,
+    show post block=false,
+    show delta pre block=false,
+    show delta post block=false,
+    show disconnect box=false,
+    show upper uncertainty=false,
+    connect upper uncertainty=true,
+    show upper w=true,
+    show upper z=true,
+    #1
+  }%
+  \begin{tikzpicture}[
+    scale=\tmllfrscale,
+    every node/.style={transform shape}
+  ]
+    \tikzset{
+      lfrblock/.style={
+        draw=ink,
+        rounded corners=1.5pt,
+        minimum width=\tmllfrplantwidth,
+        minimum height=\tmllfrplantheight,
+        align=center
+      },
+      lfruncertainty/.style={
+        draw=\tmllfruncertaintydraw,
+        rounded corners=1.5pt,
+        fill=\tmllfruncertaintyfill,
+        text=\tmllfruncertaintytext,
+        minimum width=\tmllfruncertaintywidth,
+        minimum height=\tmllfruncertaintyheight,
+        align=center
+      },
+      lfrarrow/.style={arrows={-Stealth[length=6pt, inset=2pt]}},
+      lfrloopinput/.style={lfrarrow},
+      lfrlooplabel/.style={lfrlabel},
+      lfrlabel/.style={inner sep=1pt}
+    }
+
+    \iftmllfrplant
+      \node[lfrblock,
+        minimum width=\tmllfrplantwidth,
+        minimum height=\tmllfrplantheight] (P) at (0,0)
+        {\tmllfrplantlabel};
+    \else
+      \node[inner sep=0pt, minimum size=0pt] (P) at (0,0) {};
+    \fi
+    \iftmllfrpreblock
+      \node[lfrblock,
+        minimum width=\tmllfrprewidth,
+        minimum height=\tmllfrpreheight,
+        left=\tmllfrblockgap of P] (Pre)
+        {\tmllfrprelabel};
+    \fi
+    \iftmllfrpostblock
+      \node[lfrblock,
+        minimum width=\tmllfrpostwidth,
+        minimum height=\tmllfrpostheight,
+        right=\tmllfrblockgap of P] (Post)
+        {\tmllfrpostlabel};
+    \fi
+    \iftmllfrshowuncertainty
+      \node[lfruncertainty,
+        minimum width=\tmllfruncertaintywidth,
+        minimum height=\tmllfruncertaintyheight] (Delta) at (0,\tmllfrverticalgap)
+        {\tmllfruncertaintylabel};
+    \else
+      \node[inner sep=0pt, minimum size=0pt] (Delta)
+        at (0,\tmllfrverticalgap) {};
+    \fi
+    \iftmllfrupperuncertainty
+      \node[lfruncertainty,
+        minimum width=\tmllfrupperuncertaintywidth,
+        minimum height=\tmllfrupperuncertaintyheight] (UpperDelta)
+        at (0,\tmllfrverticalgap+\tmllfrupperverticalgap)
+        {\tmllfrupperuncertaintylabel};
+    \fi
+
+    \coordinate (PinExt) at ([yshift=-0.22cm]P.west);
+    \coordinate (PoutExt) at ([yshift=-0.22cm]P.east);
+    \coordinate (PinLoop) at ([yshift=0.22cm]P.west);
+    \coordinate (PoutLoop) at ([yshift=0.22cm]P.east);
+    \coordinate (PinUpperLoop) at ([yshift=\tmllfrupperloopyshift]P.west);
+    \coordinate (PoutUpperLoop) at ([yshift=\tmllfrupperloopyshift]P.east);
+    \coordinate (Wleft) at ($ (PinLoop) + (-\tmllfrloopwidth,0) $);
+    \coordinate (Zright) at ($ (PoutLoop) + (\tmllfrloopwidth,0) $);
+    \coordinate (UpperWleft) at ($ (PinUpperLoop) + (-\tmllfrupperloopwidth,0) $);
+    \coordinate (UpperZright) at ($ (PoutUpperLoop) + (\tmllfrupperloopwidth,0) $);
+
+    \iftmllfrclosedloop
+      \coordinate (Wtop) at (Wleft |- Delta.west);
+      \coordinate (Ztop) at (Zright |- Delta.east);
+      \iftmllfrupperuncertainty
+        \coordinate (UpperWtop) at (UpperWleft |- UpperDelta.west);
+        \coordinate (UpperZtop) at (UpperZright |- UpperDelta.east);
+      \fi
+
+      \iftmllfrinput
+        \draw[lfrarrow] ($ (PinExt) + (-\tmllfrexternallength,0) $)
+          -- (PinExt);
+        \node[lfrlabel] at ($ (PinExt) + (-\tmllfrexternallength-0.18,0) $)
+          {\tmllfrinputlabel};
+      \fi
+      \iftmllfroutput
+        \draw[lfrarrow] (PoutExt)
+          -- ($ (PoutExt) + (\tmllfrexternallength,0) $);
+        \node[lfrlabel] at ($ (PoutExt) + (\tmllfrexternallength+0.18,0) $)
+          {\tmllfroutputlabel};
+      \fi
+
+      \iftmllfrupperuncertainty
+        \iftmllfrupperconnected
+          \draw[-] (UpperDelta.west) -- (UpperWtop) -- (UpperWleft);
+          \iftmllfrupperw
+            \draw[lfrarrow] (UpperWleft) --
+              node[midway, above, lfrlabel] {\tmllfrupperwlabel}
+              (PinUpperLoop);
+          \else
+            \draw[lfrarrow] (UpperWleft) -- (PinUpperLoop);
+          \fi
+          \iftmllfrupperz
+            \draw[-] (PoutUpperLoop) --
+              node[midway, above, lfrlabel] {\tmllfrupperzlabel}
+              (UpperZright);
+          \else
+            \draw[-] (PoutUpperLoop) -- (UpperZright);
+          \fi
+          \draw[-] (UpperZright) -- (UpperZtop);
+          \draw[lfrarrow] (UpperZtop) -- (UpperDelta.east);
+        \else
+          \iftmllfrupperw
+            \draw[lfrarrow] (UpperDelta.west) --
+              node[midway, above, lfrlabel] {\tmllfrupperwlabel}
+              ($ (UpperDelta.west) + (-\tmllfrupperloopwidth,0) $);
+          \else
+            \draw[lfrarrow] (UpperDelta.west) --
+              ($ (UpperDelta.west) + (-\tmllfrupperloopwidth,0) $);
+          \fi
+          \iftmllfrupperz
+            \draw[lfrarrow] ($ (UpperDelta.east) + (\tmllfrupperloopwidth,0) $) --
+              node[midway, above, lfrlabel] {\tmllfrupperzlabel}
+              (UpperDelta.east);
+          \else
+            \draw[lfrarrow] ($ (UpperDelta.east) + (\tmllfrupperloopwidth,0) $) --
+              (UpperDelta.east);
+          \fi
+        \fi
+      \fi
+
+      \iftmllfrshowuncertainty
+        \draw[-] (Delta.west) -- (Wtop);
+        \iftmllfrloopinputs
+          \node[tmlSum] (wsum) at (Wleft) {};
+          \iftmllfrw
+            \draw[-] (Wtop) --
+              node[midway, left, lfrlabel] {\tmllfrwlabel}
+              (wsum);
+          \else
+            \draw[-] (Wtop) -- (wsum);
+          \fi
+          \draw[lfrloopinput]
+            ($ (wsum) + (-\tmllfrloopinputlength,0) $)
+            node[left, lfrlooplabel] {\tmllfrwzerolabel} --
+            (wsum);
+          \draw[lfrarrow] (wsum) -- (PinLoop);
+        \else
+          \iftmllfrw
+            \draw[-] (Wtop) --
+              node[midway, left, lfrlabel] {\tmllfrwlabel}
+              (Wleft);
+          \else
+            \draw[-] (Wtop) -- (Wleft);
+          \fi
+          \draw[lfrarrow] (Wleft) -- (PinLoop);
+        \fi
+
+        \iftmllfrloopinputs
+          \node[tmlSum] (zsum) at (Ztop) {};
+          \draw[-] (PoutLoop) -- (Zright);
+          \iftmllfrz
+            \draw[-] (Zright) --
+              node[midway, right, lfrlabel] {\tmllfrzlabel}
+              (zsum);
+          \else
+            \draw[-] (Zright) -- (zsum);
+          \fi
+          \draw[lfrloopinput]
+            ($ (zsum) + (\tmllfrloopinputlength,0) $)
+            node[right, lfrlooplabel] {\tmllfrzzerolabel} --
+            (zsum);
+          \draw[lfrarrow] (zsum) -- (Delta.east);
+        \else\iftmllfrwellposed
+          \node[tmlSum] (zsum) at ($ (PoutLoop)!0.62!(Zright) $) {};
+          \draw[-] (PoutLoop) -- (zsum);
+          \draw[-] (zsum) -- (Zright);
+          \iftmllfrz
+            \draw[-] (Zright) --
+              node[midway, right, lfrlabel] {\tmllfrzlabel}
+              (Ztop);
+          \else
+            \draw[-] (Zright) -- (Ztop);
+          \fi
+          \draw[lfrarrow] (Ztop) -- (Delta.east);
+          \draw[lfrarrow] ($ (zsum) + (0,0.65) $) -- (zsum);
+          \node[lfrlabel] at ($ (zsum) + (0.18,0.45) $) {\tmllfrwellposedlabel};
+        \else
+          \draw[-] (PoutLoop) -- (Zright);
+          \iftmllfrz
+            \draw[-] (Zright) --
+              node[midway, right, lfrlabel] {\tmllfrzlabel}
+              (Ztop);
+          \else
+            \draw[-] (Zright) -- (Ztop);
+          \fi
+          \draw[lfrarrow] (Ztop) -- (Delta.east);
+        \fi\fi
+      \fi
+    \else
+      \iftmllfrplant
+        \iftmllfrpreblock
+          \coordinate (PathIn) at (Pre.west);
+          \draw[lfrarrow] (Pre.east) -- (P.west);
+        \else
+          \coordinate (PathIn) at (P.west);
+        \fi
+        \iftmllfrpostblock
+          \coordinate (PathOut) at (Post.east);
+          \draw[lfrarrow] (P.east) -- (Post.west);
+        \else
+          \coordinate (PathOut) at (P.east);
+        \fi
+        \iftmllfrthrougharrows
+          \draw[lfrarrow] ($ (PathIn) + (-\tmllfrloopwidth,0) $) -- (PathIn);
+          \draw[lfrarrow] (PathOut) -- ($ (PathOut) + (\tmllfrloopwidth,0) $);
+          \iftmllfrw
+            \node[lfrlabel] at ($ (PathIn) + (-\tmllfrloopwidth-0.2,0.22) $)
+              {\tmllfrwlabel};
+          \fi
+          \iftmllfrz
+            \node[lfrlabel] at ($ (PathOut) + (\tmllfrloopwidth+0.2,0.22) $)
+              {\tmllfrzlabel};
+          \fi
+        \fi
+      \fi
+      \iftmllfrdisconnectbox
+        \iftmllfrdeltapreblock
+          \node[lfrblock,
+            minimum width=\tmllfrdeltaprewidth,
+            minimum height=\tmllfrdeltapreheight,
+            right=\tmllfrdeltablockgap of Delta] (DeltaPre)
+            {\tmllfrdeltaprelabel};
+          \coordinate (DeltaPathIn) at (DeltaPre.east);
+          \draw[lfrarrow] (DeltaPre.west) -- (Delta.east);
+        \else
+          \coordinate (DeltaPathIn) at (Delta.east);
+        \fi
+        \iftmllfrdeltapostblock
+          \node[lfrblock,
+            minimum width=\tmllfrdeltapostwidth,
+            minimum height=\tmllfrdeltapostheight,
+            left=\tmllfrdeltablockgap of Delta] (DeltaPost)
+            {\tmllfrdeltapostlabel};
+          \coordinate (DeltaPathOut) at (DeltaPost.west);
+          \draw[lfrarrow] (Delta.west) -- (DeltaPost.east);
+        \else
+          \coordinate (DeltaPathOut) at (Delta.west);
+        \fi
+        \iftmllfrdeltapreblock
+          \iftmllfrdeltapostblock
+            \node[draw=inkMute, dashed, line width=0.45pt,
+              inner sep=0.08cm, fit=(Delta)(DeltaPre)(DeltaPost)]
+              (DeltaDisconnectBox) {};
+          \else
+            \node[draw=inkMute, dashed, line width=0.45pt,
+              inner sep=0.08cm, fit=(Delta)(DeltaPre)]
+              (DeltaDisconnectBox) {};
+          \fi
+        \else
+          \iftmllfrdeltapostblock
+            \node[draw=inkMute, dashed, line width=0.45pt,
+              inner sep=0.08cm, fit=(Delta)(DeltaPost)]
+              (DeltaDisconnectBox) {};
+          \else
+            \node[draw=inkMute, dashed, line width=0.45pt,
+              inner sep=0.08cm, fit=(Delta)]
+              (DeltaDisconnectBox) {};
+          \fi
+        \fi
+        \draw[lfrarrow] ($ (DeltaPathIn) + (\tmllfrloopwidth,0) $)
+          -- (DeltaPathIn);
+        \draw[lfrarrow] (DeltaPathOut)
+          -- ($ (DeltaPathOut) + (-\tmllfrloopwidth,0) $);
+        \iftmllfrdeltaz
+          \node[lfrlabel] at ($ (DeltaPathIn) + (\tmllfrloopwidth+0.2,0.22) $)
+            {\tmllfrdeltazlabel};
+        \fi
+        \iftmllfrdeltaw
+          \node[lfrlabel] at ($ (DeltaPathOut) + (-\tmllfrloopwidth-0.2,0.22) $)
+            {\tmllfrdeltawlabel};
+        \fi
+        \node[lfrlabel,
+          font=\monoface\fontsize{7}{9}\selectfont,
+          text=\tmllfruncertaintydraw]
+          at ($ (DeltaDisconnectBox.north) + (0,0.16) $)
+          {\tmllfrdisconnectlabel};
+      \else
+        \iftmllfrdeltapreblock
+          \node[lfrblock,
+            minimum width=\tmllfrdeltaprewidth,
+            minimum height=\tmllfrdeltapreheight,
+            right=\tmllfrdeltablockgap of Delta] (DeltaPre)
+            {\tmllfrdeltaprelabel};
+          \coordinate (DeltaPathIn) at (DeltaPre.east);
+          \draw[lfrarrow] (DeltaPre.west) -- (Delta.east);
+        \else
+          \coordinate (DeltaPathIn) at (Delta.east);
+        \fi
+        \iftmllfrdeltapostblock
+          \node[lfrblock,
+            minimum width=\tmllfrdeltapostwidth,
+            minimum height=\tmllfrdeltapostheight,
+            left=\tmllfrdeltablockgap of Delta] (DeltaPost)
+            {\tmllfrdeltapostlabel};
+          \coordinate (DeltaPathOut) at (DeltaPost.west);
+          \draw[lfrarrow] (Delta.west) -- (DeltaPost.east);
+        \else
+          \coordinate (DeltaPathOut) at (Delta.west);
+        \fi
+        \draw[lfrarrow] ($ (DeltaPathIn) + (\tmllfrloopwidth,0) $)
+          -- (DeltaPathIn);
+        \draw[lfrarrow] (DeltaPathOut)
+          -- ($ (DeltaPathOut) + (-\tmllfrloopwidth,0) $);
+        \iftmllfrdeltaz
+          \node[lfrlabel] at ($ (DeltaPathIn) + (\tmllfrloopwidth+0.2,0.22) $)
+            {\tmllfrdeltazlabel};
+        \fi
+        \iftmllfrdeltaw
+          \node[lfrlabel] at ($ (DeltaPathOut) + (-\tmllfrloopwidth-0.2,0.22) $)
+            {\tmllfrdeltawlabel};
+        \fi
+      \fi
+    \fi
+  \end{tikzpicture}%
+  \endgroup
+}
+
+\newif\iftmlobsplantuncertainty
+\newif\iftmlobsobserveruncertainty
+\newif\iftmlobsinput
+\newif\iftmlobsoutput
+\newif\iftmlobserroroutput
+\newif\iftmlobsperformanceuncertainty
+\newif\iftmlobsobserver
+
+\pgfkeys{
+  /tml/observer/.is family,
+  /tml/observer,
+  scale/.store in=\tmlobsscale,
+  plant label/.store in=\tmlobsplantlabel,
+  observer label/.store in=\tmlobsobserverlabel,
+  plant uncertainty label/.store in=\tmlobsplantuncertaintylabel,
+  observer uncertainty label/.store in=\tmlobsobserveruncertaintylabel,
+  performance uncertainty label/.store in=\tmlobsperformanceuncertaintylabel,
+  plant pos/.store in=\tmlobsplantpos,
+  observer pos/.store in=\tmlobsobserverpos,
+  plant uncertainty pos/.store in=\tmlobsplantuncertaintypos,
+  observer uncertainty pos/.store in=\tmlobsobserveruncertaintypos,
+  performance uncertainty pos/.store in=\tmlobsperformanceuncertaintypos,
+  performance loop left xshift/.store in=\tmlobsperformanceloopleftxshift,
+  performance loop side width/.store in=\tmlobsperformanceloopsidewidth,
+  performance loop right width/.style={performance loop side width=#1},
+  sum pos/.store in=\tmlobssumpos,
+  minus pos/.store in=\tmlobsminuspos,
+  plant text width/.store in=\tmlobsplanttextwidth,
+  observer text width/.store in=\tmlobsobservertextwidth,
+  plant width/.store in=\tmlobsplantwidth,
+  plant height/.store in=\tmlobsplantheight,
+  observer width/.store in=\tmlobsobserverwidth,
+  observer height/.store in=\tmlobsobserverheight,
+  plant uncertainty width/.store in=\tmlobsplantuncertaintywidth,
+  plant uncertainty height/.store in=\tmlobsplantuncertaintyheight,
+  observer uncertainty width/.store in=\tmlobsobserveruncertaintywidth,
+  observer uncertainty height/.store in=\tmlobsobserveruncertaintyheight,
+  performance uncertainty width/.store in=\tmlobsperformanceuncertaintywidth,
+  performance uncertainty height/.store in=\tmlobsperformanceuncertaintyheight,
+  uncertainty font size/.store in=\tmlobsuncertaintyfontsize,
+  uncertainty font baselineskip/.store in=\tmlobsuncertaintyfontbaselineskip,
+  delta font size/.style={uncertainty font size=#1},
+  delta font baselineskip/.style={uncertainty font baselineskip=#1},
+  uncertainty width/.code={%
+    \def\tmlobsplantuncertaintywidth{#1}%
+    \def\tmlobsobserveruncertaintywidth{#1}%
+    \def\tmlobsperformanceuncertaintywidth{#1}%
+  },
+  uncertainty height/.code={%
+    \def\tmlobsplantuncertaintyheight{#1}%
+    \def\tmlobsobserveruncertaintyheight{#1}%
+    \def\tmlobsperformanceuncertaintyheight{#1}%
+  },
+  delta width/.style={uncertainty width=#1},
+  delta height/.style={uncertainty height=#1},
+  plant loop yshift/.store in=\tmlobsplantloopyshift,
+  plant output yshift/.store in=\tmlobsplantoutputyshift,
+  plant performance input yshift/.store in=\tmlobsplantperformanceinputyshift,
+  observer loop yshift/.store in=\tmlobsobserverloopyshift,
+  observer input yshift/.store in=\tmlobsobserverinputyshift,
+  observer output yshift/.store in=\tmlobsobserveroutputyshift,
+  plant loop left width/.store in=\tmlobsplantloopleftwidth,
+  plant loop right width/.store in=\tmlobsplantlooprightwidth,
+  observer loop left width/.store in=\tmlobsobserverloopleftwidth,
+  observer loop right width/.store in=\tmlobsobserverlooprightwidth,
+  plant loop side width/.style={plant loop left width=#1, plant loop right width=#1},
+  observer loop side width/.style={observer loop left width=#1, observer loop right width=#1},
+  uncertainty loop side width/.style={plant loop side width=#1, observer loop side width=#1},
+  w label/.store in=\tmlobswlabel,
+  y label/.store in=\tmlobsylabel,
+  z label/.store in=\tmlobszlabel,
+  zhat label/.store in=\tmlobszhatlabel,
+  error label/.store in=\tmlobserrorlabel,
+  plant z uncertainty label/.store in=\tmlobsplantzuncertaintylabel,
+  plant w uncertainty label/.store in=\tmlobsplantwuncertaintylabel,
+  observer z uncertainty label/.store in=\tmlobsobserverzuncertaintylabel,
+  observer w uncertainty label/.store in=\tmlobsobserverwuncertaintylabel,
+  show plant uncertainty/.is if=tmlobsplantuncertainty,
+  show observer uncertainty/.is if=tmlobsobserveruncertainty,
+  show performance uncertainty/.is if=tmlobsperformanceuncertainty,
+  show observer/.is if=tmlobsobserver,
+  show input/.is if=tmlobsinput,
+  show output/.is if=tmlobsoutput,
+  show error output/.is if=tmlobserroroutput,
+}
+
+\newcommand{\observerdiagramsetstyles}{%
+  \tikzset{
+    obsblock/.style={
+      draw=ink,
+      rounded corners=2pt,
+      line width=0.55pt,
+      fill=paper,
+      align=center,
+      inner xsep=7pt,
+      inner ysep=6pt,
+      font=\sansface\bfseries\fontsize{10}{12}\selectfont
+    },
+    obsuncertainty/.style={
+      draw=scarlet,
+      text=scarlet,
+      rounded corners=1.5pt,
+      line width=0.55pt,
+      fill=paper,
+      inner xsep=5pt,
+      inner ysep=4pt,
+      align=center,
+      font=\sansface\bfseries\fontsize{\tmlobsuncertaintyfontsize}{\tmlobsuncertaintyfontbaselineskip}\selectfont
+    },
+    obsarrow/.style={
+      arrows={-Stealth[length=5.5pt, inset=2pt]},
+      line width=0.66pt
+    },
+    obsline/.style={line width=0.66pt},
+    obslabel/.style={
+      inner xsep=2pt,
+      inner ysep=0.5pt,
+      fill=paper,
+      fill opacity=0.94,
+      text opacity=1,
+      font=\monoface\fontsize{7}{9}\selectfont,
+      text=ink
+    },
+    obssum/.style={
+      draw=ink,
+      circle,
+      line width=0.55pt,
+      fill=paper,
+      inner sep=0pt,
+      minimum size=0.42cm,
+      font=\fontsize{8}{8}\selectfont
+    },
+    obsminus/.style={
+      draw=ink,
+      isosceles triangle,
+      isosceles triangle apex angle=55,
+      shape border rotate=180,
+      line width=0.55pt,
+      fill=paper,
+      inner sep=0pt,
+      minimum width=0.44cm,
+      minimum height=0.42cm,
+      font=\fontsize{6.5}{7}\selectfont
+    }
+  }%
+}
+
+\newcommand{\observeruncertaintyloop}[8]{%
+  \coordinate (#1ZOut) at ([yshift=#3]#1.west);
+  \coordinate (#1ZLeftBase) at ($(#2.west)+(-#4,0)$);
+  \coordinate (#1ZLeft) at (#1ZOut -| #1ZLeftBase);
+  \coordinate (#1ZUp) at (#2.west -| #1ZLeftBase);
+  \draw[obsline] (#1ZOut) -- (#1ZLeft);
+  \draw[obsline] (#1ZLeft) --
+    node[pos=0.50, left, obslabel] {#6}
+    (#1ZUp);
+  \draw[obsarrow] (#1ZUp) -- (#2.west);
+  \coordinate (#1WIn) at ([yshift=#3]#1.east);
+  \coordinate (#1WRight) at ($(#2.east)+(#5,0)$);
+  \coordinate (#1WDown) at (#1WRight |- #1WIn);
+  \draw[obsline] (#2.east) -- (#1WRight);
+  \draw[obsline] (#1WRight) --
+    node[pos=0.50, right, obslabel] {#7}
+    (#1WDown);
+  \draw[obsarrow] (#1WDown) -- (#1WIn);
+}
+
+\newcommand{\observerdiagram}[1][]{%
+  \begingroup
+  \pgfkeys{/tml/observer/.cd,
+    scale=1.3,
+    plant label={$G$},
+    observer label={$E$},
+    plant uncertainty label={$\mbf{\Delta}_{\mu,G}$},
+    observer uncertainty label={$\mbf{\Delta}_{\mu,E}$},
+    performance uncertainty label={},
+    plant pos={(1.2,0.7)},
+    observer pos={(-1.32,-1.15)},
+    plant uncertainty pos={(1.2,1.75)},
+    observer uncertainty pos={(-1.32,-0.1)},
+    performance uncertainty pos={(-0.72,2.42)},
+    performance loop left xshift=1,
+    performance loop side width=3.55,
+    sum pos={(-3.93,0.13+0.35)},
+    minus pos={(-3.18,-1.37)},
+    plant text width=,
+    observer text width=,
+    plant width=1cm,
+    plant height=1cm,
+    observer width=1cm,
+    observer height=1cm,
+    uncertainty width=0.6cm,
+    uncertainty height=0.6cm,
+    uncertainty font size=11,
+    uncertainty font baselineskip=12,
+    plant loop yshift=0.22cm,
+    plant output yshift=-0.22cm,
+    plant performance input yshift=-0.22cm,
+    observer loop yshift=0.22cm,
+    observer input yshift=-0.22cm,
+    observer output yshift=-0.22cm,
+    plant loop side width=0.3,
+    observer loop side width=0.3,
+    w label={$w$},
+    y label={$y$},
+    z label={$z$},
+    zhat label={$\hat{z}$},
+    error label={$z_e$},
+    plant z uncertainty label={$z_\Delta$},
+    plant w uncertainty label={$w_\Delta$},
+    observer z uncertainty label={$\hat{z}_\Delta$},
+    observer w uncertainty label={$\hat{w}_\Delta$},
+    show plant uncertainty=true,
+    show observer=true,
+    show observer uncertainty=true,
+    show performance uncertainty=false,
+    show input=true,
+    show output=true,
+    show error output=true,
+    #1
+  }%
+  \begin{tikzpicture}[
+    scale=\tmlobsscale,
+    every node/.style={transform shape}
+  ]
+    
+
+    \observerdiagramsetstyles
+    \path[use as bounding box] (-4.85,-1.92) rectangle (3.20,2.72);
+    \def\tmlobsplanttextopts{}%
+    \def\tmlobsobservertextopts{}%
+    \ifx\tmlobsplanttextwidth\empty\else
+      \def\tmlobsplanttextopts{text width=\tmlobsplanttextwidth,}%
+    \fi
+    \ifx\tmlobsobservertextwidth\empty\else
+      \def\tmlobsobservertextopts{text width=\tmlobsobservertextwidth,}%
+    \fi
+
+    \node[obsblock,
+      \tmlobsplanttextopts
+      minimum width=\tmlobsplantwidth,
+      minimum height=\tmlobsplantheight] (Plant) at \tmlobsplantpos
+      {\tmlobsplantlabel};
+    \iftmlobsobserver
+      \node[obsblock,
+        \tmlobsobservertextopts
+        minimum width=\tmlobsobserverwidth,
+        minimum height=\tmlobsobserverheight] (Observer) at \tmlobsobserverpos
+        {\tmlobsobserverlabel};
+
+    
+
+    \fi
+
+    
+
+    \iftmlobsplantuncertainty
+      \node[obsuncertainty,
+        minimum width=\tmlobsplantuncertaintywidth,
+        minimum height=\tmlobsplantuncertaintyheight] (DeltaPlant) at \tmlobsplantuncertaintypos
+        {\tmlobsplantuncertaintylabel};
+      \observeruncertaintyloop
+        {Plant}{DeltaPlant}{\tmlobsplantloopyshift}
+        {\tmlobsplantloopleftwidth}{\tmlobsplantlooprightwidth}
+        {\tmlobsplantzuncertaintylabel}{\tmlobsplantwuncertaintylabel}
+        {Plant}
+    \fi
+
+    \iftmlobsobserver
+    \iftmlobsobserveruncertainty
+      \node[obsuncertainty,
+        minimum width=\tmlobsobserveruncertaintywidth,
+        minimum height=\tmlobsobserveruncertaintyheight] (DeltaObserver) at \tmlobsobserveruncertaintypos
+        {\tmlobsobserveruncertaintylabel};
+      \observeruncertaintyloop
+        {Observer}{DeltaObserver}{\tmlobsobserverloopyshift}
+        {\tmlobsobserverloopleftwidth}{\tmlobsobserverlooprightwidth}
+        {\tmlobsobserverzuncertaintylabel}{\tmlobsobserverwuncertaintylabel}
+        {Observer}
+    \fi
+    \fi
+    
+    \iftmlobsobserver
+    \node[obssum] (Sum) at \tmlobssumpos {$\Sigma$};
+    \node[obsminus] (Minus) at \tmlobsminuspos {$-1$};
+
+    % Measurement path from plant to observer.
+    \coordinate (Yin) at ([yshift=\tmlobsobserverinputyshift]Observer.east);
+    \coordinate (Yout) at (Plant.south);
+    \coordinate (Ydown) at (Yout |- Yin);
+    \draw[obsline] (Yout) --
+      node[pos=0.50, right, obslabel] {\tmlobsylabel}
+      (Ydown);
+    \draw[obsarrow] (Ydown) -- (Yin);
+
+    % Performance output and error summation.
+    \coordinate (Zout) at ([yshift=\tmlobsplantoutputyshift]Plant.west);
+    \iftmlobsoutput
+      \draw[obsarrow] (Zout) --
+        node[pos=0.27, above, obslabel] {\tmlobszlabel}
+        (Sum.east);
+        
+    \else
+      \draw[obsarrow] (Zout) -- (Sum.east);
+
+    \fi
+    \iftmlobsperformanceuncertainty
+      \node[obsuncertainty,
+        minimum width=\tmlobsperformanceuncertaintywidth,
+        minimum height=\tmlobsperformanceuncertaintyheight] (DeltaPerformance) at \tmlobsperformanceuncertaintypos
+        {\tmlobsperformanceuncertaintylabel};
+      \coordinate (PerfZTopLeft) at ($(DeltaPerformance.west)+(-\tmlobsperformanceloopsidewidth,0)$);
+      \coordinate (PerfZLeft) at (Sum.west -| PerfZTopLeft);
+      \coordinate (PerfZUp) at (PerfZTopLeft);
+      \draw[obsline] (Sum.west) -- (PerfZLeft);
+      \draw[obsline] (PerfZLeft) --
+        node[pos=0.50, left, obslabel] {\tmlobserrorlabel}
+        (PerfZUp);
+      \draw[obsarrow] (PerfZUp) -- (DeltaPerformance.west);
+      \coordinate (Win) at ([yshift=\tmlobsplantperformanceinputyshift]Plant.east);
+      \coordinate (PerfWRight) at ($(DeltaPerformance.east)+(\tmlobsperformanceloopsidewidth,0)$);
+      \coordinate (PerfWDown) at (PerfWRight |- Win);
+      \draw[obsline] (DeltaPerformance.east) -- (PerfWRight);
+      \draw[obsline] (PerfWRight) -- (PerfWDown);
+      \draw[obsarrow] (PerfWDown) --
+        node[pos=0.50, above, obslabel] {\tmlobswlabel}
+        (Win);
+    \else
+      \iftmlobserroroutput
+        \draw[obsarrow] (Sum.west) --
+          node[pos=0.45, above, obslabel] {\tmlobserrorlabel}
+          ($(Sum.west)+(-0.82,0)$);
+      \else
+        \draw[obsarrow] (Sum.west) -- ($(Sum.west)+(-0.82,0)$);
+      \fi
+      \iftmlobsinput
+        \coordinate (Win) at ([yshift=\tmlobsplantperformanceinputyshift]Plant.east);
+        \draw[obsarrow] ($(Win)+(0.95,0)$)
+          node[right, obslabel] {\tmlobswlabel}
+          -- (Win);
+      \fi
+    \fi
+
+    \coordinate (ZhatOut) at ([yshift=\tmlobsobserveroutputyshift]Observer.west);
+    \draw[obsarrow] (ZhatOut) --
+      node[pos=0.30, above, obslabel] {\tmlobszhatlabel}
+      (Minus.east);
+    \draw[obsline] (Minus.west) -| ($(Sum.south)+(0,-0.28)$);
+    \draw[obsarrow] ($(Sum.south)+(0,-0.28)$) -- (Sum.south);
+    \else
+      \iftmlobsoutput
+        \coordinate (Zout) at ([yshift=\tmlobsplantoutputyshift]Plant.west);
+        \draw[obsarrow] (Zout) --
+          node[pos=0.45, above, obslabel] {\tmlobszlabel}
+          ($(Zout)+(-0.95,0)$);
+          \coordinate (Yin) at ([yshift=-1cm]Plant.south);
+        \coordinate (Yout) at (Plant.south);
+        \draw[obsarrow] (Yout) -- node[pos=0.50, right, obslabel] {\tmlobsylabel}(Yin);
+      \fi
+      \iftmlobsinput
+        \coordinate (Win) at ([yshift=\tmlobsplantperformanceinputyshift]Plant.east);
+        \draw[obsarrow] ($(Win)+(0.95,0)$)
+          node[right, obslabel] {\tmlobswlabel}
+          -- (Win);
+      \fi
+    \fi
+  \end{tikzpicture}%
+  \endgroup
+}
+
+\let\observerblockscheme\observerdiagram
+
+
